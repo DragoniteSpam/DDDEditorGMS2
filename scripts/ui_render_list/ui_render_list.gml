@@ -6,9 +6,10 @@ function ui_render_list(list, xx, yy) {
     var y3 = y2 + list.slots * list.height;
     var ww = x2 - x1;
     var hh = y3 - y2;
+    var txoffset = 0;
     
-    var tx = ui_get_text_x(list, x1, x2);
-    var ty = ui_get_text_y(list, y1, y2);
+    var tx = list.GetTextX(x1, x2);
+    var ty = list.GetTextX(y1, y2);
     
     #region stuff around the list
     draw_set_halign(list.alignment);
@@ -20,14 +21,12 @@ function ui_render_list(list, xx, yy) {
         var spr_yoffset = sprite_get_yoffset(spr_help);
         var spr_width = sprite_get_width(spr_help);
         var spr_height = sprite_get_height(spr_help);
-        var txoffset = spr_width;
+        txoffset = spr_width;
         var inbounds = mouse_within_rectangle_determine(tx - spr_xoffset, ty - spr_yoffset, tx - spr_xoffset + spr_width, ty - spr_yoffset + spr_height, list.adjust_view);
         draw_sprite(spr_help, inbounds ? 1 : 0, tx, ty);
         if (inbounds) {
             Stuff.element_tooltip = list;
         }
-    } else {
-        var txoffset = 0;
     }
     draw_text(tx + txoffset, ty, string(list.text));
     #endregion

@@ -8,8 +8,8 @@ function menu_render_element(menumenu, x1, y1, x2, y2) {
     menumenu.x = x1;
     menumenu.y = y1;
     
-    var tx = ui_get_text_x(menumenu, x1, x2);
-    var ty = ui_get_text_y(menumenu, y1, y2);
+    var tx = menumenu.GetTextX(x1, x2);
+    var ty = menumenu.GetTextX(y1, y2);
     
     var active = menu_is_active(menumenu) && menumenu.interactive;
     var mouse_inbounds = mouse_within_rectangle(x1, y1, x2, y2);

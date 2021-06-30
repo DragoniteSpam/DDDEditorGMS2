@@ -4,8 +4,8 @@ function ui_render_input_code(code, xx, yy) {
     var x2 = x1 + code.width;
     var y2 = y1 + code.height;
     
-    var tx = ui_get_text_x(code, x1, x2);
-    var ty = ui_get_text_y(code, y1, y2);
+    var tx = code.GetTextX(x1, x2);
+    var ty = code.GetTextX(y1, y2);
     
     var value = code.value;
     
@@ -39,8 +39,8 @@ function ui_render_input_code(code, xx, yy) {
         }
         
         if (!code.editor_handle) {
-            var omu = code.onmouseup;
-            var interactable = code.interactive && dialog_is_active(code.root);
+            omu = code.onmouseup;
+            interactable = code.interactive && dialog_is_active(code.root);
         }
         
         ui_handle_dropped_files(code);

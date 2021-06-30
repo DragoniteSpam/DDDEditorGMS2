@@ -5,8 +5,8 @@ function menu_render(menu, x1, y1) {
     menu.x = x1;
     menu.y = y1;
     
-    var tx = ui_get_text_x(menu, x1, x2);
-    var ty = ui_get_text_y(menu, y1, y2);
+    var tx = menu.GetTextX(x1, x2);
+    var ty = menu.GetTextX(y1, y2);
     
     draw_set_halign(menu.alignment);
     draw_set_valign(menu.valignment);

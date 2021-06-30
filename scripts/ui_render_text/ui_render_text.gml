@@ -12,8 +12,8 @@ function ui_render_text(argument0, argument1, argument2) {
     var x2 = x1 + text.width;
     var y2 = y1 + text.height;
 
-    var tx = ui_get_text_x(text, x1, x2);
-    var ty = ui_get_text_y(text, y1, y2);
+    var tx = text.GetTextX(x1, x2);
+    var ty = text.GetTextX(y1, y2);
 
     var old_halign = global.scribble_state_box_halign;
     var old_valign = global.scribble_state_box_valign;

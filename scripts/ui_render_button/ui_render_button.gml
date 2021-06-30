@@ -4,8 +4,8 @@ function ui_render_button(button, xx, yy) {
     var x2 = x1 + button.width;
     var y2 = y1 + button.height;
     
-    var tx = ui_get_text_x(button, x1, x2);
-    var ty = ui_get_text_y(button, y1, y2);
+    var tx = button.GetTextX(x1, x2);
+    var ty = button.GetTextX(y1, y2);
     
     ui_render_button_general(
         x1, y1, x2, y2, tx, ty, button.text, button.alignment, button.valignment, button.color,

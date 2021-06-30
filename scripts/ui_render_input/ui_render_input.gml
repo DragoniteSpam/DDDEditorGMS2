@@ -13,8 +13,8 @@ function ui_render_input(input, xx, yy) {
     var ww = vx2 - vx1;
     var hh = vy2 - vy1;
     
-    var tx = ui_get_text_x(input, x1, x2);
-    var ty = ui_get_text_y(input, y1, y2);
+    var tx = input.GetTextX(x1, x2);
+    var ty = input.GetTextX(y1, y2);
     
     var value = string(input.value);
     var sw = string_width(value);
@@ -27,14 +27,14 @@ function ui_render_input(input, xx, yy) {
     draw_set_valign(fa_middle);
     
     if (input.validation(value, input)) {
-        var c = input.color;
+        c = input.color;
         if (input.real_value) {
             if (!is_clamped(input.value_conversion(value), input.value_lower, input.value_upper)) {
                 c = c_orange;
             }
         }
     } else {
-        var c = c_red;
+        c = c_red;
     }
     #endregion
     
@@ -93,7 +93,7 @@ function ui_render_input(input, xx, yy) {
         var valign = draw_get_valign();
         draw_set_valign(fa_top);
         var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
-        var vty = ui_get_text_y(input, vy1, vy2, fa_top);
+        var vty = input.GetTextY(vy1, vy2, fa_top);
         draw_text_ext_colour(vtx - vx1, min(vty - vy1, hh - spacing - sh), display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
         draw_set_font(FDefault12);
         if (string_length(value) == 0) {

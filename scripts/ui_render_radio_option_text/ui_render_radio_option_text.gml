@@ -4,8 +4,8 @@ function ui_render_radio_option_text(option, xx, yy) {
     var x2 = x1 + option.width;
     var y2 = y1 + option.height;
     
-    var tx = ui_get_text_x(option, x1, x2);
-    var ty = ui_get_text_y(option, y1, y2);
+    var tx = option.GetTextX(x1, x2);
+    var ty = option.GetTextX(y1, y2);
     
     var enabled = option.root.interactive && option.interactive;
     

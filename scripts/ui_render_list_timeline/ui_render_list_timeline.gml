@@ -51,8 +51,8 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
 
     var y3 = y2 + timeline.slots * timeline.height;
 
-    var tx = ui_get_text_x(timeline, x1, x2);
-    var ty = ui_get_text_y(timeline, y1, y2);
+    var tx = timeline.GetTextX(x1, x2);
+    var ty = timeline.GetTextX(y1, y2);
 
     if (animation) {
         var n = array_length(animation.layers);

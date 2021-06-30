@@ -4,8 +4,8 @@ function ui_render_image_button(button, xx, yy) {
     var x2 = x1 + button.width;
     var y2 = y1 + button.height;
     
-    var tx = ui_get_text_x(button, x1, x2);
-    var ty = ui_get_text_y(button, y1, y2);
+    var tx = button.GetTextX(x1, x2);
+    var ty = button.GetTextX(y1, y2);
     
     // Drawing to the surface instead of the screen directly - everything drawn needs
     // to be minus x1 and minus y1, because suddenly we're drawing at the origin again

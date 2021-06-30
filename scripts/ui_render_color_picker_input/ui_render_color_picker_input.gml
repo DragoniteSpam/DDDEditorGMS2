@@ -6,8 +6,8 @@ function ui_render_color_picker_input(picker, xx, yy) {
     var x2 = x1 + picker.width;
     var y2 = y1 + picker.height;
     
-    var tx = ui_get_text_x(picker, x1, x2);
-    var ty = ui_get_text_y(picker, y1, y2);
+    var tx = picker.GetTextX(x1, x2);
+    var ty = picker.GetTextX(y1, y2);
     
     var value = picker.value;
     var input_active = ui_is_active(picker);
@@ -33,7 +33,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
         picker.value_text = string_hex(colour_reverse(picker.value), 6);
     }
     
-    var c = validate_hex(picker.value_text) ? c_black : c_red;
+    c = validate_hex(picker.value_text) ? c_black : c_red;
     
     if (!picker.interactive) {
         draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);

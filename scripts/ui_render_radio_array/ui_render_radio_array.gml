@@ -4,8 +4,8 @@ function ui_render_radio_array(array, xx, yy) {
     var x2 = x1 + array.width;
     var y2 = y1 + array.height * (1 + ds_list_size(array.contents));
     
-    var tx = ui_get_text_x(array, x1, x2);
-    var ty = ui_get_text_y(array, y1, y1 + array.height);
+    var tx = array.GetTextX(x1, x2);
+    var ty = array.GetTextX(y1, y1 + array.height);
     
     if (array.outline) {
         draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);

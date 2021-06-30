@@ -58,3 +58,21 @@ AddContent = function(elements) {
 GetTop = function() {
     return self.contents[| ds_list_size(self.contents) - 1];
 };
+
+GetTextX = function(x1, x2, align) {
+    if (align == undefined) align = self.alignment;
+    switch (align) {
+        case fa_left: return x1 + self.offset;
+        case fa_center: return floor(mean(x1, x2));
+        case fa_right: return x2 - self.offset;
+    }
+};
+
+GetTextY = function(y1, y2, align) {
+    if (align == undefined) align = self.alignment;
+    switch (align) {
+        case fa_top: return y1 + self.offset;
+        case fa_middle: return floor(mean(y1, y2));
+        case fa_bottom: return y2 - self.offset;
+    }
+};

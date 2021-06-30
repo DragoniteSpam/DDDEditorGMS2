@@ -4,8 +4,8 @@ function ui_render_checkbox(checkbox, xx, yy) {
     var x2 = x1 + checkbox.width;
     var y2 = y1 + checkbox.height;
     
-    var tx = ui_get_text_x(checkbox, x1, x2);
-    var ty = ui_get_text_y(checkbox, y1, y2);
+    var tx = checkbox.GetTextX(x1, x2);
+    var ty = checkbox.GetTextX(y1, y2);
     
     draw_set_halign(checkbox.alignment);
     draw_set_valign(checkbox.valignment);

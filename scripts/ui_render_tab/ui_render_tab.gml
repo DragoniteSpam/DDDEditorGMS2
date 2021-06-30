@@ -27,8 +27,8 @@ function ui_render_tab(argument0, argument1, argument2) {
         draw_line(x1, y2, x2, y2);
     }
 
-    var tx = ui_get_text_x(tab, x1, x2);
-    var ty = ui_get_text_y(tab, y1, y2);
+    var tx = tab.GetTextX(x1, x2);
+    var ty = tab.GetTextX(y1, y2);
 
     draw_set_halign(tab.alignment);
     draw_set_valign(tab.valignment);

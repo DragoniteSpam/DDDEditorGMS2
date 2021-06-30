@@ -5,8 +5,8 @@ function ui_render_color_picker(picker, xx, yy) {
     var y2 = y1 + picker.height;
     var c = picker.color;
     
-    var tx = ui_get_text_x(picker, x1, x2);
-    var ty = ui_get_text_y(picker, y1, y2);
+    var tx = picker.GetTextX(x1, x2);
+    var ty = picker.GetTextX(y1, y2);
     
     // this is not quite the same as ui_render_text
     draw_set_halign(picker.alignment);
