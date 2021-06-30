@@ -468,8 +468,6 @@
     {"id":{"name":"dmu_dialog_event_set_outbound_null_double","path":"scripts/dmu_dialog_event_set_outbound_null_double/dmu_dialog_event_set_outbound_null_double.yy",},"order":6,},
     {"id":{"name":"ui_get_list_height","path":"scripts/ui_get_list_height/ui_get_list_height.yy",},"order":1,},
     {"id":{"name":"scribble_set_transform","path":"scripts/scribble_set_transform/scribble_set_transform.yy",},"order":10,},
-    {"id":{"name":"ui_legal_height","path":"scripts/ui_legal_height/ui_legal_height.yy",},"order":4,},
-    {"id":{"name":"ui_legal_width","path":"scripts/ui_legal_width/ui_legal_width.yy",},"order":5,},
     {"id":{"name":"menu_render_main","path":"scripts/menu_render_main/menu_render_main.yy",},"order":0,},
     {"id":{"name":"menu_render","path":"scripts/menu_render/menu_render.yy",},"order":1,},
     {"id":{"name":"snap_to_messagepack","path":"scripts/snap_to_messagepack/snap_to_messagepack.yy",},"order":1,},

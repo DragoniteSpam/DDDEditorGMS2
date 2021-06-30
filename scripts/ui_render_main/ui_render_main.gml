@@ -24,11 +24,11 @@ function ui_render_main(ui) {
 
     var x1 = xx;
     var y1 = yy;
-    var x2 = x1 + ui_legal_width();
-    var y2 = y1 + ui_legal_height(ui);
+    var x2 = x1 + ui.GetLegalWidth();
+    var y2 = y1 + ui.GetLegalHeight();
 
     var trow = ui.tabs[| ui.active_tab.home_row];
-    var ww = ui_legal_width() / ds_list_size(trow);
+    var ww = ui.GetLegalWidth() / ds_list_size(trow);
     for (var i=0; i<ds_list_size(trow); i++) {
         var thing = trow[| i];
         thing.x = xx;
@@ -42,7 +42,7 @@ function ui_render_main(ui) {
             trow = ui.tabs[| i];
             xx = ui_x + 32;
             yy = yy - ui.element_height;
-            ww = ui_legal_width() / ds_list_size(trow);
+            ww = ui.GetLegalWidth() / ds_list_size(trow);
             for (var j = 0; j < ds_list_size(trow); j++) {
                 var thing = trow[| j];
                 thing.x = xx;

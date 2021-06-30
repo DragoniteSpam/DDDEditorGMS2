@@ -23,7 +23,7 @@ function ui_init_terrain(mode) {
         var spacing = 16;
         var legal_x = 32;
         var legal_y = home_row_y + 32;
-        var legal_width = ui_legal_width();
+        var legal_width = self.GetLegalWidth();
         var col_width = legal_width / 2 - spacing * 1.5;
         var col2_x = legal_x + col_width + spacing * 2;
         
