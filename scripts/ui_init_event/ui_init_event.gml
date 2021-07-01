@@ -36,7 +36,16 @@ function ui_init_event(mode) {
         }, false, t_events, Game.events.events);
         element.tooltip = "All of the event graphs currently defined. Middle-click the list to sort it alphabetically.";
         element.entries_are = ListEntries.INSTANCES;
-        element.onmiddleclick = omu_event_list_alphabetize;
+        element.onmiddleclick = function(list) {
+            ui_list_deselect(list);
+            array_sort_name(Game.events.events);
+            for (var i = 0; i < array_length(Game.events.events); i++) {
+                if (Game.events.events[i] == Stuff.event.active) {
+                    ui_list_select(list, i, true);
+                    break;
+                }
+            }
+        };
         ui_list_select(element, 0);
         ds_list_add(t_events.contents, element);
         
@@ -53,7 +62,7 @@ function ui_init_event(mode) {
         yy += element_height + spacing;
         
         element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, function(button) {
-            var selection = ui_list_selection(thing.root.el_event_list);
+            var selection = ui_list_selection(button.root.el_event_list);
             if (selection + 1) {
                 dialog_create_event_rename(Game.events.events[selection]);
             }
@@ -88,7 +97,20 @@ function ui_init_event(mode) {
         element.tooltip = "This is a list of all of the nodes on this event graph. Click on one to jump to its position. Middle-click the list to sort it alphabetically.";
         element.entries_are = ListEntries.INSTANCES;
         element.render = ui_render_list_event_node;
-        element.onmiddleclick = omu_event_node_list_alphabetize;
+        element.onmiddleclick = function(list) {
+            var selection = ui_list_selection(list);
+            ui_list_deselect(list);
+            var event = Stuff.event.active;
+            var selected_node = (selection + 1) ? event.nodes[selection] : noone;
+            array_sort_name(event.nodes);
+        
+            for (var i = 0; i < array_length(event.nodes); i++) {
+                if (event.nodes[i] == selected_node) {
+                    ui_list_select(list, i, true);
+                    break;
+                }
+            }
+        };
         ds_list_add(t_list.contents, element);
         
         yy += element.GetHeight() + spacing;
@@ -131,25 +153,53 @@ function ui_init_event(mode) {
         el_list_custom.tooltip = "Any event you want that's specific to your game's data (for example, anything pertaining to Inventory) can be made from a custom event.\n\nYou can attach your own data types and even outbound nodes to custom events.";
         el_list_custom.entries_are = ListEntries.INSTANCES;
         el_list_custom.colorized = false;
-        el_list_custom.ondoubleclick = omu_event_edit_custom_event;
-        el_list_custom.onmiddleclick = omu_event_custom_list_alphabetize;
+        el_list_custom.ondoubleclick = function(button) {
+            var selection = ui_list_selection(button.root.root.el_list_custom);
+            if (selection + 1) {
+                dialog_create_event_custom(button.root);
+            }
+        };
+        el_list_custom.onmiddleclick = function(list) {
+            var selection = Game.events.custom[ui_list_selection(list)];
+            ui_list_deselect(list);
+            array_sort_name(Game.events.custom);
+        
+            for (var i = 0; i < array_length(Game.events.custom); i++) {
+                if (Game.events.custom[i] == selection) {
+                    ui_list_select(list, i, true);
+                    break;
+                }
+            }
+        };
         ds_list_add(t_custom.contents, el_list_custom);
         
         yy += el_list_custom.GetHeight() + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Add", element_width, element_height, fa_center, omu_event_add_custom_event, t_custom);
+        element = create_button(legal_x + spacing, yy, "Add", element_width, element_height, fa_center, function(button) {
+            array_push(Game.events.custom, new DataEventNodeCustom("CustomNode" + string(array_length(Game.events.custom))));
+        }, t_custom);
         element.tooltip = "Create a new custom event node.";
         ds_list_add(t_custom.contents, element);
         
         yy += element_height + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, omu_event_remove_custom_event, t_custom);
+        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, function(button) {
+            var index = ui_list_selection(button.root.root.el_list_custom);
+            if (index + 1) {
+                dialog_create_event_custom_delete(Game.events.custom[index], button.root);
+            }
+        }, t_custom);
         element.tooltip = "Delete the selected custom event node. Any existing nodes based on the node you delete will also be deleted, and may leave gaps in the sequences that use them.";
         ds_list_add(t_custom.contents, element);
         
         yy += element_height + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Edit", element_width, element_height, fa_center, omu_event_edit_custom_event, t_custom);
+        element = create_button(legal_x + spacing, yy, "Edit", element_width, element_height, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.root.el_list_custom);
+            if (selection + 1) {
+                dialog_create_event_custom(button.root);
+            }
+        }, t_custom);
         element.tooltip = "Edit the properties of the selected custom event node.";
         ds_list_add(t_custom.contents, element);
         
@@ -159,7 +209,18 @@ function ui_init_event(mode) {
         el_list_prefabs.tooltip = "If you have a particular event with particular data you invoke often, such as a certain line of text or custom event node, you may wish to save it as a prefab so you can add it with all of its attributes already defined.\n\nTo create one, click the Save Prefab icon on the top of an existing event node.";
         el_list_prefabs.entries_are = ListEntries.INSTANCES;
         el_list_prefabs.colorized = false;
-        el_list_prefabs.onmiddleclick = omu_event_prefab_list_alphabetize;
+        el_list_prefabs.onmiddleclick = function(list) {
+            var selection = Game.events.prefabs[ui_list_selection(list)];
+            ui_list_deselect(list);
+            array_sort_name(Game.events.prefabs);
+            
+            for (var i = 0; i < array_length(Game.events.prefabs); i++) {
+                if (Game.events.prefabs[i] == selection) {
+                    ui_list_select(list, i, true);
+                    break;
+                }
+            }
+        };
         ds_list_add(t_custom.contents, el_list_prefabs);
         
         yy += el_list_prefabs.GetHeight() + spacing;
