@@ -102,6 +102,8 @@ function dialog_create_settings_data_asset_files(dialog) {
                     Game.meta.export.locations[i]--;
                 }
             }
+            ui_list_deselect(list_main);
+            ui_list_select(list_main, min(selection, array_length(Game.meta.export.files) - 1));
             list_main.onvaluechange(list_main);
         }
     }, dg);
