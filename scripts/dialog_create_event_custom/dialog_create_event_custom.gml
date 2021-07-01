@@ -39,10 +39,10 @@ function dialog_create_event_custom(argument0) {
 
     var yy_base = yy;
 
-    var el_list = create_list(col1_x, yy, "Properties Types: ", "<no properties>", ew, eh, n_slots, uivc_list_event_custom_property, false, dg);
-    el_list.render = ui_render_list_event_custom_properties;
+    var el_list = create_list(col1_x, yy, "Properties Types: ", "<no properties>", ew, eh, n_slots, uivc_list_event_custom_property, false, dg, dg.event.types);
     el_list.colorize = false;
     el_list.numbered = true;
+    el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
 
     yy += el_list.GetHeight() + spacing;

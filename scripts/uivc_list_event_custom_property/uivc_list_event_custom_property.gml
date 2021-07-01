@@ -11,7 +11,6 @@ function uivc_list_event_custom_property(list) {
         
         ui_input_set_value(list.root.el_property_name, property.name);
         list.root.el_property_type.value = property.type;
-        
         var datatype = guid_get(property.type_guid);
         list.root.el_property_type_guid.text = datatype ? ("Select (" + datatype.name + ")") : "Select Type...";
         
