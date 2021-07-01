@@ -24,7 +24,6 @@ if (view_current == view_overlay) {
         Stuff.element_tooltip_t = Stuff.time;
     }
     
-    // @gml update try-catch, oh my god
     if (Settings.config.tooltip && Stuff.element_tooltip && (Stuff.element_tooltip_t > -1 && (Stuff.time - Stuff.element_tooltip_t > 1))) {
         instance_activate_object(Stuff.element_tooltip);
         if (instance_exists(Stuff.element_tooltip) && string_length(Stuff.element_tooltip.tooltip) > 0) {
