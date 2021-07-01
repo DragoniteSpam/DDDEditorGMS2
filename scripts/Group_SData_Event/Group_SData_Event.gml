@@ -299,9 +299,6 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     // but i really want to get this out the door so i'm not implementing them here
     
     // for now:
-    // min: -0x80000000
-    // max:  0x7fffffff
-    // char limit (universal): 100
 }
 
 function EventNodeProperty(name, type, type_guid, max_size, all_required, default_value, data_attainment, data_output) constructor {
@@ -319,6 +316,10 @@ function EventNodeProperty(name, type, type_guid, max_size, all_required, defaul
     self.default_value = default_value;
     self.data_attainment = data_attainment;
     self.data_output = data_output;
+    
+    self.min_value = -0x80000000;
+    self.max_value =  0x7fffffff;
+    self.char_limit = 100;
 }
 
 function EventNodePeristent(name, data_types, outbound_names) constructor {
