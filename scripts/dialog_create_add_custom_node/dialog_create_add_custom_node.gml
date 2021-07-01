@@ -22,13 +22,21 @@ function dialog_create_add_custom_node(root) {
     
     var yy = 64;
     
+    var f_add = function(element) {
+        var selection = ui_list_selection(element.root.el_list_main);
+        if (selection + 1) {
+            event_create_node(Stuff.event.active, EventNodeTypes.CUSTOM, undefined, undefined, Game.events.custom[selection].GUID);
+        }
+        dialog_destroy();
+    };
+    
     var el_list = create_list(16, yy, "Custom Node Types:", "<no custom nodes>", ew, eh, n_slots, null, false, dg, Game.events.custom);
-    el_list.ondoubleclick = omu_event_add_custom;
+    el_list.ondoubleclick = method(el_list, f_add);
     el_list.entries_are = ListEntries.INSTANCES;
     
     dg.el_list_main = el_list;
     
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, omu_event_add_custom, dg);
+    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, f_add, dg);
     dg.el_confirm = el_confirm;
     
     ds_list_add(dg.contents,
