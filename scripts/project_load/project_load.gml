@@ -221,4 +221,6 @@ function project_load(id) {
     project_load_maps(folder_name + "maps.json", folder_map_name);
     
     Game.maps[0].Load();
+    
+    wtf("Loading took " + string((get_timer() - t0) / 1000) + " ms");
 }
