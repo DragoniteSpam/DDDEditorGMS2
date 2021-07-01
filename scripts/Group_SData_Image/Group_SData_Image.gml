@@ -85,10 +85,7 @@ function DataImage(source) : SData(source) constructor {
 
 function DataImageTileset(source) : DataImage(source) constructor {
     self.flags = [[]];
-    
-    if (is_struct(source)) {
-        self.flags = source.flags;
-    }
+    self.flags_override = true;
     
     static ExportTileset = function(buffer) {
         self.ExportImage(buffer);

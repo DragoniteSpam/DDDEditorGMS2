@@ -258,7 +258,7 @@ function DataMap(source, directory) : SData(source) constructor {
         for (var i = 0; i < self.xx; i++) {
             for (var j = 0; j < self.yy; j++) {
                 for (var k = 0; k < self.zz; k++) {
-                    buffer_write(buffer, buffer_flag, map.GetFlag(i, j, k));
+                    buffer_write(buffer, buffer_flag, self.GetFlag(i, j, k));
                 }
             }
         }
