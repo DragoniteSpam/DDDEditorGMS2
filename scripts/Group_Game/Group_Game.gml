@@ -124,6 +124,19 @@ Game = new (function() constructor {
         Identifiers.Clear();
     };
     
+    enum GameDataCategories {
+        DATA,
+        ANIMATIONS,
+        EVENTS,
+        MAPS,
+        TERRAIN,
+        IMAGES,
+        AUDIO,
+        MESHES,
+        LANGUAGE_TEXT,
+        __COUNT
+    }
+    
     self.meta.export.locations[GameDataCategories.IMAGES] = 1;
     self.meta.export.locations[GameDataCategories.AUDIO] = 1;
     self.meta.export.locations[GameDataCategories.MESHES] = 1;

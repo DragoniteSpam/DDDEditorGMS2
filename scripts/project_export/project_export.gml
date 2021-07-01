@@ -36,21 +36,15 @@ function project_export() {
             
             for (var i = 0; i < array_length(Game.meta.export.files); i++) {
                 var file_data = Game.meta.export.files[i];
+                var this_files_name = save_directory + file_data.name + EXPORT_EXTENSION_ASSETS;
                 var buffer = buffer_create(1024, buffer_grow, 1);
                 write_header(buffer);
                 
-                // the default file should have a list of all of the other files
+                // the default file should have the global settings
+                // (including a list of all of the other files)
                 if (i == 0) {
-                    buffer_write(buffer, buffer_u8, array_length(Game.meta.export.files));
-                    for (var j = 0; j < array_length(Game.meta.export.files); j++) {
-                        var asset_file = Game.meta.export.files[j];
-                        buffer_write(buffer, buffer_string, asset_file.name);
-                        buffer_write(buffer, buffer_field, pack(
-                            asset_file.critical
-                        ));
-                    }
-                    
                     project_export_global(buffer);
+                    this_files_name = fn;
                 }
                 
                 // generate a list of all of the things that are in this file
@@ -62,8 +56,6 @@ function project_export() {
                 }
                 
                 buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
-                
-                var this_files_name = (i == 0) ? fn : (save_directory + file_data.name + EXPORT_EXTENSION_ASSETS);
                 
                 if (file_data.compressed) {
                     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));

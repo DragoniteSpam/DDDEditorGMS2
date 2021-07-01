@@ -154,19 +154,6 @@ data_image_npc_frames(default_pawn);
 tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
 #endregion
 
-enum GameDataCategories {
-    DATA,
-/**/ANIMATIONS,         // other
-    EVENTS,
-    MAPS,
-    TERRAIN,
-/**/IMAGES,
-/**/AUDIO,
-/**/MESHES,
-/**/LANGUAGE_TEXT,
-    __COUNT
-}
-
 #region data types
 enum DataTypes {
     INT,                // input
