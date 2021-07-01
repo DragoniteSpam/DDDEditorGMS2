@@ -198,9 +198,10 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
                 for (var i = 0; i < array_length(self.custom_data); i++) {
                     var type = custom.types[i];
                     var n_custom_data = array_length(self.custom_data[i]);
+                    var datatype = Stuff.data_type_meta[type[EventNodeCustomData.TYPE]].buffer_type;
                     buffer_write(buffer, buffer_u8, n_custom_data);
                     for (var j = 0; j < n_custom_data; j++) {
-                        buffer_write(buffer, Stuff.data_type_meta[type[EventNodeCustomData.TYPE]].buffer_type, self.custom_data[i][j]);
+                        buffer_write(buffer, datatype, self.custom_data[i][j]);
                     }
                 }
                 break;
@@ -266,6 +267,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
     
     if (is_struct(source)) {
         self.Setup(source.type, source.custom_guid);
+        self.name = source.name;
         self.type = source.type;
         self.custom_guid = source.custom_guid;
         self.prefab_guid = source.prefab_guid;
@@ -292,6 +294,7 @@ function DataEventNodeCustom(source) : SData(source) constructor {
                 guid: type[2],
                 max_size: type[3],
                 all_required: type[4],
+                default_value: type[5],
             };
         }
         json.outbound = self.outbound;
@@ -301,6 +304,23 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     static CreateJSON = function() {
         return self.CreateJSONEventCustom();
     };
+    
+    if (is_struct(source)) {
+        self.types = array_create(array_length(source.types));
+        for (var i = 0; i < array_length(source.types); i++) {
+            self.types[i] = [
+                source.types[i].name,
+                source.types[i].type,
+                source.types[i].guid,
+                source.types[i].max_size,
+                source.types[i].all_required,
+                source.types[i].default_value,
+                null,
+                null,
+            ];
+        }
+        self.outbound = source.outbound;
+    }
     
     enum EventNodeCustomData {
         NAME,
