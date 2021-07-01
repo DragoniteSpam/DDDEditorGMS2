@@ -11,7 +11,7 @@ function ui_init_event(mode) {
         
         ds_list_add(tabs, tr);
         
-        var tr = ds_list_create();
+        tr = ds_list_create();
         ds_list_add(tr, t_action1, t_action2);
         
         ds_list_add(tabs, tr);
@@ -31,7 +31,9 @@ function ui_init_event(mode) {
         #region event list
         var yy = legal_y;
         
-        element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, list_entry_height, 24, uivc_list_selection_event, false, t_events, Game.events.events);
+        element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, list_entry_height, 24, function(list) {
+            Stuff.event.active = Game.events.events[ui_list_selection(list)];
+        }, false, t_events, Game.events.events);
         element.tooltip = "All of the event graphs currently defined. Middle-click the list to sort it alphabetically.";
         element.entries_are = ListEntries.INSTANCES;
         element.onmiddleclick = omu_event_list_alphabetize;
@@ -50,13 +52,27 @@ function ui_init_event(mode) {
         
         yy += element_height + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, omu_event_rename_event, t_events);
+        element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, function(button) {
+            var selection = ui_list_selection(thing.root.el_event_list);
+            if (selection + 1) {
+                dialog_create_event_rename(Game.events.events[selection]);
+            }
+        }, t_events);
         element.tooltip = "Rename this event. Names do not have to be unique, but if you give more than one event the same name things will probably become confusing very quickly.";
         ds_list_add(t_events.contents, element);
         
         yy += element_height + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, omu_event_remove_event, t_events);
+        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, function(button) {
+            var index = ui_list_selection(button.root.el_event_list);
+            if (index + 1 && array_length(Game.events.events) > 1) {
+                if (array_length(Game.events.events) == 1) {
+                    emu_dialog_notice("Can't delete the only event!");
+                } else {
+                    dialog_create_event_delete(Game.events.events[index], button.root);
+                }
+            }
+        }, t_events);
         element.tooltip = "Delete this event graph. Anything referencing any of the nodes on the graph will no longer work.";
         ds_list_add(t_events.contents, element);
         
@@ -64,9 +80,11 @@ function ui_init_event(mode) {
         #endregion
         
         #region node list
-        var yy = legal_y;
+        yy = legal_y;
         
-        element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, list_entry_height, 22, uivc_list_selection_event_node, false, t_list, noone);
+        element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, list_entry_height, 22, function(list) {
+            event_view_node(Stuff.event.active.nodes[ui_list_selection(list)]);
+        }, false, t_list, noone);
         element.tooltip = "This is a list of all of the nodes on this event graph. Click on one to jump to its position. Middle-click the list to sort it alphabetically.";
         element.entries_are = ListEntries.INSTANCES;
         element.render = ui_render_list_event_node;
