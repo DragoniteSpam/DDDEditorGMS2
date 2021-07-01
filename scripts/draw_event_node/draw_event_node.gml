@@ -334,7 +334,7 @@ function draw_event_node(node) {
             var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
             
             for (var i = 0; i < array_length(custom.types); i++) {
-                switch (custom.types[i][1]) {
+                switch (custom.types[i].type) {
                     case DataTypes.INT:
                     case DataTypes.FLOAT:
                     case DataTypes.BOOL:
@@ -538,7 +538,7 @@ function draw_event_node(node) {
                     var message = type.name + " ";
                     
                     if (array_length(custom_data_list) == 1) {
-                        var output_script = type.output;
+                        var output_script = type.data_output;
                         var output_string = "";
                         
                         switch (type.type) {

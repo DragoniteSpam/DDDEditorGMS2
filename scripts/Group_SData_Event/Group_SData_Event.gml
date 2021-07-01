@@ -121,11 +121,9 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
                 if (custom) {
                     self.custom_guid = custom_guid;
                     self.name = custom.name;
-                    
                     // pre-allocate space for the properties of the event
                     for (var i = 0; i < array_length(custom.types); i++) {
                         var property = custom.types[i];
-                        wtf(property.max_size)
                         array_push(self.custom_data, array_create(property.max_size, property.default_value));
                     }
                     
@@ -289,6 +287,12 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     if (is_struct(source)) {
         self.types = source.types;
         self.outbound = source.outbound;
+        
+        for (var i = 0; i < array_length(self.types); i++) {
+            // these dont get serialized
+            self.types[i].data_attainment = null;
+            self.types[i].data_output = null;
+        }
     }
     
     // other values from data types like min, max and char limit are theoretically useful
