@@ -124,18 +124,9 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
                     
                     // pre-allocate space for the properties of the event
                     for (var i = 0; i < array_length(custom.types); i++) {
-                        type = custom.types[i];
-                        var new_list;
-                        
-                        // if all values are required, populate them with defaults
-                        // (adding and deleting will be disabled)
-                        if (type[4]) {
-                            new_list = array_create(type[3], type[5]);
-                        } else {
-                            new_list = [type[5]];
-                        }
-                        
-                        array_push(self.custom_data, new_list);
+                        var property = custom.types[i];
+                        wtf(property.max_size)
+                        array_push(self.custom_data, array_create(property.max_size, property.default_value));
                     }
                     
                     self.outbound = array_create(array_length(custom.outbound), NULL);
@@ -198,7 +189,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
                 for (var i = 0; i < array_length(self.custom_data); i++) {
                     var type = custom.types[i];
                     var n_custom_data = array_length(self.custom_data[i]);
-                    var datatype = Stuff.data_type_meta[type[EventNodeCustomData.TYPE]].buffer_type;
+                    var datatype = Stuff.data_type_meta[type.type].buffer_type;
                     buffer_write(buffer, buffer_u8, n_custom_data);
                     for (var j = 0; j < n_custom_data; j++) {
                         buffer_write(buffer, datatype, self.custom_data[i][j]);
@@ -266,6 +257,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
     self.Setup(type, custom);
     
     if (is_struct(source)) {
+        // mainly we need to do this to set up some helper stuff like embedded UI
         self.Setup(source.type, source.custom_guid);
         self.name = source.name;
         self.type = source.type;
@@ -285,18 +277,7 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     
     static CreateJSONEventCustom = function() {
         var json = self.CreateJSONBase();
-        json.types = array_create(array_length(self.types));
-        for (var i = 0, n = array_length(self.types); i < n; i++) {
-            var type = self.types[i];
-            json.types[@ i] = {
-                name: type[0],
-                type: type[1],
-                guid: type[2],
-                max_size: type[3],
-                all_required: type[4],
-                default_value: type[5],
-            };
-        }
+        json.types = self.types;
         json.outbound = self.outbound;
         return json;
     };
@@ -306,31 +287,8 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     };
     
     if (is_struct(source)) {
-        self.types = array_create(array_length(source.types));
-        for (var i = 0; i < array_length(source.types); i++) {
-            self.types[i] = [
-                source.types[i].name,
-                source.types[i].type,
-                source.types[i].guid,
-                source.types[i].max_size,
-                source.types[i].all_required,
-                source.types[i].default_value,
-                null,
-                null,
-            ];
-        }
+        self.types = source.types;
         self.outbound = source.outbound;
-    }
-    
-    enum EventNodeCustomData {
-        NAME,
-        TYPE,
-        TYPE_GUID,                  // the ID of Item, or Skill, or Class, or whatever
-        MAX,
-        REQUIRED,
-        DEFAULT_VALUE,              // only relevant to primitives
-        ATTAINMENT,                 // script for fetching the value in the event editor; null (the script) means the default method will be used
-        OUTPUT,                     // script for how to display the text of this value; null (the script) means the default method will be used
     }
     
     // other values from data types like min, max and char limit are theoretically useful
@@ -342,35 +300,32 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     // char limit (universal): 100
 }
 
-function EventNodePeristent(name, data, outbound_names) constructor {
+function EventNodeProperty(name, type, type_guid, max_size, all_required, default_value, data_attainment, data_output) constructor {
+    if (type_guid == undefined) type_guid = NULL;
+    if (max_size == undefined) max_size = 1;
+    if (all_required == undefined) all_required = false;
+    if (default_value == undefined) default_value = 0;
+    if (data_attainment == undefined) data_attainment = null;
+    if (data_output == undefined) data_output = null;
+    self.name = name;
+    self.type = type;
+    self.type_guid = type_guid;
+    self.max_size = max_size;
+    self.all_required = all_required;
+    self.default_value = default_value;
+    self.data_attainment = data_attainment;
+    self.data_output = data_output;
+}
+
+function EventNodePeristent(name, data_types, outbound_names) constructor {
     if (outbound_names == undefined) outbound_names = [""];
     self.name = name;
     self.flags = 0;
     self.summary = "";
-    self.types = [];
-    self.outbound = [];
     
     self.GUID = NULL;
     guid_set(self, "EV**" + string(Identifiers.event_fixed_id++));
     
-    for (var i = 0; i < array_length(data); i++) {
-        var datum = data[i];
-        var len = array_length(datum);
-    
-        var data_name = datum[0];
-        var data_type = datum[1];
-        var data_guid = (len > 2) ? datum[2] : NULL;    // only useful for Data types
-        var data_max = (len > 3) ? datum[3] : 1;
-        var data_required = (len > 4) ? datum[4] : false;
-        var data_default = (len > 5) ? datum[5] : 0;
-        var data_attainment = (len > 6) ? datum[6] : null;
-        var data_output = (len > 7) ? datum[7] : null;
-    
-        /// @gml update lightweight objects
-        array_push(self.types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
-    }
-
-    for (var i = 0; i < array_length(outbound_names); i++) {
-        array_push(self.outbound, outbound_names[i]);
-    }
+    self.types = data_types;
+    self.outbound = outbound_names;
 }

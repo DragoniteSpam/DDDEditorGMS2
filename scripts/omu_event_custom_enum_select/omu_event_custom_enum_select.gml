@@ -14,7 +14,7 @@ function omu_event_custom_enum_select(button) {
             }
             
             var data = array_sort_name(list_data)[selection];
-            property[@ EventNodeCustomData.TYPE_GUID] = data.GUID;
+            property.type_guid = data.GUID;
             thing.root.root.root.event.types[@ pselection] = property;
             thing.root.root.root.el_property_type_guid.text = "Select (" + data.name + ")";
             thing.root.root.root.el_property_type_guid.color = c_black;

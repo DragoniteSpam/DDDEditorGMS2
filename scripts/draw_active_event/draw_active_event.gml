@@ -97,37 +97,38 @@ function draw_active_event() {
                     } else {
                         for (var i = 0; i < n; i++) {
                             var type = base.types[i];
-                            switch (type[1]) {
-                                case DataTypes.INT: var type_name = "int"; break;
-                                case DataTypes.FLOAT: var type_name = "float"; break;
-                                case DataTypes.STRING: var type_name = "string"; break;
-                                case DataTypes.BOOL: var type_name = "boolean"; break;
+                            var type_name;
+                            switch (type.type) {
+                                case DataTypes.INT: type_name = "int"; break;
+                                case DataTypes.FLOAT: type_name = "float"; break;
+                                case DataTypes.STRING: type_name = "string"; break;
+                                case DataTypes.BOOL: type_name = "boolean"; break;
                                 case DataTypes.ENUM:
                                 case DataTypes.DATA:
-                                    var datadata = guid_get(type[EventNodeCustomData.TYPE_GUID]);
-                                    var type_name = datadata ? datadata.name : "<no type set>";
+                                    var datadata = guid_get(type.type_guid);
+                                    type_name = datadata ? datadata.name : "<no type set>";
                                     break;
-                                case DataTypes.AUDIO_BGM: var type_name = "background music"; break;
-                                case DataTypes.AUDIO_SE: var type_name = "sound effect"; break;
-                                case DataTypes.ANIMATION: var type_name = "animation"; break;
-                                case DataTypes.CODE: var type_name = "code"; break;
-                                case DataTypes.COLOR: var type_name = "color"; break;
-                                case DataTypes.MESH: var type_name = "mesh"; break;
-                                case DataTypes.MESH_AUTOTILE: var type_name = "mesh autotile"; break;
-                                case DataTypes.TILE: var type_name = "tile"; break;
-                                case DataTypes.IMG_TEXTURE: var type_name = "tileset"; break;
-                                case DataTypes.IMG_BATTLER: var type_name = "battler"; break;
-                                case DataTypes.IMG_OVERWORLD: var type_name = "overworld"; break;
-                                case DataTypes.IMG_PARTICLE: var type_name = "particle"; break;
-                                case DataTypes.IMG_UI: var type_name = "UI"; break;
-                                case DataTypes.IMG_SKYBOX: var type_name = "sky"; break;
-                                case DataTypes.IMG_ETC: var type_name = "misc"; break;
-                                case DataTypes.IMG_TILE_ANIMATION: var type_name = "tile animation"; break;
-                                case DataTypes.ENTITY: var type_name = "entity"; break;
-                                case DataTypes.MAP: var type_name = "map"; break;
-                                case DataTypes.EVENT: var type_name = "event"; break;
+                                case DataTypes.AUDIO_BGM: type_name = "background music"; break;
+                                case DataTypes.AUDIO_SE: type_name = "sound effect"; break;
+                                case DataTypes.ANIMATION: type_name = "animation"; break;
+                                case DataTypes.CODE: type_name = "code"; break;
+                                case DataTypes.COLOR: type_name = "color"; break;
+                                case DataTypes.MESH: type_name = "mesh"; break;
+                                case DataTypes.MESH_AUTOTILE: type_name = "mesh autotile"; break;
+                                case DataTypes.TILE: type_name = "tile"; break;
+                                case DataTypes.IMG_TEXTURE: type_name = "tileset"; break;
+                                case DataTypes.IMG_BATTLER: type_name = "battler"; break;
+                                case DataTypes.IMG_OVERWORLD: type_name = "overworld"; break;
+                                case DataTypes.IMG_PARTICLE: type_name = "particle"; break;
+                                case DataTypes.IMG_UI: type_name = "UI"; break;
+                                case DataTypes.IMG_SKYBOX: type_name = "sky"; break;
+                                case DataTypes.IMG_ETC: type_name = "misc"; break;
+                                case DataTypes.IMG_TILE_ANIMATION: type_name = "tile animation"; break;
+                                case DataTypes.ENTITY: type_name = "entity"; break;
+                                case DataTypes.MAP: type_name = "map"; break;
+                                case DataTypes.EVENT: type_name = "event"; break;
                             }
-                            draw_text(x1 + 16, y1 + 40 + i * 16, string(string(i + 1) + ". " + type[EventNodeCustomData.NAME] + " (" + type_name + ")"));
+                            draw_text(x1 + 16, y1 + 40 + i * 16, string(string(i + 1) + ". " + type.name + " (" + type_name + ")"));
                         }
                     }
                 break;

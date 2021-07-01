@@ -8,7 +8,7 @@ function ui_render_list_event_custom_properties(list, x, y) {
     // @gml update lwo
     for (var i = 0; i < array_length(list.root.event.types); i++) {
         var property = list.root.event.types[i];
-        ds_list_add(list.entries, property[EventNodeCustomData.NAME]);
+        ds_list_add(list.entries, property.name);
     }
     
     ui_render_list(list, x, y);

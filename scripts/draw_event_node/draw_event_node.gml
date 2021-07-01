@@ -387,7 +387,7 @@ function draw_event_node(node) {
                     var custom_data_list = node.custom_data[i];
                     var type = custom.types[i];
                     
-                    switch (type[1]) {
+                    switch (type.type) {
                         case DataTypes.INT:
                         case DataTypes.FLOAT:
                         case DataTypes.BOOL:
@@ -427,24 +427,24 @@ function draw_event_node(node) {
                         if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                             draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                             if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                                var attainment = type[EventNodeCustomData.ATTAINMENT];
+                                var attainment = type.data_attainment;
                                 if (attainment == null) {
-                                    switch (type[EventNodeCustomData.TYPE]) {
+                                    switch (type.type) {
                                         case DataTypes.INT:
-                                            dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[0], validate_int, -0x1000000, 0xffffff);
+                                            dialog_create_event_node_input_real(custom_data_list, 0, type.name + "?", custom_data_list[0], validate_int, -0x1000000, 0xffffff);
                                             break;
                                         case DataTypes.FLOAT:
-                                            dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[0], validate_double, -0x1000000, 0xffffff);
+                                            dialog_create_event_node_input_real(custom_data_list, 0, type.name + "?", custom_data_list[0], validate_double, -0x1000000, 0xffffff);
                                             break;
                                         case DataTypes.STRING:
-                                            dialog_create_event_node_input_string(custom_data_list, 0, type[0] + "?", custom_data_list[0]);
+                                            dialog_create_event_node_input_string(custom_data_list, 0, type.name + "?", custom_data_list[0]);
                                             break;
                                         case DataTypes.BOOL:
                                             custom_data_list[@ 0] = !custom_data_list[0];
                                             break;
                                         case DataTypes.ENUM:
                                         case DataTypes.DATA:
-                                            if (guid_get(type[EventNodeCustomData.TYPE_GUID])) {
+                                            if (guid_get(type.type_guid)) {
                                                 dialog_create_event_node_custom_data(noone, node, i, 0);
                                             }
                                             break;
@@ -526,7 +526,7 @@ function draw_event_node(node) {
                         }
                     }
                     
-                    if (node.editor_handle && type[EventNodeCustomData.TYPE] == DataTypes.CODE) {
+                    if (node.editor_handle && type.type == DataTypes.CODE) {
                         custom_data_list[@ i] = uios_code_text(node, custom_data_list[i]);
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy - tolerance + eh, c, c, c, c, false);
                         if (ds_stuff_process_complete(node.editor_handle)) {
@@ -535,13 +535,13 @@ function draw_event_node(node) {
                         }
                     }
                     
-                    var message = type[0] + " ";
+                    var message = type.name + " ";
                     
                     if (array_length(custom_data_list) == 1) {
-                        var output_script = type[EventNodeCustomData.OUTPUT];
+                        var output_script = type.output;
                         var output_string = "";
                         
-                        switch (type[1]) {
+                        switch (type.type) {
                             case DataTypes.INT:
                                 message = message + "(int): ";
                                 output_string = string(custom_data_list[0]);
@@ -560,7 +560,7 @@ function draw_event_node(node) {
                                 break;
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
-                                var datadata = guid_get(type[EventNodeCustomData.TYPE_GUID]);
+                                var datadata = guid_get(type.type_guid);
                                 var setdata = guid_get(custom_data_list[0]);
                             
                                 if (!datadata) {
@@ -687,7 +687,7 @@ function draw_event_node(node) {
                         message = message + ": multiple values (" + string(array_length(custom_data_list)) + ")";
                     }
                     
-                    if (type[1] == DataTypes.STRING && array_length(custom_data_list) == 1) {
+                    if (type.type == DataTypes.STRING && array_length(custom_data_list) == 1) {
                         draw_text(x1 + 16, entry_yy + 12, string(message));
                         draw_text_ext(x1 + 16, mean(entry_yy + 12, entry_yy + eh), string(custom_data_list[0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                     } else {

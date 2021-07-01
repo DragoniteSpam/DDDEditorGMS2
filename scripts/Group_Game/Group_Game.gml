@@ -154,129 +154,129 @@ Game = new (function() constructor {
     static InitializeDefaultObjects = function() {
         #region event nodes
         self.default_event_nodes[EventNodeTypes.INPUT_TEXT] = new EventNodePeristent("InputText", [
-            ["Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""],
-            ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_input_type_data, event_prefab_render_input_variable_name],
-            ["Kind", DataTypes.INT, 0, 1, false, 0, omu_event_attain_input_type_data, event_prefab_render_input_type_name],
-            ["Char Limit", DataTypes.INT, 0, 1, false, 16, omu_event_attain_input_type_data]
+            new EventNodeProperty("Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_input_type_data, event_prefab_render_input_variable_name),
+            new EventNodeProperty("Kind", DataTypes.INT, 0, 1, false, 0, omu_event_attain_input_type_data, event_prefab_render_input_type_name),
+            new EventNodeProperty("Char Limit", DataTypes.INT, 0, 1, false, 16, omu_event_attain_input_type_data)
         ]);
         self.default_event_nodes[EventNodeTypes.SHOW_SCROLLING_TEXT] = new EventNodePeristent("TextCrawl", [
-            ["Text", DataTypes.STRING, 0, 250, false, "Text that is shown in the text crawl goes here"],
+            new EventNodeProperty("Text", DataTypes.STRING, 0, 250, false, "Text that is shown in the text crawl goes here"),
         ]);
         self.default_event_nodes[EventNodeTypes.SHOW_CHOICES] = new EventNodePeristent("ShowChoices", [
             // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
-            ["Message", DataTypes.STRING, 0, 16, false, "Option 1"],
-            ["ID", DataTypes.INT, 0, 16, false, 0],
+            new EventNodeProperty("Message", DataTypes.STRING, 0, 16, false, "Option 1"),
+            new EventNodeProperty("ID", DataTypes.INT, 0, 16, false, 0),
         ], ["Option 1", "Option 2"]);
         self.default_event_nodes[EventNodeTypes.CONTROL_SWITCHES] = new EventNodePeristent("ControlGlobalSwitch", [
-            ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
-            ["State", DataTypes.BOOL, 0, 1, false, false]
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name),
+            new EventNodeProperty("State", DataTypes.BOOL, 0, 1, false, false)
         ]);
         self.default_event_nodes[EventNodeTypes.CONTROL_VARIABLES] = new EventNodePeristent("ControlGlobalVariable", [
-            ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
-            ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_variable_data],
-            ["Relative?", DataTypes.BOOL, 0, 1, false, false]
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name),
+            new EventNodeProperty("Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_variable_data),
+            new EventNodeProperty("Relative?", DataTypes.BOOL, 0, 1, false, false)
         ]);
         self.default_event_nodes[EventNodeTypes.CONTROL_SELF_SWITCHES] = new EventNodePeristent("ControlSelfSwitch", [
-            ["Entity", DataTypes.ENTITY],
-            ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name],
-            ["State", DataTypes.BOOL, 0, 1, false, false]
+            new EventNodeProperty("Entity", DataTypes.ENTITY),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name),
+            new EventNodeProperty("State", DataTypes.BOOL, 0, 1, false, false)
         ]);
         self.default_event_nodes[EventNodeTypes.CONTROL_SELF_VARIABLES] = new EventNodePeristent("ControlSelfVariable", [
-            ["Entity", DataTypes.ENTITY],
-            ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name],
-            ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data],
-            ["Relative?", DataTypes.BOOL, 0, 1, false, false]
+            new EventNodeProperty("Entity", DataTypes.ENTITY),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name),
+            new EventNodeProperty("Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data),
+            new EventNodeProperty("Relative?", DataTypes.BOOL, 0, 1, false, false)
         ]);
         self.default_event_nodes[EventNodeTypes.CONTROL_TIME] = new EventNodePeristent("ControlTimer", [
-            ["Counting Down?", DataTypes.BOOL, 0, 1, false, true],
-            ["Initial Time (seconds)", DataTypes.INT],
-            ["Display?", DataTypes.BOOL, 0, 1, false, false],
-            ["Running?", DataTypes.BOOL, 0, 1, false, true],
+            new EventNodeProperty("Counting Down?", DataTypes.BOOL, 0, 1, false, true),
+            new EventNodeProperty("Initial Time (seconds)", DataTypes.INT),
+            new EventNodeProperty("Display?", DataTypes.BOOL, 0, 1, false, false),
+            new EventNodeProperty("Running?", DataTypes.BOOL, 0, 1, false, true),
         ]);
         self.default_event_nodes[EventNodeTypes.CONDITIONAL] = new EventNodePeristent("Conditional", [
             // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
-            ["Type", DataTypes.INT],
-            ["Index", DataTypes.INT],
-            ["Comparison", DataTypes.INT],
-            ["Value", DataTypes.INT],
-            ["Code", DataTypes.INT],
+            new EventNodeProperty("Type", DataTypes.INT),
+            new EventNodeProperty("Index", DataTypes.INT),
+            new EventNodeProperty("Comparison", DataTypes.INT),
+            new EventNodeProperty("Value", DataTypes.INT),
+            new EventNodeProperty("Code", DataTypes.INT),
         ], ["Success", "Fail"]);
         self.default_event_nodes[EventNodeTypes.INVOKE_EVENT] = new EventNodePeristent("WillNotBeImplemented", []);
         self.default_event_nodes[EventNodeTypes.COMMENT] = new EventNodePeristent("ImplementedElsewhere", []);
         self.default_event_nodes[EventNodeTypes.WAIT] = new EventNodePeristent("Wait", [["Seconds", DataTypes.FLOAT, 0, 1, false, 1]]);
         self.default_event_nodes[EventNodeTypes.TRANSFER_PLAYER] = new EventNodePeristent("TransferPlayer", [
-            ["Map", DataTypes.MAP, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_name],
-            ["X", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
-            ["Y", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
-            ["A", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
-            ["Direction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_direction_name],
-            ["FadeColor", DataTypes.COLOR, 0, 1, false, c_black, omu_event_attain_map_data],
-            ["FadeTime", DataTypes.FLOAT, 0, 1, false, 1, omu_event_attain_map_data],
+            new EventNodeProperty("Map", DataTypes.MAP, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_name),
+            new EventNodeProperty("X", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data),
+            new EventNodeProperty("Y", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data),
+            new EventNodeProperty("A", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data),
+            new EventNodeProperty("Direction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_direction_name),
+            new EventNodeProperty("FadeColor", DataTypes.COLOR, 0, 1, false, c_black, omu_event_attain_map_data),
+            new EventNodeProperty("FadeTime", DataTypes.FLOAT, 0, 1, false, 1, omu_event_attain_map_data),
         ]);
         /* */ self.default_event_nodes[EventNodeTypes.SET_ENTITY_LOCATION] = new EventNodePeristent("NotYetImplemented", []);
         /* */ self.default_event_nodes[EventNodeTypes.SCROLL_MAP] = new EventNodePeristent("NotYetImplemented", []);
         /* */ self.default_event_nodes[EventNodeTypes.SET_MOVEMENT_ROUTE] = new EventNodePeristent("NotYetImplemented", []);
         self.default_event_nodes[EventNodeTypes.TINT_SCREEN] = new EventNodePeristent("TintScreen", [
-            ["Color", DataTypes.COLOR, 0, 1, false, c_white],
-            ["Alpha", DataTypes.FLOAT, 0, 1, false, 1],
-            ["Time", DataTypes.FLOAT, 0, 1, false, 1],
-            ["Wait?", DataTypes.BOOL, 0, 1, false, true],
+            new EventNodeProperty("Color", DataTypes.COLOR, 0, 1, false, c_white),
+            new EventNodeProperty("Alpha", DataTypes.FLOAT, 0, 1, false, 1),
+            new EventNodeProperty("Time", DataTypes.FLOAT, 0, 1, false, 1),
+            new EventNodeProperty("Wait?", DataTypes.BOOL, 0, 1, false, true),
         ]);
         self.default_event_nodes[EventNodeTypes.FLASH_SCREEN] = new EventNodePeristent("WillNotBeImplemented", []);
         self.default_event_nodes[EventNodeTypes.SHAKE_SCREEN] = new EventNodePeristent("ShakeScreen", [
-            ["PowerX", DataTypes.FLOAT, 0, 1, false, 0.25],
-            ["PowerY", DataTypes.FLOAT, 0, 1, false, 0.25],
-            ["Speed", DataTypes.FLOAT, 0, 1, false, 0.25],
-            ["Duration", DataTypes.FLOAT, 0, 1, false, 1],
-            ["Wait?", DataTypes.BOOL, 0, 1, false, true],
+            new EventNodeProperty("PowerX", DataTypes.FLOAT, 0, 1, false, 0.25),
+            new EventNodeProperty("PowerY", DataTypes.FLOAT, 0, 1, false, 0.25),
+            new EventNodeProperty("Speed", DataTypes.FLOAT, 0, 1, false, 0.25),
+            new EventNodeProperty("Duration", DataTypes.FLOAT, 0, 1, false, 1),
+            new EventNodeProperty("Wait?", DataTypes.BOOL, 0, 1, false, true),
         ]);
         self.default_event_nodes[EventNodeTypes.PLAY_BGM] = new EventNodePeristent("PlayBGM", [
-            ["BGM", DataTypes.AUDIO_BGM, 0],
-            ["Volume", DataTypes.INT, 0, 1, false, 100],
-            ["Pitch", DataTypes.INT, 0, 1, false, 100]
+            new EventNodeProperty("BGM", DataTypes.AUDIO_BGM, 0),
+            new EventNodeProperty("Volume", DataTypes.INT, 0, 1, false, 100),
+            new EventNodeProperty("Pitch", DataTypes.INT, 0, 1, false, 100)
         ]);
         self.default_event_nodes[EventNodeTypes.FADE_BGM] = new EventNodePeristent("FadeBGM", [
-            ["Volume", DataTypes.INT],
-            ["Time", DataTypes.FLOAT, 0, 1, false, 1],
-            ["Stop On Complete?", DataTypes.BOOL, 0, 1, false, true]
+            new EventNodeProperty("Volume", DataTypes.INT),
+            new EventNodeProperty("Time", DataTypes.FLOAT, 0, 1, false, 1),
+            new EventNodeProperty("Stop On Complete?", DataTypes.BOOL, 0, 1, false, true)
         ]);
         self.default_event_nodes[EventNodeTypes.RESUME_BGM] = new EventNodePeristent("ResumeAutomaticBGM", []);
         // if you want fancier audio controls for sound effects, make an advanced event - i'm not going to write the FMOD effects into the basic one
         self.default_event_nodes[EventNodeTypes.PLAY_SE] = new EventNodePeristent("PlaySoundEffect", [
-            ["Sound Effect", DataTypes.AUDIO_SE, 0],
-            ["Volume", DataTypes.INT, 0, 1, false, 100],
-            ["Pitch", DataTypes.INT, 0, 1, false, 100]
+            new EventNodeProperty("Sound Effect", DataTypes.AUDIO_SE, 0),
+            new EventNodeProperty("Volume", DataTypes.INT, 0, 1, false, 100),
+            new EventNodeProperty("Pitch", DataTypes.INT, 0, 1, false, 100)
         ]);
         self.default_event_nodes[EventNodeTypes.STOP_SE] = new EventNodePeristent("StopAllSoundEffects", []);
         /* */ self.default_event_nodes[EventNodeTypes.RETURN_TO_TITLE] = new EventNodePeristent("NotYetImplemented", []);
         self.default_event_nodes[EventNodeTypes.CHANGE_MAP_DISPLAY_NAME] = new EventNodePeristent("ChangeMapDisplayName", [
-            ["Map", DataTypes.MAP],
-            ["New Name", DataTypes.STRING, 0, 1, false, "Whatever the new name is"],
+            new EventNodeProperty("Map", DataTypes.MAP),
+            new EventNodeProperty("New Name", DataTypes.STRING, 0, 1, false, "Whatever the new name is"),
         ]);
         /* */ self.default_event_nodes[EventNodeTypes.CHANGE_MAP_TILESET] = new EventNodePeristent("NotYetImplemented", []);
         /* */ self.default_event_nodes[EventNodeTypes.CHANGE_MAP_BATTLE_SCENE] = new EventNodePeristent("NotYetImplemented", []);
         /* */ self.default_event_nodes[EventNodeTypes.CHANGE_MAP_PARALLAX] = new EventNodePeristent("NotYetImplemented", []);
         self.default_event_nodes[EventNodeTypes.SCRIPT] = new EventNodePeristent("Script", [
-            ["Code", DataTypes.CODE, 0, 1, true, ""]
+            new EventNodeProperty("Code", DataTypes.CODE, 0, 1, true, "")
         ]);
         /* */ self.default_event_nodes[EventNodeTypes.AUDIO_CONTORLS] = new EventNodePeristent("NotYetImplemented", []);
         self.default_event_nodes[EventNodeTypes.DEACTIVATE_EVENT] = new EventNodePeristent("Deactivate This Event Page", []);
         self.default_event_nodes[EventNodeTypes.SET_ENTITY_MESH] = new EventNodePeristent("SetEntityMesh", [
-            ["Entity", DataTypes.ENTITY],
-            ["Mesh", DataTypes.MESH],
+            new EventNodeProperty("Entity", DataTypes.ENTITY),
+            new EventNodeProperty("Mesh", DataTypes.MESH),
         ]);
         self.default_event_nodes[EventNodeTypes.SET_ENTITY_SPRITE] = new EventNodePeristent("SetEntitySprite", [
-            ["Entity", DataTypes.ENTITY],
-            ["Sprite", DataTypes.IMG_OVERWORLD],
+            new EventNodeProperty("Entity", DataTypes.ENTITY),
+            new EventNodeProperty("Sprite", DataTypes.IMG_OVERWORLD),
         ]);
         self.default_event_nodes[EventNodeTypes.SET_MESH_ANIMATION] = new EventNodePeristent("SetEntityMeshAnimation", [
-            ["Entity", DataTypes.ENTITY],
-            ["Speed", DataTypes.FLOAT, 0, 1, false, 30],
-            ["EndAction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_mesh_anim_end_action, event_prefab_render_mesh_animation_end_action],
+            new EventNodeProperty("Entity", DataTypes.ENTITY),
+            new EventNodeProperty("Speed", DataTypes.FLOAT, 0, 1, false, 30),
+            new EventNodeProperty("EndAction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_mesh_anim_end_action, event_prefab_render_mesh_animation_end_action),
         ]);
         self.default_event_nodes[EventNodeTypes.SCHEDULE_EVENT] = new EventNodePeristent("ScheduleEvent", [
-            ["Entity", DataTypes.ENTITY],
-            ["Time", DataTypes.FLOAT],
+            new EventNodeProperty("Entity", DataTypes.ENTITY),
+            new EventNodeProperty("Time", DataTypes.FLOAT),
         ], ["Outbound", "Scheduled Event"]);
         
         enum EventNodeTypes {
