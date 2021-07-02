@@ -180,7 +180,6 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
                 break;
             case EventNodeTypes.CUSTOM:
             default:
-                buffer_write(buffer, buffer_datatype, self.custom_guid);
                 // the size of this list should already be known by the custom event node
                 var custom = guid_get(self.custom_guid);
                 
