@@ -49,6 +49,7 @@ function project_export_global(buffer) {
     for (var i = 0; i < n_constants; i++) {
         var constant = Game.vars.constants[i];
         var type = Stuff.data_type_meta[constant.type];
+        buffer_write(buffer, buffer_string, constant.name);
         buffer_write(buffer, buffer_u16, type.id);
         buffer_write(buffer, type.buffer_type, constant.value);
     }
