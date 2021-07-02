@@ -7,10 +7,6 @@ function SData(source) constructor {
     self.internal_name = "";
     guid_set(self, guid_generate());
     internal_name_set(self, "SData" + string_lettersdigits(self.GUID));
-    // when exporting, if your "flags" value is something other than a simple
-    // 64-bit integer, you probably would like to override that export so you
-    // can do it yourself
-    self.flags_override = false;
     
     static DestroyBase = function() {
         if (Stuff.is_quitting) exit;
@@ -26,9 +22,7 @@ function SData(source) constructor {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_string, self.internal_name);
         buffer_write(buffer, buffer_datatype, self.GUID);
-        if (!self.flags_override) {
-            buffer_write(buffer, buffer_flag, self.flags);
-        }
+        buffer_write(buffer, buffer_flag, self.flags);
     };
     
     static CreateJSONBase = function() {

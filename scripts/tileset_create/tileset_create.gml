@@ -11,8 +11,7 @@ function tileset_create(filename, sprite) {
     }
     
     // don't instantiate these outside of this script
-    var ts = new DataImageTileset();
-    with (ts) {
+    with (new DataImageTileset()) {
         name = filename_change_ext(filename_name(filename), "");
         // this needs to be the file path
         source_filename = filename;
@@ -31,10 +30,10 @@ function tileset_create(filename, sprite) {
         height = sprite_get_height(picture);
         hframes = width div Stuff.tile_size;
         vframes = height div Stuff.tile_size;
-        flags = array_create_2d(hframes, vframes, 0);
+        image_flags = array_create_2d(hframes, vframes, 0);
         
         array_push(Game.graphics.tilesets, self);
+        
+        return self;
     }
-    
-    return ts;
 }
