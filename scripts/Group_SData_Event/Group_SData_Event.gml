@@ -289,7 +289,6 @@ function DataEventNodeCustom(source) : SData(source) constructor {
         for (var i = 0; i < array_length(self.types); i++) {
             buffer_write(buffer, buffer_string, self.types[i].name);
             buffer_write(buffer, buffer_u32, self.types[i].type);
-            buffer_write(buffer, buffer_datatype, self.types[i].type_guid);
         }
     };
     
