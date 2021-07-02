@@ -11,7 +11,7 @@ function DataEvent(source) : SData(source) constructor {
     }
     
     static Export = function(buffer) {
-        self.ExportBase(buffer);
+        // dont export base
         buffer_write(buffer, buffer_u32, array_length(self.nodes));
         for (var i = 0, n = array_length(self.nodes); i < n; i++) {
             self.nodes[i].Export(buffer);
