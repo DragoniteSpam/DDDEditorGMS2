@@ -25,7 +25,7 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.EVENTS]  =                    project_export_events;
         game_data_save_scripts[GameDataCategories.DATA] =                       project_export_data;
         game_data_save_scripts[GameDataCategories.ANIMATIONS] =                 project_export_animations;
-        game_data_save_scripts[GameDataCategories.TERRAIN] =                    null;                           // may consider adding this later
+        game_data_save_scripts[GameDataCategories.TERRAIN] =                    project_export_terrain;
         game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] =              project_export_language;
         
         var fn = get_save_filename_dddd(Stuff.save_name);
