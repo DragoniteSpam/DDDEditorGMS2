@@ -286,6 +286,7 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     
     static Export = function(buffer) {
         // don't bother with ExportBase()
+        buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_u32, array_length(self.types));
         for (var i = 0; i < array_length(self.types); i++) {
             buffer_write(buffer, buffer_string, self.types[i].name);
