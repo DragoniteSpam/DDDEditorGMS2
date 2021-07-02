@@ -129,7 +129,7 @@ function project_export_maps(buffer) {
 }
 
 function project_export_terrain(buffer) {
-    buffer_write(buffer, buffer_u32, type);
+    buffer_write(buffer, buffer_u32, SerializeThings.TERRAIN);
     buffer_reserve_address(buffer);
     // not now, thanks
     buffer_write_address(buffer);
