@@ -85,8 +85,10 @@ function DataProperty(source, parent) : SData(source) constructor {
     self.default_code = "";
     
     static Export = function(buffer) {
-        // this is literally all the data we actually need in the game
+        // DON'T call the inherited ExportBase()!
+        buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_u32, self.type);
+        buffer_write(buffer, buffer_bool, (self.max_size == 1) && !self.size_can_be_zero);
     }
     
     static Destroy = function() {
