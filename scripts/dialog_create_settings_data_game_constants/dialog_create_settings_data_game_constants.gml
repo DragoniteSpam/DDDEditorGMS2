@@ -298,7 +298,7 @@ function dialog_create_settings_data_game_constants(root) {
         "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
         "Audio (BGM)", "Audio (SE)", "Animation"
     ]);
-    el_type.contents[DataTypes.TILE].interactive = false;
+    el_type.contents[| DataTypes.TILE].interactive = false;
     el_type.interactive = false;
     dg.el_type = el_type;
     
