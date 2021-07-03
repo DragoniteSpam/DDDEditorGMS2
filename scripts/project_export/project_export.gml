@@ -69,8 +69,6 @@ function project_export() {
                     }
                 }
                 
-                buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
-                
                 if (file_data.compressed) {
                     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
                     buffer_save_ext(compressed, this_files_name, 0, buffer_get_size(compressed));

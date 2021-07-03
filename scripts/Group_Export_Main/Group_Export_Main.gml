@@ -9,7 +9,6 @@ function project_export_global(buffer) {
         ));
     }
     
-    buffer_write(buffer, buffer_u32, SerializeThings.GLOBAL_METADATA);
     buffer_reserve_address(buffer);
     
     buffer_write(buffer, buffer_datatype, Game.meta.start.map);
@@ -58,7 +57,6 @@ function project_export_global(buffer) {
 }
 
 function project_export_language(buffer) {
-    buffer_write(buffer, buffer_u32, SerializeThings.LANGUAGE_TEXT);
     buffer_reserve_address(buffer);
     
     buffer_write(buffer, buffer_u32, array_length(Game.languages.names));
@@ -82,8 +80,7 @@ function project_export_language(buffer) {
     buffer_write_address(buffer);
 }
 
-function project_export_standard(buffer, type, list) {
-    buffer_write(buffer, buffer_u32, type);
+function project_export_standard(buffer, list) {
     buffer_reserve_address(buffer);
     buffer_write(buffer, buffer_u32, array_length(list));
     for (var i = 0; i < array_length(list); i++) {
@@ -93,44 +90,43 @@ function project_export_standard(buffer, type, list) {
 }
 
 function project_export_animations(buffer) {
-    project_export_standard(buffer, SerializeThings.ANIMATIONS, Game.animations);
+    project_export_standard(buffer, Game.animations);
 }
 
 function project_export_events(buffer) {
-    project_export_standard(buffer, SerializeThings.EVENTS, Game.events.custom);
-    project_export_standard(buffer, SerializeThings.EVENTS, Game.events.events);
+    project_export_standard(buffer, Game.events.custom);
+    project_export_standard(buffer, Game.events.events);
 }
 
 function project_export_meshes(buffer) {
-    project_export_standard(buffer, SerializeThings.MESHES, Game.meshes);
+    project_export_standard(buffer, Game.meshes);
 }
 
 function project_export_images(buffer) {
-    project_export_standard(buffer, SerializeThings.IMAGE_TILESET, Game.graphics.tilesets);
-    project_export_standard(buffer, SerializeThings.IMAGE_SKYBOX, Game.graphics.skybox);
-    project_export_standard(buffer, SerializeThings.IMAGE_PARTICLES, Game.graphics.particles);
-    project_export_standard(buffer, SerializeThings.IMAGE_OVERWORLD, Game.graphics.overworlds);
-    project_export_standard(buffer, SerializeThings.IMAGE_BATTLERS, Game.graphics.battlers);
-    project_export_standard(buffer, SerializeThings.IMAGE_MISC, Game.graphics.etc);
-    project_export_standard(buffer, SerializeThings.IMAGE_UI, Game.graphics.ui);
-    project_export_standard(buffer, SerializeThings.IMAGE_TILE_ANIMATION, Game.graphics.tile_animations);
+    project_export_standard(buffer, Game.graphics.tilesets);
+    project_export_standard(buffer, Game.graphics.skybox);
+    project_export_standard(buffer, Game.graphics.particles);
+    project_export_standard(buffer, Game.graphics.overworlds);
+    project_export_standard(buffer, Game.graphics.battlers);
+    project_export_standard(buffer, Game.graphics.etc);
+    project_export_standard(buffer, Game.graphics.ui);
+    project_export_standard(buffer, Game.graphics.tile_animations);
 }
 
 function project_export_audio(buffer) {
-    project_export_standard(buffer, SerializeThings.AUDIO_SE, Game.audio.se);
-    project_export_standard(buffer, SerializeThings.AUDIO_BGM, Game.audio.bgm);
+    project_export_standard(buffer, Game.audio.se);
+    project_export_standard(buffer, Game.audio.bgm);
 }
 
 function project_export_data(buffer) {
-    project_export_standard(buffer, SerializeThings.DATADATA, Game.data);
+    project_export_standard(buffer, Game.data);
 }
 
 function project_export_maps(buffer) {
-    project_export_standard(buffer, SerializeThings.MAPS, Game.maps);
+    project_export_standard(buffer, Game.maps);
 }
 
 function project_export_terrain(buffer) {
-    buffer_write(buffer, buffer_u32, SerializeThings.TERRAIN);
     buffer_reserve_address(buffer);
     // not now, thanks
     buffer_write_address(buffer);

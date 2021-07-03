@@ -1,36 +1,3 @@
-// this defines a few global things, like names associated with each enum;
-// this is generally not a great practice and you should do it sparingly
-enum SerializeThings {
-    ERROR                   = 0x00000000,
-    
-    MAPS                    = 0x00000001,
-    TERRAIN                 = 0x00000002,
-    
-    DATADATA                = 0x00000010,
-    GLOBAL_METADATA         = 0x00000020,
-    
-    ANIMATIONS              = 0x00000100,
-    LANGUAGE_TEXT           = 0x00000200,
-    EVENTS                  = 0x00000400,
-    
-    IMAGE_SKYBOX            = 0x00001000,
-    IMAGE_TILESET           = 0x00002000,
-    IMAGE_PARTICLES         = 0x00004000,
-    IMAGE_OVERWORLD         = 0x00008000,
-    IMAGE_BATTLERS          = 0x00010000,
-    IMAGE_TILE_ANIMATION    = 0x00020000,
-    IMAGE_MISC              = 0x00040000,
-    IMAGE_UI                = 0x00080000,
-    
-    AUDIO_SE                = 0x00100000,
-    AUDIO_BGM               = 0x00200000,
-    
-    MESHES                  = 0x01000000,
-    
-    // the last one i think
-    END_OF_FILE             = 0xffffffff,
-}
-
 enum ETypes {
     ENTITY,
     ENTITY_TILE,
