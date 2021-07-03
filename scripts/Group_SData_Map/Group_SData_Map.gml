@@ -175,59 +175,63 @@ function DataMap(source, directory) : SData(source) constructor {
         
         graphics_create_grids();
         
-        // if the folder that the map is supposed to live in does not exist, you
-        // may have done something wrong... or the may map just be empty
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
-        if (!directory_exists(directory)) return;
         
-        #region zones
-        var zone_meta = json_parse(buffer_read_file(directory + "zones.json"));
-        for (var i = 0; i < array_length(zone_meta.zones); i++) {
-            var zone_data = zone_meta.zones[i];
-            array_push(self.contents.all_zones, new global.map_zone_type_objects[zone_data.type](zone_data));
-        }
-        #endregion
-        
-        #region batched stuff
+        // these are several reasons this may not work, such as the map having
+        // just been created, or some of the files having no data
         try {
-            self.contents.frozen_data = buffer_load(directory + "frozen.vbuff");
-            self.contents.frozen = vertex_create_buffer_from_buffer(self.contents.frozen_data, Stuff.graphics.vertex_format);
+            #region zones
+            var zone_meta = json_parse(buffer_read_file(directory + "zones.json"));
+            for (var i = 0; i < array_length(zone_meta.zones); i++) {
+                var zone_data = zone_meta.zones[i];
+                array_push(self.contents.all_zones, new global.map_zone_type_objects[zone_data.type](zone_data));
+            }
+            #endregion
+            
+            #region batched stuff
+            try {
+                self.contents.frozen_data = buffer_load(directory + "frozen.vbuff");
+                self.contents.frozen = vertex_create_buffer_from_buffer(self.contents.frozen_data, Stuff.graphics.vertex_format);
+            } catch (e) {
+                wtf("Unable to load frozen vertex buffer data - " + self.name);
+            }
+            
+            try {
+                self.contents.reflect_frozen_data = buffer_load(directory + "frozen.reflect");
+                self.contents.reflect_frozen = vertex_create_buffer_from_buffer(self.contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+            } catch (e) {
+                wtf("Unable to load frozen reflection buffer data - " + self.name);
+            }
+            #endregion
+            
+            #region entities
+            var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
+            for (var i = 0; i < array_length(entity_data.entities); i++) {
+                var ref_data = entity_data.entities[i];
+                var entity = new global.etype_meta[ref_data.type].constructor(ref_data);
+                self.Add(entity, entity.xx, entity.yy, entity.zz);
+            }
+            #endregion
         } catch (e) {
-            wtf("Unable to load frozen vertex buffer data - " + self.name);
+            
         }
-        
-        try {
-            self.contents.reflect_frozen_data = buffer_load(directory + "frozen.reflect");
-            self.contents.reflect_frozen = vertex_create_buffer_from_buffer(self.contents.reflect_frozen_data, Stuff.graphics.vertex_format);
-        } catch (e) {
-            wtf("Unable to load frozen reflection buffer data - " + self.name);
-        }
-        #endregion
-        
-        #region entities
-        var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
-        for (var i = 0; i < array_length(entity_data.entities); i++) {
-            var ref_data = entity_data.entities[i];
-            var entity = new global.etype_meta[ref_data.type].constructor(ref_data);
-            self.Add(entity, entity.xx, entity.yy, entity.zz);
-        }
-        #endregion
     };
     
     static SaveUnloaded = function(directory) {
         var new_directory = directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         var old_directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         if (!directory_exists(old_directory)) return;
-        if (directory_exists(new_directory)) {
+        if (new_directory != old_directory) {
             directory_destroy(new_directory);
+            directory_create(new_directory);
+            
+            var file = file_find_first(old_directory + "*.*", 0);
+            while (file_exists(old_directory + file)) {
+                file_copy(old_directory + file, new_directory + file);
+                file = file_find_next();
+            }
+            file_find_close();
         }
-        directory_create(new_directory);
-        var file = file_find_first(old_directory + "*.*", 0);
-        while (file_exists(old_directory + file)) {
-            file_copy(old_directory + file, new_directory + file);
-            file = file_find_next();
-        }
-        file_find_close();
     };
     
     static Export = function(buffer) {
