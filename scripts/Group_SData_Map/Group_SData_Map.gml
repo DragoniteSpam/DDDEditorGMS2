@@ -38,6 +38,13 @@ function DataMap(source, directory) : SData(source) constructor {
     self.code = Stuff.default_lua_map;                                          // code
     self.generic_data = [];                                                     // similar to that attached to Entities
     
+    // not saved to project - this is auto-generated when you export
+    self.export = {
+        index: 0,
+        address: 0,
+        size: 0,
+    };
+    
     static Add = function(entity, x, y, z, is_temp, add_to_lists) {
         if (x == undefined) x = entity.xx;
         if (y == undefined) y = entity.yy;
@@ -225,6 +232,10 @@ function DataMap(source, directory) : SData(source) constructor {
         buffer_write(buffer, buffer_u32, self.yy);
         buffer_write(buffer, buffer_u32, self.zz);
         
+        buffer_write(buffer, buffer_u32, self.export.index);
+        buffer_write(buffer, buffer_u64, self.export.address);
+        buffer_write(buffer, buffer_u64, self.export.size);
+        
         buffer_write(buffer, buffer_datatype, self.tileset);
         buffer_write(buffer, buffer_f32, self.fog_start);
         buffer_write(buffer, buffer_f32, self.fog_end);
@@ -272,8 +283,11 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
-    static ExportMapContents = function(buffer) {
+    static ExportMapContents = function(buffer, index) {
         if (!self.contents) self.Load();
+        
+        self.export.index = index;
+        self.export.address = buffer_tell(buffer);
         
         #region data that was frozen ahead of time
         if (self.contents.frozen_data) {
@@ -336,6 +350,10 @@ function DataMap(source, directory) : SData(source) constructor {
         }
         buffer_poke(buffer, count_addr, buffer_u32, exported_entities);
         #endregion
+        
+        self.export.size = buffer_tell(buffer) - self.export.address;
+        
+        wtf("   Map \"" + self.name + "\" saved to file index " + string(self.export.index) + " at address " + string(self.export.address) + " (" + string(self.export.size) + " bytes)");
     };
     
     static SaveAsset = function(directory) {
