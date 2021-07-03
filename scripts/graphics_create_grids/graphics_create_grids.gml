@@ -1,5 +1,4 @@
 function graphics_create_grids() {
-    // mild spaghetti - grid with origin in the corner
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
     
@@ -20,11 +19,12 @@ function graphics_create_grids() {
     vertex_end(Stuff.graphics.grid);
     vertex_freeze(Stuff.graphics.grid);
     
+    // mild spaghetti - grid with origin in the corner
+    // this honestly does not need to be recreated every time you load a map
     if (Stuff.graphics.grid_centered) vertex_delete_buffer(Stuff.graphics.grid_centered);
     Stuff.graphics.grid_centered = vertex_create_buffer();
     vertex_begin(Stuff.graphics.grid_centered, Stuff.graphics.vertex_format);
     
-    // grid
     var xx = map.xx / 2;
     var yy = map.yy / 2;
     

@@ -173,6 +173,8 @@ function DataMap(source, directory) : SData(source) constructor {
         
         self.contents = new MapContents(self);
         
+        graphics_create_grids();
+        
         // if the folder that the map is supposed to live in does not exist, you
         // may have done something wrong... or the may map just be empty
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
@@ -210,8 +212,6 @@ function DataMap(source, directory) : SData(source) constructor {
             self.Add(entity, entity.xx, entity.yy, entity.zz);
         }
         #endregion
-        
-        graphics_create_grids();
     };
     
     static SaveUnloaded = function(directory) {
