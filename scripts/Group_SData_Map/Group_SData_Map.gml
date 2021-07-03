@@ -172,7 +172,11 @@ function DataMap(source, directory) : SData(source) constructor {
         Stuff.map.active_map = self;
         
         self.contents = new MapContents(self);
+        
+        // if the folder that the map is supposed to live in does not exist, you
+        // may have done something wrong... or the may map just be empty
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
+        if (!directory_exists(directory)) return;
         
         #region zones
         var zone_meta = json_parse(buffer_read_file(directory + "zones.json"));
