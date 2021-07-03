@@ -181,7 +181,7 @@ function Entity(source) constructor {
             buffer_write(buffer, buffer_f32, self.variables[i]);
         }
         
-        buffer_write(buffer, buffer_u8, array_length(self.generic_data));
+        buffer_write(buffer, buffer_u16, array_length(self.generic_data));
         for (var i = 0; i < array_length(self.generic_data); i++) {
             var data = self.generic_data[i];
             buffer_write(buffer, buffer_string, data.name);
