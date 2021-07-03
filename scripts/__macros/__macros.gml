@@ -77,6 +77,7 @@
 #macro EVENT_NODE_CONTACT_WIDTH             320
 #macro EXPORT_EXTENSION_DATA                ".dddd"
 #macro EXPORT_EXTENSION_ASSETS              ".ddda"
+#macro EXPORT_EXTENSION_MAP                 ".dddm"                             // yeah we're bringing this back
 #macro EXPORT_EXTENSION_PARTICLES           ".dddp"
 #macro EXPORT_EXTENSION_PROJECT             ".dragon"
 #macro FLAG_COUNT                           63
