@@ -243,11 +243,11 @@ function selection_update_autotiles() {
         
         // evaluate top, base or middle
         if (thing.zz < map.zz - 1 && thing_is_mesh) {
-            var above = (thing.zz < map.zz - 1) ? map.Get(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, noone);
-            var below = (thing.zz > 0) ? map.Get(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, noone);
+            var above = (thing.zz < map.zz - 1) ? map.Get(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, undefined);
+            var below = (thing.zz > 0) ? map.Get(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, undefined);
             // if an entity is marked as "removed," even if it's still there, it might as well not be there
-            var above_exists = (above[MapCellContents.MESH].etype == ETypes.ENTITY_MESH_AUTO && (above[MapCellContents.MESH].modification != Modifications.REMOVE));
-            var below_exists = (below[MapCellContents.MESH].etype == ETypes.ENTITY_MESH_AUTO && (below[MapCellContents.MESH].modification != Modifications.REMOVE));
+            var above_exists = (above[MapCellContents.MESH] && above[MapCellContents.MESH].etype == ETypes.ENTITY_MESH_AUTO && (above[MapCellContents.MESH].modification != Modifications.REMOVE));
+            var below_exists = (below[MapCellContents.MESH] && below[MapCellContents.MESH].etype == ETypes.ENTITY_MESH_AUTO && (below[MapCellContents.MESH].modification != Modifications.REMOVE));
             if (Settings.config.remove_covered_mesh_at && above_exists && thing.terrain_id & surrounded_mask) {
                 if ((get_autotile_id(above[MapCellContents.MESH]) & surrounded_mask) == surrounded_mask) {
                     thing.modification = Modifications.REMOVE;
