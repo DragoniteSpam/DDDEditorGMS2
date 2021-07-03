@@ -65,6 +65,7 @@ function project_export() {
                 for (var j = 0; j < array_length(Game.meta.export.locations); j++) {
                     // the files that are sorted
                     if (Game.meta.export.locations[j] == i) {
+                        buffer_write(buffer, buffer_u32, j);
                         game_data_save_scripts[j](buffer);
                     }
                 }
