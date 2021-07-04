@@ -66,6 +66,7 @@
 #macro buffer_datatype                      buffer_string
 #macro buffer_flag                          buffer_u64
 #macro buffer_field                         buffer_u64
+#macro buffer_eof                           0xffffffff
 #macro CAMERA_SAVE_FREQUENCY                5
 #macro CAMERA_ZNEAR                         0x0004
 #macro CAMERA_ZFAR                          0x4000

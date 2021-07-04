@@ -17,7 +17,7 @@ function project_export() {
             buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
         }
         
-        static game_data_save_scripts = array_create(GameDataCategories.__COUNT);
+        var game_data_save_scripts = array_create(GameDataCategories.__COUNT);
         game_data_save_scripts[GameDataCategories.IMAGES] =                     project_export_images;
         game_data_save_scripts[GameDataCategories.AUDIO] =                      project_export_audio;
         game_data_save_scripts[GameDataCategories.MESHES] =                     project_export_meshes;
@@ -69,6 +69,7 @@ function project_export() {
                         game_data_save_scripts[j](buffer);
                     }
                 }
+                buffer_write(buffer, buffer_u32, buffer_eof);
                 
                 if (file_data.compressed) {
                     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
