@@ -1,15 +1,4 @@
 function project_export_global(buffer) {
-    // minus one because index zero is assumed to be the master file
-    buffer_write(buffer, buffer_u8, array_length(Game.meta.export.files) - 1);
-    // start at 1 because we kinda already know to load the main data file
-    for (var j = 1; j < array_length(Game.meta.export.files); j++) {
-        var asset_file = Game.meta.export.files[j];
-        buffer_write(buffer, buffer_string, asset_file.name);
-        buffer_write(buffer, buffer_field, pack(
-            asset_file.critical
-        ));
-    }
-    
     buffer_write(buffer, buffer_datatype, Game.meta.start.map);
     buffer_write(buffer, buffer_u16, Game.meta.start.x);
     buffer_write(buffer, buffer_u16, Game.meta.start.y);

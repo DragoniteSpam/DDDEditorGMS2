@@ -15,7 +15,20 @@ function project_export() {
             buffer_write(buffer, buffer_u8, $44);
             buffer_write(buffer, buffer_u8, $44);
             buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
-        }
+        };
+        
+        static write_index = function(buffer) {
+            // minus one because index zero is assumed to be the master file
+            buffer_write(buffer, buffer_u8, array_length(Game.meta.export.files) - 1);
+            // start at 1 because we kinda already know to load the main data file
+            for (var j = 1; j < array_length(Game.meta.export.files); j++) {
+                var asset_file = Game.meta.export.files[j];
+                buffer_write(buffer, buffer_string, asset_file.name);
+                buffer_write(buffer, buffer_field, pack(
+                    asset_file.critical
+                ));
+            }
+        };
         
         var game_data_save_scripts = array_create(GameDataCategories.__COUNT);
         game_data_save_scripts[GameDataCategories.IMAGES] =                     project_export_images;
@@ -53,6 +66,10 @@ function project_export() {
                 var this_files_name = save_directory + file_data.name + EXPORT_EXTENSION_ASSETS;
                 var buffer = buffer_create(1024, buffer_grow, 1);
                 write_header(buffer);
+                
+                if (i == 0) {
+                    write_index(buffer);
+                }
                 
                 // generate a list of all of the things that are in this file
                 for (var j = 0; j < array_length(Game.meta.export.locations); j++) {
