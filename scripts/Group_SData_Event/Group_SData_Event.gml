@@ -11,11 +11,11 @@ function DataEvent(source) : SData(source) constructor {
     }
     
     static Export = function(buffer) {
-        // dont export base
-        buffer_write(buffer, buffer_u32, array_length(self.nodes));
+        // dont export base; event graphs are only for the editor
         for (var i = 0, n = array_length(self.nodes); i < n; i++) {
             self.nodes[i].Export(buffer);
         }
+        return array_length(self.nodes);
     };
     
     static CreateJSONEvent = function() {
