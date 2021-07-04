@@ -9,8 +9,6 @@ function project_export_global(buffer) {
         ));
     }
     
-    buffer_reserve_address(buffer);
-    
     buffer_write(buffer, buffer_datatype, Game.meta.start.map);
     buffer_write(buffer, buffer_u16, Game.meta.start.x);
     buffer_write(buffer, buffer_u16, Game.meta.start.y);
@@ -52,13 +50,9 @@ function project_export_global(buffer) {
         buffer_write(buffer, buffer_u16, type.id);
         buffer_write(buffer, type.buffer_type, constant.value);
     }
-    
-    buffer_write_address(buffer);
 }
 
 function project_export_language(buffer) {
-    buffer_reserve_address(buffer);
-    
     buffer_write(buffer, buffer_u32, array_length(Game.languages.names));
     for (var i = 0; i < array_length(Game.languages.names); i++) {
         buffer_write(buffer, buffer_string, Game.languages.names[i]);
@@ -76,17 +70,13 @@ function project_export_language(buffer) {
             buffer_write(buffer, buffer_string, lang[$ keys[j]]);
         }
     }
-    
-    buffer_write_address(buffer);
 }
 
 function project_export_standard(buffer, list) {
-    buffer_reserve_address(buffer);
     buffer_write(buffer, buffer_u32, array_length(list));
     for (var i = 0; i < array_length(list); i++) {
         list[i].Export(buffer);
     }
-    buffer_write_address(buffer);
 }
 
 function project_export_animations(buffer) {
@@ -127,7 +117,5 @@ function project_export_maps(buffer) {
 }
 
 function project_export_terrain(buffer) {
-    buffer_reserve_address(buffer);
     // not now, thanks
-    buffer_write_address(buffer);
 }
