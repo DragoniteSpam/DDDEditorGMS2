@@ -54,13 +54,6 @@ function project_export() {
                 var buffer = buffer_create(1024, buffer_grow, 1);
                 write_header(buffer);
                 
-                // the default file should have the global settings
-                // (including a list of all of the other files)
-                if (i == 0) {
-                    project_export_global(buffer);
-                    this_files_name = fn;
-                }
-                
                 // generate a list of all of the things that are in this file
                 for (var j = 0; j < array_length(Game.meta.export.locations); j++) {
                     // the files that are sorted
@@ -70,6 +63,13 @@ function project_export() {
                     }
                 }
                 buffer_write(buffer, buffer_u32, buffer_eof);
+                
+                // the default file should have the global settings
+                // (including a list of all of the other files)
+                if (i == 0) {
+                    project_export_global(buffer);
+                    this_files_name = fn;
+                }
                 
                 if (file_data.compressed) {
                     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
