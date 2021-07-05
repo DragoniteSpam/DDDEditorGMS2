@@ -88,7 +88,7 @@ function DataProperty(source, parent) : SData(source) constructor {
     static Export = function(buffer) {
         // DON'T call the inherited ExportBase()!
         buffer_write(buffer, buffer_string, self.name);
-        buffer_write(buffer, buffer_string, self.GUID);
+        buffer_write(buffer, buffer_datatype, self.GUID);
         buffer_write(buffer, buffer_u32, self.type);
         buffer_write(buffer, buffer_bool, (self.max_size == 1) && !self.size_can_be_zero);
     }
