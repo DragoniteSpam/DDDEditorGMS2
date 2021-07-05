@@ -159,7 +159,7 @@ function array_resize_4d(array, x, y, z, w) {
 
 function array_sort_name(array) {
     array_sort(array, function(a, b) {
-        return a.name > b.name;
+        return (a.name > b.name) ? 1 : -1;
     });
     return array;
 }
