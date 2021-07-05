@@ -214,6 +214,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
     };
     
     static Destroy = function() {
+        self.DestroyBase();
         // remove references from other objects: things that contain this as an outbound node
         var parent_nodes = variable_struct_get_names(self.parents);
         for (var i = 0; i < array_length(parent_nodes); i++) {
@@ -287,7 +288,6 @@ function DataEventNodeCustom(source) : SData(source) constructor {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, array_length(self.types));
         for (var i = 0; i < array_length(self.types); i++) {
-            buffer_write(buffer, buffer_string, self.types[i].name);
             buffer_write(buffer, buffer_u32, self.types[i].type);
         }
     };
