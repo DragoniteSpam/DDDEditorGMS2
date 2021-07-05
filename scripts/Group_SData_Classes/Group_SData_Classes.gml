@@ -27,7 +27,7 @@ function DataClass(source) : SData(source) constructor {
     static AddProperty = function(property) {
         array_push(self.properties, property);
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
-            array_push(self.instances[i].values, 0);
+            array_push(self.instances[i].values, [0]);
         }
     };
     

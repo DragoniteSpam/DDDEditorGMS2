@@ -183,14 +183,6 @@ function dialog_create_data_types(dialog) {
         
         button.root.selected_property = noone;
         
-        // don't do this for enums - iterate over all data instances and add an empty
-        // list to each value
-        if (datadata.type == DataTypes.DATA) {
-            for (var i = 0; i < array_length(datadata.instances); i++) {
-                array_push(datadata.instances[i].values, [0]);
-            }
-        }
-        
         dialog_data_type_disable(button.root);
         
         button.root.el_data_name.interactive = true;
