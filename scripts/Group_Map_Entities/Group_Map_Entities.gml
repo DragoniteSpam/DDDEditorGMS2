@@ -676,7 +676,22 @@ function EntityPawn(source) : Entity(source) constructor {
     
     // there will be other things here probably
     static batch = null;                     // you don't batch pawns
-    static render = render_pawn;
+    static render = function(pawn) {
+        var data = guid_get(self.overworld_sprite);
+        data = data ? data : Stuff.default_pawn;
+        var spritesheet_height = 4;
+        var spritesheet_frames = data ? data.hframes : 4;
+    
+        if (self.is_animating) {
+            self.frame = (self.frame + Settings.config.npc_animate_rate * (delta_time / MILLION)) % spritesheet_frames;
+        }
+    
+        var index = self.map_direction * data.hframes + floor(self.frame);
+    
+        transform_set(self.xx * TILE_WIDTH, self.yy * TILE_HEIGHT, self.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+        vertex_submit(data ? data.npc_frames[index] : Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(data ? data.picture : spr_pawn_missing, 0));
+        matrix_set(matrix_world, matrix_build_identity());
+    };
     static on_select_ui = safc_on_pawn_ui;
     
     static Export = function(buffer) {
