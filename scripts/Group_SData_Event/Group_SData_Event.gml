@@ -71,7 +71,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
         // built-in node types have their outbound count specified
         if (type != EventNodeTypes.CUSTOM && type != undefined) {
             var base = Game.default_event_nodes[type];
-            if (base) self.outbound = array_create(array_length(base.outbound), undefined);
+            if (base) self.outbound = array_create(array_length(base.outbound), NULL);
         }
         
         switch (type) {
@@ -331,7 +331,7 @@ function EventNodeProperty(name, type, type_guid, max_size, all_required, defaul
 }
 
 function EventNodePeristent(name, data_types, outbound_names) constructor {
-    if (outbound_names == undefined) outbound_names = [""];
+    if (outbound_names == undefined) outbound_names = ["default"];
     self.name = name;
     self.flags = 0;
     self.summary = "";
