@@ -280,7 +280,7 @@ function dialog_create_settings_data_game_constants(root) {
         if (selection + 1) {
             Game.vars.constants[selection].name = input.value;
         }
-    }, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    }, "", "16 characters", validate_string_internal_name, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     dg.el_name = el_name;
     
     yy += el_name.height + spacing;
