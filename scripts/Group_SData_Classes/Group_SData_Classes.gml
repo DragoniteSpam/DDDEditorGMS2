@@ -57,6 +57,7 @@ function DataClass(source) : SData(source) constructor {
     if (is_struct(source)) {
         self.properties = source.properties;
         self.instances = source.instances;
+        self.type = source.type;
         
         for (var i = 0; i < array_length(self.properties); i++) {
             self.properties[i] = new DataProperty(self.properties[i], self);
