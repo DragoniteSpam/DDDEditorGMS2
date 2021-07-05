@@ -92,7 +92,6 @@
     {"id":{"name":"Group_Selection","path":"scripts/Group_Selection/Group_Selection.yy",},"order":10,},
     {"id":{"name":"batch_collision_mesh","path":"scripts/batch_collision_mesh/batch_collision_mesh.yy",},"order":10,},
     {"id":{"name":"render_tile","path":"scripts/render_tile/render_tile.yy",},"order":0,},
-    {"id":{"name":"render_pawn","path":"scripts/render_pawn/render_pawn.yy",},"order":1,},
     {"id":{"name":"render_mesh","path":"scripts/render_mesh/render_mesh.yy",},"order":2,},
     {"id":{"name":"render_effect_light_point","path":"scripts/render_effect_light_point/render_effect_light_point.yy",},"order":3,},
     {"id":{"name":"render_effect_light_spot","path":"scripts/render_effect_light_spot/render_effect_light_spot.yy",},"order":4,},
