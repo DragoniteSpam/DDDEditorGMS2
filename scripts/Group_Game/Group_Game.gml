@@ -215,7 +215,7 @@ Game = new (function() constructor {
             new EventNodeProperty("Code", DataTypes.INT),
         ], ["Success", "Fail"]);
         self.default_event_nodes[EventNodeTypes.INVOKE_EVENT] = new EventNodePeristent("WillNotBeImplemented", []);
-        self.default_event_nodes[EventNodeTypes.COMMENT] = new EventNodePeristent("ImplementedElsewhere", []);
+        self.default_event_nodes[EventNodeTypes.COMMENT] = new EventNodePeristent("ImplementedElsewhere", [], []);
         self.default_event_nodes[EventNodeTypes.WAIT] = new EventNodePeristent("Wait", [
             new EventNodeProperty("Seconds", DataTypes.FLOAT, 0, 1, false, 1)
         ]);
