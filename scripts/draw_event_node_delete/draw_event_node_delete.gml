@@ -7,7 +7,7 @@ function draw_event_node_delete(xx, yy, node) {
             draw_sprite(spr_event_delete, 1, xx, yy);
             if (Controller.release_left) {
                 var dialog = emu_dialog_confirm(undefined, "Do you actually want to delete " + node.name + "?", function() {
-                    instance_destroy_later(self.root.node);
+                    self.root.node.Destroy();
                     self.root.Dispose();
                 });
                 dialog.node = node;
