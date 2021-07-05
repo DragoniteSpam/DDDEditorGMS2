@@ -677,6 +677,7 @@ function EntityPawn(source) : Entity(source) constructor {
     // there will be other things here probably
     static batch = null;                     // you don't batch pawns
     static render = function(pawn) {
+        if (!Settings.view.entities) return;
         var data = guid_get(self.overworld_sprite);
         data = data ? data : Stuff.default_pawn;
         var spritesheet_height = 4;
