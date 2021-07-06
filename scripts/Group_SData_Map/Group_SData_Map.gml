@@ -274,14 +274,6 @@ function DataMap(source, directory) : SData(source) constructor {
             self.light_enabled,
         ));
         
-        for (var i = 0; i < self.xx; i++) {
-            for (var j = 0; j < self.yy; j++) {
-                for (var k = 0; k < self.zz; k++) {
-                    buffer_write(buffer, buffer_flag, self.GetFlag(i, j, k));
-                }
-            }
-        }
-        
         buffer_write(buffer, buffer_u16, array_length(self.generic_data));
         for (var i = 0; i < array_length(self.generic_data); i++) {
             var data = self.generic_data[i];
@@ -296,6 +288,16 @@ function DataMap(source, directory) : SData(source) constructor {
         
         self.export.index = index;
         self.export.address = buffer_tell(buffer);
+        
+        #region flags
+        for (var i = 0; i < self.xx; i++) {
+            for (var j = 0; j < self.yy; j++) {
+                for (var k = 0; k < self.zz; k++) {
+                    buffer_write(buffer, buffer_flag, self.GetFlag(i, j, k));
+                }
+            }
+        }
+        #endregion
         
         #region data that was frozen ahead of time
         if (self.contents.frozen_data) {
