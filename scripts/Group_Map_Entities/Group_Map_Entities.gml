@@ -55,7 +55,7 @@ function Entity(source) constructor {
     self.autonomous_movement = AutonomousMovementTypes.FIXED;
     self.autonomous_movement_speed = 3;                                         // 0: 0.125, 1: 0.25, 2: 0.5, 3: 1, 4: 2, 5: 4
     self.autonomous_movement_frequency = 2;                                     // 0 through 4
-    self.autonomous_movement_route = NULL;
+    self.autonomous_movement_route = 0;
     self.movement_routes = [];
     
     enum AutonomousMovementTypes {
@@ -164,7 +164,7 @@ function Entity(source) constructor {
         buffer_write(buffer, buffer_u8, self.autonomous_movement);
         buffer_write(buffer, buffer_u8, self.autonomous_movement_speed);
         buffer_write(buffer, buffer_u8, self.autonomous_movement_frequency);
-        buffer_write(buffer, buffer_datatype, self.autonomous_movement_route);
+        buffer_write(buffer, buffer_u16, self.autonomous_movement_route);
         
         buffer_write(buffer, buffer_u8, array_length(self.movement_routes));
         for (var i = 0; i < array_length(self.movement_routes); i++) {
@@ -299,6 +299,8 @@ function Entity(source) constructor {
         self.autonomous_movement_route = source.autonomous.route;
         self.movement_routes = source.autonomous.routes;
         self.tmx_id = source.tmx_id;
+        
+        if (!is_numeric(self.autonomous_movement_route)) self.autonomous_movement_route = 0;
         
         for (var i = 0; i < array_length(self.movement_routes); i++) {
             self.movement_routes[i] = new MoveRoute(self.movement_routes[i]);

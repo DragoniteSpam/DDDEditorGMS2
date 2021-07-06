@@ -34,7 +34,8 @@ function InstantiatedEvent(source) constructor {
     self.event_entrypoint = NULL;
     
     static Export = function(buffer) {
-        buffer_write(buffer, buffer_field, pack(self.enabled,
+        buffer_write(buffer, buffer_field, pack(
+            self.enabled,
             self.condition_switch_global_enabled,
             self.condition_switch_global_state,
             self.condition_variable_global_enabled,
