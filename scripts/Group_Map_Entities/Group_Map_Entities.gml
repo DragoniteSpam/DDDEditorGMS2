@@ -298,6 +298,14 @@ function Entity(source) constructor {
         self.movement_routes = source.autonomous.routes;
         self.tmx_id = source.tmx_id;
         
+        // we changed the name of this variable in the update
+        for (var i = 0, n = array_length(self.generic_data); i < n; i++) {
+            var gen = self.generic_data[i];
+            if (variable_struct_exists(gen, "value_type_guid")) {
+                gen.type_guid = gen.value_type_guid;
+            }
+        }
+        
         if (!is_numeric(self.autonomous_movement_route)) self.autonomous_movement_route = 0;
         
         for (var i = 0; i < array_length(self.movement_routes); i++) {
