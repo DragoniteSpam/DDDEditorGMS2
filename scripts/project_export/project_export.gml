@@ -50,15 +50,17 @@ function project_export() {
             var buffers = array_create(array_length(Game.meta.export.files));
             
             var map_index = 0;
+            var map_file_prefix = save_directory + filename_change_ext(filename_name(fn), "");
             var map_buffer = buffer_create(0x10000, buffer_grow, 1);
             for (var i = 0; i < array_length(Game.maps); i++) {
                 Game.maps[i].ExportMapContents(map_buffer, map_index);
                 if (buffer_tell(map_buffer) > 0x80000000) {                     // 2 GB map file size limit
-                    buffer_save_ext(map_buffer, save_directory + string(map_index++) + EXPORT_EXTENSION_MAP, 0, buffer_tell(map_buffer));
+                    buffer_save_ext(map_buffer, map_file_prefix + string(map_index++) + EXPORT_EXTENSION_MAP, 0, buffer_tell(map_buffer));
                     buffer_delete(map_buffer);
                     map_buffer = buffer_create(0x10000, buffer_grow, 1);
                 }
             }
+            buffer_save_ext(map_buffer, map_file_prefix + string(map_index++) + EXPORT_EXTENSION_MAP, 0, buffer_tell(map_buffer));
             buffer_delete(map_buffer);
             
             for (var i = 0; i < array_length(Game.meta.export.files); i++) {
