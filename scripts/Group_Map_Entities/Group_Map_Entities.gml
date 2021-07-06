@@ -152,11 +152,9 @@ function Entity(source) constructor {
         buffer_write(buffer, buffer_f32, self.off_xx);
         buffer_write(buffer, buffer_f32, self.off_yy);
         buffer_write(buffer, buffer_f32, self.off_zz);
-        
-        buffer_write(buffer, buffer_u16, self.rot_xx);
-        buffer_write(buffer, buffer_u16, self.rot_yy);
-        buffer_write(buffer, buffer_u16, self.rot_zz);
-        
+        buffer_write(buffer, buffer_f32, self.rot_xx);
+        buffer_write(buffer, buffer_f32, self.rot_yy);
+        buffer_write(buffer, buffer_f32, self.rot_zz);
         buffer_write(buffer, buffer_f32, self.scale_xx);
         buffer_write(buffer, buffer_f32, self.scale_yy);
         buffer_write(buffer, buffer_f32, self.scale_zz);
@@ -164,7 +162,7 @@ function Entity(source) constructor {
         buffer_write(buffer, buffer_u8, self.autonomous_movement);
         buffer_write(buffer, buffer_u8, self.autonomous_movement_speed);
         buffer_write(buffer, buffer_u8, self.autonomous_movement_frequency);
-        buffer_write(buffer, buffer_u16, self.autonomous_movement_route);
+        buffer_write(buffer, buffer_u8, self.autonomous_movement_route);
         
         buffer_write(buffer, buffer_u8, array_length(self.movement_routes));
         for (var i = 0; i < array_length(self.movement_routes); i++) {
