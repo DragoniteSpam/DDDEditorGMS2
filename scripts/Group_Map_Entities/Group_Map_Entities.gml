@@ -546,7 +546,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         if (!self.ExportBase(buffer)) return 0;
         buffer_write(buffer, buffer_datatype, self.mesh);
         buffer_write(buffer, buffer_datatype, self.mesh_submesh);
-        buffer_write(buffer, buffer_u32, pack(
+        buffer_write(buffer, buffer_field, pack(
             self.animated
         ));
         buffer_write(buffer, buffer_u32, self.animation_index);
