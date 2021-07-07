@@ -426,7 +426,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     
     self.mesh = NULL;
     self.mesh_submesh = NULL;                                                   // proto-GUID
-    self.textures = array_create(MeshTextureSlots._COUNT, NULL);
     self.animated = false;
     self.animation_index = 0;
     self.animation_type = 0;                                                    // if smf ever gets re-added, it the loop type would be stored in here
@@ -555,10 +554,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         buffer_write(buffer, buffer_f32, self.animation_speed);
         buffer_write(buffer, buffer_u8, self.animation_end_action);
         
-        buffer_write(buffer, buffer_u8, array_length(self.textures));
-        for (var i = 0; i < array_length(self.textures); i++) {
-            buffer_write(buffer, buffer_datatype, self.textures[i]);
-        }
         return 1;
     };
     
@@ -574,7 +569,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
                 speed: self.animation_speed,
                 end_action: self.animation_end_action,
             },
-            textures: self.textures,
         };
         return json;
     };
@@ -591,11 +585,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         self.animation_type = source.mesh.animation.type;
         self.animation_speed = source.mesh.animation.speed;
         self.animation_end_action = source.mesh.animation.end_action;
-        try {
-            self.textures = source.textures;
-        } catch (e) {
-            // textures not included
-        }
     }
 }
 
