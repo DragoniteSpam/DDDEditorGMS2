@@ -54,7 +54,6 @@ function InstantiatedEvent(source) constructor {
         buffer_write(buffer, buffer_f32, self.condition_variable_global_value);
         buffer_write(buffer, buffer_u8, self.condition_variable_self_comparison);
         buffer_write(buffer, buffer_f32, self.condition_variable_self_value);
-        
         buffer_write(buffer, buffer_string, self.condition_code);
         
         buffer_write(buffer, buffer_flag, self.trigger);

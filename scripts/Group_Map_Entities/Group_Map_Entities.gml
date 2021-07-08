@@ -304,6 +304,9 @@ function Entity(source) constructor {
             if (variable_struct_exists(gen, "value_type_guid")) {
                 gen.type_guid = gen.value_type_guid;
             }
+            if (variable_struct_exists(gen, "value_data")) {
+                gen.value = gen.value_data;
+            }
         }
         
         if (!is_numeric(self.autonomous_movement_route)) self.autonomous_movement_route = 0;
