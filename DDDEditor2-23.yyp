@@ -1202,7 +1202,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/data","resourceVersion":"1.0","name":"vertex-formats.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.2.560",
+    "IDEVersion": "2.3.3.570",
   },
   "resourceVersion": "1.4",
   "name": "DDDEditor2-23",
