@@ -73,7 +73,7 @@ function event_get_node_global(name) {
     for (var i = 0; i < array_length(Game.events.events); i++) {
         var event = Game.events.events[i];
         if (event.name_map[$ name]) {
-            return [event, event.name_map[$ name]];
+            return event.name_map[$ name];
         }
     }
     
