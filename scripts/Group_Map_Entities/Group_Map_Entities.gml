@@ -462,7 +462,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         self.SetStatic = function(state) { };
         
         if (mesh) {
-            self.mesh = mesh;
+            self.mesh = mesh.GUID;
             switch (mesh.type) {
                 case MeshTypes.RAW:
                     self.mesh_submesh = (submesh != undefined) ? submesh : mesh.first_proto_guid;
