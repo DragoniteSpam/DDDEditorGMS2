@@ -213,7 +213,7 @@ function dialog_entity_data_enable_by_type(dialog) {
     
     // this is occasionally not needed because it'll run both of these every time,
     // but it's way cleaner than trying to only do it when necessary
-    if (dialog.el_data_builtin_list.entries) {
+    if (dialog.el_data_builtin_list.entries != undefined) {
         for (var i = 0; i < array_length(dialog.el_data_builtin_list.entries); i++) {
             var entry = dialog.el_data_builtin_list.entries[i];
             if (data.value == entry.GUID) {
@@ -223,7 +223,7 @@ function dialog_entity_data_enable_by_type(dialog) {
         }
     }
     
-    if (dialog.el_data_list.entries) {
+    if (dialog.el_data_list.entries != undefined) {
         for (var i = 0; i < array_length(dialog.el_data_list.entries); i++) {
             var entry = dialog.el_data_list.entries[i];
             if (data.value == entry.GUID) {

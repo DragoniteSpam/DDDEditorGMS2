@@ -28,7 +28,7 @@ function colour_reverse(color) {
 }
 
 function merge_colour_ds(c1, c2, f) {
-    // this seems to be slightly different from merge_colour and i dont know why?
+    // this seems to be slightly different from merge_colour and i dont know why
     // also it can do alpha
     var rr1 = (c1 & 0x000000ff);
     var gg1 = (c1 & 0x0000ff00) >> 8;
