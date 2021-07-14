@@ -25,7 +25,7 @@ function import_map_tiled_layer_tile() {
     var layer_visible = json.visible;
     var layer_data_x = json.x;
     var layer_data_y = json.y;
-    var layer_properties = json.properties;
+    var layer_properties = json[$ "properties"];
     var property_map = { };
     
     if (layer_properties != undefined) {
