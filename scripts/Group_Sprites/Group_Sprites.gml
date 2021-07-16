@@ -67,3 +67,96 @@ function sprite_to_surface(sprite, subimg) {
 function sprite_from_surface(surface) {
     return sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_height(surface), false, false, 0, 0);
 }
+
+function sprite_crop(sprite, x, y, w, h) {
+    var surface = surface_create(w, h);
+    surface_set_target(surface);
+    draw_clear_alpha(c_black, 0);
+    gpu_set_blendmode(bm_add);
+    draw_sprite(sprite, 0, -x, -y);
+    gpu_set_blendmode(bm_normal);
+    var cropped = sprite_create_from_surface(surface, 0, 0, w, h, false, false, 0, 0);
+    surface_reset_target();
+    surface_free(surface);
+    return cropped;
+}
+
+function sprite_get_cropped_dimensions(sprite, subimage, cutoff) {
+    if (subimage == undefined) subimage = 0;
+    if (cutoff == undefined) cutoff = 0;
+    
+    var buffer = sprite_to_buffer(sprite, 0);
+    var sw = sprite_get_width(sprite);
+    var sh = sprite_get_height(sprite);
+    var ww = sw;
+    var hh = sh;
+    // horizontal
+    for (var i = 0; i < sw; i++) {
+        var xx = sw - i - 1;
+        // assume the column is clear until proven otherwise
+        ww = xx;
+        var done = false;
+        for (var j = 0; j < sh; j++) {
+            // right to left
+            var yy = j;
+            var index = (yy * sw + xx) * 4;
+            var alpha = buffer_peek(buffer, index + 3, buffer_u8);
+            if (alpha > cutoff) {
+                ww = xx + 1;
+                done = true;
+                break;
+            }
+        }
+        if (done) {
+            break;
+        }
+    }
+    // vertical
+    for (var i = 0; i < sh; i++) {
+        var yy = sh - i - 1;
+        // assume the column is clear until proven otherwise
+        hh = yy;
+        var done = false;
+        for (var j = 0; j < sw; j++) {
+            // right to left
+            var xx = j;
+            var index = (yy * sw + xx) * 4;
+            var alpha = buffer_peek(buffer, index + 3, buffer_u8);
+            if (alpha > cutoff) {
+                hh = yy + 1;
+                done = true;
+                break;
+            }
+        }
+        if (done) {
+            break;
+        }
+    }
+    buffer_delete(buffer);
+    
+    return new vec2(ww, hh);
+}
+
+function sprite_remove_transparent_color(sprite, color) {
+    if (color == undefined) color = 0xff00ff;
+    
+    var w = sprite_get_width(sprite);
+    var h = sprite_get_height(sprite);
+    var buffer = sprite_to_buffer(sprite, 0);
+    var changed = false;
+    for (var i = 0, len = buffer_get_size(buffer); i < len; i += 4) {
+        if (buffer_peek(buffer, i, buffer_u32) & 0xffffff == color) {
+            buffer_poke(buffer, i, buffer_u32, 0);
+            changed = true;
+        }
+    }
+    
+    if (changed) {
+        sprite_delete(sprite);
+        sprite = sprite_from_buffer(buffer, w, h);
+    }
+    
+    buffer_delete(buffer);
+    
+    return sprite;
+}
