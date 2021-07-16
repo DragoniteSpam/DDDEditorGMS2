@@ -25,6 +25,7 @@ function language_remove(name) {
 }
 
 function language_extract() {
+    return;
     var existing_key_names = variable_struct_get_names(Game.languages.text[$ Game.languages.names[0]]);
     var existing_keys = { };
     for (var i = 0; i < array_length(existing_key_names); i++) {
