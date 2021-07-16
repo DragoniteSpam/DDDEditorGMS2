@@ -189,7 +189,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     dg.el_frame_speed = el_frame_speed;
     yy += el_frame_speed.height + spacing;
     
-    var el_dim_set_crop = create_button(c2 + 16, yy, "Dimensions: Crop", ew, eh, fa_center, function(button) {
+    var el_dim_set_crop = create_button(c2 + 16, yy, "Crop", ew, eh, fa_center, function(button) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
@@ -216,6 +216,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
             data_image_npc_frames(data);
         }
     }, dg);
+    el_dim_set_full.interactive = false;
     yy += el_dim_set_full.height + spacing;
     
     yy = yy_base;
