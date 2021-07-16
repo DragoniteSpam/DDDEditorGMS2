@@ -37,17 +37,17 @@ function sprite_atlas_pack(sprite_array, padding, borders) {
         };
         
         var xx = 0;
-        repeat (maxx >> 2) {
+        repeat (maxx >> 4) {
             var yy = 0;
-            repeat (maxx >> 2) {
+            repeat (maxx >> 4) {
                 if (!collides(data_buffer, index, xx, yy)) {
                     buffer_poke(data_buffer, index + SpritePackData.X, buffer_s32, xx);
                     buffer_poke(data_buffer, index + SpritePackData.Y, buffer_s32, yy);
                     return true;
                 }
-                yy += 4;
+                yy += 16;
             }
-            xx += 4;
+            xx += 16;
         }
         return false;
     };
