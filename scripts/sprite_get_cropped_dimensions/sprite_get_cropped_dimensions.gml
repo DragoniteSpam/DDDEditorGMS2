@@ -1,12 +1,7 @@
-/// @param sprite
-/// @param [subimage]
-/// @param [cutoff]
-function sprite_get_cropped_dimensions() {
-
-    var sprite = argument[0];
-    var subimage = (argument_count > 1) ? argument[1] : 0;
-    var cutoff = (argument_count > 2) ? argument[2] : 0;
-
+function sprite_get_cropped_dimensions(sprite, subimage, cutoff) {
+    if (subimage == undefined) subimage = 0;
+    if (cutoff == undefined) cutoff = 0;
+    
     var buffer = sprite_to_buffer(sprite, 0);
     var sw = sprite_get_width(sprite);
     var sh = sprite_get_height(sprite);
@@ -55,8 +50,6 @@ function sprite_get_cropped_dimensions() {
         }
     }
     buffer_delete(buffer);
-
-    return [ww, hh];
-
-
+    
+    return new vec2(ww, hh);
 }

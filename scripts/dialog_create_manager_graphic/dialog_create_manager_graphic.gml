@@ -198,8 +198,9 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
             var dim = sprite_get_cropped_dimensions(data.picture, 0, 127);
             // @todo implement a value to round to?
             var round_to = 16;
-            data.width = round_ext(dim[vec3.xx], round_to);
-            data.height = round_ext(dim[vec3.yy], round_to);
+            data.width = round_ext(dim.x, round_to);
+            data.height = round_ext(dim.y, round_to);
+            data.picture = sprite_crop(data.picture, 0, 0, data.width, data.height);
             data_image_npc_frames(data);
         }
     }, dg);
