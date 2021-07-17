@@ -1206,7 +1206,7 @@
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"SpriteAtlas.dll","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.3.570",
+    "IDEVersion": "23.1.1.319",
   },
   "resourceVersion": "1.4",
   "name": "DDDEditor2-23",
