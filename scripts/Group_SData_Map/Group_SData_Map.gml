@@ -433,6 +433,7 @@ function DataMap(source, directory) : SData(source) constructor {
         json.discovery = self.discovery;
         json.code = self.code;
         json.generic_data = self.generic_data;
+        json.grid_flags = self.grid_flags;
         return json;
     };
     
@@ -484,6 +485,12 @@ function DataMap(source, directory) : SData(source) constructor {
             self.chunk_size = source.chunk_size;
         } catch (e) {
             try { self.chunk_size = source.map_chunk_size; } catch (e) { }
+        }
+        try {
+            self.grid_flags = source.grid_flags;
+        } catch (e) {
+            // just in case
+            self.SetSize(source.xx, source.yy, source.zz);
         }
         try { self.lights = source.lights; } catch (e) { }
     }
