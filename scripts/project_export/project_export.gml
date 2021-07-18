@@ -18,6 +18,9 @@ function project_export() {
         };
         
         static write_index = function(buffer) {
+            // sign the first one
+            buffer_write(buffer, buffer_string, Game.meta.project.author);
+            buffer_write(buffer, buffer_string, Game.meta.project.summary);
             // minus one because index zero is assumed to be the master file
             buffer_write(buffer, buffer_u8, array_length(Game.meta.export.files) - 1);
             // start at 1 because we kinda already know to load the main data file
