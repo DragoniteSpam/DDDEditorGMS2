@@ -66,7 +66,7 @@ function DataImage(source) : SData(source) constructor {
         buffer_write(buffer, buffer_u16, self.hframes);
         buffer_write(buffer, buffer_u16, self.aframes);
         buffer_write(buffer, buffer_u16, self.aspeed);
-        buffer_write(buffer, buffer_bool, sprite_exists(self.picture));
+        buffer_write(buffer, buffer_bool, include_image && sprite_exists(self.picture));
         if (include_image && sprite_exists(self.picture)) {
             buffer_write_sprite(buffer, self.picture);
         }
@@ -101,7 +101,7 @@ function DataImageTileset(source) : DataImage(source) constructor {
     self.image_flags = [[]];
     
     static ExportTileset = function(buffer) {
-        self.ExportImage(buffer);
+        self.ExportImage(buffer, true);
         var w = array_length(self.image_flags);
         var h = array_length(self.image_flags[0]);
         buffer_write(buffer, buffer_u16, w);
