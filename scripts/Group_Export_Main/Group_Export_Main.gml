@@ -78,11 +78,13 @@ function project_export_atlas(buffer, list) {
             compilation[i] = list[i].picture;
         }
         var packed = sprite_atlas_pack_dll(compilation, 2, true);
+        var w = sprite_get_width(packed.atlas);
+        var h = sprite_get_height(packed.atlas);
         for (var i = 0; i < array_length(compilation); i++) {
-            list[i].packed.x = packed.uvs[i].x;
-            list[i].packed.y = packed.uvs[i].y;
-            list[i].packed.w = packed.uvs[i].w;
-            list[i].packed.h = packed.uvs[i].h;
+            list[i].packed.x = packed.uvs[i].x / w;
+            list[i].packed.y = packed.uvs[i].y / h;
+            list[i].packed.w = packed.uvs[i].w / w;
+            list[i].packed.h = packed.uvs[i].h / h;
         }
         buffer_write_sprite(buffer, packed.atlas);
     }

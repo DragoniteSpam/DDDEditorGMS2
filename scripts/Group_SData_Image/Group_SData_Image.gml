@@ -71,10 +71,10 @@ function DataImage(source) : SData(source) constructor {
             buffer_write_sprite(buffer, self.picture);
         }
         // packed data (will default to 0s)
-        buffer_write(buffer, buffer_u32, self.packed.x);
-        buffer_write(buffer, buffer_u32, self.packed.y);
-        buffer_write(buffer, buffer_u32, self.packed.w);
-        buffer_write(buffer, buffer_u32, self.packed.h);
+        buffer_write(buffer, buffer_f32, self.packed.x);
+        buffer_write(buffer, buffer_f32, self.packed.y);
+        buffer_write(buffer, buffer_f32, self.packed.w);
+        buffer_write(buffer, buffer_f32, self.packed.h);
     };
     
     static Export = function(buffer, include_image) {
