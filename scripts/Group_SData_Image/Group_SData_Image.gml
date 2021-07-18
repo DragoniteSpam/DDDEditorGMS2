@@ -12,6 +12,14 @@ function DataImage(source) : SData(source) constructor {
     self.aframes = 1;
     self.aspeed = 1;
     
+    // don't save these to the project - gets refreshed every time you export
+    self.packed = {
+        x: 0,
+        y: 0,
+        w: 0,
+        h: 0,
+    };
+    
     self.hash = "";
     self.source_filename = "";
     
@@ -50,7 +58,7 @@ function DataImage(source) : SData(source) constructor {
         if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
     };
     
-    static ExportImage = function(buffer) {
+    static ExportImage = function(buffer, include_image) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.width);
         buffer_write(buffer, buffer_u16, self.height);
@@ -59,13 +67,19 @@ function DataImage(source) : SData(source) constructor {
         buffer_write(buffer, buffer_u16, self.aframes);
         buffer_write(buffer, buffer_u16, self.aspeed);
         buffer_write(buffer, buffer_bool, sprite_exists(self.picture));
-        if (sprite_exists(self.picture)) {
+        if (include_image && sprite_exists(self.picture)) {
             buffer_write_sprite(buffer, self.picture);
         }
+        // packed data (will default to 0s)
+        buffer_write(buffer, buffer_u32, self.packed.x);
+        buffer_write(buffer, buffer_u32, self.packed.y);
+        buffer_write(buffer, buffer_u32, self.packed.w);
+        buffer_write(buffer, buffer_u32, self.packed.h);
     };
     
-    static Export = function(buffer) {
-        self.ExportImage(buffer);
+    static Export = function(buffer, include_image) {
+        if (include_image == undefined) include_image = true;
+        self.ExportImage(buffer, include_image);
     };
     
     // we dont have a SaveJSON here because we're literally just saving the

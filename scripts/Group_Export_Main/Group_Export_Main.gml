@@ -62,11 +62,31 @@ function project_export_language(buffer) {
     }
 }
 
-function project_export_standard(buffer, list) {
+function project_export_standard(buffer, list, extra_param) {
+    if (extra_param == undefined) extra_param = true;
     buffer_write(buffer, buffer_u32, array_length(list));
     for (var i = 0; i < array_length(list); i++) {
-        list[i].Export(buffer);
+        list[i].Export(buffer, extra_param);
     }
+}
+
+function project_export_atlas(buffer, list) {
+    var compilation = array_create(array_length(list));
+    buffer_write(buffer, buffer_u32, array_length(list));
+    if (array_length(compilation) > 0) {
+        for (var i = 0; i < array_length(compilation); i++) {
+            compilation[i] = list[i].picture;
+        }
+        var packed = sprite_atlas_pack_dll(compilation, 2, true);
+        for (var i = 0; i < array_length(compilation); i++) {
+            list[i].packed.x = packed.uvs[i].x;
+            list[i].packed.y = packed.uvs[i].y;
+            list[i].packed.w = packed.uvs[i].w;
+            list[i].packed.h = packed.uvs[i].h;
+        }
+        buffer_write_sprite(buffer, packed.atlas);
+    }
+    project_export_standard(buffer, list, false);
 }
 
 function project_export_animations(buffer) {
@@ -92,8 +112,8 @@ function project_export_images(buffer) {
     project_export_standard(buffer, Game.graphics.tilesets);
     project_export_standard(buffer, Game.graphics.skybox);
     project_export_standard(buffer, Game.graphics.particles);
-    project_export_standard(buffer, Game.graphics.overworlds);
-    project_export_standard(buffer, Game.graphics.battlers);
+    project_export_atlas(buffer, Game.graphics.overworlds);
+    project_export_atlas(buffer, Game.graphics.battlers);
     project_export_standard(buffer, Game.graphics.etc);
     project_export_standard(buffer, Game.graphics.ui);
     project_export_standard(buffer, Game.graphics.tile_animations);
