@@ -112,8 +112,10 @@ function project_export_images(buffer) {
     project_export_standard(buffer, Game.graphics.tilesets);
     project_export_standard(buffer, Game.graphics.skybox);
     project_export_standard(buffer, Game.graphics.particles);
-    project_export_atlas(buffer, Game.graphics.overworlds);
-    project_export_atlas(buffer, Game.graphics.battlers);
+    //project_export_atlas(buffer, Game.graphics.overworlds);
+    //project_export_atlas(buffer, Game.graphics.battlers);
+    project_export_standard(buffer, Game.graphics.overworlds);
+    project_export_standard(buffer, Game.graphics.battlers);
     project_export_standard(buffer, Game.graphics.etc);
     project_export_standard(buffer, Game.graphics.ui);
     project_export_standard(buffer, Game.graphics.tile_animations);
