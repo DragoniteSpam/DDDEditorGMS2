@@ -859,10 +859,8 @@ function draw_event_node(node) {
                 for (var i = 0; i < array_length(Stuff.event.active.nodes); i++) {
                     var test = Stuff.event.active.nodes[i];
                     if (mouse_within_rectangle_adjusted(test.x, test.y, test.x + EVENT_NODE_CONTACT_WIDTH, test.y + EVENT_NODE_CONTACT_HEIGHT)) {
-                        if (!test.is_root) {
-                            contacted_node = test;
-                            break;
-                        }
+                        contacted_node = test;
+                        break;
                     }
                 }
                 

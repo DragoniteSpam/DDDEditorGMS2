@@ -45,7 +45,6 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
     self.prefab_guid = NULL;
     
     // editor only - set upon creation, or reset upon loading
-    self.is_root = false;
     self.event = parent;                                                        // not a GUID - this doesnt need to be serialized
     self.valid_destination = true;                                              // can other nodes lead to this? basically here to denote comments
     self.is_code = true;                                                        // for when you need code
@@ -70,7 +69,6 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
         
         switch (type) {
             case EventNodeTypes.ENTRYPOINT:
-                self.is_root = true;
                 self.name = "+Entrypoint";
                 self.data[0] = "";
                 break;
