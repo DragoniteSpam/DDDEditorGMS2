@@ -56,12 +56,6 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
     self.offset_x = -1;
     self.offset_y = -1;
     
-    // PLEASE DON'T DELETE THIS. it's not needed for the event itself but it lets you
-    // keep track of the nodes that refer to it when you delete it, so they can have
-    // their outbound references set to zero.
-    
-    self.parents = { };
-    
     self.ui_things = [];
     self.editor_handle = noone;
     self.editor_handle_index = -1;       // because sometimes the same node might want to spawn multiple editors and want to tell them apart
@@ -215,31 +209,19 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
     
     static Destroy = function() {
         self.DestroyBase();
-        // remove references from other objects: things that contain this as an outbound node
-        var parent_nodes = variable_struct_get_names(self.parents);
-        for (var i = 0; i < array_length(parent_nodes); i++) {
-            var parent = guid_get(self.parents[$ parent_nodes[i]]);
-            for (var j = 0; j < array_length(parent.outbound); j++) {
-                if (parent.outbound[j] == self.GUID) {
-                    parent.outbound[j] = undefined;
+        if (self.event) {
+            // remove references from other objects: things that contain this as an outbound node
+            for (var i = 0; i < array_length(self.event.nodes); i++) {
+                var node = self.event.nodes[i];
+                for (var j = 0; j < array_length(node.outbound); j++) {
+                    if (node.outbound[j] == self.GUID) {
+                        node.outbound[j] = NULL;
+                    }
                 }
             }
-        }
-        
-        // outbound nodes which contain this as a parent
-        for (var i = 0; i < array_length(self.outbound); i++) {
-            if (self.outbound[i] != NULL) {
-                variable_struct_remove(guid_get(self.outbound[i]).parents, self.GUID);
-            }
-        }
-        
-        // remove from event's master list of nodes
-        if (self.event) {
-            var event_index = array_search(self.event.nodes, self);
-            if (event_index + 1) {
-                array_delete(self.event.nodes, event_index, 1);
-            }
-            // remove this node from the registered names for nodes in the event
+            
+            // remove from event's master list of nodes and registered names
+            array_delete(self.event.nodes, array_search(self.event.nodes, self), 1);
             variable_struct_remove(self.event.name_map, self.name);
         }
         
