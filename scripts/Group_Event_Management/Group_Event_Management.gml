@@ -17,10 +17,15 @@ function event_connect_node() {
     var index = (argument_count > 2) ? argument[2] : 0;
     var force_null = (argument_count > 3) ? argument[3] : false;
     
-    // because this would be silly
-    if (source != destination && (destination && destination.valid_destination) || force_null) {
-        source.outbound[index] = destination.GUID;
+    if (!destination && force_null) {
+        source.outbound[index] = NULL;
     }
+    
+    if (!destination) return;
+    if (source == destination) return;
+    if (destination && destination.type == EventNodeTypes.ENTRYPOINT) return;
+    
+    source.outbound[index] = destination.GUID;
 }
 
 /// @param Event
