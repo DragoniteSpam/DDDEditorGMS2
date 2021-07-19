@@ -62,8 +62,8 @@ function DataImage(source) : SData(source) constructor {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.width);
         buffer_write(buffer, buffer_u16, self.height);
-        buffer_write(buffer, buffer_u16, self.vframes);
         buffer_write(buffer, buffer_u16, self.hframes);
+        buffer_write(buffer, buffer_u16, self.vframes);
         buffer_write(buffer, buffer_u16, self.aframes);
         buffer_write(buffer, buffer_u16, self.aspeed);
         buffer_write(buffer, buffer_bool, include_image && sprite_exists(self.picture));
