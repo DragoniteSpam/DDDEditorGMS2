@@ -848,12 +848,24 @@ function draw_event_node(node) {
     }
     
     if (Stuff.event.canvas_active_node == node) {
-        draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x + camera_get_view_x(camera), mouse_y + camera_get_view_y(camera));
+        var cx = camera_get_view_x(camera);
+        var cy = camera_get_view_y(camera);
+        draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x + cx, mouse_y + cy);
         if (!dialog_exists()) {
             if (Controller.release_left) {
                 Controller.release_left = false;
                 // if the mouse is contacting another entrypoint, connect it
-                var contacted_node = event_seek_node();
+                var contacted_node = undefined;
+                for (var i = 0; i < array_length(Stuff.event.active.nodes); i++) {
+                    var test = Stuff.event.active.nodes[i];
+                    if (mouse_within_rectangle_adjusted(test.x, test.y, test.x + EVENT_NODE_CONTACT_WIDTH, test.y + EVENT_NODE_CONTACT_HEIGHT)) {
+                        if (!test.is_root) {
+                            contacted_node = test;
+                            break;
+                        }
+                    }
+                }
+                
                 if (contacted_node) {
                     event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                 }
