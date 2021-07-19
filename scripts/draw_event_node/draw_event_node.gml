@@ -11,9 +11,11 @@ function draw_event_node(node) {
     
     var entry_height = 4 * 16 + 32;
     var entry_offset = 16;
-    var eh = 0;
+    var eh = 32;
     var tolerance = 4;
     var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+    var rh = 0;
+    var bezier_y = 0;
     
     var entrypoint_height = 64;
     var ext_node_padding = 12;
@@ -127,8 +129,8 @@ function draw_event_node(node) {
         case EventNodeTypes.CONDITIONAL:
             #region if-else if-else
             var size = array_length(node.custom_data[0]);
+            rh = ((node.ui_things[0].GetHeight() div eh) * eh) + 16;
             eh = 32;
-            var rh = ((node.ui_things[0].GetHeight() div eh) * eh) + 16;
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             y2 = y1 + max(24 + 64 + (eh + rh + 1) * size + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
@@ -704,13 +706,14 @@ function draw_event_node(node) {
     entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
     var node_spr_width = sprite_get_width(spr_event_outbound);
     var node_spr_height = sprite_get_height(spr_event_outbound);
-    var drag_from_yy = 0;
     
-    // different node types may put the outbound nodes in different places - not all use more than one output node
-    var bezier_override = false;
     switch (node.type) {
+        case EventNodeTypes.COMMENT:
+            // no outbound node allowed
+            break;
         case EventNodeTypes.TEXT:
         case EventNodeTypes.SHOW_SCROLLING_TEXT:
+        case EventNodeTypes.ENTRYPOINT:
             #region single-output nodes
             entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             var outbound = guid_get(node.outbound[0]);
@@ -735,53 +738,18 @@ function draw_event_node(node) {
                 }
             }
             // the node is currently being dragged
-            if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == 0) {
-                bezier_y = by;
-                drag_from_yy = bezier_y;
-            }
-            #endregion
-            break;
-        case EventNodeTypes.ENTRYPOINT:
-            #region Entrypoint
-            // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
-            var by = y1 + entrypoint_height / 2;
-            var outbound = guid_get(node.outbound[0]);
-            
-            if (!outbound) {
-                draw_event_node_outbound(x2 + ext_node_padding, by, node, 0, true);
-            } else {
-                var bx2 = outbound.x;
-                var by2 = outbound.y + 16;
-                
-                draw_event_node_outbound(x2 + ext_node_padding, by, node);
-                draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
-                
-                if (Stuff.event.canvas_active_node != node) {
-                    if (bx2 > x2 && outbound.event == node.event) {
-                        draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
-                    } else {
-                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, node, outbound);
-                    }
-                }
-            }
-            // the node is currently being dragged
             if (Stuff.event.canvas_active_node == node) {
-                drag_from_yy = by;
+                bezier_y = by;
             }
-            
-            break;
             #endregion
-        case EventNodeTypes.COMMENT:
-            // no outbound node allowed
             break;
         case EventNodeTypes.CONDITIONAL:
             #region Conditional
-            // it'd be real nice if this could just be in the default case, but the outbound nodes
-            // are spaced slightly differently for this so it wouldn't really work
-            bezier_override = true;
+            // it'd be real nice if this could just be in the default case, but
+            // the outbound nodes are spaced slightly differently for this so it
+            // wouldn't really work
             var by = entry_yy + entry_height - ext_node_padding;
             var n = array_length(node.outbound);
-            var bezier_y = 0;
             
             for (var i = 0; i < n; i++) {
                 var outbound = guid_get(node.outbound[i]);
@@ -805,34 +773,15 @@ function draw_event_node(node) {
                 // the node is currently being dragged
                 if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                     bezier_y = by;
-                    drag_from_yy = bezier_y;
                 }
                 
-                // this is seriously screwing with scope but it works since nodes can't change type
                 by += eh + ((i < n - 2) ? rh : (rh + eh) / 2);
-            }
-            
-            if (Stuff.event.canvas_active_node == node) {
-                if (!dialog_exists()) {
-                    if (Controller.release_left) {
-                        // if the mouse is contacting another entrypoint, connect it
-                        var contacted_node = event_seek_node();
-                        if (contacted_node) {
-                            event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
-                        }
-                        Stuff.event.request_cancel_active_node = true;
-                    }
-                }
-                
-                draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x_view, mouse_y_view);
             }
             break;
             #endregion
         case EventNodeTypes.SHOW_CHOICES:
             #region Choices
-            bezier_override = true;
             var n = array_length(node.outbound);
-            var bezier_y = 0;
             
             for (var i = 0; i < n; i++) {
                 var outbound = guid_get(node.outbound[i]);
@@ -858,25 +807,9 @@ function draw_event_node(node) {
                 // the node IS currently being dragged
                 if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                     bezier_y = entry_yy + eh / 2;
-                    drag_from_yy = bezier_y;
                 }
                 
                 entry_yy = entry_yy + eh;
-            }
-            // the node is currently being dragged
-            if (Stuff.event.canvas_active_node == node) {
-                if (!dialog_exists()) {
-                    if (Controller.release_left) {
-                        // if the mouse is contacting another entrypoint, connect it
-                        var contacted_node = event_seek_node();
-                        if (contacted_node) {
-                            event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
-                        }
-                        Stuff.event.request_cancel_active_node = true;
-                    }
-                }
-                
-                draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x + camera_get_view_x(camera), mouse_y + camera_get_view_y(camera));
             }
             break;
             #endregion
@@ -908,28 +841,23 @@ function draw_event_node(node) {
                 // the node is currently being dragged
                 if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                     bezier_y = by;
-                    drag_from_yy = bezier_y;
                 }
             }
             break;
             #endregion
     }
     
-    // condition nodes have them located in strange places so i'm not going to try
-    // to come up with a general solution
-    if (!bezier_override) {
-        if (Stuff.event.canvas_active_node == node) {
-            draw_bezier(x2 + ext_node_padding, drag_from_yy, mouse_x + camera_get_view_x(camera), mouse_y + camera_get_view_y(camera));
-            if (!dialog_exists()) {
-                if (Controller.release_left) {
-                    Controller.release_left = false;
-                    // if the mouse is contacting another entrypoint, connect it
-                    var contacted_node = event_seek_node();
-                    if (contacted_node) {
-                        event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
-                    }
-                    Stuff.event.request_cancel_active_node = true;
+    if (Stuff.event.canvas_active_node == node) {
+        draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x + camera_get_view_x(camera), mouse_y + camera_get_view_y(camera));
+        if (!dialog_exists()) {
+            if (Controller.release_left) {
+                Controller.release_left = false;
+                // if the mouse is contacting another entrypoint, connect it
+                var contacted_node = event_seek_node();
+                if (contacted_node) {
+                    event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                 }
+                Stuff.event.request_cancel_active_node = true;
             }
         }
     }
