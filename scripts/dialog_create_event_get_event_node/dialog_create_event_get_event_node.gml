@@ -52,7 +52,11 @@ function dialog_create_event_get_event_node(argument0) {
         var b_width = 128;
         var b_height = 32;
     
-        var el_clear = create_button(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, "Clear", b_width, b_height, fa_center, dmu_dialog_event_set_outbound_null_double, dg);
+        var el_clear = create_button(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, "Clear", b_width, b_height, fa_center, function(button) {
+            button.root.node.Connect(undefined, button.root.index, true);
+            dialog_destroy();
+            dialog_destroy();
+        }, dg);
         el_clear.tooltip = "Set the outbound node to null; in the game, this will be the end of the event and control will return to the player";
     
         var el_confirm = create_button(dw * 5 / 7 - b_width / 2, dh - 32 - b_height / 2, "Select", b_width, b_height, fa_center, dmu_dialog_event_set_outbound, dg);
