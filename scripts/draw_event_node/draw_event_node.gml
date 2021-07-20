@@ -865,7 +865,7 @@ function draw_event_node(node) {
                 }
                 
                 if (contacted_node) {
-                    event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
+                    node.Connect(contacted_node, Stuff.event.canvas_active_node_index);
                 }
                 Stuff.event.request_cancel_active_node = true;
             }

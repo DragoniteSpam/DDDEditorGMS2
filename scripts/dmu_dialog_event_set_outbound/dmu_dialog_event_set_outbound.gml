@@ -12,7 +12,7 @@ function dmu_dialog_event_set_outbound(button) {
             emu_dialog_notice("Please don't set a node's outbound node to itself! That would produce an infinite loop!");
             destroy_dialogs = false;
         } else {
-            event_connect_node(node, destination, index);
+            node.Connect(destination, index);
         }
     }
     

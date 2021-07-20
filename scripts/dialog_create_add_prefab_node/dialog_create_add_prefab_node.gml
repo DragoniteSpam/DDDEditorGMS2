@@ -37,7 +37,7 @@ function dialog_create_add_prefab_node(argument0) {
             // when the node is named normally the $number is appended before the event is added to the
             // list; in this case it's already in the list and you're renaming it, so the number you want
             // is length minus one
-            event_rename_node(event, instantiated, prefab.name + "$" + string(array_length(Stuff.event.active.nodes) - 1));
+            instantiated.Rename(prefab.name + "$" + string(array_length(Stuff.event.active.nodes) - 1));
             instantiated.prefab_guid = prefab.GUID;
             instantiated.data = array_clone(prefab.data);
             

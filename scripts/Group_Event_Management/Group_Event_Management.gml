@@ -1,46 +1,8 @@
-function event_rename_node(event, node, new_name) {
-    // it attempts to, anyway
-    if (validate_string_event_name(new_name, undefined)) {
-        variable_struct_remove(event.name_map, node.name);
-        event.name_map[$ new_name] = node;
-        node.name = new_name;
-    }
-}
-
-/// @param source
-/// @param destination
-/// @param [index]
-/// @param [force-null?]
-function event_connect_node() {
-    var source = argument[0];
-    var destination = argument[1];
-    var index = (argument_count > 2) ? argument[2] : 0;
-    var force_null = (argument_count > 3) ? argument[3] : false;
+function event_create_node(event, type, xx, yy) {
+    if (xx == undefined) xx = camera_get_view_x(camera) + room_width / 2;
+    if (yy == undefined) yy = camera_get_view_y(camera) + room_height / 2;
     
-    if (!destination && force_null) {
-        source.outbound[index] = NULL;
-    }
-    
-    if (!destination) return;
-    if (source == destination) return;
-    if (destination && destination.type == EventNodeTypes.ENTRYPOINT) return;
-    
-    source.outbound[index] = destination.GUID;
-}
-
-/// @param Event
-/// @param EventNodeType
-/// @param [x]
-/// @param [y]
-/// @param [custom-guid]
-function event_create_node() {
     var camera = view_get_camera(view_fullscreen);
-    var event = argument[0];
-    var type = argument[1];
-    var xx = (argument_count > 2 && argument[2] != undefined) ? argument[2] : camera_get_view_x(camera) + room_width / 2;
-    var yy = (argument_count > 3 && argument[3] != undefined) ? argument[3] : camera_get_view_y(camera) + room_height / 2;
-    var custom_guid = (argument_count > 4) ? argument[4] : NULL;
-    
     var node = new DataEventNode(undefined, event, type, custom_guid);
     node.x = xx;
     node.y = yy;

@@ -134,6 +134,30 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
             string_copy(self.name, 1, min(max_length, entrypoint_length)) + ((entrypoint_length > max_length) ? "..." : "");
     };
     
+    static Rename = function(new_name) {
+        // it attempts to, anyway
+        if (validate_string_event_name(new_name, undefined)) {
+            variable_struct_remove(self.event.name_map, self.name);
+            self.event.name_map[$ new_name] = self;
+            self.name = new_name;
+        }
+    };
+    
+    static Connect = function(destination, index, force_null) {
+        if (index == undefined) index = 0;
+        if (force_null == undefined) force_null = false;
+        
+        if (!destination && force_null) {
+            self.outbound[index] = NULL;
+        }
+        
+        if (!destination) return;
+        if (self == destination) return;
+        if (destination && destination.type == EventNodeTypes.ENTRYPOINT) return;
+        
+        self.outbound[index] = destination.GUID;
+    };
+    
     static Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.type);
