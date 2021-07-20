@@ -60,7 +60,7 @@ function dialog_create_new_map(root) {
     
     yy = yy_base;
     
-    var el_chunk_size = create_input(col2_x, yy, "Chunk Size:", ew, eh, null, Game.meta.grid.chunk_size, "", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+    var el_chunk_size = create_input(col2_x, yy, "Chunk Size:", ew, eh, null, Game.meta.grid.chunk_size, "", validate_int, 6, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
     el_chunk_size.tooltip = "The size of each chunk of the map; chunks outside of the camera's view will not be updated or rendered (although their contents will continue to exist).";
     dg.el_chunk_size = el_chunk_size;
     

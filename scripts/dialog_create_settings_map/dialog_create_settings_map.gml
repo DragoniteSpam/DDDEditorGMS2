@@ -146,7 +146,7 @@ function dialog_create_settings_map(dialog) {
     
     var el_chunk_size = create_input(col2_x, yy, "Chunk Size:", ew, eh, function(input) {
         input.root.map.chunk_size = real(input.value);
-    }, map.chunk_size, "int", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+    }, map.chunk_size, "int", validate_int, 6, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
     el_chunk_size.tooltip = "The size of the chunks maps are broken up into for optimization purposes";
     yy += el_chunk_size.height + spacing;
     #endregion
