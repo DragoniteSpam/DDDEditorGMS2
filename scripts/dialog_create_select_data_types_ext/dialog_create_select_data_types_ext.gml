@@ -45,7 +45,7 @@ function dialog_create_select_data_types_ext(root, value, onvaluechange) {
     el_list.contents[| DataTypes.IMG_SKYBOX].color = c_purple;
     el_list.contents[| DataTypes.MESH_AUTOTILE].color = c_blue;
     
-    create_radio_array_option_column(el_list, DataTypes.AUDIO_BGM, c2 + 32);
+    create_radio_array_option_column(el_list, 13, c2 + 32);
     
     dg.el_list = el_list;
     
