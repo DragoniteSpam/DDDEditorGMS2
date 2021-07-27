@@ -260,7 +260,6 @@ function dialog_create_settings_data_game_constants(root) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            Game.vars.constants[selection].Destroy();
             array_delete(Game.vars.constants, selection, 1);
         }
     }, dg);
