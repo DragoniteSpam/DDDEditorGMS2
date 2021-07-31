@@ -139,6 +139,11 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
                 case "usemtl":
                     active_mtl = ds_queue_dequeue(q);
                     break;
+                case "usemap":
+                    // this doesnt seem like a very common way to fetch a texture
+                    // map but maybe it'll be worth including later anyway
+                    var tex_map = ds_queue_dequeue(q);
+                    break;
                 case "f":
                     #region face data
                     if (ds_queue_size(q) >= 3) {
