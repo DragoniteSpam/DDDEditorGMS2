@@ -739,10 +739,6 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     // if you want to be really fancy you can use different colors for all four
     // vertices of the tile but I can't think of any practical use for that
     
-    // rendering
-    var tw = TILE_WIDTH;
-    var th = TILE_HEIGHT;
-    
     self.vbuffer = undefined;
     self.wbuffer = undefined;
     
@@ -750,8 +746,8 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
         if (self.vbuffer != undefined) vertex_delete_buffer(self.vbuffer);
         if (self.wbuffer != undefined) vertex_delete_buffer(self.wbuffer);
         
-        var texture_width = 1 / (TEXTURE_SIZE / Stuff.tile_size);
-        var texture_height = 1 / (TEXTURE_SIZE / Stuff.tile_size);
+        var texture_width = Stuff.tile_size / TEXTURE_WIDTH;
+        var texture_height = Stuff.tile_size / TEXTURE_HEIGHT;
         
         var texx1 = self.tile_x * texture_width;
         var texy1 = self.tile_y * texture_height;

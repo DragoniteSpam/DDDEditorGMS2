@@ -1,5 +1,6 @@
 function batch_autotile(vbuff, wire, reflect, reflect_wire, tile) {
-    var TEXEL = 1 / TEXTURE_SIZE;
+    var TEXEL_WIDTH = 1 / TEXTURE_WIDTH;
+    var TEXEL_HEIGHT = 1 / TEXTURE_HEIGHT;
     
     var xx = tile.xx * TILE_WIDTH;
     var yy = tile.yy * TILE_HEIGHT;
@@ -12,13 +13,8 @@ function batch_autotile(vbuff, wire, reflect, reflect_wire, tile) {
     var ny = 0;
     var nz = 1;
     
-    var tile_horizontal_count = TEXTURE_SIZE / Stuff.tile_size;
-    var tile_vertical_count = TEXTURE_SIZE / Stuff.tile_size;
-    
-    // texture coordinates go from 0...1, not 0...n, where n is the dimension
-    // of the image in pixels
-    var texture_width = 1 / tile_horizontal_count;
-    var texture_height = 1 / tile_vertical_count;
+    var texture_width = Stuff.tile_size / TEXTURE_WIDTH;
+    var texture_height = Stuff.tile_size / TEXTURE_HEIGHT;
     
     var xtex = tile.tile_x * texture_width;
     var ytex = tile.tile_y * texture_width;
@@ -27,13 +23,13 @@ function batch_autotile(vbuff, wire, reflect, reflect_wire, tile) {
     var alpha = tile.tile_alpha;
     
     if (vbuff) {
-        vertex_point_complete(vbuff, xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
-        vertex_point_complete(vbuff, xx + TILE_WIDTH, yy, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + TEXEL, color, alpha);
-        vertex_point_complete(vbuff, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
+        vertex_point_complete(vbuff, xx, yy, zz, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + TEXEL_HEIGHT, color, alpha);
+        vertex_point_complete(vbuff, xx + TILE_WIDTH, yy, zz, nx, ny, nz, xtex + texture_width - TEXEL_WIDTH, ytex + TEXEL_HEIGHT, color, alpha);
+        vertex_point_complete(vbuff, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
         
-        vertex_point_complete(vbuff, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
-        vertex_point_complete(vbuff, xx, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + TEXEL, ytex + texture_height - TEXEL, color, alpha);
-        vertex_point_complete(vbuff, xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
+        vertex_point_complete(vbuff, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
+        vertex_point_complete(vbuff, xx, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
+        vertex_point_complete(vbuff, xx, yy, zz, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + TEXEL_HEIGHT, color, alpha);
     }
     
     if (wire) {

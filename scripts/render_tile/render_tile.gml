@@ -1,6 +1,4 @@
 function render_tile(tile) {
-    var TEXEL = 1 / TEXTURE_SIZE;
-    
     var xx = tile.xx * TILE_WIDTH;
     var yy = tile.yy * TILE_HEIGHT;
     var zz = tile.zz * TILE_DEPTH;
