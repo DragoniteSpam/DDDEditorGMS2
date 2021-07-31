@@ -1,19 +1,4 @@
-/// @param json
-/// @param ts-columns
-/// @param z
-/// @param [alpha]
-/// @param [x]
-/// @param [y]
-/// @param [tiled-cache]
-function import_map_tiled_layer_object() {
-    var json = argument[0];
-    var columns = argument[1];
-    var z = argument[2];
-    var alpha = (argument_count > 3) ? argument[3] : 1;
-    var xx = (argument_count > 4) ? argument[4] : 0;
-    var yy = (argument_count > 5) ? argument[5] : 0;
-    var tiled_cache = (argument_count > 6) ? argument[6] : noone;
-    var zz = z;
+function import_map_tiled_layer_object(x, y, z, json, columns, alpha, tiled_cache) {
     var layer_flag = 0;
     
     var map = Stuff.map.active_map;
@@ -50,9 +35,9 @@ function import_map_tiled_layer_object() {
         var obj_x = object.x;
         var obj_y = object.y;
         
-        if (!is_clamped((xx + obj_x) / TILE_WIDTH, 0, map.xx - 1)) continue;
-        if (!is_clamped((yy + obj_y) / TILE_HEIGHT, 0, map.yy - 1)) continue;
-        if (!is_clamped(zz, 0, map.zz - 1)) continue;
+        if (!is_clamped((x + obj_x) / TILE_WIDTH, 0, map.xx - 1)) continue;
+        if (!is_clamped((y + obj_y) / TILE_HEIGHT, 0, map.yy - 1)) continue;
+        if (!is_clamped(z, 0, map.zz - 1)) continue;
         
         var obj_gid_local = object[$ "gid"];
         var obj_name = object[$ "name"];
@@ -72,7 +57,7 @@ function import_map_tiled_layer_object() {
             var y2 = y1 + (obj_height div TILE_HEIGHT);
             for (var j = x1; j < x2; j++) {
                 for (var k = y1; k < y2; k++) {
-                    map.SetFlag(j, k, zz, layer_flag);
+                    map.SetFlag(j, k, z, layer_flag);
                 }
             }
             continue;
@@ -199,7 +184,7 @@ function import_map_tiled_layer_object() {
                         instance.overworld_sprite = thing.GUID;
                         // position for NPCs is at -1 because of where the
                         // origin for sprites is in Tiled
-                        map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, false, false);
+                        map.Add(instance, (x + obj_x) div TILE_WIDTH, (y + obj_y) div TILE_HEIGHT - 1, z, false, false);
                     } else {
                         //thing.Destroy();
                         updated = true;
@@ -210,7 +195,7 @@ function import_map_tiled_layer_object() {
                     instance.overworld_sprite = thing.GUID;
                     // position for NPCs is at -1 because of where the origin
                     // for sprites is in Tiled
-                    map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
+                    map.Add(instance, (x + obj_x) div TILE_WIDTH, (y + obj_y) div TILE_HEIGHT - 1, z);
                 } else {
                     wtf("GID not found: " + gid_to_image_name);
                 }
@@ -237,11 +222,11 @@ function import_map_tiled_layer_object() {
                         // need to be removed from the lists, or re-added later,
                         // because that would take a lot of time
                         map.Remove(instance);
-                        map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, false, false);
+                        map.Add(instance, (x + obj_x) div TILE_WIDTH, (y + obj_y) div TILE_HEIGHT, z, false, false);
                     } else {
                         instance = new EntityMesh("Mesh", pr_mesh_data);
                         instance.tmx_id = obj_id;
-                        map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
+                        map.Add(instance, (x + obj_x) div TILE_WIDTH, (y + obj_y) div TILE_HEIGHT, z);
                     }
                     instance.off_xx = pr_offset_x / TILE_WIDTH;
                     instance.off_yy = pr_offset_y / TILE_HEIGHT;

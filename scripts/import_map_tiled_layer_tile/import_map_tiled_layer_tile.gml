@@ -1,18 +1,4 @@
-/// @param json
-/// @param ts-columns
-/// @param z
-/// @param alpha
-/// @param x
-/// @param y
-/// @param tiled-cache
-function import_map_tiled_layer_tile() {
-    var json = argument[0];
-    var columns = argument[1];
-    var z = argument[2];
-    var alpha = (argument_count > 3) ? argument[3] : 1;
-    var xx = (argument_count > 4) ? argument[4] : 0;
-    var yy = (argument_count > 5) ? argument[5] : 0;
-    var tiled_cache = (argument_count > 6) ? argument[6] : noone;
+function import_map_tiled_layer_tile(x, y, z, json, columns, alpha, tiled_cache) {
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
     var ts = get_active_tileset();

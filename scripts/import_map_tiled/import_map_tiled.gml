@@ -86,9 +86,9 @@ function import_map_tiled(ask_clear) {
             var layer_type = layer_data.type;
             
             switch (layer_type) {
-                case "group": layer_z = import_map_tiled_layer_folder(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
-                case "objectgroup": layer_z = import_map_tiled_layer_object(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
-                case "tilelayer": layer_z = import_map_tiled_layer_tile(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
+                case "group": layer_z = import_map_tiled_layer_folder(0, 0, layer_z, layer_data, tileset_columns, 1, tiled_cache); break;
+                case "objectgroup": layer_z = import_map_tiled_layer_object(0, 0, layer_z, layer_data, tileset_columns, 1, tiled_cache); break;
+                case "tilelayer": layer_z = import_map_tiled_layer_tile(0, 0, layer_z, layer_data, tileset_columns, 1, tiled_cache); break;
             }
         }
         
