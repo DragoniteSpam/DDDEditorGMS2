@@ -22,9 +22,6 @@ function import_map_tiled_layer_tile(x, y, z, json, columns, alpha, tiled_cache)
         }
     }
     
-    var xoffset = 0;
-    var yoffset = 0;
-    
     var zoffset;
     if (property_map[$ "Offset"]) {
         zoffset = property_map.Offset.value;
@@ -44,7 +41,7 @@ function import_map_tiled_layer_tile(x, y, z, json, columns, alpha, tiled_cache)
                 var tile_tex_y = tile_value div columns;
                 
                 if (is_clamped(tile_x, 0, Stuff.map.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.map.active_map.yy - 1) && is_clamped(z, 0, Stuff.map.active_map.zz - 1)) {
-                    batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha, 0, 0, zoffset);
+                    batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x * TILE_WIDTH, tile_y * TILE_HEIGHT, z * TILE_DEPTH + zoffset, tile_tex_x, tile_tex_y, c_white, layer_alpha);
                 }
             }
         }
