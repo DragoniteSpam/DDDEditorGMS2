@@ -46,7 +46,7 @@ function import_map_tiled(ask_clear) {
         }
     }
     
-    Stuff.tiled_map_id = map_id;
+    map.tiled_map_id = map_id;
     
     var json_width = json.width;
     var json_height = json.height;
