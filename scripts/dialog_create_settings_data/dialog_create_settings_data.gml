@@ -106,7 +106,7 @@ function dialog_create_settings_data(dialog) {
                 var flag = 1 << VertexFormatData.POSITION_3D;
                 Game.meta.export.vertex_format &= ~flag;
                 if (self.value) Game.meta.export.vertex_format |= flag;
-            }),
+            }).SetInteractive(false),
             new EmuCheckbox(32, EMU_AUTO, 256, 32, "Normal", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.NORMAL)), function() {
                 var flag = 1 << VertexFormatData.NORMAL;
                 Game.meta.export.vertex_format &= ~flag;
