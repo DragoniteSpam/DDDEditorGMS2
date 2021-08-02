@@ -26,6 +26,10 @@ function project_load(id) {
         for (var i = 0; i < array_length(Game.meta.export.locations); i++) {
             if (!is_numeric(Game.meta.export.locations[i])) Game.meta.export.locations[i] = 0;
         }
+        
+        if (Game.meta.export[$ "vertex_format"] == undefined) {
+            Game.meta.export.vertex_format = DEFAULT_VERTEX_FORMAT;
+        }
     };
     
     static project_load_images = function(filename, directory) {
