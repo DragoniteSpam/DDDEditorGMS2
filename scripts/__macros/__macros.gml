@@ -74,6 +74,7 @@
 #macro CW                                   1080
 #macro C_OBJECT_CACHE_SIZE                  5000
 #macro DEBUG                                true
+#macro DEFAULT_VERTEX_FORMAT                ((1 << VertexFormatData.POSITION_3D) | (1 << VertexFormatData.NORMAL) | (1 << VertexFormatData.TEXCOORD) | (1 << VertexFormatData.COLOUR))
 #macro EVENT_NODE_CONTACT_HEIGHT            48
 #macro EVENT_NODE_CONTACT_WIDTH             320
 #macro EXPORT_EXTENSION_DATA                ".dddd"
