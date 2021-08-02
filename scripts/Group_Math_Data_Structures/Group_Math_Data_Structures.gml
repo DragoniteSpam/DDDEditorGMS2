@@ -223,6 +223,43 @@ function buffer_write_buffer(to, from) {
     buffer_seek(to, buffer_seek_relative, size);
 }
 
+function buffer_write_vertex_buffer(buffer, vbuff_data) {
+    if (Game.meta.export.vertex_format == DEFAULT_VERTEX_FORMAT) {
+        var size = buffer_get_size(vbuff_data);
+        buffer_resize(buffer, buffer_get_size(buffer) + size);
+        buffer_copy(vbuff_data, 0, buffer_get_size(vbuff_data), buffer, buffer_tell(buffer));
+        buffer_seek(buffer, buffer_seek_relative, size);
+    } else {
+        buffer_seek(vbuff_source, buffer_seek_start, 0);
+        for (var i = 0; i < buffer_get_size(vbuff_data); i += VERTEX_SIZE) {
+            var xx = buffer_read(vbuff_data, buffer_f32);
+            var yy = buffer_read(vbuff_data, buffer_f32);
+            var zz = buffer_read(vbuff_data, buffer_f32);
+            var nx = buffer_read(vbuff_data, buffer_f32);
+            var ny = buffer_read(vbuff_data, buffer_f32);
+            var nz = buffer_read(vbuff_data, buffer_f32);
+            var xt = buffer_read(vbuff_data, buffer_f32);
+            var yt = buffer_read(vbuff_data, buffer_f32);
+            var cc = buffer_read(vbuff_data, buffer_u32);
+            buffer_write(buffer, buffer_f32, xx);
+            buffer_write(buffer, buffer_f32, yy);
+            buffer_write(buffer, buffer_f32, zz);
+            if (Game.meta.export.vertex_format & (1 << VertexFormatData.NORMAL)) {
+                buffer_write(buffer, buffer_f32, nx);
+                buffer_write(buffer, buffer_f32, ny);
+                buffer_write(buffer, buffer_f32, nz);
+            }
+            if (Game.meta.export.vertex_format & (1 << VertexFormatData.TEXCOORD)) {
+                buffer_write(buffer, buffer_f32, xt);
+                buffer_write(buffer, buffer_f32, yt);
+            }
+            if (Game.meta.export.vertex_format & (1 << VertexFormatData.COLOUR)) {
+                buffer_write(buffer, buffer_u32, cc);
+            }
+        }
+    }
+}
+
 function buffer_write_sprite(buffer, sprite) {
     var surface = sprite_to_surface(sprite, 0);
     var sw = surface_get_width(surface);
