@@ -99,6 +99,38 @@ function dialog_create_settings_data(dialog) {
     dg.el_base_chunk_size = el_base_chunk_size;
     yy += el_base_chunk_size.height + spacing;
     
+    var el_export_vertex_format = create_button(col1_x, yy, "Exported Vertex Format", ew, eh, fa_middle, function(button) {
+        var dialog = new EmuDialog(320, 288, "Exported vertex format attributes");
+        dialog.AddContent([
+            new EmuCheckbox(32, 32, 256, 32, "Position", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.POSITION_3D)), function() {
+                var flag = 1 << VertexFormatData.POSITION_3D;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuCheckbox(32, EMU_AUTO, 256, 32, "Normal", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.NORMAL)), function() {
+                var flag = 1 << VertexFormatData.NORMAL;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuCheckbox(32, EMU_AUTO, 256, 32, "Texture", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.TEXCOORD)), function() {
+                var flag = 1 << VertexFormatData.TEXCOORD;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuCheckbox(32, EMU_AUTO, 256, 32, "Color", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.COLOUR)), function() {
+                var flag = 1 << VertexFormatData.COLOUR;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuButton(160 - 40, EMU_AUTO, 80, 32, "Done", function() {
+                self.root.Dispose();
+            }),
+        ]);
+    }, dg);
+    el_export_vertex_format.tooltip = "The vertex format that exported meshes (mesh data, frozen map data, etc) uses.";
+    dg.el_export_vertex_format = el_export_vertex_format;
+    yy += el_export_vertex_format.height + spacing;
+    
     yy = yy_base;
     
     var el_global_title = create_text(col2_x, yy, "Variables and Stuff", ew, eh, fa_left, dw / 2, dg);
@@ -174,6 +206,7 @@ function dialog_create_settings_data(dialog) {
         el_screen_320,
         el_screen_640,
         el_base_chunk_size,
+        el_export_vertex_format,
         // game variables and stuff
         el_global_title,
         el_variables,
