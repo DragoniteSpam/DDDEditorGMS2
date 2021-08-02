@@ -302,13 +302,13 @@ function DataMap(source, directory) : SData(source) constructor {
         #region data that was frozen ahead of time
         if (self.contents.frozen_data) {
             buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.frozen_data));
-            buffer_write_buffer(buffer, self.contents.frozen_data);
+            buffer_write_vertex_buffer(buffer, self.contents.frozen_data);
         } else {
             buffer_write(buffer, buffer_u64, 0);
         }
         if (self.contents.reflect_frozen_data) {
             buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.frozen_data));
-            buffer_write_buffer(buffer, self.contents.frozen_data);
+            buffer_write_vertex_buffer(buffer, self.contents.frozen_data);
         } else {
             buffer_write(buffer, buffer_u64, 0);
         }
@@ -325,7 +325,7 @@ function DataMap(source, directory) : SData(source) constructor {
             if (vertex_get_number(chunk.vbuffer) > 0) {
                 var data = buffer_create_from_vertex_buffer(chunk.vbuffer, buffer_fixed, 1);
                 buffer_write(buffer, buffer_u32, buffer_get_size(data));
-                buffer_write_buffer(buffer, data);
+                buffer_write_vertex_buffer(buffer, data);
                 buffer_delete(data);
             } else {
                 buffer_write(buffer, buffer_u32, 0);
@@ -334,7 +334,7 @@ function DataMap(source, directory) : SData(source) constructor {
             if (vertex_get_number(chunk.reflected) > 0) {
                 var data = buffer_create_from_vertex_buffer(chunk.reflected, buffer_fixed, 1);
                 buffer_write(buffer, buffer_u32, buffer_get_size(data));
-                buffer_write_buffer(buffer, data);
+                buffer_write_vertex_buffer(buffer, data);
                 buffer_delete(data);
             } else {
                 buffer_write(buffer, buffer_u32, 0);

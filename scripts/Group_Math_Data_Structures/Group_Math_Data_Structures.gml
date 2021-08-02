@@ -225,12 +225,9 @@ function buffer_write_buffer(to, from) {
 
 function buffer_write_vertex_buffer(buffer, vbuff_data) {
     if (Game.meta.export.vertex_format == DEFAULT_VERTEX_FORMAT) {
-        var size = buffer_get_size(vbuff_data);
-        buffer_resize(buffer, buffer_get_size(buffer) + size);
-        buffer_copy(vbuff_data, 0, buffer_get_size(vbuff_data), buffer, buffer_tell(buffer));
-        buffer_seek(buffer, buffer_seek_relative, size);
+        buffer_write_vertex_buffer(buffer, vbuff_data);
     } else {
-        buffer_seek(vbuff_source, buffer_seek_start, 0);
+        buffer_seek(vbuff_data, buffer_seek_start, 0);
         for (var i = 0; i < buffer_get_size(vbuff_data); i += VERTEX_SIZE) {
             var xx = buffer_read(vbuff_data, buffer_f32);
             var yy = buffer_read(vbuff_data, buffer_f32);
