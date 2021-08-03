@@ -9,7 +9,7 @@ function uimu_data_add_data(thing) {
         if (current_index + 1) {
             data.AddInstance(instance, current_index + 1);
         } else {
-            data.AddInstance(instance, current_index);
+            data.AddInstance(instance);
         }
         
         for (var i = 0; i < array_length(data.properties); i++) {
