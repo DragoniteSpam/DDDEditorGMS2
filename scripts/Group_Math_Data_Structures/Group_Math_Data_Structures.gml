@@ -225,7 +225,7 @@ function buffer_write_buffer(to, from) {
 
 function buffer_write_vertex_buffer(buffer, vbuff_data) {
     if (Game.meta.export.vertex_format == DEFAULT_VERTEX_FORMAT) {
-        buffer_write_vertex_buffer(buffer, vbuff_data);
+        buffer_write_buffer(buffer, vbuff_data);
     } else {
         buffer_seek(vbuff_data, buffer_seek_start, 0);
         for (var i = 0; i < buffer_get_size(vbuff_data); i += VERTEX_SIZE) {
