@@ -7,9 +7,9 @@ function uivc_data_set_property_list(list) {
         var instance = guid_get(data.instances[instance_selection].GUID);
         if (selection + 1) {
             // this is for when max size = 1 so no need to mess with the list
-            instance.values[@ checkbox.key][@ 0] = list.entries[| selection].GUID;
+            instance.values[@ list.key][@ 0] = list.entries[| selection].GUID;
         } else {
-            instance.values[@ checkbox.key][@ 0] = NULL;
+            instance.values[@ list.key][@ 0] = NULL;
         }
     }
 }
