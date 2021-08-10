@@ -83,10 +83,10 @@ function export_obj() {
         
         var keys = variable_struct_get_names(mtl_alpha);
         for (var k = 0; k < array_length(keys); k++) {
-            var mtl = mtl_alpha[$ keys[i]];
+            var mtl = keys[i];
             buffer_write(buffer, buffer_text, "\r\nnewmtl " + mtl + "\r\n");
-            buffer_write(buffer, buffer_text, "Kd " + string(mtl_r[? mtl]) + " " + string(mtl_g[? mtl]) + " " + string(mtl_b[? mtl]) + "\r\n");
-            buffer_write(buffer, buffer_text, "d " + string(mtl_alpha[? mtl]) + "\r\n");
+            buffer_write(buffer, buffer_text, "Kd " + string(mtl_r[$ mtl]) + " " + string(mtl_g[$ mtl]) + " " + string(mtl_b[$ mtl]) + "\r\n");
+            buffer_write(buffer, buffer_text, "d " + string(mtl_alpha[$ mtl]) + "\r\n");
             buffer_write(buffer, buffer_text, "illum 2\r\n");
             
             // there are a lot of texture maps that may or may not need to be used
