@@ -72,9 +72,7 @@ function dialog_create_new_map(root) {
         // automatically pushed onto the list
         var map = new DataMap(button.root.el_name.value, "");
         array_push(Game.maps, map);
-        map.xx = real(button.root.el_x.value);
-        map.yy = real(button.root.el_y.value);
-        map.zz = real(button.root.el_z.value);
+        map.SetSize(real(button.root.el_x.value), real(button.root.el_y.value), real(button.root.el_z.value));
         map.on_grid = button.root.el_grid.value;
         map.light_ambient_colour = Game.meta.lighting.ambient;
         map.chunk_size = real(button.root.el_chunk_size.value);
