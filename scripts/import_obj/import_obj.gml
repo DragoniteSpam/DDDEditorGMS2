@@ -220,6 +220,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
                                     a[i] = (mtl_alpha[$ active_mtl] != undefined) ? mtl_alpha[$ active_mtl] : 1;
                                     break;
                             }
+                            ds_queue_destroy(vertex_q);
                         }
                         // faces are triangle fans
                         for (var i = 2; i < array_length(xx); i++) {
@@ -227,7 +228,6 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
                             ds_list_add(temp_vertices, [xx[i - 1],  yy[i - 1],  zz[i - 1],  nx[i - 1],  ny[i - 1],  nz[i - 1],  xtex[i - 1],    ytex[i - 1],    (b[i - 1] << 16) |  (g[i - 1] << 8) |   r[i - 1],   a[i - 1], active_mtl]);
                             ds_list_add(temp_vertices, [xx[i - 0],  yy[i - 0],  zz[i - 0],  nx[i - 0],  ny[i - 0],  nz[i - 0],  xtex[i - 0],    ytex[i - 0],    (b[i - 0] << 16) |  (g[i - 0] << 8) |   r[i - 0],   a[i - 0], active_mtl]);
                         }
-                        ds_queue_destroy(vertex_q);
                     } else {
                         err = "Malformed face found (line " + string(line_number) + ")";
                     }
