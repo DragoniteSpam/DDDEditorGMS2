@@ -222,6 +222,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
                             }
                             ds_queue_destroy(vertex_q);
                         }
+                        
                         // faces are triangle fans
                         for (var i = 2; i < array_length(xx); i++) {
                             ds_list_add(temp_vertices, [xx[0],      yy[0],      zz[0],      nx[0],      ny[0],      nz[0],      xtex[0],        ytex[0],        (b[0] << 16) |      (g[0] << 8) |       r[0],       a[0], active_mtl]);
@@ -394,11 +395,16 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
     }
     
     if (err != "") {
-        emu_dialog_notice("Could not load the model: " + err);
+        emu_dialog_notice("Could not load the model " + fn + ": " + err);
         return undefined;
     }
     
     var n = ds_list_size(temp_vertices);
+    
+    if (n == 0) {
+        emu_dialog_notice("No face data found in the model " + fn);
+        return undefined;
+    }
     
     var vbuffers = { };
     var wbuffers = { };
@@ -544,7 +550,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
         }
         
         //This is untested and will probably break in a lot of places
-        var vbuffer_materials = variable_struct_get_names(vbuffers);
+        vbuffer_materials = variable_struct_get_names(vbuffers);
         for (var i = 0; i < array_length(vbuffer_materials); i++) {
             var mat = vbuffer_materials[i];
             mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], wbuffers[$ mat], undefined, base_name + "." + mat, -1, fn);
