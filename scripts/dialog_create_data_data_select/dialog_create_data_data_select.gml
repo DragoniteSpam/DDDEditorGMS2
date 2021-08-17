@@ -29,9 +29,9 @@ function dialog_create_data_data_select(root) {
     dg.el_list_main = el_list;
     
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, function(button) {
-        var selection = ui_list_selection(thing.root.el_list_main);
+        var selection = ui_list_selection(button.root.el_list_main);
         if (selection + 1) {
-            var property = thing.root.root.root.selected_property;
+            var property = button.root.root.root.selected_property;
             var list_data = [];
             for (var i = 0; i < array_length(Game.data); i++) {
                 if (Game.data[i].type == DataTypes.DATA) {
@@ -40,8 +40,8 @@ function dialog_create_data_data_select(root) {
             }
             
             property.type_guid = array_sort_name(list_data)[selection].GUID;
-            thing.root.root.root.el_property_type_guid.text = guid_get(property.type_guid).name;
-            thing.root.root.root.el_property_type_guid.color = c_black;
+            button.root.root.root.el_property_type_guid.text = guid_get(property.type_guid).name;
+            button.root.root.root.el_property_type_guid.color = c_black;
         }
         
         dialog_destroy();
