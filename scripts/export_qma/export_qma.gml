@@ -2,7 +2,7 @@ function export_qma(fn) {
     var carton = carton_create();
     
     var n_meshes = array_length(Game.meshes);
-    var format_index = ui_list_selection(Game.ui_init_mesh.format_list);
+    var format_index = ui_list_selection(Stuff.mesh_ed.ui.format_list);
     var format = (format_index + 1) ? Stuff.mesh_ed.formats[| format_index] : undefined;
     
     for (var i = 0; i < n_meshes; i++) {
