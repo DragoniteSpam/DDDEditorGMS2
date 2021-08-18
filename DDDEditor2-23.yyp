@@ -261,7 +261,6 @@
     {"id":{"name":"terrain_save","path":"scripts/terrain_save/terrain_save.yy",},"order":3,},
     {"id":{"name":"terrain_load","path":"scripts/terrain_load/terrain_load.yy",},"order":4,},
     {"id":{"name":"terrain_save_obj","path":"scripts/terrain_save_obj/terrain_save_obj.yy",},"order":5,},
-    {"id":{"name":"terrain_create_texture_sprite","path":"scripts/terrain_create_texture_sprite/terrain_create_texture_sprite.yy",},"order":6,},
     {"id":{"name":"terrain_refresh_vertex_buffer","path":"scripts/terrain_refresh_vertex_buffer/terrain_refresh_vertex_buffer.yy",},"order":18,},
     {"id":{"name":"editor_cleanup_map","path":"scripts/editor_cleanup_map/editor_cleanup_map.yy",},"order":12,},
     {"id":{"name":"editor_update_map","path":"scripts/editor_update_map/editor_update_map.yy",},"order":14,},
