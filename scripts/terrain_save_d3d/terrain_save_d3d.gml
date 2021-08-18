@@ -4,8 +4,8 @@ function terrain_save_d3d(fn) {
     var vertices = 0;
     var scale = terrain.save_scale;
     
-    var fx = sprite_get_width(terrain.texture) / terrain.texture_width;
-    var fy = sprite_get_height(terrain.texture) / terrain.texture_height;
+    var fx = sprite_get_width(terrain.texture) / terrain_texture_width;
+    var fy = sprite_get_height(terrain.texture) / terrain_texture_height;
     
     // I guess you can implement uv and zup flipping here as well, but game maker models don't
     // typically use a different up vector or texture coordinate system

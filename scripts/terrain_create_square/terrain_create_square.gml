@@ -1,47 +1,22 @@
-/// @param buffer
-/// @param x
-/// @param y
-/// @param size
-/// @param tx
-/// @param ty
-/// @param tsize
-/// @param texel
-/// @param [z0]
-/// @param [z1]
-/// @param [z2]
-/// @param [z3]
-/// @param [c0]
-/// @param [c1]
-/// @param [c2]
-/// @param [c3]
-function terrain_create_square() {
-
-    var buffer = argument[0];
-    var xx = argument[1];
-    var yy = argument[2];
-    var size = argument[3];
-    var tx = argument[4];
-    var ty = argument[5];
-    var tsize = argument[6];
-    var texel = argument[7];
-    var z0 = (argument_count > 8) ? argument[8] : 0;
-    var z1 = (argument_count > 9) ? argument[9] : 0;
-    var z2 = (argument_count > 10) ? argument[10] : 0;
-    var z3 = (argument_count > 11) ? argument[11] : 0;
-    var c0 = (argument_count > 12) ? argument[12] : 0xffffffff;
-    var c1 = (argument_count > 13) ? argument[13] : 0xffffffff;
-    var c2 = (argument_count > 14) ? argument[14] : 0xffffffff;
-    var c3 = (argument_count > 15) ? argument[15] : 0xffffffff;
-
+function terrain_create_square(buffer, xx, yy, size, tx, ty, tsize, texel, z0, z1, z2, z3, c0, c1, c2, c3) {
+    if (z0 == undefined) z0 = 0;
+    if (z1 == undefined) z1 = 0;
+    if (z2 == undefined) z2 = 0;
+    if (z3 == undefined) z3 = 0;
+    if (c0 == undefined) c0 = 0xffffffff;
+    if (c1 == undefined) c1 = 0xffffffff;
+    if (c2 == undefined) c2 = 0xffffffff;
+    if (c3 == undefined) c3 = 0xffffffff;
+    
     var a0 = (c0 & 0xff000000) >> 24;
     var a1 = (c1 & 0xff000000) >> 24;
     var a2 = (c2 & 0xff000000) >> 24;
     var a3 = (c3 & 0xff000000) >> 24;
-    var c0 = c0 & 0x00ffffff;
-    var c1 = c1 & 0x00ffffff;
-    var c2 = c2 & 0x00ffffff;
-    var c3 = c3 & 0x00ffffff;
-
+    c0 &= 0x00ffffff;
+    c1 &= 0x00ffffff;
+    c2 &= 0x00ffffff;
+    c3 &= 0x00ffffff;
+    
     // (0, 0)
     vertex_position_3d(buffer, xx, yy, z0);
     vertex_normal(buffer, 0, 0, 1);
@@ -72,6 +47,4 @@ function terrain_create_square() {
     vertex_normal(buffer, 0, 0, 1);
     vertex_texcoord(buffer, tx + texel, ty + texel);
     vertex_colour(buffer, c0, a0);
-
-
 }

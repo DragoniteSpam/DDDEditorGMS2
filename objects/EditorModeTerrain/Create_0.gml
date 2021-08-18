@@ -52,8 +52,6 @@ save = function() {
 
 texture_name = DEFAULT_TILESET;
 texture = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
-texture_width = 256;
-texture_height = 256;
 
 vertices_per_square = 6;
 
@@ -85,7 +83,7 @@ mode = TerrainModes.Z;
 submode = TerrainSubmodes.MOUND;
 style = TerrainStyles.CIRCLE;
 // texture defautls
-tile_size = 32 / 4096;
+tile_size = 32 / texture_width;
 texel = 1 / 4096;
 // texture settings
 tile_brush_x = 32 / 4096;

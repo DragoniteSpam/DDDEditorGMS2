@@ -5,8 +5,8 @@ function terrain_save_obj(fn) {
     var vertices = 0;
     var scale = terrain.save_scale;
     
-    var fx = sprite_get_width(terrain.texture) / terrain.texture_width;
-    var fy = sprite_get_height(terrain.texture) / terrain.texture_height;
+    var fx = sprite_get_width(terrain.texture) / terrain_texture_width;
+    var fy = sprite_get_height(terrain.texture) / terrain_texture_height;
     
     // because regular string() doesn't give you very good precision
     var mediump = 4;

@@ -559,9 +559,7 @@ function ui_init_terrain(mode) {
                     terrain.texture = sprite;
                     button.root.element_tile_selector.tileset = sprite;
                     terrain.texture_name = filename_name(fn);
-                    terrain.texture_width = sprite_get_width(sprite);
-                    terrain.texture_height = sprite_get_height(sprite);
-                    button.root.element_texture_name.text = terrain.texture_name + " (" + string(terrain.texture_width) + " x " + string(terrain.texture_height) + ")";
+                    button.root.element_texture_name.text = terrain.texture_name + " (" + string(terrain_texture_width) + " x " + string(terrain_texture_height) + ")";
                 }
             }
         }, t_texture);
@@ -569,7 +567,7 @@ function ui_init_terrain(mode) {
         
         yy += element.height + spacing;
         
-        element = create_text(legal_x + spacing, yy, mode.texture_name + " (" + string(mode.texture_width) + " x " + string(mode.texture_height) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
+        element = create_text(legal_x + spacing, yy, mode.texture_name + " (" + string(terrain_texture_width) + " x " + string(terrain_texture_height) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
         t_texture.element_texture_name = element;
         ds_list_add(t_texture.contents, element);
         
