@@ -51,9 +51,9 @@ save = function() {
 };
 
 texture_name = DEFAULT_TILESET;
-texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);
-texture_width = 2048;
-texture_height = 2048;
+texture = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
+texture_width = 256;
+texture_height = 256;
 
 vertices_per_square = 6;
 

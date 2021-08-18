@@ -553,7 +553,7 @@ function ui_init_terrain(mode) {
             var fn = get_open_filename_image();
             
             if (fn != "") {
-                var sprite = terrain_create_texture_sprite(fn);
+                var sprite = sprite_add(fn, 0, false, false, 0, 0);
                 if (sprite) {
                     sprite_delete(terrain.texture);
                     terrain.texture = sprite;
