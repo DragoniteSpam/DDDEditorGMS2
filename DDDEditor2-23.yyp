@@ -4,7 +4,6 @@
     {"id":{"name":"b_tileset_magenta","path":"sprites/b_tileset_magenta/b_tileset_magenta.yy",},"order":1,},
     {"id":{"name":"Group_Manage_Audio","path":"scripts/Group_Manage_Audio/Group_Manage_Audio.yy",},"order":10,},
     {"id":{"name":"b_tileset_checkers","path":"sprites/b_tileset_checkers/b_tileset_checkers.yy",},"order":2,},
-    {"id":{"name":"b_at_default_error","path":"sprites/b_at_default_error/b_at_default_error.yy",},"order":0,},
     {"id":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"order":4,},
     {"id":{"name":"spr_water_base","path":"sprites/spr_water_base/spr_water_base.yy",},"order":0,},
     {"id":{"name":"spr_water_displacement","path":"sprites/spr_water_displacement/spr_water_displacement.yy",},"order":1,},
@@ -994,7 +993,6 @@
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/ts.yy","order":0,"resourceVersion":"1.0","name":"ts","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Sprites/ts/autotiles.yy","order":3,"resourceVersion":"1.0","name":"autotiles","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/water.yy","order":1,"resourceVersion":"1.0","name":"water","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/user interface.yy","order":2,"resourceVersion":"1.0","name":"user interface","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/user interface/screen icons.yy","order":29,"resourceVersion":"1.0","name":"screen icons","tags":[],"resourceType":"GMFolder",},
