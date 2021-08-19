@@ -84,7 +84,6 @@ submode = TerrainSubmodes.MOUND;
 style = TerrainStyles.CIRCLE;
 // texture defautls
 tile_size = 32 / texture_width;
-texel = 1 / 4096;
 // texture settings
 tile_brush_x = 32 / 4096;
 tile_brush_y = 32 / 4096;
@@ -107,7 +106,7 @@ vertex_begin(terrain_buffer, Stuff.graphics.vertex_format);
 
 for (var i = 0; i < width - 1; i++) {
     for (var j = 0; j < height - 1; j++) {
-        terrain_create_square(terrain_buffer, i, j, 1, 0, 0, tile_size, texel);
+        terrain_create_square(terrain_buffer, i, j, 1, 0, 0, tile_size, terrain_texture_texel);
     }
 }
 
