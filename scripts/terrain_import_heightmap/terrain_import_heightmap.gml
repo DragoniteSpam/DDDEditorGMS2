@@ -31,7 +31,7 @@ function terrain_import_heightmap(button, fn) {
     
     for (var i = 0; i < terrain.width - 1; i++) {
         for (var j = 0; j < terrain.height - 1; j++) {
-            terrain_create_square(terrain.terrain_buffer, i, j, 1, 0, 0, terrain.tile_size, terrain_texture_texel);
+            terrain_create_square(terrain.terrain_buffer, i, j, 1, 0, 0, terrain_tile_size, terrain_texture_texel);
         }
     }
     

@@ -1,6 +1,6 @@
 function terrain_set_texture(terrain, x, y, xtex, ytex) {
-    var xtex2 = xtex + terrain.tile_size;
-    var ytex2 = ytex + terrain.tile_size;
+    var xtex2 = xtex + terrain_tile_size;
+    var ytex2 = ytex + terrain_tile_size;
     
     if (x > 0 && y > 0) {
         var index0 = terrain_get_vertex_index(terrain, x - 1, y - 1, 0);

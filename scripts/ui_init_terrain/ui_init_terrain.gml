@@ -559,7 +559,7 @@ function ui_init_terrain(mode) {
                     terrain.texture = sprite;
                     button.root.element_tile_selector.tileset = sprite;
                     terrain.texture_name = filename_name(fn);
-                    button.root.element_texture_name.text = terrain.texture_name + " (" + string(terrain_texture_width) + " x " + string(terrain_texture_height) + ")";
+                    button.root.element_texture_name.text = terrain.texture_name + " (" + string(terrain_texture_size) + " x " + string(terrain_texture_size) + ")";
                 }
             }
         }, t_texture);
@@ -567,7 +567,7 @@ function ui_init_terrain(mode) {
         
         yy += element.height + spacing;
         
-        element = create_text(legal_x + spacing, yy, mode.texture_name + " (" + string(terrain_texture_width) + " x " + string(terrain_texture_height) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
+        element = create_text(legal_x + spacing, yy, mode.texture_name + " (" + string(terrain_texture_size) + " x " + string(terrain_texture_size) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
         t_texture.element_texture_name = element;
         ds_list_add(t_texture.contents, element);
         
@@ -577,8 +577,8 @@ function ui_init_terrain(mode) {
             var terrain = Stuff.terrain;
             selector.tile_x = x;
             selector.tile_y = y;
-            terrain.tile_brush_x = x * terrain.tile_size;
-            terrain.tile_brush_y = y * terrain.tile_size;
+            terrain.tile_brush_x = x * terrain_tile_size;
+            terrain.tile_brush_y = y * terrain_tile_size;
         }, null, t_texture);
         element.tile_x = mode.tile_brush_x;
         element.tile_y = mode.tile_brush_y;
@@ -603,16 +603,16 @@ function ui_init_terrain(mode) {
                     var index5 = index4 + VERTEX_SIZE;
                     
                     buffer_poke(terrain.terrain_buffer_data, index0 + 24, buffer_f32, terrain.tile_brush_x + terrain_texture_texel);
-                    buffer_poke(terrain.terrain_buffer_data, index1 + 24, buffer_f32, terrain.tile_brush_x + terrain.tile_size - terrain_texture_texel);
-                    buffer_poke(terrain.terrain_buffer_data, index2 + 24, buffer_f32, terrain.tile_brush_x + terrain.tile_size - terrain_texture_texel);
-                    buffer_poke(terrain.terrain_buffer_data, index3 + 24, buffer_f32, terrain.tile_brush_x + terrain.tile_size - terrain_texture_texel);
+                    buffer_poke(terrain.terrain_buffer_data, index1 + 24, buffer_f32, terrain.tile_brush_x + terrain_tile_size - terrain_texture_texel);
+                    buffer_poke(terrain.terrain_buffer_data, index2 + 24, buffer_f32, terrain.tile_brush_x + terrain_tile_size - terrain_texture_texel);
+                    buffer_poke(terrain.terrain_buffer_data, index3 + 24, buffer_f32, terrain.tile_brush_x + terrain_tile_size - terrain_texture_texel);
                     buffer_poke(terrain.terrain_buffer_data, index4 + 24, buffer_f32, terrain.tile_brush_x + terrain_texture_texel);
                     buffer_poke(terrain.terrain_buffer_data, index5 + 24, buffer_f32, terrain.tile_brush_x + terrain_texture_texel);
                     buffer_poke(terrain.terrain_buffer_data, index0 + 28, buffer_f32, terrain.tile_brush_y + terrain_texture_texel);
                     buffer_poke(terrain.terrain_buffer_data, index1 + 28, buffer_f32, terrain.tile_brush_y + terrain_texture_texel);
-                    buffer_poke(terrain.terrain_buffer_data, index2 + 28, buffer_f32, terrain.tile_brush_y + terrain.tile_size - terrain_texture_texel);
-                    buffer_poke(terrain.terrain_buffer_data, index3 + 28, buffer_f32, terrain.tile_brush_y + terrain.tile_size - terrain_texture_texel);
-                    buffer_poke(terrain.terrain_buffer_data, index4 + 28, buffer_f32, terrain.tile_brush_y + terrain.tile_size - terrain_texture_texel);
+                    buffer_poke(terrain.terrain_buffer_data, index2 + 28, buffer_f32, terrain.tile_brush_y + terrain_tile_size - terrain_texture_texel);
+                    buffer_poke(terrain.terrain_buffer_data, index3 + 28, buffer_f32, terrain.tile_brush_y + terrain_tile_size - terrain_texture_texel);
+                    buffer_poke(terrain.terrain_buffer_data, index4 + 28, buffer_f32, terrain.tile_brush_y + terrain_tile_size - terrain_texture_texel);
                     buffer_poke(terrain.terrain_buffer_data, index5 + 28, buffer_f32, terrain.tile_brush_y + terrain_texture_texel);
                 }
             }

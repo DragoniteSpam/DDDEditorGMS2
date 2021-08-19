@@ -1,5 +1,7 @@
 event_inherited();
 
+Stuff.terrain = self;
+
 var camera = view_get_camera(view_3d);
 depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
 depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
@@ -82,8 +84,6 @@ radius = 4;
 mode = TerrainModes.Z;
 submode = TerrainSubmodes.MOUND;
 style = TerrainStyles.CIRCLE;
-// texture defautls
-tile_size = 32 / texture_width;
 // texture settings
 tile_brush_x = 32 / 4096;
 tile_brush_y = 32 / 4096;
@@ -101,18 +101,18 @@ color_data = buffer_create(buffer_sizeof(buffer_u32) * width * height, buffer_fi
 buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
 // you don't need a texture UV buffer, since that will only be set and not mutated
 
-terrain_buffer = vertex_create_buffer();
-vertex_begin(terrain_buffer, Stuff.graphics.vertex_format);
+self.terrain_buffer = vertex_create_buffer();
+vertex_begin(self.terrain_buffer, Stuff.graphics.vertex_format);
 
-for (var i = 0; i < width - 1; i++) {
-    for (var j = 0; j < height - 1; j++) {
-        terrain_create_square(terrain_buffer, i, j, 1, 0, 0, tile_size, terrain_texture_texel);
+for (var i = 0; i < self.width - 1; i++) {
+    for (var j = 0; j < self.height - 1; j++) {
+        terrain_create_square(self.terrain_buffer, i, j, 1, 0, 0, terrain_tile_size, terrain_texture_texel);
     }
 }
 
-vertex_end(terrain_buffer);
-terrain_buffer_data = buffer_create_from_vertex_buffer(terrain_buffer, buffer_fixed, 1);
-vertex_freeze(terrain_buffer);
+vertex_end(self.terrain_buffer);
+self.terrain_buffer_data = buffer_create_from_vertex_buffer(self.terrain_buffer, buffer_fixed, 1);
+vertex_freeze(self.terrain_buffer);
 
 LoadAsset = function(directory) {
     directory += "/";
