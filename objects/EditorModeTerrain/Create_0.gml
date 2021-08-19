@@ -85,8 +85,8 @@ mode = TerrainModes.Z;
 submode = TerrainSubmodes.MOUND;
 style = TerrainStyles.CIRCLE;
 // texture settings
-tile_brush_x = 32 / 4096;
-tile_brush_y = 32 / 4096;
+tile_brush_x = terrain_tile_size;
+tile_brush_y = terrain_tile_size;
 // paint defaults
 paint_strength_min = 0.01;
 paint_strength_max = 1;
