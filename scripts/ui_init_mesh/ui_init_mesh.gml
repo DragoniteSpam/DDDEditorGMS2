@@ -382,7 +382,7 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_list(c2x, yy, "Available Vertex Formats", "no vertex formats", ew, eh, 6, null, false, id, mode.format_names);
+        element = create_list(c2x, yy, "Available Vertex Formats", "no vertex formats", ew, eh, 5, null, false, id, mode.format_names);
         element.tooltip = "Vertex formats available to be exported to. Extra fields beyond the original position / normal / texture / color will be set to zero.";
         element.ondoubleclick = create_vertex_format_editor;
         ds_list_add(contents, element);
@@ -558,6 +558,14 @@ function ui_init_mesh(mode) {
             dialog_create_mesh_normal_settings(button, button.root.mesh_list.selected_entries);
         }, id);
         element.tooltip = "Adjust the vertex normals of the selected meshes.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_button(c2x, yy, "Other tools...", ew, eh, fa_center, function(button) {
+            if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
+            dialog_create_mesh_other_settings(button, button.root.mesh_list.selected_entries);
+        }, id);
+        element.tooltip = "Other misc operations you amy want to do on a mesh.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
