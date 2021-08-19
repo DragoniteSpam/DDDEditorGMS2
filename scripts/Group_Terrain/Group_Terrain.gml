@@ -48,3 +48,62 @@ function terrain_add_to_project() {
     array_push(Game.meshes, mesh);
     return mesh;
 }
+
+function terrain_get_z(terrain, xx, yy) {
+    return buffer_peek(terrain.height_data, terrain_get_data_index(terrain, xx, yy), buffer_f32);
+}
+
+function terrain_add_color(terrain, xx, yy, color, strength) {
+    terrain_set_color(terrain, xx, yy, merge_colour_ds(terrain_get_color(terrain, xx, yy), color, strength));
+}
+
+function terrain_add_z(terrain, xx, yy, value) {
+    terrain_set_z(terrain, xx, yy, terrain_get_z(terrain, xx, yy) + value);
+}
+
+function terrain_get_color(terrain, xx, yy) {
+    return buffer_peek(terrain.color_data, terrain_get_color_index(terrain, xx, yy), buffer_u32);
+}
+
+function terrain_get_color_index(terrain, xx, yy) {
+    return (xx * terrain.height + yy) * 4;
+}
+
+function terrain_get_data_index(terrain, xx, yy) {
+    return (xx * terrain.height + yy) * 4;
+}
+
+function terrain_get_vertex_index(terrain, x, y, vertex) {
+    // the -1 is annoying and unfortunately comes up a lot. the vertex buffer
+    // would is actually one shorter in each dimension than the width and height,
+    // because of the way the squares are arranged.
+    return VERTEX_SIZE * ((x * (terrain.height - 1) + y) * terrain.vertices_per_square + vertex);
+}
+
+function terrain_refresh_vertex_buffer(terrain) {
+    vertex_delete_buffer(terrain.terrain_buffer);
+    terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, Stuff.graphics.vertex_format);
+    vertex_freeze(terrain.terrain_buffer);
+}
+
+function terrain_set_color(terrain, xx, yy, value) {
+    buffer_poke(terrain.color_data, terrain_get_color_index(terrain, xx, yy), buffer_u32, value);
+    
+    if (xx > 0 && yy > 0) {
+        buffer_poke(terrain.terrain_buffer_data, terrain_get_vertex_index(terrain, xx - 1, yy - 1, 2) + 32, buffer_u32, value);
+        buffer_poke(terrain.terrain_buffer_data, terrain_get_vertex_index(terrain, xx - 1, yy - 1, 3) + 32, buffer_u32, value);
+    }
+    
+    if (xx < terrain.width && yy > 0) {
+        buffer_poke(terrain.terrain_buffer_data, terrain_get_vertex_index(terrain, xx, yy - 1, 4) + 32, buffer_u32, value);
+    }
+    
+    if (xx > 0 && yy < terrain.height) {
+        buffer_poke(terrain.terrain_buffer_data, terrain_get_vertex_index(terrain, xx - 1, yy, 1) + 32, buffer_u32, value);
+    }
+    
+    if (xx < terrain.width && yy < terrain.height) {
+        buffer_poke(terrain.terrain_buffer_data, terrain_get_vertex_index(terrain, xx, yy, 0) + 32, buffer_u32, value);
+        buffer_poke(terrain.terrain_buffer_data, terrain_get_vertex_index(terrain, xx, yy, 5) + 32, buffer_u32, value);
+    }
+}
