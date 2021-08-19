@@ -1,4 +1,4 @@
-var dll = "data\\collisions.dll";
+var dll = "data/collisions.dll";
 var calltype = dll_cdecl;
 
 global._c_world_create = external_define(dll, "c_world_create", calltype, ty_real, 0);

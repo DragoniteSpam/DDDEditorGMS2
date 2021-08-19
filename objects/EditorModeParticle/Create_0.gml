@@ -35,6 +35,6 @@ ui.t_emitter.types.onvaluechange(ui.t_emitter.types);
 ui_list_deselect(ui.t_emitter.list);
 ui_list_deselect(ui.t_emitter.types);
 
-demo_fire = buffer_load("data\\particles\\fire.dddp");
-demo_water = buffer_load("data\\particles\\waterfall.dddp");
-demo_glow = buffer_load("data\\particles\\glow.dddp");
+demo_fire = buffer_load("data/particles/fire.dddp");
+demo_water = buffer_load("data/particles/waterfall.dddp");
+demo_glow = buffer_load("data/particles/glow.dddp");

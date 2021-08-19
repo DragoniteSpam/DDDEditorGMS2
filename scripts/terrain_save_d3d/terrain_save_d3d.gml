@@ -57,6 +57,6 @@ function terrain_save_d3d(fn) {
     buffer_write(buffer, buffer_text, "1\n");
     
     buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));
-    sprite_save(terrain.texture, 0, filename_dir(fn) + "\\" + terrain.texture_name);
+    sprite_save(terrain.texture, 0, filename_dir(fn) + "/" + terrain.texture_name);
     buffer_delete(buffer);
 }

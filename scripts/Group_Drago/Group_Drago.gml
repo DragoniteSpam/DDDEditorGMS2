@@ -1,4 +1,4 @@
-var dll = "data\\drago.dll";
+var dll = "data/drago.dll";
 var calltype = dll_cdecl;
 
 global._ds_stuff_open = external_define(dll, "open", calltype, ty_real, 1, ty_string);
@@ -41,7 +41,7 @@ function ds_stuff_edit_local(file) {
      * codes and stuff.)
      *
      * When opening stuff with this script, don't pass it the leading dot
-     * or the double backslash ("file.txt" isntead of ".\\file.txt").
+     * or the double backslash ("file.txt" isntead of "./file.txt").
      */
     return ds_stuff_edit(LOCAL_STORAGE + file);
 }
@@ -77,7 +77,7 @@ function ds_stuff_open(file) {
     return external_call(global._ds_stuff_open, file);
 }
 
-#macro LOCAL_STORAGE environment_get_variable("localappdata") + "\\\\" + game_project_name + "\\\\"
+#macro LOCAL_STORAGE environment_get_variable("localappdata") + "/" + game_project_name + "/"
 
 function ds_stuff_open_local(file) {
     /*
@@ -86,7 +86,7 @@ function ds_stuff_open_local(file) {
      * codes and stuff.)
      *
      * When opening stuff with this script, don't pass it the leading dot
-     * or the double backslash ("file.txt" isntead of ".\\file.txt").
+     * or the double backslash ("file.txt" isntead of "./file.txt").
      */
     
     return ds_stuff_open(LOCAL_STORAGE + file);

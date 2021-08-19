@@ -80,7 +80,7 @@ direction = point_direction(x, y, xto, yto);
 // please don't keep trying to turn this into structs;
 // the format and format names list need to be in a ds_list
 // and accommodating for those would be a bit of work
-var fbuffer = buffer_load("data\\vertex-formats.json");
+var fbuffer = buffer_load("data/vertex-formats.json");
 format_default = json_decode(buffer_read(fbuffer, buffer_text));
 buffer_delete(fbuffer);
 
