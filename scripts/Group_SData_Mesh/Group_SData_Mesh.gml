@@ -159,6 +159,12 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
+    static PositionAtCenter = function() {
+        for (var i = 0; i < array_length(self.submeshes); i++) {
+            self.submeshes[i].PositionAtCenter();
+        }
+    };
+    
     static Reload = function() {
         for (var i = 0; i < array_length(submeshes); i++) {
             submeshes[i].Reload();

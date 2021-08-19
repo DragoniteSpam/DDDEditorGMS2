@@ -1,4 +1,4 @@
-function dialog_create_mesh_other_settings() {
+function dialog_create_mesh_other_settings(root, selection) {
     var mode = Stuff.mesh_ed;
     
     var dw = 320;
@@ -25,7 +25,7 @@ function dialog_create_mesh_other_settings() {
     var el_center = create_button(c1x, yy, "Center model", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            
+            Game.meshes[index].PositionAtCenter();
         }
         batch_again();
     }, dg);
