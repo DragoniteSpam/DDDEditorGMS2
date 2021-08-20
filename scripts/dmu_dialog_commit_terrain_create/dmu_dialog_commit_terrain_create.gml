@@ -20,7 +20,9 @@ function dmu_dialog_commit_terrain_create() {
     buffer_fill(terrain.color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(terrain.color_data));
     
     if (self.root.el_noise.value) {
-        var noise = macaw_generate(macaw_white_noise(width, height), self.root.el_octaves.value);
+        var ww = power(2, ceil(log2(width)));
+        var hh = power(2, ceil(log2(height)));
+        var noise = macaw_generate(macaw_white_noise(ww, hh), self.root.el_octaves.value);
         for (var i = 0; i < width; i++) {
             for (var j = 0; j < height; j++) {
                 var idx = ((i * height) + j) * 4;
