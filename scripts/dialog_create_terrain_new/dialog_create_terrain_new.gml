@@ -60,8 +60,20 @@ function dialog_create_terrain_new(dialog) {
         // this just needs to contain a true/false
     });
     dg.el_noise = el_noise;
-    el_noise.tooltip = "Generate a random terrain using Perlin noise?";
+    el_noise.tooltip = "Generate a random terrain using noise?";
     dg.AddContent([el_noise]);
+    
+    var el_octaves_title = new EmuText(col1_x, EMU_AUTO, ew, eh, "    Octaves: 6");
+    dg.el_octaves_title = el_octaves_title;
+    dg.AddContent([el_octaves_title]);
+    
+    var el_octaves = new EmuProgressBar(col1_x + ew / 2, el_octaves_title.y, ew / 2, eh, 8, 1, 10, true, 6, function() {
+        self.root.el_octaves_title.text = "    Octaves: " + string(self.value);
+    });
+    el_octaves.SetIntegersOnly(true);
+    dg.el_octaves = el_octaves;
+    el_octaves.tooltip = "The number of octaves to be used in generation";
+    dg.AddContent([el_octaves]);
     
     var el_confirm = new EmuButton(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, "Create", dmu_dialog_commit_terrain_create);
     dg.AddContent([el_confirm]);
