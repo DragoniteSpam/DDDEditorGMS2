@@ -38,7 +38,11 @@ function dmu_dialog_commit_terrain_create() {
             var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32);
             var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32);
             var z11 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 1)) * 4, buffer_f32);
-            terrain_create_square(terrain.terrain_buffer, i, j, 1, 0, 0, terrain_tile_size, terrain_texture_texel, z00, z10, z11, z01);
+            var c00 = buffer_peek(terrain.color_data, (((i + 0) * height) + (j + 0)) * 4, buffer_u32);
+            var c01 = buffer_peek(terrain.color_data, (((i + 0) * height) + (j + 1)) * 4, buffer_u32);
+            var c10 = buffer_peek(terrain.color_data, (((i + 1) * height) + (j + 0)) * 4, buffer_u32);
+            var c11 = buffer_peek(terrain.color_data, (((i + 1) * height) + (j + 1)) * 4, buffer_u32);
+            terrain_create_square(terrain.terrain_buffer, i, j, 1, 0, 0, terrain_tile_size, terrain_texture_texel, z00, z10, z11, z01, c00, c10, c11, c01);
         }
     }
     
