@@ -10,6 +10,21 @@ function momu_data_types() {
     emu_dialog_notice("There is no Undo button. Modifying game data is a permanent action, and deleted types or properties will be lost forever!");
 }
 
+function momu_reload_images() {
+    emu_dialog_notice("Not yet implemented");
+}
+
+function momu_reload_meshes() {
+    for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
+        Game.meshes[i].Reload();
+    }
+    menu_activate(noone);
+}
+
+function momu_reload_audio() {
+    emu_dialog_notice("Not yet implemented");
+}
+
 function momu_editor_3d() {
     editor_mode_3d();
     menu_activate(noone);

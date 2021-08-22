@@ -101,9 +101,9 @@ function menu_init_main() {
         md_mesh_at.interactive = MENU_EDITOR_ENABLED;
         var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
         var md_reload = create_menu_element("Reload Assets...", momu_expand, menu_data, true);
-            var md_reload_image = create_menu_element("Images", null, md_reload);
-            var md_reload_mesh = create_menu_element("Meshes", null, md_reload);
-            var md_reload_audio = create_menu_element("Audio", null, md_reload);
+            var md_reload_image = create_menu_element("Images", momu_reload_images, md_reload);
+            var md_reload_mesh = create_menu_element("Meshes", momu_reload_meshes, md_reload);
+            var md_reload_audio = create_menu_element("Audio", momu_reload_audio, md_reload);
             ds_list_add(md_reload.contents,
                 md_reload_image,
                 md_reload_mesh,
