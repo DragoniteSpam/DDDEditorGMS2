@@ -126,10 +126,10 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     var el_effects = create_text(c2 + 16, yy, "Effects such as volume, pitch, etc can be defined when the sound is played in-game.", ew, eh, fa_left, ew, dg);
     yy += el_effects.height + spacing * 2;
     
-    var vx1 = dw / (columns * 2) - 16;
-    var vy1 = 0;
-    var vx2 = vx1 + 80 + 32;
-    var vy2 = eh;
+    vx1 = dw / (columns * 2) - 16;
+    vy1 = 0;
+    vx2 = vx1 + 80 + 32;
+    vy2 = eh;
     
     yy = yy_base;
     
@@ -142,7 +142,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     }, 0, "hertz", validate_int, 0, 0xffffff, 8, vx1, vy1, vx2, vy2, dg);
     dg.el_sample_rate = el_sample_rate;
     yy += el_sample_rate.height + spacing;
-    var xx = c3 + 16;
+    xx = c3 + 16;
     var el_rate_441 = create_button(xx, yy, "44.1 KHz", ew / 2, eh, fa_center, function(button) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
@@ -191,7 +191,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
             FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
             FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
         }
-    }, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
+    }, 0, "seconds", validate_double, 0, 10000, 8, vx1, vy1, vx2, vy2, dg);
     dg.el_loop_start = el_loop_start;
     yy += el_loop_start.height + spacing;
     var el_loop_end = create_input(c3 + 16, yy, "Loop End:", ew, eh, function(input) {
@@ -206,7 +206,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
             FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
             FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
         }
-    }, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
+    }, 0, "seconds", validate_double, 0, 10000, 8, vx1, vy1, vx2, vy2, dg);
     dg.el_loop_end = el_loop_end;
     yy += el_loop_end.height + spacing;
     var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, function(progress) {
