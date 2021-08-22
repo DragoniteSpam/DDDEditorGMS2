@@ -212,8 +212,8 @@ function project_load(id) {
     Game.meta.project.summary = yaml.summary;
     Game.meta.project.author = yaml.author;
     
-    project_load_data(folder_name + "data.json");
     project_load_global(folder_name + "meta.json");
+    project_load_data(folder_name + "data.json");
     project_load_images(folder_name + "images.json", folder_image_name);
     project_load_audio(folder_name + "audio.json", folder_audio_name);
     project_load_meshes(folder_name + "meshes.json", folder_mesh_name);
