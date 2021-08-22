@@ -44,13 +44,13 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     var el_add = create_button(c2 + 16, yy, "Add", ew, eh, fa_center, function(button) {
         var fn = get_open_filename_audio();
         if (file_exists(fn)) {
-            array_push(button.root.el_list.entries, audio_add(fn, button.root.prefix, button.root.show_loop_controls));
+            array_push(button.root.el_list.entries, audio_add(fn, button.root.prefix, button.root.el_loop_start.interactive));
         }
     }, dg);
     el_add.file_dropper_action = function(dropper, files) {
         var filtered_list = ui_handle_dropped_files_filter(files, [".wav", ".mid", ".ogg", ".mp3"]);
         for (var i = 0; i < array_length(filtered_list); i++) {
-            array_push(dropper.root.el_list.entries, audio_add(filtered_list[i], dropper.root.prefix, dropper.root.show_loop_controls));
+            array_push(dropper.root.el_list.entries, audio_add(filtered_list[i], dropper.root.prefix, dropper.root.el_loop_start.interactive));
         }
     };
     yy += el_add.height + spacing;
