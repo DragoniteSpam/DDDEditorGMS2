@@ -224,7 +224,11 @@ function project_load(id) {
     project_load_events(folder_name + "events.json");
     project_load_maps(folder_name + "maps.json", folder_map_name);
     
-    Game.maps[0].Load();
+    try {
+        Game.maps[0].Load();
+    } catch (e) {
+        show_debug_message("Error loading primary map (is there one?)");
+    }
     
     wtf("Loading took " + string((get_timer() - t0) / 1000) + " ms");
 }
