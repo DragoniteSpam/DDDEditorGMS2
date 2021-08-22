@@ -100,6 +100,15 @@ function menu_init_main() {
         md_aud_se.interactive = MENU_EDITOR_ENABLED;
         md_mesh_at.interactive = MENU_EDITOR_ENABLED;
         var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
+        var md_reload = create_menu_element("Reload Assets...", momu_expand, menu_data, true);
+            var md_reload_image = create_menu_element("Images", null, md_reload);
+            var md_reload_mesh = create_menu_element("Meshes", null, md_reload);
+            var md_reload_audio = create_menu_element("Audio", null, md_reload);
+            ds_list_add(md_reload.contents,
+                md_reload_image,
+                md_reload_mesh,
+                md_reload_audio,
+            );
         var md_meshes = create_menu_element("Mesh Editor (F5)", momu_meshes, menu_data);
         var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
         var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
@@ -124,6 +133,7 @@ function menu_init_main() {
             md_audio,
             md_mesh_at,
             md_data_types,
+            md_reload,
             //
             m_separator,
             md_meshes,
