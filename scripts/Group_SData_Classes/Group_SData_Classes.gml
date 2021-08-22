@@ -41,7 +41,7 @@ function DataClass(source) : SData(source) constructor {
     
     static AddInstance = function(inst, position) {
         if (position == undefined) position = array_length(self.instances);
-        self.instances[position] = inst;
+        array_insert(self.instances, position, inst);
     };
     
     static RemoveInstance = function(inst) {
