@@ -116,7 +116,7 @@ vertex_begin(self.terrain_buffer, self.vertex_format);
 
 for (var i = 0; i < self.width - 1; i++) {
     for (var j = 0; j < self.height - 1; j++) {
-        terrain_create_square(self.terrain_buffer, i, j, 1, 0, 0, terrain_tile_size, terrain_texture_texel);
+        terrain_create_square(self.terrain_buffer, i, j, 1, 0, 0, terrain_tile_size, 0, 0, 0, 0);
     }
 }
 

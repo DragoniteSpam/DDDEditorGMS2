@@ -1,5 +1,4 @@
 #macro terrain_texture_size                                                     sprite_get_height(Stuff.terrain.texture)
-#macro terrain_texture_texel                                                    (1 / terrain_texture_size)
 #macro terrain_tile_size                                                        (32 / terrain_texture_size)
 
 function terrain_add_to_project() {
@@ -108,25 +107,7 @@ function terrain_set_color(terrain, xx, yy, value) {
     }
 }
 
-function terrain_create_square(buffer, xx, yy, size, tx, ty, tsize, z00, z10, z11, z01, c00, c10, c11, c01) {
-    if (z00 == undefined) z00 = 0;
-    if (z10 == undefined) z10 = 0;
-    if (z11 == undefined) z11 = 0;
-    if (z01 == undefined) z01 = 0;
-    if (c00 == undefined) c00 = 0xffffffff;
-    if (c10 == undefined) c10 = 0xffffffff;
-    if (c11 == undefined) c11 = 0xffffffff;
-    if (c01 == undefined) c01 = 0xffffffff;
-    
-    var a00 = (c00 & 0xff000000) >> 24;
-    var a10 = (c10 & 0xff000000) >> 24;
-    var a11 = (c11 & 0xff000000) >> 24;
-    var a01 = (c01 & 0xff000000) >> 24;
-    c00 &= 0x00ffffff;
-    c10 &= 0x00ffffff;
-    c11 &= 0x00ffffff;
-    c01 &= 0x00ffffff;
-    
+function terrain_create_square(buffer, xx, yy, size, tx, ty, tsize, z00, z10, z11, z01) {
     // (0, 0)
     vertex_position_3d(buffer, xx, yy, z00);
     vertex_texcoord(buffer, tx, ty);
