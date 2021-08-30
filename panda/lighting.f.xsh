@@ -7,6 +7,11 @@
 
 varying Vec3 v_LightWorldNormal;
 varying Vec3 v_LightWorldPosition;
+varying vec3 v_EyeNormal;
+varying vec3 v_Eye;
+varying vec2 v_UV;
+
+uniform sampler2D normalMap;
 
 uniform float lightBuckets;
 uniform Vec3 lightAmbientColor;
@@ -16,6 +21,7 @@ uniform Vec3 lightWeatherColor;
 
 void CommonLightEvaluate(int i, inout Vec4 finalColor);
 void CommonLight(inout Vec4 baseColor);
+Vec3 GetTangentSpaceNormal();
 
 void CommonLight(inout Vec4 baseColor) {
     Vec4 lightColor = Vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1.);
@@ -77,4 +83,24 @@ void CommonLightEvaluate(int i, inout Vec4 finalColor) {
         
         finalColor += att * lightColor * max(0., -dot(v_LightWorldNormal, lightDir));
     }
+}
+
+Vec3 GetTangentSpaceNormal() {
+    // get edge vectors of the pixel triangle
+    Vec3 dp1 = DDX(v_Eye);
+    Vec3 dp2 = DDY(v_Eye);
+    Vec2 duv1 = DDX(v_UV);
+    Vec2 duv2 = DDY(v_UV);
+    
+    // solve the linear system
+    Vec3 dp2perp = cross(dp2, v_EyeNormal);
+    Vec3 dp1perp = cross(v_EyeNormal, dp1);
+    Vec3 T = dp2perp * duv1.x + dp1perp * duv2.x;
+    Vec3 B = dp2perp * duv1.y + dp1perp * duv2.y;
+    
+    // construct a scale-invariant frame 
+    float invmax = 1.0 / sqrt(max(dot(T, T), dot(B, B)));
+    Mat4 tbn = Mat3(normalize(T * invmax), normalize(B * invmax), v_EyeNormal);
+	
+	return normalize(tbn * (Texture(normalMap, v_UV).rgb * 2.0 - 1.0));
 }
