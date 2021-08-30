@@ -1,11 +1,12 @@
 varying vec2 v_vTexcoord;
-varying vec4 v_vColour;
 varying vec2 v_vWorldXY;
 
 uniform vec2 mouse;
 uniform float mouseRadius;
 
 const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
+
+#define v_LightWorldNormal vec4(0, 0, 1)
 
 #pragma include("lighting.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
@@ -108,7 +109,8 @@ void CommonFog(inout vec4 baseColor) {
 // include("fog.f.xsh")
 
 void main() {
-    vec4 color = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
+    vec4 base_color = vec4(1);          // eventually this should be changed to be sampled from a texture
+    vec4 color = base_color * texture2D(gm_BaseTexture, v_vTexcoord);
     
     CommonLight(color);
     CommonFog(color);
