@@ -1,6 +1,6 @@
-varying vec2 v_vTexcoord;
 varying vec2 v_vWorldXY;
 
+uniform vec2 terrainSize;
 uniform vec2 mouse;
 uniform float mouseRadius;
 
@@ -16,7 +16,7 @@ const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
 #define LIGHT_POINT 2.
 #define LIGHT_SPOT 3.
 
-varying vec3 v_LightWorldNormal;
+//varying vec3 v_LightWorldNormal;
 varying vec3 v_LightWorldPosition;
 
 uniform vec3 lightAmbientColor;
@@ -110,7 +110,7 @@ void CommonFog(inout vec4 baseColor) {
 
 void main() {
     vec4 base_color = vec4(1);          // eventually this should be changed to be sampled from a texture
-    vec4 color = base_color * texture2D(gm_BaseTexture, v_vTexcoord);
+    vec4 color = base_color * texture2D(gm_BaseTexture, v_vWorldXY / terrainSize);
     
     CommonLight(color);
     CommonFog(color);

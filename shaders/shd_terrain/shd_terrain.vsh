@@ -1,7 +1,5 @@
 attribute vec3 in_Position;
-attribute vec2 in_TextureCoord;
 
-varying vec2 v_vTexcoord;
 varying vec2 v_vWorldXY;
 
 //#pragma include("lighting.v.xsh")
@@ -35,5 +33,4 @@ void main() {
     
     v_vWorldXY = in_Position.xy;
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.);
-    v_vTexcoord = in_TextureCoord;
 }

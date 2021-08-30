@@ -4,7 +4,6 @@ Stuff.terrain = self;
 
 vertex_format_begin();
 vertex_format_add_position_3d();
-vertex_format_add_texcoord();
 self.vertex_format = vertex_format_end();
 
 var camera = view_get_camera(view_3d);
@@ -116,7 +115,7 @@ vertex_begin(self.terrain_buffer, self.vertex_format);
 
 for (var i = 0; i < self.width - 1; i++) {
     for (var j = 0; j < self.height - 1; j++) {
-        terrain_create_square(self.terrain_buffer, i, j, 1, 0, 0, terrain_tile_size, 0, 0, 0, 0);
+        terrain_create_square(self.terrain_buffer, i, j, 0, 0, 0, 0);
     }
 }
 

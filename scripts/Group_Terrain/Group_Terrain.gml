@@ -107,23 +107,11 @@ function terrain_set_color(terrain, xx, yy, value) {
     }
 }
 
-function terrain_create_square(buffer, xx, yy, size, tx, ty, tsize, z00, z10, z11, z01) {
-    // (0, 0)
+function terrain_create_square(buffer, xx, yy, z00, z10, z11, z01) {
     vertex_position_3d(buffer, xx, yy, z00);
-    vertex_texcoord(buffer, tx, ty);
-    // (1, 0)
-    vertex_position_3d(buffer, xx + size, yy, z10);
-    vertex_texcoord(buffer, tx + tsize, ty);
-    // (1, 1)
-    vertex_position_3d(buffer, xx + size, yy + size, z11);
-    vertex_texcoord(buffer, tx + tsize, ty + tsize);
-    // (1, 1)
-    vertex_position_3d(buffer, xx + size, yy + size, z11);
-    vertex_texcoord(buffer, tx + tsize, ty + tsize);
-    // (0, 1)
-    vertex_position_3d(buffer, xx, yy + size, z01);
-    vertex_texcoord(buffer, tx, ty + tsize);
-    // (0, 0)
+    vertex_position_3d(buffer, xx + 1, yy, z10);
+    vertex_position_3d(buffer, xx + 1, yy + 1, z11);
+    vertex_position_3d(buffer, xx + 1, yy + 1, z11);
+    vertex_position_3d(buffer, xx, yy + 1, z01);
     vertex_position_3d(buffer, xx, yy, z00);
-    vertex_texcoord(buffer, tx, ty);
 }
