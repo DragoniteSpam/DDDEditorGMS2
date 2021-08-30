@@ -14,7 +14,7 @@ function EditorGraphics() constructor {
         self.format_size = self.format_size + 8;
         vertex_format_add_colour();
         self.format_size = self.format_size + 4;
-        self.vertex_format = self.vertex_format_end();
+        self.vertex_format = vertex_format_end();
         
         self.mesh_preview_grid = vertex_create_buffer();
         vertex_begin(self.mesh_preview_grid, self.vertex_format);

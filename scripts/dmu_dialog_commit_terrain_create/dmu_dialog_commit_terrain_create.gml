@@ -32,7 +32,7 @@ function dmu_dialog_commit_terrain_create() {
     }
     
     terrain.terrain_buffer = vertex_create_buffer();
-    vertex_begin(terrain.terrain_buffer, Stuff.graphics.vertex_format);
+    vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
     
     for (var i = 0; i < width - 1; i++) {
         for (var j = 0; j < height - 1; j++) {

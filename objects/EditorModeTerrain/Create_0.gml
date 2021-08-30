@@ -2,6 +2,11 @@ event_inherited();
 
 Stuff.terrain = self;
 
+vertex_format_begin();
+vertex_format_add_position_3d();
+vertex_format_add_texcoord();
+self.vertex_format = vertex_format_end();
+
 var camera = view_get_camera(view_3d);
 depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
 depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
@@ -107,7 +112,7 @@ buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
 // you don't need a texture UV buffer, since that will only be set and not mutated
 
 self.terrain_buffer = vertex_create_buffer();
-vertex_begin(self.terrain_buffer, Stuff.graphics.vertex_format);
+vertex_begin(self.terrain_buffer, self.vertex_format);
 
 for (var i = 0; i < self.width - 1; i++) {
     for (var j = 0; j < self.height - 1; j++) {
@@ -124,10 +129,14 @@ LoadAsset = function(directory) {
     buffer_delete(self.height_data);
     buffer_delete(self.color_data);
     buffer_delete(self.terrain_buffer_data);
-    self.height_data = buffer_load(directory + "height.terrain");
-    self.color_data = buffer_load(directory + "color.terrain");
-    self.terrain_buffer_data = buffer_load(directory + "terrain.terrain");
-    self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, Stuff.graphics.vertex_format);
+    try {
+        self.height_data = buffer_load(directory + "height.terrain");
+        self.color_data = buffer_load(directory + "color.terrain");
+        self.terrain_buffer_data = buffer_load(directory + "terrain.terrain");
+        self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
+    } catch (e) {
+        wtf("Could not load saved terrain data");
+    }
 };
 
 SaveAsset = function(directory) {

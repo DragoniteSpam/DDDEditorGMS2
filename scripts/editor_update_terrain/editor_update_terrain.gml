@@ -47,6 +47,8 @@ function editor_update_terrain(mode) {
     
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), mode.radius);
     vertex_submit(mode.terrain_buffer, pr_trianglelist, sprite_get_texture(mode.texture, 0));
+    shader_reset();
+    
     vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
     surface_reset_target();
     
@@ -68,6 +70,6 @@ function editor_update_terrain(mode) {
     */
     //surface_reset_target();
     
-    shader_reset();
+    
     matrix_set(matrix_world, matrix_build_identity());
 }
