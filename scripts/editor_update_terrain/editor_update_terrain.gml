@@ -11,12 +11,13 @@ function editor_update_terrain(mode) {
     var vw = view_get_wport(view_3d);
     var vh = view_get_hport(view_3d);
     
+    var view, proj;
     if (mode.orthographic) {
-        var view = matrix_build_lookat(mode.x, mode.y, CAMERA_ZFAR - 256, mode.x, mode.y, 0, 0, 1, 0);
-        var proj = matrix_build_projection_ortho(-vw * mode.orthographic_scale, vh * mode.orthographic_scale, CAMERA_ZNEAR, CAMERA_ZFAR);
+        view = matrix_build_lookat(mode.x, mode.y, CAMERA_ZFAR - 256, mode.x, mode.y, 0, 0, 1, 0);
+        proj = matrix_build_projection_ortho(-vw * mode.orthographic_scale, vh * mode.orthographic_scale, CAMERA_ZNEAR, CAMERA_ZFAR);
     } else {
-        var view = matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup);
-        var proj = matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
+        view = matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup);
+        proj = matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
     }
     
     transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scale);
@@ -38,6 +39,7 @@ function editor_update_terrain(mode) {
     
     draw_clear_alpha(c_black, 0);
     graphics_set_lighting_terrain(shd_terrain);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), mode.width, mode.height);
     
     if (!mode.cursor_position) {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), -MILLION, -MILLION);

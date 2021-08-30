@@ -133,6 +133,7 @@ LoadAsset = function(directory) {
         self.color_data = buffer_load(directory + "color.terrain");
         self.terrain_buffer_data = buffer_load(directory + "terrain.terrain");
         self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
+        vertex_freeze(self.terrain_buffer);
     } catch (e) {
         wtf("Could not load saved terrain data");
     }

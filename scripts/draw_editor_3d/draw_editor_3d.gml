@@ -38,6 +38,7 @@ function draw_editor_3d() {
     // 3D terrain
     if (Settings.view.terrain) {
         graphics_set_lighting(shd_terrain);
+        shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), Stuff.terrain.width, Stuff.terrain.height);
         matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 16, 16, 16));
         vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
         matrix_set(matrix_world, matrix_build_identity());

@@ -6,7 +6,7 @@ uniform float mouseRadius;
 
 const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
 
-#define v_LightWorldNormal vec4(0, 0, 1)
+#define v_LightWorldNormal vec3(0, 0, 1)
 
 #pragma include("lighting.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
