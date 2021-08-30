@@ -188,3 +188,30 @@ function vertex_buffer_to_wireframe(vbuffer) {
     
     return wbuffer;
 }
+
+function vertex_square(buffer, xx, yy, size, tx, ty, tsize, z00, z10, z11, z01, c00, c10, c11, c01) {
+    if (z00 == undefined) z00 = 0;
+    if (z10 == undefined) z10 = 0;
+    if (z11 == undefined) z11 = 0;
+    if (z01 == undefined) z01 = 0;
+    if (c00 == undefined) c00 = 0xffffffff;
+    if (c10 == undefined) c10 = 0xffffffff;
+    if (c11 == undefined) c11 = 0xffffffff;
+    if (c01 == undefined) c01 = 0xffffffff;
+    
+    var a00 = (c00 & 0xff000000) >> 24;
+    var a10 = (c10 & 0xff000000) >> 24;
+    var a11 = (c11 & 0xff000000) >> 24;
+    var a01 = (c01 & 0xff000000) >> 24;
+    c00 &= 0x00ffffff;
+    c10 &= 0x00ffffff;
+    c11 &= 0x00ffffff;
+    c01 &= 0x00ffffff;
+    
+    vertex_point_complete(buffer, xx, yy, z00, 0, 0, 1, tx, ty, c00, a00);
+    vertex_point_complete(buffer, xx + size, yy, z10, 0, 0, 1, tx + tsize, ty, c10, a10);
+    vertex_point_complete(buffer, xx + size, yy + size, z11, 0, 0, 1, tx + tsize, ty + tsize, c11, a11);
+    vertex_point_complete(buffer, xx + size, yy + size, z11, 0, 0, 1, tx + tsize, ty + tsize, c11, a11);
+    vertex_point_complete(buffer, xx, yy + size, z01, 0, 0, 1, tx, ty + tsize, c01, a01);
+    vertex_point_complete(buffer, xx, yy, z00, 0, 0, 1, tx, ty, c00, a00);
+}
