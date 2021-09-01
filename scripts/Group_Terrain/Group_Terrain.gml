@@ -6,6 +6,8 @@ function terrain_add_to_project() {
     var bytes = buffer_get_size(terrain.terrain_buffer_data);
     var scale = terrain.save_scale;
     
+    throw "terrain_add_to_project - sample from the various textures instead of from a big-ass vertex buffer";
+    
     var fx = sprite_get_width(terrain.texture) / terrain_texture_size;
     var fy = sprite_get_height(terrain.texture) / terrain_texture_size;
     
@@ -76,7 +78,7 @@ function terrain_get_vertex_index(terrain, x, y, vertex) {
     // the -1 is annoying and unfortunately comes up a lot. the vertex buffer
     // would is actually one shorter in each dimension than the width and height,
     // because of the way the squares are arranged.
-    return VERTEX_SIZE * ((x * (terrain.height - 1) + y) * terrain.vertices_per_square + vertex);
+    return VERTEX_SIZE_TERRAIN * ((x * (terrain.height - 1) + y) * terrain.vertices_per_square + vertex);
 }
 
 function terrain_refresh_vertex_buffer(terrain) {

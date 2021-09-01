@@ -51,14 +51,6 @@ function terrain_import_heightmap(button, fn) {
         }
     }
     
-    // you need a second pass for normals because the z value of the outer corners could be
-    // changed when they're read in
-    for (var i = 0; i < terrain.width; i++) {
-        for (var j = 0; j < terrain.height; j++) {
-            terrain_set_normals(terrain, i, j);
-        }
-    }
-    
     vertex_freeze(terrain.terrain_buffer);
     
     terrain_refresh_vertex_buffer(terrain);

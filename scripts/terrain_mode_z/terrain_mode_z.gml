@@ -25,11 +25,6 @@ function terrain_mode_z(terrain, position, dir) {
         terrain.submode_equation[terrain.submode](terrain, coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
     }
     
-    for (var i = 0; i < ds_list_size(list_range); i++) {
-        var coordinates = list_range[| i];
-        terrain_set_normals(terrain, coordinates[vec3.xx], coordinates[vec3.yy]);
-    }
-    
     if (!ds_list_empty(list_range)) {
         terrain_refresh_vertex_buffer(terrain);
     }
