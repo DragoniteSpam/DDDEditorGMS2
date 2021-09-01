@@ -221,6 +221,7 @@
     {"id":{"name":"editor_mode_meshes","path":"scripts/editor_mode_meshes/editor_mode_meshes.yy",},"order":1,},
     {"id":{"name":"editor_mode_event","path":"scripts/editor_mode_event/editor_mode_event.yy",},"order":2,},
     {"id":{"name":"editor_mode_data","path":"scripts/editor_mode_data/editor_mode_data.yy",},"order":3,},
+    {"id":{"name":"shd_terrain_paint","path":"shaders/shd_terrain_paint/shd_terrain_paint.yy",},"order":21,},
     {"id":{"name":"editor_mode_animation","path":"scripts/editor_mode_animation/editor_mode_animation.yy",},"order":4,},
     {"id":{"name":"editor_mode_heightmap","path":"scripts/editor_mode_heightmap/editor_mode_heightmap.yy",},"order":5,},
     {"id":{"name":"Group_Editor_Terrain","path":"scripts/Group_Editor_Terrain/Group_Editor_Terrain.yy",},"order":0,},
