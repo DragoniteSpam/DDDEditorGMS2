@@ -108,26 +108,31 @@ paint_strength = 0.05;
 var t = get_timer();
 
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
-color = {
-    surface: surface_create(self.width * self.color_width_scale, self.height * self.color_height_scale),
-    sprite: -1,
-    Reset: function(width, height) {
+color = new (function() constructor {
+    self.surface = surface_create(Stuff.terrain.width * Stuff.terrain.color_width_scale, Stuff.terrain.height * Stuff.terrain.color_height_scale);
+    self.sprite = -1;
+    static Reset = function(width, height) {
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
         self.surface = surface_create(width * Stuff.terrain.color_width_scale, height * Stuff.terrain.color_height_scale);
-    },
-    SaveState: function() {
+    };
+    static SaveState = function() {
         if (!surface_exists(self.surface)) return;
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         self.sprite = sprite_create_from_surface(self.surface, 0, 0, surface_get_width(self.surface), surface_get_height(self.surface), false, false, 0, 0);
-    },
-    LoadState: function() {
+    };
+    static LoadState = function() {
         if (!sprite_exists(self.sprite)) return;
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.surface = sprite_to_surface(self.sprite, 0);
-    },
-};
+    };
+    static Clear = function(color) {
+        surface_set_target(self.surface);
+        draw_clear_alpha(color, 1);
+        surface_reset_target();
+    };
+})();
 
 self.terrain_buffer = vertex_create_buffer();
 vertex_begin(self.terrain_buffer, self.vertex_format);
