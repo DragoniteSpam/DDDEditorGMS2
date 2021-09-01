@@ -69,7 +69,7 @@ vertices_per_square = 6;
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
-color_scale = 32;
+color_scale = 8;
 
 view_scale = 32;
 save_scale = setting_get("terrain", "save_scale", 1);
@@ -110,6 +110,9 @@ height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_f
 color = new (function() constructor {
     self.surface = surface_create(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
     self.sprite = -1;
+    surface_set_target(self.surface);
+    draw_clear_alpha(c_white, 1);
+    surface_reset_target();
     static Reset = function(width, height) {
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
