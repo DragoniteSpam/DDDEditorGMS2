@@ -651,10 +651,9 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, function(picker) {
-            Stuff.terrain.paint_color = picker.value | (floor(picker.alpha * 255) << 24);
+            Stuff.terrain.paint_color = picker.value;
         }, mode.paint_color, vx1, vy1, vx2, vy2, t_paint);
         element.tooltip = "I really hope you enjoy this color picker because it was probably my favorite UI element to work on.";
-        element.allow_alpha = true;
         t_paint.element_paint_color = element;
         ds_list_add(t_paint.contents, element);
         

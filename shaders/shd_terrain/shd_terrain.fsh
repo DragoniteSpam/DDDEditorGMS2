@@ -6,6 +6,8 @@ uniform vec2 terrainSize;
 uniform vec2 mouse;
 uniform float mouseRadius;
 
+uniform sampler2D texColor;
+
 const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
 
 #pragma include("lighting.f.xsh")
@@ -111,8 +113,7 @@ void CommonFog(inout vec4 baseColor) {
 // include("fog.f.xsh")
 
 void main() {
-    vec4 base_color = vec4(1);          // eventually this should be changed to be sampled from a texture
-    vec4 color = base_color * texture2D(gm_BaseTexture, v_vWorldXY / terrainSize);
+    vec4 color = vec4(texture2D(texColor, v_vWorldXY / terrainSize).rgb, 1) * texture2D(gm_BaseTexture, v_vWorldXY / terrainSize);
     
     CommonLight(color);
     CommonFog(color);
