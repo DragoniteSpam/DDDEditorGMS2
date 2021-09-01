@@ -785,6 +785,7 @@
     {"id":{"name":"Group_Editor_Text","path":"scripts/Group_Editor_Text/Group_Editor_Text.yy",},"order":0,},
     {"id":{"name":"ui_render_tab","path":"scripts/ui_render_tab/ui_render_tab.yy",},"order":20,},
     {"id":{"name":"ui_render_text","path":"scripts/ui_render_text/ui_render_text.yy",},"order":21,},
+    {"id":{"name":"spr_terrain_default_brushes","path":"sprites/spr_terrain_default_brushes/spr_terrain_default_brushes.yy",},"order":0,},
     {"id":{"name":"ui_render_radio_option_text","path":"scripts/ui_render_radio_option_text/ui_render_radio_option_text.yy",},"order":22,},
     {"id":{"name":"Group_Internal_Name","path":"scripts/Group_Internal_Name/Group_Internal_Name.yy",},"order":68,},
     {"id":{"name":"ui_render_bitfield_option","path":"scripts/ui_render_bitfield_option/ui_render_bitfield_option.yy",},"order":23,},
@@ -1126,6 +1127,7 @@
     {"folderPath":"folders/Maps.yy","order":91,"resourceVersion":"1.0","name":"Maps","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/SpriteAtlas.yy","order":92,"resourceVersion":"1.0","name":"SpriteAtlas","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Carton.yy","order":93,"resourceVersion":"1.0","name":"Carton","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/modes/terrain/brushes.yy","order":20,"resourceVersion":"1.0","name":"brushes","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
