@@ -1,3 +1,5 @@
+#extension GL_OES_standard_derivatives : enable
+
 varying vec2 v_vWorldXY;
 
 uniform vec2 terrainSize;
@@ -5,8 +7,6 @@ uniform vec2 mouse;
 uniform float mouseRadius;
 
 const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
-
-#define v_LightWorldNormal vec3(0, 0, 1)
 
 #pragma include("lighting.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
@@ -16,7 +16,6 @@ const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
 #define LIGHT_POINT 2.
 #define LIGHT_SPOT 3.
 
-//varying vec3 v_LightWorldNormal;
 varying vec3 v_LightWorldPosition;
 
 uniform vec3 lightAmbientColor;
@@ -24,33 +23,36 @@ uniform vec4 lightData[MAX_LIGHTS * 3];
 uniform vec3 lightDayTimeColor;
 uniform vec3 lightWeatherColor;
 
-void CommonLightEvaluate(int i, inout vec4 finalColor);
+void CommonLightEvaluate(int i, inout vec4 finalColor, in vec3 normal);
 void CommonLight(inout vec4 baseColor);
 
 void CommonLight(inout vec4 baseColor) {
+    vec3 normal = cross(dFdx(v_LightWorldPosition), dFdy(v_LightWorldPosition));
+    normal = normalize(normal * sign(normal.z));
+    
     vec4 lightColor = vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1.);
     
-    CommonLightEvaluate(0, lightColor);
-    CommonLightEvaluate(1, lightColor);
-    CommonLightEvaluate(2, lightColor);
-    CommonLightEvaluate(3, lightColor);
-    CommonLightEvaluate(4, lightColor);
-    CommonLightEvaluate(5, lightColor);
-    CommonLightEvaluate(6, lightColor);
-    CommonLightEvaluate(7, lightColor);
-    CommonLightEvaluate(8, lightColor);
-    CommonLightEvaluate(9, lightColor);
-    CommonLightEvaluate(10, lightColor);
-    CommonLightEvaluate(11, lightColor);
-    CommonLightEvaluate(12, lightColor);
-    CommonLightEvaluate(13, lightColor);
-    CommonLightEvaluate(14, lightColor);
-    CommonLightEvaluate(15, lightColor);
+    CommonLightEvaluate(0, lightColor, normal);
+    CommonLightEvaluate(1, lightColor, normal);
+    CommonLightEvaluate(2, lightColor, normal);
+    CommonLightEvaluate(3, lightColor, normal);
+    CommonLightEvaluate(4, lightColor, normal);
+    CommonLightEvaluate(5, lightColor, normal);
+    CommonLightEvaluate(6, lightColor, normal);
+    CommonLightEvaluate(7, lightColor, normal);
+    CommonLightEvaluate(8, lightColor, normal);
+    CommonLightEvaluate(9, lightColor, normal);
+    CommonLightEvaluate(10, lightColor, normal);
+    CommonLightEvaluate(11, lightColor, normal);
+    CommonLightEvaluate(12, lightColor, normal);
+    CommonLightEvaluate(13, lightColor, normal);
+    CommonLightEvaluate(14, lightColor, normal);
+    CommonLightEvaluate(15, lightColor, normal);
     
     baseColor *= clamp(lightColor, vec4(0.), vec4(1.));
 }
 
-void CommonLightEvaluate(int i, inout vec4 finalColor) {
+void CommonLightEvaluate(int i, inout vec4 finalColor, in vec3 normal) {
     vec3 lightPosition = lightData[i * 3].xyz;
     float type = lightData[i * 3].w;
     vec4 lightExt = lightData[i * 3 + 1];
@@ -59,7 +61,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
     if (type == LIGHT_DIRECTIONAL) {
         // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
         vec3 lightDir = -normalize(lightPosition);
-        finalColor += lightColor * max(dot(v_LightWorldNormal, lightDir), 0.);
+        finalColor += lightColor * max(dot(normal, lightDir), 0.);
     } else if (type == LIGHT_POINT) {
         float range = lightExt.w;
         // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
@@ -67,7 +69,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
         float dist = length(lightDir);
         float att = pow(clamp((1. - dist * dist / (range * range)), 0., 1.), 2.);
         lightDir = normalize(lightDir);
-        finalColor += lightColor * max(0., -dot(v_LightWorldNormal, lightDir)) * att;
+        finalColor += lightColor * max(0., -dot(normal, lightDir)) * att;
     } else if (type == LIGHT_SPOT) {
         // spot light: [x, y, z, type], [dx, dy, dz, range], [r, g, b, cutoff]
         float range = lightExt.w;
@@ -85,7 +87,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
         float f = clamp((lightAngleDifference - cutoff) / epsilon, 0., 1.);
         float att = f * pow(clamp((1. - dist * dist / (range * range)), 0., 1.), 2.);
         
-        finalColor += att * lightColor * max(0., -dot(v_LightWorldNormal, lightDir));
+        finalColor += att * lightColor * max(0., -dot(normal, lightDir));
     }
 }
 // include("lighting.f.xsh")

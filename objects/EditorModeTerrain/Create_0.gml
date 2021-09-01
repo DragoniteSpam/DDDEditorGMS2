@@ -84,7 +84,7 @@ orthographic_scale = 1;
 cursor_position = undefined;
 // height defaults
 brush_min = 1.5;
-brush_max = 8;
+brush_max = 20;
 rate_min = 0.02;
 rate_max = 1;
 // height settings
