@@ -69,8 +69,7 @@ vertices_per_square = 6;
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
-color_width_scale = 32;
-color_height_scale = 32;
+color_scale = 32;
 
 view_scale = 32;
 save_scale = setting_get("terrain", "save_scale", 1);
@@ -109,13 +108,13 @@ var t = get_timer();
 
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
 color = new (function() constructor {
-    self.surface = surface_create(Stuff.terrain.width * Stuff.terrain.color_width_scale, Stuff.terrain.height * Stuff.terrain.color_height_scale);
+    self.surface = surface_create(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
     self.sprite = -1;
     static Reset = function(width, height) {
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
-        self.surface = surface_create(width * Stuff.terrain.color_width_scale, height * Stuff.terrain.color_height_scale);
+        self.surface = surface_create(width * Stuff.terrain.color_scale, height * Stuff.terrain.color_scale);
     };
     static SaveState = function() {
         if (!surface_exists(self.surface)) return;
@@ -130,6 +129,11 @@ color = new (function() constructor {
     static Clear = function(color) {
         surface_set_target(self.surface);
         draw_clear_alpha(color, 1);
+        surface_reset_target();
+    };
+    static Paint = function(x, y, radius, color, strength) {
+        surface_set_target(self.surface);
+        draw_sprite_ext(spr_terrain_default_brushes, 0, x, y, radius / 64, radius / 64, 0, color, strength);
         surface_reset_target();
     };
 })();
