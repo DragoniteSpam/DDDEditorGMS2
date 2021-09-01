@@ -6,10 +6,6 @@ vertex_format_begin();
 vertex_format_add_position_3d();
 self.vertex_format = vertex_format_end();
 
-var camera = view_get_camera(view_3d);
-depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
-depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
-
 def_x = -1024;
 def_y = -1024;
 def_z = 1024;

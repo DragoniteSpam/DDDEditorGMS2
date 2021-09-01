@@ -28,19 +28,23 @@ function draw_editor_terrain() {
     vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
-    matrix_set(matrix_world, matrix_build_identity());
+    
+    graphics_set_lighting_terrain(shd_terrain);
+    matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, Stuff.terrain.view_scale, Stuff.terrain.view_scale, Stuff.terrain.view_scale));
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), Stuff.terrain.width, Stuff.terrain.height);
+    
+    if (!Stuff.terrain.cursor_position) {
+        shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), -MILLION, -MILLION);
+    } else {
+        shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), Stuff.terrain.cursor_position.x, Stuff.terrain.cursor_position.y);
+    }
+    texture_set_stage(shader_get_sampler_index(shd_terrain, "texColor"), surface_get_texture(Stuff.terrain.color.surface));
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
+    //vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture, 0));
+    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
     
     if (view_water) {
         graphics_set_lighting_terrain(shd_water);
         graphics_draw_water(false);
-    }
-    
-    // This is officially the worst solution to z fighting ever, but to effectively reset the depth buffer
-    // the terrain layer(s) go on their own surface(s).
-    if (!surface_exists(depth_surface_base) || surface_get_width(depth_surface_base) != camera_get_view_width(camera) || surface_get_height(depth_surface_base) != camera_get_view_height(camera)) {
-        surface_free(depth_surface_base);
-        surface_free(depth_surface_top);
-        depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
-        depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
     }
 }
