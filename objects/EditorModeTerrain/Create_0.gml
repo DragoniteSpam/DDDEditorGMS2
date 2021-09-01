@@ -69,6 +69,8 @@ vertices_per_square = 6;
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
+color_width_scale = 32;
+color_height_scale = 32;
 
 view_scale = 32;
 save_scale = setting_get("terrain", "save_scale", 1);
@@ -106,9 +108,26 @@ paint_strength = 0.05;
 var t = get_timer();
 
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
-color_data = buffer_create(buffer_sizeof(buffer_u32) * width * height, buffer_fixed, 1);
-buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
-// you don't need a texture UV buffer, since that will only be set and not mutated
+color = {
+    surface: surface_create(self.width * self.color_width_scale, self.height * self.color_height_scale),
+    sprite: -1,
+    Reset: function(width, height) {
+        if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
+        if (surface_exists(self.surface)) surface_free(self.surface);
+        self.sprite = -1;
+        self.surface = surface_create(width * Stuff.terrain.color_width_scale, height * Stuff.terrain.color_height_scale);
+    },
+    SaveState: function() {
+        if (!surface_exists(self.surface)) return;
+        if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
+        self.sprite = sprite_create_from_surface(self.surface, 0, 0, surface_get_width(self.surface), surface_get_height(self.surface), false, false, 0, 0);
+    },
+    LoadState: function() {
+        if (!sprite_exists(self.sprite)) return;
+        if (surface_exists(self.surface)) surface_free(self.surface);
+        self.surface = sprite_to_surface(self.sprite, 0);
+    },
+};
 
 self.terrain_buffer = vertex_create_buffer();
 vertex_begin(self.terrain_buffer, self.vertex_format);
@@ -126,14 +145,14 @@ vertex_freeze(self.terrain_buffer);
 LoadAsset = function(directory) {
     directory += "/";
     buffer_delete(self.height_data);
-    buffer_delete(self.color_data);
     buffer_delete(self.terrain_buffer_data);
     try {
         self.height_data = buffer_load(directory + "height.terrain");
-        self.color_data = buffer_load(directory + "color.terrain");
         self.terrain_buffer_data = buffer_load(directory + "terrain.terrain");
         self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
         vertex_freeze(self.terrain_buffer);
+        self.color.sprite = sprite_add(directory + "color.png", 1, false, false, 0, 0);
+        self.color.LoadState();
     } catch (e) {
         wtf("Could not load saved terrain data");
     }
@@ -142,7 +161,8 @@ LoadAsset = function(directory) {
 SaveAsset = function(directory) {
     directory += "/";
     buffer_save(self.height_data, directory + "height.terrain");
-    buffer_save(self.color_data, directory + "color.terrain");
+    self.color.SaveState();
+    if (sprite_exists(self.color.sprite)) sprite_save(self.color.sprite, 0, directory + "color.png");
     buffer_save(self.terrain_buffer_data, directory + "terrain.terrain");
 };
 

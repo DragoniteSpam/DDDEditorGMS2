@@ -19,13 +19,11 @@ function terrain_import_heightmap(button, fn) {
     buffer_get_surface(buffer, surface, 0);
     
     buffer_delete(terrain.height_data);
-    buffer_delete(terrain.color_data);
     buffer_delete(terrain.terrain_buffer_data);
     vertex_delete_buffer(terrain.terrain_buffer);
     
     terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * terrain.width * terrain.height, buffer_fixed, 1);
-    terrain.color_data = buffer_create(buffer_sizeof(buffer_u32) * terrain.width * terrain.height, buffer_fixed, 1);
-    buffer_fill(terrain.color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(terrain.color_data));
+    terrain.color.Reset();
     terrain.terrain_buffer = vertex_create_buffer();
     vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
     

@@ -11,13 +11,11 @@ function dmu_dialog_commit_terrain_create() {
     Stuff.terrain.ui.t_general.element_height.text = "Height: " + string(height);
     
     buffer_delete(terrain.height_data);
-    buffer_delete(terrain.color_data);
     buffer_delete(terrain.terrain_buffer_data);
     vertex_delete_buffer(terrain.terrain_buffer);
     
     terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
-    terrain.color_data = buffer_create(buffer_sizeof(buffer_u32) * width * height, buffer_fixed, 1);
-    buffer_fill(terrain.color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(terrain.color_data));
+    terrain.color.Reset(width, height);
     
     if (self.root.el_noise.value) {
         var ww = power(2, ceil(log2(width)));
