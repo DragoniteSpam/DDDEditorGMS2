@@ -14,7 +14,7 @@ function terrain_mode_color(terrain, position, color, strength) {
             var d3 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 1.5);
             var d4 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 1.5);
             if (d1 <= coeff && d2 <= coeff && d3 <= coeff && d4 <= coeff) {
-                terrain_add_color(terrain, floor(i), floor(j), color, strength);
+                // color
                 n++;
             }
         }
