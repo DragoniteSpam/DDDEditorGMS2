@@ -109,6 +109,9 @@ color = new (function() constructor {
     surface_set_target(self.surface);
     draw_clear_alpha(c_white, 1);
     surface_reset_target();
+    
+    self.brush_index = 7;
+    
     static Reset = function(width, height) {
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
@@ -133,7 +136,7 @@ color = new (function() constructor {
     static Paint = function(x, y, radius, color, strength) {
         surface_set_target(self.surface);
         shader_set(shd_terrain_paint);
-        draw_sprite_ext(spr_terrain_default_brushes, 0, x, y, radius / 64, radius / 64, 0, color, strength);
+        draw_sprite_ext(spr_terrain_default_brushes, clamp(self.brush_index, 0, sprite_get_number(spr_terrain_default_brushes) - 1), x, y, radius / 32, radius / 32, 0, color, strength);
         shader_reset();
         surface_reset_target();
     };

@@ -665,6 +665,18 @@ function ui_init_terrain(mode) {
         ds_list_add(t_paint.contents, element);
         
         yy += element.height + spacing;
+        
+        element = new EmuList(legal_x + spacing, yy, col_width, element_height, "Paintbrush", element_height, 8, function() {
+            Stuff.terrain.color.brush_index = self.GetSelection();
+        });
+        element.AddEntries([
+            "Pixel", "Disc", "Square", "Line", "Star", "Circle", "Ring",
+            "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow"
+        ]);
+        element.Select(mode.color.brush_index);
+        
+        ds_list_add(t_paint.contents, element);
+        yy += element.height + spacing;
         #endregion
         
         return id;
