@@ -6,8 +6,6 @@ function terrain_add_to_project() {
     var bytes = buffer_get_size(terrain.terrain_buffer_data);
     var scale = terrain.save_scale;
     
-    throw "terrain_add_to_project - sample from the various textures instead of from a big-ass vertex buffer";
-    
     var fx = sprite_get_width(terrain.texture) / terrain_texture_size;
     var fy = sprite_get_height(terrain.texture) / terrain_texture_size;
     
@@ -16,24 +14,48 @@ function terrain_add_to_project() {
     vertex_begin(vbuff, Stuff.graphics.vertex_format);
     vertex_begin(wbuff, Stuff.graphics.vertex_format);
     
-    for (var i = 0; i < bytes; i += VERTEX_SIZE * 3) {
-        var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32) * scale;
-        var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE, buffer_f32) * scale;
-        var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE * 2, buffer_f32) * scale;
+    for (var i = 0; i < bytes; i += VERTEX_SIZE_TERRAIN * 3) {
+        var x1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 0, buffer_f32);
+        var y1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 4, buffer_f32);
+        var z1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 8, buffer_f32);
+        var x2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 0, buffer_f32);
+        var y2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 4, buffer_f32);
+        var z2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 8, buffer_f32);
+        var x3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 0, buffer_f32);
+        var y3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 4, buffer_f32);
+        var z3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 8, buffer_f32);
         
-        if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
+        if (terrain.export_all || z1 > 0 || z2 > 0 || z3 > 0) {
             for (var j = 0; j < VERTEX_SIZE * 3; j = j + VERTEX_SIZE) {
-                var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32) * scale;
-                var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32) * scale;
-                var zz = buffer_peek(terrain.terrain_buffer_data, j + i + 8, buffer_f32) * scale;
-                var nx = buffer_peek(terrain.terrain_buffer_data, j + i + 12, buffer_f32);
-                var ny = buffer_peek(terrain.terrain_buffer_data, j + i + 16, buffer_f32);
-                var nz = buffer_peek(terrain.terrain_buffer_data, j + i + 20, buffer_f32);
-                var xtex = buffer_peek(terrain.terrain_buffer_data, j + i + 24, buffer_f32) * fx;
-                var ytex = buffer_peek(terrain.terrain_buffer_data, j + i + 28, buffer_f32) * fy;
-                var color = buffer_peek(terrain.terrain_buffer_data, j + i + 32, buffer_u32);
+                var xtex1 = 0;
+                var ytex1 = 0;
+                var nx1 = 0;
+                var ny1 = 0;
+                var nz1 = 0;
+                var c1 = c_white;
+                var a1 = 1;
+                var xtex2 = 0;
+                var ytex2 = 0;
+                var nx2 = 0;
+                var ny2 = 0;
+                var nz2 = 0;
+                var c2 = c_white;
+                var a2 = 1;
+                var xtex3 = 0;
+                var ytex3 = 0;
+                var nx3 = 0;
+                var ny3 = 0;
+                var nz3 = 0;
+                var c3 = c_white;
+                var a3 = 1;
                 
-                vertex_point_complete(vbuff, xx, yy, zz, nx, ny, nz, xtex, ytex, color & 0x00ffffff, (color >> 24) / 0xff);
+                vertex_point_complete(vbuff, x1, y1, z1, nx1, ny1, nz1, xtex1, ytex1, c1, a1);
+                vertex_point_complete(vbuff, x2, y2, z2, nx2, ny2, nz2, xtex2, ytex2, c2, a2);
+                vertex_point_complete(vbuff, x3, y3, z3, nx3, ny3, nz3, xtex3, ytex3, c3, a3);
+                
+                vertex_point_line(wbuff, x1, y1, z1, c_white, 1); vertex_point_line(wbuff, x2, y2, z2, c_white, 1);
+                vertex_point_line(wbuff, x2, y2, z2, c_white, 1); vertex_point_line(wbuff, x3, y3, z3, c_white, 1);
+                vertex_point_line(wbuff, x3, y3, z3, c_white, 1); vertex_point_line(wbuff, x1, y1, z1, c_white, 1);
             }
         }
     }
