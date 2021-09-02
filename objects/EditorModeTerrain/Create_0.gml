@@ -117,6 +117,9 @@ color = new (function() constructor {
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
         self.surface = surface_create(width * Stuff.terrain.color_scale, height * Stuff.terrain.color_scale);
+        surface_set_target(self.surface);
+        draw_clear_alpha(c_white, 1);
+        surface_reset_target();
     };
     static SaveState = function() {
         if (!surface_exists(self.surface)) return;
