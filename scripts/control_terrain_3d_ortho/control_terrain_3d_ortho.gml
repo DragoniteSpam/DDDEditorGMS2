@@ -23,7 +23,21 @@ function control_terrain_3d_ortho(terrain) {
         switch (terrain.mode) {
             case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, -1); break;
             case TerrainModes.TEXTURE: terrain_mode_texture(terrain, terrain.cursor_position); break;
-            case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position, 0xffffffff); break;
+            case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position); break;
+        }
+    }
+    if (Controller.release_right) {
+        switch (terrain.mode) {
+            case TerrainModes.Z: break;
+            case TerrainModes.TEXTURE: break;
+            case TerrainModes.COLOR: terrain.color.Finish(); break;
+        }
+    }
+    if (Controller.release_left) {
+        switch (terrain.mode) {
+            case TerrainModes.Z: break;
+            case TerrainModes.TEXTURE: break;
+            case TerrainModes.COLOR: terrain.color.Finish(); break;
         }
     }
     

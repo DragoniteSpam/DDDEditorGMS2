@@ -39,8 +39,6 @@ function draw_editor_terrain() {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), Stuff.terrain.cursor_position.x, Stuff.terrain.cursor_position.y);
     }
     texture_set_stage(shader_get_sampler_index(shd_terrain, "texColor"), surface_get_texture(Stuff.terrain.color.surface));
-    texture_set_stage(shader_get_sampler_index(shd_terrain, "texColorDraw"), surface_get_texture(Stuff.terrain.color.surface_draw));
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "texColorDrawAlpha"), Stuff.terrain.ui.t_paint.element_paint_strength_bar.value);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
     //vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture, 0));
     vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
