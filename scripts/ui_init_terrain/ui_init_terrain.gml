@@ -660,7 +660,7 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(legal_x + spacing, yy, "Clear Color", col_width, element_height, fa_center, function(button) {
-            Stuff.terrain.color.Clear(terrain.paint_color);
+            Stuff.terrain.color.Clear(Stuff.terrain.paint_color);
         }, t_general);
         ds_list_add(t_paint.contents, element);
         
