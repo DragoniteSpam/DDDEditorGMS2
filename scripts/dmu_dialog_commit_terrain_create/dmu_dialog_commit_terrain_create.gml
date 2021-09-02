@@ -14,19 +14,16 @@ function dmu_dialog_commit_terrain_create() {
     buffer_delete(terrain.terrain_buffer_data);
     vertex_delete_buffer(terrain.terrain_buffer);
     
-    terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
     terrain.color.Reset(width, height);
+    var scale = 1;
     
     if (self.root.el_noise.value) {
         var ww = power(2, ceil(log2(width)));
         var hh = power(2, ceil(log2(height)));
-        var noise = macaw_generate(macaw_white_noise(ww, hh), self.root.el_octaves.value);
-        for (var i = 0; i < width; i++) {
-            for (var j = 0; j < height; j++) {
-                var idx = ((i * height) + j) * 4;
-                buffer_poke(terrain.height_data, idx, buffer_f32, noise[i][j] * real(self.root.el_scale.value));
-            }
-        }
+        terrain.height_data = macaw_generate_dll(ww, hh, self.root.el_octaves.value).noise;
+        scale = real(self.root.el_scale.value);
+    } else {
+        terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
     }
     
     terrain.terrain_buffer = vertex_create_buffer();
@@ -34,10 +31,10 @@ function dmu_dialog_commit_terrain_create() {
     
     for (var i = 0; i < width - 1; i++) {
         for (var j = 0; j < height - 1; j++) {
-            var z00 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 0)) * 4, buffer_f32);
-            var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32);
-            var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32);
-            var z11 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 1)) * 4, buffer_f32);
+            var z00 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 0)) * 4, buffer_f32) * scale;
+            var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32) * scale;
+            var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32) * scale;
+            var z11 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 1)) * 4, buffer_f32) * scale;
             terrain_create_square(terrain.terrain_buffer, i, j, z00, z10, z11, z01);
         }
     }
