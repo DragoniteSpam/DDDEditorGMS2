@@ -105,8 +105,12 @@ var t = get_timer();
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
 color = new (function() constructor {
     self.surface = surface_create(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
+    self.surface_draw = surface_create(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
     self.sprite = -1;
     surface_set_target(self.surface);
+    draw_clear_alpha(c_white, 1);
+    surface_reset_target();
+    surface_set_target(self.surface_draw);
     draw_clear_alpha(c_white, 1);
     surface_reset_target();
     
@@ -133,10 +137,11 @@ color = new (function() constructor {
         draw_clear_alpha(color, 1);
         surface_reset_target();
     };
-    static Paint = function(x, y, radius, color, strength) {
-        surface_set_target(self.surface);
+    static Paint = function(x, y, radius, color) {
+        self.surface_draw = surface_rebuild(self.surface_draw, Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
+        surface_set_target(self.surface_draw);
         shader_set(shd_terrain_paint);
-        draw_sprite_ext(spr_terrain_default_brushes, clamp(self.brush_index, 0, sprite_get_number(spr_terrain_default_brushes) - 1), x, y, radius / 32, radius / 32, 0, color, strength);
+        draw_sprite_ext(spr_terrain_default_brushes, clamp(self.brush_index, 0, sprite_get_number(spr_terrain_default_brushes) - 1), x, y, radius / 32, radius / 32, 0, color, 1);
         shader_reset();
         surface_reset_target();
     };
