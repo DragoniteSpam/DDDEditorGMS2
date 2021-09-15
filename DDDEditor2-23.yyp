@@ -232,6 +232,7 @@
     {"id":{"name":"editor_update_terrain","path":"scripts/editor_update_terrain/editor_update_terrain.yy",},"order":2,},
     {"id":{"name":"terrain_set_z","path":"scripts/terrain_set_z/terrain_set_z.yy",},"order":4,},
     {"id":{"name":"terrain_set_texture","path":"scripts/terrain_set_texture/terrain_set_texture.yy",},"order":8,},
+    {"id":{"name":"shd_outline","path":"shaders/shd_outline/shd_outline.yy",},"order":10,},
     {"id":{"name":"scribble_init","path":"scripts/scribble_init/scribble_init.yy",},"order":4,},
     {"id":{"name":"terrain_mode_z","path":"scripts/terrain_mode_z/terrain_mode_z.yy",},"order":0,},
     {"id":{"name":"terrain_mode_texture","path":"scripts/terrain_mode_texture/terrain_mode_texture.yy",},"order":1,},
