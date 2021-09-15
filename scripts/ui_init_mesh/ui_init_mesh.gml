@@ -570,9 +570,9 @@ function ui_init_mesh(mode) {
             var mode = Stuff.mesh_ed;
             if (!mode.draw_collision) return;
             
-            draw_clear_alpha(c_black, 0);
-            
             surface.mask_surface = surface_rebuild(surface.mask_surface, surface.width, surface.height);
+            surface_set_target(surface.mask_surface);
+            draw_clear_alpha(c_black, 0);
             
             var cam = camera_get_active();
             camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
@@ -610,7 +610,12 @@ function ui_init_mesh(mode) {
                 if (++n > limit) break;
             }
             
+            surface_reset_target();
             matrix_set(matrix_world, matrix_build_identity());
+            shader_set(shd_outline);
+            shader_set_uniform_f(shader_get_uniform(shd_outline, "outline_color"), colour_get_red(c_lime) / 0xff, colour_get_green(c_lime) / 0xff, colour_get_blue(c_lime) / 0xff);
+            draw_clear_alpha(c_black, 0);
+            draw_surface(surface.mask_surface, 0, 0);
             shader_reset();
         }, function() { }, c_black, id);
         element.mask_surface = surface_create(element.width, element.height);
