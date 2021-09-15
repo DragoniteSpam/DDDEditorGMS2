@@ -879,6 +879,7 @@
     {"id":{"name":"Group_Export_Main","path":"scripts/Group_Export_Main/Group_Export_Main.yy",},"order":0,},
     {"id":{"name":"FConsolasItalic","path":"fonts/FConsolasItalic/FConsolasItalic.yy",},"order":6,},
     {"id":{"name":"FConsolasBoldItalic","path":"fonts/FConsolasBoldItalic/FConsolasBoldItalic.yy",},"order":7,},
+    {"id":{"name":"dialog_create_mesh_collision_settings","path":"scripts/dialog_create_mesh_collision_settings/dialog_create_mesh_collision_settings.yy",},"order":42,},
     {"id":{"name":"FComicSans","path":"fonts/FComicSans/FComicSans.yy",},"order":8,},
     {"id":{"name":"scribble_autotype_fade_in","path":"scripts/scribble_autotype_fade_in/scribble_autotype_fade_in.yy",},"order":1,},
     {"id":{"name":"FComicSansBold","path":"fonts/FComicSansBold/FComicSansBold.yy",},"order":9,},

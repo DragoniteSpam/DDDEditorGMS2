@@ -40,7 +40,7 @@ function dialog_create_mesh_other_settings(root, selection) {
     yy += el_center.height + spacing;
     
     var el_collision = create_button(c1x, yy, "Collision shapes", ew, eh, fa_center, function(button) {
-        var mesh = ds_map_find_first(button.root.selection);
+        dialog_create_mesh_collision_settings(button.root, ds_map_find_first(button.root.selection));
     }, dg);
     el_collision.tooltip = "Collision shape data to go with this mesh.";
     el_collision.interactive = (ds_map_size(selection) == 1);

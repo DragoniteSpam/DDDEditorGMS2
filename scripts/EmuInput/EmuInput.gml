@@ -57,6 +57,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     SetRealNumberBounds = function(lower, upper) {
         self._value_lower = min(lower, upper);
         self._value_upper = max(lower, upper);
+        return self;
     }
     
     Render = function(base_x, base_y) {
@@ -88,8 +89,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         scribble_draw(tx, ty, string(text));
         
         if (ValidateInput(_working_value)) {
-            var cast = CastInput(_working_value);
-            if (is_real(cast) && clamp(cast, _value_lower, _value_upper) != cast) {
+            var cast_value = CastInput(_working_value);
+            if (is_real(cast_value) && clamp(cast_value, _value_lower, _value_upper) != cast_value) {
                 c = color_warn;
             }
         } else {
@@ -196,9 +197,9 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 if (ValidateInput(_working_value)) {
                     var execute_value_change = (!_require_enter && v0 != _working_value) || (_require_enter && keyboard_check_pressed(vk_enter));
                     if (execute_value_change) {
-                        var cast = CastInput(_working_value);
-                        if (is_real(cast)) {
-                            execute_value_change = execute_value_change && (clamp(cast, _value_lower, _value_upper) == cast);
+                        var cast_value = CastInput(_working_value);
+                        if (is_real(cast_value)) {
+                            execute_value_change = execute_value_change && (clamp(cast_value, _value_lower, _value_upper) == cast_value);
                         }
 						
                         if (execute_value_change) {
@@ -224,7 +225,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         surface_reset_target();
         #endregion
         
-        draw_surface(_surface, vx1, vy1)
+        draw_surface(_surface, vx1, vy1);
         draw_rectangle_colour(vx1, vy1, vx2, vy2, color, color, color, color, true);
     }
     
@@ -243,8 +244,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         }
         if (self._value_type == E_InputTypes.INT) {
             try {
-                var cast = real(text);
-                if (floor(cast) != cast) success = false;
+                var cast_value = real(text);
+                if (floor(cast_value) != cast_value) success = false;
             } catch (e) {
                 success = false;
             }
@@ -252,7 +253,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         }
         if (self._value_type == E_InputTypes.REAL) {
             try {
-                var cast = real(text);
+                var cast_value = real(text);
             } catch (e) {
                 success = false;
             }
@@ -261,7 +262,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         if (self._value_type == E_InputTypes.HEX) {
             var success = true;
             try {
-                var cast = emu_hex(text);
+                var cast_value = emu_hex(text);
             } catch (e) {
                 success = false;
             }
