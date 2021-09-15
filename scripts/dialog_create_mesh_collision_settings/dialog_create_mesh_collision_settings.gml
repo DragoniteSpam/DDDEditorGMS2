@@ -110,41 +110,41 @@ function dialog_create_mesh_collision_settings(root, selection) {
         new EmuText(c2x, 32, 256, 32, "[c_blue]Shape controls"),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Translation"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(-10000, 10000).SetRootVariableName("trans_x"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].position.x = real(self.value);
+        })).SetRealNumberBounds(-10000, 10000).SetRootVariableName("trans_x").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(-10000, 10000).SetRootVariableName("trans_y"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].position.y = real(self.value);
+        })).SetRealNumberBounds(-10000, 10000).SetRootVariableName("trans_y").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(-10000, 10000).SetRootVariableName("trans_z"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].position.z = real(self.value);
+        })).SetRealNumberBounds(-10000, 10000).SetRootVariableName("trans_z").SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Rotation"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0, 360).SetRootVariableName("rot_x"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].rotation.x = real(self.value);
+        })).SetRealNumberBounds(0, 360).SetRootVariableName("rot_x").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0, 360).SetRootVariableName("rot_y"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].rotation.y = real(self.value);
+        })).SetRealNumberBounds(0, 360).SetRootVariableName("rot_y").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0, 360).SetRootVariableName("rot_z"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].rotation.z = real(self.value);
+        })).SetRealNumberBounds(0, 360).SetRootVariableName("rot_z").SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Scale"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0.001, 100).SetRootVariableName("scale_x"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].scale.x = real(self.value);
+        })).SetRealNumberBounds(0.001, 100).SetRootVariableName("scale_x").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0.001, 100).SetRootVariableName("scale_y"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].scale.y = real(self.value);
+        })).SetRealNumberBounds(0.001, 100).SetRootVariableName("scale_y").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0.001, 100).SetRootVariableName("scale_z"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].scale.z = real(self.value);
+        })).SetRealNumberBounds(0.001, 100).SetRootVariableName("scale_z").SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Other"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "Radius:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0.001, 9999).SetRootVariableName("other_radius"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].radius = real(self.value);
+        })).SetRealNumberBounds(0.001, 9999).SetRootVariableName("other_radius").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "Length:", "", "", 6, E_InputTypes.REAL, function() {
-            
-        })).SetRealNumberBounds(0.001, 9999).SetRootVariableName("other_length"),
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].length = real(self.value);
+        })).SetRealNumberBounds(0.001, 9999).SetRootVariableName("other_length").SetInteractive(false),
         // column 3
         (new EmuRenderSurface(c3x, 32, 720, 480, function(mx, my) {
             draw_clear(c_black);
