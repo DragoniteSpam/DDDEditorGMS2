@@ -111,4 +111,5 @@ enum VertexFormatData {
     SMALL_BITANGENT,                                                            // 4 bytes
     SMALL_TEXCOORD,                                                             // 4 bytes
     SMALL_NORMAL_PLUS_TEXCOORD,                                                 // 4 bytes
+    __COUNT,
 }

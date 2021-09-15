@@ -415,8 +415,8 @@ function MeshSubmesh(source) constructor {
     
     static GetExportedBuffer = function(format_type) {
         if (format_type) {
-            static warn_tangent = 0x01;
-            static warn_bitangent = 0x02;
+            static warn_tangent                                                 = 0x01;
+            static warn_bitangent                                               = 0x02;
             var warnings = 0;
             
             var format = format_type[? "attributes"];
@@ -426,6 +426,7 @@ function MeshSubmesh(source) constructor {
                 var type = format[| f][? "type"];
                 attribute_count++;
                 switch (type) {
+                    // standard
                     case VertexFormatData.POSITION_2D: vertex_new_size += 8; break;
                     case VertexFormatData.POSITION_3D: vertex_new_size += 12; break;
                     case VertexFormatData.NORMAL: vertex_new_size += 12; break;
@@ -433,6 +434,12 @@ function MeshSubmesh(source) constructor {
                     case VertexFormatData.COLOUR: vertex_new_size += 4; break;
                     case VertexFormatData.TANGENT: vertex_new_size += 12; break;
                     case VertexFormatData.BITANGENT: vertex_new_size += 12; break;
+                    // nonstandard
+                    case VertexFormatData.SMALL_NORMAL: vertex_new_size += 4; break;
+                    case VertexFormatData.SMALL_TANGENT: vertex_new_size += 4; break;
+                    case VertexFormatData.SMALL_BITANGENT: vertex_new_size += 4; break;
+                    case VertexFormatData.SMALL_TEXCOORD: vertex_new_size += 4; break;
+                    case VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD: vertex_new_size += 4; break;
                 }
             }
             var vertex_count = buffer_get_size(self.buffer) / VERTEX_SIZE;
@@ -441,7 +448,6 @@ function MeshSubmesh(source) constructor {
             var base_position = 0;
             var formatted_buffer = buffer_create(new_size, buffer_fixed, 1);
             var current_attribute_count = 0;
-            var attributes_used = [false, false, false, false];
             var n_pos = 0;
             
             // what we're really doing here is looping through each *attribute,*
@@ -451,83 +457,79 @@ function MeshSubmesh(source) constructor {
                 var attribute_type = attribute[? "type"];
                 
                 switch (attribute_type) {
+                    // standard attributes
                     case VertexFormatData.POSITION_2D:
                         buffer_write(formatted_buffer, buffer_f32, 0);
                         buffer_write(formatted_buffer, buffer_f32, 0);
                         break;
                     case VertexFormatData.POSITION_3D:
-                        if (!attributes_used[0]) {
-                            attributes_used[0] = true;
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 00, buffer_f32));
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 04, buffer_f32));
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 08, buffer_f32));
-                        } else {
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                        }
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 00, buffer_f32));
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 04, buffer_f32));
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 08, buffer_f32));
                         break;
                     case VertexFormatData.NORMAL:
-                        if (!attributes_used[1]) {
-                            attributes_used[1] = true;
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 12, buffer_f32));
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 16, buffer_f32));
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 20, buffer_f32));
-                        } else {
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                        }
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 12, buffer_f32));
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 16, buffer_f32));
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 20, buffer_f32));
                         break;
                     case VertexFormatData.TEXCOORD:
-                        if (!attributes_used[2]) {
-                            attributes_used[2] = true;
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 24, buffer_f32));
-                            buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 28, buffer_f32));
-                        } else {
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                        }
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 24, buffer_f32));
+                        buffer_write(formatted_buffer, buffer_f32, buffer_peek(self.buffer, base_position + 28, buffer_f32));
                         break;
                     case VertexFormatData.COLOUR:
-                        if (!attributes_used[3]) {
-                            attributes_used[3] = true;
-                            buffer_write(formatted_buffer, buffer_u32, buffer_peek(self.buffer, base_position + 32, buffer_u32));
-                        } else {
-                            buffer_write(formatted_buffer, buffer_u32, 0);
-                        }
+                        buffer_write(formatted_buffer, buffer_u32, buffer_peek(self.buffer, base_position + 32, buffer_u32));
                         break;
                     case VertexFormatData.TANGENT:
-                        if (!attributes_used[1]) {
-                            attributes_used[1] = true;
-                            warnings |= warn_tangent;
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                        } else {
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                        }
+                        warnings |= warn_tangent;
+                        buffer_write(formatted_buffer, buffer_f32, 0);
+                        buffer_write(formatted_buffer, buffer_f32, 0);
+                        buffer_write(formatted_buffer, buffer_f32, 0);
                         break;
                     case VertexFormatData.BITANGENT:
-                        if (!attributes_used[1]) {
-                            attributes_used[1] = true;
-                            warnings |= warn_bitangent;
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                        } else {
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                            buffer_write(formatted_buffer, buffer_f32, 0);
-                        }
+                        warnings |= warn_bitangent;
+                        buffer_write(formatted_buffer, buffer_f32, 0);
+                        buffer_write(formatted_buffer, buffer_f32, 0);
+                        buffer_write(formatted_buffer, buffer_f32, 0);
+                        break;
+                    // nonstandard attributes
+                    case VertexFormatData.SMALL_NORMAL:
+                        var nx = floor(buffer_peek(self.buffer, base_position + 12, buffer_f32) / 2 + 0.5 * 255);
+                        var ny = floor(buffer_peek(self.buffer, base_position + 16, buffer_f32) / 2 + 0.5 * 255);
+                        var nz = floor(buffer_peek(self.buffer, base_position + 20, buffer_f32) / 2 + 0.5 * 255);
+                        buffer_write(formatted_buffer, buffer_u32, (nz << 16) | (ny << 8) | nx);
+                        break;
+                    case VertexFormatData.SMALL_TANGENT:
+                        warnings |= warn_tangent;
+                        var nx = floor(1 /* to do */ / 2 + 0.5 * 255);
+                        var ny = floor(0 /* to do */ / 2 + 0.5 * 255);
+                        var nz = floor(0 /* to do */ / 2 + 0.5 * 255);
+                        buffer_write(formatted_buffer, buffer_u32, (nz << 16) | (ny << 8) | nx);
+                        break;
+                    case VertexFormatData.SMALL_BITANGENT:
+                        warnings |= warn_bitangent;
+                        var nx = floor(0 /* to do */ / 2 + 0.5 * 255);
+                        var ny = floor(1 /* to do */ / 2 + 0.5 * 255);
+                        var nz = floor(0 /* to do */ / 2 + 0.5 * 255);
+                        buffer_write(formatted_buffer, buffer_u32, (nz << 16) | (ny << 8) | nx);
+                        break;
+                    case VertexFormatData.SMALL_TEXCOORD:
+                        var xt = floor(buffer_peek(self.buffer, base_position + 24, buffer_f32) * 255);
+                        var yt = floor(buffer_peek(self.buffer, base_position + 28, buffer_f32) * 255);
+                        buffer_write(formatted_buffer, buffer_u32, (yt << 8) | xt);
+                        break;
+                    case VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD:
+                        var nx = floor(buffer_peek(self.buffer, base_position + 12, buffer_f32) / 2 + 0.5 * 255);
+                        var ny = floor(buffer_peek(self.buffer, base_position + 16, buffer_f32) / 2 + 0.5 * 255);
+                        var nz = floor(buffer_peek(self.buffer, base_position + 20, buffer_f32) / 2 + 0.5 * 255);
+                        var xt = floor(buffer_peek(self.buffer, base_position + 24, buffer_f32) * 15);
+                        var yt = floor(buffer_peek(self.buffer, base_position + 28, buffer_f32) * 15);
+                        var tex = (yt << 4) | xt;
+                        buffer_write(formatted_buffer, buffer_u32, (tex << 24) | (nz << 16) | (ny << 8) | nx);
                         break;
                 }
                 
                 if (current_attribute_count == attribute_count) {
                     current_attribute_count = 0;
-                    attributes_used = [false, false, false, false];
                     base_position += VERTEX_SIZE;
                 }
             }
