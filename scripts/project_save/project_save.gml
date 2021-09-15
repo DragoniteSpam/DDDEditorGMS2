@@ -46,6 +46,7 @@ function project_save() {
 # Export and save the project as a set of DDD files.
 
 " + snap_to_yaml({
+        save_name: Stuff.save_name,
         id: Game.meta.project.id,
         folder: folder_name,
         summary: Game.meta.project.summary,
