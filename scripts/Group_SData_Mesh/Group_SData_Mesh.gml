@@ -97,6 +97,8 @@ function DataMesh(source) : SData(source) constructor {
                 }
             }
         }
+        
+        self.collision_shapes = json_parse(json_stringify(mesh.collision_shapes));
     };
     
     static AddSubmesh = function(submesh, proto_guid) {
