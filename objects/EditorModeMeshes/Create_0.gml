@@ -62,6 +62,21 @@ def_yup = 0;
 def_zup = 1;
 def_fov = 60;
 
+ResetCamera = function() {
+    self.x = self.def_x;
+    self.y = self.def_y;
+    self.z = self.def_z;
+    self.xto = self.def_xto;
+    self.yto = self.def_yto;
+    self.zto = self.def_zto;
+    self.xup = self.def_xup;
+    self.yup = self.def_yup;
+    self.zup = self.def_zup;
+    self.fov = self.def_fov;
+    self.pitch = darctan2(self.z - self.zto, point_distance(self.x, self.y, self.xto, self.yto));
+    self.direction = point_direction(self.x, self.y, self.xto, self.yto);
+};
+
 x = setting_get("mesh", "x", def_x);
 y = setting_get("mesh", "y", def_y);
 z = setting_get("mesh", "z", def_z);

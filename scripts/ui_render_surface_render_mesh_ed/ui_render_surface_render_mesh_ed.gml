@@ -104,21 +104,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     draw_sprite(spr_camera_icons, 2, iconx - sprite_get_width(spr_camera_icons) / 2, icony - sprite_get_height(spr_camera_icons) / 2);
     
     if ((inbounds && Controller.release_left) || keyboard_check(vk_f1)) {
-        mode.x = mode.def_x;
-        mode.y = mode.def_y;
-        mode.z = mode.def_z;
-        
-        mode.xto = mode.def_xto;
-        mode.yto = mode.def_yto;
-        mode.zto = mode.def_zto;
-        
-        mode.xup = mode.def_xup;
-        mode.yup = mode.def_yup;
-        mode.zup = mode.def_zup;
-        
-        mode.fov = mode.def_fov;
-        mode.pitch = darctan2(mode.z - mode.zto, point_distance(mode.x, mode.y, mode.xto, mode.yto));
-        mode.direction = point_direction(mode.x, mode.y, mode.xto, mode.yto);
+        mode.ResetCamera();
     }
     #endregion
 }
