@@ -11,7 +11,73 @@ function dialog_create_mesh_collision_settings(root, selection) {
     var dg = (new EmuDialog(dw, dh, "Collision Shapes")).AddContent([
         // column 1
         (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 10, function() {
-            
+            var selection = self.GetSelection();
+            if (selection + 1) {
+                var shape = self.root.mesh.collision_shapes[selection];
+                self.root.el_trans_x.interactive = false;
+                self.root.el_trans_y.interactive = false;
+                self.root.el_trans_z.interactive = false;
+                self.root.el_rot_x.interactive = false;
+                self.root.el_rot_y.interactive = false;
+                self.root.el_rot_z.interactive = false;
+                self.root.el_scale_x.interactive = false;
+                self.root.el_scale_y.interactive = false;
+                self.root.el_scale_z.interactive = false;
+                self.root.el_other_radius.interactive = false;
+                self.root.el_other_length.interactive = false;
+                switch (shape.type) {
+                    case MeshCollisionShapes.BOX:
+                        self.root.el_trans_x.interactive = true;
+                        self.root.el_trans_x.SetValue(string(shape.position.x));
+                        self.root.el_trans_y.interactive = true;
+                        self.root.el_trans_y.SetValue(string(shape.position.y));
+                        self.root.el_trans_z.interactive = true;
+                        self.root.el_trans_z.SetValue(string(shape.position.z));
+                        self.root.el_rot_x.interactive = true;
+                        self.root.el_rot_x.SetValue(string(shape.rotation.x));
+                        self.root.el_rot_y.interactive = true;
+                        self.root.el_rot_y.SetValue(string(shape.rotation.y));
+                        self.root.el_rot_z.interactive = true;
+                        self.root.el_rot_z.SetValue(string(shape.rotation.z));
+                        self.root.el_scale_x.interactive = true;
+                        self.root.el_scale_x.SetValue(string(shape.scale.x));
+                        self.root.el_scale_y.interactive = true;
+                        self.root.el_scale_y.SetValue(string(shape.scale.y));
+                        self.root.el_scale_z.interactive = true;
+                        self.root.el_scale_z.SetValue(string(shape.scale.z));
+                        break;
+                    case MeshCollisionShapes.CAPSULE:
+                        self.root.el_trans_x.interactive = true;
+                        self.root.el_trans_x.SetValue(string(shape.position.x));
+                        self.root.el_trans_y.interactive = true;
+                        self.root.el_trans_y.SetValue(string(shape.position.y));
+                        self.root.el_trans_z.interactive = true;
+                        self.root.el_trans_z.SetValue(string(shape.position.z));
+                        self.root.el_rot_x.interactive = true;
+                        self.root.el_rot_x.SetValue(string(shape.rotation.x));
+                        self.root.el_rot_y.interactive = true;
+                        self.root.el_rot_y.SetValue(string(shape.rotation.y));
+                        self.root.el_rot_z.interactive = true;
+                        self.root.el_rot_z.SetValue(string(shape.rotation.z));
+                        self.root.el_other_radius.interactive = true;
+                        self.root.el_other_radius.SetValue(string(shape.radius));
+                        self.root.el_other_length.interactive = true;
+                        self.root.el_other_length.SetValue(string(shape.length));
+                        break;
+                    case MeshCollisionShapes.SPHERE:
+                        self.root.el_trans_x.interactive = true;
+                        self.root.el_trans_x.SetValue(string(shape.position.x));
+                        self.root.el_trans_y.interactive = true;
+                        self.root.el_trans_y.SetValue(string(shape.position.y));
+                        self.root.el_trans_z.interactive = true;
+                        self.root.el_trans_z.SetValue(string(shape.position.z));
+                        self.root.el_other_radius.interactive = true;
+                        self.root.el_other_radius.SetValue(string(shape.radius));
+                        break;
+                    case MeshCollisionShapes.TRIMESH:
+                        break;
+                }
+            }
         })).SetList(Game.meshes[selection].collision_shapes).SetEntryTypes(E_ListEntryTypes.STRUCTS).SetRootVariableName("list"),
         (new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Sphere", function() {
             self.root.mesh.AddCollisionShape(MeshCollisionShapeSphere);

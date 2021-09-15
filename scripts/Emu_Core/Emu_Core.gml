@@ -33,10 +33,12 @@ function EmuCore(x, y, w, h) constructor {
     self._next = noone;
     self._previous = noone;
     self._element_spacing_y = 16;
+    self._ref_name = "";
     
     static SetRootVariableName = function(name) {
+        self._ref_name = "el_" + name;
         if (self.root) {
-            self.root[$ "el_" + name] = self;
+            self.root[$ self._ref_name] = self;
         }
         return self;
     };
@@ -57,6 +59,9 @@ function EmuCore(x, y, w, h) constructor {
             }
             ds_list_add(self._contents, thing);
             thing.root = self;
+            if (thing._ref_name != "") {
+                self[$ thing._ref_name] = thing;
+            }
         }
         return self;
     }
