@@ -11,6 +11,8 @@ function DataMesh(source) : SData(source) constructor {
     self.proto_guid_current = 0;
     self.first_proto_guid = NULL;
     
+    self.collision_shapes = [];
+    
     /* s */ self.xmin = 0;
     /* s */ self.ymin = 0;
     /* s */ self.zmin = 0;
@@ -278,6 +280,35 @@ function DataMesh(source) : SData(source) constructor {
     };
 }
 
+function MeshCollisionShape() constructor {
+    self.position = { x: 0, y: 0, z: 0 };
+    self.asset_flags = 0xffffffff;
+    self.type = -1;
+}
+
+function MeshCollisionShapeAABB() : MeshCollisionShape() constructor {
+    self.rotation = { x: 0, y: 0, z: 0 };
+    self.scale = { x: 1, y: 1, z: 1 };
+    self.type = MeshCollisionShapes.AABB;
+}
+
+function MeshCollisionShapeSphere() : MeshCollisionShape() constructor {
+    self.radius = 1;
+    self.type = MeshCollisionShapes.SPHERE;
+}
+
+function MeshCollisionShapeCapsule() : MeshCollisionShape() constructor {
+    self.rotation = { x: 0, y: 0, z: 0 };
+    self.radius = 1;
+    self.length = 4;
+    self.type = MeshCollisionShapes.CAPSULE;
+}
+
+function MeshCollisionShapeTrimesh() : MeshCollisionShape() constructor {
+    self.triangles = [];
+    self.type = MeshCollisionShapes.TRIMESH;
+}
+
 enum MeshTypes {
     RAW,
     SMF
@@ -291,4 +322,11 @@ enum MeshFlags {
 enum MeshTextureSlots {
     BASE, AMBIENT, SPEC_COLOR, SPEC_HIGHLIGHT, ALPHA, BUMP, DISPLACEMENT, STENCIL,
     _COUNT
+}
+
+enum MeshCollisionShapes {
+    SPHERE,
+    CAPSULE,
+    AABB,
+    TRIMESH,
 }
