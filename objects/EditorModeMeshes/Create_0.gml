@@ -105,4 +105,10 @@ enum VertexFormatData {
     COLOUR,
     TANGENT,
     BITANGENT,
+    // special things
+    SMALL_NORMAL,                                                               // 4 bytes
+    SMALL_TANGENT,                                                              // 4 bytes
+    SMALL_BITANGENT,                                                            // 4 bytes
+    SMALL_TEXCOORD,                                                             // 4 bytes
+    SMALL_NORMAL_PLUS_TEXCOORD,                                                 // 4 bytes
 }

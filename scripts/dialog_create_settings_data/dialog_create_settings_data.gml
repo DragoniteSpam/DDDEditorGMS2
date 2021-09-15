@@ -100,29 +100,59 @@ function dialog_create_settings_data(dialog) {
     yy += el_base_chunk_size.height + spacing;
     
     var el_export_vertex_format = create_button(col1_x, yy, "Exported Vertex Format", ew, eh, fa_middle, function(button) {
-        var dialog = new EmuDialog(320, 288, "Exported vertex format attributes");
+        var dialog = new EmuDialog(640, 384, "Exported vertex format attributes");
+        var c1x = 32;
+        var c2x = 352;
         dialog.AddContent([
-            new EmuCheckbox(32, 32, 256, 32, "Position", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.POSITION_3D)), function() {
+            new EmuText(c1x, 32, 256, 32, "[c_blue]Standards attributes"),
+            new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Position", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.POSITION_3D)), function() {
                 var flag = 1 << VertexFormatData.POSITION_3D;
                 Game.meta.export.vertex_format &= ~flag;
                 if (self.value) Game.meta.export.vertex_format |= flag;
             }).SetInteractive(false),
-            new EmuCheckbox(32, EMU_AUTO, 256, 32, "Normal", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.NORMAL)), function() {
+            new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Normal", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.NORMAL)), function() {
                 var flag = 1 << VertexFormatData.NORMAL;
                 Game.meta.export.vertex_format &= ~flag;
                 if (self.value) Game.meta.export.vertex_format |= flag;
             }),
-            new EmuCheckbox(32, EMU_AUTO, 256, 32, "Texture", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.TEXCOORD)), function() {
+            new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Texture", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.TEXCOORD)), function() {
                 var flag = 1 << VertexFormatData.TEXCOORD;
                 Game.meta.export.vertex_format &= ~flag;
                 if (self.value) Game.meta.export.vertex_format |= flag;
             }),
-            new EmuCheckbox(32, EMU_AUTO, 256, 32, "Color", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.COLOUR)), function() {
+            new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Color", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.COLOUR)), function() {
                 var flag = 1 << VertexFormatData.COLOUR;
                 Game.meta.export.vertex_format &= ~flag;
                 if (self.value) Game.meta.export.vertex_format |= flag;
             }),
-            new EmuButton(160 - 40, EMU_AUTO, 80, 32, "Done", function() {
+            
+            new EmuText(c2x, 32, 256, 32, "[c_blue]Nonstandard attributes"),
+            new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.SMALL_NORMAL)), function() {
+                var flag = 1 << VertexFormatData.SMALL_NORMAL;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small tangent", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.SMALL_TANGENT)), function() {
+                var flag = 1 << VertexFormatData.SMALL_TANGENT;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small bitangent", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.SMALL_BITANGENT)), function() {
+                var flag = 1 << VertexFormatData.SMALL_BITANGENT;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small texcoord", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.SMALL_TEXCOORD)), function() {
+                var flag = 1 << VertexFormatData.SMALL_TEXCOORD;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal plus texcoord", !!(Game.meta.export.vertex_format & (1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD)), function() {
+                var flag = 1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD;
+                Game.meta.export.vertex_format &= ~flag;
+                if (self.value) Game.meta.export.vertex_format |= flag;
+            }),
+            new EmuButton(dialog.width / 2 - 40, EMU_AUTO, 80, 32, "Done", function() {
                 self.root.Dispose();
             }),
         ]);
