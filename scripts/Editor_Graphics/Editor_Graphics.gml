@@ -89,6 +89,10 @@ function EditorGraphics() constructor {
         self.mesh_missing = qmark_data[0];
         self.mesh_missing_data = qmark_data[1];
         
+        self.centered_sphere = import_d3d("data/basic/centered-sphere.d3d", false, false);
+        self.centered_cube = import_d3d("data/basic/centered-cube.d3d", false, false);
+        self.centered_capsule = import_d3d("data/basic/centered-capsule.d3d", false, false);
+        
         self.water_tile_size = 0x1000;
         self.water_reptition = 80;
         self.water_units = 80;
