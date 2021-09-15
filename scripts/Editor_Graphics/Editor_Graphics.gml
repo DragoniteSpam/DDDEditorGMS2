@@ -221,45 +221,73 @@ function EditorGraphics() constructor {
         vertex_begin(self.wire_box, self.vertex_format);
         var s = 0.5;
         // bottom
-        vertex_point_line(self.wire_box, -s, -s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s, -s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s, -s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s,  s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s, -s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s,  s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s,  s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s,  s, -s, c_aqua, 1);
+        vertex_point_line(self.wire_box, -s, -s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s, -s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s, -s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s,  s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s, -s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s,  s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s,  s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s,  s, -s, c_lime, 1);
         // top
-        vertex_point_line(self.wire_box, -s, -s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s, -s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s, -s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s,  s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s, -s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s,  s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s,  s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s,  s,  s, c_aqua, 1);
+        vertex_point_line(self.wire_box, -s, -s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s, -s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s, -s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s,  s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s, -s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s,  s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s,  s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s,  s,  s, c_lime, 1);
         // pillars
-        vertex_point_line(self.wire_box, -s, -s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s, -s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s, -s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s, -s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s,  s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box, -s,  s,  s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s,  s, -s, c_aqua, 1);
-        vertex_point_line(self.wire_box,  s,  s,  s, c_aqua, 1);
+        vertex_point_line(self.wire_box, -s, -s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s, -s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s, -s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s, -s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s,  s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box, -s,  s,  s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s,  s, -s, c_lime, 1);
+        vertex_point_line(self.wire_box,  s,  s,  s, c_lime, 1);
         vertex_end(self.wire_box);
         
         self.wire_sphere = vertex_create_buffer();
         vertex_begin(self.wire_sphere, self.vertex_format);
         var r = 0.5;
         for (var i = 0; i < 360; i += 15) {
-            vertex_point_line(self.wire_sphere, 0, r * dcos(i     ), -r * dsin(i     ), c_aqua, 1);
-            vertex_point_line(self.wire_sphere, 0, r * dcos(i + 15), -r * dsin(i + 15), c_aqua, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i     ), 0, -r * dsin(i     ), c_aqua, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i + 15), 0, -r * dsin(i + 15), c_aqua, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i     ), -r * dsin(i     ), 0, c_aqua, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i + 15), -r * dsin(i + 15), 0, c_aqua, 1);
+            vertex_point_line(self.wire_sphere, 0, r * dcos(i     ), -r * dsin(i     ), c_lime, 1);
+            vertex_point_line(self.wire_sphere, 0, r * dcos(i + 15), -r * dsin(i + 15), c_lime, 1);
+            vertex_point_line(self.wire_sphere, r * dcos(i     ), 0, -r * dsin(i     ), c_lime, 1);
+            vertex_point_line(self.wire_sphere, r * dcos(i + 15), 0, -r * dsin(i + 15), c_lime, 1);
+            vertex_point_line(self.wire_sphere, r * dcos(i     ), -r * dsin(i     ), 0, c_lime, 1);
+            vertex_point_line(self.wire_sphere, r * dcos(i + 15), -r * dsin(i + 15), 0, c_lime, 1);
         }
         vertex_end(self.wire_sphere);
+        
+        self.wire_capsule = vertex_create_buffer();
+        vertex_begin(self.wire_capsule, self.vertex_format);
+        r = 0.5;
+        var l = 1;
+        for (var i = 0; i < 180; i += 15) {
+            // bottom
+            vertex_point_line(self.wire_capsule, 0, r * dcos(i     ), -r * dsin(i     ) - l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, 0, r * dcos(i + 15), -r * dsin(i + 15) - l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i     ), 0, -r * dsin(i     ) - l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i + 15), 0, -r * dsin(i + 15) - l, c_lime, 1);
+            // top
+            vertex_point_line(self.wire_capsule, 0, r * dcos(i     ),  r * dsin(i     ) + l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, 0, r * dcos(i + 15),  r * dsin(i + 15) + l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i     ), 0,  r * dsin(i     ) + l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i + 15), 0,  r * dsin(i + 15) + l, c_lime, 1);
+        }
+        for (var i = 0; i < 360; i += 15) {
+            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), -l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i + 15), -r * dsin(i + 15), -l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), +l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i + 15), -r * dsin(i + 15), +l, c_lime, 1);
+        }
+        for (var i = 0; i < 360; i += 90) {
+            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), -l, c_lime, 1);
+            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), +l, c_lime, 1);
+        }
+        vertex_end(self.wire_capsule);
     };
 }
