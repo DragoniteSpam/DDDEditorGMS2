@@ -40,10 +40,12 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         _entries = _list;
         _own_entries = false;
         ClearSelection();
+        return self;
     }
     
     SetEntryTypes = function(_type) {
         entries_are = _type;
+        return self;
     }
     
     SetMultiSelect = function(_multi_select, _auto, _toggle) {

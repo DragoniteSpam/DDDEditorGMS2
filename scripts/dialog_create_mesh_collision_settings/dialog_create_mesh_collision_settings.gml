@@ -8,31 +8,37 @@ function dialog_create_mesh_collision_settings(root, selection) {
     var c2x = 352;
     var c3x = 672;
     
-    return (new EmuDialog(dw, dh, "Collision Shapes")).AddContent([
+    var dg = (new EmuDialog(dw, dh, "Collision Shapes")).AddContent([
         // column 1
-        new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 10, function() {
+        (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 10, function() {
             
-        }),
+        })).SetList(Game.meshes[selection].collision_shapes).SetEntryTypes(E_ListEntryTypes.STRUCTS),
         new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Sphere", function() {
-            
+            self.root.mesh.AddCollisionShape(MeshCollisionShapeSphere);
         }),
-        new EmuButton(c1x, EMU_AUTO, 256, 24, "Add AABB", function() {
-            
+        new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Box", function() {
+            self.root.mesh.AddCollisionShape(MeshCollisionShapeBox);
         }),
         new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Capsule", function() {
-            
+            self.root.mesh.AddCollisionShape(MeshCollisionShapeCapsule);
         }),
         new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Trimesh (from mesh)", function() {
-            
+            //var trimesh = self.root.mesh.AddCollisionShape(MeshCollisionShapeTrimesh);
         }),
         new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Trimesh (from file)", function() {
-            
+            //var trimesh = self.root.mesh.AddCollisionShape(MeshCollisionShapeTrimesh);
         }),
         new EmuButton(c1x, EMU_AUTO, 256, 24, "Delete Shape", function() {
-            
+            var selection = self.root._contents[| 0].GetSelection();
+            if (selection + 1) {
+                self.root.mesh.DeleteCollisionShape(selection);
+            }
         }),
         new EmuInput(c1x, EMU_AUTO, 256, 24, "Shape name:", "", "name", 32, E_InputTypes.STRING, function() {
-            
+            var selection = self.root._contents[| 0].GetSelection();
+            if (selection + 1) {
+                self.root.mesh.RenameCollisionShape(selection, self.value);
+            }
         }),
         // column 2
         new EmuText(c2x, 32, 256, 32, "[c_blue]Shape controls"),
@@ -85,4 +91,8 @@ function dialog_create_mesh_collision_settings(root, selection) {
             self.root.Dispose();
         }),
     ]);
+    
+    dg.mesh = Game.meshes[selection];
+    
+    return dg;
 }

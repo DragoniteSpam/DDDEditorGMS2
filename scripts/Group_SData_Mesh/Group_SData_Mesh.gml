@@ -180,7 +180,9 @@ function DataMesh(source) : SData(source) constructor {
     };
     
     static AddCollisionShape = function(type) {
-        array_push(self.collision_shapes, new type());
+        var shape = new type();
+        array_push(self.collision_shapes, shape);
+        return self.collision_shapes[array_length(self.collision_shapes) - 1];
     };
     
     static RenameCollisionShape = function(index, name) {
