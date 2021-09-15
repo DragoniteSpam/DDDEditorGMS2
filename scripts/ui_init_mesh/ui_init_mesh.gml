@@ -580,6 +580,7 @@ function ui_init_mesh(mode) {
             camera_apply(cam);
             
             shader_set(shd_solid_color);
+            shader_set_uniform_f(shader_get_uniform(shd_solid_color, "col"), 1, 1, 1, 0.1);
             
             var mesh_list = surface.root.mesh_list;
             var n = 0;
