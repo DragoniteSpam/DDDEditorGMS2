@@ -565,6 +565,54 @@ function ui_init_mesh(mode) {
         
         element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
         ds_list_add(contents, element);
+        
+        element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, function(surface, x1, y1, x2, y2) {
+            var mode = Stuff.mesh_ed;
+            if (!mode.draw_collision) return;
+            
+            draw_clear_alpha(c_black, 0);
+            
+            surface.mask_surface = surface_rebuild(surface.mask_surface, surface.width, surface.height);
+            
+            var cam = camera_get_active();
+            camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
+            camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -surface.width / surface.height, CAMERA_ZNEAR, CAMERA_ZFAR));
+            camera_apply(cam);
+            
+            var mesh_list = surface.root.mesh_list;
+            var n = 0;
+            var limit = 10;
+            var tex_none = -1;
+            for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
+                var mesh_data = Game.meshes[index];
+                
+                for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
+                    var shape = mesh_data.collision_shapes[i];
+                    switch (shape.type) {
+                        case MeshCollisionShapes.BOX:
+                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
+                            vertex_submit(Stuff.graphics.centered_cube, pr_trianglelist, tex_none);
+                            break;
+                        case MeshCollisionShapes.CAPSULE:
+                            // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
+                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
+                            vertex_submit(Stuff.graphics.centered_capsule, pr_trianglelist, tex_none);
+                            break;
+                        case MeshCollisionShapes.SPHERE:
+                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
+                            vertex_submit(Stuff.graphics.centered_sphere, pr_trianglelist, tex_none);
+                            break;
+                    }
+                }
+                
+                if (++n > limit) break;
+            }
+            
+            matrix_set(matrix_world, matrix_build_identity());
+            
+        }, function() { }, c_black, id);
+        element.mask_surface = surface_create(element.width, element.height);
+        ds_list_add(contents, element);
         yy += element.height + spacing;
         
         var yy_base_rs = yy;
