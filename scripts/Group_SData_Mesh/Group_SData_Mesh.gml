@@ -245,6 +245,8 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0; i < array_length(self.submeshes); i++) {
             self.submeshes[i].Export(buffer);
         }
+        
+        throw "to do - serialize collision shapes";
     };
     
     static CreateJSONMesh = function() {
