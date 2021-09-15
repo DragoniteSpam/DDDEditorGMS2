@@ -56,6 +56,12 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0; i < array_length(source.submeshes); i++) {
             self.AddSubmesh(new MeshSubmesh(source.submeshes[i]), source.submeshes[i].proto_guid);
         }
+        
+        try {
+            self.collision_shapes = source.collision_shapes;
+        } catch (e) {
+            self.collision_shapes = [];
+        }
     }
     
     self.CopyPropertiesFrom = function(mesh) {
