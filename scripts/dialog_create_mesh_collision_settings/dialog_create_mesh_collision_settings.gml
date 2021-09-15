@@ -141,7 +141,7 @@ function dialog_create_mesh_collision_settings(root, selection) {
         })).SetRealNumberBounds(0.001, 100).SetRootVariableName("scale_z").SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Other"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "Radius:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].radius = real(self.value);
+            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].radiuxs = real(self.value);
         })).SetRealNumberBounds(0.001, 9999).SetRootVariableName("other_radius").SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "Length:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].length = real(self.value);

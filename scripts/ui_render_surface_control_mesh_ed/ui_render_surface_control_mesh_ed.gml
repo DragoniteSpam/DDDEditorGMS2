@@ -2,8 +2,8 @@ function ui_render_surface_control_mesh_ed(surface, x1, y1, x2, y2) {
     var mx = mouse_x_view;
     var my = mouse_y_view;
     var mode = Stuff.mesh_ed;
-
-    if (point_in_rectangle(mx, my, x1, y1, x2, y2) && dialog_is_active(surface.root)) {
+    
+    if (point_in_rectangle(mx, my, x1, y1, x2, y2) && (dialog_is_active(surface.root) || (EmuOverlay.GetTop() && EmuOverlay.GetTop().active_shade == 0))) {
         ui_activate(surface);
         var xspeed = 0;
         var yspeed = 0;
