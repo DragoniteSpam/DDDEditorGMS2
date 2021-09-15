@@ -40,7 +40,7 @@ function get_open_filename_image() {
 }
 
 function get_open_filename_mesh() {
-    return __get_open_filename_general("Any valid mesh file|*.d3d;*.gmmod;*.obj;*.smf;*.qma;|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|drago's newer file format|*.qma", "", Settings.location.mesh, "Select a 3D model file", function(directory) {
+    return __get_open_filename_general("Any valid mesh file|*.d3d;*.gmmod;*.obj;*.dae;*.smf;*.qma;|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|Collada models|*.dae|drago's newer file format|*.qma", "", Settings.location.mesh, "Select a 3D model file", function(directory) {
         Settings.location.mesh = directory;
     });
 }
