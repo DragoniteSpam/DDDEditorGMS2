@@ -179,6 +179,18 @@ function DataMesh(source) : SData(source) constructor {
         array_delete(submeshes, index, 1);
     };
     
+    static AddCollisionShape = function(type) {
+        array_push(self.collision_shapes, new type());
+    };
+    
+    static RenameCollisionShape = function(index, name) {
+        self.collision_shapes[index].name = name;
+    }
+    
+    static DeleteCollisionShape = function(index) {
+        array_delete(self.collision_shapes, index, 1);
+    }
+    
     static LoadAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
@@ -281,23 +293,27 @@ function DataMesh(source) : SData(source) constructor {
 }
 
 function MeshCollisionShape() constructor {
+    self.name = "shape";
     self.position = { x: 0, y: 0, z: 0 };
     self.asset_flags = 0xffffffff;
     self.type = -1;
 }
 
-function MeshCollisionShapeAABB() : MeshCollisionShape() constructor {
+function MeshCollisionShapeBox() : MeshCollisionShape() constructor {
+    self.name = "Box";
     self.rotation = { x: 0, y: 0, z: 0 };
     self.scale = { x: 1, y: 1, z: 1 };
-    self.type = MeshCollisionShapes.AABB;
+    self.type = MeshCollisionShapes.BOX;
 }
 
 function MeshCollisionShapeSphere() : MeshCollisionShape() constructor {
+    self.name = "Sphere";
     self.radius = 1;
     self.type = MeshCollisionShapes.SPHERE;
 }
 
 function MeshCollisionShapeCapsule() : MeshCollisionShape() constructor {
+    self.name = "Capsule";
     self.rotation = { x: 0, y: 0, z: 0 };
     self.radius = 1;
     self.length = 4;
@@ -305,6 +321,7 @@ function MeshCollisionShapeCapsule() : MeshCollisionShape() constructor {
 }
 
 function MeshCollisionShapeTrimesh() : MeshCollisionShape() constructor {
+    self.name = "Trimesh";
     self.triangles = [];
     self.type = MeshCollisionShapes.TRIMESH;
 }
@@ -327,6 +344,6 @@ enum MeshTextureSlots {
 enum MeshCollisionShapes {
     SPHERE,
     CAPSULE,
-    AABB,
+    BOX,
     TRIMESH,
 }
