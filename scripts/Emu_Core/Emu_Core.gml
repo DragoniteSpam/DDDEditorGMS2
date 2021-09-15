@@ -34,6 +34,13 @@ function EmuCore(x, y, w, h) constructor {
     self._previous = noone;
     self._element_spacing_y = 16;
     
+    static SetRootVariableName = function(name) {
+        if (self.root) {
+            self.root[$ "el_" + name] = self;
+        }
+        return self;
+    };
+    
     static AddContent = function(elements) {
         if (!is_array(elements)) {
             elements = [elements];
