@@ -1,12 +1,14 @@
-#macro MACAW_VERSION "0.0.1"
+#macro MACAW_VERSION "1.0.2"
 
 global.__macaw_seed = 0;
 
-function macaw_generate_dll(w, h, octaves) {
+function macaw_generate_dll(w, h, octaves, height) {
     var perlin = buffer_create(w * h * 4, buffer_fixed, 4);
     
     if (os_type == os_windows && os_browser == browser_not_a_browser) {
-        __macaw_generate(buffer_get_address(perlin), w, h, octaves);
+        __macaw_set_octaves(octaves);
+        __macaw_set_height(height);
+        __macaw_generate(buffer_get_address(perlin), w, h);
     } else {
         show_message("DLL version not supported on this target platform - please use the GML version instead");
     }
@@ -18,13 +20,13 @@ function macaw_generate_dll(w, h, octaves) {
     };
 }
 
-function macaw_generate(w, h, octave_count) {
+function macaw_generate(w, h, octave_count, height) {
     static macaw_white_noise = function(w, h) {
         var current_seed = random_get_seed();
         random_set_seed(global.__macaw_seed);
         var array = array_create(w * h);
         var i = 0;
-        repeat (i) {
+        repeat (w) {
             var j = 0;
             repeat (h) {
                 array[@ i * h + j++] = random(1);
@@ -107,7 +109,7 @@ function macaw_generate(w, h, octave_count) {
     
     var index = 0;
     repeat (len / 4) {
-        buffer_poke(perlin, index, buffer_f32, buffer_peek(perlin, index, buffer_f32) / total_amplitude);
+        buffer_poke(perlin, index, buffer_f32, buffer_peek(perlin, index, buffer_f32) / total_amplitude * height);
         index += 4;
     }
     
@@ -123,7 +125,7 @@ function macaw_to_sprite(macaw) {
     var noise = macaw.noise;
     buffer_seek(noise, buffer_seek_start, 0);
     repeat (macaw.width * macaw.height) {
-        var intensity = floor(buffer_read(noise, buffer_f32) * 255);
+        var intensity = floor(buffer_read(noise, buffer_f32));
         var c = 0xff000000 | make_colour_rgb(intensity, intensity, intensity);
         buffer_write(buffer, buffer_u32, c);
     }

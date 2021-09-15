@@ -17,9 +17,8 @@
   "installdir": "",
   "files": [
     {"filename":"Macaw.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"macaw_generate","kind":1,"help":"macaw_generate(destination_buffer, w, h, octaves)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"macaw_generate","kind":1,"help":"macaw_generate(destination_buffer, w, h, octaves, max_height)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
-            2,
             2,
             2,
           ],"resourceVersion":"1.0","name":"__macaw_generate","tags":[],"resourceType":"GMExtensionFunction",},
@@ -27,10 +26,18 @@
             2,
           ],"resourceVersion":"1.0","name":"__macaw_set_seed","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"macaw_version","kind":1,"help":"macaw_version()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"__macaw_version","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"macaw_set_octaves","kind":1,"help":"__macaw_set_octaves(octavse)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+          ],"resourceVersion":"1.0","name":"__macaw_set_octaves","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"macaw_set_height","kind":1,"help":"__macaw_set_height(height)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+          ],"resourceVersion":"1.0","name":"__macaw_set_height","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":35184372088896,"order":[
         {"name":"__macaw_generate","path":"extensions/MacawDLL/MacawDLL.yy",},
         {"name":"__macaw_set_seed","path":"extensions/MacawDLL/MacawDLL.yy",},
         {"name":"__macaw_version","path":"extensions/MacawDLL/MacawDLL.yy",},
+        {"name":"__macaw_set_octaves","path":"extensions/MacawDLL/MacawDLL.yy",},
+        {"name":"__macaw_set_height","path":"extensions/MacawDLL/MacawDLL.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",

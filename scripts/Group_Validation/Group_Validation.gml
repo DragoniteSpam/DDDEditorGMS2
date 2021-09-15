@@ -32,7 +32,6 @@ function validate_hex(str) {
 function validate_int(str) {
     if (string_length(str) == 0) return false;
     return regex("((\\+)|(\\-))?(\\d)+", str);
-
 }
 
 function validate_int_create_map_size(str, input) {
