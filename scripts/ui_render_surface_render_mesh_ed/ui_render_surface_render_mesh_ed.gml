@@ -45,6 +45,9 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
     #endregion
     
+    // so that gmedit stops yelling at me
+    var tex_none = -1;
+    
     gpu_set_cullmode(Stuff.mesh_ed.draw_back_faces ? cull_noculling : cull_counterclockwise);
     transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
     var n = 0;
@@ -64,9 +67,31 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                     var reflect_vbuffer = mesh_data.submeshes[sm_index].reflect_vbuffer;
                     var reflect_wbuffer = mesh_data.submeshes[sm_index].reflect_wbuffer;
                     if (mode.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, this_tex);
-                    if (mode.draw_wireframes && wbuffer) vertex_submit(wbuffer, pr_linelist, -1);
+                    if (mode.draw_wireframes && wbuffer) vertex_submit(wbuffer, pr_linelist, tex_none);
                     if (mode.draw_reflections && mode.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
-                    if (mode.draw_reflections && mode.draw_wireframes && reflect_wbuffer) vertex_submit(reflect_wbuffer, pr_linelist, -1);
+                    if (mode.draw_reflections && mode.draw_wireframes && reflect_wbuffer) vertex_submit(reflect_wbuffer, pr_linelist, tex_none);
+                    
+                    if (mode.draw_collision) {
+                        for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
+                            var shape = mesh_data.collision_shapes[i];
+                            switch (shape.type) {
+                                case MeshCollisionShapes.BOX:
+                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
+                                    vertex_submit(Stuff.graphics.wire_box, pr_linelist, tex_none);
+                                    break;
+                                case MeshCollisionShapes.CAPSULE:
+                                    // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
+                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
+                                    vertex_submit(Stuff.graphics.wire_capsule, pr_linelist, tex_none);
+                                    break;
+                                case MeshCollisionShapes.SPHERE:
+                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
+                                    vertex_submit(Stuff.graphics.wire_sphere, pr_linelist, tex_none);
+                                    break;
+                            }
+                        }
+                        matrix_set(matrix_world, matrix_build_identity());
+                    }
                 }
                 break;
         }
