@@ -579,6 +579,8 @@ function ui_init_mesh(mode) {
             camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -surface.width / surface.height, CAMERA_ZNEAR, CAMERA_ZFAR));
             camera_apply(cam);
             
+            shader_set(shd_solid_color);
+            
             var mesh_list = surface.root.mesh_list;
             var n = 0;
             var limit = 10;
@@ -609,7 +611,7 @@ function ui_init_mesh(mode) {
             }
             
             matrix_set(matrix_world, matrix_build_identity());
-            
+            shader_reset();
         }, function() { }, c_black, id);
         element.mask_surface = surface_create(element.width, element.height);
         ds_list_add(contents, element);

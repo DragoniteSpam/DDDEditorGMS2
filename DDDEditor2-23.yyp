@@ -279,6 +279,7 @@
     {"id":{"name":"mesh_create_submesh","path":"scripts/mesh_create_submesh/mesh_create_submesh.yy",},"order":4,},
     {"id":{"name":"scribble_set_ignore_command_tags","path":"scripts/scribble_set_ignore_command_tags/scribble_set_ignore_command_tags.yy",},"order":6,},
     {"id":{"name":"scribble_page_on_last","path":"scripts/scribble_page_on_last/scribble_page_on_last.yy",},"order":2,},
+    {"id":{"name":"shd_solid_color","path":"shaders/shd_solid_color/shd_solid_color.yy",},"order":9,},
     {"id":{"name":"entity_effect_position_colliders","path":"scripts/entity_effect_position_colliders/entity_effect_position_colliders.yy",},"order":0,},
     {"id":{"name":"entity_effect_colliders_active","path":"scripts/entity_effect_colliders_active/entity_effect_colliders_active.yy",},"order":1,},
     {"id":{"name":"component_axis_down","path":"scripts/component_axis_down/component_axis_down.yy",},"order":0,},
