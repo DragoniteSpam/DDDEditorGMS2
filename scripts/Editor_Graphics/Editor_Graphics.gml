@@ -212,5 +212,37 @@ function EditorGraphics() constructor {
         self.grid = undefined;
         self.grid_centered = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
-    }
+        
+        self.wire_box = vertex_create_buffer();
+        vertex_begin(self.wire_box, self.vertex_format);
+        var s = 0.5;
+        // bottom
+        vertex_point_line(self.wire_box, -s, -s, -s, c_red, 1);
+        vertex_point_line(self.wire_box,  s, -s, -s, c_red, 1);
+        vertex_point_line(self.wire_box, -s, -s, -s, c_red, 1);
+        vertex_point_line(self.wire_box, -s,  s, -s, c_red, 1);
+        vertex_point_line(self.wire_box,  s, -s, -s, c_red, 1);
+        vertex_point_line(self.wire_box,  s,  s, -s, c_red, 1);
+        vertex_point_line(self.wire_box,  s,  s, -s, c_red, 1);
+        vertex_point_line(self.wire_box, -s,  s, -s, c_red, 1);
+        // top
+        vertex_point_line(self.wire_box, -s, -s,  s, c_red, 1);
+        vertex_point_line(self.wire_box,  s, -s,  s, c_red, 1);
+        vertex_point_line(self.wire_box, -s, -s,  s, c_red, 1);
+        vertex_point_line(self.wire_box, -s,  s,  s, c_red, 1);
+        vertex_point_line(self.wire_box,  s, -s,  s, c_red, 1);
+        vertex_point_line(self.wire_box,  s,  s,  s, c_red, 1);
+        vertex_point_line(self.wire_box,  s,  s,  s, c_red, 1);
+        vertex_point_line(self.wire_box, -s,  s,  s, c_red, 1);
+        // pillars
+        vertex_point_line(self.wire_box, -s, -s, -s, c_red, 1);
+        vertex_point_line(self.wire_box, -s, -s,  s, c_red, 1);
+        vertex_point_line(self.wire_box,  s, -s, -s, c_red, 1);
+        vertex_point_line(self.wire_box,  s, -s,  s, c_red, 1);
+        vertex_point_line(self.wire_box, -s,  s, -s, c_red, 1);
+        vertex_point_line(self.wire_box, -s,  s,  s, c_red, 1);
+        vertex_point_line(self.wire_box,  s,  s, -s, c_red, 1);
+        vertex_point_line(self.wire_box,  s,  s,  s, c_red, 1);
+        vertex_end(self.wire_box);
+    };
 }
