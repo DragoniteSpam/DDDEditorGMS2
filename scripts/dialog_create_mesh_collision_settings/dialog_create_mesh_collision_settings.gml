@@ -96,13 +96,13 @@ function dialog_create_mesh_collision_settings(root, selection) {
             //var trimesh = self.root.mesh.AddCollisionShape(MeshCollisionShapeTrimesh);
         })).SetRootVariableName("add_trimesh_from_file"),
         (new EmuButton(c1x, EMU_AUTO, 256, 24, "Delete Shape", function() {
-            var selection = self.root._contents[| 0].GetSelection();
+            var selection = self.root.el_list.GetSelection();
             if (selection + 1) {
                 self.root.mesh.DeleteCollisionShape(selection);
             }
         })).SetRootVariableName("delete_shape"),
         (new EmuInput(c1x, EMU_AUTO, 256, 24, "Shape name:", "", "name", 32, E_InputTypes.STRING, function() {
-            var selection = self.root._contents[| 0].GetSelection();
+            var selection = self.root.el_list.GetSelection();
             if (selection + 1) {
                 self.root.mesh.RenameCollisionShape(selection, self.value);
             }
