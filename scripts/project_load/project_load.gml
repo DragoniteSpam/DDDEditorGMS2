@@ -211,6 +211,10 @@ function project_load(id) {
     Game.meta.project.id = yaml.id;
     Game.meta.project.summary = yaml.summary;
     Game.meta.project.author = yaml.author;
+    if (yaml[$ "save_name"] != undefined) {
+        Stuff.save_name = yaml.save_name;
+        game_auto_title();
+    }
     
     project_load_global(folder_name + "meta.json");
     project_load_data(folder_name + "data.json");
