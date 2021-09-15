@@ -22,6 +22,13 @@ function dialog_create_mesh_other_settings(root, selection) {
     var yy = 64;
     var yy_base = 64;
     
+    var el_normals = create_button(c1x, yy, "Normals", ew, eh, fa_center, function(button) {
+        if (ds_map_empty(button.root.selection)) return;
+        dialog_create_mesh_normal_settings(button, button.root.selection);
+    }, dg);
+    el_normals.tooltip = "Adjust the vertex normals of the selected meshes.";
+    yy += el_normals.height + spacing;
+    
     var el_center = create_button(c1x, yy, "Center model", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
@@ -38,6 +45,7 @@ function dialog_create_mesh_other_settings(root, selection) {
     
     ds_list_add(dg.contents,
         el_center,
+        el_normals,
         el_confirm
     );
     

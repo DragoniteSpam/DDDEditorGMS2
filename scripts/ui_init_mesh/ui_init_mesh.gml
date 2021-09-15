@@ -553,14 +553,6 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_button(c2x, yy, "Normals", ew, eh, fa_center, function(button) {
-            if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
-            dialog_create_mesh_normal_settings(button, button.root.mesh_list.selected_entries);
-        }, id);
-        element.tooltip = "Adjust the vertex normals of the selected meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
         element = create_button(c2x, yy, "Other tools...", ew, eh, fa_center, function(button) {
             if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
             dialog_create_mesh_other_settings(button, button.root.mesh_list.selected_entries);
