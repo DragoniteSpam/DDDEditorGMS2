@@ -264,6 +264,9 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             json.submeshes[i] = self.submeshes[i].CreateJSON();
         }
+        
+        json.collision_shapes = self.collision_shapes;
+        
         return json;
     };
     
@@ -294,6 +297,8 @@ function DataMesh(source) : SData(source) constructor {
     };
 }
 
+// if you give these methods or anything you're going to have to write
+// json-serializing code go go with it when you save
 function MeshCollisionShape() constructor {
     self.name = "shape";
     self.position = { x: 0, y: 0, z: 0 };
