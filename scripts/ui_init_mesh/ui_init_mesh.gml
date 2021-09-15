@@ -636,6 +636,13 @@ function ui_init_mesh(mode) {
         element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
+        
+        element = create_checkbox(c5x, yy, "Show collision?", ew * 0.75, eh, function(checkbox) {
+            Stuff.mesh_ed.draw_collision = checkbox.value;
+        }, mode.draw_collision, id);
+        element.tooltip = "Whether or not to show collision shapes associated with meshes.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
         #endregion
         return id;
     }

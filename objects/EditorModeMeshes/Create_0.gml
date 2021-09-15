@@ -27,6 +27,7 @@ save = function() {
     Settings.mesh.draw_grid = draw_grid;
     Settings.mesh.draw_back_faces = draw_back_faces;
     Settings.mesh.draw_reflections = draw_reflections;
+    Settings.mesh.draw_collision = draw_collision;
     Settings.mesh.reflect_settings = reflect_settings;
     Settings.mesh.reflect_color = reflect_color;
 };
@@ -37,6 +38,7 @@ draw_textures = setting_get("mesh", "draw_tex", true);
 draw_lighting = setting_get("mesh", "draw_light", false);
 draw_back_faces = setting_get("mesh", "backfaces", false);
 draw_reflections = setting_get("mesh", "reflections", false);
+draw_collision = setting_get("mesh", "draw_collision", false);
 draw_scale = 1;
 draw_rot_x = 0;
 draw_rot_y = 0;
