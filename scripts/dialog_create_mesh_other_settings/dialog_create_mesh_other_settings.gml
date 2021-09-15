@@ -39,12 +39,20 @@ function dialog_create_mesh_other_settings(root, selection) {
     el_center.tooltip = "Set the model's origin to its average central point (on the XY plane).";
     yy += el_center.height + spacing;
     
+    var el_collision = create_button(c1x, yy, "Collision shapes", ew, eh, fa_center, function(button) {
+        var mesh = ds_map_find_first(button.root.selection);
+    }, dg);
+    el_collision.tooltip = "Collision shape data to go with this mesh.";
+    el_collision.interactive = (ds_map_size(selection) == 1);
+    yy += el_collision.height + spacing;
+    
     var b_width = 128;
     var b_height = 32;
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     
     ds_list_add(dg.contents,
         el_center,
+        el_collision,
         el_normals,
         el_confirm
     );
