@@ -28,7 +28,7 @@ function dotdae_model_load(_buffer)
     //Make a container array and add the data structures to it
     var _container = array_create(eDotDae.__Size, undefined);
     _container[@ eDotDae.Name            ] = "<unnamed>";
-    _container[@ eDotDae.Type            ] = "containter"
+    _container[@ eDotDae.Type            ] = "containter";
     _container[@ eDotDae.ObjectMap       ] = _dae_object_map;
     _container[@ eDotDae.EffectList      ] = _dae_effects_list;
     _container[@ eDotDae.MaterialList    ] = _dae_materials_list;
