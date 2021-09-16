@@ -30,6 +30,10 @@ function project_load(id) {
         if (Game.meta.export[$ "vertex_format"] == undefined) {
             Game.meta.export.vertex_format = DEFAULT_VERTEX_FORMAT;
         }
+        
+        if (Game.meta.export[$ "mesh_collision_shapes"] == undefined) {
+            Game.meta.export.mesh_collision_shapes = false;
+        }
     };
     
     static project_load_images = function(filename, directory) {
