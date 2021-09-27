@@ -1,6 +1,10 @@
 #macro Game global.__game
 #macro Identifiers global.__identifiers
 
+enum GameExportFlags {
+    COLLISION_SHAPES                = 0x0001,
+}
+
 Game = new (function() constructor {
     self.meta = {
         project: {
@@ -13,7 +17,7 @@ Game = new (function() constructor {
             files: [new DataFile("data", false, true), new DataFile("assets", false, false), new DataFile("terrain", true, false)],
             locations: [],
             vertex_format: DEFAULT_VERTEX_FORMAT,
-            mesh_collision_shapes: false,
+            flags: 0,
         },
         
         start: {

@@ -31,8 +31,8 @@ function project_load(id) {
             Game.meta.export.vertex_format = DEFAULT_VERTEX_FORMAT;
         }
         
-        if (Game.meta.export[$ "mesh_collision_shapes"] == undefined) {
-            Game.meta.export.mesh_collision_shapes = false;
+        if (Game.meta.export[$ "flags"] == undefined) {
+            Game.meta.export.flags = 0;
         }
     };
     
