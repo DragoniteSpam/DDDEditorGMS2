@@ -31,6 +31,7 @@ function project_export() {
                     asset_file.critical
                 ));
             }
+            buffer_write(buffer, buffer_flag, Game.meta.export.flags);
         };
         
         var game_data_save_scripts = array_create(GameDataCategories.__COUNT);
