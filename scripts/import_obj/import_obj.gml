@@ -495,7 +495,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
     }
     
     if (max_alpha < 0.05 && !warn_invisible) {
-        emu_dialog_notice("All of the vertices in this model have a very low alpha. If this is intentional, you can ignore this message; if this is otherwise due to a quirk of the tool used to create it, you might want to hit the Invert Transparency button to correct it.");
+        emu_dialog_notice("All of the vertices in this model have a very low alpha. If this is intentional, you can ignore this message; if this is otherwise due to a quirk of the tool used to create it, you might want to hit the Invert Transparency option under the Other Tools menu to correct it.");
         warn_invisible = true;
     }
     

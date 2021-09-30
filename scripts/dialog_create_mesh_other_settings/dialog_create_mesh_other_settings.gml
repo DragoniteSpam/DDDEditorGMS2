@@ -46,6 +46,17 @@ function dialog_create_mesh_other_settings(root, selection) {
     el_collision.interactive = (ds_map_size(selection) == 1);
     yy += el_collision.height + spacing;
     
+    var el_transparency_invert = create_button(c1x, yy, "Invert Transparency", ew, eh, fa_center, function(button) {
+        var selection = button.root.selection;
+        for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+            var mesh = Game.meshes[index];
+            mesh_all_invert_alpha(mesh);
+        }
+        batch_again();
+    }, dg);
+    el_transparency_invert.tooltip = "Because literally nothing is standard with the OBJ file format, sometimes the \"Tr\" material attribute is \"transparency,\" and sometimes it's \"opacity\" (1 - transparency). Click here to toggle between them.";
+    yy += el_transparency_invert.height + spacing;
+    
     var b_width = 128;
     var b_height = 32;
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
@@ -54,6 +65,7 @@ function dialog_create_mesh_other_settings(root, selection) {
         el_center,
         el_collision,
         el_normals,
+        el_transparency_invert,
         el_confirm
     );
     
