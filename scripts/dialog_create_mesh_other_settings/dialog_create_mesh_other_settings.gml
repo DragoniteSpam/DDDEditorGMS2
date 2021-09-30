@@ -2,7 +2,7 @@ function dialog_create_mesh_other_settings(root, selection) {
     var mode = Stuff.mesh_ed;
     
     var dw = 320;
-    var dh = 320;
+    var dh = 480;
     
     var dg = dialog_create(dw, dh, "Other mesh options", dialog_default, dialog_destroy, root);
     dg.selection = selection;
@@ -57,6 +57,28 @@ function dialog_create_mesh_other_settings(root, selection) {
     el_transparency_invert.tooltip = "Because literally nothing is standard with the OBJ file format, sometimes the \"Tr\" material attribute is \"transparency,\" and sometimes it's \"opacity\" (1 - transparency). Click here to toggle between them.";
     yy += el_transparency_invert.height + spacing;
     
+    var el_transparency_reset = create_button(c1x, yy, "Reset Transparency", ew, eh, fa_center, function(button) {
+        var selection = button.root.selection;
+        for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+            var mesh = Game.meshes[index];
+            mesh_all_reset_alpha(mesh);
+        }
+        batch_again();
+    }, dg);
+    el_transparency_reset.tooltip = "Set the opacity of every vertex to 1.";
+    yy += el_transparency_reset.height + spacing;
+    
+    var el_color_reset = create_button(c1x, yy, "Reset Vertex Color", ew, eh, fa_center, function(button) {
+        var selection = button.root.selection;
+        for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+            var mesh = Game.meshes[index];
+            mesh_all_reset_color(mesh);
+        }
+        batch_again();
+    }, dg);
+    el_color_reset.tooltip = "Set the blending color of every vertex to white.";
+    yy += el_color_reset.height + spacing;
+    
     var b_width = 128;
     var b_height = 32;
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
@@ -66,6 +88,8 @@ function dialog_create_mesh_other_settings(root, selection) {
         el_collision,
         el_normals,
         el_transparency_invert,
+        el_transparency_reset,
+        el_color_reset,
         el_confirm
     );
     
