@@ -106,8 +106,8 @@ function EditorGraphics() constructor {
         
         for (var i = -self.water_tile_size / 2; i < self.water_tile_size / 2; i += (self.water_tile_size / self.water_units)) {
             for (var j = -self.water_tile_size / 2; j < self.water_tile_size / 2; j += (self.water_tile_size / self.water_units)) {
-                vertex_square(self.mesh_water_base, i, j, self.water_tile_size / self.water_units, 0, 0, self.water_reptition / self.water_units, 0, self.water_depth, self.water_depth, self.water_depth, self.water_depth);
-                vertex_square(self.mesh_water_bright, i, j, self.water_tile_size / self.water_units, 0, 0, self.water_reptition / self.water_units, 0, self.water_depth, self.water_depth, self.water_depth, self.water_depth);
+                vertex_square(self.mesh_water_base, i, j, self.water_tile_size / self.water_units, 0, 0, self.water_reptition / self.water_units, self.water_depth, self.water_depth, self.water_depth, self.water_depth);
+                vertex_square(self.mesh_water_bright, i, j, self.water_tile_size / self.water_units, 0, 0, self.water_reptition / self.water_units, self.water_depth, self.water_depth, self.water_depth, self.water_depth);
             }
         }
         
