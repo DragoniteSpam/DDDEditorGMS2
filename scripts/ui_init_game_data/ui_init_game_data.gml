@@ -91,6 +91,7 @@ function ui_init_game_data(mode) {
         el_inst_move_up = create_button(this_column * cw + spacing, yy, "Move Up", ew, eh, fa_center, function(button) {
             var data = guid_get(button.root.active_type_guid);
             var selection = ui_list_selection(button.root.el_instances);
+            if (selection == -1) return;
             var instance = data.instances[selection];
             
             if (instance && (selection > 0)) {
@@ -108,6 +109,7 @@ function ui_init_game_data(mode) {
         el_inst_move_down = create_button(this_column * cw + spacing, yy, "Move Down", ew, eh, fa_center, function(button) {
             var data = guid_get(button.root.active_type_guid);
             var selection = ui_list_selection(button.root.el_instances);
+            if (selection == -1) return;
             var instance = data.instances[selection];
             
             if (instance && (selection < array_length(data.instances) - 1)) {
@@ -130,6 +132,7 @@ function ui_init_game_data(mode) {
         el_inst_duplicate = create_button(this_column * cw + spacing, yy, "Duplicate Instance", ew, eh, fa_center, function(button) {
             var data = guid_get(button.root.active_type_guid);
             var selection = ui_list_selection(button.root.el_instances);
+            if (selection == -1) return;
             var instance = data.instances[selection];
             
             if (instance) {
@@ -143,13 +146,13 @@ function ui_init_game_data(mode) {
         el_inst_remove = create_button(this_column * cw + spacing, yy, "Delete Instance", ew, eh, fa_center, function(button) {
             var data = guid_get(thing.root.active_type_guid);
             var selection = ui_list_selection(thing.root.el_instances);
-            if (selection + 1) {
-                var instance = data.instances[selection];
-                ui_list_deselect(thing.root.el_instances);
-                data.RemoveInstance(instance);
-                instance.Destroy();
-                ui_init_game_data_refresh();
-            }
+            if (selection == -1) return;
+            
+            var instance = data.instances[selection];
+            ui_list_deselect(thing.root.el_instances);
+            data.RemoveInstance(instance);
+            instance.Destroy();
+            ui_init_game_data_refresh();
         }, id);
         ds_list_add(contents, el_inst_remove);
         #endregion
