@@ -128,7 +128,13 @@ function ui_init_game_data(mode) {
         yy += spacing + element.height;
         
         el_inst_duplicate = create_button(this_column * cw + spacing, yy, "Duplicate Instance", ew, eh, fa_center, function(button) {
+            var data = guid_get(button.root.active_type_guid);
+            var selection = ui_list_selection(button.root.el_instances);
+            var instance = data.instances[selection];
             
+            if (instance) {
+                data.AddInstance(instance.Clone(), selection + 1);
+            }
         }, id);
         ds_list_add(contents, el_inst_duplicate);
         
