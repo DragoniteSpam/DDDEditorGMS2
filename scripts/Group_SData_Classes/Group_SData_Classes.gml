@@ -139,6 +139,13 @@ function DataInstance(source) : SData(source) constructor {
         }
     };
     
+    static Clone = function() {
+        var clone = self.CloneBase(DataInstance);
+        clone.parent = self.parent;
+        clone.values = json_parse(json_stringify(self.values));
+        return clone;
+    };
+    
     if (is_struct(source)) {
         self.parent = source.parent;
         self.values = source.values;
