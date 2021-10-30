@@ -8,7 +8,10 @@ function ui_init_game_data_activate() {
         var data = guid_get(Stuff.data.ui.active_type_guid);
         
         Stuff.data.ui.el_inst_add.interactive = false;
+        Stuff.data.ui.el_inst_duplicate.interactive = false;
         Stuff.data.ui.el_inst_remove.interactive = false;
+        Stuff.data.ui.el_inst_move_up.interactive = false;
+        Stuff.data.ui.el_inst_move_down.interactive = false;
 
         ui_list_deselect(Stuff.data.ui.el_instances);
 
@@ -19,7 +22,10 @@ function ui_init_game_data_activate() {
             // this caused some sort of null pointer exception somehow, and I haven't been able to replicate
             // it. wrapping it in this "if" should take care of it, though.
             Stuff.data.ui.el_inst_add.interactive = (data.type == DataTypes.DATA);
+            Stuff.data.ui.el_inst_duplicate.interactive = (data.type == DataTypes.DATA);
             Stuff.data.ui.el_inst_remove.interactive = (data.type == DataTypes.DATA);
+            Stuff.data.ui.el_inst_move_up.interactive = (data.type == DataTypes.DATA);
+            Stuff.data.ui.el_inst_move_down.interactive = (data.type == DataTypes.DATA);
         
             if (data.type == DataTypes.DATA) {
                 var columns = 5;

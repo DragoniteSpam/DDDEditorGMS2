@@ -73,7 +73,7 @@ function ui_init_game_data(mode) {
         
         yy += spacing + element.height;
         
-        el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 24, ui_init_game_data_refresh, false, id, []);
+        el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 22, ui_init_game_data_refresh, false, id, []);
         el_instances.render = ui_render_list_data_instances;
         el_instances.onmiddleclick = dialog_create_data_instance_alphabetize;
         el_instances.render_colors = function(list, index) {
@@ -88,7 +88,7 @@ function ui_init_game_data(mode) {
         
         yy += el_instances.GetHeight() + spacing;
         
-        el_inst_add = create_button(this_column * cw + spacing, yy, "Move Up", ew, eh, fa_center, function(button) {
+        el_inst_move_up = create_button(this_column * cw + spacing, yy, "Move Up", ew, eh, fa_center, function(button) {
             var data = guid_get(button.root.active_type_guid);
             var selection = ui_list_selection(button.root.el_instances);
             var instance = data.instances[selection];
@@ -101,11 +101,11 @@ function ui_init_game_data(mode) {
                 ui_list_select(button.root.el_instances, selection - 1, true);
             }
         }, id);
-        ds_list_add(contents, el_inst_add);
+        ds_list_add(contents, el_inst_move_up);
         
         yy += spacing + element.height;
         
-        el_inst_add = create_button(this_column * cw + spacing, yy, "Move Down", ew, eh, fa_center, function(button) {
+        el_inst_move_down = create_button(this_column * cw + spacing, yy, "Move Down", ew, eh, fa_center, function(button) {
             var data = guid_get(button.root.active_type_guid);
             var selection = ui_list_selection(button.root.el_instances);
             var instance = data.instances[selection];
@@ -118,12 +118,19 @@ function ui_init_game_data(mode) {
                 ui_list_select(button.root.el_instances, selection + 1, true);
             }
         }, id);
-        ds_list_add(contents, el_inst_add);
+        ds_list_add(contents, el_inst_move_down);
         
         yy += spacing + element.height;
         
         el_inst_add = create_button(this_column * cw + spacing, yy, "Add Instance", ew, eh, fa_center, uimu_data_add_data, id);
         ds_list_add(contents, el_inst_add);
+        
+        yy += spacing + element.height;
+        
+        el_inst_duplicate = create_button(this_column * cw + spacing, yy, "Duplicate Instance", ew, eh, fa_center, function(button) {
+            
+        }, id);
+        ds_list_add(contents, el_inst_duplicate);
         
         yy += spacing + element.height;
         
