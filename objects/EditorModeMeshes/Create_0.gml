@@ -28,8 +28,6 @@ save = function() {
     Settings.mesh.draw_back_faces = draw_back_faces;
     Settings.mesh.draw_reflections = draw_reflections;
     Settings.mesh.draw_collision = draw_collision;
-    Settings.mesh.reflect_settings = reflect_settings;
-    Settings.mesh.reflect_color = reflect_color;
 };
 
 draw_meshes = setting_get("mesh", "draw_mesh", true);
@@ -47,9 +45,6 @@ draw_rot_z = 0;
 draw_axes = setting_get("mesh", "draw_axes", true);
 draw_light_direction = 180;
 draw_grid = setting_get("mesh", "draw_grid", true);
-
-reflect_settings = setting_get("mesh", "reflect_settings", MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE);
-reflect_color = setting_get("mesh", "reflect_color", 0x7fff6600);
 
 def_x = 256;
 def_y = 256;

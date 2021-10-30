@@ -94,6 +94,9 @@ if (Settings.view[$ "gizmos"] == undefined)                 Settings.view.gizmos
 if (Settings.view[$ "terrain"] == undefined)                Settings.view.terrain = true;
 if (Settings.view[$ "threed"] == undefined)                 Settings.view.threed = true;
 
+if (Settings.mesh[$ "reflect_settings"] == undefined)       Settings.mesh.reflect_settings = MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;
+if (Settings.mesh[$ "reflect_color"] == undefined)          Settings.mesh.reflect_color = 0x7fff6600;
+
 #macro warn_untranslated_strings "EXPORT-UNTRANSLATED"
 #macro warn_untranslated_strings_as_is 1
 #macro warn_untranslated_strings_as_default 2
