@@ -1,6 +1,4 @@
-function SData(source) constructor {
-    if (source == undefined) source = "data";
-    
+function SData(source = "data") constructor {
     self.flags = 0;
     self.summary = "";
     self.GUID = NULL;

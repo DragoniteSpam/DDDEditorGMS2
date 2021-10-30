@@ -17,9 +17,7 @@ function proto_guid_get(container, guid) {
     return container.proto_guids[$ guid];
 }
 
-function proto_guid_set(container, data, value) {
-    if (value == undefined) value = proto_guid_generate(container);
-    
+function proto_guid_set(container, data, value = proto_guid_generate(container)) {
     container.proto_guids[$ value] = data;
     if (container.first_proto_guid == NULL) {
         container.first_proto_guid = value;

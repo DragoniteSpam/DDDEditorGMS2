@@ -62,8 +62,7 @@ function project_export_language(buffer) {
     }
 }
 
-function project_export_standard(buffer, list, extra_param) {
-    if (extra_param == undefined) extra_param = true;
+function project_export_standard(buffer, list, extra_param = true) {
     buffer_write(buffer, buffer_u32, array_length(list));
     for (var i = 0; i < array_length(list); i++) {
         list[i].Export(buffer, extra_param);

@@ -45,12 +45,7 @@ function DataMap(source, directory) : SData(source) constructor {
         size: 0,
     };
     
-    static Add = function(entity, x, y, z, is_temp, add_to_lists) {
-        if (x == undefined) x = entity.xx;
-        if (y == undefined) y = entity.yy;
-        if (z == undefined) z = entity.zz;
-        if (is_temp == undefined) is_temp = false;
-        if (add_to_lists == undefined) add_to_lists = true;
+    static Add = function(entity, x = entity.xx, y = entity.yy, z = entity/zz, is_temp = false, add_to_lists = true) {
         // Does not check to see if the specified coordinates are in bounds.
         // You are responsible for that.
         
@@ -148,9 +143,7 @@ function DataMap(source, directory) : SData(source) constructor {
         Stuff.map.ui.element_entity_pos_z.value_upper = z - 1;
     };
     
-    static Move = function(entity, x, y, z, mark_changed) {
-        if (mark_changed == undefined) mark_changed = true;
-        
+    static Move = function(entity, x, y, z, mark_changed = true) {
         if (self.FreeAt(x, y, z, entity.slot)) {
             self.Remove(entity);
             self.Add(entity, x, y, z, false, false);

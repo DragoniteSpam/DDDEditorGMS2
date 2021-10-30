@@ -26,10 +26,7 @@ function internal_name_remove(name) {
     return false;
 }
 
-function internal_name_set(data, new_name, force) {
-    if (new_name == undefined) new_name = data.internal_name;
-    if (force == undefined) force = false;
-    
+function internal_name_set(data, new_name = data.internal_name, force = false) {
     if (string_length(data.internal_name) > 0) {
         variable_struct_remove(Identifiers.internal, data.internal_name);
     }

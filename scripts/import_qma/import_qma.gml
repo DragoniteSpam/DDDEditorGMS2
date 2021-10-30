@@ -1,6 +1,4 @@
-function import_qma(filename, adjust) {
-    if (adjust == undefined) adjust = true;
-    
+function import_qma(filename, adjust = true) {
     try {
         var buffer = buffer_load(filename);
         var data = json_parse(buffer_read(buffer, buffer_string));

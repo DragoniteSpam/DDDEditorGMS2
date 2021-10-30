@@ -13,6 +13,7 @@ def_yup = 0;
 def_zup = 1;
 def_fov = 60;
 
+/// @todo nullish bug
 if (Settings.spart[$ "x"] == undefined)                   Settings.spart.x = def_x;
 if (Settings.spart[$ "y"] == undefined)                   Settings.spart.y = def_y;
 if (Settings.spart[$ "z"] == undefined)                   Settings.spart.z = def_z;

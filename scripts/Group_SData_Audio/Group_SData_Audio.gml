@@ -22,10 +22,7 @@ function DataAudio(source) : SData(source) constructor {
         self.fmod_type = FMODGMS_Snd_Get_Type(self.fmod);
     };
     
-    static SetFMODLoop = function(loop_mode, start, finish) {
-        if (loop_mode == undefined) loop_mode = self.loop_mode;
-        if (start == undefined) start = 0;
-        if (finish == undefined) finish = FMODGMS_Snd_Get_Length(self.fmod);
+    static SetFMODLoop = function(loop_mode = self.loop_mode, start = 0, finish = FMODGMS_Snd_Get_Length(self.fmod)) {
         self.loop_mode = loop_mode;
         FMODGMS_Snd_Set_LoopMode(self.fmod, loop_mode, -1);
         FMODGMS_Snd_Set_LoopPoints(self.fmod, start, finish);

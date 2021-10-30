@@ -77,8 +77,7 @@ function DataImage(source) : SData(source) constructor {
         buffer_write(buffer, buffer_f32, self.packed.h);
     };
     
-    static Export = function(buffer, include_image) {
-        if (include_image == undefined) include_image = true;
+    static Export = function(buffer, include_image = true) {
         self.ExportImage(buffer, include_image);
     };
     

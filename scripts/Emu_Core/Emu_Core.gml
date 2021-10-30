@@ -114,9 +114,7 @@ function EmuCore(x, y, w, h) constructor {
         return self.height;
     }
     
-    static Render = function(base_x, base_y) {
-        if (base_x == undefined) base_x = 0;
-        if (base_y == undefined) base_y = 0;
+    static Render = function(base_x = 0, base_y = 0) {
         self.processAdvancement();
         self.renderContents(self.x + base_x, self.y + base_y);
         return self;
@@ -162,12 +160,7 @@ function EmuCore(x, y, w, h) constructor {
         return self;
     }
     
-    static drawCheckerbox = function(_x, _y, _w, _h, _xscale, _yscale, _color, _alpha) {
-        if (_xscale == undefined) _xscale = 1;
-        if (_yscale == undefined) _yscale = 1;
-        if (_color == undefined) _color = c_white;
-        if (_alpha == undefined) _alpha = 1;
-        
+    static drawCheckerbox = function(_x, _y, _w, _h, _xscale = 1, _yscale = 1, _color = c_white, _alpha = 1) {
         var old_repeat = gpu_get_texrepeat();
         gpu_set_texrepeat(true);
         var _s = sprite_get_width(self.sprite_checkers);

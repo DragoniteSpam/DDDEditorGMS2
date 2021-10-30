@@ -131,10 +131,7 @@ function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
     };
 }
 
-function SelectionRectangle(x, y, z, x2, y2, z2) : Selection(x, y, z) constructor {
-    if (x2 == undefined) x2 = x;
-    if (y2 == undefined) y2 = y;
-    if (z2 == undefined) z2 = z;
+function SelectionRectangle(x, y, z, x2 = x, y2 = y, z2 = z) : Selection(x, y, z) constructor {
     self.x2 = x2;
     self.y2 = y2;
     self.z2 = z2 + 1;

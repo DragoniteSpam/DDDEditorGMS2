@@ -32,9 +32,7 @@ function DataEvent(source) : SData(source) constructor {
     };
 }
 
-function DataEventNode(source, parent, type, custom) : SData(source) constructor {
-    if (type == undefined) type = EventNodeTypes.ENTRYPOINT;
-    if (custom == undefined) custom = NULL;
+function DataEventNode(source, parent, type = EventNodeTypes.ENTRYPOINT, custom = NULL) : SData(source) constructor {
     self.type = type;
     
     self.data = [""];
@@ -62,7 +60,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
     static Setup = function(type, custom_guid) {
         if (type == undefined) return;
         // built-in node types have their outbound count specified
-        if (type != EventNodeTypes.CUSTOM && type != undefined) {
+        if (type != EventNodeTypes.CUSTOM) {
             var base = Game.default_event_nodes[type];
             if (base) self.outbound = array_create(array_length(base.outbound), NULL);
         }
@@ -143,10 +141,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
         }
     };
     
-    static Connect = function(destination, index, force_null) {
-        if (index == undefined) index = 0;
-        if (force_null == undefined) force_null = false;
-        
+    static Connect = function(destination, index = 0, force_null = false) {
         if (!destination && force_null) {
             self.outbound[index] = NULL;
         }
@@ -313,13 +308,7 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     // for now:
 }
 
-function EventNodeProperty(name, type, type_guid, max_size, all_required, default_value, data_attainment, data_output) constructor {
-    if (type_guid == undefined) type_guid = NULL;
-    if (max_size == undefined) max_size = 1;
-    if (all_required == undefined) all_required = false;
-    if (default_value == undefined) default_value = 0;
-    if (data_attainment == undefined) data_attainment = null;
-    if (data_output == undefined) data_output = null;
+function EventNodeProperty(name, type, type_guid = NULL, max_size = 1, all_required = false, default_value = 0, data_attainment = null, data_output = null) constructor {
     self.name = name;
     self.type = type;
     self.type_guid = type_guid;
@@ -334,8 +323,7 @@ function EventNodeProperty(name, type, type_guid, max_size, all_required, defaul
     self.char_limit = 100;
 }
 
-function EventNodePeristent(name, data_types, outbound_names) constructor {
-    if (outbound_names == undefined) outbound_names = ["default"];
+function EventNodePeristent(name, data_types, outbound_names = ["default"]) constructor {
     self.name = name;
     self.flags = 0;
     self.summary = "";

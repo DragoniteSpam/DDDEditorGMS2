@@ -5,6 +5,8 @@ function terrain_save_obj(fn) {
     var vertices = 0;
     var scale = terrain.save_scale;
     
+    throw "terrain_save_obj - sample from the various textures instead of from a big-ass vertex buffer";
+    
     var fx = sprite_get_width(terrain.texture) / terrain_texture_width;
     var fy = sprite_get_height(terrain.texture) / terrain_texture_height;
     
@@ -94,10 +96,7 @@ function terrain_save_obj(fn) {
             }
             
             var mtl_name = "a-" + string(aa);
-            
-            if (mtl_colors[$ mtl_name] == undefined) {
-                mtl_colors[$ mtl_name] = aa;
-            }
+            mtl_colors[$ mtl_name] ??= aa;
             
             if (mtl_name != active_mtl) {
                 active_mtl = mtl_name;

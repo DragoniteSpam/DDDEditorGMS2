@@ -15,9 +15,7 @@ function guid_get(value) {
     return Identifiers.guids[$ value];
 }
 
-function guid_set(data, addition) {
-    if (addition == undefined) addition = data.GUID;
-    
+function guid_set(data, addition = data.GUID) {
     // almost all data is automatically created with a GUID, so remove it
     if (Identifiers.guids[$ data.GUID]) {
         variable_struct_remove(Identifiers.guids, addition);

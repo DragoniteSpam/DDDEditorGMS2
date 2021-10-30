@@ -450,8 +450,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
     };
     
-    static SetMesh = function(mesh, submesh) {
-        if (submesh == undefined) submesh = undefined;
+    static SetMesh = function(mesh, submesh = undefined) {
         c_object_set_mask(self.cobject, 0, 0);
         c_object_set_userid(self.cobject, 0);
         ds_queue_enqueue(Stuff.c_object_cache, self.cobject);
@@ -465,7 +464,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
             self.mesh = mesh.GUID;
             switch (mesh.type) {
                 case MeshTypes.RAW:
-                    self.mesh_submesh = (submesh != undefined) ? submesh : mesh.first_proto_guid;
+                    self.mesh_submesh = submesh ?? mesh.first_proto_guid;
                     self.is_static = true;
                     self.batchable = true;
                     self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);

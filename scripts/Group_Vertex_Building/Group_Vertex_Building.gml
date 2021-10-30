@@ -76,16 +76,16 @@ function buffer_to_reflect(buffer) {
     try {
         rbuffer = vertex_create_buffer();
         vertex_begin(rbuffer, Stuff.graphics.vertex_format);
-        var op_mirror_x = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_X;
-        var op_mirror_y = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_Y;
-        var op_mirror_z = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_Z;
-        var op_rotate_x = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.ROTATE_X;
-        var op_rotate_y = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.ROTATE_Y;
-        var op_rotate_z = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.ROTATE_Z;
-        var op_reverse = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.REVERSE;
-        var op_colorize = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.COLORIZE;
-        var op_color_amt = clamp((Stuff.mesh_ed.reflect_color >> 24) / 0xff, 0, 1);
-        var op_color_value = Stuff.mesh_ed.reflect_color & 0xffffff;
+        var op_mirror_x = Settings.mesh.reflect_settings & MeshReflectionSettings.MIRROR_X;
+        var op_mirror_y = Settings.mesh.reflect_settings & MeshReflectionSettings.MIRROR_Y;
+        var op_mirror_z = Settings.mesh.reflect_settings & MeshReflectionSettings.MIRROR_Z;
+        var op_rotate_x = Settings.mesh.reflect_settings & MeshReflectionSettings.ROTATE_X;
+        var op_rotate_y = Settings.mesh.reflect_settings & MeshReflectionSettings.ROTATE_Y;
+        var op_rotate_z = Settings.mesh.reflect_settings & MeshReflectionSettings.ROTATE_Z;
+        var op_reverse = Settings.mesh.reflect_settings & MeshReflectionSettings.REVERSE;
+        var op_colorize = Settings.mesh.reflect_settings & MeshReflectionSettings.COLORIZE;
+        var op_color_amt = clamp((Settings.mesh.reflect_color >> 24) / 0xff, 0, 1);
+        var op_color_value = Settings.mesh.reflect_color & 0xffffff;
         
         var transform_matrix = matrix_build_identity();
         if (op_mirror_x) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 0, 0, -1, 1, 1));
@@ -189,16 +189,7 @@ function vertex_buffer_to_wireframe(vbuffer) {
     return wbuffer;
 }
 
-function vertex_square(buffer, xx, yy, size, tx, ty, tsize, z00, z10, z11, z01, c00, c10, c11, c01) {
-    if (z00 == undefined) z00 = 0;
-    if (z10 == undefined) z10 = 0;
-    if (z11 == undefined) z11 = 0;
-    if (z01 == undefined) z01 = 0;
-    if (c00 == undefined) c00 = 0xffffffff;
-    if (c10 == undefined) c10 = 0xffffffff;
-    if (c11 == undefined) c11 = 0xffffffff;
-    if (c01 == undefined) c01 = 0xffffffff;
-    
+function vertex_square(buffer, xx, yy, size, tx, ty, tsize, z00 = 0, z10 = 0, z11 = 0, z01 = 0, c00 = 0xffffffff, c10 = 0xffffffff, c11 = 0xffffffff, c01 = 0xffffffff) {
     var a00 = (c00 & 0xff000000) >> 24;
     var a10 = (c10 & 0xff000000) >> 24;
     var a11 = (c11 & 0xff000000) >> 24;

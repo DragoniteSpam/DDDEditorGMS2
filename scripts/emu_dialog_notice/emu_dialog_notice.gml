@@ -1,7 +1,4 @@
-function emu_dialog_notice(message, dw, dh) {
-    if (dw == undefined) dw = 420;
-    if (dh == undefined) dh = 240;
-    
+function emu_dialog_notice(message, dw = 420, dh = 240) {
     var b_width = 128;
     var b_height = 32;
     

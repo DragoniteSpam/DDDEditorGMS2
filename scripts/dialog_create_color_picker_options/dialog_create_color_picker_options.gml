@@ -1,6 +1,4 @@
-function dialog_create_color_picker_options(dialog, color, onvaluechange) {
-    if (onvaluechange == undefined) onvaluechange = null;
-    
+function dialog_create_color_picker_options(dialog, color, onvaluechange = null) {
     var dw = 480;
     var dh = 400;
     

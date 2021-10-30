@@ -265,7 +265,7 @@ function EditorGraphics() constructor {
         self.wire_capsule = vertex_create_buffer();
         vertex_begin(self.wire_capsule, self.vertex_format);
         r = 0.5;
-        var l = 1;
+        var l = 0.5;
         for (var i = 0; i < 180; i += 15) {
             // bottom
             vertex_point_line(self.wire_capsule, 0, r * dcos(i     ), -r * dsin(i     ) - l, c_lime, 1);

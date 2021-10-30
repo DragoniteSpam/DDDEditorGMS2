@@ -103,8 +103,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         callback();
     }
     
-    Select = function(_list_index, _set_index) {
-        if (_set_index == undefined) _set_index = false;
+    Select = function(_list_index, _set_index = false) {
         if (!variable_struct_exists(_selected_entries, "first")) _selected_entries[$ "first"] = _list_index;
         _selected_entries[$ "last"] = _list_index;
         _selected_entries[$ string(_list_index)] = true;

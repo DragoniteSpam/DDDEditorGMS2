@@ -19,6 +19,8 @@ function terrain_save_d3d(fn) {
     var addr_capacity = buffer_tell(buffer);
     buffer_write(buffer, buffer_text, "00000000\n0 4\n");
     
+    throw "terrain_save_d3d - sample from the various textures instead of from a big-ass vertex buffer";
+    
     for (var i = 0; i < bytes; i += VERTEX_SIZE * 3) {
         var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32) * scale;
         var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE, buffer_f32) * scale;

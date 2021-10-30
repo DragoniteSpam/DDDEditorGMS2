@@ -1,15 +1,22 @@
-/// @param filename
-/// @param [adjust-UVs?]
-/// @param [existing-mesh]
-/// @param [replace-index]
-function import_dae() {
-
-    var filename = argument[0];
-    var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
-    var existing = (argument_count > 2 && argument[2] != undefined) ? argument[2] : noone;
-    var replace_index = (argument_count > 3 && argument[3] != undefined) ? argument[3] : -1;
-
-    throw "not now";
+function import_dae(filename, adjust_uvs = true, existing = undefined, replace_index = -1) {
+    var container = dotdae_model_load_file(filename);
+    
+    var base_name = filename_change_ext(filename_name(filename), "");
+    var mesh = new DataMesh(base_name);
+    array_push(Game.meshes, mesh);
+    
+    var geometry = container[eDotDae.GeometryList];
+    var mesh_array = geometry[| 0][eDotDaeGeometry.MeshArray];
+    var vbuff_array = mesh_array[0][eDotDaeMesh.VertexBufferArray];
+    
+    for (var i = 0; i < array_length(vbuff_array); i++) {
+        var poly_list = vbuff_array[i];
+        var vbuff = buffer_dotobj_to_standard(poly_list);
+        var buff = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
+        var wire = buffer_to_wireframe(buff);
+        mesh_create_submesh(mesh, buff, vbuff, wire);
+    }
+    
     /*
     var container = dotdae_model_load_file(filename, false, false);
     var vbs = container[@ eDotDae.VertexBufferList];

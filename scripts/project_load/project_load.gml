@@ -27,13 +27,12 @@ function project_load(id) {
             if (!is_numeric(Game.meta.export.locations[i])) Game.meta.export.locations[i] = 0;
         }
         
-        if (Game.meta.export[$ "vertex_format"] == undefined) {
-            Game.meta.export.vertex_format = DEFAULT_VERTEX_FORMAT;
-        }
-        
-        if (Game.meta.export[$ "flags"] == undefined) {
-            Game.meta.export.flags = 0;
-        }
+        // @todo nullish bug
+        //Game.meta.export[$ "vertex_format"] ??= DEFAULT_VERTEX_FORMAT;
+        if (Game.meta.export[$ "vertex_format"] == undefined) Game.meta.export[$ "vertex_format"] = DEFAULT_VERTEX_FORMAT;
+        // @todo nullish bug
+        //Game.meta.export[$ "flags"] ??= 0;
+        if (Game.meta.export[$ "flags"] == undefined) Game.meta.export[$ "flags"] = 0;
     };
     
     static project_load_images = function(filename, directory) {

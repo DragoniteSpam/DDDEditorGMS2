@@ -1,5 +1,4 @@
 function __get_save_filename_generic(filter, name, directory, title, set) {
-    if (name == undefined) name = "";
     var path = get_save_filename_ext(filter, name, directory, title);
     
     if (path != "") {
@@ -34,8 +33,7 @@ function get_save_filename_gml(name) {
     });
 }
 
-function get_save_filename_mesh(name, filter) {
-    if (filter == undefined) filter = "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff";
+function get_save_filename_mesh(name, filter = "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff") {
     return __get_save_filename_generic(filter, name, Settings.location.mesh, "Select a mesh", function(directory) {
         Settings.location.mesh = directory;
     });

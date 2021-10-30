@@ -1,9 +1,4 @@
-function import_obj(fn, everything, raw_buffer, existing, replace_index) {
-    if (everything == undefined) everything = true;
-    if (raw_buffer == undefined) raw_buffer = false;
-    if (existing == undefined) existing = undefined;
-    if (replace_index == undefined) replace_index = -1;
-    
+function import_obj(fn, everything = true, raw_buffer = false, existing = undefined, replace_index = -1) {
     var err = "";
     var warnings = 0;
     static warn_invisible = false;
@@ -454,7 +449,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
         
         max_alpha = max(max_alpha, balpha);
         
-        if (base_mtl == undefined) base_mtl = bmtl;
+        base_mtl ??= bmtl;
         
         minx = min(minx, v[0]);
         miny = min(miny, v[1]);

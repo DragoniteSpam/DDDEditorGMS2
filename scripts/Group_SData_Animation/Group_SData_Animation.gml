@@ -75,8 +75,7 @@ function DataAnimation(source) : SData(source) constructor {
         return undefined;
     };
     
-    static GetNextKeyframe = function(layer, moment, ignore_passthrough) {
-        if (ignore_passthrough == undefined) ignore_passthrough = false;
+    static GetNextKeyframe = function(layer, moment, ignore_passthrough = false) {
         for (var i = moment + 1; i < self.moments; i++) {
             var keyframe = self.GetKeyframe(layer, i);
             if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
@@ -85,8 +84,7 @@ function DataAnimation(source) : SData(source) constructor {
         return undefined;
     };
     
-    static GetPreviousKeyframe = function(layer, moment, ignore_passthrough) {
-        if (ignore_passthrough == undefined) ignore_passthrough = false;
+    static GetPreviousKeyframe = function(layer, moment, ignore_passthrough = false) {
         for (var i = moment - 1; i >= 0; i--) {
             var keyframe = self.GetKeyframe(layer, i);
             if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
@@ -270,8 +268,7 @@ function DataAnimationLayer(animation, source) constructor {
         return self.keyframes[moment];
     };
     
-    static GetNextKeyframe = function(moment, ignore_passthrough) {
-        if (ignore_passthrough == undefined) ignore_passthrough = false;
+    static GetNextKeyframe = function(moment, ignore_passthrough = false) {
         for (var i = moment + 1; i < self.animation.moments; i++) {
             var keyframe = self.GetKeyframe(i);
             if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
@@ -280,8 +277,7 @@ function DataAnimationLayer(animation, source) constructor {
         return undefined;
     };
     
-    static GetPreviousKeyframe = function(moment, ignore_passthrough) {
-        if (ignore_passthrough == undefined) ignore_passthrough = false;
+    static GetPreviousKeyframe = function(moment, ignore_passthrough = false) {
         for (var i = moment - 1; i >= 0; i--) {
             var keyframe = self.GetKeyframe(i);
             if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
@@ -332,8 +328,7 @@ enum GraphicTypes {
     MESH
 }
 
-function DataAnimationKeyframe(layer, moment, source) constructor {
-    if (source == undefined) source = undefined;
+function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
     static property_map = undefined;
     if (!property_map) {
         property_map = { };

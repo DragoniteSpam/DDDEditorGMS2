@@ -60,8 +60,7 @@ function control_map(mode) {
     var instance_under_cursor = undefined;
     // stash the result because you may hit a special value of some type
     if (c_raycast_world(rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto, Controller.mouse_pick_mask)) {
-        instance_under_cursor = c_object_get_userid(c_hit_object(0));
-        if (instance_under_cursor == undefined) instance_under_cursor = BulletUserIDCollection.Get(instance_under_cursor);
+        instance_under_cursor = c_object_get_userid(c_hit_object(0)) ?? BulletUserIDCollection.Get(instance_under_cursor);
     }
     #endregion
     

@@ -79,6 +79,16 @@ function dialog_create_mesh_other_settings(root, selection) {
     el_color_reset.tooltip = "Set the blending color of every vertex to white.";
     yy += el_color_reset.height + spacing;
     
+    var el_generate_reflections = create_button(c1x, yy, "Generate Reflections", ew, eh, fa_center, function(button) {
+        var selection = button.root.selection;
+        for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+            Game.meshes[index].GenerateReflections();
+        }
+        batch_again();
+    }, dg);
+    el_generate_reflections.tooltip = "Auto-generate reflections for all selected meshes and their submeshes.";
+    yy += el_generate_reflections.height + spacing;
+    
     var b_width = 128;
     var b_height = 32;
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
@@ -90,6 +100,7 @@ function dialog_create_mesh_other_settings(root, selection) {
         el_transparency_invert,
         el_transparency_reset,
         el_color_reset,
+        el_generate_reflections,
         el_confirm
     );
     

@@ -1,20 +1,14 @@
-/// @param [set-lights?=true]
-function graphics_draw_water(set_lights) {
-    if (set_lights == undefined) set_lights = true;
+function graphics_draw_water(set_lights = true) {
+    if (!map.draw_water) return;
     
     var modulo = Stuff.graphics.water_reptition;
     var map = Stuff.map.active_map;
-    
-    if (!map.draw_water) return;
-    
     var s = Stuff.graphics.water_tile_size;
     var base_x = round_ext(Stuff.map.x, s);
     var base_y = round_ext(Stuff.map.y, s);
     
     shader_set(shd_water);
-    if (set_lights) {
-        graphics_set_lighting(shd_water);
-    }
+    if (set_lights) graphics_set_lighting(shd_water);
     
     for (var i = -1; i < 3; i++) {
         for (var j = -1; j < 3; j++) {

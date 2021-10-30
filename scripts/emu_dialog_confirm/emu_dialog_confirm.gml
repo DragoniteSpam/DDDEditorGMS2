@@ -1,11 +1,4 @@
-function emu_dialog_confirm(root, message, action_confirm, caption_message, confirm_message, cancel_message, action_cancel) {
-    // if the order of these parameters seems a little weird, it's because all of
-    // the required ones have to go at the beginning and the optional ones at the end
-    if (caption_message == undefined) caption_message = "Important!";
-    if (confirm_message == undefined) confirm_message = "yeah";
-    if (cancel_message == undefined) cancel_message = "nope";
-    if (action_cancel == undefined) action_cancel = function() { self.root.Dispose(); };
-    
+function emu_dialog_confirm(root, message, action_confirm, caption_message = "Important!", confirm_message = "yeah!", cancel_message = "nope", action_cancel = function() { self.root.Dispose(); }) {
     var dw = 400;
     var dh = 280;
     var b_width = 128;

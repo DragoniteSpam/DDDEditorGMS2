@@ -3,6 +3,8 @@ function setting_get(object, name, def) {
     if (domain) {
         if (domain[$ name] == undefined) return def;
         return domain[$ name];
+        // @todo nullish bug
+        //return (domain[$ name]) ?? def;
     }
     
     throw "Setting object not found: " + object;
@@ -52,6 +54,7 @@ try {
     };
 }
 
+// @todo nullish bug - all of these
 if (Settings.config[$ "color"] == undefined)                Settings.config.color = c_green;
 if (Settings.config[$ "focus_alpha"] == undefined)          Settings.config.focus_alpha = 0;
 if (Settings.config[$ "bezier_precision"] == undefined)     Settings.config.bezier_precision = 6;

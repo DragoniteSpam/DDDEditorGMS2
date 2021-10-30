@@ -208,8 +208,8 @@ function import_map_tiled_layer_object(x, y, z, json, columns, alpha, tiled_cach
                 var pr_offset_y = data_properties.OffsetY;
                 
                 if (pr_static == undefined) break;
-                pr_offset_x = (pr_offset_x == undefined) ? 0 : pr_offset_x.value;
-                pr_offset_y = (pr_offset_y == undefined) ? 0 : pr_offset_y.value;
+                pr_offset_x = pr_offset_x ? pr_offset_x.value : 0;
+                pr_offset_y = pr_offset_y ? pr_offset_y.value : 0;
                 
                 pr_static = pr_static.value;
                 

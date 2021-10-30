@@ -39,8 +39,7 @@ function DataClass(source) : SData(source) constructor {
         }
     };
     
-    static AddInstance = function(inst, position) {
-        if (position == undefined) position = array_length(self.instances);
+    static AddInstance = function(inst, position = array_length(self.instances)) {
         array_insert(self.instances, position, inst);
     };
     

@@ -23,7 +23,7 @@ function selection_count() {
 }
 
 function selected(entity, mask) {
-    if (mask == undefined) mask = Settings.selection.mask;
+    mask ??= Settings.selection.mask;
     
     if (entity.etype_flags & mask) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {
@@ -167,7 +167,7 @@ function selected_affected_terrain() {
 }
 
 function selected_border(entity, mask) {
-    if (mask == undefined) mask = Settings.selection.mask;
+    mask ??= Settings.selection.mask;
     
     if (entity.etype_flags & mask) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {

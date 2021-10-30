@@ -81,10 +81,7 @@ function sprite_crop(sprite, x, y, w, h) {
     return cropped;
 }
 
-function sprite_get_cropped_dimensions(sprite, subimage, cutoff) {
-    if (subimage == undefined) subimage = 0;
-    if (cutoff == undefined) cutoff = 0;
-    
+function sprite_get_cropped_dimensions(sprite, subimage = 0, cutoff = 0) {
     var buffer = sprite_to_buffer(sprite, 0);
     var sw = sprite_get_width(sprite);
     var sh = sprite_get_height(sprite);
@@ -137,9 +134,7 @@ function sprite_get_cropped_dimensions(sprite, subimage, cutoff) {
     return new vec2(ww, hh);
 }
 
-function sprite_remove_transparent_color(sprite, color) {
-    if (color == undefined) color = 0xff00ff;
-    
+function sprite_remove_transparent_color(sprite, color = 0xff00ff) {
     var w = sprite_get_width(sprite);
     var h = sprite_get_height(sprite);
     var buffer = sprite_to_buffer(sprite, 0);

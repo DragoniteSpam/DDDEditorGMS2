@@ -162,8 +162,11 @@ function dialog_create_settings_data(dialog) {
     yy += el_export_vertex_format.height + spacing;
     
     var el_export_mesh_collision_shapes = create_checkbox(col1_x, yy, "Export mesh collision shapes", ew, eh, function(checkbox) {
-        Game.meta.export.mesh_collision_shapes = checkbox.value;
-    }, Game.meta.export.mesh_collision_shapes, dg);
+        Game.meta.export.flags &= ~GameExportFlags.COLLISION_SHAPES;
+        if (checkbox.value) {
+            Game.meta.export.flags |= GameExportFlags.COLLISION_SHAPES;
+        }
+    }, Game.meta.export.flags, dg);
     el_export_mesh_collision_shapes.tooltip = "Save 3D collision geometry with meshes (vs just cell collision data)";
     dg.el_export_mesh_collision_shapes = el_export_mesh_collision_shapes;
     yy += el_export_mesh_collision_shapes.height + spacing;

@@ -2,10 +2,7 @@ function dialog_exists() {
     return !ds_list_empty(Stuff.dialogs) || !ds_list_empty(EmuOverlay._contents);
 }
 
-function dialog_create(width, height, text, render, commit, root, close) {
-    if (render == undefined) render = dialog_default;
-    if (commit == undefined) commit = dialog_destroy;
-    if (close == undefined) close = dialog_destroy;
+function dialog_create(width, height, text, render = dialog_default, commit = dialog_destroy, root = undefined, close = dialog_destroy) {
     var base_x = 64;
     var base_y = 64;
     var offset = 48;
