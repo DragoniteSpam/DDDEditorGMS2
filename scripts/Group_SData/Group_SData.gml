@@ -33,6 +33,23 @@ function SData(source = "data") constructor {
         };
     };
     
+    static CloneBase = function(constructor_function) {
+        var clone = new constructor_function();
+        clone.name = self.name;
+        clone.flags = self.flags;
+        clone.summary = self.summary;
+        
+        var iname_base = self.internal_name + "Copy";
+        var iname_trial = iname_base;
+        var n = 1;
+        while (internal_name_get(iname_trial)) {
+            iname_trial = iname_base + string(n++);
+        }
+        internal_name_set(clone, iname_trial);
+        
+        return clone;
+    };
+    
     if (is_string(source)) {
         self.name = source;
     } else {
