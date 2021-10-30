@@ -1,8 +1,8 @@
 function graphics_draw_water(set_lights = true) {
+    var map = Stuff.map.active_map;
     if (!map.draw_water) return;
     
     var modulo = Stuff.graphics.water_reptition;
-    var map = Stuff.map.active_map;
     var s = Stuff.graphics.water_tile_size;
     var base_x = round_ext(Stuff.map.x, s);
     var base_y = round_ext(Stuff.map.y, s);
