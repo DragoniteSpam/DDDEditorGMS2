@@ -61,7 +61,6 @@
     {"id":{"name":"spr_emu_close","path":"sprites/spr_emu_close/spr_emu_close.yy",},"order":7,},
     {"id":{"name":"Group_SData_Map","path":"scripts/Group_SData_Map/Group_SData_Map.yy",},"order":9,},
     {"id":{"name":"safa_delete","path":"scripts/safa_delete/safa_delete.yy",},"order":6,},
-    {"id":{"name":"safa_on_select_ui","path":"scripts/safa_on_select_ui/safa_on_select_ui.yy",},"order":7,},
     {"id":{"name":"project_load","path":"scripts/project_load/project_load.yy",},"order":1,},
     {"id":{"name":"safc_on_tile_animated_ui","path":"scripts/safc_on_tile_animated_ui/safc_on_tile_animated_ui.yy",},"order":0,},
     {"id":{"name":"Group_SData_Map_Contents","path":"scripts/Group_SData_Map_Contents/Group_SData_Map_Contents.yy",},"order":10,},
@@ -1237,7 +1236,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-capsule.d3d","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "23.1.1.420",
+    "IDEVersion": "23.1.1.421",
   },
   "resourceVersion": "1.4",
   "name": "DDDEditor2-23",

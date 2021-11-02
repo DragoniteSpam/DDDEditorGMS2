@@ -79,7 +79,7 @@ function sa_process_selection() {
         Stuff.map.ui.element_effect_com_particle.interactive = false;
         Stuff.map.ui.element_effect_com_audio.interactive = false;
     } else if (ds_list_size(list) == 1) {
-        safa_on_select_ui(list[| 0]);
+        list[| 0].on_select_ui(list[| 0]);
     } else {
         // being able to use the on select script for this would be nice,
         // except it depends rather heavily on whether or not each of the
