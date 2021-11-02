@@ -91,6 +91,7 @@ function ui_init_main(mode) {
             Settings.selection.mask = Settings.selection.mask ^ bitfield.value;
             sa_process_selection();
         };
+        
         element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, ETypeFlags.ENTITY_ANY, t_general);
         create_bitfield_options_vertical(element, [
             create_bitfield_option_data(ETypeFlags.ENTITY_TILE, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),

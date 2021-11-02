@@ -22,9 +22,7 @@ function selection_count() {
     }
 }
 
-function selected(entity, mask) {
-    mask ??= Settings.selection.mask;
-    
+function selected(entity, mask = Settings.selection.mask) {
     if (entity.etype_flags & mask) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {
             if (Stuff.map.selection[i].selected_determination(entity)) {
@@ -166,9 +164,7 @@ function selected_affected_terrain() {
     return list;
 }
 
-function selected_border(entity, mask) {
-    mask ??= Settings.selection.mask;
-    
+function selected_border(entity, mask = Settings.selection.mask) {
     if (entity.etype_flags & mask) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {
             if (Stuff.map.selection[i].selected_border_determination(entity)) {
