@@ -996,6 +996,12 @@ function ui_init_main(mode) {
         ds_list_add(t_p_effect.contents, element_effect_com_audio);
         
         yy += element_effect_com_audio.height + spacing;
+        
+        element_effect_com_marker = create_button(col1_x, yy, "Markers", col_width, element_height, fa_center, null, t_p_effect);
+        element_effect_com_marker.interactive = false;
+        ds_list_add(t_p_effect.contents, element_effect_com_marker);
+        
+        yy += element_effect_com_marker.height + spacing;
         #endregion
         
         #region tab: entity: other
