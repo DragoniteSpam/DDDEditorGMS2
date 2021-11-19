@@ -334,6 +334,7 @@ function EntityEffect(source) : Entity(source) constructor {
     self.com_light = undefined;
     self.com_particle = undefined;
     self.com_audio = undefined;
+    self.com_marker = -1;
     
     static Export = function(buffer) {
         self.ExportBase(buffer);
@@ -354,6 +355,7 @@ function EntityEffect(source) : Entity(source) constructor {
         } else {
             buffer_write(buffer, buffer_u8, 0);
         }
+        buffer_write(buffer, buffer_s32, self.com_marker);
         return 1;
     };
     
@@ -364,6 +366,7 @@ function EntityEffect(source) : Entity(source) constructor {
                 light: self.com_light ? self.com_light.CreateJSON() : undefined,
                 particle: self.com_particle ? self.com_particle.CreateJSON() : undefined,
                 audio: self.com_audio ? self.com_audio.CreateJSON() : undefined,
+                marker: self.com_marker,
             },
         };
         return json;
@@ -410,6 +413,9 @@ function EntityEffect(source) : Entity(source) constructor {
         self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
         self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
         self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
+        /// @todo nullish bug
+        //self.com_marker = source[$ "marker"] ?? -1;
+        if (source[$ "marker"] != undefined) self.com_marker = source.marker;
     }
 }
 
