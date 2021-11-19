@@ -229,6 +229,7 @@
     {"id":{"name":"scribble_init","path":"scripts/scribble_init/scribble_init.yy",},"order":4,},
     {"id":{"name":"terrain_mode_z","path":"scripts/terrain_mode_z/terrain_mode_z.yy",},"order":0,},
     {"id":{"name":"terrain_mode_texture","path":"scripts/terrain_mode_texture/terrain_mode_texture.yy",},"order":1,},
+    {"id":{"name":"dialog_create_entity_effect_com_markers","path":"scripts/dialog_create_entity_effect_com_markers/dialog_create_entity_effect_com_markers.yy",},"order":1,},
     {"id":{"name":"terrain_mode_color","path":"scripts/terrain_mode_color/terrain_mode_color.yy",},"order":2,},
     {"id":{"name":"scribble_cache","path":"scripts/scribble_cache/scribble_cache.yy",},"order":8,},
     {"id":{"name":"Group_Intersection","path":"scripts/Group_Intersection/Group_Intersection.yy",},"order":17,},
