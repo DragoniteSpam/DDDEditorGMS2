@@ -1,4 +1,5 @@
 function ui_input_set_value(input, value) {
+    value = string(value);
     // because keyboard_string also needs to be set
     input.value = value;
     
