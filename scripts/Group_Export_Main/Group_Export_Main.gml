@@ -40,6 +40,9 @@ function project_export_global(buffer) {
         buffer_write(buffer, buffer_u16, type.id);
         buffer_write(buffer, type.buffer_type, constant.value);
     }
+    
+    // We don't need to save the effect marker names - those are just there for
+    // the benefit of the editor
 }
 
 function project_export_language(buffer) {

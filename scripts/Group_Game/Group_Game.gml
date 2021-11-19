@@ -50,6 +50,7 @@ Game = new (function() constructor {
         constants: [],
         triggers: array_create(FLAG_COUNT, ""),
         flags: array_create(FLAG_COUNT, ""),
+        effect_markers: [],
     };
     self.data = [];
     self.graphics = {

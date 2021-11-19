@@ -33,6 +33,9 @@ function project_load(id) {
         // @todo nullish bug
         //Game.meta.export[$ "flags"] ??= 0;
         if (Game.meta.export[$ "flags"] == undefined) Game.meta.export[$ "flags"] = 0;
+        // @todo nullish bug
+        //Game.vars[$ "effect_markers"] ??= 0;
+        if (Game.vars[$ "effect_markers"] == undefined) Game.vars[$ "effect_markers"] = [];
     };
     
     static project_load_images = function(filename, directory) {
