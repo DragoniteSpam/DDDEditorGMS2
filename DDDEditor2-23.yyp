@@ -347,6 +347,7 @@
     {"id":{"name":"dialog_create_preferences","path":"scripts/dialog_create_preferences/dialog_create_preferences.yy",},"order":3,},
     {"id":{"name":"scribble_set_bezier","path":"scripts/scribble_set_bezier/scribble_set_bezier.yy",},"order":2,},
     {"id":{"name":"dialog_create_settings_data","path":"scripts/dialog_create_settings_data/dialog_create_settings_data.yy",},"order":4,},
+    {"id":{"name":"dialog_create_settings_data_effect_marker","path":"scripts/dialog_create_settings_data_effect_marker/dialog_create_settings_data_effect_marker.yy",},"order":25,},
     {"id":{"name":"dialog_create_settings_data_switches","path":"scripts/dialog_create_settings_data_switches/dialog_create_settings_data_switches.yy",},"order":5,},
     {"id":{"name":"dialog_create_settings_data_event_triggers","path":"scripts/dialog_create_settings_data_event_triggers/dialog_create_settings_data_event_triggers.yy",},"order":6,},
     {"id":{"name":"dialog_create_settings_data_asset_flags","path":"scripts/dialog_create_settings_data_asset_flags/dialog_create_settings_data_asset_flags.yy",},"order":7,},

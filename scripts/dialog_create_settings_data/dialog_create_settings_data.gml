@@ -201,6 +201,10 @@ function dialog_create_settings_data(dialog) {
     el_asset_flags.tooltip = "Some extra flags you can assign to various game assets. This now includes collision triggers.";
     yy += el_asset_flags.height + spacing;
     
+    var el_effect_markers = create_button(col2_x, yy, "Effect Markers", ew, eh, fa_center, dialog_create_settings_data_effect_marker, dg);
+    el_effect_markers.tooltip = "Effects can be used to denote misc ambient entities, such as fish in water or that kind of thing.";
+    yy += el_effect_markers.height + spacing;
+    
     var el_common_code = create_text(col2_x, yy, "Common Code", ew, eh, fa_left, dw / 2, dg);
     el_common_code.color = c_blue;
     yy += el_common_code.height + spacing;
@@ -256,6 +260,7 @@ function dialog_create_settings_data(dialog) {
         el_trigger_title,
         el_event_triggers,
         el_asset_flags,
+        el_effect_markers,
         // global code pieces
         el_common_code,
         // other things
