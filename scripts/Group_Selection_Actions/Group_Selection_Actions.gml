@@ -198,11 +198,10 @@ function selection_all_type(list) {
     var common_ancestor = ETypeFlags.ENTITY_ANY;
     
     for (var i = 0; i < ds_list_size(list); i++) {
-        var thing = list[| i];
         // if latest common ancestor is undefined, define it
-        common_ancestor &= thing.etype_flags;
+        common_ancestor &= list[| i].etype_flags;
         if (common_ancestor == ETypeFlags.ENTITY) {
-            return ETypeFlags.ENTITY_ANY;
+            return global.etype_meta[ETypes.ENTITY];
         }
     }
     
