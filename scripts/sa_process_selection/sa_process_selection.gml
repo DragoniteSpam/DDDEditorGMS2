@@ -5,16 +5,8 @@ function sa_process_selection() {
     var list = selection_all();
     var map = Stuff.map.active_map;
     
-    for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
-        Stuff.map.selected_entities[| i].on_deselect(Stuff.map.selected_entities[| i]);
-    }
-    
     ds_list_destroy(Stuff.map.selected_entities);
     Stuff.map.selected_entities = list;
-    
-    for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
-        Stuff.map.selected_entities[| i].on_select(Stuff.map.selected_entities[| i]);
-    }
     
     if (ds_list_size(list) == 0) {
         // type
@@ -78,8 +70,6 @@ function sa_process_selection() {
         Stuff.map.ui.element_effect_com_light.interactive = false;
         Stuff.map.ui.element_effect_com_particle.interactive = false;
         Stuff.map.ui.element_effect_com_audio.interactive = false;
-    } else if (ds_list_size(list) == 1) {
-        list[| 0].on_select_ui(list[| 0]);
     } else {
         // being able to use the on select script for this would be nice,
         // except it depends rather heavily on whether or not each of the

@@ -101,9 +101,6 @@ function Entity(source) constructor {
     // collision data
     self.cobject = noone;
     
-    self.on_select = safc_on_entity;
-    self.on_deselect = safc_on_entity_deselect;
-    self.on_select_ui = safc_on_entity_ui;
     self.get_bounding_box = function() {
         return new BoundingBox(self.xx, self.yy, self.zz, self.xx + 1, self.yy + 1, self.zz + 1);
     };
@@ -332,9 +329,6 @@ function EntityEffect(source) : Entity(source) constructor {
     self.slot = MapCellContents.EFFECT;
     self.batchable = false;
     static render = render_effect;
-    static on_select = safc_on_effect;
-    static on_deselect = safc_on_effect_deselect;
-    static on_select_ui = safc_on_effect_ui;
     
     // components
     self.com_light = undefined;
@@ -444,7 +438,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     static batch = batch_mesh;
     static batch_collision = batch_collision_mesh;
     static render = render_mesh;
-    static on_select_ui = safc_on_mesh_ui;
+    
     static get_bounding_box = function() {
         var mesh_data = guid_get(self.mesh);
         return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
@@ -611,7 +605,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     
     static batch = batch_mesh_autotile;
     static render = render_mesh_autotile;
-    static on_select_ui = safc_on_mesh_ui;
+    
     self.get_bounding_box = function() {
         return new BoundingBox(self.xx, self.yy, self.zz, self.xx + 1, self.yy + 1, self.zz + 1);
     };
@@ -692,7 +686,6 @@ function EntityPawn(source) : Entity(source) constructor {
         vertex_submit(data ? data.npc_frames[index] : Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(data ? data.picture : spr_pawn_missing, 0));
         matrix_set(matrix_world, matrix_build_identity());
     };
-    static on_select_ui = safc_on_pawn_ui;
     
     static Export = function(buffer) {
         self.ExportBase(buffer);
@@ -791,7 +784,6 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     static batch = batch_tile;
     static batch_collision = batch_collision_tile;
     static render = render_tile;
-    static on_select_ui = safc_on_tile_ui;
     
     self.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
@@ -837,8 +829,6 @@ function EntityTileAnimated(source) : EntityTile(source, 0, 0) constructor {
     self.etype_flags = ETypeFlags.ENTITY_TILE_ANIMATED;
     
     static batch = batch_autotile;
-    
-    static on_select_ui = safc_on_tile_animated_ui;
     
     if (is_struct(source)) {
         
