@@ -1,4 +1,4 @@
-function Component(parent, source) constructor {
+function Component(parent, source = undefined) constructor {
     self.parent = parent;
     self.sprite = -1;
     self.label_colour = c_black;
@@ -28,7 +28,7 @@ function Component(parent, source) constructor {
     };
 }
 
-function ComponentPointLight(parent, source) : Component(parent, source) constructor {
+function ComponentPointLight(parent, source = undefined) : Component(parent, source) constructor {
     self.render = render_effect_light_point;
     self.sprite = spr_light_point;
     self.type = LightTypes.POINT;
@@ -63,7 +63,7 @@ function ComponentPointLight(parent, source) : Component(parent, source) constru
     };
 }
 
-function ComponentSpotLight(parent, source) : Component(parent, source) constructor {
+function ComponentSpotLight(parent, source = undefined) : Component(parent, source) constructor {
     self.render = render_effect_light_spot;
     self.sprite = spr_light_point;
     self.type = LightTypes.SPOT;
@@ -118,7 +118,7 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
     };
 }
 
-function ComponentDirectionalLight(parent, source) : Component(parent, source) constructor {
+function ComponentDirectionalLight(parent, source = undefined) : Component(parent, source) constructor {
     self.render = render_effect_light_direction;
     self.sprite = spr_light_direction;
     self.type = LightTypes.DIRECTIONAL;
@@ -161,7 +161,7 @@ function ComponentDirectionalLight(parent, source) : Component(parent, source) c
     };
 }
 
-function ComponentParticle(parent, source) : Component(parent, source) constructor {
+function ComponentParticle(parent, source = undefined) : Component(parent, source) constructor {
     self.render = null;
     self.sprite = spr_light_direction;
     
@@ -190,7 +190,7 @@ function ComponentParticle(parent, source) : Component(parent, source) construct
     };
 }
 
-function ComponentAudio(parent, source) : Component(parent, source) constructor {
+function ComponentAudio(parent, source = undefined) : Component(parent, source) constructor {
     self.render = null;
     self.sprite = spr_light_direction;
     
