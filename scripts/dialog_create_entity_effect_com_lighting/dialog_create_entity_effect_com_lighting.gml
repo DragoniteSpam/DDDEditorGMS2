@@ -7,8 +7,8 @@ function dialog_create_entity_effect_com_lighting(root) {
     var com_point = (com_light && com_light.type == LightTypes.POINT) ? com_light : noone;
     var com_spot = (com_light && com_light.type == LightTypes.SPOT) ? com_light : noone;
     
-    var dw = 320;
-    var dh = 540;
+    var dw = 400;
+    var dh = 576;
     
     var dg = dialog_create(dw, dh, "Effect Component: Lighting", dialog_default, dialog_destroy, root);
     
@@ -198,6 +198,8 @@ function dialog_create_entity_effect_com_lighting(root) {
     el_spot_cutoff_outer.tooltip = "The outer angle of the cone. Only space inside the cone angle will be lit.";
     el_spot_cutoff_outer.enabled = (single && com_light && com_light.type == LightTypes.SPOT);
     dg.el_spot_cutoff_outer = el_spot_cutoff_outer;
+    
+    yy += el_spot_cutoff_outer.height + spacing;
     
     var el_spot_cutoff_inner = create_input(col1_x, yy, "Inner Cone Angle:", ew, eh, function(input) {
         var list = Stuff.map.selected_entities;
