@@ -1,19 +1,21 @@
 function uivc_entity_effect_com_lighting_type(radio) {
     var base_dialog = radio.root.root;
     var list = Stuff.map.selected_entities;
-    // it doesn't actually matter if more than one effect entities are selected or not
-    // here because they'll all have the same parameters after you set the type anyway,
-    // but i don't want people to forget that they have more than one thing selected
+    // it doesn't actually matter if more than one effect entities are selected
+    // or not here because they'll all have the same parameters after you set
+    // the type anyway, but i don't want people to forget that they have more
+    // than one thing selected
     var single = (ds_list_size(list) == 1);
     var first = list[| 0];
     
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
     
-    // reset everything (but if an effect has the same light compoment as the type to be added, keep it)
+    // reset everything (but if an effect has the same light compoment as the
+    // type to be added, keep it)
     for (var i = 0; i < ds_list_size(list); i++) {
         var effect = list[| i];
-        if (effect.com_light.type != radio.value) {
+        if (effect.com_light && effect.com_light.type != radio.value) {
             effect.com_light = undefined;
         }
     }
