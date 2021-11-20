@@ -28,7 +28,8 @@ function uivc_entity_effect_com_lighting_type(radio) {
     base_dialog.el_spot_y.enabled = false;
     base_dialog.el_spot_z.enabled = false;
     base_dialog.el_spot_radius.enabled = false;
-    base_dialog.el_spot_cutoff.enabled = false;
+    base_dialog.el_spot_cutoff_outer.enabled = false;
+    base_dialog.el_spot_cutoff_inner.enabled = false;
     
     switch (radio.value) {
         case LightTypes.NONE:
@@ -74,7 +75,8 @@ function uivc_entity_effect_com_lighting_type(radio) {
             base_dialog.el_spot_y.enabled = true;
             base_dialog.el_spot_z.enabled = true;
             base_dialog.el_spot_radius.enabled = true;
-            base_dialog.el_spot_cutoff.enabled = true;
+            base_dialog.el_spot_cutoff_outer.enabled = true;
+            base_dialog.el_spot_cutoff_inner.enabled = true;
             
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
@@ -87,7 +89,8 @@ function uivc_entity_effect_com_lighting_type(radio) {
             ui_input_set_value(base_dialog.el_spot_y, string(single ? first.com_light.light_dy : "-"));
             ui_input_set_value(base_dialog.el_spot_z, string(single ? first.com_light.light_dz : "-"));
             ui_input_set_value(base_dialog.el_spot_radius, string(single ? first.com_light.light_radius : "-"));
-            ui_input_set_value(base_dialog.el_spot_cutoff, string(single ? first.com_light.light_cutoff : "-"));
+            ui_input_set_value(base_dialog.el_spot_cutoff_outer, string(single ? first.com_light.light_cutoff_outer : "-"));
+            ui_input_set_value(base_dialog.el_spot_cutoff_inner, string(single ? first.com_light.light_cutoff_inner : "-"));
             break;
     }
     

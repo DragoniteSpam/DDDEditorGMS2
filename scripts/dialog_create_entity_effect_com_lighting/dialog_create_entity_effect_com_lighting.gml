@@ -188,18 +188,29 @@ function dialog_create_entity_effect_com_lighting(root) {
     
     yy += el_spot_radius.height + spacing;
     
-    var el_spot_cutoff = create_input(col1_x, yy, "Cone Angle:", ew, eh, function(input) {
+    var el_spot_cutoff_outer = create_input(col1_x, yy, "Outer Cone Angle:", ew, eh, function(input) {
         var list = Stuff.map.selected_entities;
         for (var i = 0; i < ds_list_size(list); i++) {
             var effect = list[| i];
-            effect.com_light.light_cutoff = real(input.value);
+            effect.com_light.light_cutoff_outer = real(input.value);
         }
-    }, com_spot ? string(com_spot.light_cutoff) : "", "float", validate_double, 0.1, 80, 10, vx1, vy1, vx2, vy2, dg);
-    el_spot_cutoff.tooltip = "The angle of the cone. Only space inside the cone angle will be lit.";
-    el_spot_cutoff.enabled = (single && com_light && com_light.type == LightTypes.SPOT);
-    dg.el_spot_cutoff = el_spot_cutoff;
+    }, com_spot ? string(com_spot.light_cutoff_outer) : "", "float", validate_double, 0.1, 80, 10, vx1, vy1, vx2, vy2, dg);
+    el_spot_cutoff_outer.tooltip = "The outer angle of the cone. Only space inside the cone angle will be lit.";
+    el_spot_cutoff_outer.enabled = (single && com_light && com_light.type == LightTypes.SPOT);
+    dg.el_spot_cutoff_outer = el_spot_cutoff_outer;
     
-    yy += el_spot_cutoff.height + spacing;
+    var el_spot_cutoff_inner = create_input(col1_x, yy, "Inner Cone Angle:", ew, eh, function(input) {
+        var list = Stuff.map.selected_entities;
+        for (var i = 0; i < ds_list_size(list); i++) {
+            var effect = list[| i];
+            effect.com_light.light_cutoff_inner = real(input.value);
+        }
+    }, com_spot ? string(com_spot.light_cutoff_inner) : "", "float", validate_double, 0.1, 80, 10, vx1, vy1, vx2, vy2, dg);
+    el_spot_cutoff_inner.tooltip = "The inner angle of the cone. Only space inside the cone angle will be lit.";
+    el_spot_cutoff_inner.enabled = (single && com_light && com_light.type == LightTypes.SPOT);
+    dg.el_spot_cutoff_inner = el_spot_cutoff_inner;
+    
+    yy += el_spot_cutoff_inner.height + spacing;
     #endregion
     
     var b_width = 128;
@@ -218,7 +229,8 @@ function dialog_create_entity_effect_com_lighting(root) {
         el_spot_y,
         el_spot_z,
         el_spot_radius,
-        el_spot_cutoff,
+        el_spot_cutoff_outer,
+        el_spot_cutoff_inner,
         el_confirm
     );
     

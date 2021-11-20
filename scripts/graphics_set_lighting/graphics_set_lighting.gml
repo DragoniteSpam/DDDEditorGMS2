@@ -46,7 +46,7 @@ function graphics_set_lighting(shader) {
                 // 8 is r
                 // 9 is g
                 // 10 is b
-                light_data[index + 11] = dcos(data.light_cutoff);
+                light_data[index + 11] = dcos(data.light_cutoff_outer);
                 break;
         }
     }

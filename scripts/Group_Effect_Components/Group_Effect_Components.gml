@@ -72,7 +72,8 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
     // specific
     self.light_colour = c_white;
     self.light_radius = 255;
-    self.light_cutoff = 45;
+    self.light_cutoff_outer = 45;
+    self.light_cutoff_inner = 45;
     self.light_dx = 0;
     self.light_dy = 0;
     self.light_dz = -1;
@@ -80,7 +81,8 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
     if (is_struct(source)) {
         self.light_colour = source.light.color;
         self.light_radius = source.light.radius;
-        self.light_cutoff = source.light.cutoff;
+        self.light_cutoff_outer = source.light.cutoff_outer;
+        self.light_cutoff_inner = source.light.cutoff_inner;
         self.light_dx = source.light.dx;
         self.light_dy = source.light.dy;
         self.light_dz = source.light.dz;
@@ -91,7 +93,8 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
         json.light = {
             color: self.light_colour,
             radius: self.light_radius,
-            cutoff: self.light_cutoff,
+            cutoff_outer: self.light_cutoff_outer,
+            cutoff_inner: self.light_cutoff_inner,
             dx: self.light_dx,
             dy: self.light_dy,
             dz: self.light_dz,
@@ -107,7 +110,8 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_radius);
-        buffer_write(buffer, buffer_u32, self.light_cutoff);
+        buffer_write(buffer, buffer_u32, self.light_cutoff_outer);
+        buffer_write(buffer, buffer_u32, self.light_cutoff_inner);
         buffer_write(buffer, buffer_f32, self.light_dx);
         buffer_write(buffer, buffer_u32, self.light_dy);
         buffer_write(buffer, buffer_f32, self.light_dz);
