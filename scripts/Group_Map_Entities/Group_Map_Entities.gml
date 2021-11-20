@@ -407,15 +407,19 @@ function EntityEffect(source) : Entity(source) constructor {
     };
     
     if (is_struct(source)) {
-        var light = source.com.light;
-        var particle = source.com.particle;
-        var audio = source.com.audio;
+        var light = source.effects.com.light;
+        var particle = source.effects.com.particle;
+        var audio = source.effects.com.audio;
+        /// @todo lame hack undefined in json
+        if (light == pointer_null) light = undefined;
+        if (particle == pointer_null) particle = undefined;
+        if (audio == pointer_null) audio = undefined;
         self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
         self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
         self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
         /// @todo nullish bug
-        //self.com_marker = source[$ "marker"] ?? -1;
-        if (source[$ "marker"] != undefined) self.com_marker = source.marker;
+        //self.com_marker = source.effects.com[$ "marker"] ?? -1;
+        if (source.effects.com[$ "marker"] != undefined) self.com_marker = source.effects.com.marker;
     }
 }
 
