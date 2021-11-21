@@ -1,5 +1,5 @@
 function dialog_create_settings_data_switches(dialog) {
-    var dw = 640;
+    var dw = 720;
     var dh = 640;
     
     var dg = dialog_create(dw, dh, "Data Settings: Global Switches", dialog_default, dialog_destroy, dialog);
@@ -19,7 +19,7 @@ function dialog_create_settings_data_switches(dialog) {
     var yy_start = 64;
     
     var n_switches = array_length(Game.vars.switches);
-    var el_list = create_list(32, yy, "Global Switches (" + string(n_switches) + ")", "<no swiches>", ew, eh, 20, function(list) {
+    var el_list = create_list(32, yy, "Global Switches (" + string(n_switches) + ")", "<no swiches>", ew, eh, 16, function(list) {
         var selection = ui_list_selection(list);
         var sw_data = Game.vars.switches[selection];
         var base_dialog = list.root;
@@ -34,12 +34,17 @@ function dialog_create_settings_data_switches(dialog) {
     dg.el_list = el_list;
     yy += el_list.GetHeight() + spacing;
     
-    yy = yy_start;
-    var el_max = create_input(c2 + 32, yy, "Maximum", ew, eh, dialog_create_commit_switches_resize, string(n_switches), "0...65535", validate_int, 0, 65535, 5, vx1, vy1, vx2, vy2, dg);
-    el_max.require_enter = true;
-    yy += el_max.height + spacing;
+    var el_add = create_button(32, yy, "Add", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    yy += el_add.height + spacing;
     
-    yy += eh + spacing;
+    var el_delete = create_button(32, yy, "Delete", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    yy += el_delete.height + spacing;
+    
+    yy = yy_start;
     
     var el_name = create_input(c2 + 32, yy, "Switch name:", ew, eh, function(input) {
         var base_dialog = input.root;
@@ -72,7 +77,8 @@ function dialog_create_settings_data_switches(dialog) {
         el_list,
         el_name,
         el_default,
-        el_max,
+        el_add,
+        el_delete,
         el_confirm
     );
     
