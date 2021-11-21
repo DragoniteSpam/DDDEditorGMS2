@@ -343,13 +343,13 @@ function EntityEffect(source) : Entity(source) constructor {
         } else {
             buffer_write(buffer, buffer_u8, LightTypes.NONE);
         }
-    
+        
         if (self.com_particle) {
             self.com_particle.Export(buffer);
         } else {
             buffer_write(buffer, buffer_u8, 0);
         }
-    
+        
         if (self.com_audio) {
             self.com_audio.Export(buffer);
         } else {
