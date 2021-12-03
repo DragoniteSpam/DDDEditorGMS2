@@ -362,7 +362,7 @@ function draw_event_node(node) {
                     case DataTypes.MAP:
                     case DataTypes.EVENT:
                     case DataTypes.ASSET_FLAG:
-                        y2 = y2 + 32;
+                        y2 = y2 + 64;
                         break;
                     case DataTypes.STRING:
                         y2 = y2 + ((array_length(node.custom_data[i]) == 1) ? entry_height + 24 : 32);
@@ -400,11 +400,6 @@ function draw_event_node(node) {
                         case DataTypes.ANIMATION:
                         case DataTypes.CODE:
                         case DataTypes.ASSET_FLAG:
-                            eh = 32;
-                            break;
-                        case DataTypes.STRING:
-                            eh = (array_length(custom_data_list) == 1) ? entry_height + 24 : 32;
-                            break;
                         case DataTypes.COLOR:
                         case DataTypes.MESH:
                         case DataTypes.MESH_AUTOTILE:
@@ -420,7 +415,10 @@ function draw_event_node(node) {
                         case DataTypes.ENTITY:
                         case DataTypes.MAP:
                         case DataTypes.EVENT:
-                            eh = 32;
+                            eh = 64;
+                            break;
+                        case DataTypes.STRING:
+                            eh = (array_length(custom_data_list) == 1) ? entry_height + 24 : 32;
                             break;
                     }
                     
@@ -708,9 +706,9 @@ function draw_event_node(node) {
                                 break;
                         }
                         
-                        message = message + ((output_script == null) ? output_string : output_script(node, i));
+                        message += "\n" + ((output_script == null) ? output_string : output_script(node, i));
                     } else {
-                        message = message + ": multiple values (" + string(array_length(custom_data_list)) + ")";
+                        message += "\n" + ": multiple values (" + string(array_length(custom_data_list)) + ")";
                     }
                     
                     if (type.type == DataTypes.STRING && array_length(custom_data_list) == 1) {
