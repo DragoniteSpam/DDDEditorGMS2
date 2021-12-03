@@ -510,7 +510,30 @@ function draw_event_node(node) {
                                             dialog_create_event_get_event(noone, node, i, 0);
                                             break;
                                         case DataTypes.ENTITY:
-                                            dialog_create_refid_list(node, custom_data_list[0], uivc_refid_picker_event_node, node, i);
+                                            dialog_create_refid_list(node, custom_data_list[0], function(element) {
+                                                var node = element.root.node;
+                                                var index = element.root.index;
+                                                var type = element.root.el_type.value;
+                                                
+                                                switch (type) {
+                                                    case 0:
+                                                        node.custom_data[@ index][@ 0] = REFID_PLAYER;
+                                                        break;
+                                                    case 1:
+                                                        node.custom_data[@ index][@ 0] = REFID_SELF;
+                                                        break;
+                                                    case 2:
+                                                        var selection = ui_list_selection(element.root.el_list);
+                                                        if (selection + 1) {
+                                                            node.custom_data[@ index][@ 0] = element.root.el_list.entries[| selection].REFID;
+                                                        } else {
+                                                            node.custom_data[@ index][@ 0] = REFID_SELF;
+                                                        }
+                                                        break;
+                                                }
+                                                
+                                                dmu_dialog_commit(element);
+                                            }, node, i);
                                             break;
                                         case DataTypes.MAP:
                                             show_error("okay you actually need to implement this soon, please", true);
