@@ -1,5 +1,4 @@
-function event_create_node(event, type, xx = camera_get_view_x(camera) + room_width / 2, yy = camera_get_view_y(camera) + room_height / 2) {
-    var camera = view_get_camera(view_fullscreen);
+function event_create_node(event, type, xx = camera_get_view_x(view_get_camera(view_fullscreen)) + room_width / 2, yy = camera_get_view_y(view_get_camera(view_fullscreen)) + room_height / 2, custom_guid = NULL) {
     var node = new DataEventNode(undefined, event, type, custom_guid);
     node.x = xx;
     node.y = yy;
