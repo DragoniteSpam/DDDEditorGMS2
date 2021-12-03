@@ -114,7 +114,8 @@ function DataEventNode(source, parent, type = EventNodeTypes.ENTRYPOINT, custom 
                     // pre-allocate space for the properties of the event
                     for (var i = 0; i < array_length(custom.types); i++) {
                         var property = custom.types[i];
-                        array_push(self.custom_data, array_create(property.max_size, property.default_value));
+                        // entity references are automatically initialized to REFID_SELF
+                        array_push(self.custom_data, array_create(property.max_size, (property.type == DataTypes.ENTITY) ? REFID_SELF : property.default_value));
                     }
                     
                     self.outbound = array_create(array_length(custom.outbound), NULL);

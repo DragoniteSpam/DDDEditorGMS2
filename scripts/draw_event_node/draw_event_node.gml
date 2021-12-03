@@ -510,9 +510,7 @@ function draw_event_node(node) {
                                             dialog_create_event_get_event(noone, node, i, 0);
                                             break;
                                         case DataTypes.ENTITY:
-                                            var dialog = dialog_create_refid_list(node, custom_data_list[0], uivc_refid_picker_event_node);
-                                            dialog.node = node;
-                                            dialog.index = i;
+                                            dialog_create_refid_list(node, custom_data_list[0], uivc_refid_picker_event_node, node, i);
                                             break;
                                         case DataTypes.MAP:
                                             show_error("okay you actually need to implement this soon, please", true);
@@ -662,15 +660,18 @@ function draw_event_node(node) {
                                 break;
                             case DataTypes.ENTITY:
                                 var refid = custom_data_list[0];
-                                var setdata = refid_get(refid);
-                                var strh = string(refid);
                                 message = message + "(entity): ";
-                                // If the value is 0, it's automatically "this". If it has a value, it's
-                                // an entity reference somewhere (which could also be self, but probably not)
-                                if (setdata) {
-                                    output_string = (setdata ? setdata.name : "<not loaded>") + ":" + strh;
-                                } else {
-                                    output_string = "<self>";
+                                switch (refid) {
+                                    case REFID_PLAYER:
+                                        output_string = "<player>";
+                                        break;
+                                    case REFID_SELF:
+                                        output_string = "<self>";
+                                        break;
+                                    default:
+                                        var setdata = refid_get(refid);
+                                        output_string = (setdata ? setdata.name : "<not loaded>") + ":" + string(refid);
+                                        break;
                                 }
                                 break;
                             case DataTypes.MAP:
