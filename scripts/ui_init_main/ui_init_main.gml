@@ -565,15 +565,14 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, null, t_maps);
+        element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, function() {
+            emu_dialog_notice("This has not yet been implemented!");
+        }, t_maps);
         element.tooltip = "Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution.";
         element.inheritRender = element.render;
         element.render = function(button, x, y) {
             var selection = ui_list_selection(button.root.el_map_list);
-            button.interactive = false;
-            if (Game.maps[selection] == Stuff.map.active_map) button.interactive = true;
-            // remove this line if this feature ever gets added
-            button.interactive = false;
+            button.interactive = (selection + 1 && Game.maps[selection] == Stuff.map.active_map);
             button.inheritRender(button, x, y);
         };
         ds_list_add(t_maps.contents, element);
@@ -589,8 +588,7 @@ function ui_init_main(mode) {
         element.inheritRender = element.render;
         element.render = function(button, x, y) {
             var selection = ui_list_selection(button.root.el_map_list);
-            button.interactive = false;
-            if (Game.maps[selection] == Stuff.map.active_map) button.interactive = true;
+            button.interactive = (selection + 1 && Game.maps[selection] == Stuff.map.active_map);
             button.inheritRender(button, x, y);
         };
         element.tooltip = "Clear the frozen vertex buffer data. There is no way to get it back. Use with caution.";
