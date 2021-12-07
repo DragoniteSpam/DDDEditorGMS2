@@ -144,12 +144,12 @@ function ui_init_game_data(mode) {
         yy += spacing + element.height;
         
         el_inst_remove = create_button(this_column * cw + spacing, yy, "Delete Instance", ew, eh, fa_center, function(button) {
-            var data = guid_get(thing.root.active_type_guid);
-            var selection = ui_list_selection(thing.root.el_instances);
+            var data = guid_get(button.root.active_type_guid);
+            var selection = ui_list_selection(button.root.el_instances);
             if (selection == -1) return;
             
             var instance = data.instances[selection];
-            ui_list_deselect(thing.root.el_instances);
+            ui_list_deselect(button.root.el_instances);
             data.RemoveInstance(instance);
             instance.Destroy();
             ui_init_game_data_refresh();
