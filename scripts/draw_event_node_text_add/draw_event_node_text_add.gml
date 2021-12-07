@@ -1,23 +1,13 @@
-/// @param x
-/// @param y
-/// @param node
-function draw_event_node_text_add(argument0, argument1, argument2) {
-
-    var xx = argument0;
-    var yy = argument1;
-    var node = argument2;
-
-    draw_sprite(spr_plus_minus, 0, xx, yy);
-
+function draw_event_node_text_add(x, y, node) {
+    draw_sprite(spr_plus_minus, 0, x, y);
+    
     var tolerance = 8;
-    if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
-        draw_sprite(spr_plus_minus, 1, xx, yy);
-        draw_tooltip(xx, yy + 16, "Add Text");
+    if (mouse_within_rectangle_adjusted(x - tolerance, y - tolerance, x + tolerance, y + tolerance)) {
+        draw_sprite(spr_plus_minus, 1, x, y);
+        draw_tooltip(x, y + 16, "Add Text");
         if (Controller.release_left) {
             array_push(node.data, "Text line " + string(array_length(node.data)));
-            array_push(node.outbound, undefined);
+            array_push(node.outbound, NULL);
         }
     }
-
-
 }
