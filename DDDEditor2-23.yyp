@@ -807,7 +807,6 @@
     {"id":{"name":"ui_render_list_entity_events","path":"scripts/ui_render_list_entity_events/ui_render_list_entity_events.yy",},"order":8,},
     {"id":{"name":"ui_render_list_data_instances","path":"scripts/ui_render_list_data_instances/ui_render_list_data_instances.yy",},"order":12,},
     {"id":{"name":"ui_render_list_move_route_steps","path":"scripts/ui_render_list_move_route_steps/ui_render_list_move_route_steps.yy",},"order":24,},
-    {"id":{"name":"ui_render_list_event_custom_outbound","path":"scripts/ui_render_list_event_custom_outbound/ui_render_list_event_custom_outbound.yy",},"order":28,},
     {"id":{"name":"ui_render_list_all_entities","path":"scripts/ui_render_list_all_entities/ui_render_list_all_entities.yy",},"order":29,},
     {"id":{"name":"ui_render_columns","path":"scripts/ui_render_columns/ui_render_columns.yy",},"order":32,},
     {"id":{"name":"ui_render_text_animation_internal_name","path":"scripts/ui_render_text_animation_internal_name/ui_render_text_animation_internal_name.yy",},"order":34,},

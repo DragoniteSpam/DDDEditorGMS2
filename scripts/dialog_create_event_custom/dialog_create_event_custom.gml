@@ -108,13 +108,35 @@ function dialog_create_event_custom(dialog) {
         ui_input_set_value(list.root.el_outbound_name, list.root.event.outbound[selection]);
     }, false, dg, dg.event.outbound);
     ui_list_select(el_outbound, 0);
-    el_outbound.render = ui_render_list_event_custom_outbound;
+    el_outbound.render = function(list, x, y) {
+        var oentries = list.entries;
+        list.entries = ds_list_create();
+        ds_list_clear(list.entry_colors);
+        
+        if (oentries[0] == "") {
+            ds_list_add(list.entries, "<default>");
+            ds_list_add(list.entry_colors, c_blue);
+        } else {
+            ds_list_add(list.entries, oentries[0]);
+            ds_list_add(list.entry_colors, c_black);
+        }
+        
+        for (var i = 1; i < array_length(oentries); i++) {
+            ds_list_add(list.entries, oentries[i]);
+            ds_list_add(list.entry_colors, c_black);
+        }
+        
+        ui_render_list(list, x, y);
+        
+        ds_list_destroy(list.entries);
+        list.entries = oentries;
+    };
     dg.el_outbound = el_outbound;
     yy += el_outbound.GetHeight() + spacing;
     var el_outbound_name = create_input(col3_x, yy, "Name:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_outbound);
-        input.root.event.outbound[selection] = input.value;
-    }, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+        input.root.event.outbound[@ selection] = input.value;
+    }, dg.event.outbound[0], "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     dg.el_outbound_name = el_outbound_name;
     yy += el_outbound_name.height + spacing;
     var el_outbound_add = create_button(col3_x, yy, "Add", ew, eh, fa_center, function(button) {
