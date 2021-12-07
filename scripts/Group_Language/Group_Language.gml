@@ -25,7 +25,6 @@ function language_remove(name) {
 }
 
 function language_extract() {
-    return;
     var existing_key_names = variable_struct_get_names(Game.languages.text[$ Game.languages.names[0]]);
     var existing_keys = { };
     for (var i = 0; i < array_length(existing_key_names); i++) {
@@ -104,18 +103,7 @@ function language_extract() {
                 }
             } else {
                 // yeah this is all going to need to be redone now
-                var entities = serialize_load_map_contents_dynamic(map.data_buffer, map.version, undefined, false, true);
-                for (var j = 0; j < array_length(entities); j++) {
-                    var entity = entities[j];
-                    for (var k = 0; k < array_length(entity.generic_data); k++) {
-                        var gen = entity.generic_data[k];
-                        if (gen.type != DataTypes.STRING) continue;
-                        var key = "Map." + map.name + "." + entity.name + "." + entity.REFID + "." + gen.name;
-                        lang[$ key] = (lang_index == 0) ? gen.value : ((lang[$ key] != undefined) ? lang[$ key] : "");
-                        existing_keys[$ key] = false;
-                    }
-                    entity.Destroy();
-                }
+                continue;
             }
         }
         #endregion
