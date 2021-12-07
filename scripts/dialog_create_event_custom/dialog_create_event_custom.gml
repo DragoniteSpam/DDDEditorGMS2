@@ -118,10 +118,10 @@ function dialog_create_event_custom(dialog) {
     dg.el_outbound_name = el_outbound_name;
     yy += el_outbound_name.height + spacing;
     var el_outbound_add = create_button(col3_x, yy, "Add", ew, eh, fa_center, function(button) {
-        var event = thing.root.event;
+        var event = button.root.event;
         array_push(event.outbound, "Outbound" + string(array_length(event.outbound)));
-        thing.root.el_outbound_add.interactive = array_length(event.outbound) < 10;
-        thing.root.el_outbound_remove.interactive = true;
+        button.root.el_outbound_add.interactive = array_length(event.outbound) < 10;
+        button.root.el_outbound_remove.interactive = true;
     }, dg);
     dg.el_outbound_add = el_outbound_add;
     yy += el_outbound_add.height + spacing;
