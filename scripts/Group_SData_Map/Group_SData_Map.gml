@@ -195,6 +195,13 @@ function DataMap(source, directory) : SData(source) constructor {
             } catch (e) {
                 wtf("Unable to load frozen reflection buffer data - " + self.name);
             }
+            
+            try {
+                self.contents.water_data = buffer_load(directory + "water.vbuff");
+                self.contents.water = vertex_create_buffer_from_buffer(self.contents.water_data, Stuff.graphics.vertex_format);
+            } catch (e) {
+                wtf("Unable to load water buffer data - " + self.name);
+            }
             #endregion
             
             #region entities
@@ -305,6 +312,12 @@ function DataMap(source, directory) : SData(source) constructor {
         } else {
             buffer_write(buffer, buffer_u64, 0);
         }
+        if (self.contents.water_data) {
+            buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.water_data));
+            buffer_write_vertex_buffer(buffer, self.contents.water_data);
+        } else {
+            buffer_write(buffer, buffer_u64, 0);
+        }
         #endregion
         
         #region batch static objects in the map into chunks
@@ -393,6 +406,9 @@ function DataMap(source, directory) : SData(source) constructor {
         }
         if (self.contents.reflect_frozen_data) {
             buffer_save(self.contents.reflect_frozen_data, directory + "frozen.reflect");
+        }
+        if (self.contents.water_data) {
+            buffer_save(self.contents.water_data, directory + "water.vbuff");
         }
         #endregion
     };

@@ -22,6 +22,9 @@ function MapContents(parent) constructor {
     self.reflect_frozen_data = undefined;
     self.reflect_frozen_data_wire = undefined;
     
+    self.water = undefined;
+    self.water_data = undefined;
+    
     self.population = [0, 0, 0, 0, 0, 0, 0];
     self.population_static = 0;
     
@@ -34,6 +37,7 @@ function MapContents(parent) constructor {
         if (self.frozen_data_wire) buffer_delete(self.frozen_data_wire);
         if (self.reflect_frozen_data) buffer_delete(self.reflect_frozen_data);
         if (self.reflect_frozen_data_wire) buffer_delete(self.reflect_frozen_data_wire);
+        
         self.frozen = undefined;
         self.frozen_wire = undefined;
         self.frozen_data = undefined;
@@ -42,6 +46,11 @@ function MapContents(parent) constructor {
         self.reflect_frozen_wire = undefined;
         self.reflect_frozen_data = undefined;
         self.reflect_frozen_data_wire = undefined;
+        
+        self.water = undefined;
+        self.water_data = undefined;
+        if (self.water) vertex_delete_buffer(self.water);
+        if (self.water_data) buffer_delete(self.water_data);
     };
     
     static Destroy = function() {

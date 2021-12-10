@@ -16,17 +16,14 @@ function import_map_tiled_layer_tile(x, y, z, json, columns, alpha, tiled_cache)
     
     if (layer_properties != undefined) {
         for (var i = 0; i < array_length(layer_properties); i++) {
-            var property = layer_properties[i];
             // don't add map because they're already in the root map
-            property_map[$ property.name] = property;
+            property_map[$ layer_properties[i].name] = layer_properties[i];
         }
     }
     
-    var zoffset;
+    var zoffset = 0;
     if (property_map[$ "Offset"]) {
         zoffset = property_map.Offset.value;
-    } else {
-        zoffset = 0;
     }
     
     if (layer_visible) {
@@ -41,7 +38,14 @@ function import_map_tiled_layer_tile(x, y, z, json, columns, alpha, tiled_cache)
                 var tile_tex_y = tile_value div columns;
                 
                 if (is_clamped(tile_x, 0, Stuff.map.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.map.active_map.yy - 1) && is_clamped(z, 0, Stuff.map.active_map.zz - 1)) {
-                    batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x * TILE_WIDTH, tile_y * TILE_HEIGHT, z * TILE_DEPTH + zoffset, tile_tex_x, tile_tex_y, c_white, layer_alpha);
+                    switch (string_lower(layer_name)) {
+                        case "@water":
+                            batch_tile_raw(map_contents.water_data, -1, tile_x * TILE_WIDTH, tile_y * TILE_HEIGHT, z * TILE_DEPTH + zoffset, tile_tex_x, tile_tex_y, c_white, layer_alpha);
+                            break;
+                        default:
+                            batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x * TILE_WIDTH, tile_y * TILE_HEIGHT, z * TILE_DEPTH + zoffset, tile_tex_x, tile_tex_y, c_white, layer_alpha);
+                            break;
+                    }
                 }
             }
         }

@@ -3,10 +3,12 @@ function import_map_tiled(ask_clear) {
         emu_dialog_confirm(undefined, "Do you want to import a Tiled map? If there is any frozen terrain data, it will be removed.", function() {
             var map = Stuff.map.active_map;
             var map_contents = map.contents;
+            if (map_contents.water_data) buffer_delete(map_contents.water_data);
             if (map_contents.frozen_data) buffer_delete(map_contents.frozen_data);
             if (map_contents.frozen_data_wire) buffer_delete(map_contents.frozen_data_wire);
             map_contents.frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
             map_contents.frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+            map_contents.water_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
             // the vertex buffers are created elsewhere - since they need to be
             // destroyed and recreated regardless
             import_map_tiled(false);
@@ -94,7 +96,9 @@ function import_map_tiled(ask_clear) {
         
         if (map_contents.frozen) vertex_delete_buffer(map_contents.frozen);
         if (map_contents.frozen_wire) vertex_delete_buffer(map_contents.frozen_wire);
+        if (map_contents.water) vertex_delete_buffer(map_contents.water);
         
+        buffer_resize(map_contents.water_data, buffer_tell(map_contents.water_data));
         buffer_resize(map_contents.frozen_data, buffer_tell(map_contents.frozen_data));
         buffer_resize(map_contents.frozen_data_wire, buffer_tell(map_contents.frozen_data_wire));
         
@@ -111,6 +115,13 @@ function import_map_tiled(ask_clear) {
         } else {
             buffer_delete(map_contents.reflect_frozen_data);
             map_contents.reflect_frozen_data = undefined;
+        }
+        if (buffer_get_size(map_contents.water_data) - 1) {
+            map_contents.water = vertex_create_buffer_from_buffer(map_contents.water_data, Stuff.graphics.vertex_format);
+            vertex_freeze(map_contents.water);
+        } else {
+            buffer_delete(map_contents.water_data);
+            map_contents.water_data = undefined;
         }
     } else {
         emu_dialog_notice("No valid tileset file found for " + filename_name(filename) + ". Please find one.");

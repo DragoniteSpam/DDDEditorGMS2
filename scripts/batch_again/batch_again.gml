@@ -1,4 +1,4 @@
-function batch_again(batch) {
+function batch_again(batch = undefined) {
     var map = Stuff.map.active_map.contents;
     
     // If no index is provided it just rebatches EVERYTHING. This is very slow.
