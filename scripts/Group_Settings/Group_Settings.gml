@@ -2,9 +2,7 @@ function setting_get(object, name, def) {
     var domain = Settings[$ object];
     if (domain) {
         if (domain[$ name] == undefined) return def;
-        return domain[$ name];
-        // @todo nullish bug
-        //return (domain[$ name]) ?? def;
+        return domain[$ name] ?? def;
     }
     
     throw "Setting object not found: " + object;
@@ -54,52 +52,51 @@ try {
     };
 }
 
-// @todo nullish bug - all of these
-if (Settings.config[$ "color"] == undefined)                Settings.config.color = c_green;
-if (Settings.config[$ "focus_alpha"] == undefined)          Settings.config.focus_alpha = 0;
-if (Settings.config[$ "bezier_precision"] == undefined)     Settings.config.bezier_precision = 6;
-if (Settings.config[$ "npc_animate_rate"] == undefined)     Settings.config.npc_animate_rate = 4;
-if (Settings.config[$ "code_extension"] == undefined)       Settings.config.code_extension = 1;
-if (Settings.config[$ "text_extension"] == undefined)       Settings.config.text_extension = 0;
-if (Settings.config[$ "normal_threshold"] == undefined)     Settings.config.normal_threshold = 30;
-if (Settings.config[$ "tooltip"] == undefined)              Settings.config.tooltip = true;
-if (Settings.config[$ "camera_fly_rate"] == undefined)      Settings.config.camera_fly_rate = 1;
-if (Settings.config[$ "alternate_middle"] == undefined)     Settings.config.alternate_middle = false;
-if (Settings.config[$ "color_world"] == undefined)          Settings.config.color_world = c_black;
-if (Settings.config[$ "mode"] == undefined)                 Settings.config.mode = EDITOR_BASE_MODE;
-if (Settings.config[$ "remove_covered_mesh_at"] == undefined)   Settings.config.remove_covered_mesh_at = false;
+Settings.config[$ "color"] ??=                                                  c_green;
+Settings.config[$ "focus_alpha"] ??=                                            0;
+Settings.config[$ "bezier_precision"] ??=                                       6;
+Settings.config[$ "npc_animate_rate"] ??=                                       4;
+Settings.config[$ "code_extension"] ??=                                         1;
+Settings.config[$ "text_extension"] ??=                                         0;
+Settings.config[$ "normal_threshold"] ??=                                       30;
+Settings.config[$ "tooltip"] ??=                                                true;
+Settings.config[$ "camera_fly_rate"] ??=                                        1;
+Settings.config[$ "alternate_middle"] ??=                                       false;
+Settings.config[$ "color_world"] ??=                                            c_black;
+Settings.config[$ "mode"] ??=                                                   EDITOR_BASE_MODE;
+Settings.config[$ "remove_covered_mesh_at"] ??=                                 false;
 
-if (Settings.location[$ "ddd"] == undefined)                Settings.location.ddd = "";
-if (Settings.location[$ "mesh"] == undefined)               Settings.location.mesh = "";
-if (Settings.location[$ "terrain"] == undefined)            Settings.location.terrain = "";
-if (Settings.location[$ "image"] == undefined)              Settings.location.image = "";
-if (Settings.location[$ "gml"] == undefined)                Settings.location.gml = "";
-if (Settings.location[$ "audio"] == undefined)              Settings.location.audio = "";
-if (Settings.location[$ "text"] == undefined)               Settings.location.text = "";
-if (Settings.location[$ "tiled"] == undefined)              Settings.location.tiled = "";
-if (Settings.location[$ "project"] == undefined)            Settings.location.project = "";
+Settings.location[$ "ddd"] ??=                                                  "";
+Settings.location[$ "mesh"] ??=                                                 "";
+Settings.location[$ "terrain"] ??=                                              "";
+Settings.location[$ "image"] ??=                                                "";
+Settings.location[$ "gml"] ??=                                                  "";
+Settings.location[$ "audio"] ??=                                                "";
+Settings.location[$ "text"] ??=                                                 "";
+Settings.location[$ "tiled"] ??=                                                "";
+Settings.location[$ "project"] ??=                                              "";
 
-if (Settings.selection[$ "mode"] == undefined)              Settings.selection.mode = SelectionModes.RECTANGLE;
-if (Settings.selection[$ "addition"] == undefined)          Settings.selection.addition = false;
-if (Settings.selection[$ "fill_type"] == undefined)         Settings.selection.fill_type = FillTypes.TILE;
-if (Settings.selection[$ "zone_type"] == undefined)         Settings.selection.zone_type = MapZoneTypes.CAMERA;
-if (Settings.selection[$ "mask"] == undefined)              Settings.selection.mask = ETypeFlags.ENTITY_ANY;
-Settings.selection.mesh_autotile_type = NULL;               // this will technically be saved, but ignored on load
+Settings.selection[$ "mode"] ??=                                                SelectionModes.RECTANGLE;
+Settings.selection[$ "addition"] ??=                                            false;
+Settings.selection[$ "fill_type"] ??=                                           FillTypes.TILE;
+Settings.selection[$ "zone_type"] ??=                                           MapZoneTypes.CAMERA;
+Settings.selection[$ "mask"] ??=                                                ETypeFlags.ENTITY_ANY;
+Settings.selection.mesh_autotile_type =                                         NULL;               // this will technically be saved, but ignored on load
 
-if (Settings.view[$ "wireframe"] == undefined)              Settings.view.wireframe = false;
-if (Settings.view[$ "grid"] == undefined)                   Settings.view.grid = true;
-if (Settings.view[$ "backface"] == undefined)               Settings.view.backface = false;
-if (Settings.view[$ "texture"] == undefined)                Settings.view.texture = true;
-if (Settings.view[$ "entities"] == undefined)               Settings.view.entities = true;
-if (Settings.view[$ "zones"] == undefined)                  Settings.view.zones = true;
-if (Settings.view[$ "lighting"] == undefined)               Settings.view.lighting = true;
-if (Settings.view[$ "gizmos"] == undefined)                 Settings.view.gizmos = true;
-if (Settings.view[$ "terrain"] == undefined)                Settings.view.terrain = true;
-if (Settings.view[$ "threed"] == undefined)                 Settings.view.threed = true;
+Settings.view[$ "wireframe"] ??=                                                false;
+Settings.view[$ "grid"] ??=                                                     true;
+Settings.view[$ "backface"] ??=                                                 false;
+Settings.view[$ "texture"] ??=                                                  true;
+Settings.view[$ "entities"] ??=                                                 true;
+Settings.view[$ "zones"] ??=                                                    true;
+Settings.view[$ "lighting"] ??=                                                 true;
+Settings.view[$ "gizmos"] ??=                                                   true;
+Settings.view[$ "terrain"] ??=                                                  true;
+Settings.view[$ "threed"] ??=                                                   true;
 
-if (Settings.mesh[$ "reflect_settings"] == undefined)       Settings.mesh.reflect_settings = MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;
-if (Settings.mesh[$ "reflect_color"] == undefined)          Settings.mesh.reflect_color = 0x7fff6600;
+Settings.mesh[$ "reflect_settings"] ??=                                         MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;
+Settings.mesh[$ "reflect_color"] ??=                                            0x7fff6600;
 
-#macro warn_untranslated_strings "EXPORT-UNTRANSLATED"
-#macro warn_untranslated_strings_as_is 1
-#macro warn_untranslated_strings_as_default 2
+#macro warn_untranslated_strings                                                "EXPORT-UNTRANSLATED"
+#macro warn_untranslated_strings_as_is                                          1
+#macro warn_untranslated_strings_as_default                                     2

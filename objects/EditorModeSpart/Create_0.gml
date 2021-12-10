@@ -13,17 +13,16 @@ def_yup = 0;
 def_zup = 1;
 def_fov = 60;
 
-/// @todo nullish bug
-if (Settings.spart[$ "x"] == undefined)                   Settings.spart.x = def_x;
-if (Settings.spart[$ "y"] == undefined)                   Settings.spart.y = def_y;
-if (Settings.spart[$ "z"] == undefined)                   Settings.spart.z = def_z;
-if (Settings.spart[$ "xto"] == undefined)                 Settings.spart.xto = def_xto;
-if (Settings.spart[$ "yto"] == undefined)                 Settings.spart.yto = def_yto;
-if (Settings.spart[$ "zto"] == undefined)                 Settings.spart.zto = def_zto;
-if (Settings.spart[$ "xup"] == undefined)                 Settings.spart.xup = def_xup;
-if (Settings.spart[$ "yup"] == undefined)                 Settings.spart.yup = def_yup;
-if (Settings.spart[$ "zup"] == undefined)                 Settings.spart.zup = def_zup;
-if (Settings.spart[$ "fov"] == undefined)                 Settings.spart.fov = def_fov;
+Settings.spart[$ "x"] ??= def_x;
+Settings.spart[$ "y"] ??= def_y;
+Settings.spart[$ "z"] ??= def_z;
+Settings.spart[$ "xto"] ??= def_xto;
+Settings.spart[$ "yto"] ??= def_yto;
+Settings.spart[$ "zto"] ??= def_zto;
+Settings.spart[$ "xup"] ??= def_xup;
+Settings.spart[$ "yup"] ??= def_yup;
+Settings.spart[$ "zup"] ??= def_zup;
+Settings.spart[$ "fov"] ??= def_fov;
 
 x = Settings.spart.x;
 y = Settings.spart.y;

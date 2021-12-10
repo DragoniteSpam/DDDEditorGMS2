@@ -417,9 +417,7 @@ function EntityEffect(source) : Entity(source) constructor {
         self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
         self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
         self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
-        /// @todo nullish bug
-        //self.com_marker = source.effects.com[$ "marker"] ?? -1;
-        if (source.effects.com[$ "marker"] != undefined) self.com_marker = source.effects.com.marker;
+        self.com_marker = source.effects.com[$ "marker"] ?? -1;
     }
 }
 
