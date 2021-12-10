@@ -93,29 +93,6 @@ function EditorGraphics() constructor {
         self.centered_cube = import_d3d("data/basic/centered-cube.d3d", false, false);
         self.centered_capsule = import_d3d("data/basic/centered-capsule.d3d", false, false);
         
-        self.water_tile_size = 0x1000;
-        self.water_reptition = 80;
-        self.water_units = 80;
-        self.water_depth = -1;
-        
-        self.mesh_water_base = vertex_create_buffer();
-        self.mesh_water_bright = vertex_create_buffer();
-        
-        vertex_begin(self.mesh_water_base, self.vertex_format);
-        vertex_begin(self.mesh_water_bright, self.vertex_format);
-        
-        for (var i = -self.water_tile_size / 2; i < self.water_tile_size / 2; i += (self.water_tile_size / self.water_units)) {
-            for (var j = -self.water_tile_size / 2; j < self.water_tile_size / 2; j += (self.water_tile_size / self.water_units)) {
-                vertex_square(self.mesh_water_base, i, j, self.water_tile_size / self.water_units, 0, 0, self.water_reptition / self.water_units, self.water_depth, self.water_depth, self.water_depth, self.water_depth);
-                vertex_square(self.mesh_water_bright, i, j, self.water_tile_size / self.water_units, 0, 0, self.water_reptition / self.water_units, self.water_depth, self.water_depth, self.water_depth, self.water_depth);
-            }
-        }
-        
-        vertex_end(self.mesh_water_base);
-        vertex_end(self.mesh_water_bright);
-        vertex_freeze(self.mesh_water_base);
-        vertex_freeze(self.mesh_water_bright);
-        
         self.grid_sphere = vertex_create_buffer();
         vertex_begin(self.grid_sphere, self.vertex_format);
         
