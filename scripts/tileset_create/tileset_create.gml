@@ -1,4 +1,4 @@
-function tileset_create(filename, sprite) {
+function tileset_create(filename) {
     var file_hash = "";
     if (file_exists(filename)) {
         file_hash = md5_file(filename);
@@ -10,30 +10,9 @@ function tileset_create(filename, sprite) {
         }
     }
     
-    // don't instantiate these outside of this script
-    with (new DataImageTileset()) {
-        name = filename_change_ext(filename_name(filename), "");
-        // this needs to be the file path
-        source_filename = filename;
-        
-        internal_name_generate(self, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(source_filename), "")));
-        
-        picture = (sprite != undefined) ? sprite : sprite_add(source_filename, 0, false, false, 0, 0);
-        hash = file_hash;
-        
-        if (!sprite_exists(picture)) {
-            picture = sprite_duplicate(b_tileset_magenta);
-            wtf("Missing tileset image; using default instead: " + source_filename);
-        }
-        
-        width = sprite_get_width(picture);
-        height = sprite_get_height(picture);
-        hframes = width div Stuff.tile_size;
-        vframes = height div Stuff.tile_size;
-        image_flags = array_create_2d(hframes, vframes, 0);
-        
-        array_push(Game.graphics.tilesets, self);
-        
-        return self;
-    }
+    // don't instantiate these outside of this script (or the project loading script)
+    var ts = new DataImageTileset();
+    ts.Import(filename);
+    array_push(Game.graphics.tilesets, ts);
+    return ts;
 }

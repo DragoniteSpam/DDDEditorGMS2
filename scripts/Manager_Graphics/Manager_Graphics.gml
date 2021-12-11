@@ -60,7 +60,7 @@ function dmu_graphic_add_tileset_drag(element, files) {
 function dmu_graphic_add_tileset(button) {
     var fn = get_open_filename_image();
     if (file_exists(fn)) {
-        tileset_create(fn, undefined);
+        tileset_create(fn);
     }
 }
 

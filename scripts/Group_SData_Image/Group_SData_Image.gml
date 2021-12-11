@@ -96,8 +96,16 @@ function DataImage(source) : SData(source) constructor {
     };
 }
 
-function DataImageTileset(source) : DataImage(source) constructor {
+function DataImageTileset(source = undefined) : DataImage(source) constructor {
     self.image_flags = [[]];
+    
+    if (is_struct(source)) {
+        try {
+            self.image_flags = source.image_flags;
+        } catch (e) {
+            self.flags = [[]];
+        };
+    }
     
     static ExportTileset = function(buffer) {
         self.ExportImage(buffer, true);
@@ -116,7 +124,24 @@ function DataImageTileset(source) : DataImage(source) constructor {
         self.ExportTileset(buffer);
     };
     
-    if (is_struct(source)) {
-        try { self.image_flags = source.image_flags; } catch (e) { self.flags = 0; };
-    }
+    static Import = function(filename) {
+        self.name = filename_change_ext(filename_name(filename), "");
+        self.source_filename = filename;
+        
+        internal_name_generate(self, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(self.source_filename), "")));
+        
+        self.picture = sprite_add(self.source_filename, 0, false, false, 0, 0);
+        self.hash = md5_file(filename);
+        
+        if (!sprite_exists(self.picture)) {
+            self.picture = sprite_duplicate(b_tileset_magenta);
+            wtf("Missing tileset image; using default instead: " + self.source_filename);
+        }
+        
+        self.width = sprite_get_width(self.picture);
+        self.height = sprite_get_height(self.picture);
+        self.hframes = self.width div TILE_WIDTH;
+        self.vframes = self.height div TILE_HEIGHT;
+        self.image_flags = array_create_2d(self.hframes, self.vframes, 0);
+    };
 };

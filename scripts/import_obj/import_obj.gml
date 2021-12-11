@@ -264,7 +264,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".BaseTexture";
                                     if (tex_base) warnings |= warn_map_1;
                                     else mtl_map_diffuse[$ mtl_name] = ts;
@@ -274,7 +274,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".AmbientMap";
                                     if (tex_ambient) warnings |= warn_map_2;
                                     else mtl_map_ambient[$ mtl_name] = ts;
@@ -284,7 +284,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".SpecularColorMap";
                                     if (tex_specular_color) warnings |= warn_map_3;
                                     else mtl_map_specular_color[$ mtl_name] = ts;
@@ -294,7 +294,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".SpecularHighlightMap";
                                     if (tex_specular_highlight) warnings |= warn_map_4;
                                     else mtl_map_specular_highlight[$ mtl_name] = ts;
@@ -304,7 +304,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".AlphaMap";
                                     if (tex_alpha) warnings |= warn_map_5;
                                     else mtl_map_alpha[$ mtl_name] = ts;
@@ -314,7 +314,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".BumpMap";
                                     if (tex_bump) warnings |= warn_map_6;
                                     else mtl_map_bump[$ mtl_name] = ts;
@@ -327,7 +327,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".DisplacementMap";
                                     if (tex_displace) warnings |= warn_map_7;
                                     else mtl_map_displace[$ mtl_name] = ts;
@@ -337,7 +337,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined);
+                                    var ts = tileset_create(texfn);
                                     ts.name = base_name + ".StencilDecal";
                                     if (tex_decal) warnings |= warn_map_8;
                                     else mtl_map_decal[$ mtl_name] = ts;
