@@ -307,8 +307,8 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_u64, 0);
         }
         if (self.contents.reflect_frozen_data) {
-            buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.frozen_data));
-            buffer_write_vertex_buffer(buffer, self.contents.frozen_data);
+            buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.reflect_frozen_data));
+            buffer_write_vertex_buffer(buffer, self.contents.reflect_frozen_data);
         } else {
             buffer_write(buffer, buffer_u64, 0);
         }
