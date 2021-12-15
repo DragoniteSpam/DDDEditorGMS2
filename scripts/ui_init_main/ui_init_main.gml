@@ -83,36 +83,56 @@ function ui_init_main(mode) {
         
         var s = 16;
         
-        var f_render_bitfield_selection_mask = function(bitfield, x, y) {
-            bitfield.state = (Settings.selection.mask & bitfield.value) == bitfield.value;
-            ui_render_bitfield_option_text(bitfield, x, y);
-        };
-        var f_bitfield_selection_mask = function(bitfield) {
-            Settings.selection.mask = Settings.selection.mask ^ bitfield.value;
-            sa_process_selection();
-        };
+        element = (new EmuBitfield(col1_x, yy, col_width, element_height, Settings.selection.mask, function() {
+            Settings.selection.mask = self.value;
+        }))
+        .SetOrientation(E_BitfieldOrientations.VERTICAL)
+        .SetFixedSpacing(element_height)
+        .AddOptions(["Tile", "Mesh", "Pawn", "Effect", "All", "None"]);
         
-        element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, ETypeFlags.ENTITY_ANY, t_general);
-        create_bitfield_options_vertical(element, [
-            create_bitfield_option_data(ETypeFlags.ENTITY_TILE, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_MESH, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Mesh", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_PAWN, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Pawn", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_EFFECT, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Effect", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_ANY, function(bitfield, x, y) {
-                bitfield.state = (Settings.selection.mask == ETypeFlags.ENTITY_ANY);
-                ui_render_bitfield_option_text(bitfield, x, y);
-            }, function(bitfield) {
-                Settings.selection.mask = ETypeFlags.ENTITY_ANY;
-                sa_process_selection();
-            }, "All", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(0, function(bitfield, x, y) {
-                bitfield.state = (Settings.selection.mask == 0);
-                ui_render_bitfield_option_text(bitfield, x, y);
-            }, function(bitfield) {
-                Settings.selection.mask = 0;
-                sa_process_selection();
-            }, "None", -1, 0, col_width / 2, s)
-        ]);
+        element._contents[| 0].SetEval(function() {
+            return Settings.selection.mask & 0x02;
+        });
+        element._contents[| 0].SetCallback(function() {
+            Settings.selection.mask ^= 0x02;
+            self.root.value = Settings.selection.mask;
+        });
+        element._contents[| 1].SetEval(function() {
+            return Settings.selection.mask & 0x08;
+        });
+        element._contents[| 1].SetCallback(function() {
+            Settings.selection.mask ^= 0x08;
+            self.root.value = Settings.selection.mask;
+        });
+        element._contents[| 2].SetEval(function() {
+            return Settings.selection.mask & 0x10;
+        });
+        element._contents[| 2].SetCallback(function() {
+            Settings.selection.mask ^= 0x10;
+            self.root.value = Settings.selection.mask;
+        });
+        element._contents[| 3].SetEval(function() {
+            return Settings.selection.mask & 0x20;
+        });
+        element._contents[| 3].SetCallback(function() {
+            Settings.selection.mask ^= 0x20;
+            self.root.value = Settings.selection.mask;
+        });
+        element._contents[| 4].SetEval(function() {
+            return Settings.selection.mask == 0xffffffff;
+        });
+        element._contents[| 4].SetCallback(function() {
+            Settings.selection.mask = 0xffffffff;
+            self.root.value = Settings.selection.mask;
+        });
+        element._contents[| 5].SetEval(function() {
+            return Settings.selection.mask == 0;
+        });
+        element._contents[| 5].SetCallback(function() {
+            Settings.selection.mask = 0;
+            self.root.value = Settings.selection.mask;
+        });
+        
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;

@@ -9,11 +9,13 @@ function EmuBitfield(x, y, w, h, value, callback) : EmuCallback(x, y, w, h, valu
     SetOrientation = function(orientation) {
         _orientation = orientation;
         ArrangeElements();
+        return self;
     }
     
     SetFixedSpacing = function(spacing) {
         _fixed_spacing = spacing;
         ArrangeElements();
+        return self;
     }
     
     SetAutoSpacing = function() {
@@ -41,6 +43,7 @@ function EmuBitfield(x, y, w, h, value, callback) : EmuCallback(x, y, w, h, valu
         
         AddContent(elements);
         ArrangeElements();
+        return self;
     }
     
     ArrangeElements = function() {
