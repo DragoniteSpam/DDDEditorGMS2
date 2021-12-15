@@ -23,7 +23,9 @@ function selection_count() {
 }
 
 function selected(entity, mask = Settings.selection.mask) {
-    if (entity.etype_flags & mask) {
+    // all Entities will mask against ETypeFlags.ENTITY (0x1);
+    // if you want a helpful selection determination, ignore those cases
+    if (entity.etype_flags & mask > ETypeFlags.ENTITY) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {
             if (Stuff.map.selection[i].selected_determination(entity)) {
                 return true;
@@ -165,7 +167,9 @@ function selected_affected_terrain() {
 }
 
 function selected_border(entity, mask = Settings.selection.mask) {
-    if (entity.etype_flags & mask) {
+    // all Entities will mask against ETypeFlags.ENTITY (0x1);
+    // if you want a helpful selection determination, ignore those cases
+    if (entity.etype_flags & mask > ETypeFlags.ENTITY) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {
             if (Stuff.map.selection[i].selected_border_determination(entity)) {
                 return true;
