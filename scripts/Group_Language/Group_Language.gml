@@ -102,7 +102,10 @@ function language_extract() {
                     }
                 }
             } else {
-                // yeah this is all going to need to be redone now
+                if (!map_warned) {
+                    emu_dialog_notice("To do - scan maps other than the currently loaded one for strings");
+                    map_warned = true;
+                }
                 continue;
             }
         }
