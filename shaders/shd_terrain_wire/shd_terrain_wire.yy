@@ -5,7 +5,7 @@
     "path": "folders/Terrain.yy",
   },
   "resourceVersion": "1.0",
-  "name": "shd_terrain",
+  "name": "shd_terrain_wire",
   "tags": [],
   "resourceType": "GMShader",
 }

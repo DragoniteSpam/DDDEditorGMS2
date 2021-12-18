@@ -1,4 +1,5 @@
 attribute vec3 in_Position;
+attribute vec3 in_Normal;
 
 varying vec2 v_vWorldXY;
 
