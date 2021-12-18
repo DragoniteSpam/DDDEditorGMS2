@@ -283,8 +283,8 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
-    static GetFusedChunks = function(chunk_size) {
-        static chunk_buffer = function(records, buffer, chunk_size, buffer_name) {
+    static GetFusedChunks = function(chunk_size, max_x, max_y) {
+        static chunk_buffer = function(records, buffer, chunk_size, max_x, max_y, buffer_name) {
             static master_chunk_class = function(coords) constructor {
                 self.coords = coords;
                 self.frozen = -1;
@@ -292,7 +292,7 @@ function DataMap(source, directory) : SData(source) constructor {
                 self.water = -1;
             };
             
-            var chunks = vertex_buffer_as_chunks(buffer, chunk_size);
+            var chunks = vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y);
             var keys = variable_struct_get_names(chunks);
             for (var i = 0, n = array_length(keys); i < n; i++) {
                 var chunk = chunks[$ keys[i]];
@@ -309,9 +309,9 @@ function DataMap(source, directory) : SData(source) constructor {
         
         var records = { };
         
-        if (self.contents.frozen_data) chunk_buffer(records, self.contents.frozen_data, chunk_size, "frozen");
-        if (self.contents.reflect_frozen_data) chunk_buffer(records, self.contents.reflect_frozen_data, chunk_size, "reflect");
-        if (self.contents.water_data) chunk_buffer(records, self.contents.water_data, chunk_size, "water");
+        if (self.contents.frozen_data) chunk_buffer(records, self.contents.frozen_data, chunk_size, max_x, max_y, "frozen");
+        if (self.contents.reflect_frozen_data) chunk_buffer(records, self.contents.reflect_frozen_data, chunk_size, max_x, max_y, "reflect");
+        if (self.contents.water_data) chunk_buffer(records, self.contents.water_data, chunk_size, max_x, max_y, "water");
         
         return records;
     };
@@ -333,10 +333,10 @@ function DataMap(source, directory) : SData(source) constructor {
         #endregion
         
         #region frozen chunks
-        var chunks = self.GetFusedChunks(Game.meta.grid.chunk_size);
+        var chunks = self.GetFusedChunks(Game.meta.grid.chunk_size, (self.xx div Game.meta.grid.chunk_size) - 1, (self.yy div Game.meta.grid.chunk_size) - 1);
         var keys = variable_struct_get_names(chunks);
-        
         buffer_write(buffer, buffer_u32, array_length(keys));
+        
         for (var i = 0, n = array_length(keys); i < n; i++) {
             var chunk = chunks[$ keys[i]];
             buffer_write(buffer, buffer_u32, chunk.coords.x);

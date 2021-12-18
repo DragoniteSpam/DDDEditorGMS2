@@ -207,7 +207,7 @@ function vertex_square(buffer, xx, yy, size, tx, ty, tsize, z00 = 0, z10 = 0, z1
     vertex_point_complete(buffer, xx, yy, z00, 0, 0, 1, tx, ty, c00, a00);
 }
 
-function vertex_buffer_as_chunks(buffer, chunk_size) {
+function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
     buffer_seek(buffer, buffer_seek_start, 0);
     var record = { };
     
@@ -227,7 +227,7 @@ function vertex_buffer_as_chunks(buffer, chunk_size) {
         var t3 = { u: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 28, buffer_f32) };
         var c3 =      buffer_peek(buffer, i + 2 * VERTEX_SIZE + 32, buffer_u32);
         
-        var chunk_id = { x: p1.x div (TILE_WIDTH * chunk_size), y: p1.y div (TILE_HEIGHT * chunk_size) };
+        var chunk_id = { x: min(max_x, p1.x div (TILE_WIDTH * chunk_size)), y: min(max_y, p1.y div (TILE_HEIGHT * chunk_size)) };
         var chunk_data = record[$ json_stringify(chunk_id)];
         
         if (!chunk_data) {
