@@ -52,7 +52,7 @@ function SData(source = "data") constructor {
     
     if (is_string(source)) {
         self.name = source;
-    } else {
+    } else if (is_struct(source)) {
         self.name = source.name;
         internal_name_set(self, source.internal_name);
         self.flags = source.flags;

@@ -56,11 +56,8 @@ function terrain_add_to_project() {
     
     vertex_end(vbuff);
     
-    var raw = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
-    
-    var mesh = new DataMesh();
-    mesh.name = "Terrain";
-    mesh_create_submesh(mesh, raw, vbuff);
+    var mesh = new DataMesh("Terrain");
+    mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1), vbuff);
     array_push(Game.meshes, mesh);
     return mesh;
 }
