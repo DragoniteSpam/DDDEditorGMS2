@@ -1,11 +1,20 @@
 function vertex_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha) {
+    static bc_index = 0;
+    
     vertex_position_3d(buffer, x, y, z);
     vertex_normal(buffer, nx, ny, nz);
     vertex_texcoord(buffer, xtex, ytex);
     vertex_colour(buffer, color, alpha);
+    vertex_normal(buffer, 0, 0, 0);                                             // tangent
+    vertex_normal(buffer, 0, 0, 0);                                             // bitangent
+    vertex_colour(buffer, make_colour_rgb(255 * (bc_index == 0), 255 * (bc_index == 1), 255 * (bc_index == 2)), 0);
+    
+    bc_index = ++bc_index % 3;
 }
 
 function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha) {
+    static bc_index = 0;
+    
     buffer_write(buffer, buffer_f32, x);
     buffer_write(buffer, buffer_f32, y);
     buffer_write(buffer, buffer_f32, z);
@@ -15,6 +24,18 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
     buffer_write(buffer, buffer_f32, xtex);
     buffer_write(buffer, buffer_f32, ytex);
     buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | colour_reverse(color));
+    // tangent
+    buffer_write(buffer, buffer_f32, 0);
+    buffer_write(buffer, buffer_f32, 1);
+    buffer_write(buffer, buffer_f32, 2);
+    // bitangent
+    buffer_write(buffer, buffer_f32, 0);
+    buffer_write(buffer, buffer_f32, 1);
+    buffer_write(buffer, buffer_f32, 2);
+    // barycentric
+    buffer_write(buffer, buffer_u32, make_colour_rgb(255 * (bc_index == 0), 255 * (bc_index == 1), 255 * (bc_index == 2)));
+    
+    bc_index = ++bc_index % 3;
 }
 
 function vertex_point_line(buffer, x, y, z, color, alpha) {
@@ -22,18 +43,9 @@ function vertex_point_line(buffer, x, y, z, color, alpha) {
     vertex_normal(buffer, 0, 0, 1);
     vertex_texcoord(buffer, 0, 0);
     vertex_colour(buffer, color, alpha);
-}
-
-function vertex_point_line_raw(buffer, x, y, z, color, alpha) {
-    buffer_write(buffer, buffer_f32, x);
-    buffer_write(buffer, buffer_f32, y);
-    buffer_write(buffer, buffer_f32, z);
-    buffer_write(buffer, buffer_f32, 0);
-    buffer_write(buffer, buffer_f32, 0);
-    buffer_write(buffer, buffer_f32, 1);
-    buffer_write(buffer, buffer_f32, 0);
-    buffer_write(buffer, buffer_f32, 0);
-    buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | colour_reverse(color));
+    vertex_normal(buffer, 0, 0, 0);                                             // tangent
+    vertex_normal(buffer, 0, 0, 0);                                             // bitangent
+    vertex_colour(buffer, 0, 0);                                                // barycentric
 }
 
 function buffer_to_reflect(buffer) {
@@ -136,24 +148,6 @@ function buffer_to_reflect(buffer) {
     }
     
     return rbuffer;
-}
-
-function vertex_square(buffer, xx, yy, size, tx, ty, tsize, z00 = 0, z10 = 0, z11 = 0, z01 = 0, c00 = 0xffffffff, c10 = 0xffffffff, c11 = 0xffffffff, c01 = 0xffffffff) {
-    var a00 = (c00 & 0xff000000) >> 24;
-    var a10 = (c10 & 0xff000000) >> 24;
-    var a11 = (c11 & 0xff000000) >> 24;
-    var a01 = (c01 & 0xff000000) >> 24;
-    c00 &= 0x00ffffff;
-    c10 &= 0x00ffffff;
-    c11 &= 0x00ffffff;
-    c01 &= 0x00ffffff;
-    
-    vertex_point_complete(buffer, xx, yy, z00, 0, 0, 1, tx, ty, c00, a00);
-    vertex_point_complete(buffer, xx + size, yy, z10, 0, 0, 1, tx + tsize, ty, c10, a10);
-    vertex_point_complete(buffer, xx + size, yy + size, z11, 0, 0, 1, tx + tsize, ty + tsize, c11, a11);
-    vertex_point_complete(buffer, xx + size, yy + size, z11, 0, 0, 1, tx + tsize, ty + tsize, c11, a11);
-    vertex_point_complete(buffer, xx, yy + size, z01, 0, 0, 1, tx, ty + tsize, c01, a01);
-    vertex_point_complete(buffer, xx, yy, z00, 0, 0, 1, tx, ty, c00, a00);
 }
 
 function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
