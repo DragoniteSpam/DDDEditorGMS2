@@ -92,10 +92,10 @@ function dialog_create_settings_data(dialog) {
     }, dg);
     yy += el_screen_640.height + spacing;
     
-    var el_base_chunk_size = create_input(col1_x, yy, "Base Chunk Size:", ew, eh, function(input) {
+    var el_base_chunk_size = create_input(col1_x, yy, "Chunk Size:", ew, eh, function(input) {
         Game.meta.grid.chunk_size = real(input.value);
     }, Game.meta.grid.chunk_size, "short int", validate_int, 6, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
-    el_base_chunk_size.tooltip = "The default map chunk size";
+    el_base_chunk_size.tooltip = "The size of map chunks, in tiles";
     dg.el_base_chunk_size = el_base_chunk_size;
     yy += el_base_chunk_size.height + spacing;
     

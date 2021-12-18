@@ -283,6 +283,39 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
+    static GetFusedChunks = function(chunk_size) {
+        static chunk_buffer = function(records, buffer, chunk_size, buffer_name) {
+            static master_chunk_class = function(coords) constructor {
+                self.coords = coords;
+                self.frozen = -1;
+                self.reflect = -1;
+                self.water = -1;
+            };
+            
+            var chunks = vertex_buffer_as_chunks(buffer, chunk_size);
+            var keys = variable_struct_get_names(chunks);
+            for (var i = 0, n = array_length(keys); i < n; i++) {
+                var chunk = chunks[$ keys[i]];
+                
+                var master_chunk = records[$ keys[i]];
+                if (!master_chunk) {
+                    master_chunk = new master_chunk_class(chunk.coords);
+                    records[$ keys[i]] = master_chunk;
+                }
+                
+                master_chunk[$ buffer_name] = chunk.buffer;
+            }
+        }
+        
+        var records = { };
+        
+        if (self.contents.frozen_data) chunk_buffer(records, self.contents.frozen_data, chunk_size, "frozen");
+        if (self.contents.reflect_frozen_data) chunk_buffer(records, self.contents.reflect_frozen_data, chunk_size, "reflect");
+        if (self.contents.water_data) chunk_buffer(records, self.contents.water_data, chunk_size, "water");
+        
+        return records;
+    };
+    
     static ExportMapContents = function(buffer, index) {
         if (!self.contents) self.Load();
         
@@ -319,6 +352,14 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_u64, 0);
         }
         #endregion
+        
+        var chunks = self.GetFusedChunks(Game.meta.grid.chunk_size);
+        var keys = variable_struct_get_names(chunks);
+        
+        for (var i = 0, n = array_length(keys); i < n; i++) {
+            var chunk = chunks[$ keys[i]];
+            // save here
+        }
         
         #region batch static objects in the map into chunks
         var exported = batch_all_export(self, self.chunk_size);
