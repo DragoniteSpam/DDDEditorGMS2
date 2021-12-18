@@ -92,15 +92,9 @@ function terrain_refresh_vertex_buffer(terrain) {
 
 function terrain_create_square(buffer, xx, yy, z00, z10, z11, z01) {
     vertex_position_3d(buffer, xx, yy, z00);
-    vertex_normal(buffer, 1, 0, 0);
     vertex_position_3d(buffer, xx + 1, yy, z10);
-    vertex_normal(buffer, 0, 1, 0);
     vertex_position_3d(buffer, xx + 1, yy + 1, z11);
-    vertex_normal(buffer, 0, 0, 1);
     vertex_position_3d(buffer, xx + 1, yy + 1, z11);
-    vertex_normal(buffer, 1, 0, 0);
     vertex_position_3d(buffer, xx, yy + 1, z01);
-    vertex_normal(buffer, 0, 1, 0);
     vertex_position_3d(buffer, xx, yy, z00);
-    vertex_normal(buffer, 0, 0, 1);
 }

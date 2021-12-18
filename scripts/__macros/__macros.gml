@@ -108,7 +108,7 @@
 #macro TILE_HEIGHT                          Stuff.tile_height
 #macro TILE_WIDTH                           Stuff.tile_width
 #macro VERTEX_SIZE                          Stuff.graphics.format_size
-#macro VERTEX_SIZE_TERRAIN                  24
+#macro VERTEX_SIZE_TERRAIN                  12
 
 #macro FILE_SETTINGS                        "settings.json"
 

@@ -42,6 +42,10 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
     vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture, 0));
     
+    matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, Stuff.terrain.view_scale, Stuff.terrain.view_scale, Stuff.terrain.view_scale));
+    shader_set(shd_terrain_wire);
+    vertex_submit(Stuff.terrain.terrain_buffer, pr_linelist, -1);
+    
     if (view_water) {
         graphics_set_lighting_terrain(shd_water);
         graphics_draw_water(false);
