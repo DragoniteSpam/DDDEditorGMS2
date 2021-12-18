@@ -206,3 +206,66 @@ function vertex_square(buffer, xx, yy, size, tx, ty, tsize, z00 = 0, z10 = 0, z1
     vertex_point_complete(buffer, xx, yy + size, z01, 0, 0, 1, tx, ty + tsize, c01, a01);
     vertex_point_complete(buffer, xx, yy, z00, 0, 0, 1, tx, ty, c00, a00);
 }
+
+function vertex_buffer_as_chunks(buffer, chunk_size) {
+    buffer_seek(buffer, buffer_seek_start, 0);
+    var record = { };
+    
+    for (var i = 0, n = buffer_get_size(buffer); i < n; i += VERTEX_SIZE * 3) {
+        var p1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 08, buffer_f32) };
+        var n1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 20, buffer_f32) };
+        var t1 = { u: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 28, buffer_f32) };
+        var c1 =      buffer_peek(buffer, i + 0 * VERTEX_SIZE + 32, buffer_u32);
+        
+        var p2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 08, buffer_f32) };
+        var n2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 20, buffer_f32) };
+        var t2 = { u: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 28, buffer_f32) };
+        var c2 =      buffer_peek(buffer, i + 1 * VERTEX_SIZE + 32, buffer_u32);
+        
+        var p3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 08, buffer_f32) };
+        var n3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 20, buffer_f32) };
+        var t3 = { u: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 28, buffer_f32) };
+        var c3 =      buffer_peek(buffer, i + 2 * VERTEX_SIZE + 32, buffer_u32);
+        
+        var chunk_id = { x: p1.x div (TILE_WIDTH * chunk_size), y: p1.y div (TILE_HEIGHT * chunk_size) };
+        var chunk_data = record[$ json_stringify(chunk_id)];
+        
+        if (!chunk_data) {
+            chunk_data = { coords: chunk_id, buffer: buffer_create(1000, buffer_grow, 1) };
+            record[$ json_stringify(chunk_id)] = chunk_data;
+        }
+        
+        var buff = chunk_data.buffer;
+        buffer_write(buff, buffer_f32, p1.x);
+        buffer_write(buff, buffer_f32, p1.y);
+        buffer_write(buff, buffer_f32, p1.z);
+        buffer_write(buff, buffer_f32, n1.x);
+        buffer_write(buff, buffer_f32, n1.y);
+        buffer_write(buff, buffer_f32, n1.z);
+        buffer_write(buff, buffer_f32, t1.u);
+        buffer_write(buff, buffer_f32, t1.v);
+        buffer_write(buff, buffer_u32, c1);
+        //
+        buffer_write(buff, buffer_f32, p2.x);
+        buffer_write(buff, buffer_f32, p2.y);
+        buffer_write(buff, buffer_f32, p2.z);
+        buffer_write(buff, buffer_f32, n2.x);
+        buffer_write(buff, buffer_f32, n2.y);
+        buffer_write(buff, buffer_f32, n2.z);
+        buffer_write(buff, buffer_f32, t2.u);
+        buffer_write(buff, buffer_f32, t2.v);
+        buffer_write(buff, buffer_u32, c2);
+        //
+        buffer_write(buff, buffer_f32, p2.x);
+        buffer_write(buff, buffer_f32, p2.y);
+        buffer_write(buff, buffer_f32, p2.z);
+        buffer_write(buff, buffer_f32, n2.x);
+        buffer_write(buff, buffer_f32, n2.y);
+        buffer_write(buff, buffer_f32, n2.z);
+        buffer_write(buff, buffer_f32, t2.u);
+        buffer_write(buff, buffer_f32, t2.v);
+        buffer_write(buff, buffer_u32, c2);
+    }
+    
+    return record;
+}
