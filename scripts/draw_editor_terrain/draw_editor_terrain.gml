@@ -10,12 +10,12 @@ function draw_editor_terrain() {
     
     var z2d = CAMERA_ZFAR - 256;
     
+    var view = matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup);
+    var proj = matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
+    
     if (orthographic) {
-        var view = matrix_build_lookat(x, y, z2d, x, y, 0, 0, 1, 0);
-        var proj = matrix_build_projection_ortho(-vw * orthographic_scale, vh * orthographic_scale, CAMERA_ZNEAR, CAMERA_ZFAR);
-    } else {
-        var view = matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup);
-        var proj = matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
+        view = matrix_build_lookat(x, y, z2d, x, y, 0, 0, 1, 0);
+        proj = matrix_build_projection_ortho(-vw * orthographic_scale, vh * orthographic_scale, CAMERA_ZNEAR, CAMERA_ZFAR);
     }
     
     camera_set_view_mat(camera, view);
@@ -40,11 +40,13 @@ function draw_editor_terrain() {
     }
     texture_set_stage(shader_get_sampler_index(shd_terrain, "texColor"), surface_get_texture(Stuff.terrain.color.surface));
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
-    //vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture, 0));
-    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
+    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture, 0));
     
     if (view_water) {
         graphics_set_lighting_terrain(shd_water);
         graphics_draw_water(false);
     }
+    
+    shader_reset();
+    matrix_set(matrix_world, matrix_build_identity());
 }
