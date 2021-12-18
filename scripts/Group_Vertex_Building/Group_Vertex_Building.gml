@@ -5,9 +5,9 @@ function vertex_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, a
     vertex_normal(buffer, nx, ny, nz);
     vertex_texcoord(buffer, xtex, ytex);
     vertex_colour(buffer, color, alpha);
-    vertex_normal(buffer, 0, 0, 0);                                             // tangent
-    vertex_normal(buffer, 0, 0, 0);                                             // bitangent
-    vertex_colour(buffer, make_colour_rgb(255 * (bc_index == 0), 255 * (bc_index == 1), 255 * (bc_index == 2)), 0);
+    vertex_float3(buffer, 0, 0, 0);                                             // tangent
+    vertex_float3(buffer, 0, 0, 0);                                             // bitangent
+    vertex_float3(buffer, bc_index == 0, bc_index == 1, bc_index == 2);
     
     bc_index = ++bc_index % 3;
 }
@@ -33,7 +33,9 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
     buffer_write(buffer, buffer_f32, 1);
     buffer_write(buffer, buffer_f32, 2);
     // barycentric
-    buffer_write(buffer, buffer_u32, make_colour_rgb(255 * (bc_index == 0), 255 * (bc_index == 1), 255 * (bc_index == 2)));
+    buffer_write(buffer, buffer_f32, bc_index == 0);
+    buffer_write(buffer, buffer_f32, bc_index == 1);
+    buffer_write(buffer, buffer_f32, bc_index == 2);
     
     bc_index = ++bc_index % 3;
 }
@@ -43,9 +45,9 @@ function vertex_point_line(buffer, x, y, z, color, alpha) {
     vertex_normal(buffer, 0, 0, 1);
     vertex_texcoord(buffer, 0, 0);
     vertex_colour(buffer, color, alpha);
-    vertex_normal(buffer, 0, 0, 0);                                             // tangent
-    vertex_normal(buffer, 0, 0, 0);                                             // bitangent
-    vertex_colour(buffer, 0, 0);                                                // barycentric
+    vertex_float3(buffer, 0, 0, 0);                                             // tangent
+    vertex_float3(buffer, 0, 0, 0);                                             // bitangent
+    vertex_float3(buffer, 0, 0, 0);                                             // barycentric
 }
 
 function buffer_to_reflect(buffer) {
@@ -251,4 +253,5 @@ function vertex_buffer_update(raw) {
     }
     buffer_delete(raw);
     return updated_buffer;
+    return;
 };
