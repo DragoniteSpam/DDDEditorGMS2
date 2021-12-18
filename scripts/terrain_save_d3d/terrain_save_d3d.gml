@@ -21,33 +21,13 @@ function terrain_save_d3d(fn) {
     
     throw "terrain_save_d3d - sample from the various textures instead of from a big-ass vertex buffer";
     
-    for (var i = 0; i < bytes; i += VERTEX_SIZE * 3) {
-        var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32) * scale;
-        var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE, buffer_f32) * scale;
-        var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE * 2, buffer_f32) * scale;
+    for (var i = 0; i < bytes; i += VERTEX_SIZE_TERRAIN * 3) {
+        var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_TERRAIN * 0, buffer_f32) * scale;
+        var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_TERRAIN * 1, buffer_f32) * scale;
+        var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_TERRAIN * 2, buffer_f32) * scale;
+        var z3 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_TERRAIN * 3, buffer_f32) * scale;
         
-        if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
-            for (var j = 0; j < VERTEX_SIZE * 3; j = j + VERTEX_SIZE) {
-                var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32) * scale;
-                var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32) * scale;
-                var zz = buffer_peek(terrain.terrain_buffer_data, j + i + 8, buffer_f32) * scale;
-                var nx = buffer_peek(terrain.terrain_buffer_data, j + i + 12, buffer_f32);
-                var ny = buffer_peek(terrain.terrain_buffer_data, j + i + 16, buffer_f32);
-                var nz = buffer_peek(terrain.terrain_buffer_data, j + i + 20, buffer_f32);
-                var xtex = buffer_peek(terrain.terrain_buffer_data, j + i + 24, buffer_f32) * fx;
-                var ytex = buffer_peek(terrain.terrain_buffer_data, j + i + 28, buffer_f32) * fy;
-                var color = buffer_peek(terrain.terrain_buffer_data, j + i + 32, buffer_u32);
-                
-                buffer_write(buffer, buffer_text, "9 " +
-                    string_format(xx, 1, mediump) + " " + string_format(yy, 1, mediump) + " " + string_format(zz, 1, mediump) + " " +
-                    string_format(nx, 1, mediump) + " " + string_format(ny, 1, mediump) + " " + string_format(nz, 1, mediump) + " " +
-                    string_format(xtex, 1, highp) + " " + string_format(ytex, 1, highp) + " " +
-                    string(color & 0xffffff) + " " +
-                    string_format(((color >> 24) & 0xff) / 255, 1, mediump) + "\n"
-                );
-                vertices++;
-            }
-        }
+        throw "re-implement this; the terrain vertex format has been gutted - see the github file history for how the options used to be implemented";
     }
     
     buffer_poke(buffer, addr_capacity, buffer_text, string_pad(vertices + 2, "0", 8));
