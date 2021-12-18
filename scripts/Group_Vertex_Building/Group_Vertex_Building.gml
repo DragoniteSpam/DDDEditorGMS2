@@ -218,3 +218,37 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
     
     return record;
 }
+
+// This is a utility function that I'm going to keep around - in case the
+// default DDD vertex format ever changes (again), which I hope it doesn't need
+// to, pass the data into this function to update it to the new format
+function vertex_buffer_update(raw) {
+    // iterate over every vertex and change it from PNTC to PNTCTBB (fabulous)
+    var updated_buffer = buffer_create(buffer_get_size(raw) / 36 * 64, buffer_fixed, 1);
+    var bc_index = 0;
+    for (var i = 0, n = buffer_get_size(raw); i < n; i++) {
+        // original
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_u32, buffer_read(raw, buffer_u32));
+        // tangents
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        buffer_write(updated_buffer, buffer_f32, buffer_read(raw, buffer_f32));
+        // barycentric
+        buffer_write(buffer, buffer_u32, make_colour_rgb(255 * (bc_index == 0), 255 * (bc_index == 1), 255 * (bc_index == 2)));
+        
+        bc_index = ++bc_index % 3;
+    }
+    buffer_delete(raw);
+    return updated_buffer;
+};

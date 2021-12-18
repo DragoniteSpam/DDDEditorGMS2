@@ -31,7 +31,7 @@ function EditorGraphics() constructor {
         vertex_format_add_normal();                                             // bitangent vectors
         self.format_size_new += 12;
         vertex_format_add_colour();                                             // barycentric coordinates
-        self.format_size_new += 4;
+        self.format_size_new += 4;                                              // should be 64
         self.vertex_format_new = vertex_format_end();
         
         self.mesh_preview_grid = vertex_create_buffer();
