@@ -332,34 +332,38 @@ function DataMap(source, directory) : SData(source) constructor {
         }
         #endregion
         
-        #region data that was frozen ahead of time
-        if (self.contents.frozen_data) {
-            buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.frozen_data));
-            buffer_write_vertex_buffer(buffer, self.contents.frozen_data);
-        } else {
-            buffer_write(buffer, buffer_u64, 0);
-        }
-        if (self.contents.reflect_frozen_data) {
-            buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.reflect_frozen_data));
-            buffer_write_vertex_buffer(buffer, self.contents.reflect_frozen_data);
-        } else {
-            buffer_write(buffer, buffer_u64, 0);
-        }
-        if (self.contents.water_data) {
-            buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.water_data));
-            buffer_write_vertex_buffer(buffer, self.contents.water_data);
-        } else {
-            buffer_write(buffer, buffer_u64, 0);
-        }
-        #endregion
-        
+        #region frozen chunks
         var chunks = self.GetFusedChunks(Game.meta.grid.chunk_size);
         var keys = variable_struct_get_names(chunks);
         
+        buffer_write(buffer, buffer_u32, array_length(keys));
         for (var i = 0, n = array_length(keys); i < n; i++) {
             var chunk = chunks[$ keys[i]];
-            // save here
+            buffer_write(buffer, buffer_u32, chunk.coords.x);
+            buffer_write(buffer, buffer_u32, chunk.coords.y);
+            if (chunk.frozen != -1) {
+                buffer_write(buffer, buffer_u32, buffer_get_size(chunk.frozen));
+                buffer_write_vertex_buffer(buffer, chunk.frozen);
+                buffer_delete(chunk.frozen);
+            } else {
+                buffer_write(buffer, buffer_u32, 0);
+            }
+            if (chunk.reflect != -1) {
+                buffer_write(buffer, buffer_u32, buffer_get_size(chunk.reflect));
+                buffer_write_vertex_buffer(buffer, chunk.reflect);
+                buffer_delete(chunk.reflect);
+            } else {
+                buffer_write(buffer, buffer_u32, 0);
+            }
+            if (chunk.water != -1) {
+                buffer_write(buffer, buffer_u32, buffer_get_size(chunk.water));
+                buffer_write_vertex_buffer(buffer, chunk.water);
+                buffer_delete(chunk.water);
+            } else {
+                buffer_write(buffer, buffer_u32, 0);
+            }
         }
+        #endregion
         
         #region batch static objects in the map into chunks
         var exported = batch_all_export(self, self.chunk_size);
