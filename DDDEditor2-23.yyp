@@ -858,7 +858,6 @@
     {"id":{"name":"ui_handle_dropped_files","path":"scripts/ui_handle_dropped_files/ui_handle_dropped_files.yy",},"order":0,},
     {"id":{"name":"ui_handle_dropped_files_filter","path":"scripts/ui_handle_dropped_files_filter/ui_handle_dropped_files_filter.yy",},"order":1,},
     {"id":{"name":"shd_ddd","path":"shaders/shd_ddd/shd_ddd.yy",},"order":0,},
-    {"id":{"name":"shd_ddd_base","path":"shaders/shd_ddd_base/shd_ddd_base.yy",},"order":1,},
     {"id":{"name":"EmuRadioArray","path":"scripts/EmuRadioArray/EmuRadioArray.yy",},"order":11,},
     {"id":{"name":"shd_default_alpha","path":"shaders/shd_default_alpha/shd_default_alpha.yy",},"order":2,},
     {"id":{"name":"shd_terrain","path":"shaders/shd_terrain/shd_terrain.yy",},"order":0,},
