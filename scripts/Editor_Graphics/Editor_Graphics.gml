@@ -5,18 +5,6 @@ function EditorGraphics() constructor {
         gpu_set_tex_repeat(true);
         
         vertex_format_begin();
-        self.format_size_old = 0;
-        vertex_format_add_position_3d();
-        self.format_size_old += 12;
-        vertex_format_add_normal();
-        self.format_size_old += 12;
-        vertex_format_add_texcoord();
-        self.format_size_old += 8;
-        vertex_format_add_colour();
-        self.format_size_old += 4;
-        self.vertex_format_old = vertex_format_end();
-        
-        vertex_format_begin();
         self.format_size = 0;
         vertex_format_add_position_3d();
         self.format_size += 12;
