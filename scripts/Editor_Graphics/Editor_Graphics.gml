@@ -7,14 +7,32 @@ function EditorGraphics() constructor {
         vertex_format_begin();
         self.format_size = 0;
         vertex_format_add_position_3d();
-        self.format_size = self.format_size + 12;
+        self.format_size += 12;
         vertex_format_add_normal();
-        self.format_size = self.format_size + 12;
+        self.format_size += 12;
         vertex_format_add_texcoord();
-        self.format_size = self.format_size + 8;
+        self.format_size += 8;
         vertex_format_add_colour();
-        self.format_size = self.format_size + 4;
+        self.format_size += 4;
         self.vertex_format = vertex_format_end();
+        
+        vertex_format_begin();
+        self.format_size_new = 0;
+        vertex_format_add_position_3d();
+        self.format_size_new += 12;
+        vertex_format_add_normal();
+        self.format_size_new += 12;
+        vertex_format_add_texcoord();
+        self.format_size_new += 8;
+        vertex_format_add_colour();
+        self.format_size_new += 4;
+        vertex_format_add_normal();                                             // tangent vectors
+        self.format_size_new += 12;
+        vertex_format_add_normal();                                             // bitangent vectors
+        self.format_size_new += 12;
+        vertex_format_add_colour();                                             // barycentric coordinates
+        self.format_size_new += 4;
+        self.vertex_format_new = vertex_format_end();
         
         self.mesh_preview_grid = vertex_create_buffer();
         vertex_begin(self.mesh_preview_grid, self.vertex_format);
