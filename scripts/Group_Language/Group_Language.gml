@@ -27,6 +27,7 @@ function language_remove(name) {
 function language_extract() {
     var existing_key_names = variable_struct_get_names(Game.languages.text[$ Game.languages.names[0]]);
     var existing_keys = { };
+    var map_extract_warned = false;
     for (var i = 0; i < array_length(existing_key_names); i++) {
         existing_keys[$ existing_key_names[i]] = true;
     }
@@ -87,7 +88,6 @@ function language_extract() {
         }
         #endregion
         #region entity generics
-        var map_warned = false;
         for (var i = 0; i < array_length(Game.maps); i++) {
             var map = Game.maps[i];
             if (map.contents) {
@@ -102,9 +102,9 @@ function language_extract() {
                     }
                 }
             } else {
-                if (!map_warned) {
+                if (!map_extract_warned) {
                     emu_dialog_notice("To do - scan maps other than the currently loaded one for strings");
-                    map_warned = true;
+                    map_extract_warned = true;
                 }
                 continue;
             }
