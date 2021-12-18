@@ -1,4 +1,4 @@
-function batch_tile_raw(buffer, wire, x, y, z, tile_x, tile_y, color, alpha) {
+function batch_tile_raw(buffer, x, y, z, tile_x, tile_y, color, alpha) {
     // this is much like batch_tile, except it bypasses the part where it actually needs an EntityTile,
     // and also writes the data straight into a regular buffer instead of a vertex buffer
     var TEXEL_WIDTH = 1 / TEXTURE_WIDTH;
@@ -25,23 +25,6 @@ function batch_tile_raw(buffer, wire, x, y, z, tile_x, tile_y, color, alpha) {
         vertex_point_complete_raw(buffer, x + TILE_WIDTH, y + TILE_HEIGHT, z, nx, ny, nz, xtex + texture_width - TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
         vertex_point_complete_raw(buffer, x, y + TILE_HEIGHT, z, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
         vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + TEXEL_HEIGHT, color, alpha);
-    }
-    
-    if (wire) {
-        vertex_point_line_raw(wire, x, y, z, c_white, 1);
-        vertex_point_line_raw(wire, x + TILE_WIDTH, y, z, c_white, 1);
-        
-        vertex_point_line_raw(wire, x + TILE_WIDTH, y, z, c_white, 1);
-        vertex_point_line_raw(wire, x + TILE_WIDTH, y + TILE_HEIGHT, z, c_white, 1);
-        
-        vertex_point_line_raw(wire, x, y, z, c_white, 1);
-        vertex_point_line_raw(wire, x + TILE_WIDTH, y + TILE_HEIGHT, z, c_white, 1);
-        
-        vertex_point_line_raw(wire, x + TILE_WIDTH, y + TILE_HEIGHT, z, c_white, 1);
-        vertex_point_line_raw(wire, x, y + TILE_HEIGHT, z, c_white, 1);
-        
-        vertex_point_line_raw(wire, x, y + TILE_HEIGHT, z, c_white, 1);
-        vertex_point_line_raw(wire, x, y, z, c_white, 1);
     }
     
     // tiles don't get reflected

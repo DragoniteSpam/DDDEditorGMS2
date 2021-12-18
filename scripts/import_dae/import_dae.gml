@@ -13,8 +13,7 @@ function import_dae(filename, adjust_uvs = true, existing = undefined, replace_i
         var poly_list = vbuff_array[i];
         var vbuff = buffer_dotobj_to_standard(poly_list);
         var buff = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
-        var wire = buffer_to_wireframe(buff);
-        mesh_create_submesh(mesh, buff, vbuff, wire);
+        mesh_create_submesh(mesh, buff, vbuff);
     }
     
     /*
@@ -22,12 +21,6 @@ function import_dae(filename, adjust_uvs = true, existing = undefined, replace_i
     var vbs = container[@ eDotDae.VertexBufferList];
 
     if (everything) {
-        var wbuffer = vertex_create_buffer();
-        vertex_begin(wbuffer, Stuff.graphics.vertex_format);
-        vertex_point_complete(wbuffer, 0, 0, 0, 0, 0, 1, 0, 0, c_white, 1);
-        vertex_point_complete(wbuffer, 0, 10, 0, 0, 0, 1, 0, 1, c_white, 1);
-        vertex_point_complete(wbuffer, 10, 0, 0, 0, 0, 1, 1, 0, c_white, 1);
-        vertex_end(wbuffer);
         var cshape = c_shape_create();
         c_shape_begin_trimesh();
         c_shape_end_trimesh(cshape);
@@ -53,12 +46,10 @@ function import_dae(filename, adjust_uvs = true, existing = undefined, replace_i
             cshape = mesh.cshape;
         }
     
-        vertex_freeze(wbuffer);
-    
         for (var i = 0; i < ds_list_size(vbs); i++) {
             var vbuffer = vbs[| i];
             vbuffer = vbuffer[@ eDotDaePolyList.VertexBuffer];
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, base_name, replace_index, filename);
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, undefined, base_name, replace_index, filename);
             vertex_freeze(vbuffer);
         }
     

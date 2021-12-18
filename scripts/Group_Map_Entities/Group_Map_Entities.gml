@@ -502,15 +502,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].vbuffer : undefined;
     };
     
-    static GetWireBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].wbuffer : undefined;
-    };
-    
     static GetReflectBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
@@ -527,15 +518,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         if (!mesh_data) return undefined;
         if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_vbuffer : undefined;
-    };
-    
-    static GetReflectWireBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_wbuffer : undefined;
     };
     
     static GetTexture = function() {
@@ -740,11 +722,9 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     // vertices of the tile but I can't think of any practical use for that
     
     self.vbuffer = undefined;
-    self.wbuffer = undefined;
     
     static GenerateVertexBuffers = function() {
         if (self.vbuffer != undefined) vertex_delete_buffer(self.vbuffer);
-        if (self.wbuffer != undefined) vertex_delete_buffer(self.wbuffer);
         
         var texture_width = Stuff.tile_size / TEXTURE_WIDTH;
         var texture_height = Stuff.tile_size / TEXTURE_HEIGHT;
@@ -766,16 +746,6 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
         vertex_point_complete(self.vbuffer, 0, th, 0, 0, 0, 1, texx1, texy2, self.tile_color, self.tile_alpha);
         vertex_point_complete(self.vbuffer, 0, 0, 0, 0, 0, 1, texx1, texy1, self.tile_color, self.tile_alpha);
         vertex_end(self.vbuffer);
-        
-        self.wbuffer = vertex_create_buffer();
-        vertex_begin(self.wbuffer, Stuff.graphics.vertex_format);
-        vertex_point_line(self.wbuffer, 0, 0, 0, c_white, 1);
-        vertex_point_line(self.wbuffer, tw, 0, 0, c_white, 1);
-        vertex_point_line(self.wbuffer, tw, th, 0, c_white, 1);
-        vertex_point_line(self.wbuffer, tw, th, 0, c_white, 1);
-        vertex_point_line(self.wbuffer, 0, th, 0, c_white, 1);
-        vertex_point_line(self.wbuffer, 0, 0, 0, c_white, 1);
-        vertex_end(self.wbuffer);
     };
     
     self.GenerateVertexBuffers();
@@ -816,7 +786,6 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     
     static DestroyTile = function() {
         vertex_delete_buffer(self.vbuffer);
-        vertex_delete_buffer(self.wbuffer);
     };
     
     static Destroy = function() {

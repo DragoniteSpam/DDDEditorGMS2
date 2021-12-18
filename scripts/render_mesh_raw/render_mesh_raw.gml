@@ -12,7 +12,7 @@ function render_mesh_raw(entity) {
     }
     
     if (Settings.view.wireframe) {
-        vertex_submit(entity.GetWireBuffer(), pr_linelist, -1);
+        /// @wireframe
     }
     
     if (Stuff.map.active_map.reflections_enabled) {
@@ -30,10 +30,7 @@ function render_mesh_raw(entity) {
         }
         
         if (Settings.view.wireframe) {
-            var reflect = entity.GetReflectWireBuffer();
-            if (reflect) {
-                vertex_submit(reflect, pr_trianglelist, tex);
-            }
+            /// @wireframe
         }
     }
     

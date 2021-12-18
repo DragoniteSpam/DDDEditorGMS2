@@ -10,9 +10,7 @@ function terrain_add_to_project() {
     var fy = sprite_get_height(terrain.texture) / terrain_texture_size;
     
     var vbuff = vertex_create_buffer();
-    var wbuff = vertex_create_buffer();
     vertex_begin(vbuff, Stuff.graphics.vertex_format);
-    vertex_begin(wbuff, Stuff.graphics.vertex_format);
     
     for (var i = 0; i < bytes; i += VERTEX_SIZE_TERRAIN * 3) {
         var x1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 0, buffer_f32);
@@ -52,22 +50,17 @@ function terrain_add_to_project() {
                 vertex_point_complete(vbuff, x1, y1, z1, nx1, ny1, nz1, xtex1, ytex1, c1, a1);
                 vertex_point_complete(vbuff, x2, y2, z2, nx2, ny2, nz2, xtex2, ytex2, c2, a2);
                 vertex_point_complete(vbuff, x3, y3, z3, nx3, ny3, nz3, xtex3, ytex3, c3, a3);
-                
-                vertex_point_line(wbuff, x1, y1, z1, c_white, 1); vertex_point_line(wbuff, x2, y2, z2, c_white, 1);
-                vertex_point_line(wbuff, x2, y2, z2, c_white, 1); vertex_point_line(wbuff, x3, y3, z3, c_white, 1);
-                vertex_point_line(wbuff, x3, y3, z3, c_white, 1); vertex_point_line(wbuff, x1, y1, z1, c_white, 1);
             }
         }
     }
     
     vertex_end(vbuff);
-    vertex_end(wbuff);
     
     var raw = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
     
     var mesh = new DataMesh();
     mesh.name = "Terrain";
-    mesh_create_submesh(mesh, raw, vbuff, wbuff);
+    mesh_create_submesh(mesh, raw, vbuff);
     array_push(Game.meshes, mesh);
     return mesh;
 }

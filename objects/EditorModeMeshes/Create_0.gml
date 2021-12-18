@@ -97,9 +97,8 @@ format_default = json_decode(buffer_read(fbuffer, buffer_text));
 buffer_delete(fbuffer);
 
 var json_string = setting_get("mesh", "vertex-formats", "");
-if (json_string == "") {
-    format_json = format_default;
-} else {
+format_json = format_default;
+if (json_string != "") {
     format_json = json_decode(json_string);
 }
 

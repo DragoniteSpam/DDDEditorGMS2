@@ -1,4 +1,4 @@
-function batch_mesh_autotile(vbuff, wire, reflect, reflect_wire, mesh_autotile) {
+function batch_mesh_autotile(vbuff, reflect, mesh_autotile) {
     var mapping = global.at_map[$ mesh_autotile.terrain_id];
     
     var at = guid_get(mesh_autotile.autotile_id);
@@ -44,19 +44,5 @@ function batch_mesh_autotile(vbuff, wire, reflect, reflect_wire, mesh_autotile) 
         }
         
         vc = ++vc % 3;
-        
-        if (wire) {
-            if (vc == 0) {
-                var v1 = data.vertex[0];
-                var v2 = data.vertex[1];
-                var v3 = data.vertex[2];
-                vertex_point_line(wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
-                vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
-                vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
-                vertex_point_line(wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
-                vertex_point_line(wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
-                vertex_point_line(wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
-            }
-        }
     }
 }

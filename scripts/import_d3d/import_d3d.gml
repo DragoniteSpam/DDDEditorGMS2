@@ -10,15 +10,13 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
     file_text_readln(f);
     
     var vbuffer = vertex_create_buffer();
-    var wbuffer, cshape;
+    var cshape;
     if (everything) {
-        wbuffer = vertex_create_buffer();
         cshape = c_shape_create();
     }
     
     vertex_begin(vbuffer, Stuff.graphics.vertex_format);
     if (everything) {
-        vertex_begin(wbuffer, Stuff.graphics.vertex_format);
         c_shape_begin_trimesh();
     }
     
@@ -92,12 +90,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
             vertex_point_complete(vbuffer, xx[2], yy[2], zz[2], nx[2], ny[2], nz[2], xtex[2], ytex[2], color[2], alpha[2]);
             
             if (everything) {
-                vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
-                vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
-                vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
-                vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
-                vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
-                vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
                 c_shape_add_triangle(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
             }
             
@@ -158,10 +150,8 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
     
     if (everything) {
         if (vertex_get_number(vbuffer) > 0) {
-            vertex_end(wbuffer);
             c_shape_end_trimesh(cshape);
         } else {
-            vertex_delete_buffer(wbuffer);
             c_shape_destroy(cshape);
         }
         
@@ -182,7 +172,7 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
         }
         
         if (vertex_get_number(vbuffer) > 0) {
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, base_name, replace_index, fn);
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, undefined, base_name, replace_index, fn);
             if (!mesh.cshape) {
                 mesh.cshape = cshape;
             } else {
@@ -190,7 +180,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
             }
             
             vertex_freeze(vbuffer);
-            vertex_freeze(wbuffer);
         }
         
         return mesh;

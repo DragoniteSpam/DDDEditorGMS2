@@ -1,4 +1,4 @@
-function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
+function batch_mesh(vbuff, reflect, mesh) {
     var data = guid_get(mesh.mesh); // lol
     
     // smf meshes won't be batched, please
@@ -48,34 +48,18 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
         }
         
         vc = ++vc % 3;
-        
-        if (wire) {
-            if (vc == 0) {
-                var v1 = tri.vertex[0];
-                var v2 = tri.vertex[1];
-                var v3 = tri.vertex[2];
-                vertex_point_line(wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
-                vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
-                vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
-                vertex_point_line(wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
-                vertex_point_line(wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
-                vertex_point_line(wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
-            }
-        }
     }
     
     buffer_seek(raw, buffer_seek_start, 0);
     #endregion
     
-    if (!reflect && !reflect_wire) return;
+    if (!reflect) return;
     
     #region reflected
     // if no valid mesh is found, use the big ol' ? instead
     raw = mesh.GetReflectBuffer();
     if (!raw) return;
     buffer_seek(raw, buffer_seek_start, 0);
-    
-    vc = 0;
     
     tri = new Triangle();
     
@@ -110,20 +94,6 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
         }
         
         vc = ++vc % 3;
-        
-        if (reflect_wire) {
-            if (vc == 0) {
-                var v1 = tri.vertex[0];
-                var v2 = tri.vertex[1];
-                var v3 = tri.vertex[2];
-                vertex_point_line(reflect_wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
-                vertex_point_line(reflect_wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
-                vertex_point_line(reflect_wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
-                vertex_point_line(reflect_wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
-                vertex_point_line(reflect_wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
-                vertex_point_line(reflect_wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
-            }
-        }
     }
     
     buffer_seek(raw, buffer_seek_start, 0);

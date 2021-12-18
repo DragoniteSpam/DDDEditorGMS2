@@ -402,7 +402,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     }
     
     var vbuffers = { };
-    var wbuffers = { };
     var cshape = c_shape_create();
     
     var vc = 0;
@@ -460,29 +459,19 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         
         if (!vbuffers[$ bmtl]) {
             vbuffers[$ bmtl] = vertex_create_buffer();
-            wbuffers[$ bmtl] = vertex_create_buffer();
             vertex_begin(vbuffers[$ bmtl], Stuff.graphics.vertex_format);
             if (everything) {
-                vertex_begin(wbuffers[$ bmtl], Stuff.graphics.vertex_format);
                 c_shape_begin_trimesh();
             }
         }
         
         var vb = vbuffers[$ bmtl];
-        var wb = wbuffers[$ bmtl];
         
         vertex_point_complete(vb, bxx[vc], byy[vc], bzz[vc], bnx, bny, bnz, bxtex, bytex, bcolor, balpha);
         
         vc = (++vc) % 3;
         
         if (everything && vc == 0) {
-            vertex_point_line(wb, bxx[0], byy[0], bzz[0], c_white, 1);
-            vertex_point_line(wb, bxx[1], byy[1], bzz[1], c_white, 1);
-            vertex_point_line(wb, bxx[1], byy[1], bzz[1], c_white, 1);
-            vertex_point_line(wb, bxx[2], byy[2], bzz[2], c_white, 1);
-            vertex_point_line(wb, bxx[2], byy[2], bzz[2], c_white, 1);
-            vertex_point_line(wb, bxx[0], byy[0], bzz[0], c_white, 1);
-            
             if (bmtl == base_mtl) {
                 c_shape_add_triangle(bxx[0], byy[0], bzz[0], bxx[1], byy[1], bzz[1], bxx[2], byy[2], bzz[2]);
             }
@@ -495,25 +484,19 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     }
     
     var vb_base = vbuffers[$ base_mtl];
-    var wb_base = wbuffers[$ base_mtl];
     
     vertex_end(vb_base);
-    vertex_end(wb_base);
     
     variable_struct_remove(vbuffers, base_mtl);
-    variable_struct_remove(wbuffers, base_mtl);
     var vbuffer_materials = variable_struct_get_names(vbuffers);
     
     for (var i = 0; i < array_length(vbuffer_materials); i++) {
         var mat = vbuffer_materials[i];
         if (vertex_get_number(vbuffers[$ mat]) == 0) {
             vertex_delete_buffer(vbuffers[$ mat]);
-            vertex_delete_buffer(wbuffers[$ mat]);
             variable_struct_remove(vbuffers, mat);
-            variable_struct_remove(wbuffers, mat);
         } else {
             vertex_end(vbuffers[$ mat]);
-            vertex_end(wbuffers[$ mat]);
         }
     }
     
@@ -536,7 +519,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         }
         
         if (vertex_get_number(vb_base) > 0) {
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vb_base, buffer_fixed, 1), vb_base, wb_base, undefined, base_name + "." + string(base_mtl), -1, fn);
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vb_base, buffer_fixed, 1), vb_base, undefined, base_name + "." + string(base_mtl), -1, fn);
             if (mesh.cshape) {
                 c_shape_destroy(cshape);
             } else {
@@ -548,7 +531,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         vbuffer_materials = variable_struct_get_names(vbuffers);
         for (var i = 0; i < array_length(vbuffer_materials); i++) {
             var mat = vbuffer_materials[i];
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], wbuffers[$ mat], undefined, base_name + "." + mat, -1, fn);
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], undefined, base_name + "." + mat, -1, fn);
         }
         
         // assign these based on the material lookup eventually

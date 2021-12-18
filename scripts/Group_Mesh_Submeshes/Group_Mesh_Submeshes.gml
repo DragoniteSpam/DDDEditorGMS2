@@ -1,16 +1,12 @@
 function MeshSubmesh(source) constructor {
     self.buffer = undefined;
     self.vbuffer = undefined;
-    self.wbuffer = undefined;
-    self.wrawbuffer = undefined;
     self.owner = undefined;
     self.path = "";
     self.proto_guid = NULL;
     
     self.reflect_buffer = undefined;
     self.reflect_vbuffer = undefined;
-    self.reflect_wbuffer = undefined;
-    self.reflect_wrawbuffer = undefined;
     
     if (is_struct(source)) {
         self.name = source.name;
@@ -24,31 +20,15 @@ function MeshSubmesh(source) constructor {
         var proto = string_replace_all(self.proto_guid, ":", "_");
         if (file_exists(directory  + proto + ".vertex")) self.buffer = buffer_load(directory  + proto + ".vertex");
         if (file_exists(directory  + proto + ".reflect")) self.reflect_buffer = buffer_load(directory  + proto + ".reflect");
-        if (file_exists(directory  + proto + ".wire")) self.wrawbuffer = buffer_load(directory  + proto + ".wire");
-        if (file_exists(directory  + proto + ".rwire")) self.reflect_wrawbuffer = buffer_load(directory  + proto + ".rwire");
         
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
         if (self.reflect_buffer) self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
-        if (self.wrawbuffer) {
-            self.wbuffer = vertex_create_buffer_from_buffer(self.wrawbuffer, Stuff.graphics.vertex_format);
-        } else {
-            self.wbuffer = buffer_to_wireframe(self.buffer);
-            self.wrawbuffer = buffer_create_from_vertex_buffer(self.wbuffer, buffer_fixed, 1);
-        }
-        if (self.reflect_wrawbuffer) {
-            self.reflect_wbuffer = vertex_create_buffer_from_buffer(self.reflect_wrawbuffer, Stuff.graphics.vertex_format);
-        } else if (self.reflect_buffer) {
-            self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
-            self.reflect_wrawbuffer = buffer_create_from_vertex_buffer(self.reflect_wbuffer, buffer_fixed, 1);
-        }
     };
     
     static SaveAsset = function(directory) {
         var proto = string_replace_all(self.proto_guid, ":", "_");
         if (self.buffer) buffer_save(self.buffer, directory  + proto + ".vertex");
         if (self.reflect_buffer) buffer_save(self.reflect_buffer, directory + proto + ".reflect");
-        if (self.wrawbuffer) buffer_save(self.wrawbuffer, directory  + proto + ".wire");
-        if (self.reflect_wrawbuffer) buffer_save(self.reflect_wrawbuffer, directory + proto + ".rwire");
     };
     
     static Export = function(buffer) {
@@ -76,16 +56,12 @@ function MeshSubmesh(source) constructor {
     
     static Destroy = function() {
         if (self.buffer) buffer_delete(self.buffer);
-        if (self.wrawbuffer) buffer_delete(self.wrawbuffer);
-        if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
         if (self.vbuffer) {
             switch (self.owner.type) {
                 case MeshTypes.RAW: vertex_delete_buffer(self.vbuffer); break;
             }
         }
         if (self.reflect_buffer) buffer_delete(self.reflect_buffer);
-        if (self.reflect_wrawbuffer) buffer_delete(self.reflect_wrawbuffer);
-        if (self.reflect_wbuffer) vertex_delete_buffer(self.reflect_wbuffer);
         if (self.reflect_vbuffer) {
             switch (self.owner.type) {
                 case MeshTypes.RAW: vertex_delete_buffer(self.reflect_vbuffer); break;
@@ -98,14 +74,10 @@ function MeshSubmesh(source) constructor {
         if (self.buffer) {
             cloned_data.buffer = buffer_clone(self.buffer, buffer_fixed, 1);
             cloned_data.vbuffer = vertex_create_buffer_from_buffer(cloned_data.buffer, Stuff.graphics.vertex_format);
-            cloned_data.wbuffer = buffer_to_wireframe(cloned_data.buffer);
-            cloned_data.wrawbuffer = buffer_clone(self.wrawbuffer, buffer_fixed, 1);
         }
         if (self.reflect_buffer) {
             cloned_data.reflect_buffer = buffer_clone(self.reflect_buffer, buffer_fixed, 1);
             cloned_data.reflect_vbuffer = vertex_create_buffer_from_buffer(cloned_data.reflect_buffer, Stuff.graphics.vertex_format);
-            cloned_data.reflect_wbuffer = buffer_to_wireframe(cloned_data.reflect_buffer);
-            cloned_data.reflect_wrawbuffer = buffer_clone(self.reflect_wrawbuffer, buffer_fixed, 1);
         }
         cloned_data.path = self.path;
         
@@ -120,9 +92,6 @@ function MeshSubmesh(source) constructor {
             self.reflect_vbuffer = data[0];
             self.reflect_buffer = data[1];
             vertex_freeze(self.reflect_vbuffer);
-            self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
-            self.reflect_wrawbuffer = buffer_create_from_vertex_buffer(self.reflect_wbuffer, buffer_fixed, 1);
-            vertex_freeze(self.reflect_wbuffer);
         }
     };
     
@@ -130,12 +99,8 @@ function MeshSubmesh(source) constructor {
         if (!self.buffer) return;
         internalDeleteReflect();
         self.reflect_vbuffer = buffer_to_reflect(self.buffer);
-        self.wrawbuffer = buffer_create_from_vertex_buffer(self.wbuffer, buffer_fixed, 1);
         self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
-        self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
-        self.reflect_wrawbuffer = buffer_create_from_vertex_buffer(self.reflect_wbuffer, buffer_fixed, 1);
         vertex_freeze(self.reflect_vbuffer);
-        vertex_freeze(self.reflect_wbuffer);
     };
     
     static SwapReflections = function() {
@@ -146,14 +111,6 @@ function MeshSubmesh(source) constructor {
         t = self.vbuffer;
         self.vbuffer = self.reflect_vbuffer;
         self.reflect_vbuffer = t;
-        
-        t = self.wbuffer;
-        self.wbuffer = self.reflect_wbuffer;
-        self.reflect_wbuffer = t;
-        
-        t = self.wrawbuffer;
-        self.wrawbuffer = self.reflect_wrawbuffer;
-        self.reflect_wrawbuffer = t;
     };
     
     static SetNormalsZero = function() {
@@ -213,7 +170,6 @@ function MeshSubmesh(source) constructor {
     
     static AddBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
-        if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
         var new_size = buffer_get_size(raw_buffer);
         if (!self.buffer) {
             self.buffer = buffer_create(new_size, buffer_grow, 1);
@@ -223,13 +179,9 @@ function MeshSubmesh(source) constructor {
         buffer_copy(raw_buffer, 0, new_size, self.buffer, old_size);
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
         vertex_freeze(self.vbuffer);
-        self.wbuffer = buffer_to_wireframe(self.buffer);
-        self.wrawbuffer = buffer_create_from_vertex_buffer(self.wbuffer, buffer_fixed, 1);
-        vertex_freeze(self.wbuffer);
         
         if (self.reflect_buffer) {
             buffer_delete(self.reflect_buffer);
-            vertex_delete_buffer(self.reflect_wbuffer);
             vertex_delete_buffer(self.reflect_vbuffer);
             self.GenerateReflections();
         }
@@ -238,35 +190,23 @@ function MeshSubmesh(source) constructor {
     static internalDeleteUpright = function() {
         if (self.buffer) buffer_delete(self.buffer);
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
-        if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
-        if (self.wrawbuffer) vertex_delete_buffer(self.wrawbuffer);
     };
     
     static internalDeleteReflect = function() {
         if (self.reflect_buffer) buffer_delete(self.reflect_buffer);
         if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
-        if (self.reflect_wbuffer) vertex_delete_buffer(self.reflect_wbuffer);
-        if (self.reflect_wrawbuffer) vertex_delete_buffer(self.reflect_wrawbuffer);
     };
     
     static internalSetVertexBuffer = function() {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
-        if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
         vertex_freeze(self.vbuffer);
-        self.wbuffer = buffer_to_wireframe(self.buffer);
-        if (self.wrawbuffer) vertex_delete_buffer(self.wrawbuffer);
-        vertex_freeze(self.wbuffer);
     };
     
     static internalSetReflectVertexBuffer = function() {
         if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
-        if (self.reflect_wbuffer) vertex_delete_buffer(self.reflect_wbuffer);
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
         vertex_freeze(self.reflect_vbuffer);
-        self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
-        if (self.wrawbuffer) vertex_delete_buffer(self.wrawbuffer);
-        vertex_freeze(self.reflect_wbuffer);
     };
     
     static internalSetNormalsZero = function(buffer, val) {

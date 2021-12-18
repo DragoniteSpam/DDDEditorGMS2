@@ -36,39 +36,6 @@ function vertex_point_line_raw(buffer, x, y, z, color, alpha) {
     buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | colour_reverse(color));
 }
 
-function buffer_to_wireframe(buffer) {
-    var wbuffer = -1;
-    static fsize = buffer_sizeof(buffer_f32);
-    
-    try {
-        wbuffer = vertex_create_buffer();
-        vertex_begin(wbuffer, Stuff.graphics.vertex_format);
-        for (var i = 0; i < buffer_get_size(buffer); i += VERTEX_SIZE * 3) {
-            var x1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 0 * fsize, buffer_f32);
-            var y1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 1 * fsize, buffer_f32);
-            var z1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 2 * fsize, buffer_f32);
-            var x2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 0 * fsize, buffer_f32);
-            var y2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 1 * fsize, buffer_f32);
-            var z2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 2 * fsize, buffer_f32);
-            var x3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 0 * fsize, buffer_f32);
-            var y3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 1 * fsize, buffer_f32);
-            var z3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 2 * fsize, buffer_f32);
-            vertex_point_line(wbuffer, x1, y1, z1, c_white, 1);
-            vertex_point_line(wbuffer, x2, y2, z2, c_white, 1);
-            vertex_point_line(wbuffer, x2, y2, z2, c_white, 1);
-            vertex_point_line(wbuffer, x3, y3, z3, c_white, 1);
-            vertex_point_line(wbuffer, x3, y3, z3, c_white, 1);
-            vertex_point_line(wbuffer, x1, y1, z1, c_white, 1);
-        }
-        vertex_end(wbuffer);
-    } catch (e) {
-        if (wbuffer) vertex_delete_buffer(wbuffer);
-        wbuffer = -1;
-    }
-    
-    return wbuffer;
-}
-
 function buffer_to_reflect(buffer) {
     var rbuffer = -1;
     static fsize = buffer_sizeof(buffer_f32);
@@ -169,24 +136,6 @@ function buffer_to_reflect(buffer) {
     }
     
     return rbuffer;
-}
-
-function vertex_buffer_to_wireframe(vbuffer) {
-    var buffer = -1;
-    var wbuffer = -1;
-    static fsize = buffer_sizeof(buffer_f32);
-    
-    try {
-        buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 4);
-        wbuffer = buffer_to_wireframe(buffer);
-    } catch (e) {
-        if (wbuffer) vertex_delete_buffer(wbuffer);
-        wbuffer = -1;
-    } finally {
-        if (buffer) buffer_delete(buffer);
-    }
-    
-    return wbuffer;
 }
 
 function vertex_square(buffer, xx, yy, size, tx, ty, tsize, z00 = 0, z10 = 0, z11 = 0, z01 = 0, c00 = 0xffffffff, c10 = 0xffffffff, c11 = 0xffffffff, c01 = 0xffffffff) {

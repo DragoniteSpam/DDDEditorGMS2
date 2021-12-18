@@ -1,4 +1,4 @@
-function batch_tile(vbuff, wire, reflect, reflect_wire, tile) {
+function batch_tile(vbuff, reflect, tile) {
     var TEXEL_WIDTH = 1 / TEXTURE_WIDTH;
     var TEXEL_HEIGHT = 1 / TEXTURE_HEIGHT;
     
@@ -29,23 +29,6 @@ function batch_tile(vbuff, wire, reflect, reflect_wire, tile) {
         vertex_point_complete(vbuff, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
         vertex_point_complete(vbuff, xx, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
         vertex_point_complete(vbuff, xx, yy, zz, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + TEXEL_HEIGHT, color, alpha);
-    }
-    
-    if (wire) {
-        vertex_point_line(wire, xx, yy, zz, c_white, 1);
-        vertex_point_line(wire, xx + TILE_WIDTH, yy, zz, c_white, 1);
-        
-        vertex_point_line(wire, xx + TILE_WIDTH, yy, zz, c_white, 1);
-        vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
-        
-        vertex_point_line(wire, xx, yy, zz, c_white, 1);
-        vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
-        
-        vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
-        vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
-        
-        vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
-        vertex_point_line(wire, xx, yy, zz, c_white, 1);
     }
     
     // Tiles don't get reflected

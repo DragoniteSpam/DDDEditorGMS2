@@ -73,7 +73,6 @@ function EditorGraphics() constructor {
         var missing = import_d3d("data/basic/missing_autotile.d3d", false, true);
         self.missing_autotile = missing[0];
         self.missing_autotile_raw = missing[1];
-        self.missing_autotile_wire = vertex_buffer_to_wireframe(self.missing_autotile);
         self.indexed_cube = import_d3d("data/basic/cube-indexed.d3d", false);
         self.base_npc = import_d3d("data/basic/base-npc.d3d", false);
         self.axes_rotation = import_d3d("data/basic/rotation.d3d", false);

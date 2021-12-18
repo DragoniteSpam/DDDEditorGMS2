@@ -60,11 +60,11 @@ function draw_editor_3d() {
     }
     
     if (Settings.view.wireframe) {
-        if (map_contents.frozen_wire && Settings.view.wireframe) {
-            vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
+        if (Settings.view.wireframe) {
+            /// @wireframe
         }
-        if (map.reflections_enabled && map_contents.reflect_frozen_wire && Settings.view.wireframe) {
-            vertex_submit(map_contents.reflect_frozen_wire, pr_linelist, -1);
+        if (map.reflections_enabled && Settings.view.wireframe) {
+            /// @wireframe
         }
     }
     
@@ -75,8 +75,7 @@ function draw_editor_3d() {
             vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
         }
         if (map.reflections_enabled && Settings.view.wireframe) {
-            vertex_submit(data.wire, pr_linelist, -1);
-            vertex_submit(data.reflect_wire, pr_linelist, -1);
+            /// @wireframe
         }
     }
     

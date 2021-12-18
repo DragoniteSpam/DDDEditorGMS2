@@ -41,7 +41,6 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     switch (mesh.type) {
         case MeshTypes.RAW:
             vertex_submit(mesh.submeshes[0].vbuffer, pr_trianglelist, tex);
-            vertex_submit(mesh.submeshes[0].wbuffer, pr_linelist, tex);
             break;
     }
     shader_reset();

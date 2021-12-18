@@ -5,9 +5,7 @@ function import_map_tiled(ask_clear) {
             var map_contents = map.contents;
             if (map_contents.water_data) buffer_delete(map_contents.water_data);
             if (map_contents.frozen_data) buffer_delete(map_contents.frozen_data);
-            if (map_contents.frozen_data_wire) buffer_delete(map_contents.frozen_data_wire);
             map_contents.frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
-            map_contents.frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
             map_contents.water_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
             // the vertex buffers are created elsewhere - since they need to be
             // destroyed and recreated regardless
@@ -95,12 +93,10 @@ function import_map_tiled(ask_clear) {
         }
         
         if (map_contents.frozen) vertex_delete_buffer(map_contents.frozen);
-        if (map_contents.frozen_wire) vertex_delete_buffer(map_contents.frozen_wire);
         if (map_contents.water) vertex_delete_buffer(map_contents.water);
         
         buffer_resize(map_contents.water_data, buffer_tell(map_contents.water_data));
         buffer_resize(map_contents.frozen_data, buffer_tell(map_contents.frozen_data));
-        buffer_resize(map_contents.frozen_data_wire, buffer_tell(map_contents.frozen_data_wire));
         
         if (buffer_get_size(map_contents.frozen_data) - 1) {
             map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
@@ -109,9 +105,9 @@ function import_map_tiled(ask_clear) {
             buffer_delete(map_contents.frozen_data);
             map_contents.frozen_data = undefined;
         }
-        if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
-            map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
-            vertex_freeze(map_contents.frozen_wire);
+        if (buffer_get_size(map_contents.reflect_frozen_data) - 1) {
+            map_contents.reflect_frozen = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+            vertex_freeze(map_contents.reflect_frozen);
         } else {
             buffer_delete(map_contents.reflect_frozen_data);
             map_contents.reflect_frozen_data = undefined;

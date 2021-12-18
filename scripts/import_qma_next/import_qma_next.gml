@@ -6,9 +6,6 @@ function import_qma_next(data_buffer, version) {
     
     var raw_buffer = buffer_read_buffer(data_buffer, bsize);
     
-    var wbuffer = vertex_create_buffer();
-    vertex_begin(wbuffer, Stuff.graphics.vertex_format);
-    
     var vsize, voff, vbuffer;
     var cdata = c_shape_create();
     c_shape_begin_trimesh();
@@ -53,15 +50,6 @@ function import_qma_next(data_buffer, version) {
         var yt3 = buffer_peek(raw_buffer, i + 100 + 2 * voff, buffer_f32);
         var c3 =  buffer_peek(raw_buffer, i + 104 + 2 * voff, buffer_f32);
         
-        vertex_point_line(wbuffer, x1, y1, z1, c_white, 1);
-        vertex_point_line(wbuffer, x2, y2, z2, c_white, 1);
-        
-        vertex_point_line(wbuffer, x2, y2, z2, c_white, 1);
-        vertex_point_line(wbuffer, x3, y3, z3, c_white, 1);
-        
-        vertex_point_line(wbuffer, x3, y3, z3, c_white, 1);
-        vertex_point_line(wbuffer, x1, y1, z1, c_white, 1);
-        
         if (version < 2) {
             vertex_point_complete(vbuffer, x1, y1, z1, nx1, ny1, nz1, xt1, yt1, c1 & 0xffffff, (c1 >> 24) / 0xff);
             vertex_point_complete(vbuffer, x2, y2, z2, nx2, ny2, nz2, xt2, yt2, c2 & 0xffffff, (c2 >> 24) / 0xff);
@@ -77,11 +65,9 @@ function import_qma_next(data_buffer, version) {
         raw_buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
     }
     vertex_freeze(vbuffer);
-    vertex_end(wbuffer);
-    vertex_freeze(wbuffer);
     c_shape_end_trimesh(cdata);
     
-    mesh_create_submesh(mesh, raw_buffer, vbuffer, wbuffer, undefined, mesh.name);
+    mesh_create_submesh(mesh, raw_buffer, vbuffer, undefined, mesh.name);
     internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(mesh.name));
     mesh.cshape = cdata;
     

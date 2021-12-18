@@ -13,8 +13,6 @@ function render_tile(tile) {
     }
     
     if (Settings.view.wireframe) {
-        transform_set(xx, yy, zz, 0, 0, 0, 1, 1, 1);
-        vertex_submit(tile.wbuffer, pr_linelist, -1);
-        matrix_set(matrix_world, matrix_build_identity());
+        /// @wireframe
     }
 }
