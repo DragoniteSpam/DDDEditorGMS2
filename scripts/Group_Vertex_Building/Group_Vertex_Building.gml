@@ -256,15 +256,21 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
         buffer_write(buff, buffer_f32, t2.v);
         buffer_write(buff, buffer_u32, c2);
         //
-        buffer_write(buff, buffer_f32, p2.x);
-        buffer_write(buff, buffer_f32, p2.y);
-        buffer_write(buff, buffer_f32, p2.z);
-        buffer_write(buff, buffer_f32, n2.x);
-        buffer_write(buff, buffer_f32, n2.y);
-        buffer_write(buff, buffer_f32, n2.z);
-        buffer_write(buff, buffer_f32, t2.u);
-        buffer_write(buff, buffer_f32, t2.v);
-        buffer_write(buff, buffer_u32, c2);
+        buffer_write(buff, buffer_f32, p3.x);
+        buffer_write(buff, buffer_f32, p3.y);
+        buffer_write(buff, buffer_f32, p3.z);
+        buffer_write(buff, buffer_f32, n3.x);
+        buffer_write(buff, buffer_f32, n3.y);
+        buffer_write(buff, buffer_f32, n3.z);
+        buffer_write(buff, buffer_f32, t3.u);
+        buffer_write(buff, buffer_f32, t3.v);
+        buffer_write(buff, buffer_u32, c3);
+    }
+    
+    var keys = variable_struct_get_names(record);
+    for (var i = 0, n = array_length(keys); i < n; i++) {
+        var chunk = record[$ keys[i]];
+        buffer_resize(chunk.buffer, buffer_tell(chunk.buffer));
     }
     
     return record;

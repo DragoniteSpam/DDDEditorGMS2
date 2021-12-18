@@ -341,26 +341,23 @@ function DataMap(source, directory) : SData(source) constructor {
             var chunk = chunks[$ keys[i]];
             buffer_write(buffer, buffer_u32, chunk.coords.x);
             buffer_write(buffer, buffer_u32, chunk.coords.y);
+            
+            buffer_write(buffer, buffer_u32, (chunk.frozen != -1) ? buffer_get_size(chunk.frozen) : 0);
             if (chunk.frozen != -1) {
-                buffer_write(buffer, buffer_u32, buffer_get_size(chunk.frozen));
                 buffer_write_vertex_buffer(buffer, chunk.frozen);
                 buffer_delete(chunk.frozen);
-            } else {
-                buffer_write(buffer, buffer_u32, 0);
             }
+            
+            buffer_write(buffer, buffer_u32, (chunk.reflect != -1) ? buffer_get_size(chunk.reflect) : 0);
             if (chunk.reflect != -1) {
-                buffer_write(buffer, buffer_u32, buffer_get_size(chunk.reflect));
                 buffer_write_vertex_buffer(buffer, chunk.reflect);
                 buffer_delete(chunk.reflect);
-            } else {
-                buffer_write(buffer, buffer_u32, 0);
             }
+            
+            buffer_write(buffer, buffer_u32, (chunk.water != -1) ? buffer_get_size(chunk.water) : 0);
             if (chunk.water != -1) {
-                buffer_write(buffer, buffer_u32, buffer_get_size(chunk.water));
                 buffer_write_vertex_buffer(buffer, chunk.water);
                 buffer_delete(chunk.water);
-            } else {
-                buffer_write(buffer, buffer_u32, 0);
             }
         }
         #endregion
