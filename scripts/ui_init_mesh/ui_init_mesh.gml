@@ -205,7 +205,6 @@ function ui_init_mesh(mode) {
                     case ".obj": import_obj(fn, undefined); break;
                     case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
                     case ".smf": break;
-                    case ".qma": import_qma(fn); break;
                     case ".dae": import_dae(fn); break;
                 }
             }

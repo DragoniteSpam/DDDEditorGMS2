@@ -1166,7 +1166,6 @@ function ui_init_main(mode) {
                     case ".obj": import_obj(fn, undefined); break;
                     case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
                     case ".smf": break;
-                    case ".qma": import_qma(fn); break;
                     case ".dae": import_dae(fn); break;
                 }
             }
@@ -1367,16 +1366,6 @@ function ui_init_main(mode) {
                         case ".d3d": case ".gmmod": export_d3d(fn, data); break;
                     }
                 }
-            }
-        }, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Export All", col_width, element_height, fa_center, function(button) {
-            var fn = get_save_filename_mesh_qma("");
-            if (string_length(fn) > 0) {
-                export_qma(fn);
             }
         }, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);

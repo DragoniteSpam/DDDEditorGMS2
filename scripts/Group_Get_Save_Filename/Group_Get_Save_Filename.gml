@@ -45,12 +45,6 @@ function get_save_filename_mesh_autotile(name) {
     });
 }
 
-function get_save_filename_mesh_qma(name) {
-    return __get_save_filename_generic("quack model archive files|*.qma", name, Settings.location.mesh, "Select a file", function(directory) {
-        Settings.location.mesh = directory;
-    });
-}
-
 function get_save_filename_terrain(name) {
     return __get_save_filename_generic("Terrain files|*.dddt", name, Settings.location.terrain, "Select a terrain file", function(directory) {
         Settings.location.terrain = directory;
