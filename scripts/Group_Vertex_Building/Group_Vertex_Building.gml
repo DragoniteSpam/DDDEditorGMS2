@@ -1,3 +1,10 @@
+function vertex_load(filename, format) {
+    var buffer = buffer_load(filename);
+    var vbuff = vertex_create_buffer_from_buffer(buffer, format);
+    buffer_delete(buffer);
+    return vbuff;
+}
+
 function vertex_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha) {
     static bc_index = 0;
     

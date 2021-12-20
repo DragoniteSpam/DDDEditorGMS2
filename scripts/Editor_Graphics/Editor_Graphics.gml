@@ -22,6 +22,10 @@ function EditorGraphics() constructor {
         self.format_size += 12;                                                 // should be 72
         self.vertex_format = vertex_format_end();
         
+        vertex_format_begin();
+        vertex_format_add_position_3d();
+        self.vertex_format_wireframe = vertex_format_end();
+        
         self.mesh_preview_grid = vertex_create_buffer();
         vertex_begin(self.mesh_preview_grid, self.vertex_format);
         
@@ -101,36 +105,7 @@ function EditorGraphics() constructor {
         self.grid_sphere = vertex_create_buffer();
         vertex_begin(self.grid_sphere, self.vertex_format);
         
-        var radius = 16;
-        var segments = 16;
-        
-        for (var i = 0; i < segments; i++) {
-            var angle = i * 360 / segments;
-            var angle_next = (i + 1) * 360 / segments;
-            for (var j = 0; j < segments / 2; j++) {
-                var arc = j * 2 * 180 / segments - 90;
-                var arc2 = (j + 1) * 2 * 180 / segments - 90;
-                var point = matrix_transform_vertex(matrix_build(0, 0, 0, 0, 0, angle, radius, radius, radius), dcos(arc), 0, dsin(arc));
-                var point2 = matrix_transform_vertex(matrix_build(0, 0, 0, 0, 0, angle, radius, radius, radius), dcos(arc2), 0, dsin(arc2));
-                
-                var point_next = matrix_transform_vertex(matrix_build(0, 0, 0, 0, 0, angle_next, radius, radius, radius), dcos(arc), 0, dsin(arc));
-                var point2_next = matrix_transform_vertex(matrix_build(0, 0, 0, 0, 0, angle_next, radius, radius, radius), dcos(arc2), 0, dsin(arc2));
-                
-                vertex_point_line(self.grid_sphere, point[vec3.xx], point[vec3.yy], point[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point2[vec3.xx], point2[vec3.yy], point2[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point[vec3.xx], point[vec3.yy], point[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point_next[vec3.xx], point_next[vec3.yy], point_next[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point2[vec3.xx], point2[vec3.yy], point2[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point2_next[vec3.xx], point2_next[vec3.yy], point2_next[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point[vec3.xx], point[vec3.yy], point[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point2_next[vec3.xx], point2_next[vec3.yy], point2_next[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point2[vec3.xx], point2[vec3.yy], point2[vec3.zz], c_magenta, 1);
-                vertex_point_line(self.grid_sphere, point_next[vec3.xx], point_next[vec3.yy], point_next[vec3.zz], c_magenta, 1);
-            }
-        }
-        
-        vertex_end(self.grid_sphere);
-        vertex_freeze(self.grid_sphere);
+        self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.vertex_format_wireframe);
         
         self.axes = vertex_create_buffer();
         vertex_begin(self.axes, self.vertex_format);

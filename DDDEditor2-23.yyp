@@ -877,6 +877,7 @@
     {"id":{"name":"scribble_add_autotype_character_delay","path":"scripts/scribble_add_autotype_character_delay/scribble_add_autotype_character_delay.yy",},"order":0,},
     {"id":{"name":"FDefaultItalic","path":"fonts/FDefaultItalic/FDefaultItalic.yy",},"order":2,},
     {"id":{"name":"FDefaultBoldItalic","path":"fonts/FDefaultBoldItalic/FDefaultBoldItalic.yy",},"order":3,},
+    {"id":{"name":"shd_wireframe","path":"shaders/shd_wireframe/shd_wireframe.yy",},"order":12,},
     {"id":{"name":"FConsolas","path":"fonts/FConsolas/FConsolas.yy",},"order":4,},
     {"id":{"name":"FConsolasBold","path":"fonts/FConsolasBold/FConsolasBold.yy",},"order":5,},
     {"id":{"name":"Group_Export_Main","path":"scripts/Group_Export_Main/Group_Export_Main.yy",},"order":0,},
