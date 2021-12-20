@@ -1,6 +1,11 @@
+// https://web.archive.org/web/20200306081453/http://codeflow.org/entries/2012/aug/02/easy-wireframe-display-with-barycentric-coordinates/
+#extension GL_OES_standard_derivatives : enable
+
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
+varying vec3 v_vBarycentric;
 
+#region lighting stuff
 #pragma include("lighting.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
 
@@ -100,21 +105,33 @@ void CommonFog(inout vec4 baseColor) {
     baseColor.rgb = mix(baseColor.rgb, fogColor, f);
 }
 // include("fog.f.xsh")
+#endregion
 
 // not sure why this works but gm_AlphaRefValue is not
 #define ALPHA_REF 0.2
 
+uniform float wireframe;
+
+float wireEdgeFactor(vec3 barycentric, float thickness) {
+    vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
+    return min(min(a3.x, a3.y), a3.z);
+}
+
 void main() {
-    vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
-    vec4 color = v_vColour * baseColor;
-    float sourceAlpha = color.a;
-    
-    CommonLight(color);
-    CommonFog(color);
-    
-    color.a = sourceAlpha;
-    
-    if (color.a < ALPHA_REF) discard;
-    
-    gl_FragColor = color;
+    if (wireframe == 0.0) {
+        vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
+        vec4 color = v_vColour * baseColor;
+        float sourceAlpha = color.a;
+        
+        CommonLight(color);
+        CommonFog(color);
+        
+        color.a = sourceAlpha;
+        
+        if (color.a < ALPHA_REF) discard;
+        
+        gl_FragColor = color;
+    } else if (wireframe == 1.0) {
+        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, 3.0));
+    }
 }

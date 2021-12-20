@@ -8,6 +8,7 @@ attribute vec3 in_Colour3;                                                      
 
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
+varying vec3 v_vBarycentric;
 
 #pragma include("lighting.v.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
@@ -35,10 +36,6 @@ void CommonFogSetup() {
 // include("fog.v.xsh")
 
 void main() {
-    vec3 tangent = in_Colour1;
-    vec3 bitangent = in_Colour2;
-    vec3 barycentric = in_Colour3;
-    
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1);
     
     CommonLightSetup();
@@ -46,4 +43,7 @@ void main() {
     
     v_vTexcoord = in_TextureCoord;
     v_vColour = in_Colour0;
+    vec3 tangent = in_Colour1;
+    vec3 bitangent = in_Colour2;
+    v_vBarycentric = in_Colour3;
 }
