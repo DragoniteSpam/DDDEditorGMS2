@@ -57,9 +57,7 @@ function draw_editor_3d() {
         if (map.reflections_enabled && map_contents.reflect_frozen) {
             vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
         }
-    }
-    
-    if (Settings.view.wireframe) {
+        
         if (map_contents.frozen) {
             wireframe_enable();
             vertex_submit(map_contents.frozen, pr_trianglelist, tex);
@@ -68,30 +66,26 @@ function draw_editor_3d() {
             }
             wireframe_disable();
         }
-    }
-    
-    for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
-        var data = map_contents.batches[i];
-        if (Settings.view.entities) {
+        
+        for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
+            var data = map_contents.batches[i];
             vertex_submit(data.vertex, pr_trianglelist, tex);
             if (map.reflections_enabled) {
                 vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
             }
         }
-    }
-    
-    if (Settings.view.wireframe) {
-        wireframe_enable();
-        for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
-            var data = map_contents.batches[i];
-            if (Settings.view.entities) {
+        
+        if (Settings.view.wireframe) {
+            wireframe_enable();
+            for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
+                var data = map_contents.batches[i];
                 vertex_submit(data.vertex, pr_trianglelist, tex);
                 if (map.reflections_enabled) {
                     vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
                 }
             }
+            wireframe_disable();
         }
-        wireframe_disable();
     }
     
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
