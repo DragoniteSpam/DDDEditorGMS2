@@ -374,6 +374,7 @@ function MeshSubmesh(source) constructor {
                     case VertexFormatData.COLOUR: vertex_new_size += 4; break;
                     case VertexFormatData.TANGENT: vertex_new_size += 12; break;
                     case VertexFormatData.BITANGENT: vertex_new_size += 12; break;
+                    case VertexFormatData.BARYCENTRIC: vertex_new_size += 12; break;
                     // nonstandard
                     case VertexFormatData.SMALL_NORMAL: vertex_new_size += 4; break;
                     case VertexFormatData.SMALL_TANGENT: vertex_new_size += 4; break;
@@ -389,6 +390,7 @@ function MeshSubmesh(source) constructor {
             var formatted_buffer = buffer_create(new_size, buffer_fixed, 1);
             var current_attribute_count = 0;
             var n_pos = 0;
+            var barycentric_index = 0;
             
             // what we're really doing here is looping through each *attribute,*
             // rather than each vertex
@@ -430,6 +432,26 @@ function MeshSubmesh(source) constructor {
                         buffer_write(formatted_buffer, buffer_f32, 0);
                         buffer_write(formatted_buffer, buffer_f32, 0);
                         buffer_write(formatted_buffer, buffer_f32, 0);
+                        break;
+                    case VertexFormatData.BARYCENTRIC:
+                        switch (barycentric_index++) {
+                            case 0:
+                                buffer_write(formatted_buffer, buffer_f32, 1);
+                                buffer_write(formatted_buffer, buffer_f32, 0);
+                                buffer_write(formatted_buffer, buffer_f32, 0);
+                                break;
+                            case 1:
+                                buffer_write(formatted_buffer, buffer_f32, 0);
+                                buffer_write(formatted_buffer, buffer_f32, 1);
+                                buffer_write(formatted_buffer, buffer_f32, 0);
+                                break;
+                            case 2:
+                                buffer_write(formatted_buffer, buffer_f32, 0);
+                                buffer_write(formatted_buffer, buffer_f32, 0);
+                                buffer_write(formatted_buffer, buffer_f32, 1);
+                                break;
+                        }
+                        barycentric_index %= 3;
                         break;
                     // nonstandard attributes
                     case VertexFormatData.SMALL_NORMAL:

@@ -116,6 +116,7 @@ enum VertexFormatData {
     COLOUR,
     TANGENT,
     BITANGENT,
+    BARYCENTRIC,
     // special things
     SMALL_NORMAL,                                                               // 4 bytes
     SMALL_TANGENT,                                                              // 4 bytes
