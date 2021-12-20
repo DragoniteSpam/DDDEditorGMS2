@@ -131,6 +131,7 @@ void main() {
     } else if (u_Wireframe == 1.0) {
         gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, 1.0));
         gl_FragColor.a = ceil(gl_FragColor.a);
+        gl_FragColor.rgb = vec3(gl_FragColor.a);
         if (gl_FragColor.a < ALPHA_REF) discard;
     }
 }

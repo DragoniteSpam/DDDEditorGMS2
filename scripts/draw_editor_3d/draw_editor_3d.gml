@@ -70,15 +70,28 @@ function draw_editor_3d() {
         }
     }
     
-    for (var i = 0; i < array_length(map_contents.batches); i++) {
+    for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
         var data = map_contents.batches[i];
         if (Settings.view.entities) {
             vertex_submit(data.vertex, pr_trianglelist, tex);
-            vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
+            if (map.reflections_enabled) {
+                vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
+            }
         }
-        if (map.reflections_enabled && Settings.view.wireframe) {
-            /// @wireframe
+    }
+    
+    if (Settings.view.wireframe) {
+        wireframe_enable();
+        for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
+            var data = map_contents.batches[i];
+            if (Settings.view.entities) {
+                vertex_submit(data.vertex, pr_trianglelist, tex);
+                if (map.reflections_enabled) {
+                    vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
+                }
+            }
         }
+        wireframe_disable();
     }
     
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
@@ -109,12 +122,12 @@ function draw_editor_3d() {
     }
     
     // tried using ztestenable for this - didn't look good. at all.
-    for (var i = 0; i < array_length(Stuff.map.selection); i++) {
+    for (var i = 0, n = array_length(Stuff.map.selection); i < n; i++) {
         Stuff.map.selection[i].render();
     }
     
     if (Settings.view.zones) {
-        for (var i = 0; i < array_length(map_contents.all_zones); i++) {
+        for (var i = 0, n = array_length(map_contents.all_zones); i < n; i++) {
             map_contents.all_zones[i].Render();
         }
     }
