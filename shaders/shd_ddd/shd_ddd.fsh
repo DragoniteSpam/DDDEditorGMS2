@@ -110,7 +110,7 @@ void CommonFog(inout vec4 baseColor) {
 // not sure why this works but gm_AlphaRefValue is not
 #define ALPHA_REF 0.2
 
-uniform float wireframe;
+uniform float u_Wireframe;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
@@ -118,7 +118,7 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 }
 
 void main() {
-    if (wireframe == 0.0) {
+    if (u_Wireframe == 0.0) {
         vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
         vec4 color = v_vColour * baseColor;
         float sourceAlpha = color.a;
@@ -126,12 +126,11 @@ void main() {
         CommonLight(color);
         CommonFog(color);
         
-        color.a = sourceAlpha;
-        
-        if (color.a < ALPHA_REF) discard;
-        
-        gl_FragColor = color;
-    } else if (wireframe == 1.0) {
-        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, 3.0));
+        gl_FragColor = vec4(color.rgb, sourceAlpha);
+        if (gl_FragColor.a < ALPHA_REF) discard;
+    } else if (u_Wireframe == 1.0) {
+        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, 1.0));
+        gl_FragColor.a = ceil(gl_FragColor.a);
+        if (gl_FragColor.a < ALPHA_REF) discard;
     }
 }

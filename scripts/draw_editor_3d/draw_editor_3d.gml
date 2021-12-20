@@ -60,11 +60,13 @@ function draw_editor_3d() {
     }
     
     if (Settings.view.wireframe) {
-        if (Settings.view.wireframe) {
-            /// @wireframe
-        }
-        if (map.reflections_enabled && Settings.view.wireframe) {
-            /// @wireframe
+        if (map_contents.frozen) {
+            wireframe_enable();
+            vertex_submit(map_contents.frozen, pr_trianglelist, tex);
+            if (map.reflections_enabled && map_contents.reflect_frozen) {
+                vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
+            }
+            wireframe_disable();
         }
     }
     
