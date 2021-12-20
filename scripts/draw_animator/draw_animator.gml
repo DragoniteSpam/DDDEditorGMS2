@@ -12,8 +12,7 @@ function draw_animator() {
     camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
     
-    shader_set(shd_ddd);
-    shader_reset();
+    shader_set(shd_wireframe);
     var animation = ui.active_animation;
     
     if (animation) {

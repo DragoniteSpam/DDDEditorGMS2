@@ -24,6 +24,7 @@ function EditorGraphics() constructor {
         
         vertex_format_begin();
         vertex_format_add_position_3d();
+        vertex_format_add_normal();
         self.vertex_format_wireframe = vertex_format_end();
         
         self.mesh_preview_grid = vertex_create_buffer();
@@ -101,9 +102,6 @@ function EditorGraphics() constructor {
         self.centered_sphere = import_d3d("data/basic/centered-sphere.d3d", false, false);
         self.centered_cube = import_d3d("data/basic/centered-cube.d3d", false, false);
         self.centered_capsule = import_d3d("data/basic/centered-capsule.d3d", false, false);
-        
-        self.grid_sphere = vertex_create_buffer();
-        vertex_begin(self.grid_sphere, self.vertex_format);
         
         self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.vertex_format_wireframe);
         

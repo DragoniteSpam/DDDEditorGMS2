@@ -1220,6 +1220,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-sphere.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-cube.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-capsule.d3d","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"icosphere.vbuff","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.7.606",
