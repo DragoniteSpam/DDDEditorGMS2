@@ -114,6 +114,8 @@ uniform vec2 time;
 uniform float baseAlpha;
 
 #define ALPHA_REF 0.2
+#define WIRE_ALPHA 0.5
+#define WIRE_THICKNESS 1.0
 
 uniform float u_Wireframe;
 
@@ -135,9 +137,10 @@ void main() {
         
         gl_FragColor = finalColor;
     } else if (u_Wireframe == 1.0) {
-        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, 1.0));
+        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, WIRE_THICKNESS));
         gl_FragColor.a = ceil(gl_FragColor.a);
         gl_FragColor.rgb = vec3(gl_FragColor.a);
         if (gl_FragColor.a < ALPHA_REF) discard;
+        gl_FragColor.a = WIRE_ALPHA;
     }
 }
