@@ -1,4 +1,4 @@
-function draw_editor_menu(camera_controls) {
+function draw_editor_menu(camera_controls = false) {
     // if you're using this in debug mode the overlay is going to be
     // shown and that's going to block out the first part of the menu
     var yy = DEBUG ? 24 : 0;

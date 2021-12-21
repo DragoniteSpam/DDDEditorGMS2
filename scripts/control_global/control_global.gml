@@ -15,25 +15,25 @@ function control_global() {
         }
         // edit
         if (keyboard_check_pressed(ord("A"))) {
-            momu_select_all(noone);
+            momu_select_all();
         }
         if (keyboard_check_pressed(ord("D"))) {
-            momu_deselect(noone);
+            momu_deselect();
         }
         if (keyboard_check_pressed(ord("X"))) {
-            momu_cut(noone);
+            momu_cut();
         }
         if (keyboard_check_pressed(ord("C"))) {
-            momu_copy(noone);
+            momu_copy();
         }
         if (keyboard_check_pressed(ord("V"))) {
-            momu_paste(noone);
+            momu_paste();
         }
         if (keyboard_check_pressed(ord("Z"))) {
-            momu_undo(noone);
+            momu_undo();
         }
         if (keyboard_check_pressed(ord("Y"))) {
-            momu_redo(noone);
+            momu_redo();
         }
     }
     

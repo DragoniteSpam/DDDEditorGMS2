@@ -16,5 +16,5 @@ function uimu_data_alphabetize_name(thing) {
         }
     }
     
-    dialog_destroy(thing.root);
+    dialog_destroy();
 }

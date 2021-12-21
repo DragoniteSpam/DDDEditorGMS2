@@ -12,7 +12,7 @@ function uivc_event_delete(argument0) {
 
     event.Destroy();
 
-    dialog_destroy(button);
+    dialog_destroy();
 
 
 }

@@ -9,7 +9,7 @@ function uivc_entity_remove_event_page(argument0) {
     array_delete(entity.object_events, index, 1);
     ui_list_deselect(Stuff.map.ui.element_entity_events);
 
-    dialog_destroy(button);
+    dialog_destroy();
 
 
 }

@@ -23,7 +23,7 @@ if (status == WINDOW_CLOSE) {
         is_quitting = true;
         game_end();
     } else {
-        momu_exit(noone);
+        momu_exit();
     }
 }
 

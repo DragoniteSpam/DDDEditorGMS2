@@ -9,7 +9,7 @@ function uivc_move_route_delete(argument0) {
     array_delete(entity.movement_routes, index, 1);
     ui_list_deselect(button.root.root.el_move_routes);
 
-    dialog_destroy(button);
+    dialog_destroy();
 
 
 }
