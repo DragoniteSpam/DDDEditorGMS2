@@ -7,13 +7,25 @@ function graphics_create_grids() {
     vertex_begin(Stuff.graphics.grid, Stuff.graphics.vertex_format_wireframe);
     
     for (var i = 0; i <= map.xx; i++) {
-        vertex_point_line(Stuff.graphics.grid, i * TILE_WIDTH, 0, 0, c_white, 1);
-        vertex_point_line(Stuff.graphics.grid, i * TILE_WIDTH, map.yy * TILE_HEIGHT, 0, c_white, 1);
+        var xx = i * TILE_WIDTH;
+        var yy = map.yy * TILE_HEIGHT;
+        vertex_position_3d(Stuff.graphics.grid, xx, 0, 0);
+        vertex_normal(Stuff.graphics.grid, 0, 0, 1);
+        vertex_colour(Stuff.graphics.grid, c_white, 1);
+        vertex_position_3d(Stuff.graphics.grid, xx, yy, 0);
+        vertex_normal(Stuff.graphics.grid, 0, 0, 1);
+        vertex_colour(Stuff.graphics.grid, c_white, 1);
     }
     
     for (var i = 0; i <= map.yy; i++) {
-        vertex_point_line(Stuff.graphics.grid, 0, i * TILE_HEIGHT, 0, c_white, 1);
-        vertex_point_line(Stuff.graphics.grid, map.xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
+        var xx = map.xx * TILE_HEIGHT;
+        var yy = i * TILE_WIDTH;
+        vertex_position_3d(Stuff.graphics.grid, 0, yy, 0);
+        vertex_normal(Stuff.graphics.grid, 0, 0, 1);
+        vertex_colour(Stuff.graphics.grid, c_white, 1);
+        vertex_position_3d(Stuff.graphics.grid, xx, yy, 0);
+        vertex_normal(Stuff.graphics.grid, 0, 0, 1);
+        vertex_colour(Stuff.graphics.grid, c_white, 1);
     }
     
     vertex_end(Stuff.graphics.grid);

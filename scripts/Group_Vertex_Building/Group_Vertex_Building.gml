@@ -47,12 +47,6 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
     bc_index = ++bc_index % 3;
 }
 
-function vertex_point_line(buffer, x, y, z, color, alpha) {
-    vertex_position_3d(buffer, x, y, z);
-    vertex_normal(buffer, 0, 0, 1);
-    vertex_colour(buffer, color, alpha);
-}
-
 function buffer_to_reflect(buffer) {
     var rbuffer = -1;
     static fsize = buffer_sizeof(buffer_f32);
