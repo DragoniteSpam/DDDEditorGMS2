@@ -50,11 +50,7 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
 function vertex_point_line(buffer, x, y, z, color, alpha) {
     vertex_position_3d(buffer, x, y, z);
     vertex_normal(buffer, 0, 0, 1);
-    vertex_texcoord(buffer, 0, 0);
     vertex_colour(buffer, color, alpha);
-    vertex_float3(buffer, 0, 0, 0);                                             // tangent
-    vertex_float3(buffer, 0, 0, 0);                                             // bitangent
-    vertex_float3(buffer, 0, 0, 0);                                             // barycentric
 }
 
 function buffer_to_reflect(buffer) {

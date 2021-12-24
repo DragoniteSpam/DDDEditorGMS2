@@ -39,7 +39,9 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     
     if (Settings.view.grid) {
         transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
+        shader_set(shd_wireframe);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
+        shader_set(shd_ddd);
     }
     
     var dest_x = surface.root.node.custom_data[1][0];

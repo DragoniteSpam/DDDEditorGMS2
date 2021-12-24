@@ -112,10 +112,11 @@ function draw_editor_3d() {
     
     #region grids, selection boxes, zones
     if (Settings.view.grid) {
+        shader_set(shd_wireframe);
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
         matrix_set(matrix_world, matrix_build_identity());
-        transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
+        shader_set(shd_ddd);
     }
     
     // tried using ztestenable for this - didn't look good. at all.
@@ -149,6 +150,7 @@ function draw_editor_3d() {
     #endregion
     
     matrix_set(matrix_world, matrix_build_identity());
+    shader_reset();
     
     #region overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
     gpu_set_ztestenable(false);

@@ -11,12 +11,14 @@ function draw_editor_particle(mode) {
     transform_set(0, 0, 0, 0, 0, 0, 1, 1, 1);
     
     draw_clear(mode.back_color);
-    vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
+    shader_set(shd_wireframe);
+    vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
     draw_set_alpha(0.75);
     draw_set_color(mode.back_color);
     draw_rectangle(0, 0, ww, hh, false);
     draw_set_color(c_white);
     draw_set_alpha(1);
+    shader_reset();
     
     if (Controller.mouse_right || Controller.press_left) {
         if (mouse_within_view(view_current) && ds_list_empty(Stuff.dialogs) && !mode.emitter_setting) {
