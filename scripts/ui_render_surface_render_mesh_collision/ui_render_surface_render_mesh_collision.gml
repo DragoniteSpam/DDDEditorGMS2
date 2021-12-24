@@ -20,7 +20,7 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     
     // draw the grid (any other reference points)
     shader_set(shd_wireframe);
-    vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
+    vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
     
     // active cube
     var axx = real(surface.root.el_x_input.value);

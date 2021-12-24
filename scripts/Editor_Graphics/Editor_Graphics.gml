@@ -29,7 +29,7 @@ function EditorGraphics() constructor {
         self.vertex_format_wireframe = vertex_format_end();
         
         #region basic grids
-        self.mesh_preview_grid = vertex_load("data/basic/mesh_preview_grid.vbuff", self.vertex_format_wireframe);
+        self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.vertex_format_wireframe);
         self.wire_box = vertex_load("data/basic/wire_box.vbuff", self.vertex_format_wireframe);
         self.wire_sphere = vertex_load("data/basic/wire_sphere.vbuff", self.vertex_format_wireframe);
         self.wire_capsule = vertex_load("data/basic/wire_capsule.vbuff", self.vertex_format_wireframe);
@@ -96,7 +96,6 @@ function EditorGraphics() constructor {
         self.centered_capsule = import_d3d("data/basic/centered-capsule.d3d", false, false);
         
         self.grid = undefined;
-        self.grid_centered = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
     };
 }
