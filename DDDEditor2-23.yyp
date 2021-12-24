@@ -64,7 +64,6 @@
     {"id":{"name":"project_load","path":"scripts/project_load/project_load.yy",},"order":1,},
     {"id":{"name":"Group_SData_Map_Contents","path":"scripts/Group_SData_Map_Contents/Group_SData_Map_Contents.yy",},"order":10,},
     {"id":{"name":"sprite_atlas_version","path":"scripts/sprite_atlas_version/sprite_atlas_version.yy",},"order":3,},
-    {"id":{"name":"graphics_create_grids","path":"scripts/graphics_create_grids/graphics_create_grids.yy",},"order":0,},
     {"id":{"name":"Group_Vertex_Building","path":"scripts/Group_Vertex_Building/Group_Vertex_Building.yy",},"order":1,},
     {"id":{"name":"batch_tile","path":"scripts/batch_tile/batch_tile.yy",},"order":0,},
     {"id":{"name":"batch_tile_raw","path":"scripts/batch_tile_raw/batch_tile_raw.yy",},"order":1,},

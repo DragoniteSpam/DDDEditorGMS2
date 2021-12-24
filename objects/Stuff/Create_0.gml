@@ -105,9 +105,8 @@ menu = RIBBON_MENU();
 
 instance_deactivate_object(EditorMode);
 
-graphics_create_grids();
+self.graphics.RecreateGrids();
 instance_deactivate_object(UIThing);
-
 #endregion
 
 #region stuff related to garbage collection

@@ -128,7 +128,7 @@ function DataMap(source, directory) : SData(source) constructor {
                 }
             }
             
-            graphics_create_grids();
+            Stuff.graphics.RecreateGrids();
             array_resize_4d(self.contents.map_grid, x, y, z, MapCellContents._COUNT);
         }
         
@@ -166,7 +166,7 @@ function DataMap(source, directory) : SData(source) constructor {
         
         self.contents = new MapContents(self);
         
-        graphics_create_grids();
+        Stuff.graphics.RecreateGrids();
         
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         

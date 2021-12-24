@@ -98,4 +98,38 @@ function EditorGraphics() constructor {
         self.grid = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
     };
+    
+    static RecreateGrids = function() {
+        var map = Stuff.map.active_map;
+        var map_contents = map.contents;
+        
+        if (self.grid) vertex_delete_buffer(self.grid);
+        self.grid = vertex_create_buffer();
+        vertex_begin(self.grid, self.vertex_format_wireframe);
+        
+        for (var i = 0; i <= map.xx; i++) {
+            var xx = i * TILE_WIDTH;
+            var yy = map.yy * TILE_HEIGHT;
+            vertex_position_3d(self.grid, xx, 0, 0);
+            vertex_normal(self.grid, 0, 0, 1);
+            vertex_colour(self.grid, c_white, 1);
+            vertex_position_3d(self.grid, xx, yy, 0);
+            vertex_normal(self.grid, 0, 0, 1);
+            vertex_colour(self.grid, c_white, 1);
+        }
+        
+        for (var i = 0; i <= map.yy; i++) {
+            var xx = map.xx * TILE_HEIGHT;
+            var yy = i * TILE_WIDTH;
+            vertex_position_3d(self.grid, 0, yy, 0);
+            vertex_normal(self.grid, 0, 0, 1);
+            vertex_colour(self.grid, c_white, 1);
+            vertex_position_3d(self.grid, xx, yy, 0);
+            vertex_normal(self.grid, 0, 0, 1);
+            vertex_colour(self.grid, c_white, 1);
+        }
+        
+        vertex_end(self.grid);
+        vertex_freeze(self.grid);
+    };
 }
