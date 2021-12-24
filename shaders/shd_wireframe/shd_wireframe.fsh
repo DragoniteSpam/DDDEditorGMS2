@@ -2,11 +2,12 @@
 #extension GL_OES_standard_derivatives : enable
 
 #define ALPHA_REF 0.2
-#define WIRE_THICKNESS 1.0
 #define WIRE_ALPHA 1.0
 
 varying vec3 v_barycentric;
 varying vec4 v_colour;
+
+uniform float u_WireThickness;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
@@ -14,7 +15,7 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 }
 
 void main() {
-    gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_barycentric, WIRE_THICKNESS));
+    gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_barycentric, u_WireThickness));
     if (gl_FragColor.a < ALPHA_REF) discard;
     gl_FragColor = v_colour;
 }

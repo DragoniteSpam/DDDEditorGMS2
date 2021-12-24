@@ -109,10 +109,10 @@ void CommonFog(inout vec4 baseColor) {
 
 // not sure why this works but gm_AlphaRefValue is not
 #define ALPHA_REF 0.2
-#define WIRE_ALPHA 0.5
-#define WIRE_THICKNESS 1.0
+#define WIRE_ALPHA 1.0
 
 uniform float u_Wireframe;
+uniform float u_WireThickness;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
@@ -131,7 +131,7 @@ void main() {
         gl_FragColor = vec4(color.rgb, sourceAlpha);
         if (gl_FragColor.a < ALPHA_REF) discard;
     } else if (u_Wireframe == 1.0) {
-        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, WIRE_THICKNESS));
+        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, u_WireThickness));
         gl_FragColor.a = ceil(gl_FragColor.a);
         gl_FragColor.rgb = vec3(gl_FragColor.a);
         if (gl_FragColor.a < ALPHA_REF) discard;
