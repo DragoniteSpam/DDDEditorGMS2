@@ -108,54 +108,6 @@ function EditorGraphics() constructor {
         self.axes = vertex_load("data/basic/axes_corner.vbuff", self.vertex_format_wireframe);
         self.axes_centered = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_wireframe);
         
-        self.axes_width = vertex_create_buffer();
-        vertex_begin(self.axes_width, self.vertex_format);
-        
-        vertex_point_line(self.axes_width, 0, -1, -1, c_red, 1);
-        vertex_point_line(self.axes_width, MILLION, -1, -1, c_red, 1);
-        vertex_point_line(self.axes_width, 0, -1, 1, c_red, 1);
-        vertex_point_line(self.axes_width, MILLION, -1, 1, c_red, 1);
-        vertex_point_line(self.axes_width, 0, 1, -1, c_red, 1);
-        vertex_point_line(self.axes_width, MILLION, 1, -1, c_red, 1);
-        vertex_point_line(self.axes_width, 0, 1, 1, c_red, 1);
-        vertex_point_line(self.axes_width, MILLION, 1, 1, c_red, 1);
-        
-        vertex_point_line(self.axes_width, -1, 0, -1, c_green, 1);
-        vertex_point_line(self.axes_width, -1, MILLION, -1, c_green, 1);
-        vertex_point_line(self.axes_width, -1, 0, 1, c_green, 1);
-        vertex_point_line(self.axes_width, -1, MILLION, 1, c_green, 1);
-        vertex_point_line(self.axes_width, 1, 0, -1, c_green, 1);
-        vertex_point_line(self.axes_width, 1, MILLION, -1, c_green, 1);
-        vertex_point_line(self.axes_width, 1, 0, 1, c_green, 1);
-        vertex_point_line(self.axes_width, 1, MILLION, 1, c_green, 1);
-        
-        vertex_point_line(self.axes_width, -1, -1, 0, c_blue, 1);
-        vertex_point_line(self.axes_width, -1, -1, MILLION, c_blue, 1);
-        vertex_point_line(self.axes_width, -1, 1, 0, c_blue, 1);
-        vertex_point_line(self.axes_width, -1, 1, MILLION, c_blue, 1);
-        vertex_point_line(self.axes_width, 1, -1, 0, c_blue, 1);
-        vertex_point_line(self.axes_width, 1, -1, MILLION, c_blue, 1);
-        vertex_point_line(self.axes_width, 1, 1, 0, c_blue, 1);
-        vertex_point_line(self.axes_width, 1, 1, MILLION, c_blue, 1);
-        
-        vertex_end(self.axes_width);
-        vertex_freeze(self.axes_width);
-        
-        self.axes_centered = vertex_create_buffer();
-        vertex_begin(self.axes_centered, self.vertex_format);
-        
-        vertex_point_line(self.axes_centered, -MILLION, 0, 0, c_red, 1);
-        vertex_point_line(self.axes_centered, MILLION, 0, 0, c_red, 1);
-        
-        vertex_point_line(self.axes_centered, 0, -MILLION, 0, c_green, 1);
-        vertex_point_line(self.axes_centered, 0, MILLION, 0, c_green, 1);
-        
-        vertex_point_line(self.axes_centered, 0, 0, -MILLION, c_blue, 1);
-        vertex_point_line(self.axes_centered, 0, 0, MILLION, c_blue, 1);
-            
-        vertex_end(self.axes_centered);
-        vertex_freeze(self.axes_centered);
-        
         self.grid = undefined;
         self.grid_centered = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
