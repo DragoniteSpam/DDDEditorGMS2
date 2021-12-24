@@ -35,6 +35,10 @@ function draw_editor_3d() {
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
     
+    // axes
+    shader_set(shd_wireframe);
+    vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
+    
     // 3D terrain
     if (Settings.view.terrain) {
         graphics_set_lighting(shd_terrain);
@@ -112,7 +116,6 @@ function draw_editor_3d() {
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
         matrix_set(matrix_world, matrix_build_identity());
         transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
-        vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
     }
     
     // tried using ztestenable for this - didn't look good. at all.
