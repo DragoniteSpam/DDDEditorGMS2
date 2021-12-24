@@ -105,21 +105,8 @@ function EditorGraphics() constructor {
         self.centered_capsule = import_d3d("data/basic/centered-capsule.d3d", false, false);
         
         self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.vertex_format_wireframe);
-        
-        self.axes = vertex_create_buffer();
-        vertex_begin(self.axes, self.vertex_format);
-        
-        vertex_point_line(self.axes, 0, 0, 0, c_red, 1);
-        vertex_point_line(self.axes, MILLION, 0, 0, c_red, 1);
-        
-        vertex_point_line(self.axes, 0, 0, 0, c_green, 1);
-        vertex_point_line(self.axes, 0, MILLION, 0, c_green, 1);
-        
-        vertex_point_line(self.axes, 0, 0, 0, c_blue, 1);
-        vertex_point_line(self.axes, 0, 0, MILLION, c_blue, 1);
-        
-        vertex_end(self.axes);
-        vertex_freeze(self.axes);
+        self.axes = vertex_load("data/basic/axes_corner.vbuff", self.vertex_format_wireframe);
+        self.axes_centered = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_wireframe);
         
         self.axes_width = vertex_create_buffer();
         vertex_begin(self.axes_width, self.vertex_format);
