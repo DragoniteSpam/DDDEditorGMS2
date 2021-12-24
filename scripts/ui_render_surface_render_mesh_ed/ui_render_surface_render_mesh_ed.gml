@@ -14,6 +14,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     gpu_set_zwriteenable(true);
     
     matrix_set(matrix_world, matrix_build_identity());
+    shader_set(shd_wireframe);
     if (mode.draw_grid) vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
     if (mode.draw_axes) vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
     
@@ -70,6 +71,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                     if (mode.draw_reflections && mode.draw_wireframes) { } /// @wireframes
                     
                     if (mode.draw_collision) {
+                        shader_set(shd_wireframe);
                         for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
                             var shape = mesh_data.collision_shapes[i];
                             switch (shape.type) {
@@ -88,7 +90,9 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                                     break;
                             }
                         }
+                        
                         matrix_set(matrix_world, matrix_build_identity());
+                        shader_set(shd_ddd);
                     }
                 }
                 break;

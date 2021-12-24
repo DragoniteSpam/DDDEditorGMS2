@@ -23,10 +23,10 @@ function draw_editor_spart() {
     graphics_draw_water();
     
     if (Settings.view.grid) {
+        shader_set(shd_wireframe);
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
         matrix_set(matrix_world, matrix_build_identity());
-        shader_set(shd_wireframe);
         vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
         shader_reset();
     }

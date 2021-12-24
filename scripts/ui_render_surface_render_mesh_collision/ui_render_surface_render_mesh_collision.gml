@@ -18,7 +18,8 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -(x2 - x1) / (y2 - y1), CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
     
-    // draw the grid, and any other reference points
+    // draw the grid (any other reference points)
+    shader_set(shd_wireframe);
     vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
     
     // active cube

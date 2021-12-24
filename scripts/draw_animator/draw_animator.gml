@@ -32,12 +32,13 @@ function draw_animator() {
             var kalpha = animation.GetValue(i, moment, KeyframeParameters.ALPHA);
             transform_set(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
             // todo
+            shader_set(shd_wireframe);
             vertex_submit(Stuff.graphics.grid_sphere, pr_linelist, -1);
         }
     }
     
-    // "set" overwrites the previous transform anyway
     transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
+    shader_set(shd_wireframe);
     vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
     vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
     

@@ -28,24 +28,15 @@ function EditorGraphics() constructor {
         vertex_format_add_colour();
         self.vertex_format_wireframe = vertex_format_end();
         
-        self.mesh_preview_grid = vertex_create_buffer();
-        vertex_begin(self.mesh_preview_grid, self.vertex_format);
-        
-        var s2 = 6;
-        var x1 = -s2 * TILE_WIDTH;
-        var y1 = -s2 * TILE_HEIGHT;
-        var x2 = -x1;
-        var y2 = -y1;
-        
-        for (var i = 0; i <= 12; i++) {
-            vertex_point_line(self.mesh_preview_grid, x1 + i * TILE_WIDTH, y1, 0, c_white, 1);
-            vertex_point_line(self.mesh_preview_grid, x1 + i * TILE_WIDTH, y2, 0, c_white, 1);
-            vertex_point_line(self.mesh_preview_grid, x1, y1 + i * TILE_HEIGHT, 0, c_white, 1);
-            vertex_point_line(self.mesh_preview_grid, x2, y1 + i * TILE_HEIGHT, 0, c_white, 1);
-        }
-        
-        vertex_end(self.mesh_preview_grid);
-        vertex_freeze(self.mesh_preview_grid);
+        #region basic grids
+        self.mesh_preview_grid = vertex_load("data/basic/mesh_preview_grid.vbuff", self.vertex_format_wireframe);
+        self.wire_box = vertex_load("data/basic/wire_box.vbuff", self.vertex_format_wireframe);
+        self.wire_sphere = vertex_load("data/basic/wire_sphere.vbuff", self.vertex_format_wireframe);
+        self.wire_capsule = vertex_load("data/basic/wire_capsule.vbuff", self.vertex_format_wireframe);
+        self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.vertex_format_wireframe);
+        self.axes = vertex_load("data/basic/axes_corner.vbuff", self.vertex_format_wireframe);
+        self.axes_centered = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_wireframe);
+        #endregion
         
         c_transform_scaling(Stuff.tile_width, Stuff.tile_height, Stuff.tile_depth);
         self.c_shape_tile = c_shape_create();
@@ -104,85 +95,8 @@ function EditorGraphics() constructor {
         self.centered_cube = import_d3d("data/basic/centered-cube.d3d", false, false);
         self.centered_capsule = import_d3d("data/basic/centered-capsule.d3d", false, false);
         
-        self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.vertex_format_wireframe);
-        self.axes = vertex_load("data/basic/axes_corner.vbuff", self.vertex_format_wireframe);
-        self.axes_centered = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_wireframe);
-        
         self.grid = undefined;
         self.grid_centered = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
-        
-        self.wire_box = vertex_create_buffer();
-        vertex_begin(self.wire_box, self.vertex_format);
-        var s = 0.5;
-        // bottom
-        vertex_point_line(self.wire_box, -s, -s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s, -s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s, -s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s,  s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s, -s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s,  s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s,  s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s,  s, -s, c_lime, 1);
-        // top
-        vertex_point_line(self.wire_box, -s, -s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s, -s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s, -s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s,  s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s, -s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s,  s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s,  s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s,  s,  s, c_lime, 1);
-        // pillars
-        vertex_point_line(self.wire_box, -s, -s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s, -s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s, -s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s, -s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s,  s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box, -s,  s,  s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s,  s, -s, c_lime, 1);
-        vertex_point_line(self.wire_box,  s,  s,  s, c_lime, 1);
-        vertex_end(self.wire_box);
-        
-        self.wire_sphere = vertex_create_buffer();
-        vertex_begin(self.wire_sphere, self.vertex_format);
-        var r = 0.5;
-        for (var i = 0; i < 360; i += 15) {
-            vertex_point_line(self.wire_sphere, 0, r * dcos(i     ), -r * dsin(i     ), c_lime, 1);
-            vertex_point_line(self.wire_sphere, 0, r * dcos(i + 15), -r * dsin(i + 15), c_lime, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i     ), 0, -r * dsin(i     ), c_lime, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i + 15), 0, -r * dsin(i + 15), c_lime, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i     ), -r * dsin(i     ), 0, c_lime, 1);
-            vertex_point_line(self.wire_sphere, r * dcos(i + 15), -r * dsin(i + 15), 0, c_lime, 1);
-        }
-        vertex_end(self.wire_sphere);
-        
-        self.wire_capsule = vertex_create_buffer();
-        vertex_begin(self.wire_capsule, self.vertex_format);
-        r = 0.5;
-        var l = 0.5;
-        for (var i = 0; i < 180; i += 15) {
-            // bottom
-            vertex_point_line(self.wire_capsule, 0, r * dcos(i     ), -r * dsin(i     ) - l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, 0, r * dcos(i + 15), -r * dsin(i + 15) - l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i     ), 0, -r * dsin(i     ) - l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i + 15), 0, -r * dsin(i + 15) - l, c_lime, 1);
-            // top
-            vertex_point_line(self.wire_capsule, 0, r * dcos(i     ),  r * dsin(i     ) + l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, 0, r * dcos(i + 15),  r * dsin(i + 15) + l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i     ), 0,  r * dsin(i     ) + l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i + 15), 0,  r * dsin(i + 15) + l, c_lime, 1);
-        }
-        for (var i = 0; i < 360; i += 15) {
-            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), -l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i + 15), -r * dsin(i + 15), -l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), +l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i + 15), -r * dsin(i + 15), +l, c_lime, 1);
-        }
-        for (var i = 0; i < 360; i += 90) {
-            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), -l, c_lime, 1);
-            vertex_point_line(self.wire_capsule, r * dcos(i     ), -r * dsin(i     ), +l, c_lime, 1);
-        }
-        vertex_end(self.wire_capsule);
     };
 }
