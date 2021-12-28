@@ -6,7 +6,7 @@
     "path": "folders/Scripts/resources/meshes.yy",
   },
   "resourceVersion": "1.0",
-  "name": "export_vb",
+  "name": "Group_Mesh_Import",
   "tags": [],
   "resourceType": "GMScript",
 }
