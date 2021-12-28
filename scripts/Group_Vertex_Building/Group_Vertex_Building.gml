@@ -47,7 +47,7 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
     bc_index = ++bc_index % 3;
 }
 
-function buffer_to_reflect(buffer) {
+function vertex_to_reflect(buffer) {
     var rbuffer = -1;
     static fsize = buffer_sizeof(buffer_f32);
     

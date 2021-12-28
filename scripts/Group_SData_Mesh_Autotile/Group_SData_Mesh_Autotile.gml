@@ -36,7 +36,7 @@ function DataMeshAutotile(source) : SData(source) constructor {
             static AutoReflect = function() {
                 if (!self.buffer) return false;
                 self.DestroyReflect();
-                self.reflect_vbuffer = buffer_to_reflect(self.buffer);
+                self.reflect_vbuffer = vertex_to_reflect(self.buffer);
                 self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
                 return true;
             };
