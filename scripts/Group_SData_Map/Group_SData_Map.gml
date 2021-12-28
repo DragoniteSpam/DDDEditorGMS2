@@ -370,22 +370,18 @@ function DataMap(source, directory) : SData(source) constructor {
             var chunk = exported[i];
             buffer_write(buffer, buffer_u16, chunk.key >> 24);
             buffer_write(buffer, buffer_u16, chunk.key & 0xffffff);
-            if (vertex_get_number(chunk.vbuffer) > 0) {
-                var data = buffer_create_from_vertex_buffer(chunk.vbuffer, buffer_fixed, 1);
-                buffer_write_vertex_buffer(buffer, data);
-                buffer_delete(data);
-            } else {
-                buffer_write(buffer, buffer_u32, 0);
+            
+            buffer_write(buffer, buffer_bool, chunk.raw != -1);
+            if (chunk.raw != -1) {
+                buffer_write_vertex_buffer(buffer, chunk.raw);
             }
-            vertex_delete_buffer(chunk.vbuffer);
-            if (vertex_get_number(chunk.reflected) > 0) {
-                var data = buffer_create_from_vertex_buffer(chunk.reflected, buffer_fixed, 1);
-                buffer_write_vertex_buffer(buffer, data);
-                buffer_delete(data);
-            } else {
-                buffer_write(buffer, buffer_u32, 0);
+            vertex_delete_buffer(chunk.raw);
+            
+            buffer_write(buffer, buffer_bool, chunk.raw_reflected != -1);
+            if (chunk.raw_reflected != -1) {
+                buffer_write_vertex_buffer(buffer, chunk.raw_reflected);
             }
-            vertex_delete_buffer(chunk.reflected);
+            vertex_delete_buffer(chunk.raw_reflected);
         }
         #endregion
         
