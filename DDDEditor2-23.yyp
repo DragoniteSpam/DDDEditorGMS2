@@ -1212,8 +1212,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"glow.dddp","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data","resourceVersion":"1.0","name":"Collisions.dll","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data","resourceVersion":"1.0","name":"drago.dll","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data","resourceVersion":"1.0","name":"vertex-format-attributes.json","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data","resourceVersion":"1.0","name":"vertex-formats.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"SpriteAtlas.dll","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"SpriteAtlas.dll","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile",},
