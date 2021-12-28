@@ -16,20 +16,20 @@ function export_d3d_raw(filename, buffer) {
     buffer_write(export_buffer, buffer_text, string((buffer_get_size(buffer) / VERTEX_SIZE) + 2) + "\r\n");
     buffer_write(export_buffer, buffer_text, "0 4\r\n");
     
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var xx = buffer_read(buffer, buffer_f32);
-        var yy = buffer_read(buffer, buffer_f32);
-        var zz = buffer_read(buffer, buffer_f32);
-        var nx = buffer_read(buffer, buffer_f32);
-        var ny = buffer_read(buffer, buffer_f32);
-        var nz = buffer_read(buffer, buffer_f32);
-        var xtex = buffer_read(buffer, buffer_f32);
-        var ytex = buffer_read(buffer, buffer_f32);
-        var color = buffer_read(buffer, buffer_u32);
+    for (var i = 0, n = buffer_get_size(buffer); i < n; i += VERTEX_SIZE) {
+        var xx = buffer_peek(buffer, i + 00, buffer_f32);
+        var yy = buffer_peek(buffer, i + 04, buffer_f32);
+        var zz = buffer_peek(buffer, i + 08, buffer_f32);
+        var nx = buffer_peek(buffer, i + 12, buffer_f32);
+        var ny = buffer_peek(buffer, i + 16, buffer_f32);
+        var nz = buffer_peek(buffer, i + 20, buffer_f32);
+        var xt = buffer_peek(buffer, i + 24, buffer_f32);
+        var yt = buffer_peek(buffer, i + 28, buffer_f32);
+        var cc = buffer_peek(buffer, i + 32, buffer_u32);
         
         buffer_write(export_buffer, buffer_text, "9 " + decimal(xx) + " " + decimal(yy) + " " + decimal(zz) +
-            " " + decimal(nx) + " " + decimal(ny) + " " + decimal(nz) + " " + decimal(xtex) + " " +
-            decimal(ytex) + " " + decimal(color & 0xffffff) + " " + decimal(((color >> 24) & 0xff) / 255) + "\r\n"
+            " " + decimal(nx) + " " + decimal(ny) + " " + decimal(nz) + " " + decimal(xt) + " " +
+            decimal(yt) + " " + decimal(cc & 0xffffff) + " " + decimal(((cc >> 24) & 0xff) / 0xff) + "\r\n"
         );
     }
     
