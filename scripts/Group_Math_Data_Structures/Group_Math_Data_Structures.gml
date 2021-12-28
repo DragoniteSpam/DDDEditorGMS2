@@ -212,6 +212,7 @@ function buffer_set_pixel(surface, buffer, x, y, color) {
 
 function buffer_write_buffer(to, from) {
     var size = buffer_get_size(from);
+    buffer_write(to, buffer_u32, buffer_get_size(from));
     buffer_resize(to, buffer_get_size(to) + size);
     buffer_copy(from, 0, buffer_get_size(from), to, buffer_tell(to));
     buffer_seek(to, buffer_seek_relative, size);

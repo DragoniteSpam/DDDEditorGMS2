@@ -342,19 +342,19 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_u32, chunk.coords.x);
             buffer_write(buffer, buffer_u32, chunk.coords.y);
             
-            buffer_write(buffer, buffer_u32, (chunk.frozen != -1) ? buffer_get_size(chunk.frozen) : 0);
+            buffer_write(buffer, buffer_bool, chunk.frozen != -1);
             if (chunk.frozen != -1) {
                 buffer_write_vertex_buffer(buffer, chunk.frozen);
                 buffer_delete(chunk.frozen);
             }
             
-            buffer_write(buffer, buffer_u32, (chunk.reflect != -1) ? buffer_get_size(chunk.reflect) : 0);
+            buffer_write(buffer, buffer_bool, chunk.reflect != -1);
             if (chunk.reflect != -1) {
                 buffer_write_vertex_buffer(buffer, chunk.reflect);
                 buffer_delete(chunk.reflect);
             }
             
-            buffer_write(buffer, buffer_u32, (chunk.water != -1) ? buffer_get_size(chunk.water) : 0);
+            buffer_write(buffer, buffer_bool, chunk.water != -1);
             if (chunk.water != -1) {
                 buffer_write_vertex_buffer(buffer, chunk.water);
                 buffer_delete(chunk.water);
@@ -372,7 +372,6 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_u16, chunk.key & 0xffffff);
             if (vertex_get_number(chunk.vbuffer) > 0) {
                 var data = buffer_create_from_vertex_buffer(chunk.vbuffer, buffer_fixed, 1);
-                buffer_write(buffer, buffer_u32, buffer_get_size(data));
                 buffer_write_vertex_buffer(buffer, data);
                 buffer_delete(data);
             } else {
@@ -381,7 +380,6 @@ function DataMap(source, directory) : SData(source) constructor {
             vertex_delete_buffer(chunk.vbuffer);
             if (vertex_get_number(chunk.reflected) > 0) {
                 var data = buffer_create_from_vertex_buffer(chunk.reflected, buffer_fixed, 1);
-                buffer_write(buffer, buffer_u32, buffer_get_size(data));
                 buffer_write_vertex_buffer(buffer, data);
                 buffer_delete(data);
             } else {

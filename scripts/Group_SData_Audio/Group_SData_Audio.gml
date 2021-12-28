@@ -66,7 +66,6 @@ function DataAudio(source) : SData(source) constructor {
         var fbuffer = self.GetBuffer();
         buffer_write(buffer, buffer_bool, buffer_exists(fbuffer));
         if (buffer_exists(fbuffer)) {
-            buffer_write(buffer, buffer_u32, buffer_get_size(fbuffer));
             buffer_write_buffer(buffer, fbuffer);
             buffer_delete(fbuffer);
         }

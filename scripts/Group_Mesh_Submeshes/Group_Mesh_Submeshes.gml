@@ -37,11 +37,9 @@ function MeshSubmesh(source) constructor {
         var existence = ((!!self.buffer) << 1) | (!!self.reflect_buffer);
         buffer_write(buffer, buffer_u8, existence);
         if (self.buffer) {
-            buffer_write(buffer, buffer_u32, buffer_get_size(self.buffer));
             buffer_write_vertex_buffer(buffer, self.buffer);
         }
         if (self.reflect_buffer) {
-            buffer_write(buffer, buffer_u32, buffer_get_size(self.reflect_buffer));
             buffer_write_vertex_buffer(buffer, self.reflect_buffer);
         }
     };
