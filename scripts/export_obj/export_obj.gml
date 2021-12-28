@@ -1,12 +1,6 @@
-/// @param fname
-/// @param DataMesh
-/// @param [scale-texture?]
-function export_obj() {
-    var base_filename = argument[0];
+function export_obj(base_filename, mesh) {
     var path = filename_path(base_filename);
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
-    var mesh = argument[1];
-    var scale = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
     var buffer = buffer_create(1024, buffer_grow, 1);
     
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
@@ -25,39 +19,40 @@ function export_obj() {
         var mtl_g = { };
         var mtl_b = { };
         
-        var color = [0xffffffff, 0xffffffff, 0xffffffff];
+        var cc = [0xffffffff, 0xffffffff, 0xffffffff];
         var xx, yy, zz, nx, ny, nz, xtex, ytex;
         
-        var n = 1;
+        var face_index = 1;
         
-        while (buffer_tell(sub.buffer) < buffer_get_size(sub.buffer)) {
-            for (var j = 0; j < 3; j++) {
-                xx = buffer_read(sub.buffer, buffer_f32);
-                yy = buffer_read(sub.buffer, buffer_f32);
-                zz = buffer_read(sub.buffer, buffer_f32);
-                nx = buffer_read(sub.buffer, buffer_f32);
-                ny = buffer_read(sub.buffer, buffer_f32);
-                nz = buffer_read(sub.buffer, buffer_f32);
-                xtex = buffer_read(sub.buffer, buffer_f32);
-                ytex = buffer_read(sub.buffer, buffer_f32);
-                color[j] = buffer_read(sub.buffer, buffer_u32);
+        for (var j = 0, n = buffer_get_size(sub.buffer); j < n; j += VERTEX_SIZE * 3) {
+            for (var k = 0; k < 3; k++) {
+                xx =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 00, buffer_f32);
+                yy =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 04, buffer_f32);
+                zz =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 08, buffer_f32);
+                nx =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 12, buffer_f32);
+                ny =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 16, buffer_f32);
+                nz =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 20, buffer_f32);
+                xt =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 24, buffer_f32);
+                yt =    buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 28, buffer_f32);
+                cc[k] = buffer_peek(sub.buffer, j + k * VERTEX_SIZE + 32, buffer_u32);
                 
                 buffer_write(buffer, buffer_text, "v " + decimal(xx) + " " + decimal(yy) + " " + decimal(zz) + "\r\n");
-                buffer_write(buffer, buffer_text, "vt " + decimal(xtex) + " " + decimal(ytex) + "\r\n");
+                buffer_write(buffer, buffer_text, "vt " + decimal(xt) + " " + decimal(yt) + "\r\n");
                 buffer_write(buffer, buffer_text, "vn " + decimal(nx) + " " + decimal(ny) + " " + decimal(nz) + "\r\n");
             }
             
-            var c = floor(((color[0] & 0xffffff) + (color[1] & 0xffffff) + (color[2] & 0xffffff)) / 3);
-            var a = (((color[0] & 0xff000000) >> 24) + ((color[1] & 0xff000000) >> 24) + ((color[2] & 0xff000000) >> 24)) / 3;
+            // meh
+            var c = floor(cc[0] & 0xffffff);
+            var a = (((cc[0] & 0xff000000) >> 24) + ((cc[1] & 0xff000000) >> 24) + ((cc[2] & 0xff000000) >> 24)) / 3;
             
             // this may need updating if materials are dealt with properly later
-            var mtl_name = string(floor((color[0] + color[1] + color[2]) / 4));
+            var mtl_name = string(floor((cc[0] + cc[1] + cc[2]) / 4));
             
             if (!variable_struct_exists(mtl_alpha, mtl_name)) {
-                mtl_alpha[$ mtl_name] = a / 255;
-                mtl_r[$ mtl_name] = (c & 0x0000ff) / 255;
-                mtl_g[$ mtl_name] = ((c & 0x00ff00) >> 8) / 255;
-                mtl_b[$ mtl_name] = ((c & 0xff0000) >> 16) / 255;
+                mtl_alpha[$ mtl_name] = a / 0xff;
+                mtl_r[$ mtl_name] = (c & 0x0000ff) / 0xff;
+                mtl_g[$ mtl_name] = ((c & 0x00ff00) >> 8) / 0xff;
+                mtl_b[$ mtl_name] = ((c & 0xff0000) >> 16) / 0xff;
             }
             
             active_mtl = mtl_name;
@@ -66,13 +61,13 @@ function export_obj() {
                 buffer_write(buffer, buffer_text, "usemtl " + active_mtl + "\r\n");
             }
             
-            var text0 = string(n) + "/" + string(n) + "/" + string(n);
-            n++;
-            var text1 = string(n) + "/" + string(n) + "/" + string(n);
-            n++;
-            var text2 = string(n) + "/" + string(n) + "/" + string(n);
-            n++;
-            buffer_write(buffer, buffer_text, "f " + text0 + " " + text1 + " " + text2 + "\r\n\r\n");
+            var text1 = string(face_index) + "/" + string(face_index) + "/" + string(face_index);
+            face_index++;
+            var text2 = string(face_index) + "/" + string(face_index) + "/" + string(face_index);
+            face_index++;
+            var text3 = string(face_index) + "/" + string(face_index) + "/" + string(face_index);
+            face_index++;
+            buffer_write(buffer, buffer_text, "f " + text1 + " " + text2 + " " + text3 + "\r\n\r\n");
         }
         
         buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));
