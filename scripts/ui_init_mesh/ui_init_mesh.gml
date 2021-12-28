@@ -230,7 +230,7 @@ function ui_init_mesh(mode) {
                 switch (mesh.type) {
                     case MeshTypes.RAW:
                         switch (filename_ext(fn)) {
-                            case ".obj": export_obj(name, mesh, false); break;
+                            case ".obj": export_obj(name, mesh); break;
                             case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
                             case ".vbuff": export_vb(name, mesh, Stuff.mesh_ed.vertex_format); break;
                         }
@@ -295,7 +295,7 @@ function ui_init_mesh(mode) {
         mesh_rot_z = element;
         yy += element.height + spacing;
         
-        element = create_button(c2x, yy, "Apply Transform", ew, eh, fa_center, function(button) {
+        element = create_button(c2x, yy, "Apply Scale", ew, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                 var mesh = Game.meshes[index];

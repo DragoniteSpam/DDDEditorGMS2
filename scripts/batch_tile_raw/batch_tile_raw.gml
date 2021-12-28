@@ -26,6 +26,4 @@ function batch_tile_raw(buffer, x, y, z, tile_x, tile_y, color, alpha) {
         vertex_point_complete_raw(buffer, x, y + TILE_HEIGHT, z, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + texture_height - TEXEL_HEIGHT, color, alpha);
         vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex + TEXEL_WIDTH, ytex + TEXEL_HEIGHT, color, alpha);
     }
-    
-    // tiles don't get reflected
 }

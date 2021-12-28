@@ -1,4 +1,5 @@
 function batch_mesh_autotile(vbuff, reflect, mesh_autotile) {
+    throw "batch_mesh_autotile still uses the old hard-coded vertex size of 36";
     var mapping = global.at_map[$ mesh_autotile.terrain_id];
     
     var at = guid_get(mesh_autotile.autotile_id);

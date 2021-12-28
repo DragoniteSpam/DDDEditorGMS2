@@ -1359,7 +1359,7 @@ function ui_init_main(mode) {
         element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, function(button) {
             var data = Game.meshes[Stuff.map.selection_fill_mesh];
             if (data) {
-                var fn = get_save_filename_mesh();
+                var fn = get_save_filename_mesh("");
                 if (string_length(fn) > 0) {
                     switch (filename_ext(fn)) {
                         case ".obj": export_obj(fn, data); break;
