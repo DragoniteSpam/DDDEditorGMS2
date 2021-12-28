@@ -176,7 +176,8 @@ function buffer_get_pixel(surface, buffer, x, y) {
     return buffer_peek(buffer, offset, buffer_u32) >> 8;
 }
 
-function buffer_read_buffer(source, length) {
+function buffer_read_buffer(source) {
+    var length = buffer_read(source, buffer_u32);
     var sbuffer = buffer_create(length, buffer_fixed, 1);
     buffer_copy(source, buffer_tell(source), length, sbuffer, 0);
     buffer_seek(source, buffer_seek_relative, length);
@@ -186,9 +187,8 @@ function buffer_read_buffer(source, length) {
 function buffer_read_sprite(buffer) {
     var sw = buffer_read(buffer, buffer_u16);
     var sh = buffer_read(buffer, buffer_u16);
-    var slength = sw * sh * 4;
     var surface = surface_create(sw, sh);
-    var sbuffer = buffer_read_buffer(buffer, slength); 
+    var sbuffer = buffer_read_buffer(buffer); 
     
     buffer_set_surface(sbuffer, surface, 0);
     
@@ -212,7 +212,7 @@ function buffer_set_pixel(surface, buffer, x, y, color) {
 
 function buffer_write_buffer(to, from) {
     var size = buffer_get_size(from);
-    buffer_write(to, buffer_u32, buffer_get_size(from));
+    buffer_write(to, buffer_u32, size);
     buffer_resize(to, buffer_get_size(to) + size);
     buffer_copy(from, 0, buffer_get_size(from), to, buffer_tell(to));
     buffer_seek(to, buffer_seek_relative, size);
