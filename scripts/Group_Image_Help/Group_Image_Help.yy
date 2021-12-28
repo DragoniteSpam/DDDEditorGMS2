@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "images",
-    "path": "folders/Scripts/resources/images.yy",
+    "name": "resources",
+    "path": "folders/Scripts/resources.yy",
   },
   "resourceVersion": "1.0",
-  "name": "data_image_npc_frames",
+  "name": "Group_Image_Help",
   "tags": [],
   "resourceType": "GMScript",
 }

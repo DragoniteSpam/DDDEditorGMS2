@@ -1,3 +1,24 @@
+function data_image_force_power_two(data) {
+    var ww = sprite_get_width(data.picture);
+    var hh = sprite_get_height(data.picture);
+    
+    if (frac(log2(hh)) == 0 && frac(log2(ww)) == 0) {
+        return;
+    }
+    
+    var surface = surface_create(power(2, ceil(log2(ww))), power(2, ceil(log2(hh))));
+    surface_set_target(surface);
+    draw_clear_alpha(c_black, 0);
+    draw_sprite(data.picture, 0, 0, 0);
+    surface_reset_target();
+    sprite_delete(data.picture);
+    data.picture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_height(surface), false, false, 0, 0);
+    surface_free(surface);
+    
+    data.width = sprite_get_width(data.picture);
+    data.height = sprite_get_height(data.picture);
+}
+
 function data_image_npc_frames(image) {
     var ww = 1 / image.hframes * (image.width / sprite_get_width(image.picture));
     var hh = 1 / image.vframes * (image.height / sprite_get_height(image.picture));
