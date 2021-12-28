@@ -218,37 +218,9 @@ function buffer_write_buffer(to, from) {
 }
 
 function buffer_write_vertex_buffer(buffer, vbuff_data) {
-    if (Game.meta.export.vertex_format == DEFAULT_VERTEX_FORMAT) {
-        buffer_write_buffer(buffer, vbuff_data);
-    } else {
-        buffer_seek(vbuff_data, buffer_seek_start, 0);
-        for (var i = 0; i < buffer_get_size(vbuff_data); i += VERTEX_SIZE) {
-            var xx = buffer_read(vbuff_data, buffer_f32);
-            var yy = buffer_read(vbuff_data, buffer_f32);
-            var zz = buffer_read(vbuff_data, buffer_f32);
-            var nx = buffer_read(vbuff_data, buffer_f32);
-            var ny = buffer_read(vbuff_data, buffer_f32);
-            var nz = buffer_read(vbuff_data, buffer_f32);
-            var xt = buffer_read(vbuff_data, buffer_f32);
-            var yt = buffer_read(vbuff_data, buffer_f32);
-            var cc = buffer_read(vbuff_data, buffer_u32);
-            buffer_write(buffer, buffer_f32, xx);
-            buffer_write(buffer, buffer_f32, yy);
-            buffer_write(buffer, buffer_f32, zz);
-            if (Game.meta.export.vertex_format & (1 << VertexFormatData.NORMAL)) {
-                buffer_write(buffer, buffer_f32, nx);
-                buffer_write(buffer, buffer_f32, ny);
-                buffer_write(buffer, buffer_f32, nz);
-            }
-            if (Game.meta.export.vertex_format & (1 << VertexFormatData.TEXCOORD)) {
-                buffer_write(buffer, buffer_f32, xt);
-                buffer_write(buffer, buffer_f32, yt);
-            }
-            if (Game.meta.export.vertex_format & (1 << VertexFormatData.COLOUR)) {
-                buffer_write(buffer, buffer_u32, cc);
-            }
-        }
-    }
+    var formatted = vertex_buffer_formatted(vbuff_data, Game.meta.export.vertex_format);
+    buffer_write_buffer(buffer, formatted);
+    buffer_delete(formatted);
 }
 
 function buffer_write_sprite(buffer, sprite) {
