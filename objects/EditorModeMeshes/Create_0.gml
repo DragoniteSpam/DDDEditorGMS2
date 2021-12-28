@@ -17,8 +17,6 @@ save = function() {
     Settings.mesh.zto = zto;
     Settings.mesh.fov = fov;
     
-    Settings.mesh.vertex_formats = json_encode(format_json);
-    
     Settings.mesh.draw_mesh = draw_meshes;
     Settings.mesh.draw_wire = draw_wireframes;
     Settings.mesh.draw_tex = draw_textures;
@@ -89,22 +87,10 @@ fov = setting_get("mesh", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
-// please don't keep trying to turn this into structs;
-// the format and format names list need to be in a ds_list
-// and accommodating for those would be a bit of work
-var fbuffer = buffer_load("data/vertex-formats.json");
-format_default = json_decode(buffer_read(fbuffer, buffer_text));
-buffer_delete(fbuffer);
-
-var json_string = setting_get("mesh", "vertex-formats", "");
-format_json = format_default;
-if (json_string != "") {
-    format_json = json_decode(json_string);
-}
-
-// if you screw this up, that's on you
-formats = format_json[? "formats"];
-format_names = format_json[? "names"];
+vertex_format = (1 << VertexFormatData.POSITION_3D) |
+    (1 << VertexFormatData.NORMAL) |
+    (1 << VertexFormatData.TEXCOORD) |
+    (1 << VertexFormatData.COLOUR);
 
 ui = ui_init_mesh(id);
 
@@ -118,10 +104,11 @@ enum VertexFormatData {
     BITANGENT,
     BARYCENTRIC,
     // special things
-    SMALL_NORMAL,                                                               // 4 bytes
-    SMALL_TANGENT,                                                              // 4 bytes
-    SMALL_BITANGENT,                                                            // 4 bytes
-    SMALL_TEXCOORD,                                                             // 4 bytes
-    SMALL_NORMAL_PLUS_TEXCOORD,                                                 // 4 bytes
+    SMALL_NORMAL,                                                               // 4 bytes (nx ny nz 0)
+    SMALL_TANGENT,                                                              // 4 bytes (tx ty tz 0)
+    SMALL_BITANGENT,                                                            // 4 bytes (bx by bz 0)
+    SMALL_TEXCOORD,                                                             // 4 bytes (u v 0 0)
+    SMALL_NORMAL_PLUS_TEXCOORD,                                                 // 4 bytes (nx ny nz u|v)
+    SMALL_BARYCENTIRC,                                                          // 4 bytes (x y z 0)
     __COUNT,
 }

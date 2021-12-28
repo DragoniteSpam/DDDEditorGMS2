@@ -30,131 +30,6 @@ function ui_init_mesh(mode) {
         var this_column = 0;
         var xx = this_column * cw + spacing;
         
-        var create_vertex_format_editor = function(element) {
-            var mode = Stuff.mesh_ed;
-            var format_index = ui_list_selection(element.root.format_list);
-            
-            if (format_index + 1) {
-                var dw = 720;
-                var dh = 480;
-                
-                var dg = dialog_create(dw, dh, "Vertex Format Settings", dialog_default, dialog_destroy, element);
-                dg.format_index = format_index;
-                
-                var columns = 2;
-                var ew = dw / columns - 64;
-                var eh = 24;
-                
-                var vx1 = ew / 2;
-                var vy1 = 0;
-                var vx2 = ew;
-                var vy2 = eh;
-                
-                var c1x = 0 * dw / columns + 32;
-                var c2x = 1 * dw / columns + 32;
-                var spacing = 16;
-                
-                var yy = 64;
-                var yy_start = 64;
-                
-                var el_name = create_input(c1x, yy, "Name: ", ew, eh, function(input) {
-                    Stuff.mesh_ed.format_names[| input.root.format_index] = input.value;
-                }, mode.format_names[| format_index], "string", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-                yy += el_name.height + spacing;
-                
-                var el_list = create_list(c1x, yy, "Attributes: ", "no attributes", ew, eh, 8, function(list) {
-                    var format = Stuff.mesh_ed.formats[| list.root.format_index];
-                    var index = ui_list_selection(list);
-                    if (!(index + 1)) return;
-                    ui_input_set_value(list.root.el_attribute_name, list.entries[| index]);
-                    var attribute = format[? "attributes"][| index];
-                    list.root.el_attribute_type.value = attribute[? "type"];
-                }, false, dg);
-                el_list.tooltip = "The vertex attributes to be included when you export meshes as vertex buffers. Each of the first 3D position, normal, texture coordinate and color will contain the values of the imported meshes; others will be initialized to zero.";
-                dg.el_list = el_list;
-                yy += el_list.GetHeight() + spacing;
-                
-                var el_add = create_button(c1x, yy, "Add Attribute", ew, eh, fa_center, function(button) {
-                    var format = Stuff.mesh_ed.formats[| button.root.format_index];
-                    var attribute_name = "Attribute" + string(ds_list_size(button.root.el_list.entries));
-                    ds_list_add(button.root.el_list.entries, attribute_name);
-                    var attributes = format[? "attributes"];
-                    var new_attribute = ds_map_create();
-                    new_attribute[? "name"] = attribute_name;
-                    new_attribute[? "type"] = VertexFormatData.POSITION_3D;
-                    ds_list_add(attributes, new_attribute);
-                    ds_list_mark_as_map(attributes, ds_list_size(attributes) - 1);
-                }, dg);
-                el_list.tooltip = "Add a vertex attribute";
-                yy += el_add.height + spacing;
-                
-                var el_remove = create_button(c1x, yy, "Remove Attribute", ew, eh, fa_center, function(button) {
-                    var format = Stuff.mesh_ed.formats[| button.root.format_index];
-                    var index = ui_list_selection(button.root.el_list);
-                    if (!(index + 1)) return;
-                    ds_list_delete(button.root.el_list.entries, index);
-                    var attributes = format[? "attributes"];
-                    ds_list_delete(attributes, index);
-                }, dg);
-                el_list.tooltip = "Remove a vertex attribute";
-                yy += el_remove.height + spacing;
-                
-                yy = yy_start;
-                
-                var el_attribute_label = create_text(c2x, yy, "[c_blue]Attributes", ew, eh, fa_left, ew, dg);
-                yy += el_name.height + spacing;
-                
-                var el_attribute_name = create_input(c2x, yy, "Name: ", ew, eh, function(input) {
-                    var list = input.root.el_list;
-                    var format = Stuff.mesh_ed.formats[| input.root.format_index];
-                    var index = ui_list_selection(list);
-                    if (!(index + 1)) return;
-                    list.entries[| index] = input.value;
-                    format[? "attributes"][| index][? "name"] = input.value;
-                }, "", "string", validate_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-                el_list.tooltip = "The name of the vertex attribute (this is for your benefit and has no impact on how the mesh is exported)";
-                dg.el_attribute_name = el_attribute_name;
-                yy += el_attribute_name.height + spacing;
-                
-                var el_attribute_type = create_radio_array(c2x, yy, "Type:", ew, eh, function(radio) {
-                    var list = radio.root.root.el_list;
-                    var format = Stuff.mesh_ed.formats[| radio.root.root.format_index];
-                    var index = ui_list_selection(list);
-                    if (!(index + 1)) return;
-                    format[? "attributes"][| index][? "type"] = radio.value;
-                }, -1, dg);
-                el_attribute_type.tooltip = "The data type of the vertex attribute";
-                create_radio_array_options(el_attribute_type, ["Position (2D)", "Position (3D)", "Normal", "Texture Coordinate", "Color", "Tangent", "Bitangent", "Barycentric"]);
-                dg.el_attribute_type = el_attribute_type;
-                yy += el_attribute_type.GetHeight() + spacing;
-                
-                var format = mode.formats[| format_index];
-                var attributes = format[? "attributes"];
-                for (var i = 0; i < ds_list_size(attributes); i++) {
-                    var att = attributes[| i];
-                    ds_list_add(el_list.entries, att[? "name"]);
-                }
-                
-                var b_width = 128;
-                var b_height = 32;
-                var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-                
-                ds_list_add(dg.contents,
-                    el_name,
-                    el_list,
-                    el_add,
-                    el_remove,
-                    el_attribute_label,
-                    el_attribute_name,
-                    el_attribute_type,
-                    el_confirm
-                );
-                
-                return dg;
-            }
-            return undefined;
-        }
-        
         var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 22, function(list) {
             var selection = list.selected_entries;
             if (ds_map_size(selection) == 0) {
@@ -334,9 +209,7 @@ function ui_init_mesh(mode) {
         element = create_button(c1x, yy, "Export Selected", ew0, eh, fa_center, function(button) {
             var list = button.root.mesh_list;
             var selection = list.selected_entries;
-            var format_index = ui_list_selection(button.root.format_list);
-            var format = (format_index + 1) ? Stuff.mesh_ed.formats[| format_index] : undefined;
-
+            
             var export_count = ds_map_size(selection);
             if (export_count == 0) return;
             
@@ -347,10 +220,10 @@ function ui_init_mesh(mode) {
             } else {
                 fn = get_save_filename_mesh("save everything here");
             }
-
+            
             if (fn == "") return;
             var folder = filename_path(fn);
-    
+            
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                 var mesh = Game.meshes[index];
                 var name = (export_count == 1) ? fn : (folder + mesh.name + filename_ext(fn));
@@ -359,7 +232,7 @@ function ui_init_mesh(mode) {
                         switch (filename_ext(fn)) {
                             case ".obj": export_obj(name, mesh, false); break;
                             case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
-                            case ".vbuff": export_vb(name, mesh, format); break;
+                            case ".vbuff": export_vb(name, mesh, Stuff.mesh_ed.vertex_format); break;
                         }
                         break;
                     case MeshTypes.SMF:
@@ -378,40 +251,11 @@ function ui_init_mesh(mode) {
         
         yy = yy_base;
         
-        element = create_text(c2x, yy, "[c_blue]Vertex Formats", ew, eh, fa_left, ew, id);
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_list(c2x, yy, "Available Vertex Formats", "no vertex formats", ew, eh, 5, null, false, id, mode.format_names);
-        element.tooltip = "Vertex formats available to be exported to. Extra fields beyond the original position / normal / texture / color will be set to zero.";
-        element.ondoubleclick = create_vertex_format_editor;
-        ds_list_add(contents, element);
-        format_list = element;
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(c2x, yy, "Add Vertex Format", ew, eh, fa_center, function(button) {
-            var mode = Stuff.mesh_ed;
-            ds_list_add(mode.format_names, "Format" + string(ds_list_size(mode.format_names)));
-            var abuffer = buffer_load("data/vertex-format-attributes.json");
-            ds_list_add(mode.formats, json_decode(buffer_read(abuffer, buffer_text)));
-            buffer_delete(abuffer);
-            ds_list_mark_as_map(mode.formats, ds_list_size(mode.formats) - 1);
+        element = create_button(c2x, yy, "Exported Vertex Format", ew, eh, fa_center, function(button) {
+            emu_dialog_vertex_format(Stuff.mesh_ed.vertex_format, function(value) {
+                Stuff.mesh_ed.vertex_format = value;
+            });
         }, id);
-        element.tooltip = "Mirror the selected meshes over the Z axis.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Edit Vertex Format", ew, eh, fa_center, create_vertex_format_editor, id);
-        element.tooltip = "Mirror the selected meshes over the Z axis.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Remove Vertex Format", ew, eh, fa_center, function(button) {
-            var selection = ui_list_selection(button.root.format_list);
-            ds_list_delete(Stuff.mesh_ed.formats, selection);
-            ds_list_delete(Stuff.mesh_ed.format_names, selection);
-        }, id);
-        element.tooltip = "Mirror the selected meshes over the Z axis.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
@@ -425,20 +269,6 @@ function ui_init_mesh(mode) {
         element.tooltip = "Set the scale used by the preview on the right. If you want to apply the scale to the selected meshes permanently, click the button below.";
         ds_list_add(contents, element);
         mesh_scale = element;
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Apply Scale", ew, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                mesh_set_all_scale(mesh, Stuff.mesh_ed.draw_scale);
-            }
-            Stuff.mesh_ed.draw_scale = 1;
-            ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
-            batch_again();
-        }, id);
-        element.tooltip = "Apply the preview scale to the selected meshes. Useful for converting between different scale systems (1 unit = 1 meter vs 32 units = 1 meter, etc).";
-        ds_list_add(contents, element);
         yy += element.height + spacing;
         
         element = create_input(c2x, yy, "Rotation (X):", ew, eh, function(input) {
@@ -463,6 +293,20 @@ function ui_init_mesh(mode) {
         element.tooltip = "Rotate the model(s) drawn in the preview window around the Z axis.";
         ds_list_add(contents, element);
         mesh_rot_z = element;
+        yy += element.height + spacing;
+        
+        element = create_button(c2x, yy, "Apply Transform", ew, eh, fa_center, function(button) {
+            var selection = button.root.mesh_list.selected_entries;
+            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                var mesh = Game.meshes[index];
+                mesh_set_all_scale(mesh, Stuff.mesh_ed.draw_scale);
+            }
+            Stuff.mesh_ed.draw_scale = 1;
+            ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
+            batch_again();
+        }, id);
+        element.tooltip = "Apply the preview scale to the selected meshes. Useful for converting between different scale systems (1 unit = 1 meter vs 32 units = 1 meter, etc).";
+        ds_list_add(contents, element);
         yy += element.height + spacing;
         
         element = create_button(c2x, yy, "Reset Transform", ew, eh, fa_center, function(button) {

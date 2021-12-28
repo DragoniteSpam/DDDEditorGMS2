@@ -43,6 +43,7 @@
     {"id":{"name":"spr_star","path":"sprites/spr_star/spr_star.yy",},"order":3,},
     {"id":{"name":"spr_ring","path":"sprites/spr_ring/spr_ring.yy",},"order":30,},
     {"id":{"name":"spr_pawn_missing","path":"sprites/spr_pawn_missing/spr_pawn_missing.yy",},"order":3,},
+    {"id":{"name":"emu_dialog_vertex_format","path":"scripts/emu_dialog_vertex_format/emu_dialog_vertex_format.yy",},"order":2,},
     {"id":{"name":"__macros","path":"scripts/__macros/__macros.yy",},"order":0,},
     {"id":{"name":"Group_Drago","path":"scripts/Group_Drago/Group_Drago.yy",},"order":4,},
     {"id":{"name":"spr_emu_progress","path":"sprites/spr_emu_progress/spr_emu_progress.yy",},"order":15,},
