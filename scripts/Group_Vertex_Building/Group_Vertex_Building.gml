@@ -218,6 +218,74 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
     return record;
 }
 
+function vertex_buffer_formatted(buffer, format) {
+    var formatted_buffer = buffer_create(1, buffer_grow, 1);
+    buffer_seek(buffer, buffer_seek_start, 0);
+    var bc_index = 0;
+    for (var i = 0; i < buffer_get_size(buffer); i += VERTEX_SIZE) {
+        var xx = buffer_peek(buffer, i + 00, buffer_f32);
+        var yy = buffer_peek(buffer, i + 04, buffer_f32);
+        var zz = buffer_peek(buffer, i + 08, buffer_f32);
+        var nx = buffer_peek(buffer, i + 12, buffer_f32);
+        var ny = buffer_peek(buffer, i + 16, buffer_f32);
+        var nz = buffer_peek(buffer, i + 20, buffer_f32);
+        var xt = buffer_peek(buffer, i + 24, buffer_f32);
+        var yt = buffer_peek(buffer, i + 28, buffer_f32);
+        var cc = buffer_peek(buffer, i + 32, buffer_u32);
+        if (format & (1 << VertexFormatData.POSITION_2D)) {
+            buffer_write(formatted_buffer, buffer_f32, xx);
+            buffer_write(formatted_buffer, buffer_f32, yy);
+        }
+        if (format & (1 << VertexFormatData.POSITION_3D)) {
+            buffer_write(formatted_buffer, buffer_f32, xx);
+            buffer_write(formatted_buffer, buffer_f32, yy);
+            buffer_write(formatted_buffer, buffer_f32, zz);
+        }
+        if (format & (1 << VertexFormatData.NORMAL)) {
+            buffer_write(formatted_buffer, buffer_f32, nx);
+            buffer_write(formatted_buffer, buffer_f32, ny);
+            buffer_write(formatted_buffer, buffer_f32, nz);
+        }
+        if (format & (1 << VertexFormatData.TEXCOORD)) {
+            buffer_write(formatted_buffer, buffer_f32, xt);
+            buffer_write(formatted_buffer, buffer_f32, yt);
+        }
+        if (format & (1 << VertexFormatData.COLOUR)) {
+            buffer_write(formatted_buffer, buffer_u32, cc);
+        }
+        if (format & (1 << VertexFormatData.TANGENT)) {
+            
+        }
+        if (format & (1 << VertexFormatData.BITANGENT)) {
+            
+        }
+        if (format & (1 << VertexFormatData.BARYCENTRIC)) {
+            buffer_write(formatted_buffer, buffer_f32, (bc_index == 0));
+            buffer_write(formatted_buffer, buffer_f32, (bc_index == 1));
+            buffer_write(formatted_buffer, buffer_f32, (bc_index == 2));
+        }
+        if (format & (1 << VertexFormatData.SMALL_NORMAL)) {
+            
+        }
+        if (format & (1 << VertexFormatData.SMALL_TANGENT)) {
+            
+        }
+        if (format & (1 << VertexFormatData.SMALL_BITANGENT)) {
+            
+        }
+        if (format & (1 << VertexFormatData.SMALL_TEXCOORD)) {
+            
+        }
+        if (format & (1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD)) {
+            
+        }
+        bc_index = ++bc_index % 3;
+    }
+    
+    buffer_resize(formatted_buffer, buffer_tell(formatted_buffer));
+    return formatted_buffer;
+}
+
 // This is a utility function that I'm going to keep around - in case the
 // default DDD vertex format ever changes (again), which I hope it doesn't need
 // to, pass the data into this function to update it to the new format
