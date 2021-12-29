@@ -260,10 +260,25 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
 }
 
 function vertex_buffer_formatted(buffer, format) {
-    var formatted_buffer = buffer_create(1, buffer_grow, 1);
+    static V_POSITION_2D =                                                      1 << VertexFormatData.POSITION_2D;
+    static V_POSITION_3D =                                                      1 << VertexFormatData.POSITION_3D;
+    static V_NORMAL =                                                           1 << VertexFormatData.NORMAL;
+    static V_TEXCOORD =                                                         1 << VertexFormatData.TEXCOORD;
+    static V_COLOUR =                                                           1 << VertexFormatData.COLOUR;
+    static V_TANGENT =                                                          1 << VertexFormatData.TANGENT;
+    static V_BITANGENT =                                                        1 << VertexFormatData.BITANGENT;
+    static V_BARYCENTRIC =                                                      1 << VertexFormatData.BARYCENTRIC;
+    static V_SMALL_NORMAL =                                                     1 << VertexFormatData.SMALL_NORMAL;
+    static V_SMALL_TANGENT =                                                    1 << VertexFormatData.SMALL_TANGENT;
+    static V_SMALL_BITANGENT =                                                  1 << VertexFormatData.SMALL_BITANGENT;
+    static V_SMALL_TEXCOORD =                                                   1 << VertexFormatData.SMALL_TEXCOORD;
+    static V_SMALL_NORMAL_PLUS_TEXCOORD =                                       1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD;
+    
+    var formatted_buffer = buffer_create(1024, buffer_grow, 1);
     buffer_seek(buffer, buffer_seek_start, 0);
     var bc_index = 0;
-    for (var i = 0; i < buffer_get_size(buffer); i += VERTEX_SIZE) {
+    
+    for (var i = 0, n = buffer_get_size(buffer); i < n; i += VERTEX_SIZE) {
         var xx = buffer_peek(buffer, i + 00, buffer_f32);
         var yy = buffer_peek(buffer, i + 04, buffer_f32);
         var zz = buffer_peek(buffer, i + 08, buffer_f32);
@@ -273,51 +288,51 @@ function vertex_buffer_formatted(buffer, format) {
         var xt = buffer_peek(buffer, i + 24, buffer_f32);
         var yt = buffer_peek(buffer, i + 28, buffer_f32);
         var cc = buffer_peek(buffer, i + 32, buffer_u32);
-        if (format & (1 << VertexFormatData.POSITION_2D)) {
+        if (format & V_POSITION_2D) {
             buffer_write(formatted_buffer, buffer_f32, xx);
             buffer_write(formatted_buffer, buffer_f32, yy);
         }
-        if (format & (1 << VertexFormatData.POSITION_3D)) {
+        if (format & V_POSITION_3D) {
             buffer_write(formatted_buffer, buffer_f32, xx);
             buffer_write(formatted_buffer, buffer_f32, yy);
             buffer_write(formatted_buffer, buffer_f32, zz);
         }
-        if (format & (1 << VertexFormatData.NORMAL)) {
+        if (format & V_NORMAL) {
             buffer_write(formatted_buffer, buffer_f32, nx);
             buffer_write(formatted_buffer, buffer_f32, ny);
             buffer_write(formatted_buffer, buffer_f32, nz);
         }
-        if (format & (1 << VertexFormatData.TEXCOORD)) {
+        if (format & V_TEXCOORD) {
             buffer_write(formatted_buffer, buffer_f32, xt);
             buffer_write(formatted_buffer, buffer_f32, yt);
         }
-        if (format & (1 << VertexFormatData.COLOUR)) {
+        if (format & V_COLOUR) {
             buffer_write(formatted_buffer, buffer_u32, cc);
         }
-        if (format & (1 << VertexFormatData.TANGENT)) {
+        if (format & V_TANGENT) {
             
         }
-        if (format & (1 << VertexFormatData.BITANGENT)) {
+        if (format & V_BITANGENT) {
             
         }
-        if (format & (1 << VertexFormatData.BARYCENTRIC)) {
+        if (format & V_BARYCENTRIC) {
             buffer_write(formatted_buffer, buffer_f32, (bc_index == 0));
             buffer_write(formatted_buffer, buffer_f32, (bc_index == 1));
             buffer_write(formatted_buffer, buffer_f32, (bc_index == 2));
         }
-        if (format & (1 << VertexFormatData.SMALL_NORMAL)) {
+        if (format & V_SMALL_NORMAL) {
             
         }
-        if (format & (1 << VertexFormatData.SMALL_TANGENT)) {
+        if (format & V_SMALL_TANGENT) {
             
         }
-        if (format & (1 << VertexFormatData.SMALL_BITANGENT)) {
+        if (format & V_SMALL_BITANGENT) {
             
         }
-        if (format & (1 << VertexFormatData.SMALL_TEXCOORD)) {
+        if (format & V_SMALL_TEXCOORD) {
             
         }
-        if (format & (1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD)) {
+        if (format & V_SMALL_NORMAL_PLUS_TEXCOORD) {
             
         }
         bc_index = ++bc_index % 3;
