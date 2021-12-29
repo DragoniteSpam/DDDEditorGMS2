@@ -366,7 +366,7 @@ function DataMap(source, directory) : SData(source) constructor {
         var exported = batch_all_export(self, self.chunk_size);
         buffer_write(buffer, buffer_u32, array_length(exported));
         
-        for (var i = 0; i < array_length(exported); i++) {
+        for (var i = 0, n = array_length(exported); i < n; i++) {
             var chunk = exported[i];
             buffer_write(buffer, buffer_u16, chunk.key >> 24);
             buffer_write(buffer, buffer_u16, chunk.key & 0xffffff);
@@ -387,7 +387,7 @@ function DataMap(source, directory) : SData(source) constructor {
         
         #region zones
         buffer_write(buffer, buffer_u32, array_length(self.contents.all_zones));
-        for (var i = 0; i < array_length(self.contents.all_zones); i++) {
+        for (var i = 0, n = array_length(self.contents.all_zones); i < n; i++) {
             var zone = self.contents.all_zones[i];
             zone.Export(buffer);
         }

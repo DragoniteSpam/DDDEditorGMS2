@@ -34,8 +34,8 @@ function MeshSubmesh(source) constructor {
     static Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_datatype, self.proto_guid);
-        var existence = ((!!self.buffer) << 1) | (!!self.reflect_buffer);
-        buffer_write(buffer, buffer_u8, existence);
+        buffer_write(buffer, buffer_u8, ((!!self.buffer) << 1) | (!!self.reflect_buffer));
+        
         if (self.buffer) {
             buffer_write_vertex_buffer(buffer, self.buffer);
         }

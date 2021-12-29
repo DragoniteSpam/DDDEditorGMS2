@@ -154,26 +154,37 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
     var record = { };
     
     for (var i = 0, n = buffer_get_size(buffer); i < n; i += VERTEX_SIZE * 3) {
+        // position, normal, texture, colour
         var p1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 08, buffer_f32) };
         var n1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 20, buffer_f32) };
         var t1 = { u: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 28, buffer_f32) };
         var c1 =      buffer_peek(buffer, i + 0 * VERTEX_SIZE + 32, buffer_u32);
+        // tangent, bitangent, barycentric
+        var ta1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 36, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 40, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 44, buffer_f32) };
+        var bi1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 56, buffer_f32) };
+        var ba1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 68, buffer_f32) };
         
         var p2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 08, buffer_f32) };
         var n2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 20, buffer_f32) };
         var t2 = { u: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 28, buffer_f32) };
         var c2 =      buffer_peek(buffer, i + 1 * VERTEX_SIZE + 32, buffer_u32);
+        var ta2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 36, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 40, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 44, buffer_f32) };
+        var bi2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 56, buffer_f32) };
+        var ba2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 68, buffer_f32) };
         
         var p3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 08, buffer_f32) };
         var n3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 20, buffer_f32) };
         var t3 = { u: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 28, buffer_f32) };
         var c3 =      buffer_peek(buffer, i + 2 * VERTEX_SIZE + 32, buffer_u32);
+        var ta3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 36, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 40, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 44, buffer_f32) };
+        var bi3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 56, buffer_f32) };
+        var ba3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 68, buffer_f32) };
         
         var chunk_id = { x: min(max_x, p1.x div (TILE_WIDTH * chunk_size)), y: min(max_y, p1.y div (TILE_HEIGHT * chunk_size)) };
         var chunk_data = record[$ json_stringify(chunk_id)];
         
         if (!chunk_data) {
-            chunk_data = { coords: chunk_id, buffer: buffer_create(1000, buffer_grow, 1) };
+            chunk_data = { coords: chunk_id, buffer: buffer_create(1024, buffer_grow, 1) };
             record[$ json_stringify(chunk_id)] = chunk_data;
         }
         
@@ -187,6 +198,16 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
         buffer_write(buff, buffer_f32, t1.u);
         buffer_write(buff, buffer_f32, t1.v);
         buffer_write(buff, buffer_u32, c1);
+        
+        buffer_write(buff, buffer_f32, ta1.x);
+        buffer_write(buff, buffer_f32, ta1.y);
+        buffer_write(buff, buffer_f32, ta1.z);
+        buffer_write(buff, buffer_f32, bi1.x);
+        buffer_write(buff, buffer_f32, bi1.y);
+        buffer_write(buff, buffer_f32, bi1.z);
+        buffer_write(buff, buffer_f32, ba1.x);
+        buffer_write(buff, buffer_f32, ba1.y);
+        buffer_write(buff, buffer_f32, ba1.z);
         //
         buffer_write(buff, buffer_f32, p2.x);
         buffer_write(buff, buffer_f32, p2.y);
@@ -197,6 +218,16 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
         buffer_write(buff, buffer_f32, t2.u);
         buffer_write(buff, buffer_f32, t2.v);
         buffer_write(buff, buffer_u32, c2);
+        
+        buffer_write(buff, buffer_f32, ta2.x);
+        buffer_write(buff, buffer_f32, ta2.y);
+        buffer_write(buff, buffer_f32, ta2.z);
+        buffer_write(buff, buffer_f32, bi2.x);
+        buffer_write(buff, buffer_f32, bi2.y);
+        buffer_write(buff, buffer_f32, bi2.z);
+        buffer_write(buff, buffer_f32, ba2.x);
+        buffer_write(buff, buffer_f32, ba2.y);
+        buffer_write(buff, buffer_f32, ba2.z);
         //
         buffer_write(buff, buffer_f32, p3.x);
         buffer_write(buff, buffer_f32, p3.y);
@@ -207,6 +238,16 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
         buffer_write(buff, buffer_f32, t3.u);
         buffer_write(buff, buffer_f32, t3.v);
         buffer_write(buff, buffer_u32, c3);
+        
+        buffer_write(buff, buffer_f32, ta3.x);
+        buffer_write(buff, buffer_f32, ta3.y);
+        buffer_write(buff, buffer_f32, ta3.z);
+        buffer_write(buff, buffer_f32, bi3.x);
+        buffer_write(buff, buffer_f32, bi3.y);
+        buffer_write(buff, buffer_f32, bi3.z);
+        buffer_write(buff, buffer_f32, ba3.x);
+        buffer_write(buff, buffer_f32, ba3.y);
+        buffer_write(buff, buffer_f32, ba3.z);
     }
     
     var keys = variable_struct_get_names(record);

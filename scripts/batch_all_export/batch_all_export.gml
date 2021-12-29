@@ -11,7 +11,7 @@ function batch_all_export(map, chunk_size) {
                 for (var j = bounds.y1; j <= bounds.y2; j++) {
                     // the horizontal coordinate is in the upper 24 bits
                     // the vertical coordinate is in the lower 24 bits
-                    var key = (i << 24) | j;
+                    var key = string((i << 24) | j);
                     if (!buffers[$ key]) {
                         buffers[$ key] = {
                             raw: vertex_create_buffer(),
@@ -31,7 +31,7 @@ function batch_all_export(map, chunk_size) {
     }
     
     var keys = variable_struct_get_names(buffers);
-    for (var i = 0; i < array_length(keys); i++) {
+    for (var i = 0, n = array_length(keys); i < n; i++) {
         var chunk = buffers[$ keys[i]];
         vertex_end(chunk.raw);
         vertex_end(chunk.raw_reflected);
