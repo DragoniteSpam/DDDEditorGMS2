@@ -6,9 +6,9 @@ function dmu_dialog_commit_terrain_create() {
     var dual = self.root.el_dual_layer.value;
     
     terrain.width = width;
-    Stuff.terrain.ui.t_general.element_width.text = "Width: " + string(width);
+    terrain.ui.t_general.element_width.text = "Width: " + string(width);
     terrain.height = height;
-    Stuff.terrain.ui.t_general.element_height.text = "Height: " + string(height);
+    terrain.ui.t_general.element_height.text = "Height: " + string(height);
     
     buffer_delete(terrain.height_data);
     buffer_delete(terrain.terrain_buffer_data);
@@ -17,13 +17,9 @@ function dmu_dialog_commit_terrain_create() {
     terrain.color.Reset(width, height);
     
     if (self.root.el_noise.value) {
-        var scale = real(self.root.el_scale.value);
         var ww = power(2, ceil(log2(width)));
         var hh = power(2, ceil(log2(height)));
-        terrain.height_data = macaw_generate_dll(ww, hh, self.root.el_octaves.value).noise;
-        for (var i = 0, n = buffer_get_size(terrain.height_data); i < n; i += 4) {
-            buffer_poke(terrain.height_data, i, buffer_f32, buffer_peek(terrain.height_data, i, buffer_f32) * scale);
-        }
+        terrain.height_data = macaw_generate_dll(ww, hh, self.root.el_octaves.value, real(self.root.el_scale.value)).noise;
     } else {
         terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
     }

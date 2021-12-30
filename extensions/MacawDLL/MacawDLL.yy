@@ -17,7 +17,7 @@
   "installdir": "",
   "files": [
     {"filename":"Macaw.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"macaw_generate","kind":1,"help":"macaw_generate(destination_buffer, w, h, octaves, max_height)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"macaw_generate","kind":1,"help":"macaw_generate(destination_buffer, w, h)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,

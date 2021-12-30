@@ -2,7 +2,7 @@
 
 global.__macaw_seed = 0;
 
-function macaw_generate_dll(w, h, octaves) {
+function macaw_generate_dll(w, h, octaves, height) {
     var perlin = buffer_create(w * h * 4, buffer_fixed, 4);
     
     if (os_type == os_windows && os_browser == browser_not_a_browser) {
