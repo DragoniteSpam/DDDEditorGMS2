@@ -15,13 +15,15 @@ function dmu_dialog_commit_terrain_create() {
     vertex_delete_buffer(terrain.terrain_buffer);
     
     terrain.color.Reset(width, height);
-    var scale = 1;
     
     if (self.root.el_noise.value) {
+        var scale = real(self.root.el_scale.value);
         var ww = power(2, ceil(log2(width)));
         var hh = power(2, ceil(log2(height)));
         terrain.height_data = macaw_generate_dll(ww, hh, self.root.el_octaves.value).noise;
-        scale = real(self.root.el_scale.value);
+        for (var i = 0, n = buffer_get_size(terrain.height_data); i < n; i += 4) {
+            buffer_poke(terrain.height_data, i, buffer_f32, buffer_peek(terrain.height_data, i, buffer_f32) * scale);
+        }
     } else {
         terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
     }
@@ -31,10 +33,10 @@ function dmu_dialog_commit_terrain_create() {
     
     for (var i = 0; i < width - 1; i++) {
         for (var j = 0; j < height - 1; j++) {
-            var z00 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 0)) * 4, buffer_f32) * scale;
-            var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32) * scale;
-            var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32) * scale;
-            var z11 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 1)) * 4, buffer_f32) * scale;
+            var z00 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 0)) * 4, buffer_f32);
+            var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32);
+            var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32);
+            var z11 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 1)) * 4, buffer_f32);
             terrain_create_square(terrain.terrain_buffer, i, j, z00, z10, z11, z01);
         }
     }
