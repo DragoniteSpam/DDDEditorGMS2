@@ -525,6 +525,25 @@ function ui_init_terrain(mode) {
         ds_list_add(t_heightmap.contents, element);
         
         yy += element.height + spacing;
+        
+        element = create_button(legal_x + spacing, yy, "Mutate", col_width, element_height, fa_center, function(button) {
+            var terrain = Stuff.terrain;
+            var ww = terrain.width;
+            var hh = terrain.height;
+            var octaves = 4;
+            var scale = button.root.element_deform_rate_bar.value;
+            var data = macaw_generate_dll(ww, hh, octaves, scale).noise;
+            for (var i = 0; i < ww * hh; i++) {
+                terrain_add_z(terrain, i mod ww, i div ww, buffer_peek(data, i * 4, buffer_f32) - scale / 2);
+            }
+            buffer_delete(data);
+            terrain_refresh_vertex_buffer(terrain);
+        }, t_heightmap);
+        element.tooltip = "Add or subtract a random amount to the terrain (magnitude determined by the deformation rate). On average the terrain will stay the same height, but it'll get slightly lumpier.";
+        ds_list_add(t_heightmap.contents, element);
+        
+        yy += element.height + spacing;
+        
         #endregion
         
         #region tab: texture
