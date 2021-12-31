@@ -138,6 +138,10 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
     isActiveDialog = function() {
         return (EmuOverlay._contents[| ds_list_size(EmuOverlay._contents) - 1] == self);
     }
+    
+    static AddDefaultCloseButton = function(name = "Close", callback = function() { self.root.Dispose(); }) {
+        return self.AddContent([new EmuButton(self.width / 2 - EMU_DEFAULT_CLOSE_BUTTON_WIDTH / 2, self.height - 48, EMU_DEFAULT_CLOSE_BUTTON_WIDTH, EMU_DEFAULT_CLOSE_BUTTON_HEIGHT, name, callback)]);
+    }
 }
 
 function emu_dialog_close_auto() {
