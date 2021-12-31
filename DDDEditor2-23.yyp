@@ -391,6 +391,7 @@
     {"id":{"name":"dialog_create_data_get_event","path":"scripts/dialog_create_data_get_event/dialog_create_data_get_event.yy",},"order":29,},
     {"id":{"name":"dialog_create_event_get_event","path":"scripts/dialog_create_event_get_event/dialog_create_event_get_event.yy",},"order":30,},
     {"id":{"name":"dialog_create_data_get_event_entrypoint","path":"scripts/dialog_create_data_get_event_entrypoint/dialog_create_data_get_event_entrypoint.yy",},"order":31,},
+    {"id":{"name":"spr_terrain_gen_flat","path":"sprites/spr_terrain_gen_flat/spr_terrain_gen_flat.yy",},"order":0,},
     {"id":{"name":"dialog_create_event_get_event_entrypoint","path":"scripts/dialog_create_event_get_event_entrypoint/dialog_create_event_get_event_entrypoint.yy",},"order":32,},
     {"id":{"name":"spart_type","path":"scripts/spart_type/spart_type.yy",},"order":3,},
     {"id":{"name":"dialog_create_event_get_event_node","path":"scripts/dialog_create_event_get_event_node/dialog_create_event_get_event_node.yy",},"order":33,},
@@ -663,6 +664,7 @@
     {"id":{"name":"omu_entity_generic_data","path":"scripts/omu_entity_generic_data/omu_entity_generic_data.yy",},"order":9,},
     {"id":{"name":"Group_Math_Transforms","path":"scripts/Group_Math_Transforms/Group_Math_Transforms.yy",},"order":12,},
     {"id":{"name":"Group_Settings","path":"scripts/Group_Settings/Group_Settings.yy",},"order":5,},
+    {"id":{"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"order":1,},
     {"id":{"name":"omu_entity_add_event","path":"scripts/omu_entity_add_event/omu_entity_add_event.yy",},"order":0,},
     {"id":{"name":"omu_entity_add_collision","path":"scripts/omu_entity_add_collision/omu_entity_add_collision.yy",},"order":1,},
     {"id":{"name":"omu_entity_add_move_route","path":"scripts/omu_entity_add_move_route/omu_entity_add_move_route.yy",},"order":2,},
@@ -1134,6 +1136,7 @@
     {"folderPath":"folders/dotdae.yy","order":96,"resourceVersion":"1.0","name":"dotdae","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/dotdae/System.yy","order":1,"resourceVersion":"1.0","name":"System","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Terrain.yy","order":97,"resourceVersion":"1.0","name":"Terrain","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Terrain/Generation.yy","order":2,"resourceVersion":"1.0","name":"Generation","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
@@ -1141,6 +1144,7 @@
   "TextureGroups": [
     {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"Default","resourceType":"GMTextureGroup",},
     {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"scribble","resourceType":"GMTextureGroup",},
+    {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"terraingen","resourceType":"GMTextureGroup",},
   ],
   "IncludedFiles": [
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"cage-indexed.d3d","resourceType":"GMIncludedFile",},
