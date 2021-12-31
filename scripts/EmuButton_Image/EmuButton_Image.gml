@@ -5,11 +5,16 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
     self.blend = blend;
     self.alpha = alpha;
     self.fill = scale_to_fit;
-    self.allow_shrink = true;
+    self.allow_shrink = false;
     
     self.alignment = fa_center;
     self.valignment = fa_middle;
     self.text = "";
+    
+    self.image_align = {
+        h: fa_center,
+        v: fa_middle,
+    };
     
     self.color_hover = EMU_COLOR_HOVER;
     self.color_back = EMU_COLOR_BACK;
@@ -19,6 +24,23 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
     
     self._surface = noone;
     self._index = index;
+    
+    static SetAlignment = function(h, v) {
+        self.alignment = h;
+        self.valignment = v;
+        return self;
+    };
+    
+    static SetImageAlignment = function(h, v) {
+        self.image_align.h = h;
+        self.image_align.v = v;
+        return self;
+    };
+    
+    static SetCheckerboard = function(draw_checkerboard) {
+        self.checker_background = draw_checkerboard;
+        return self;
+    };
     
     Render = function(base_x, base_y) {
         processAdvancement();
@@ -40,14 +62,31 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
         surface_set_target(_surface);
         draw_clear_alpha(c_black, 0);
         draw_sprite_stretched_ext(sprite_nineslice, 1, 0, 0, width, height, color_back, 1);
+        if (self.checker_background) drawCheckerbox(0, 0, self.width - 1, self.height - 1);
         if (sprite_exists(sprite)) {
-            if (checker_background) drawCheckerbox(0, 0, width - 1, height - 1);
-            if (allow_shrink) {
-                var scale = fill ? min(width / sprite_get_width(sprite), height / sprite_get_height(sprite)) : 1;
+            // to make things easier for ourselves just assume the sprite is to
+            // be drawn centered here
+            if (self.fill || self.allow_shrink) {
+                var scale = min(max(self.width / sprite_get_width(sprite), 1), max(self.height / sprite_get_height(sprite), 1));
+                if (self.allow_shrink) {
+                    scale = min(self.width / sprite_get_width(sprite), self.height / sprite_get_height(sprite));
+                }
+                draw_sprite_ext(sprite, self._index, self.width / 2, self.height / 2, scale, scale, 0, blend, alpha);
             } else {
-                var scale = fill ? min(max(width / sprite_get_width(sprite), 1), max(height / sprite_get_height(sprite), 1)) : 1;
+                var sprite_x = 0;
+                var sprite_y = 0;
+                switch (self.image_align.h) {
+                    case fa_left: sprite_x = 0; break;
+                    case fa_center: sprite_x = self.width / 2; break;
+                    case fa_right: sprite_x = self.width; break;    // why
+                }
+                switch (self.image_align.v) {
+                    case fa_left: sprite_y = 0; break;
+                    case fa_center: sprite_y = self.height / 2; break;
+                    case fa_right: sprite_y = self.height; break;    // why
+                }
+                draw_sprite_ext(sprite, self._index, sprite_x, sprite_y, 1, 1, 0, blend, alpha);
             }
-            draw_sprite_ext(sprite, _index, width / 2, height / 2, scale, scale, 0, blend, alpha);
         }
         
         scribble_set_box_align(alignment, valignment);
