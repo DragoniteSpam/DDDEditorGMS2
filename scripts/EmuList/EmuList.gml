@@ -32,6 +32,11 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     self._surface = -1;
     self._entries = ds_list_create();
 	self._dragging = false;
+	
+	static SetAllowDeselect = function(allow) {
+		self.allow_deselect = allow;
+		return self;
+	};
     
     SetList = function(_list) {
         if (_own_entries) {
@@ -71,6 +76,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             	ds_list_add(_entries, elements[i]);
         	}
         }
+        return self;
     }
     
     Clear = function() {
@@ -104,18 +110,20 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     }
     
     Select = function(_list_index, _set_index = false) {
-        if (!variable_struct_exists(_selected_entries, "first")) _selected_entries[$ "first"] = _list_index;
-        _selected_entries[$ "last"] = _list_index;
+        if (!variable_struct_exists(_selected_entries, "first")) _selected_entries.first = _list_index;
+        _selected_entries.last = _list_index;
         _selected_entries[$ string(_list_index)] = true;
         if (_set_index && clamp(_list_index, _index, _index + slots - 1) != _list_index) {
             _index = max(0, min(_list_index, is_array(_entries) ? array_length(_entries) : ds_list_size(_entries) - slots));
         }
         callback();
+        return self;
     }
     
     Deselect = function(_list_index) {
         variable_struct_remove(_selected_entries, _list_index);
         callback();
+        return self;
     }
     
     Render = function(base_x, base_y) {
@@ -132,12 +140,13 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         var ty = getTextY(y1);
         
         #region list header
+        var txoffset = 0;
         if (string_length(tooltip) > 0) {
             var spr_xoffset = sprite_get_xoffset(sprite_help);
             var spr_yoffset = sprite_get_yoffset(sprite_help);
             var spr_width = sprite_get_width(sprite_help);
             var spr_height = sprite_get_height(sprite_help);
-            var txoffset = spr_width;
+            txoffset = spr_width;
             
             if (getMouseHover(tx - spr_xoffset, ty - spr_yoffset, tx - spr_xoffset + spr_width, ty - spr_yoffset + spr_height)) {
                 draw_sprite_ext(sprite_help, 2, tx, ty, 1, 1, 0, color_hover, 1);
@@ -147,8 +156,6 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             }
             draw_sprite_ext(sprite_help, 1, tx, ty, 1, 1, 0, color, 1);
             draw_sprite_ext(sprite_help, 0, tx, ty, 1, 1, 0, color, 1);
-        } else {
-            var txoffset = 0;
         }
         scribble_set_box_align(fa_left, fa_center);
         scribble_set_wrap(width, height);
