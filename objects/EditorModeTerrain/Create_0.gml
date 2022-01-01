@@ -244,6 +244,16 @@ CreateJSON = function() {
     return self.CreateJSONTerrain();
 };
 
+#region terrain actions
+Flatten = function() {
+    buffer_fill(self.height_data, 0, buffer_f32, 0, buffer_get_size(self.height_data));
+    for (var i = 8, n = buffer_get_size(self.terrain_buffer_data); i < n; i += VERTEX_SIZE_TERRAIN) {
+        buffer_poke(self.terrain_buffer_data, i, buffer_f32, 0);
+    }
+    terrain_refresh_vertex_buffer(self);
+};
+#endregion
+
 wtf("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
 
 enum TerrainModes {
