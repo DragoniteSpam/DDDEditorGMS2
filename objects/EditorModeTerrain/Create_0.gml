@@ -258,15 +258,22 @@ Flatten = function() {
     terrain_refresh_vertex_buffer(self);
 };
 
-Mutate = function(mutation_sprite_index, octaves, scale) {
+Mutate = function(mutation_sprite_index, octaves, noise_strength, texture_strength) {
     if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.mutation_sprites)) {
         mutation_sprite_index = 0;
     }
     var ww = self.width;
     var hh = self.height;
-    var data = macaw_generate_dll(ww, hh, octaves, scale).noise;
+    var sprite = self.mutation_sprites[mutation_sprite_index];
+    var data = macaw_generate_dll(ww, hh, octaves, noise_strength).noise;
     for (var i = 0; i < ww * hh; i++) {
-        terrain_add_z(self, i mod ww, i div ww, buffer_peek(data, i * 4, buffer_f32) - scale / 2);
+        var sample = sprite_sample(sprite, 0, (i % ww) / ww, (i div ww) / hh);
+        var sample_r = (( sample        & 0xff) / 0x7f - 1) * texture_strength;
+        var sample_g = (((sample >>  8) & 0xff) / 0x7f - 1) * texture_strength;
+        var sample_b = (((sample >> 16) & 0xff) / 0x7f - 1) * texture_strength;
+        var sample_a = (((sample >> 24) & 0xff) / 0x7f - 1) * texture_strength;
+        var noise = buffer_peek(data, i * 4, buffer_f32) - noise_strength / 2;
+        terrain_add_z(self, i mod ww, i div ww, noise + sample_r);
     }
     buffer_delete(data);
     terrain_refresh_vertex_buffer(self);

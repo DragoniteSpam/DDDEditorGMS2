@@ -488,28 +488,32 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(legal_x + spacing, yy, "Mutate", col_width, element_height, fa_center, function(button) {
-            var dialog = (new EmuDialog(640, 480, "Mutate Terrain")).AddContent([
+            var dialog = (new EmuDialog(640, 560, "Mutate Terrain")).AddContent([
                 new EmuText(32, 32, 360, 24, "Smoothness:"),
                 (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 4, emu_null))
                     .SetID("SMOOTHNESS"),
-                new EmuText(32, EMU_AUTO, 360, 24, "Height:"),
+                new EmuText(32, EMU_AUTO, 360, 24, "Noise strength:"),
                 (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null))
-                    .SetID("HEIGHT"),
+                    .SetID("NOISE_STRENGTH"),
+                new EmuText(32, EMU_AUTO, 360, 24, "Texture strength:"),
+                (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null))
+                    .SetID("TEXTURE_STRENGTH"),
                 (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
-                        /// @todo i have no idea why it's complaining about this
-                        var image = ds_list_find_value(self.root._contents, 5);
-                        image.sprite = Stuff.terrain.mutation_sprites[selection];
+                        self.GetSibling("SPRITE_PREVIEW").sprite = Stuff.terrain.mutation_sprites[selection];
                     }
                 })).SetEntryTypes(ListEntries.STRINGS).AddEntries([
                     "Flat",
                     "Bullseye",
                 ]).SetID("SPRITE_LIST"),
                 (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null)
-                ).SetImageAlignment(fa_left, fa_top).SetCheckerboard(true),
+                )
+                    .SetID("SPRITE_PREVIEW")
+                    .SetImageAlignment(fa_left, fa_top)
+                    .SetCheckerboard(true),
             ]).AddDefaultCloseButton("Okay", function() {
-                Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("HEIGHT").value);
+                Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value, self.GetSibling("TEXTURE_STRENGTH").value);
                 self.root.Dispose();
             });
             dialog.scale = button.root.element_deform_rate_bar.value;
