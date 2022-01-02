@@ -312,6 +312,14 @@ ClearTexture = function(tx, ty) {
 };
 
 AddToProject = function(name = "Terrain", density = 1) {
+    var vbuff = self.BuildVertexBuffer(density);
+    var mesh = new DataMesh(name);
+    mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1), vbuff);
+    array_push(Game.meshes, mesh);
+    return mesh;
+};
+
+BuildVertexBuffer = function(density = 1) {
     density = floor(density);
     var scale = self.save_scale;
     
@@ -399,10 +407,7 @@ AddToProject = function(name = "Terrain", density = 1) {
     sprite_delete(color_sprite);
     vertex_end(vbuff);
     
-    var mesh = new DataMesh(name);
-    mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1), vbuff);
-    array_push(Game.meshes, mesh);
-    return mesh;
+    return vbuff;
 };
 #endregion
 

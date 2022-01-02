@@ -89,7 +89,6 @@ function dialog_terrain_add_to_project() {
             .SetValue(2)
             .SetIntegersOnly(false)
             .SetID("REDUCTION"),
-        
     ]).AddDefaultCloseButton("Add", function() {
         var min_side_length = 10;
         var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
