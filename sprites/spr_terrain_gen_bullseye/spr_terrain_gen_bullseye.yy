@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"dc7f724b-11e1-4f24-9e40-525e6376dae5","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"dc7f724b-11e1-4f24-9e40-525e6376dae5","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"dc7f724b-11e1-4f24-9e40-525e6376dae5","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"0d7a5814-753a-4ec9-8492-3893f2668eab","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"dc7f724b-11e1-4f24-9e40-525e6376dae5","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"27c67159-55be-48e0-a9e1-b6aae0c16da2","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
