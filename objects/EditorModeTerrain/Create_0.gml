@@ -321,7 +321,7 @@ DrawWater = function(set_lights = true) {
     if (!self.view_water) return;
     
     if (set_lights) {
-        graphics_set_lighting_terrain(shd_water);
+        graphics_set_lighting_terrain(shd_terrain_water);
     }
     
     matrix_set(matrix_world, matrix_build_identity());

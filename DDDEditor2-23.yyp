@@ -852,7 +852,7 @@
     {"id":{"name":"shd_basic_colors","path":"shaders/shd_basic_colors/shd_basic_colors.yy",},"order":2,},
     {"id":{"name":"scribble_draw","path":"scripts/scribble_draw/scribble_draw.yy",},"order":9,},
     {"id":{"name":"snap_deep_copy","path":"scripts/snap_deep_copy/snap_deep_copy.yy",},"order":10,},
-    {"id":{"name":"shd_water","path":"shaders/shd_water/shd_water.yy",},"order":3,},
+    {"id":{"name":"shd_terrain_water","path":"shaders/shd_terrain_water/shd_terrain_water.yy",},"order":4,},
     {"id":{"name":"shd_bounding_box","path":"shaders/shd_bounding_box/shd_bounding_box.yy",},"order":4,},
     {"id":{"name":"FDefault12","path":"fonts/FDefault12/FDefault12.yy",},"order":0,},
     {"id":{"name":"EasingCurves","path":"animcurves/EasingCurves/EasingCurves.yy",},"order":3,},
