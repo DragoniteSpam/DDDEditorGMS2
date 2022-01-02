@@ -248,7 +248,7 @@ function dialog_terrain_export() {
     
     var ew = 256;
     
-    var dialog = (new EmuDialog(640, 480, "Export Terrain")).AddContent([
+    var dialog = (new EmuDialog(640, 540, "Export Terrain")).AddContent([
         new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
         (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
             .SetID("LABEL"),
@@ -287,6 +287,9 @@ function dialog_terrain_export() {
             .SetTooltip("Preset 4.0x LOD reduction"),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Stuff.terrain.export_all, function() {
             Stuff.terrain.export_all = self.value;
+        })),
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Centered?", Stuff.terrain.export_centered, function() {
+            Stuff.terrain.export_centered = self.value;
         })),
         (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = string(self.value);

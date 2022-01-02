@@ -57,6 +57,7 @@ save = function() {
     Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.export_swap_uvs = self.export_swap_uvs;
     Settings.terrain.export_swap_zup = self.export_swap_zup;
+    Settings.terrain.export_centered = self.export_centered;
     Settings.terrain.output_vertex_format = self.output_vertex_format;
 };
 
@@ -78,6 +79,7 @@ water_level = setting_get("terrain", "water_level", -0.2);
 view_grid = setting_get("terrain", "view_grid", true);
 export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
 export_swap_zup = setting_get("terrain", "export_swap_zup", false);
+export_centered = setting_get("terrain", "export_centered", false);
 smooth_shading = false;
 dual_layer = false;
 orthographic = false;
@@ -208,6 +210,7 @@ LoadJSONTerrain = function(json) {
     self.water_level = json.settings.water_level;
     self.export_swap_uvs = json.settings.export_swap_uvs;
     self.export_swap_zup = json.settings.export_swap_zup;
+    self.export_centered = json.settings.export_centered;
     self.smooth_shading = json.settings.smooth_shading;
     self.dual_layer = json.settings.dual_layer;
     self.view_scale = json.settings.view_scale;
@@ -240,6 +243,7 @@ CreateJSONTerrain = function() {
             water_level: self.water_level,
             export_swap_uvs: self.export_swap_uvs,
             export_swap_zup: self.export_swap_zup,
+            export_centered: self.export_centered,
             smooth_shading: self.smooth_shading,
             dual_layer: self.dual_layer,
             view_scale: self.view_scale,
@@ -353,6 +357,8 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
 BuildVertexBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     density = floor(density);
     var scale = self.save_scale;
+    var xoff = self.export_centered ? -self.width / 2 : 0;
+    var yoff = self.export_centered ? -self.height / 2 : 0;
     
     var color_sprite = sprite_create_from_surface(self.color.surface, 0, 0, surface_get_width(self.color.surface), surface_get_height(self.color.surface), false, false, 0, 0);
     var sw = sprite_get_width(color_sprite) / self.color_scale;
@@ -410,13 +416,13 @@ BuildVertexBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
                 var norm = triangle_normal(x00, y00, z00, x10, y10, z10, x11, y11, z11);
                 
                 if (swap_zup) {
-                    vertex_point_complete(vbuff, x00 * scale, z00 * scale, y00 * scale, norm[0], norm[2], norm[1], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x10 * scale, z10 * scale, y10 * scale, norm[0], norm[2], norm[1], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x11 * scale, z11 * scale, y11 * scale, norm[0], norm[2], norm[1], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, norm[0], norm[2], norm[1], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x10 + xoff) * scale, z10 * scale, (y10 + yoff) * scale, norm[0], norm[2], norm[1], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, norm[0], norm[2], norm[1], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
                 } else {
-                    vertex_point_complete(vbuff, x00 * scale, y00 * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x10 * scale, y10 * scale, z10 * scale, norm[0], norm[1], norm[2], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x11 * scale, y11 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x10 + xoff) * scale, (y10 + yoff) * scale, z10 * scale, norm[0], norm[1], norm[2], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
                 }
             }
             
@@ -444,13 +450,13 @@ BuildVertexBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
                 var norm = triangle_normal(x11, y11, z11, x01, y01, z01, x00, y00, z00);
                 
                 if (swap_zup) {
-                    vertex_point_complete(vbuff, x11 * scale, z11 * scale, y11 * scale, norm[0], norm[2], norm[1], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x01 * scale, z01 * scale, y01 * scale, norm[0], norm[2], norm[1], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x00 * scale, z00 * scale, y00 * scale, norm[0], norm[2], norm[1], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, norm[0], norm[2], norm[1], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x01 + xoff) * scale, z01 * scale, (y01 + yoff) * scale, norm[0], norm[2], norm[1], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, norm[0], norm[2], norm[1], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
                 } else {
-                    vertex_point_complete(vbuff, x11 * scale, y11 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x01 * scale, y01 * scale, z01 * scale, norm[0], norm[1], norm[2], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
-                    vertex_point_complete(vbuff, x00 * scale, y00 * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x01 + xoff) * scale, (y01 + yoff) * scale, z01 * scale, norm[0], norm[1], norm[2], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
+                    vertex_point_complete(vbuff, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
                 }
             }
         }
