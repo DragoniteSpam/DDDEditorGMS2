@@ -386,6 +386,7 @@ AddToProject = function() {
         }
     }
     
+    sprite_sample_remove_from_cache(color_sprite, 0);
     sprite_delete(color_sprite);
     vertex_end(vbuff);
     
