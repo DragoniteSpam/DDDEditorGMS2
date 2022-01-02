@@ -588,33 +588,7 @@ function ui_init_terrain(mode) {
         var yy_aftergrid = yy;
         
         element = create_button(legal_x + spacing, yy, "Clear Texture", col_width, element_height, fa_center, function(button) {
-            var terrain = Stuff.terrain;
-            
-            for (var i = 0; i < terrain.width - 1; i++) {
-                for (var j = 0; j < terrain.height - 1; j++) {
-                    var index0 = terrain_get_vertex_index(terrain, i, j, 0);
-                    var index1 = index0 + VERTEX_SIZE;
-                    var index2 = index1 + VERTEX_SIZE;
-                    var index3 = index2 + VERTEX_SIZE;
-                    var index4 = index3 + VERTEX_SIZE;
-                    var index5 = index4 + VERTEX_SIZE;
-                    
-                    buffer_poke(terrain.terrain_buffer_data, index0 + 24, buffer_f32, terrain.tile_brush_x);
-                    buffer_poke(terrain.terrain_buffer_data, index1 + 24, buffer_f32, terrain.tile_brush_x + terrain_tile_size);
-                    buffer_poke(terrain.terrain_buffer_data, index2 + 24, buffer_f32, terrain.tile_brush_x + terrain_tile_size);
-                    buffer_poke(terrain.terrain_buffer_data, index3 + 24, buffer_f32, terrain.tile_brush_x + terrain_tile_size);
-                    buffer_poke(terrain.terrain_buffer_data, index4 + 24, buffer_f32, terrain.tile_brush_x);
-                    buffer_poke(terrain.terrain_buffer_data, index5 + 24, buffer_f32, terrain.tile_brush_x);
-                    buffer_poke(terrain.terrain_buffer_data, index0 + 28, buffer_f32, terrain.tile_brush_y);
-                    buffer_poke(terrain.terrain_buffer_data, index1 + 28, buffer_f32, terrain.tile_brush_y);
-                    buffer_poke(terrain.terrain_buffer_data, index2 + 28, buffer_f32, terrain.tile_brush_y + terrain_tile_size);
-                    buffer_poke(terrain.terrain_buffer_data, index3 + 28, buffer_f32, terrain.tile_brush_y + terrain_tile_size);
-                    buffer_poke(terrain.terrain_buffer_data, index4 + 28, buffer_f32, terrain.tile_brush_y + terrain_tile_size);
-                    buffer_poke(terrain.terrain_buffer_data, index5 + 28, buffer_f32, terrain.tile_brush_y);
-                }
-            }
-            
-            terrain_refresh_vertex_buffer(terrain);
+            Stuff.terrain.SetTexture(Stuff.terrain.tile_brush_x, Stuff.terrain.tile_brush_y);
         }, t_general);
         ds_list_add(t_texture.contents, element);
         

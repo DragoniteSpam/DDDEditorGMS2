@@ -278,6 +278,36 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, texture_streng
     buffer_delete(data);
     terrain_refresh_vertex_buffer(self);
 };
+
+ClearTexture = function(tx, ty) {
+    // we'll re-implement this later
+    return;
+    for (var i = 0; i < self.width - 1; i++) {
+        for (var j = 0; j < self.height - 1; j++) {
+            var index0 = terrain_get_vertex_index(self, i, j, 0);
+            var index1 = index0 + VERTEX_SIZE;
+            var index2 = index1 + VERTEX_SIZE;
+            var index3 = index2 + VERTEX_SIZE;
+            var index4 = index3 + VERTEX_SIZE;
+            var index5 = index4 + VERTEX_SIZE;
+            
+            buffer_poke(self.terrain_buffer_data, index0 + 24, buffer_f32, tx);
+            buffer_poke(self.terrain_buffer_data, index1 + 24, buffer_f32, tx + terrain_tile_size);
+            buffer_poke(self.terrain_buffer_data, index2 + 24, buffer_f32, tx + terrain_tile_size);
+            buffer_poke(self.terrain_buffer_data, index3 + 24, buffer_f32, tx + terrain_tile_size);
+            buffer_poke(self.terrain_buffer_data, index4 + 24, buffer_f32, tx);
+            buffer_poke(self.terrain_buffer_data, index5 + 24, buffer_f32, tx);
+            buffer_poke(self.terrain_buffer_data, index0 + 28, buffer_f32, ty);
+            buffer_poke(self.terrain_buffer_data, index1 + 28, buffer_f32, ty);
+            buffer_poke(self.terrain_buffer_data, index2 + 28, buffer_f32, ty + terrain_tile_size);
+            buffer_poke(self.terrain_buffer_data, index3 + 28, buffer_f32, ty + terrain_tile_size);
+            buffer_poke(self.terrain_buffer_data, index4 + 28, buffer_f32, ty + terrain_tile_size);
+            buffer_poke(self.terrain_buffer_data, index5 + 28, buffer_f32, ty);
+        }
+    }
+    
+    terrain_refresh_vertex_buffer(self);
+}
 #endregion
 
 wtf("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
