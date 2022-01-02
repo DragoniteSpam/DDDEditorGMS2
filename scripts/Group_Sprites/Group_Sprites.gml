@@ -160,10 +160,20 @@ function sprite_sample(sprite, index, u, v) {
     return sprite_sample_pixel(sprite, index, u * sprite_get_width(sprite), v * sprite_get_height(sprite));
 }
 
-function sprite_sample_pixel(sprite, index, x, y) {
+function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
     static cache = { };
     var sprite_id = string(sprite) + ";" + string(index);
     var buffer = cache[$ sprite_id];
+    
+    switch (cmd) {
+        case "remove":
+            if (buffer != undefined) {
+                buffer_delete(buffer);
+            }
+            variable_struct_remove(cache, sprite_id);
+            return;
+    }
+    
     if (buffer == undefined) {
         buffer = sprite_to_buffer(sprite, index);
         cache[$ sprite_id] = buffer;
@@ -185,4 +195,8 @@ function sprite_sample_pixel(sprite, index, x, y) {
     var colour_l = merge_colour_ds(colour_ul, colour_ll, vertical_lerp);
     var colour_r = merge_colour_ds(colour_ur, colour_lr, vertical_lerp);
     return merge_colour_ds(colour_l, colour_r, horizontal_lerp);
+}
+
+function sprite_sample_remove_from_cache(sprite, index) {
+    sprite_sample_pixel(sprite, index, 0, 0, "remove");
 }
