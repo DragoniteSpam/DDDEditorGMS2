@@ -36,7 +36,8 @@
 #endregion
 
 #region macros which it is not very useful to touch
-#macro EMU_AUTO undefined
+#macro EMU_AUTO                                                                 ptr(0)
+#macro EMU_INLINE                                                               ptr(1)
 #macro EmuOverlay (_emu_get_overlay())
 
 function _emu_get_overlay() {
