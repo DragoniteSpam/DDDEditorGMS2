@@ -264,3 +264,71 @@ function uivc_terrain_light_enable_by_type(list) {
             break;
     }
 }
+
+function dialog_terrain_export() {
+    var default_lod_levels = min(10, floor(logn(mean(Stuff.terrain.width, Stuff.terrain.height), 16)));
+    
+    var dialog = (new EmuDialog(640, 400, "Export Terrain")).AddContent([
+        new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
+        (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
+            .SetID("LABEL"),
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 0, 10, true, default_lod_levels, function() {
+            self.GetSibling("LABEL").text = "Max LOD levels: " + (self.value > 0 ? string(self.value) : "none");
+        }))
+            .SetIntegersOnly(true)
+            .SetID("LEVELS"),
+        (new EmuText(32, EMU_AUTO, 256, 32, "LOD reduction factor: 2"))
+            .SetID("LABEL_REDUCTION"),
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 4, true, default_lod_levels, function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: " + string(self.value);
+        }))
+            .SetValue(2)
+            .SetIntegersOnly(false)
+            .SetID("REDUCTION"),
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Stuff.terrain.export_all, function() {
+            Stuff.terrain.export_all = self.value;
+        }))
+            .SetID("EXPORT_ALL_FACES"),
+        (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
+            Stuff.terrain.save_scale = string(self.value);
+        }))
+            .SetID("EXPORT_SCALE"),
+        new EmuText(352, 32, 256, 32, "[c_blue]OBJ export settings"),
+        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
+            Stuff.terrain.export_swap_zup = self.value;
+        }))
+            .SetID("SWAP_Z"),
+        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Stuff.terrain.export_swap_uvs, function() {
+            Stuff.terrain.export_swap_uvs = self.value;
+        }))
+            .SetID("SWAP_UV"),
+        new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
+    ]).AddDefaultCloseButton("Add", function() {
+        var min_side_length = 10;
+        var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
+        var reduction = self.GetSibling("REDUCTION").value;
+        var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
+        
+        var filename = get_save_filename_mesh("Terrain");
+        if (filename != "") {
+            if (levels == 0) {
+                switch (filename_ext(filename)) {
+                    case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(filename); break;
+                    case ".obj": Stuff.terrain.ExportOBJ(filename); break;
+                    case ".vbuff": Stuff.terrain.ExportVbuff(filename); break;
+                }
+            } else {
+                for (var i = 0; i < levels; i++) {
+                    var lod_filename = filename_change_ext(filename, "") + ".LOD" + string(i) + filename_ext(filename);
+                    var lod_density = power(reduction, i);
+                    switch (filename_ext(filename)) {
+                        case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(lod_filename, lod_density); break;
+                        case ".obj": Stuff.terrain.ExportOBJ(lod_filename, lod_density); break;
+                        case ".vbuff": Stuff.terrain.ExportVbuff(lod_filename, lod_density); break;
+                    }
+                }
+            }
+        }
+        //self.root.Dispose();
+    });
+}

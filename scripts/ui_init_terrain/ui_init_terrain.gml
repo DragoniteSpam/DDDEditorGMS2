@@ -168,51 +168,8 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Export Terrain", col_width, element_height, fa_center, function(button) {
-            var fn = get_save_filename_mesh("terrain");
-            if (fn != "") {
-                switch (filename_ext(fn)) {
-                    case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(fn); break;
-                    case ".obj": Stuff.terrain.ExportOBJ(fn); break;
-                    case ".vbuff": Stuff.terrain.ExportVbuff(fn); break;
-                }
-            }
+            dialog_terrain_export();
         }, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "Export scale:", col_width, element_height, function(input) {
-            Stuff.terrain.save_scale = real(input.value);
-        }, mode.save_scale, "0.01...100", validate_double, 0.01, 100, 4, vx1 + 32, vy1, vx2, vy2, t_general);
-        element.tooltip = "If you want to export final models with a different scale, use this option.";
-        t_general.element_save_scale = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(col2_x, yy, "Export: all faces?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.export_all = checkbox.value;
-        }, mode.export_all, t_general);
-        element.tooltip = "Most of the time you probably only want to export triangles that aren't flat on the ground, but you can force it to export all of them instead. Note: this will produce very large files and will take quite a lot longer to process, for obvious reasons.";
-        t_general.element_save_all_faces = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(col2_x, yy, "OBJ: use Y up?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.export_swap_zup = checkbox.value;
-        }, mode.export_swap_zup, t_general);
-        element.tooltip = "Some 3D model programs (cough cough, Blender) use the +Y axis as the Up vector by default.";
-        t_general.element_swap_zup = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(col2_x, yy, "OBJ: swap UVs?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.export_swap_uvs = checkbox.value;
-        }, mode.export_swap_uvs, t_general);
-        element.tooltip = "Game Maker maps UV coordinates upside-down, compared to some 3D model programs. Use this option to convert to that.";
-        t_general.element_swap_uvs = element;
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
