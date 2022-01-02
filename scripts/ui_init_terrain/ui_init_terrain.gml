@@ -199,7 +199,7 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_checkbox(col2_x, yy, "OBJ: use Y up?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.export_swap_zup= checkbox.value;
+            Stuff.terrain.export_swap_zup = checkbox.value;
         }, mode.export_swap_zup, t_general);
         element.tooltip = "Some 3D model programs (cough cough, Blender) use the +Y axis as the Up vector by default.";
         t_general.element_swap_zup = element;
@@ -217,7 +217,7 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Import Heightmap", col_width, element_height, fa_center, function(button) {
-            dialog_create_terrain_new(undefined);
+            dialog_create_terrain_new();
         }, t_general);
         ds_list_add(t_general.contents, element);
         

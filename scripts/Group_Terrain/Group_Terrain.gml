@@ -24,32 +24,25 @@ function terrain_add_to_project() {
         var z3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 8, buffer_f32);
         
         if (terrain.export_all || z1 > 0 || z2 > 0 || z3 > 0) {
-            for (var j = 0; j < VERTEX_SIZE * 3; j = j + VERTEX_SIZE) {
+            for (var j = 0; j < VERTEX_SIZE * 3; j += j + VERTEX_SIZE) {
                 var xtex1 = 0;
                 var ytex1 = 0;
-                var nx1 = 0;
-                var ny1 = 0;
-                var nz1 = 0;
                 var c1 = c_white;
                 var a1 = 1;
                 var xtex2 = 0;
                 var ytex2 = 0;
-                var nx2 = 0;
-                var ny2 = 0;
-                var nz2 = 0;
                 var c2 = c_white;
                 var a2 = 1;
                 var xtex3 = 0;
                 var ytex3 = 0;
-                var nx3 = 0;
-                var ny3 = 0;
-                var nz3 = 0;
                 var c3 = c_white;
                 var a3 = 1;
                 
-                vertex_point_complete(vbuff, x1, y1, z1, nx1, ny1, nz1, xtex1, ytex1, c1, a1);
-                vertex_point_complete(vbuff, x2, y2, z2, nx2, ny2, nz2, xtex2, ytex2, c2, a2);
-                vertex_point_complete(vbuff, x3, y3, z3, nx3, ny3, nz3, xtex3, ytex3, c3, a3);
+                var norm = triangle_normal(x1, y1, z1, x2, y2, z2, x3, y3, z3);
+                
+                vertex_point_complete(vbuff, x1, y1, z1, norm[0], norm[1], norm[2], xtex1, ytex1, c1, a1);
+                vertex_point_complete(vbuff, x2, y2, z2, norm[0], norm[1], norm[2], xtex2, ytex2, c2, a2);
+                vertex_point_complete(vbuff, x3, y3, z3, norm[0], norm[1], norm[2], xtex3, ytex3, c3, a3);
             }
         }
     }
