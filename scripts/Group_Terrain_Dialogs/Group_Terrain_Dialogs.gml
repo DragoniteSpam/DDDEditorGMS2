@@ -304,7 +304,7 @@ function dialog_terrain_export() {
         }))
             .SetID("SWAP_UV"),
         new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
-    ]).AddDefaultCloseButton("Add", function() {
+    ]).AddDefaultConfirmCancelButtons("Save", function() {
         var min_side_length = 10;
         var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
         var reduction = self.GetSibling("REDUCTION").value;
@@ -330,6 +330,5 @@ function dialog_terrain_export() {
                 }
             }
         }
-        //self.root.Dispose();
-    });
+    }, "Done", emu_dialog_close_auto);
 }
