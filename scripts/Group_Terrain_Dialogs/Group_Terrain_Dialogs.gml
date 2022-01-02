@@ -72,7 +72,8 @@ function dialog_terrain_mutate() {
 }
 
 function dialog_terrain_add_to_project() {
-    var default_lod_levels = min(10, floor(logn(mean(Stuff.terrain.width, Stuff.terrain.height), 16)));
+    var default_lod_levels = min(10, ceil(power(mean(Stuff.terrain.width, Stuff.terrain.height), 0.25)));
+    
     var dialog = (new EmuDialog(320, 280, "Add to Project")).AddContent([
         (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
             .SetID("LABEL"),
@@ -266,7 +267,7 @@ function uivc_terrain_light_enable_by_type(list) {
 }
 
 function dialog_terrain_export() {
-    var default_lod_levels = min(10, floor(logn(mean(Stuff.terrain.width, Stuff.terrain.height), 16)));
+    var default_lod_levels = min(10, ceil(power(mean(Stuff.terrain.width, Stuff.terrain.height), 0.25)));
     
     var dialog = (new EmuDialog(640, 400, "Export Terrain")).AddContent([
         new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
