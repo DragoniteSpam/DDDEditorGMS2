@@ -173,6 +173,7 @@ function ui_init_terrain(mode) {
                 switch (filename_ext(fn)) {
                     case ".d3d": case ".gmmod": terrain_save_d3d(fn); break;
                     case ".obj": terrain_save_obj(fn); break;
+                    case ".vbuff": Stuff.terrain.ExportVbuff(fn); break;
                 }
             }
         }, t_general);

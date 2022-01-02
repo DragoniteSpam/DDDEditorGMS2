@@ -56,6 +56,7 @@ save = function() {
     Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.export_swap_uvs = self.export_swap_uvs;
     Settings.terrain.export_swap_zup = self.export_swap_zup;
+    Settings.terrain.output_vertex_format = self.output_vertex_format;
 };
 
 texture_name = DEFAULT_TILESET;
@@ -79,6 +80,7 @@ smooth_shading = false;
 dual_layer = false;
 orthographic = false;
 orthographic_scale = 1;
+output_vertex_format = setting_get("terrain", "output_vertex_format", DEFAULT_VERTEX_FORMAT);
 
 cursor_position = undefined;
 // height defaults
@@ -204,6 +206,7 @@ LoadJSONTerrain = function(json) {
     self.smooth_shading = json.settings.smooth_shading;
     self.dual_layer = json.settings.dual_layer;
     self.view_scale = json.settings.view_scale;
+    self.view_grid = json.settings.view_grid;
     self.save_scale = json.settings.save_scale;
     self.rate = json.settings.rate;
     self.radius = json.settings.radius;
@@ -214,6 +217,7 @@ LoadJSONTerrain = function(json) {
     self.tile_brush_y = json.settings.tile_brush_y;
     self.paint_color = json.settings.paint_color;
     self.paint_strength = json.settings.paint_strength;
+    self.output_vertex_format = json.settings.output_vertex_format;
 };
 
 LoadJSON = function(json) {
@@ -233,6 +237,7 @@ CreateJSONTerrain = function() {
             smooth_shading: self.smooth_shading,
             dual_layer: self.dual_layer,
             view_scale: self.view_scale,
+            view_grid: self.view_grid,
             save_scale: self.save_scale,
             rate: self.rate,
             radius: self.radius,
@@ -243,6 +248,7 @@ CreateJSONTerrain = function() {
             tile_brush_y: self.tile_brush_y,
             paint_color: self.paint_color,
             paint_strength: self.paint_strength,
+            output_vertex_format: self.output_vertex_format,
         },
     };
 }
@@ -408,6 +414,18 @@ BuildVertexBuffer = function(density = 1) {
     vertex_end(vbuff);
     
     return vbuff;
+};
+
+ExportVbuff = function(filename, density = 1) {
+    var vbuff = self.BuildVertexBuffer(density);
+    var raw = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
+    var formatted = vertex_buffer_formatted(raw, self.output_vertex_format);
+    
+    buffer_save(formatted, filename);
+    
+    vertex_delete_buffer(vbuff);
+    buffer_delete(raw);
+    buffer_delete(formatted);
 };
 #endregion
 
