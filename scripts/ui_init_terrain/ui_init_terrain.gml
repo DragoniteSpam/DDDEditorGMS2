@@ -490,43 +490,31 @@ function ui_init_terrain(mode) {
         element = create_button(legal_x + spacing, yy, "Mutate", col_width, element_height, fa_center, function(button) {
             var dialog = (new EmuDialog(640, 480, "Mutate Terrain")).AddContent([
                 new EmuText(32, 32, 360, 24, "Smoothness:"),
-                new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 4, emu_null),
+                (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 4, emu_null))
+                    .SetID("SMOOTHNESS"),
                 new EmuText(32, EMU_AUTO, 360, 24, "Height:"),
-                new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null),
+                (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null))
+                    .SetID("HEIGHT"),
                 (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
-                    static sprites = [
-                        spr_terrain_gen_flat,
-                        spr_terrain_gen_bullseye,
-                    ];
                     var selection = self.GetSelection();
                     if (selection + 1) {
                         /// @todo i have no idea why it's complaining about this
                         var image = ds_list_find_value(self.root._contents, 5);
-                        image.sprite = sprites[selection];
+                        image.sprite = Stuff.terrain.mutation_sprites[selection];
                     }
                 })).SetEntryTypes(ListEntries.STRINGS).AddEntries([
                     "Flat",
                     "Bullseye",
-                ]),
+                ]).SetID("SPRITE_LIST"),
                 (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null)
                 ).SetImageAlignment(fa_left, fa_top).SetCheckerboard(true),
             ]).AddDefaultCloseButton("Okay", function() {
-                var terrain = Stuff.terrain;
-                var ww = terrain.width;
-                var hh = terrain.height;
-                var octaves = 4;
-                var scale = self.root.scale;
-                var data = macaw_generate_dll(ww, hh, octaves, scale).noise;
-                for (var i = 0; i < ww * hh; i++) {
-                    terrain_add_z(terrain, i mod ww, i div ww, buffer_peek(data, i * 4, buffer_f32) - scale / 2);
-                }
-                buffer_delete(data);
-                terrain_refresh_vertex_buffer(terrain);
+                Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("HEIGHT").value);
                 self.root.Dispose();
             });
             dialog.scale = button.root.element_deform_rate_bar.value;
         }, t_heightmap);
-        element.tooltip = "Add or subtract a random amount to the terrain (magnitude determined by the deformation rate). On average the terrain will stay the same height, but it'll get slightly lumpier.";
+        element.tooltip = "Add or subtract a random amount to the terrain. You can select a sprite to ";
         ds_list_add(t_heightmap.contents, element);
         
         yy += element.height + spacing;

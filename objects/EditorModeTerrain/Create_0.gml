@@ -100,6 +100,11 @@ paint_strength_max = 1;
 paint_color = 0xffffffff;
 paint_strength = 0.05;
 
+mutation_sprites = [
+    spr_terrain_gen_flat,
+    spr_terrain_gen_bullseye,
+];
+
 var t = get_timer();
 
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
@@ -250,6 +255,20 @@ Flatten = function() {
     for (var i = 8, n = buffer_get_size(self.terrain_buffer_data); i < n; i += VERTEX_SIZE_TERRAIN) {
         buffer_poke(self.terrain_buffer_data, i, buffer_f32, 0);
     }
+    terrain_refresh_vertex_buffer(self);
+};
+
+Mutate = function(mutation_sprite_index, octaves, scale) {
+    if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.mutation_sprites)) {
+        mutation_sprite_index = 0;
+    }
+    var ww = self.width;
+    var hh = self.height;
+    var data = macaw_generate_dll(ww, hh, octaves, scale).noise;
+    for (var i = 0; i < ww * hh; i++) {
+        terrain_add_z(self, i mod ww, i div ww, buffer_peek(data, i * 4, buffer_f32) - scale / 2);
+    }
+    buffer_delete(data);
     terrain_refresh_vertex_buffer(self);
 };
 #endregion
