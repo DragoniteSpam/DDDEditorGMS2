@@ -416,6 +416,57 @@ BuildVertexBuffer = function(density = 1) {
     return vbuff;
 };
 
+ExportD3D = function(filename, density = 1) {
+    var vbuff = self.BuildVertexBuffer(density);
+    var raw = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
+    var vertices = buffer_get_size(raw) / VERTEX_SIZE;
+    
+    // because regular string() doesn't give you very good precision
+    var mediump = 3;
+    var highp = 8;
+    
+    var output = buffer_create(1000000, buffer_grow, 1);
+    buffer_write(output, buffer_text, "100\n" + string(vertices + 2) + "\n0 4\n");
+    
+    for (var i = 0, n = buffer_get_size(raw); i < n; i += VERTEX_SIZE) {
+        var xx = buffer_peek(raw, i + 00, buffer_f32);
+        var yy = buffer_peek(raw, i + 04, buffer_f32);
+        var zz = buffer_peek(raw, i + 08, buffer_f32);
+        var nx = buffer_peek(raw, i + 12, buffer_f32);
+        var ny = buffer_peek(raw, i + 16, buffer_f32);
+        var nz = buffer_peek(raw, i + 20, buffer_f32);
+        var xt = buffer_peek(raw, i + 24, buffer_f32);
+        var yt = buffer_peek(raw, i + 28, buffer_f32);
+        var cc = buffer_peek(raw, i + 32, buffer_u32);
+        
+        // I guess you can implement uv and zup flipping here as well, but game maker models don't
+        // typically use a different up vector or texture coordinate system
+        buffer_write(output, buffer_text, "9 " +
+            string_format(xx, 1, highp) + " " +
+            string_format(yy, 1, highp) + " " +
+            string_format(zz, 1, highp) + " " +
+            string_format(nx, 1, highp) + " " +
+            string_format(ny, 1, highp) + " " +
+            string_format(nz, 1, highp) + " " +
+            string_format(xt, 1, highp) + " " +
+            string_format(yt, 1, highp) + " " +
+            string(cc & 0xffffff) + " " + string_format((cc >> 24) / 0xff, 1, mediump) + "\n"
+        );
+    }
+    
+    buffer_write(output, buffer_text, "1\n");
+    buffer_save_ext(output, filename, 0, buffer_tell(output));
+    sprite_save(self.texture, 0, filename_dir(filename) + "/" + self.texture_name);
+    
+    if (vertices / 3 >= 32000) {
+        emu_dialog_notice("This terrain contains " + string_comma(vertices / 3) + " triangles (" + string_comma(vertices) + " total vertices). You may still use it for your own purposes, but it will not be able to view it in Model Creator, which has a limit of 32000 vertices.", 540, 240);
+    }
+    
+    vertex_delete_buffer(vbuff);
+    buffer_delete(raw);
+    buffer_delete(output);
+};
+
 ExportVbuff = function(filename, density = 1) {
     var vbuff = self.BuildVertexBuffer(density);
     var raw = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
