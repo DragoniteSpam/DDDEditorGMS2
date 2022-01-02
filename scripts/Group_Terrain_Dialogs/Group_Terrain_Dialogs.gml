@@ -246,7 +246,9 @@ function uivc_terrain_light_enable_by_type(list) {
 function dialog_terrain_export() {
     var default_lod_levels = min(10, ceil(power(mean(Stuff.terrain.width, Stuff.terrain.height), 0.25)));
     
-    var dialog = (new EmuDialog(640, 400, "Export Terrain")).AddContent([
+    var ew = 256;
+    
+    var dialog = (new EmuDialog(640, 480, "Export Terrain")).AddContent([
         new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
         (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
             .SetID("LABEL"),
@@ -263,6 +265,26 @@ function dialog_terrain_export() {
             .SetValue(2)
             .SetIntegersOnly(false)
             .SetID("REDUCTION"),
+        (new EmuButton(32 + 0 * ew / 4, EMU_AUTO, ew / 4, 32, "1.5x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 1.5";
+            self.GetSibling("REDUCTION").SetValue(1.5);
+        }))
+            .SetTooltip("Preset 1.5x LOD reduction"),
+        (new EmuButton(32 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "2.0x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 2";
+            self.GetSibling("REDUCTION").SetValue(2);
+        }))
+            .SetTooltip("Preset 2.0x LOD reduction"),
+        (new EmuButton(32 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "3.0x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 3";
+            self.GetSibling("REDUCTION").SetValue(3);
+        }))
+            .SetTooltip("Preset 3.0x LOD reduction"),
+        (new EmuButton(32 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "4.0x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 4";
+            self.GetSibling("REDUCTION").SetValue(4);
+        }))
+            .SetTooltip("Preset 4.0x LOD reduction"),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Stuff.terrain.export_all, function() {
             Stuff.terrain.export_all = self.value;
         })),
