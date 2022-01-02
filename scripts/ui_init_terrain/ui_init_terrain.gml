@@ -240,7 +240,7 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Add to Project", col_width, element_height, fa_center, function(button) {
-            Stuff.terrain.AddToProject();
+            dialog_terrain_add_to_project();
         }, t_general);
         ds_list_add(t_general.contents, element);
         

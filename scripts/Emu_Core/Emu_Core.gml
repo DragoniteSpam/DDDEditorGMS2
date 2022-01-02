@@ -321,6 +321,7 @@ function EmuCallback(x, y, w, h, value, callback) : EmuCore(x, y, w, h) construc
     
     static SetValue = function(value) {
         self.value = value;
+        return self;
     }
     
     self.SetCallback(callback);
