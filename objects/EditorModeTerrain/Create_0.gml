@@ -53,6 +53,7 @@ save = function() {
     Settings.terrain.save_scale = self.save_scale;
     Settings.terrain.export_all = self.export_all;
     Settings.terrain.view_water = self.view_water;
+    Settings.terrain.water_level = self.water_level;
     Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.export_swap_uvs = self.export_swap_uvs;
     Settings.terrain.export_swap_zup = self.export_swap_zup;
@@ -73,6 +74,7 @@ view_scale = 32;
 save_scale = setting_get("terrain", "save_scale", 1);
 export_all = setting_get("terrain", "export_all", false);
 view_water = setting_get("terrain", "view_water", true);
+water_level = setting_get("terrain", "water_level", -0.2);
 view_grid = setting_get("terrain", "view_grid", true);
 export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
 export_swap_zup = setting_get("terrain", "export_swap_zup", false);
@@ -203,6 +205,7 @@ LoadJSONTerrain = function(json) {
     
     self.export_all = json.settings.export_all;
     self.view_water = json.settings.view_water;
+    self.water_level = json.settings.water_level;
     self.export_swap_uvs = json.settings.export_swap_uvs;
     self.export_swap_zup = json.settings.export_swap_zup;
     self.smooth_shading = json.settings.smooth_shading;
@@ -234,6 +237,7 @@ CreateJSONTerrain = function() {
         settings: {
             export_all: self.export_all,
             view_water: self.view_water,
+            water_level: self.water_level,
             export_swap_uvs: self.export_swap_uvs,
             export_swap_zup: self.export_swap_zup,
             smooth_shading: self.smooth_shading,
@@ -326,7 +330,8 @@ DrawWater = function(set_lights = true) {
         graphics_set_lighting_terrain(shd_terrain_water);
     }
     
-    matrix_set(matrix_world, matrix_build(0, 0, -1, 0, 0, 0, 1, 1, 1));
+    var water_level = 512 * power(self.water_level, 3);
+    matrix_set(matrix_world, matrix_build(0, 0, water_level, 0, 0, 0, 1, 1, 1));
     texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_WaterAlphaBounds"), 0.4, 0.9);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), current_time / 1000, current_time / 1000);

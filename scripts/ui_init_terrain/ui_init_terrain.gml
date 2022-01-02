@@ -72,6 +72,21 @@ function ui_init_terrain(mode) {
         
         yy += element.height + spacing;
         
+        element = create_text(legal_x + spacing, yy, "Water level:", col_width, element_height, fa_left, col_width, t_general);
+        ds_list_add(t_general.contents, element);
+        
+        yy += element.height + spacing;
+        
+        element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, function(bar) {
+            // if(/when) you ever convert this to regular Emu, you'll be able to ignore the range conversion
+            Stuff.terrain.water_level = normalize(bar.value, -1, 1, 0, 1);
+        }, 4, normalize(Stuff.terrain.water_level, 0, 1, -1, 1), t_general);
+        element.tooltip = "A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision.";
+        t_general.element_brush_radius_bar = element;
+        ds_list_add(t_general.contents, element);
+        
+        yy += element.height + spacing;
+        
         element = create_checkbox(legal_x + spacing, yy, "Draw wireframe?", col_width, element_height, function(checkbox) {
             Stuff.terrain.view_grid = checkbox.value;
         }, mode.view_grid, t_general);
