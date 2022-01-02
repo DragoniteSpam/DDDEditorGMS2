@@ -72,6 +72,15 @@ function ui_init_terrain(mode) {
         
         yy += element.height + spacing;
         
+        element = create_checkbox(legal_x + spacing, yy, "Draw wireframe?", col_width, element_height, function(checkbox) {
+            Stuff.terrain.view_grid = checkbox.value;
+        }, mode.view_grid, t_general);
+        element.tooltip = "Toggles the the wireframe grid on the terrain";
+        t_general.element_draw_grid = element;
+        ds_list_add(t_general.contents, element);
+        
+        yy += element.height + spacing;
+        
         element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, function(checkbox) {
             Stuff.terrain.smooth_shading = checkbox.value;
         }, mode.smooth_shading, t_general);

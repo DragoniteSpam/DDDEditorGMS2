@@ -53,6 +53,7 @@ save = function() {
     Settings.terrain.save_scale = self.save_scale;
     Settings.terrain.export_all = self.export_all;
     Settings.terrain.view_water = self.view_water;
+    Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.export_swap_uvs = self.export_swap_uvs;
     Settings.terrain.export_swap_zup = self.export_swap_zup;
 };
@@ -71,6 +72,7 @@ view_scale = 32;
 save_scale = setting_get("terrain", "save_scale", 1);
 export_all = setting_get("terrain", "export_all", false);
 view_water = setting_get("terrain", "view_water", true);
+view_grid = setting_get("terrain", "view_grid", true);
 export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
 export_swap_zup = setting_get("terrain", "export_swap_zup", false);
 smooth_shading = false;
