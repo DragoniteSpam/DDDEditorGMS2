@@ -311,7 +311,7 @@ ClearTexture = function(tx, ty) {
     terrain_refresh_vertex_buffer(self);
 };
 
-AddToProject = function() {
+AddToProject = function(name = "Terrain", density = 1) {
     var scale = self.save_scale;
     
     var color_sprite = sprite_create_from_surface(self.color.surface, 0, 0, surface_get_width(self.color.surface), surface_get_height(self.color.surface), false, false, 0, 0);
@@ -321,12 +321,20 @@ AddToProject = function() {
     var vbuff = vertex_create_buffer();
     vertex_begin(vbuff, Stuff.graphics.vertex_format);
     
-    for (var i = 0; i < self.width - 1; i++) {
-        for (var j = 0; j < self.height - 1; j++) {
-            var z00 = terrain_get_z(self, i    , j    );
-            var z10 = terrain_get_z(self, i + 1, j    );
-            var z11 = terrain_get_z(self, i + 1, j + 1);
-            var z01 = terrain_get_z(self, i    , j + 1);
+    for (var i = 0; i < self.width - density; i += density) {
+        for (var j = 0; j < self.height - density; j += density) {
+            var x00 = i;
+            var y00 = j;
+            var z00 = terrain_get_z(self, x00, y00);
+            var x10 = i + density;
+            var y10 = j;
+            var z10 = terrain_get_z(self, x10, y10);
+            var x11 = i + density;
+            var y11 = j + density;
+            var z11 = terrain_get_z(self, x11, y11);
+            var x01 = i;
+            var y01 = j + density;
+            var z01 = terrain_get_z(self, x01, y01);
             
             /// @todo: calculate texture coordinates
             var xt00 = undefined;
@@ -345,19 +353,19 @@ AddToProject = function() {
             if (self.export_all || z00 > 0 || z10 > 0 || z11 > 0) {
                 xt00 = 0;
                 yt00 = 0;
-                c00 = sprite_sample(color_sprite, 0, i / sw, j / sh);
+                c00 = sprite_sample(color_sprite, 0, x00 / sw, y00 / sh);
                 xt10 = 0;
                 yt10 = 0;
-                c10 = sprite_sample(color_sprite, 0, (i + 1) / sw, j / sh);
+                c10 = sprite_sample(color_sprite, 0, x10 / sw, y10 / sh);
                 xt11 = 0;
                 yt11 = 0;
-                c11 = sprite_sample(color_sprite, 0, (i + 1) / sw, (j + 1) / sh);
+                c11 = sprite_sample(color_sprite, 0, x11 / sw, y11 / sh);
                 
-                var norm = triangle_normal(i, j, z00, i + 1, j, z10, i, j + 1, z11);
+                var norm = triangle_normal(x00, y00, z00, x10, y10, z10, x11, y11, z11);
                 
-                vertex_point_complete(vbuff, i     * scale, j     * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                vertex_point_complete(vbuff, i + 1 * scale, j     * scale, z10 * scale, norm[0], norm[1], norm[2], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
-                vertex_point_complete(vbuff, i + 1 * scale, j + 1 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                vertex_point_complete(vbuff, x00 * scale, y00 * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                vertex_point_complete(vbuff, x10 * scale, y10 * scale, z10 * scale, norm[0], norm[1], norm[2], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
+                vertex_point_complete(vbuff, x11 * scale, y11 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
             }
             
             if (self.export_all || z11 > 0 || z01 > 0 || z00 > 0) {
@@ -366,22 +374,22 @@ AddToProject = function() {
                 if (xt11 == undefined) {
                     xt11 = 0;
                     yt11 = 0;
-                    c11 = sprite_sample(color_sprite, 0, (i + 1) / sw, (j + 1) / sh);
+                    c11 = sprite_sample(color_sprite, 0, x11 / sw, y11 / sh);
                 }
                 xt01 = 0;
                 yt01 = 0;
-                c01 = sprite_sample(color_sprite, 0, i / sw, (j + 1) / sh);
+                c01 = sprite_sample(color_sprite, 0, x01 / sw, y01 / sh);
                 if (xt00 == undefined) {
                     xt00 = 0;
                     yt00 = 0;
-                    c00 = sprite_sample(color_sprite, 0, i / sw, j / sh);
+                    c00 = sprite_sample(color_sprite, 0, x00 / sw, y00 / sh);
                 }
                 
-                var norm = triangle_normal(i + 1, j + 1, z11, i, j + 1, z01, i, j, z00);
+                var norm = triangle_normal(x11, y11, z11, x01, y01, z01, x00, y00, z00);
                 
-                vertex_point_complete(vbuff, i + 1 * scale, j + 1 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                vertex_point_complete(vbuff, i     * scale, j + 1 * scale, z01 * scale, norm[0], norm[1], norm[2], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
-                vertex_point_complete(vbuff, i     * scale, j     * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                vertex_point_complete(vbuff, x11 * scale, y11 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                vertex_point_complete(vbuff, x01 * scale, y01 * scale, z01 * scale, norm[0], norm[1], norm[2], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
+                vertex_point_complete(vbuff, x00 * scale, y00 * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
             }
         }
     }
@@ -390,7 +398,7 @@ AddToProject = function() {
     sprite_delete(color_sprite);
     vertex_end(vbuff);
     
-    var mesh = new DataMesh("Terrain");
+    var mesh = new DataMesh(name);
     mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1), vbuff);
     array_push(Game.meshes, mesh);
     return mesh;
