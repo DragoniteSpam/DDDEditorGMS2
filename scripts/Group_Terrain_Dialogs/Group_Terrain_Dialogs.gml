@@ -71,48 +71,6 @@ function dialog_terrain_mutate() {
     dialog.active_shade = 0;
 }
 
-function dialog_terrain_add_to_project() {
-    var default_lod_levels = min(10, ceil(power(mean(Stuff.terrain.width, Stuff.terrain.height), 0.25)));
-    
-    var dialog = (new EmuDialog(320, 280, "Add to Project")).AddContent([
-        (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
-            .SetID("LABEL"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 0, 10, true, default_lod_levels, function() {
-            self.GetSibling("LABEL").text = "Max LOD levels: " + (self.value > 0 ? string(self.value) : "none");
-        }))
-            .SetIntegersOnly(true)
-            .SetID("LEVELS"),
-        (new EmuText(32, EMU_AUTO, 256, 32, "LOD reduction factor: 2"))
-            .SetID("LABEL_REDUCTION"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 4, true, default_lod_levels, function() {
-            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: " + string(self.value);
-        }))
-            .SetValue(2)
-            .SetIntegersOnly(false)
-            .SetID("REDUCTION"),
-    ]).AddDefaultCloseButton("Add", function() {
-        var min_side_length = 10;
-        var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
-        // if it's not immediately clear what this does - the reduction value
-        // is the base of the exponent that models how the resolution of the
-        // terrain is reduced every LOD iteration; a value of 2 means that the
-        // resolution will be halved for every iteration (1/2^n: 1/1, 1/2, 1/4)
-        // while a value of 3 will mean that the resolution will be one third
-        // every iteration (1/3^n: 1/1, 1/3, 1*9, etc)
-        var reduction = self.GetSibling("REDUCTION").value;
-        var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
-        
-        if (levels == 0) {
-            Stuff.terrain.AddToProject("Terrain");
-        } else {
-            for (var i = 0; i < levels; i++) {
-                Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i));
-            }
-        }
-        self.root.Dispose();
-    });
-}
-
 function dialog_create_terrain_new() {
     var dw = 640;
     var dh = 360;
@@ -321,6 +279,27 @@ function dialog_terrain_export() {
         new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
         (new EmuButton(352, EMU_AUTO, 256, 32, "Vertex format", function() {
             emu_dialog_vertex_format(Stuff.terrain.output_vertex_format, function(value) { Stuff.terrain.output_vertex_format = value; });
+        })),
+        (new EmuButton(352, EMU_AUTO, 256, 32, "Add to Project", function() {
+            var min_side_length = 10;
+            var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
+            // if it's not immediately clear what this does - the reduction value
+            // is the base of the exponent that models how the resolution of the
+            // terrain is reduced every LOD iteration; a value of 2 means that the
+            // resolution will be halved for every iteration (1/2^n: 1/1, 1/2, 1/4)
+            // while a value of 3 will mean that the resolution will be one third
+            // every iteration (1/3^n: 1/1, 1/3, 1*9, etc)
+            var reduction = self.GetSibling("REDUCTION").value;
+            var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
+            
+            if (levels == 0) {
+                Stuff.terrain.AddToProject("Terrain");
+            } else {
+                for (var i = 0; i < levels; i++) {
+                    Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i));
+                }
+            }
+            self.root.Dispose();
         })),
     ]).AddDefaultConfirmCancelButtons("Save", function() {
         var min_side_length = 10;

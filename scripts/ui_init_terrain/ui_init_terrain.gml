@@ -203,21 +203,6 @@ function ui_init_terrain(mode) {
             }
         }, t_general);
         ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "DDD Stuff", col_width, element_height, fa_left, col_width, t_general);
-        element.color = c_blue;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Add to Project", col_width, element_height, fa_center, function(button) {
-            dialog_terrain_add_to_project();
-        }, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
         #endregion
         
         #region tab: lights
