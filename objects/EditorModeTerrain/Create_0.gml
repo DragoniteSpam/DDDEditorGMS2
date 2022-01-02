@@ -317,15 +317,15 @@ ClearTexture = function(tx, ty) {
     terrain_refresh_vertex_buffer(self);
 };
 
-AddToProject = function(name = "Terrain", density = 1) {
-    var vbuff = self.BuildVertexBuffer(density);
+AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false) {
+    var vbuff = self.BuildVertexBuffer(density, swap_zup, swap_uv);
     var mesh = new DataMesh(name);
     mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1), vbuff);
     array_push(Game.meshes, mesh);
     return mesh;
 };
 
-BuildVertexBuffer = function(density = 1) {
+BuildVertexBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     density = floor(density);
     var scale = self.save_scale;
     
@@ -376,6 +376,12 @@ BuildVertexBuffer = function(density = 1) {
                 yt11 = 0;
                 c11 = sprite_sample(color_sprite, 0, x11 / sw, y11 / sh);
                 
+                if (swap_uv) {
+                    yt00 = 1 - yt00;
+                    yt10 = 1 - yt10;
+                    yt11 = 1 - yt11;
+                }
+                
                 var norm = triangle_normal(x00, y00, z00, x10, y10, z10, x11, y11, z11);
                 
                 vertex_point_complete(vbuff, x00 * scale, y00 * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
@@ -390,14 +396,18 @@ BuildVertexBuffer = function(density = 1) {
                     xt11 = 0;
                     yt11 = 0;
                     c11 = sprite_sample(color_sprite, 0, x11 / sw, y11 / sh);
+                    if (swap_uv) yt11 = 1 - yt11;
                 }
                 xt01 = 0;
                 yt01 = 0;
                 c01 = sprite_sample(color_sprite, 0, x01 / sw, y01 / sh);
+                if (swap_uv) yt01 = 1 - yt01;
+                
                 if (xt00 == undefined) {
                     xt00 = 0;
                     yt00 = 0;
                     c00 = sprite_sample(color_sprite, 0, x00 / sw, y00 / sh);
+                    if (swap_uv) yt00 = 1 - yt00;
                 }
                 
                 var norm = triangle_normal(x11, y11, z11, x01, y01, z01, x00, y00, z00);
@@ -423,12 +433,7 @@ ExportD3D = function(filename, density = 1) {
 };
 
 ExportOBJ = function(filename, density = 1) {
-    // maybe it would be easier to just wrap this into the BuildVertexBuffer
-    // method...
-    var zupswap = self.export_swap_zup;
-    var uvswap = self.export_swap_uvs;
-    
-    var mesh = self.AddToProject("Terrain", density);
+    var mesh = self.AddToProject("Terrain", density, self.export_swap_zup, self.export_swap_uvs);
     export_obj(filename, mesh, "DDD Terrain");
     mesh.Destroy();
 }
