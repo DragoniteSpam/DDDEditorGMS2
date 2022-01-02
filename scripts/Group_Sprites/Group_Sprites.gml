@@ -155,3 +155,34 @@ function sprite_remove_transparent_color(sprite, color = 0xff00ff) {
     
     return sprite;
 }
+
+function sprite_sample(sprite, index, u, v) {
+    return sprite_sample_pixel(sprite, index, u * sprite_get_width(sprite), v * sprite_get_height(sprite));
+}
+
+function sprite_sample_pixel(sprite, index, x, y) {
+    static cache = { };
+    var sprite_id = string(sprite) + ";" + string(index);
+    var buffer = cache[$ sprite_id];
+    if (buffer == undefined) {
+        buffer = sprite_to_buffer(sprite, index);
+        cache[$ sprite_id] = buffer;
+    }
+    
+    // might implement texture wrapping some other day but right now i dont feel like it
+    x = clamp(x, 0, sprite_get_width(sprite) - 1);
+    y = clamp(y, 0, sprite_get_height(sprite) - 1);
+    var address_ul = (floor(x) + floor(y) * sprite_get_width(sprite)) * 4;
+    var address_ur = (ceil(x) + floor(y) * sprite_get_width(sprite)) * 4;
+    var address_ll = (floor(x) + ceil(y) * sprite_get_width(sprite)) * 4;
+    var address_lr = (ceil(x) + ceil(y) * sprite_get_width(sprite)) * 4;
+    var horizontal_lerp = frac(x);
+    var vertical_lerp = frac(y);
+    var colour_ul = buffer_peek(buffer, address_ul, buffer_u32);
+    var colour_ur = buffer_peek(buffer, address_ur, buffer_u32);
+    var colour_ll = buffer_peek(buffer, address_ll, buffer_u32);
+    var colour_lr = buffer_peek(buffer, address_lr, buffer_u32);
+    var colour_l = merge_colour(colour_ul, colour_ll, vertical_lerp);
+    var colour_r = merge_colour(colour_ur, colour_lr, vertical_lerp);
+    return merge_colour(colour_l, colour_r, horizontal_lerp);
+}

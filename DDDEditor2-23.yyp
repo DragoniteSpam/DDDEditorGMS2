@@ -675,6 +675,7 @@
     {"id":{"name":"omu_entity_remove_move_route","path":"scripts/omu_entity_remove_move_route/omu_entity_remove_move_route.yy",},"order":9,},
     {"id":{"name":"omu_entity_remove_move_route_step","path":"scripts/omu_entity_remove_move_route_step/omu_entity_remove_move_route_step.yy",},"order":10,},
     {"id":{"name":"omu_entity_set_auto_move_route","path":"scripts/omu_entity_set_auto_move_route/omu_entity_set_auto_move_route.yy",},"order":11,},
+    {"id":{"name":"spr_tests","path":"sprites/spr_tests/spr_tests.yy",},"order":5,},
     {"id":{"name":"omu_entity_edit_move_route","path":"scripts/omu_entity_edit_move_route/omu_entity_edit_move_route.yy",},"order":12,},
     {"id":{"name":"omu_mr_move_up","path":"scripts/omu_mr_move_up/omu_mr_move_up.yy",},"order":0,},
     {"id":{"name":"__dotdae_model_load_inner","path":"scripts/__dotdae_model_load_inner/__dotdae_model_load_inner.yy",},"order":0,},
