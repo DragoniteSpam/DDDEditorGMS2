@@ -98,6 +98,13 @@ function EmuCore(x, y, w, h) constructor {
         return self;
     }
     
+    self.tooltip = "";
+    
+    static SetTooltip = function(text) {
+    	self.tooltip = text;
+    	return self;
+    };
+    
     static getTextX = function(_x) {
         switch (self.alignment) {
             case fa_left: return _x + self.offset;
