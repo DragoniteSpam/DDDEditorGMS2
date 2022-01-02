@@ -69,7 +69,7 @@
 #macro buffer_eof                           0xffffffff
 #macro CAMERA_SAVE_FREQUENCY                5
 #macro CAMERA_ZNEAR                         0x0004
-#macro CAMERA_ZFAR                          0x4000
+#macro CAMERA_ZFAR                          0x8000
 #macro CH                                   900                                 // these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CW                                   1080
 #macro C_OBJECT_CACHE_SIZE                  5000
