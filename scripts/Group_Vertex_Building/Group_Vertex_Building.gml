@@ -16,7 +16,8 @@ function vertex_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, a
     vertex_float3(buffer, 0, 0, 0);                                             // bitangent
     vertex_float3(buffer, bc_index == 0, bc_index == 1, bc_index == 2);
     
-    bc_index = ++bc_index % 3;
+    bc_index++;
+    bc_index %= 3;
 }
 
 function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha) {

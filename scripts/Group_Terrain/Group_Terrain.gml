@@ -5,45 +5,79 @@ function terrain_add_to_project() {
     var terrain = Stuff.terrain;
     var scale = terrain.save_scale;
     
-    var fx = sprite_get_width(terrain.texture) / terrain_texture_size;
-    var fy = sprite_get_height(terrain.texture) / terrain_texture_size;
+    var color_sprite = sprite_create_from_surface(terrain.color.surface, 0, 0, surface_get_width(terrain.color.surface), surface_get_height(terrain.color.surface), false, false, 0, 0);
+    var sw = sprite_get_width(color_sprite) / terrain.color_scale;
+    var sh = sprite_get_height(color_sprite) / terrain.color_scale;
     
     var vbuff = vertex_create_buffer();
     vertex_begin(vbuff, Stuff.graphics.vertex_format);
     
-    for (var i = 0, n = buffer_get_size(terrain.terrain_buffer_data); i < n; i += VERTEX_SIZE_TERRAIN * 3) {
-        var x1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 0, buffer_f32) * scale;
-        var y1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 4, buffer_f32) * scale;
-        var z1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 8, buffer_f32) * scale;
-        var x2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 0, buffer_f32) * scale;
-        var y2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 4, buffer_f32) * scale;
-        var z2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 8, buffer_f32) * scale;
-        var x3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 0, buffer_f32) * scale;
-        var y3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 4, buffer_f32) * scale;
-        var z3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 8, buffer_f32) * scale;
-        
-        if (terrain.export_all || z1 > 0 || z2 > 0 || z3 > 0) {
-            var xtex1 = 0;
-            var ytex1 = 0;
-            var c1 = c_white;
-            var a1 = 1;
-            var xtex2 = 0;
-            var ytex2 = 0;
-            var c2 = c_white;
-            var a2 = 1;
-            var xtex3 = 0;
-            var ytex3 = 0;
-            var c3 = c_white;
-            var a3 = 1;
+    for (var i = 0; i < terrain.width - 1; i++) {
+        for (var j = 0; j < terrain.height - 1; j++) {
+            var z00 = terrain_get_z(terrain, i    , j    );
+            var z10 = terrain_get_z(terrain, i + 1, j    );
+            var z11 = terrain_get_z(terrain, i + 1, j + 1);
+            var z01 = terrain_get_z(terrain, i    , j + 1);
             
-            var norm = triangle_normal(x1, y1, z1, x2, y2, z2, x3, y3, z3);
+            /// @todo: calculate texture coordinates
+            var xt00 = undefined;
+            var yt00 = undefined;
+            var c00 = undefined;
+            var xt10 = undefined;
+            var yt10 = undefined;
+            var c10 = undefined;
+            var xt11 = undefined;
+            var yt11 = undefined;
+            var c11 = undefined;
+            var xt01 = undefined;
+            var yt01 = undefined;
+            var c01 = undefined;
             
-            vertex_point_complete(vbuff, x1, y1, z1, norm[0], norm[1], norm[2], xtex1, ytex1, c1, a1);
-            vertex_point_complete(vbuff, x2, y2, z2, norm[0], norm[1], norm[2], xtex2, ytex2, c2, a2);
-            vertex_point_complete(vbuff, x3, y3, z3, norm[0], norm[1], norm[2], xtex3, ytex3, c3, a3);
+            if (terrain.export_all || z00 > 0 || z10 > 0 || z11 > 0) {
+                xt00 = 0;
+                yt00 = 0;
+                c00 = sprite_sample(color_sprite, 0, i / sw, j / sh);
+                xt10 = 0;
+                yt10 = 0;
+                c10 = sprite_sample(color_sprite, 0, (i + 1) / sw, j / sh);
+                xt11 = 0;
+                yt11 = 0;
+                c11 = sprite_sample(color_sprite, 0, (i + 1) / sw, (j + 1) / sh);
+                
+                var norm = triangle_normal(i, j, z00, i + 1, j, z10, i, j + 1, z11);
+                
+                vertex_point_complete(vbuff, i     * scale, j     * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                vertex_point_complete(vbuff, i + 1 * scale, j     * scale, z10 * scale, norm[0], norm[1], norm[2], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
+                vertex_point_complete(vbuff, i + 1 * scale, j + 1 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+            }
+            
+            if (terrain.export_all || z11 > 0 || z01 > 0 || z00 > 0) {
+                // 11 and 00 may have already been calculated so theres no point
+                // in doing it again!
+                if (xt11 == undefined) {
+                    xt11 = 0;
+                    yt11 = 0;
+                    c11 = sprite_sample(color_sprite, 0, (i + 1) / sw, (j + 1) / sh);
+                }
+                xt01 = 0;
+                yt01 = 0;
+                c01 = sprite_sample(color_sprite, 0, i / sw, (j + 1) / sh);
+                if (xt00 == undefined) {
+                    xt00 = 0;
+                    yt00 = 0;
+                    c00 = sprite_sample(color_sprite, 0, i / sw, j / sh);
+                }
+                
+                var norm = triangle_normal(i + 1, j + 1, z11, i, j + 1, z01, i, j, z00);
+                
+                vertex_point_complete(vbuff, i + 1 * scale, j + 1 * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                vertex_point_complete(vbuff, i     * scale, j + 1 * scale, z01 * scale, norm[0], norm[1], norm[2], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
+                vertex_point_complete(vbuff, i     * scale, j     * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+            }
         }
     }
     
+    sprite_delete(color_sprite);
     vertex_end(vbuff);
     
     var mesh = new DataMesh("Terrain");
