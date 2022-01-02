@@ -467,6 +467,17 @@ ExportD3D = function(filename, density = 1) {
     buffer_delete(output);
 };
 
+ExportOBJ = function(filename, density = 1) {
+    // maybe it would be easier to just wrap this into the BuildVertexBuffer
+    // method...
+    var zupswap = self.export_swap_zup;
+    var uvswap = self.export_swap_uvs;
+    
+    var mesh = self.AddToProject("Terrain", density);
+    export_obj(filename, mesh, "DDD Terrain");
+    mesh.Destroy();
+}
+
 ExportVbuff = function(filename, density = 1) {
     var vbuff = self.BuildVertexBuffer(density);
     var raw = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);

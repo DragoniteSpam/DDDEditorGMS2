@@ -50,7 +50,7 @@ function export_d3d_raw(filename, buffer) {
     buffer_save_ext(export_buffer, filename, 0, buffer_tell(export_buffer));
 }
 
-function export_obj(base_filename, mesh) {
+function export_obj(base_filename, mesh, title = "DDD") {
     var path = filename_path(base_filename);
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
     var buffer = buffer_create(1024, buffer_grow, 1);
@@ -62,7 +62,7 @@ function export_obj(base_filename, mesh) {
         buffer_seek(sub.buffer, buffer_seek_start, 0);
         buffer_seek(buffer, buffer_seek_start, 0);
         
-        buffer_write(buffer, buffer_text, "# DDD\r\n");
+        buffer_write(buffer, buffer_text, "# " + title + "\r\n");
         buffer_write(buffer, buffer_text, "mtllib " + filename_name(filename_name(filename_change_ext(fn, ".mtl"))) + "\r\n\r\n");
         
         var active_mtl = "None";

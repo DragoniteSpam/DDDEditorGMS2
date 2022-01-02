@@ -318,12 +318,11 @@ function DataMesh(source) : SData(source) constructor {
     static Destroy = function() {
         self.DestroyBase();
         
-        var map = Stuff.map.active_map;
-
         for (var i = 0; i < array_length(self.submeshes); i++) {
             self.submeshes[i].Destroy();
         }
         
+        var map = Stuff.map.active_map;
         for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
             var thing = map.contents.all_entities[| i];
             if (thing.etype == ETypes.ENTITY_MESH && thing.mesh == self.GUID) {

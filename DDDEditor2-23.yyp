@@ -230,7 +230,6 @@
     {"id":{"name":"terrain_import_heightmap","path":"scripts/terrain_import_heightmap/terrain_import_heightmap.yy",},"order":2,},
     {"id":{"name":"terrain_save","path":"scripts/terrain_save/terrain_save.yy",},"order":3,},
     {"id":{"name":"terrain_load","path":"scripts/terrain_load/terrain_load.yy",},"order":4,},
-    {"id":{"name":"terrain_save_obj","path":"scripts/terrain_save_obj/terrain_save_obj.yy",},"order":5,},
     {"id":{"name":"editor_cleanup_map","path":"scripts/editor_cleanup_map/editor_cleanup_map.yy",},"order":12,},
     {"id":{"name":"editor_update_map","path":"scripts/editor_update_map/editor_update_map.yy",},"order":14,},
     {"id":{"name":"snap_from_ini_file","path":"scripts/snap_from_ini_file/snap_from_ini_file.yy",},"order":0,},
