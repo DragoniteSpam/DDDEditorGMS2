@@ -292,7 +292,7 @@ function dialog_terrain_export() {
             Stuff.terrain.export_centered = self.value;
         })),
         (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
-            Stuff.terrain.save_scale = string(self.value);
+            Stuff.terrain.save_scale = real(self.value);
         })),
         new EmuText(352, 32, 256, 32, "[c_blue]OBJ export settings"),
         (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
