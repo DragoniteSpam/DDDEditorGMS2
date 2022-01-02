@@ -46,10 +46,10 @@ function draw_editor_terrain() {
         matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, Stuff.terrain.view_scale, Stuff.terrain.view_scale, Stuff.terrain.view_scale));
         shader_set(shd_terrain_wire);
         vertex_submit(Stuff.terrain.terrain_buffer, pr_linelist, -1);
+        shader_reset();
     }
     
     Stuff.terrain.DrawWater(true);
     
-    shader_reset();
     matrix_set(matrix_world, matrix_build_identity());
 }
