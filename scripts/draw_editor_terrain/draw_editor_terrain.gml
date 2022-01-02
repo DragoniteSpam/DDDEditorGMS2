@@ -48,12 +48,7 @@ function draw_editor_terrain() {
         vertex_submit(Stuff.terrain.terrain_buffer, pr_linelist, -1);
     }
     
-    matrix_set(matrix_world, matrix_build_identity());
-    
-    if (view_water) {
-        graphics_set_lighting_terrain(shd_water);
-        graphics_draw_water(false);
-    }
+    Stuff.terrain.DrawWater(true);
     
     shader_reset();
     matrix_set(matrix_world, matrix_build_identity());

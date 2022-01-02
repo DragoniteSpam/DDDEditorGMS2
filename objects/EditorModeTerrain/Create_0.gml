@@ -317,6 +317,20 @@ ClearTexture = function(tx, ty) {
     terrain_refresh_vertex_buffer(self);
 };
 
+DrawWater = function(set_lights = true) {
+    if (!self.view_water) return;
+    
+    if (set_lights) {
+        graphics_set_lighting_terrain(shd_water);
+    }
+    
+    matrix_set(matrix_world, matrix_build_identity());
+    //var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+    //vertex_submit(map.contents.water, pr_trianglelist, tex);
+};
+#endregion
+
+#region Export methods
 AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false) {
     var vbuff = self.BuildVertexBuffer(density, swap_zup, swap_uv);
     var mesh = new DataMesh(name);
