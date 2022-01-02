@@ -8,6 +8,11 @@ function EmuCore(x, y, w, h) constructor {
     self.root = undefined;
     self.flags = 0;
     
+    /// @ignore
+    self.id = "";
+    /// @ignore
+    self.child_ids = { };
+    
     self.enabled = true;
     self.interactive = true;
     self.outline = true;             // not used in all element types
@@ -35,6 +40,30 @@ function EmuCore(x, y, w, h) constructor {
     self._element_spacing_y = 16;
     self._ref_name = "";
     
+    static SetID = function(id) {
+        id = string(id);
+        if (self.root) {
+            if (self.root.child_ids[$ self.id] == self) {
+                variable_struct_remove(self.root.child_ids, self.id);
+            }
+            if (id != "") {
+                self.root.child_ids[$ id] = self;
+            }
+        }
+        self.id = id;
+        return self;
+    };
+    
+    static GetChild = function(id) {
+        id = string(id);
+        return self.child_ids[$ id];
+    };
+    
+    static GetSibling = function(id) {
+        if (!self.root) return undefined;
+        return self.root.GetChild(id);
+    };
+    
     static SetRootVariableName = function(name) {
         self._ref_name = "el_" + name;
         if (self.root) {
@@ -61,6 +90,9 @@ function EmuCore(x, y, w, h) constructor {
             thing.root = self;
             if (thing._ref_name != "") {
                 self[$ thing._ref_name] = thing;
+            }
+            if (thing.id != "") {
+                self.child_ids[$ thing.id] = thing;
             }
         }
         return self;
@@ -106,6 +138,9 @@ function EmuCore(x, y, w, h) constructor {
         for (var i = 0; i < array_length(elements); i++) {
             var thing = elements[i];
             ds_list_delete(self._contents, ds_list_find_index(self._contents, thing));
+            if (self.child_ids[$ thing.id] == thing) {
+                variable_struct_remove(self.child_ids, thing.id);
+            }
         }
         return self;
     }
