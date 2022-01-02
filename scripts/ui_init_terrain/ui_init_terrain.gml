@@ -141,7 +141,7 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "New Terrain", col_width, element_height, fa_center, function(button) {
-            dialog_create_terrain_new(undefined);
+            dialog_create_terrain_new();
         }, t_general);
         ds_list_add(t_general.contents, element);
         
@@ -497,35 +497,7 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(legal_x + spacing, yy, "Mutate", col_width, element_height, fa_center, function(button) {
-            var dialog = (new EmuDialog(640, 560, "Mutate Terrain")).AddContent([
-                new EmuText(32, 32, 360, 24, "Smoothness:"),
-                (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 4, emu_null))
-                    .SetID("SMOOTHNESS"),
-                new EmuText(32, EMU_AUTO, 360, 24, "Noise amplitude:"),
-                (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null))
-                    .SetID("NOISE_STRENGTH"),
-                new EmuText(32, EMU_AUTO, 360, 24, "Texture amplitude:"),
-                (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null))
-                    .SetID("TEXTURE_STRENGTH"),
-                (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
-                    var selection = self.GetSelection();
-                    if (selection + 1) {
-                        self.GetSibling("SPRITE_PREVIEW").sprite = Stuff.terrain.mutation_sprites[selection];
-                    }
-                })).SetEntryTypes(ListEntries.STRINGS).AddEntries([
-                    "Flat",
-                    "Bullseye",
-                ]).SetID("SPRITE_LIST"),
-                (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null)
-                )
-                    .SetID("SPRITE_PREVIEW")
-                    .SetImageAlignment(fa_left, fa_top)
-                    .SetCheckerboard(true),
-            ]).AddDefaultCloseButton("Okay", function() {
-                Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value, self.GetSibling("TEXTURE_STRENGTH").value);
-                self.root.Dispose();
-            });
-            dialog.active_shade = 0;
+            dialog_terrain_mutate();
         }, t_heightmap);
         element.tooltip = "Add or subtract a random amount to the terrain. You can select a sprite to ";
         ds_list_add(t_heightmap.contents, element);
