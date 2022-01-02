@@ -516,7 +516,7 @@ function ui_init_terrain(mode) {
                 Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value, self.GetSibling("TEXTURE_STRENGTH").value);
                 self.root.Dispose();
             });
-            dialog.scale = button.root.element_deform_rate_bar.value;
+            dialog.active_shade = 0;
         }, t_heightmap);
         element.tooltip = "Add or subtract a random amount to the terrain. You can select a sprite to ";
         ds_list_add(t_heightmap.contents, element);
