@@ -109,6 +109,8 @@ mutation_sprites = [
     spr_terrain_gen_bullseye,
 ];
 
+water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
+
 var t = get_timer();
 
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
@@ -324,9 +326,12 @@ DrawWater = function(set_lights = true) {
         graphics_set_lighting_terrain(shd_terrain_water);
     }
     
-    matrix_set(matrix_world, matrix_build_identity());
-    //var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
-    //vertex_submit(map.contents.water, pr_trianglelist, tex);
+    matrix_set(matrix_world, matrix_build(0, 0, -1, 0, 0, 0, 1, 1, 1));
+    texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
+    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_WaterAlphaBounds"), 0.4, 0.9);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), current_time / 1000, current_time / 1000);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Displacement"), 0.0625);
+    vertex_submit(self.water, pr_trianglelist, sprite_get_texture(spr_terrain_water, 0));
     shader_reset();
 };
 #endregion
