@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "ui",
-    "path": "folders/Scripts/modes/terrain/ui.yy",
+    "name": "Terrain",
+    "path": "folders/Terrain.yy",
   },
   "resourceVersion": "1.0",
-  "name": "dialog_create_export_heightmap",
+  "name": "Group_Terrain_Dialogs",
   "tags": [],
   "resourceType": "GMScript",
 }
