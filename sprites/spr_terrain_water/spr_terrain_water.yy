@@ -24,12 +24,12 @@
   "gridX": 64,
   "gridY": 64,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"2a8363e3-d705-4743-a05c-0ea433641a18","path":"sprites/spr_water_base/spr_water_base.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"2a8363e3-d705-4743-a05c-0ea433641a18","path":"sprites/spr_water_base/spr_water_base.yy",},"LayerId":{"name":"c6c99039-f336-4445-ae38-04f98822afaa","path":"sprites/spr_water_base/spr_water_base.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_water_base","path":"sprites/spr_water_base/spr_water_base.yy",},"resourceVersion":"1.0","name":"2a8363e3-d705-4743-a05c-0ea433641a18","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"2a8363e3-d705-4743-a05c-0ea433641a18","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"2a8363e3-d705-4743-a05c-0ea433641a18","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},"LayerId":{"name":"c6c99039-f336-4445-ae38-04f98822afaa","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_terrain_water","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},"resourceVersion":"1.0","name":"2a8363e3-d705-4743-a05c-0ea433641a18","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_water_base","path":"sprites/spr_water_base/spr_water_base.yy",},
+    "spriteId": {"name":"spr_terrain_water","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 15.0,
@@ -41,8 +41,8 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"98075c64-91bd-4f6c-9ebd-d2d77f86ffff","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2a8363e3-d705-4743-a05c-0ea433641a18","path":"sprites/spr_water_base/spr_water_base.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
+            {"id":"98075c64-91bd-4f6c-9ebd-d2d77f86ffff","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2a8363e3-d705-4743-a05c-0ea433641a18","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": {"x":0.0,"y":0.0,},
     "lockOrigin": false,
@@ -58,9 +58,9 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_water_base","path":"sprites/spr_water_base/spr_water_base.yy",},
+    "parent": {"name":"spr_terrain_water","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},
     "resourceVersion": "1.3",
-    "name": "",
+    "name": "spr_terrain_water",
     "tags": [],
     "resourceType": "GMSequence",
   },
@@ -70,10 +70,10 @@
   "nineSlice": null,
   "parent": {
     "name": "water",
-    "path": "folders/Sprites/water.yy",
+    "path": "folders/Terrain/water.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_water_base",
+  "name": "spr_terrain_water",
   "tags": [],
   "resourceType": "GMSprite",
 }
