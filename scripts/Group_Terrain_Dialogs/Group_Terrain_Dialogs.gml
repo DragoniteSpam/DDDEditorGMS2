@@ -152,23 +152,43 @@ function dialog_create_terrain_new() {
             .SetInputBoxPosition(vx1, vy1, vx2, vy2)
             .SetTooltip("Height of the terrain")
             .SetID("HEIGHT"),
+        (new EmuButton(col1_x + 0 * ew / 4, EMU_AUTO, ew / 4, b_height, "64", function() {
+            self.GetSibling("WIDTH").SetValue("64");
+            self.GetSibling("HEIGHT").SetValue("64");
+        }))
+            .SetTooltip("Preset 64x64 map size"),
+        (new EmuButton(col1_x + 1 * ew / 4, EMU_INLINE, ew / 4, b_height, "128", function() {
+            self.GetSibling("WIDTH").SetValue("128");
+            self.GetSibling("HEIGHT").SetValue("128");
+        }))
+            .SetTooltip("Preset 128x128 map size"),
+        (new EmuButton(col1_x + 2 * ew / 4, EMU_INLINE, ew / 4, b_height, "256", function() {
+            self.GetSibling("WIDTH").SetValue("256");
+            self.GetSibling("HEIGHT").SetValue("256");
+        }))
+            .SetTooltip("Preset 256x256 map size"),
+        (new EmuButton(col1_x + 3 * ew / 4, EMU_INLINE, ew / 4, b_height, "512", function() {
+            self.GetSibling("WIDTH").SetValue("512");
+            self.GetSibling("HEIGHT").SetValue("512");
+        }))
+            .SetTooltip("Preset 512x512 map size"),
         //(new EmuCheckbox(col1_x, EMU_AUTO, ew, eh, "Dual layer?", false, function() { }))
         //    .SetTooltip("Enable the secondary texture layer for the terrain")
         //    .SetID("USE_DUAL_LAYER"),
-        (new EmuInput(col1_x, EMU_AUTO, ew, eh, "Heightmap Scale:", "10", "1...255", 3, E_InputTypes.INT, function() { }))
-            .SetTooltip("The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient). This is only useful when importing a heightmap.")
-            .SetID("SCALE"),
         (new EmuCheckbox(col1_x, EMU_AUTO, ew, eh, "Generate noise?", false, function() {
             self.GetSibling("OCTAVES").SetInteractive(self.value);
             self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
         }))
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
-        (new EmuText(col1_x, EMU_AUTO, ew, eh, "Octaves: 6"))
+        (new EmuInput(col1_x, EMU_AUTO, ew, eh, "Scale:", "10", "1...255", 3, E_InputTypes.INT, function() { }))
+            .SetTooltip("The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient). This is only useful when importing a heightmap.")
+            .SetID("SCALE"),
+        (new EmuText(col1_x, EMU_AUTO, ew, eh, "Smoothness: 6"))
             .SetInteractive(false)
             .SetID("OCTAVES_LABEL"),
         (new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 8, 1, 10, true, 6, function() {
-            self.GetSibling("OCTAVES_LABEL").text = "Octaves: " + string(self.value);
+            self.GetSibling("OCTAVES_LABEL").text = "Smoothness: " + string(self.value);
         }))
             .SetIntegersOnly(true)
             .SetInteractive(false)
