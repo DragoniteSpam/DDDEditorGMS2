@@ -109,9 +109,8 @@ void CommonFog(inout vec4 baseColor) {
 #endregion
 
 uniform sampler2D displacementMap;
-uniform float displacement;
-uniform vec2 time;
-uniform float baseAlpha;
+uniform float u_Displacement;
+uniform vec2 u_Time;
 
 #define ALPHA_REF 0.2
 #define WIRE_ALPHA 0.5
@@ -126,14 +125,12 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 
 void main() {
     if (u_Wireframe == 0.0) {
-        vec4 colorDM = texture2D(displacementMap, v_vTexcoord - vec2(mod(2. * time.x / 10., 1.), mod(-time.y / 10., 1.)));
-        vec2 offset = vec2((colorDM.r + colorDM.g + colorDM.b) / 3. - 0.5) * displacement;
-        vec4 finalColor = texture2D(gm_BaseTexture, v_vTexcoord + vec2(mod(time.x / 10., 1.), mod(time.y / 10., 1.)) + offset);
+        vec3 colorDM = texture2D(displacementMap, v_vTexcoord - vec2(mod(2.0 * u_Time.x / 10.0, 1.0), mod(-u_Time.y / 10.0, 1.0))).rgb;
+        vec2 offset = vec2((colorDM.r + colorDM.g + colorDM.b) / 3.0 - 0.5) * u_Displacement;
+        vec4 finalColor = texture2D(gm_BaseTexture, v_vTexcoord + vec2(mod(u_Time.x / 10.0, 1.0), mod(u_Time.y / 10.0, 1.0)) + offset) * v_vColour;
         
         CommonLight(finalColor);
         CommonFog(finalColor);
-        
-        finalColor.a = clamp(length(finalColor.rgb) / 2., 0., 1.) * baseAlpha;
         
         gl_FragColor = finalColor;
     } else if (u_Wireframe == 1.0) {

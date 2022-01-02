@@ -35,6 +35,8 @@ void CommonFogSetup() {
 }
 // include("fog.v.xsh")
 
+uniform vec2 u_WaterAlphaBounds;
+
 void main() {
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1);
     
@@ -51,5 +53,5 @@ void main() {
     vec3 eye_space_normal = (gm_Matrices[MATRIX_WORLD_VIEW] * vec4(in_Normal, 0)).xyz;
     vec3 eye_space_camera = vec3(0, 0, 1);
     
-    v_vColour.a = clamp(1.0 + dot(normalize(eye_space_camera), normalize(eye_space_normal)), 0.25, 0.75);
+    v_vColour.a = clamp(1.0 + dot(normalize(eye_space_camera), normalize(eye_space_normal)), u_WaterAlphaBounds.x, u_WaterAlphaBounds.y);
 }
