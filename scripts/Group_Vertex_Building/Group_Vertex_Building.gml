@@ -289,6 +289,12 @@ function vertex_buffer_formatted(buffer, format) {
         var xt = buffer_peek(buffer, i + 24, buffer_f32);
         var yt = buffer_peek(buffer, i + 28, buffer_f32);
         var cc = buffer_peek(buffer, i + 32, buffer_u32);
+        var tx = buffer_peek(buffer, i + 36, buffer_u32);
+        var ty = buffer_peek(buffer, i + 40, buffer_u32);
+        var tz = buffer_peek(buffer, i + 44, buffer_u32);
+        var bx = buffer_peek(buffer, i + 48, buffer_u32);
+        var by = buffer_peek(buffer, i + 52, buffer_u32);
+        var bz = buffer_peek(buffer, i + 56, buffer_u32);
         if (format & V_POSITION_2D) {
             buffer_write(formatted_buffer, buffer_f32, xx);
             buffer_write(formatted_buffer, buffer_f32, yy);
@@ -311,10 +317,14 @@ function vertex_buffer_formatted(buffer, format) {
             buffer_write(formatted_buffer, buffer_u32, cc);
         }
         if (format & V_TANGENT) {
-            
+            buffer_write(formatted_buffer, buffer_f32, tx);
+            buffer_write(formatted_buffer, buffer_f32, ty);
+            buffer_write(formatted_buffer, buffer_f32, tz);
         }
         if (format & V_BITANGENT) {
-            
+            buffer_write(formatted_buffer, buffer_f32, tx);
+            buffer_write(formatted_buffer, buffer_f32, ty);
+            buffer_write(formatted_buffer, buffer_f32, tz);
         }
         if (format & V_BARYCENTRIC) {
             buffer_write(formatted_buffer, buffer_f32, (bc_index == 0));
@@ -322,19 +332,42 @@ function vertex_buffer_formatted(buffer, format) {
             buffer_write(formatted_buffer, buffer_f32, (bc_index == 2));
         }
         if (format & V_SMALL_NORMAL) {
-            
+            var snx = normalize(nx, 0, 255, -1, 1);
+            var sny = normalize(ny, 0, 255, -1, 1);
+            var snz = normalize(nz, 0, 255, -1, 1);
+            buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(snx, sny, snz));
         }
         if (format & V_SMALL_TANGENT) {
-            
+            var stx = normalize(tx, 0, 255, -1, 1);
+            var sty = normalize(ty, 0, 255, -1, 1);
+            var stz = normalize(tz, 0, 255, -1, 1);
+            buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(stx, sty, stz));
         }
         if (format & V_SMALL_BITANGENT) {
-            
+            var sbx = normalize(bx, 0, 255, -1, 1);
+            var sby = normalize(by, 0, 255, -1, 1);
+            var sbz = normalize(bz, 0, 255, -1, 1);
+            buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(sbx, sby, sbz));
         }
         if (format & V_SMALL_TEXCOORD) {
-            
+            var stx = floor(tx * 0xff);
+            var sty = floor(ty * 0xff);
+            // you can technically get away with 16 bits of precision for
+            // texture UVs if you give two color channels to each coordinate,
+            // but if you're using a small texcoord format you've probably
+            // decided that you don't need that anyway
+            buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(stx, sty, 0));
         }
         if (format & V_SMALL_NORMAL_PLUS_TEXCOORD) {
-            
+            var snx = normalize(nx, 0, 255, -1, 1);
+            var sny = normalize(ny, 0, 255, -1, 1);
+            var snz = normalize(nz, 0, 255, -1, 1);
+            var stx = floor(tx * 0x0f);
+            var sty = floor(ty * 0x0f);
+            // this is EXTREMELY squished and each texture coordinate now can
+            // only have 16 possible values so it's probably not useful for
+            // much other than pixel art and paletted faces
+            buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(snx, sny, snz) | (stx | sty << 4));
         }
         bc_index = ++bc_index % 3;
     }
