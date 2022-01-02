@@ -3,7 +3,6 @@
 
 function terrain_add_to_project() {
     var terrain = Stuff.terrain;
-    var bytes = buffer_get_size(terrain.terrain_buffer_data);
     var scale = terrain.save_scale;
     
     var fx = sprite_get_width(terrain.texture) / terrain_texture_size;
@@ -12,16 +11,16 @@ function terrain_add_to_project() {
     var vbuff = vertex_create_buffer();
     vertex_begin(vbuff, Stuff.graphics.vertex_format);
     
-    for (var i = 0; i < bytes; i += VERTEX_SIZE_TERRAIN * 3) {
-        var x1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 0, buffer_f32);
-        var y1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 4, buffer_f32);
-        var z1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 8, buffer_f32);
-        var x2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 0, buffer_f32);
-        var y2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 4, buffer_f32);
-        var z2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 8, buffer_f32);
-        var x3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 0, buffer_f32);
-        var y3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 4, buffer_f32);
-        var z3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 8, buffer_f32);
+    for (var i = 0, n = buffer_get_size(terrain.terrain_buffer_data); i < n; i += VERTEX_SIZE_TERRAIN * 3) {
+        var x1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 0, buffer_f32) * scale;
+        var y1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 4, buffer_f32) * scale;
+        var z1 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 0 + 8, buffer_f32) * scale;
+        var x2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 0, buffer_f32) * scale;
+        var y2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 4, buffer_f32) * scale;
+        var z2 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 1 + 8, buffer_f32) * scale;
+        var x3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 0, buffer_f32) * scale;
+        var y3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 4, buffer_f32) * scale;
+        var z3 = buffer_peek(terrain.terrain_buffer_data, i + VERTEX_SIZE_TERRAIN * 2 + 8, buffer_f32) * scale;
         
         if (terrain.export_all || z1 > 0 || z2 > 0 || z3 > 0) {
             var xtex1 = 0;
