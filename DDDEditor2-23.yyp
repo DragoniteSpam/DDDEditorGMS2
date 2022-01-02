@@ -226,7 +226,6 @@
     {"id":{"name":"uivc_terrain_light_enable_by_type","path":"scripts/uivc_terrain_light_enable_by_type/uivc_terrain_light_enable_by_type.yy",},"order":31,},
     {"id":{"name":"dmu_terrain_import_heightmap","path":"scripts/dmu_terrain_import_heightmap/dmu_terrain_import_heightmap.yy",},"order":33,},
     {"id":{"name":"dialog_create_terrain_new","path":"scripts/dialog_create_terrain_new/dialog_create_terrain_new.yy",},"order":44,},
-    {"id":{"name":"dmu_dialog_commit_terrain_create","path":"scripts/dmu_dialog_commit_terrain_create/dmu_dialog_commit_terrain_create.yy",},"order":45,},
     {"id":{"name":"Group_Mesh_Import","path":"scripts/Group_Mesh_Import/Group_Mesh_Import.yy",},"order":7,},
     {"id":{"name":"snap_from_messagepack","path":"scripts/snap_from_messagepack/snap_from_messagepack.yy",},"order":0,},
     {"id":{"name":"dmu_dialog_export_heightmap","path":"scripts/dmu_dialog_export_heightmap/dmu_dialog_export_heightmap.yy",},"order":48,},

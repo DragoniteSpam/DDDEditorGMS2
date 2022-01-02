@@ -50,7 +50,7 @@ function dialog_create_terrain_new() {
             self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
         }))
             .SetTooltip("Generate a random terrain using noise?")
-            .SetID("USENOISE"),
+            .SetID("USE_NOISE"),
         (new EmuText(col1_x, EMU_AUTO, ew, eh, "Octaves: 6"))
             .SetInteractive(false)
             .SetID("OCTAVES_LABEL"),
@@ -61,7 +61,51 @@ function dialog_create_terrain_new() {
             .SetInteractive(false)
             .SetTooltip("The number of octaves to be used in generation")
             .SetID("OCTAVES"),
-        new EmuButton(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, "Create", dmu_dialog_commit_terrain_create),
+        new EmuButton(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, "Create", function() {
+            var terrain = Stuff.terrain;
+            
+            var width = real(self.GetSibling("WIDTH").value);
+            var height = real(self.GetSibling("HEIGHT").value);
+            //var dual = self.GetSibling("USE_DUAL_LAYER").value;
+            
+            terrain.width = width;
+            terrain.ui.t_general.element_width.text = "Width: " + string(width);
+            terrain.height = height;
+            terrain.ui.t_general.element_height.text = "Height: " + string(height);
+            
+            buffer_delete(terrain.height_data);
+            buffer_delete(terrain.terrain_buffer_data);
+            vertex_delete_buffer(terrain.terrain_buffer);
+            
+            terrain.color.Reset(width, height);
+            
+            if (self.GetSibling("USE_NOISE").value) {
+                var ww = power(2, ceil(log2(width)));
+                var hh = power(2, ceil(log2(height)));
+                terrain.height_data = macaw_generate_dll(ww, hh, self.GetSibling("OCTAVES").value, real(self.GetSibling("SCALE").value)).noise;
+            } else {
+                terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
+            }
+            
+            terrain.terrain_buffer = vertex_create_buffer();
+            vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
+            
+            for (var i = 0; i < width - 1; i++) {
+                for (var j = 0; j < height - 1; j++) {
+                    var z00 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 0)) * 4, buffer_f32);
+                    var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32);
+                    var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32);
+                    var z11 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 1)) * 4, buffer_f32);
+                    terrain_create_square(terrain.terrain_buffer, i, j, z00, z10, z11, z01);
+                }
+            }
+            
+            vertex_end(terrain.terrain_buffer);
+            terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_buffer, buffer_fixed, 1);
+            vertex_freeze(terrain.terrain_buffer);
+            
+            self.root.Dispose();
+        }),
         new EmuButton(dw * 5 / 7 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, "Cancel", function() { self.root.Dispose(); }),
     ]);
 }
