@@ -91,7 +91,6 @@ Settings.view[$ "entities"] ??=                                                 
 Settings.view[$ "zones"] ??=                                                    true;
 Settings.view[$ "lighting"] ??=                                                 true;
 Settings.view[$ "gizmos"] ??=                                                   true;
-Settings.view[$ "terrain"] ??=                                                  true;
 Settings.view[$ "threed"] ??=                                                   true;
 
 Settings.mesh[$ "reflect_settings"] ??=                                         MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;

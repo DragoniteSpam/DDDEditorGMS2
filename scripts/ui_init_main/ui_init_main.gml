@@ -212,15 +212,6 @@ function ui_init_main(mode) {
         t_general.AddContent(element);
         
         yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Terrain", Settings.view.terrain, function() {
-            Settings.view.terrain = self.value;
-        });
-        element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
-        element.enabled = false;
-        t_general.AddContent(element);
-        
-        yy += element.GetHeight() + spacing;
         #endregion
         
         #region tab: stats
