@@ -288,22 +288,21 @@ function dialog_terrain_export() {
             .SetID("REDUCTION"),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Stuff.terrain.export_all, function() {
             Stuff.terrain.export_all = self.value;
-        }))
-            .SetID("EXPORT_ALL_FACES"),
+        })),
         (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = string(self.value);
-        }))
-            .SetID("EXPORT_SCALE"),
+        })),
         new EmuText(352, 32, 256, 32, "[c_blue]OBJ export settings"),
         (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
             Stuff.terrain.export_swap_zup = self.value;
-        }))
-            .SetID("SWAP_Z"),
+        })),
         (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Stuff.terrain.export_swap_uvs, function() {
             Stuff.terrain.export_swap_uvs = self.value;
-        }))
-            .SetID("SWAP_UV"),
+        })),
         new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
+        (new EmuButton(352, EMU_AUTO, 256, 32, "Vertex format", function() {
+            emu_dialog_vertex_format(Stuff.terrain.output_vertex_format, function(value) { Stuff.terrain.output_vertex_format = value; });
+        })),
     ]).AddDefaultConfirmCancelButtons("Save", function() {
         var min_side_length = 10;
         var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
