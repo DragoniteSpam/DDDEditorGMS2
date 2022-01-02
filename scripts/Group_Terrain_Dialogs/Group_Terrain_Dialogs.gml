@@ -83,11 +83,11 @@ function dialog_terrain_add_to_project() {
             .SetID("LEVELS"),
         (new EmuText(32, EMU_AUTO, 256, 32, "LOD reduction factor: 2"))
             .SetID("LABEL_REDUCTION"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 2, 4, true, default_lod_levels, function() {
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 4, true, default_lod_levels, function() {
             self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: " + string(self.value);
         }))
             .SetValue(2)
-            .SetIntegersOnly(true)
+            .SetIntegersOnly(false)
             .SetID("REDUCTION"),
         
     ]).AddDefaultCloseButton("Add", function() {

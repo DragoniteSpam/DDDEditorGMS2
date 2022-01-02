@@ -312,6 +312,7 @@ ClearTexture = function(tx, ty) {
 };
 
 AddToProject = function(name = "Terrain", density = 1) {
+    density = floor(density);
     var scale = self.save_scale;
     
     var color_sprite = sprite_create_from_surface(self.color.surface, 0, 0, surface_get_width(self.color.surface), surface_get_height(self.color.surface), false, false, 0, 0);
