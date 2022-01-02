@@ -182,7 +182,7 @@ function sprite_sample_pixel(sprite, index, x, y) {
     var colour_ur = buffer_peek(buffer, address_ur, buffer_u32);
     var colour_ll = buffer_peek(buffer, address_ll, buffer_u32);
     var colour_lr = buffer_peek(buffer, address_lr, buffer_u32);
-    var colour_l = merge_colour(colour_ul, colour_ll, vertical_lerp);
-    var colour_r = merge_colour(colour_ur, colour_lr, vertical_lerp);
-    return merge_colour(colour_l, colour_r, horizontal_lerp);
+    var colour_l = merge_colour_ds(colour_ul, colour_ll, vertical_lerp);
+    var colour_r = merge_colour_ds(colour_ur, colour_lr, vertical_lerp);
+    return merge_colour_ds(colour_l, colour_r, horizontal_lerp);
 }
