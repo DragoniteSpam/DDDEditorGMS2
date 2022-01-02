@@ -16,7 +16,8 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     matrix_set(matrix_world, matrix_build_identity());
     shader_set(shd_wireframe);
     if (mode.draw_grid) vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
-    if (mode.draw_axes) vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
+    shader_set(shd_basic_colors);
+    if (mode.draw_axes) vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
     
     shader_set(shd_ddd);
     

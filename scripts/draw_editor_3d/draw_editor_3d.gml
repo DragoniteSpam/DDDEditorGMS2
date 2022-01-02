@@ -36,8 +36,8 @@ function draw_editor_3d() {
     gpu_set_ztestenable(true);
     
     // axes
-    shader_set(shd_wireframe);
-    vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
+    shader_set(shd_basic_colors);
+    vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
     
     graphics_set_lighting(shd_ddd);
     

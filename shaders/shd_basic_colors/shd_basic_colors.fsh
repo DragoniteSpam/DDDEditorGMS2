@@ -5,5 +5,9 @@ uniform float buckets;
 
 void main() {
     vec4 base = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
-    gl_FragColor = floor(base * buckets) / buckets;
+    if (buckets == 0.0) {
+        gl_FragColor = base;
+    } else {
+        gl_FragColor = floor(base * buckets) / buckets;
+    }
 }

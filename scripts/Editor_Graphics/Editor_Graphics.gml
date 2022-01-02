@@ -28,14 +28,20 @@ function EditorGraphics() constructor {
         vertex_format_add_colour();
         self.vertex_format_wireframe = vertex_format_end();
         
+        vertex_format_begin();
+        vertex_format_add_position_3d();
+        vertex_format_add_texcoord();
+        vertex_format_add_colour();
+        self.vertex_format_axes = vertex_format_end();
+        
         #region basic grids
         self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.vertex_format_wireframe);
         self.wire_box = vertex_load("data/basic/wire_box.vbuff", self.vertex_format_wireframe);
         self.wire_sphere = vertex_load("data/basic/wire_sphere.vbuff", self.vertex_format_wireframe);
         self.wire_capsule = vertex_load("data/basic/wire_capsule.vbuff", self.vertex_format_wireframe);
         self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.vertex_format_wireframe);
-        self.axes = vertex_load("data/basic/axes_corner.vbuff", self.vertex_format_wireframe);
-        self.axes_centered = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_wireframe);
+        self.axes = vertex_load("data/basic/axes_corner.vbuff", self.vertex_format_axes);
+        self.axes_center = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_axes);
         #endregion
         
         c_transform_scaling(Stuff.tile_width, Stuff.tile_height, Stuff.tile_depth);

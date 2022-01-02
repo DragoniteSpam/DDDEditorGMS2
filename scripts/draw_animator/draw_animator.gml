@@ -12,7 +12,6 @@ function draw_animator() {
     camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
     
-    shader_set(shd_wireframe);
     var animation = ui.active_animation;
     
     if (animation) {
@@ -40,7 +39,8 @@ function draw_animator() {
     transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
     shader_set(shd_wireframe);
     vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
-    vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
+    shader_set(shd_basic_colors);
+    vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
     
     matrix_set(matrix_world, matrix_build_identity());
     shader_reset();
