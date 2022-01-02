@@ -451,15 +451,9 @@ ExportOBJ = function(filename, density = 1) {
 }
 
 ExportVbuff = function(filename, density = 1) {
-    var vbuff = self.BuildVertexBuffer(density);
-    var raw = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
-    var formatted = vertex_buffer_formatted(raw, self.output_vertex_format);
-    
-    buffer_save(formatted, filename);
-    
-    vertex_delete_buffer(vbuff);
-    buffer_delete(raw);
-    buffer_delete(formatted);
+    var mesh = self.AddToProject("Terrain", density);
+    export_vb(filename, mesh, self.output_vertex_format);
+    mesh.Destroy();
 };
 #endregion
 
