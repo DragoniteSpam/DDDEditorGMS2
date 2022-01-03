@@ -205,74 +205,18 @@ SaveAsset = function(directory) {
     buffer_save(self.terrain_buffer_data, directory + "terrain.terrain");
 };
 
-LoadJSONTerrain = function(json) {
+LoadJSON = function(json) {
     self.width = json.width;
     self.height = json.height;
-    
-    self.export_all = json.settings.export_all;
-    self.view_water = json.settings.view_water;
-    self.heightmap_scale = json.settings.heightmap_scale;
-    self.water_level = json.settings.water_level;
-    self.export_swap_uvs = json.settings.export_swap_uvs;
-    self.export_swap_zup = json.settings.export_swap_zup;
-    self.export_centered = json.settings.export_centered;
-    self.export_chunk_size = json.settings.export_chunk_size;
-    self.smooth_shading = json.settings.smooth_shading;
     self.dual_layer = json.settings.dual_layer;
-    self.view_scale = json.settings.view_scale;
-    self.view_grid = json.settings.view_grid;
-    self.save_scale = json.settings.save_scale;
-    self.rate = json.settings.rate;
-    self.radius = json.settings.radius;
-    self.mode = json.settings.mode;
-    self.submode = json.settings.submode;
-    self.style = json.settings.style;
-    self.tile_brush_x = json.settings.tile_brush_x;
-    self.tile_brush_y = json.settings.tile_brush_y;
-    self.paint_color = json.settings.paint_color;
-    self.paint_strength = json.settings.paint_strength;
-    self.output_vertex_format = json.settings.output_vertex_format;
-};
-
-LoadJSON = function(json) {
-    self.LoadJSONTerrain(json);
-};
-
-CreateJSONTerrain = function() {
-    return {
-        width: self.width,
-        height: self.height,
-        
-        settings: {
-            export_all: self.export_all,
-            view_water: self.view_water,
-            heightmap_scale: self.heightmap_scale,
-            water_level: self.water_level,
-            export_swap_uvs: self.export_swap_uvs,
-            export_swap_zup: self.export_swap_zup,
-            export_centered: self.export_centered,
-            export_chunk_size: self.export_chunk_size,
-            smooth_shading: self.smooth_shading,
-            dual_layer: self.dual_layer,
-            view_scale: self.view_scale,
-            view_grid: self.view_grid,
-            save_scale: self.save_scale,
-            rate: self.rate,
-            radius: self.radius,
-            mode: self.mode,
-            submode: self.submode,
-            style: self.style,
-            tile_brush_x: self.tile_brush_x,
-            tile_brush_y: self.tile_brush_y,
-            paint_color: self.paint_color,
-            paint_strength: self.paint_strength,
-            output_vertex_format: self.output_vertex_format,
-        },
-    };
 };
 
 CreateJSON = function() {
-    return self.CreateJSONTerrain();
+    return {
+        width: self.width,
+        height: self.height,
+        dual_layer: self.dual_layer,
+    };
 };
 
 #region terrain actions
