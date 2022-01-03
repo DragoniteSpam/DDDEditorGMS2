@@ -150,33 +150,35 @@ function vertex_to_reflect(buffer) {
     return rbuffer;
 }
 
+// max_x and max_y are the max numbers of chunks, chunk_size is exactly
+// what you think it is
 function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
     buffer_seek(buffer, buffer_seek_start, 0);
     var record = { };
     
     for (var i = 0, n = buffer_get_size(buffer); i < n; i += VERTEX_SIZE * 3) {
         // position, normal, texture, colour
-        var p1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 08, buffer_f32) };
-        var n1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 20, buffer_f32) };
-        var t1 = { u: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 28, buffer_f32) };
-        var c1 =      buffer_peek(buffer, i + 0 * VERTEX_SIZE + 32, buffer_u32);
+        var p1 =  { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 08, buffer_f32) };
+        var n1 =  { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 20, buffer_f32) };
+        var t1 =  { u: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 28, buffer_f32) };
+        var c1 =       buffer_peek(buffer, i + 0 * VERTEX_SIZE + 32, buffer_u32);
         // tangent, bitangent, barycentric
         var ta1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 36, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 40, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 44, buffer_f32) };
         var bi1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 56, buffer_f32) };
         var ba1 = { x: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 0 * VERTEX_SIZE + 68, buffer_f32) };
         
-        var p2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 08, buffer_f32) };
-        var n2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 20, buffer_f32) };
-        var t2 = { u: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 28, buffer_f32) };
-        var c2 =      buffer_peek(buffer, i + 1 * VERTEX_SIZE + 32, buffer_u32);
+        var p2 =  { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 08, buffer_f32) };
+        var n2 =  { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 20, buffer_f32) };
+        var t2 =  { u: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 28, buffer_f32) };
+        var c2 =       buffer_peek(buffer, i + 1 * VERTEX_SIZE + 32, buffer_u32);
         var ta2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 36, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 40, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 44, buffer_f32) };
         var bi2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 56, buffer_f32) };
         var ba2 = { x: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 1 * VERTEX_SIZE + 68, buffer_f32) };
         
-        var p3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 08, buffer_f32) };
-        var n3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 20, buffer_f32) };
-        var t3 = { u: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 28, buffer_f32) };
-        var c3 =      buffer_peek(buffer, i + 2 * VERTEX_SIZE + 32, buffer_u32);
+        var p3 =  { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 00, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 04, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 08, buffer_f32) };
+        var n3 =  { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 12, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 16, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 20, buffer_f32) };
+        var t3 =  { u: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 24, buffer_f32), v: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 28, buffer_f32) };
+        var c3 =       buffer_peek(buffer, i + 2 * VERTEX_SIZE + 32, buffer_u32);
         var ta3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 36, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 40, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 44, buffer_f32) };
         var bi3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 56, buffer_f32) };
         var ba3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 68, buffer_f32) };
