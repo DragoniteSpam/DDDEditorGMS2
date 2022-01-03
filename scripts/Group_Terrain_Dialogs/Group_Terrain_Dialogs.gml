@@ -40,7 +40,8 @@ function dialog_create_export_heightmap(root) {
 }
 
 function dialog_terrain_mutate() {
-    var dialog = (new EmuDialog(640, 560, "Mutate Terrain")).AddContent([
+    var dialog = new EmuDialog(640, 560, "Mutate Terrain");
+    dialog.AddContent([
         new EmuText(32, 32, 360, 24, "Smoothness:"),
         (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 4, emu_null))
             .SetID("SMOOTHNESS"),
@@ -93,7 +94,8 @@ function dialog_create_terrain_new() {
     var col1_x = spacing;
     var col2_x = spacing + dw / 2;
     
-    (new EmuDialog(dw, dh, "New Terrain")).AddContent([
+    var dialog = new EmuDialog(dw, dh, "New Terrain");
+    dialog.AddContent([
         (new EmuInput(
             col1_x, yy_base, ew, eh, "Width:", string(DEFAULT_TERRAIN_WIDTH), string(MIN_TERRAIN_WIDTH) + "..." + string(MAX_TERRAIN_WIDTH),
             number_max_digits(MAX_TERRAIN_WIDTH), E_InputTypes.INT, function() { }
@@ -248,7 +250,8 @@ function dialog_terrain_export() {
     
     var ew = 256;
     
-    var dialog = (new EmuDialog(640, 540, "Export Terrain")).AddContent([
+    var dialog = new EmuDialog(640, 540, "Export Terrain");
+    dialog.AddContent([
         new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
         (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
             .SetID("LABEL"),

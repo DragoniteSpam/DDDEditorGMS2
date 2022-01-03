@@ -9,7 +9,8 @@ function dialog_create_mesh_collision_settings(root, selection) {
     var c1x = 32;
     var c2x = 352;
     
-    var dg = (new EmuDialog(dw, dh, "Collision Shapes")).AddContent([
+    var dg = new EmuDialog(dw, dh, "Collision Shapes");
+    dg.AddContent([
         // column 1
         (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 10, function() {
             var selection = self.GetSelection();
