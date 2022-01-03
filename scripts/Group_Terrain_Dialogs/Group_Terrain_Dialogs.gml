@@ -284,17 +284,14 @@ function dialog_terrain_export() {
         (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = real(self.value);
         })),
-        new EmuText(352, 32, 256, 32, "[c_blue]OBJ export settings"),
-        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
-            Stuff.terrain.export_swap_zup = self.value;
-        })),
-        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Stuff.terrain.export_swap_uvs, function() {
-            Stuff.terrain.export_swap_uvs = self.value;
-        })),
-        new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
-        (new EmuButton(352, EMU_AUTO, 256, 32, "Vertex format", function() {
-            emu_dialog_vertex_format(Stuff.terrain.output_vertex_format, function(value) { Stuff.terrain.output_vertex_format = value; });
-        })),
+        (new EmuText(352, 32, 256, 32, "Chunk size: (disabled)"))
+            .SetID("LABEL_CHUNKS"),
+        (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, default_lod_levels, function() {
+            self.GetSibling("LABEL_CHUNKS").text = "Chunk size: " + ((self.value > 0) ? string(self.value) : "(disabled)");
+        }))
+            .SetValueRange(0, 256)
+            .SetIntegersOnly(true)
+            .SetID("CHUNKS"),
         (new EmuButton(352, EMU_AUTO, 256, 32, "Add to Project", function() {
             var min_side_length = 10;
             var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
@@ -315,6 +312,17 @@ function dialog_terrain_export() {
                 }
             }
             self.root.Dispose();
+        })),
+        new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
+        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
+            Stuff.terrain.export_swap_zup = self.value;
+        })),
+        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Stuff.terrain.export_swap_uvs, function() {
+            Stuff.terrain.export_swap_uvs = self.value;
+        })),
+        new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
+        (new EmuButton(352, EMU_AUTO, 256, 32, "Vertex format", function() {
+            emu_dialog_vertex_format(Stuff.terrain.output_vertex_format, function(value) { Stuff.terrain.output_vertex_format = value; });
         })),
     ]).AddDefaultConfirmCancelButtons("Save", function() {
         var min_side_length = 10;
