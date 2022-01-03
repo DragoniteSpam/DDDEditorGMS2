@@ -59,6 +59,7 @@ save = function() {
     Settings.terrain.export_swap_uvs = self.export_swap_uvs;
     Settings.terrain.export_swap_zup = self.export_swap_zup;
     Settings.terrain.export_centered = self.export_centered;
+    Settings.terrain.export_chunk_size = self.export_chunk_size;
     Settings.terrain.output_vertex_format = self.output_vertex_format;
 };
 
@@ -82,6 +83,7 @@ heightmap_scale = setting_get("terrain", "heightmap_scale", 10);
 export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
 export_swap_zup = setting_get("terrain", "export_swap_zup", false);
 export_centered = setting_get("terrain", "export_centered", false);
+export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
 smooth_shading = false;
 dual_layer = false;
 orthographic = false;
@@ -214,6 +216,7 @@ LoadJSONTerrain = function(json) {
     self.export_swap_uvs = json.settings.export_swap_uvs;
     self.export_swap_zup = json.settings.export_swap_zup;
     self.export_centered = json.settings.export_centered;
+    self.export_chunk_size = json.settings.export_chunk_size;
     self.smooth_shading = json.settings.smooth_shading;
     self.dual_layer = json.settings.dual_layer;
     self.view_scale = json.settings.view_scale;
@@ -248,6 +251,7 @@ CreateJSONTerrain = function() {
             export_swap_uvs: self.export_swap_uvs,
             export_swap_zup: self.export_swap_zup,
             export_centered: self.export_centered,
+            export_chunk_size: self.export_chunk_size,
             smooth_shading: self.smooth_shading,
             dual_layer: self.dual_layer,
             view_scale: self.view_scale,
