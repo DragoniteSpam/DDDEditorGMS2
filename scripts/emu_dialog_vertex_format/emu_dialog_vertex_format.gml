@@ -89,10 +89,7 @@ function emu_dialog_vertex_format(value, callback) {
             if (self.value) self.root.value |= flag;
             self.root.cb(self.root.value);
         }),
-        new EmuButton(dialog.width / 2 - 40, dialog.height - 64, 80, 32, "Done", function() {
-            self.root.Dispose();
-        }),
-    ]);
+    ]).AddDefaultCloseButton("Done");
     
     return dialog;
 }
