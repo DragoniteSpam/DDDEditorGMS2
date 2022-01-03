@@ -507,6 +507,10 @@ ExportHeightmap = function(filename, scale) {
     buffer_delete(buffer);
     surface_free(surface);
 };
+
+ExportHeightmapData = function(filename) {
+    buffer_save(self.height_data, filename);
+};
 #endregion
 
 wtf("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
