@@ -1,6 +1,6 @@
 function dialog_create_export_heightmap() {
     var dw = 400;
-    var dh = 320;
+    var dh = 240;
     
     var dg = new EmuDialog(dw, dh, "Heightmap Settings");
     dg.AddContent([
@@ -10,7 +10,14 @@ function dialog_create_export_heightmap() {
         }))
             .SetTooltip("The brightest point on the heightmap will correspond to this value. In most casesm a value of 10 or 16 will be sufficient.")
             .SetID("SCALE"),
-        
+        (new EmuButton(32, EMU_AUTO, 320, 32, "Save Data Buffer", function() {
+            var fn = get_save_filename("Heightmap files|*.hm", "heightmap.hm");
+            if (fn != "") {
+                Stuff.terrain.ExportHeightmapData(fn);
+            }
+        }))
+            .SetTooltip("Directly save the buffer of 32-bit floats that the editor uses internally.")
+            .SetID("BUFFER")
     ]).AddDefaultConfirmCancelButtons("Save", function() {
         var fn = get_save_filename_image("heightmap");
         if (fn != "") {
