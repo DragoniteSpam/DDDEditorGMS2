@@ -156,7 +156,7 @@
     "path": "folders/Easing.yy",
   },
   "resourceVersion": "1.2",
-  "name": "EasingCurves",
+  "name": "ac_easings",
   "tags": [],
   "resourceType": "GMAnimCurve",
 }

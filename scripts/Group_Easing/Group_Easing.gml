@@ -1,15 +1,16 @@
 function easing_get(type, t) {
-    static channels = animcurve_get(EasingCurves).channels;
+    /// @todo
+    if (code_is_compiled()) {
+        show_debug_message("The YYC mangles the values inside this struct for some reason and it causes problems for all involved so I'm just going to have it return 0 for now");
+        return 0;
+    }
     if (type == AnimationTweens.IGNORE || type == AnimationTweens.NONE) return 0;
-    return animcurve_channel_evaluate(channels[type - 2], t);
+    return animcurve_channel_evaluate(animcurve_get(ac_easings).channels[type - 2], t);
 }
 
 function easing_tween(value_start, value_end, f, type) {
     return easing_get(type, f) * (value_end - value_start) + value_start;
 };
-
-// initialize here
-easing_get(0, 0);
 
 enum AnimationTweens {
     // i MAY add an option to disable keyframes for properties entirely at some point (but probably not)
