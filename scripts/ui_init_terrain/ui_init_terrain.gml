@@ -190,10 +190,7 @@ function ui_init_terrain(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Export Heightmap", col_width, element_height, fa_center, function(button) {
-            var fn = get_save_filename_image("heightmap");
-            if (fn != "") {
-                dialog_create_export_heightmap(button.root).filename = fn;
-            }
+            dialog_create_export_heightmap();
         }, t_general);
         ds_list_add(t_general.contents, element);
         #endregion

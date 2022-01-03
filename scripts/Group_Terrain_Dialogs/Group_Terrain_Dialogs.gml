@@ -1,42 +1,23 @@
-function dialog_create_export_heightmap(root) {
+function dialog_create_export_heightmap() {
     var dw = 400;
     var dh = 320;
     
-    show_message("warning! this is probably going to have problems, you should probably fix it before shipping");
-    var dg = dialog_create(dw, dh, "Heightmap Settings", dialog_default, dialog_destroy, root);
-    
-    var columns = 1;
-    var spacing = 16;
-    var ew = dw / columns - spacing * 2;
-    var eh = 24;
-    
-    var vx1 = ew / 2;
-    var vy1 = 0;
-    var vx2 = ew;
-    var vy2 = eh;
-    
-    var yy = 64;
-    var yy_base = yy;
-    
-    var el_scale = create_input(16, yy, "Heightmap scale:", ew, eh, null, "10", "1...255", validate_int, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
-    el_scale.tooltip = "The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient).";
-    dg.el_scale = el_scale;
-    
-    yy += el_scale.height + spacing;
-    
-    var b_width = 128;
-    var b_height = 32;
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Export", b_width, b_height, fa_center, function(button) {
-        terrain_export_heightmap(button.root.filename, real(button.root.el_scale.value));
-        dialog_destroy();
-    }, dg);
-    
-    ds_list_add(dg.contents,
-        el_scale,
-        el_confirm
-    );
-    
-    return dg;
+    var dg = new EmuDialog(dw, dh, "Heightmap Settings");
+    dg.AddContent([
+        /// @todo make the heightmap scale a setting
+        (new EmuInput(32, EMU_AUTO, 320, 32, "Heightmap scale:", "10", "1...255", 3, E_InputTypes.INT, function() {
+            
+        }))
+            .SetTooltip("The brightest point on the heightmap will correspond to this value. In most casesm a value of 10 or 16 will be sufficient.")
+            .SetID("SCALE"),
+        
+    ]).AddDefaultConfirmCancelButtons("Save", function() {
+        var fn = get_save_filename_image("heightmap");
+        if (fn != "") {
+            Stuff.terrain.ExportHeightmap(fn, real(self.GetSibling("SCALE").value));
+        }
+        self.root.Dispose();
+    }, "Close", emu_dialog_close_auto);
 }
 
 function dialog_terrain_mutate() {
