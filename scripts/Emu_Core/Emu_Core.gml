@@ -38,6 +38,7 @@ function EmuCore(x, y, w, h) constructor {
     self._next = noone;
     self._previous = noone;
     self._element_spacing_y = 16;
+    self._element_spacing_x = 32;
     self._ref_name = "";
     
     static SetID = function(identifier) {
@@ -90,7 +91,7 @@ function EmuCore(x, y, w, h) constructor {
                 if (top) {
                     thing.y = top.y;
                 } else {
-                    thing.y = self.element_spacing_y;
+                    thing.y = self._element_spacing_x;
                 }
             }
             ds_list_add(self._contents, thing);
@@ -103,7 +104,7 @@ function EmuCore(x, y, w, h) constructor {
             }
         }
         return self;
-    }
+    };
     
     self.tooltip = "";
     
