@@ -121,6 +121,7 @@
     {"id":{"name":"import_map_tiled","path":"scripts/import_map_tiled/import_map_tiled.yy",},"order":3,},
     {"id":{"name":"import_map_tiled_layer_folder","path":"scripts/import_map_tiled_layer_folder/import_map_tiled_layer_folder.yy",},"order":0,},
     {"id":{"name":"import_map_tiled_layer_object","path":"scripts/import_map_tiled_layer_object/import_map_tiled_layer_object.yy",},"order":1,},
+    {"id":{"name":"Group_Debug","path":"scripts/Group_Debug/Group_Debug.yy",},"order":98,},
     {"id":{"name":"import_map_tiled_layer_tile","path":"scripts/import_map_tiled_layer_tile/import_map_tiled_layer_tile.yy",},"order":2,},
     {"id":{"name":"import_map_tiled_help","path":"scripts/import_map_tiled_help/import_map_tiled_help.yy",},"order":3,},
     {"id":{"name":"data_mesh_recalculate_bounds","path":"scripts/data_mesh_recalculate_bounds/data_mesh_recalculate_bounds.yy",},"order":5,},
