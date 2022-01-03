@@ -9,7 +9,7 @@ function EmuCore(x, y, w, h) constructor {
     self.flags = 0;
     
     /// @ignore
-    self.id = "";
+    self.identifier = "";
     /// @ignore
     self.child_ids = { };
     
@@ -40,28 +40,28 @@ function EmuCore(x, y, w, h) constructor {
     self._element_spacing_y = 16;
     self._ref_name = "";
     
-    static SetID = function(id) {
-        id = string(id);
+    static SetID = function(identifier) {
+        identifier = string(identifier);
         if (self.root) {
-            if (self.root.child_ids[$ self.id] == self) {
-                variable_struct_remove(self.root.child_ids, self.id);
+            if (self.root.child_ids[$ self.identifier] == self) {
+                variable_struct_remove(self.root.child_ids, self.identifier);
             }
-            if (id != "") {
-                self.root.child_ids[$ id] = self;
+            if (identifier != "") {
+                self.root.child_ids[$ identifier] = self;
             }
         }
-        self.id = id;
+        self.identifier = identifier;
         return self;
     };
     
-    static GetChild = function(id) {
-        id = string(id);
-        return self.child_ids[$ id];
+    static GetChild = function(identifier) {
+        identifier = string(identifier);
+        return self.child_ids[$ identifier];
     };
     
-    static GetSibling = function(id) {
+    static GetSibling = function(identifier) {
         if (!self.root) return undefined;
-        return self.root.GetChild(id);
+        return self.root.GetChild(identifier);
     };
     
     static SetRootVariableName = function(name) {
@@ -98,8 +98,8 @@ function EmuCore(x, y, w, h) constructor {
             if (thing._ref_name != "") {
                 self[$ thing._ref_name] = thing;
             }
-            if (thing.id != "") {
-                self.child_ids[$ thing.id] = thing;
+            if (thing.identifier != "") {
+                self.child_ids[$ thing.identifier] = thing;
             }
         }
         return self;
@@ -152,8 +152,8 @@ function EmuCore(x, y, w, h) constructor {
         for (var i = 0; i < array_length(elements); i++) {
             var thing = elements[i];
             ds_list_delete(self._contents, ds_list_find_index(self._contents, thing));
-            if (self.child_ids[$ thing.id] == thing) {
-                variable_struct_remove(self.child_ids, thing.id);
+            if (self.child_ids[$ thing.identifier] == thing) {
+                variable_struct_remove(self.child_ids, thing.identifier);
             }
         }
         return self;
