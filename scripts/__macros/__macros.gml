@@ -129,8 +129,8 @@
 #macro DEFAULT_TERRAIN_HEIGHT               256
 #macro DEFAULT_TERRAIN_HEIGHTMAP_SCALE      256
 #macro DEFAULT_TERRAIN_WIDTH                256
-#macro MAX_TERRAIN_HEIGHT                   512
-#macro MAX_TERRAIN_WIDTH                    512
+#macro MAX_TERRAIN_HEIGHT                   (code_is_compiled() ? 1024 : 512)
+#macro MAX_TERRAIN_WIDTH                    (code_is_compiled() ? 1024 : 512)
 #macro MIN_TERRAIN_HEIGHT                   32
 #macro MIN_TERRAIN_WIDTH                    32
 
