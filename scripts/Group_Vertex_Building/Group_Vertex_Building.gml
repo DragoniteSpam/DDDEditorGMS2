@@ -322,9 +322,9 @@ function vertex_buffer_formatted(buffer, format) {
             buffer_write(formatted_buffer, buffer_f32, tz);
         }
         if (format & V_BITANGENT) {
-            buffer_write(formatted_buffer, buffer_f32, tx);
-            buffer_write(formatted_buffer, buffer_f32, ty);
-            buffer_write(formatted_buffer, buffer_f32, tz);
+            buffer_write(formatted_buffer, buffer_f32, bx);
+            buffer_write(formatted_buffer, buffer_f32, by);
+            buffer_write(formatted_buffer, buffer_f32, bz);
         }
         if (format & V_BARYCENTRIC) {
             buffer_write(formatted_buffer, buffer_f32, (bc_index == 0));
@@ -350,8 +350,8 @@ function vertex_buffer_formatted(buffer, format) {
             buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(sbx, sby, sbz));
         }
         if (format & V_SMALL_TEXCOORD) {
-            var stx = floor(tx * 0xff);
-            var sty = floor(ty * 0xff);
+            var stx = floor(xt * 0xff);
+            var sty = floor(yt * 0xff);
             // you can technically get away with 16 bits of precision for
             // texture UVs if you give two color channels to each coordinate,
             // but if you're using a small texcoord format you've probably
@@ -362,7 +362,7 @@ function vertex_buffer_formatted(buffer, format) {
             var snx = normalize(nx, 0, 255, -1, 1);
             var sny = normalize(ny, 0, 255, -1, 1);
             var snz = normalize(nz, 0, 255, -1, 1);
-            var pal = floor(tx * 0xff);
+            var pal = floor(xt * 0xff);
             buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(snx, sny, snz) | (pal << 24));
         }
         bc_index = ++bc_index % 3;
