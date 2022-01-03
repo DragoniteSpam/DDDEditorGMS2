@@ -77,8 +77,8 @@ function emu_dialog_vertex_format(value, callback) {
             if (self.value) self.root.value |= flag;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal plus texcoord", !!(value & (1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD)), function() {
-            var flag = 1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD;
+        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal plus palette", !!(value & (1 << VertexFormatData.SMALL_NORMAL_PLUS_PALETTE)), function() {
+            var flag = 1 << VertexFormatData.SMALL_NORMAL_PLUS_PALETTE;
             self.root.value &= ~flag;
             if (self.value) self.root.value |= flag;
             self.root.cb(self.root.value);

@@ -108,7 +108,7 @@ enum VertexFormatData {
     SMALL_TANGENT,                                                              // 4 bytes (tx ty tz 0)
     SMALL_BITANGENT,                                                            // 4 bytes (bx by bz 0)
     SMALL_TEXCOORD,                                                             // 4 bytes (u v 0 0)
-    SMALL_NORMAL_PLUS_TEXCOORD,                                                 // 4 bytes (nx ny nz u|v)
+    SMALL_NORMAL_PLUS_PALETTE,                                                  // 4 bytes (nx ny nz and a byte representing a 256 color palette index)
     SMALL_BARYCENTIRC,                                                          // 4 bytes (x y z 0)
     __COUNT,
 }

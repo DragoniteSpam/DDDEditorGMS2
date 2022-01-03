@@ -273,7 +273,7 @@ function vertex_buffer_formatted(buffer, format) {
     static V_SMALL_TANGENT =                                                    1 << VertexFormatData.SMALL_TANGENT;
     static V_SMALL_BITANGENT =                                                  1 << VertexFormatData.SMALL_BITANGENT;
     static V_SMALL_TEXCOORD =                                                   1 << VertexFormatData.SMALL_TEXCOORD;
-    static V_SMALL_NORMAL_PLUS_TEXCOORD =                                       1 << VertexFormatData.SMALL_NORMAL_PLUS_TEXCOORD;
+    static V_SMALL_NORMAL_PLUS_TEXCOORD =                                       1 << VertexFormatData.SMALL_NORMAL_PLUS_PALETTE;
     
     var formatted_buffer = buffer_create(1024, buffer_grow, 1);
     buffer_seek(buffer, buffer_seek_start, 0);
@@ -362,12 +362,8 @@ function vertex_buffer_formatted(buffer, format) {
             var snx = normalize(nx, 0, 255, -1, 1);
             var sny = normalize(ny, 0, 255, -1, 1);
             var snz = normalize(nz, 0, 255, -1, 1);
-            var stx = floor(tx * 0x0f);
-            var sty = floor(ty * 0x0f);
-            // this is EXTREMELY squished and each texture coordinate now can
-            // only have 16 possible values so it's probably not useful for
-            // much other than pixel art and paletted faces
-            buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(snx, sny, snz) | (stx | sty << 4));
+            var pal = floor(tx * 0xff);
+            buffer_write(formatted_buffer, buffer_u32, make_colour_rgb(snx, sny, snz) | (pal << 24));
         }
         bc_index = ++bc_index % 3;
     }
