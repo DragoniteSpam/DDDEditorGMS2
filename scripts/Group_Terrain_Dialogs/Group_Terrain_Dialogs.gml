@@ -4,9 +4,8 @@ function dialog_create_export_heightmap() {
     
     var dg = new EmuDialog(dw, dh, "Heightmap Settings");
     dg.AddContent([
-        /// @todo make the heightmap scale a setting
-        (new EmuInput(32, EMU_AUTO, 320, 32, "Heightmap scale:", "10", "1...255", 3, E_InputTypes.INT, function() {
-            
+        (new EmuInput(32, EMU_AUTO, 320, 32, "Heightmap scale:", string(Stuff.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() {
+            Stuff.terrain.heightmap_scale = string(self.value);
         }))
             .SetTooltip("The brightest point on the heightmap will correspond to this value. In most casesm a value of 10 or 16 will be sufficient.")
             .SetID("SCALE"),

@@ -16,6 +16,12 @@ function EmuProgressBar(x, y, w, h, thickness, value_min, value_max, draggable, 
     self._integers_only = false;
     self._currently_dragging = false;
     
+    static SetValueRange = function(vmin, vmax) {
+        self.value_min = min(vmin, vmax);
+        self.value_max = max(vmin, vmax);
+        return self;
+    };
+    
     SetIntegersOnly = function(integers) {
         _integers_only = integers;
         return self;

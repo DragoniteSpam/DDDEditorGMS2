@@ -55,6 +55,7 @@ save = function() {
     Settings.terrain.view_water = self.view_water;
     Settings.terrain.water_level = self.water_level;
     Settings.terrain.view_grid = self.view_grid;
+    Settings.terrain.heightmap_scale = self.heightmap_scale;
     Settings.terrain.export_swap_uvs = self.export_swap_uvs;
     Settings.terrain.export_swap_zup = self.export_swap_zup;
     Settings.terrain.export_centered = self.export_centered;
@@ -77,6 +78,7 @@ export_all = setting_get("terrain", "export_all", false);
 view_water = setting_get("terrain", "view_water", true);
 water_level = setting_get("terrain", "water_level", -0.2);
 view_grid = setting_get("terrain", "view_grid", true);
+heightmap_scale = setting_get("terrain", "heightmap_scale", 10);
 export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
 export_swap_zup = setting_get("terrain", "export_swap_zup", false);
 export_centered = setting_get("terrain", "export_centered", false);
@@ -207,6 +209,7 @@ LoadJSONTerrain = function(json) {
     
     self.export_all = json.settings.export_all;
     self.view_water = json.settings.view_water;
+    self.heightmap_scale = json.settings.heightmap_scale;
     self.water_level = json.settings.water_level;
     self.export_swap_uvs = json.settings.export_swap_uvs;
     self.export_swap_zup = json.settings.export_swap_zup;
@@ -240,6 +243,7 @@ CreateJSONTerrain = function() {
         settings: {
             export_all: self.export_all,
             view_water: self.view_water,
+            heightmap_scale: self.heightmap_scale,
             water_level: self.water_level,
             export_swap_uvs: self.export_swap_uvs,
             export_swap_zup: self.export_swap_zup,
@@ -261,7 +265,7 @@ CreateJSONTerrain = function() {
             output_vertex_format: self.output_vertex_format,
         },
     };
-}
+};
 
 CreateJSON = function() {
     return self.CreateJSONTerrain();
