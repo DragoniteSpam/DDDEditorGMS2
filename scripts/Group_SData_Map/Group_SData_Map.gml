@@ -292,7 +292,7 @@ function DataMap(source, directory) : SData(source) constructor {
                 self.water = -1;
             };
             
-            var chunks = vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y);
+            var chunks = vertex_buffer_as_chunks(buffer, chunk_size * TILE_WIDTH, max_x, max_y);
             var keys = variable_struct_get_names(chunks);
             for (var i = 0, n = array_length(keys); i < n; i++) {
                 var chunk = chunks[$ keys[i]];

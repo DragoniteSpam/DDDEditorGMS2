@@ -35,11 +35,11 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
     // tangent
     buffer_write(buffer, buffer_f32, 0);
     buffer_write(buffer, buffer_f32, 1);
-    buffer_write(buffer, buffer_f32, 2);
+    buffer_write(buffer, buffer_f32, 0);
     // bitangent
     buffer_write(buffer, buffer_f32, 0);
+    buffer_write(buffer, buffer_f32, 0);
     buffer_write(buffer, buffer_f32, 1);
-    buffer_write(buffer, buffer_f32, 2);
     // barycentric
     buffer_write(buffer, buffer_f32, bc_index == 0);
     buffer_write(buffer, buffer_f32, bc_index == 1);
@@ -150,8 +150,11 @@ function vertex_to_reflect(buffer) {
     return rbuffer;
 }
 
-// max_x and max_y are the max numbers of chunks, chunk_size is exactly
-// what you think it is
+/// @param buffer the source data buffer
+/// @param chunk_size this is exactly what you think it is
+/// @param max_x the maximum horizontal number of chunks
+/// @param max_y the maximum vertical number of chunks
+/// @return a struct containing structs of { buffer, { x, y } }
 function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
     buffer_seek(buffer, buffer_seek_start, 0);
     var record = { };
@@ -183,7 +186,7 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
         var bi3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 56, buffer_f32) };
         var ba3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 68, buffer_f32) };
         
-        var chunk_id = { x: min(max_x, p1.x div (TILE_WIDTH * chunk_size)), y: min(max_y, p1.y div (TILE_HEIGHT * chunk_size)) };
+        var chunk_id = { x: min(max_x, p1.x div chunk_size), y: min(max_y, p1.y div chunk_size) };
         var chunk_data = record[$ json_stringify(chunk_id)];
         
         if (!chunk_data) {
