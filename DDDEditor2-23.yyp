@@ -938,7 +938,6 @@
     {"id":{"name":"editor","path":"rooms/editor/editor.yy",},"order":0,},
     {"id":{"name":"notes","path":"notes/notes/notes.yy",},"order":0,},
     {"id":{"name":"smf changes","path":"notes/smf changes/smf changes.yy",},"order":1,},
-    {"id":{"name":"Regular_Expressions","path":"extensions/Regular_Expressions/Regular_Expressions.yy",},"order":0,},
     {"id":{"name":"Group_Event_Management","path":"scripts/Group_Event_Management/Group_Event_Management.yy",},"order":18,},
     {"id":{"name":"FMODGMS","path":"extensions/FMODGMS/FMODGMS.yy",},"order":1,},
     {"id":{"name":"Group_Data_General","path":"scripts/Group_Data_General/Group_Data_General.yy",},"order":11,},
