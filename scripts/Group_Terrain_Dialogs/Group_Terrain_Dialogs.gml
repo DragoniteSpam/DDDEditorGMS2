@@ -293,6 +293,26 @@ function dialog_terrain_export() {
             .SetValueRange(0, 256)
             .SetIntegersOnly(true)
             .SetID("CHUNKS"),
+        (new EmuButton(352 + 0 * ew / 4, EMU_AUTO, ew / 4, 32, "N/A", function() {
+            self.GetSibling("LABEL_CHUNKS").text = "Chunk size: (disabled)";
+            self.GetSibling("CHUNKS").SetValue(0);
+        }))
+            .SetTooltip("Disable chunking"),
+        (new EmuButton(352 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "32", function() {
+            self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 32";
+            self.GetSibling("CHUNKS").SetValue(32);
+        }))
+            .SetTooltip("Preset chunk size of 32"),
+        (new EmuButton(352 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "64", function() {
+            self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 64";
+            self.GetSibling("CHUNKS").SetValue(64);
+        }))
+            .SetTooltip("Preset chunk size of 64"),
+        (new EmuButton(352 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "128", function() {
+            self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 128";
+            self.GetSibling("CHUNKS").SetValue(128);
+        }))
+            .SetTooltip("Preset chunk size of 128"),
         (new EmuButton(352, EMU_AUTO, 256, 32, "Add to Project", function() {
             var min_side_length = 10;
             var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
