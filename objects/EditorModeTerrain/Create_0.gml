@@ -334,6 +334,11 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     var sw = sprite_get_width(color_sprite) / self.color_scale;
     var sh = sprite_get_height(color_sprite) / self.color_scale;
     
+    // these will be calculated at the end
+    var nx = 0;
+    var ny = 0;
+    var nz = 0;
+    
     var output = buffer_create(1000, buffer_grow, 1);
     
     for (var i = 0; i < self.width; i += density) {
@@ -382,16 +387,14 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
                     yt11 = 1 - yt11;
                 }
                 
-                var norm = triangle_normal(x00, y00, z00, x10, y10, z10, x11, y11, z11);
-                
                 if (swap_zup) {
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, norm[0], norm[2], norm[1], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x10 + xoff) * scale, z10 * scale, (y10 + yoff) * scale, norm[0], norm[2], norm[1], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, norm[0], norm[2], norm[1], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x10 + xoff) * scale, z10 * scale, (y10 + yoff) * scale, nx, ny, nz, xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
                 } else {
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x10 + xoff) * scale, (y10 + yoff) * scale, z10 * scale, norm[0], norm[1], norm[2], xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x10 + xoff) * scale, (y10 + yoff) * scale, z10 * scale, nx, ny, nz, xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
                 }
             }
             
@@ -416,16 +419,14 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
                     if (swap_uv) yt00 = 1 - yt00;
                 }
                 
-                var norm = triangle_normal(x11, y11, z11, x01, y01, z01, x00, y00, z00);
-                
                 if (swap_zup) {
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, norm[0], norm[2], norm[1], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x01 + xoff) * scale, z01 * scale, (y01 + yoff) * scale, norm[0], norm[2], norm[1], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, norm[0], norm[2], norm[1], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x01 + xoff) * scale, z01 * scale, (y01 + yoff) * scale, nx, ny, nz, xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
                 } else {
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, norm[0], norm[1], norm[2], xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x01 + xoff) * scale, (y01 + yoff) * scale, z01 * scale, norm[0], norm[1], norm[2], xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, norm[0], norm[1], norm[2], xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x01 + xoff) * scale, (y01 + yoff) * scale, z01 * scale, nx, ny, nz, xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
+                    vertex_point_complete_raw(output, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
                 }
             }
         }
@@ -436,8 +437,12 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     
     buffer_resize(output, buffer_tell(output));
     
+    static dummy_submesh = new MeshSubmesh("dummy mesh that isnt used but i need the normals methods to be accessible");
+    
     if (Stuff.terrain.export_smooth) {
-        (new MeshSubmesh("dummy mesh that isnt used but i need the smooth normals method to be accessible")).internalSetNormalsSmooth(output, Stuff.terrain.export_smooth_threshold);
+        dummy_submesh.internalSetNormalsSmooth(output, Stuff.terrain.export_smooth_threshold);
+    } else {
+        dummy_submesh.internalSetNormalsFlat(output);
     }
     
     return output;
