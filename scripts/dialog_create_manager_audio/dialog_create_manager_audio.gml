@@ -29,12 +29,10 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         if (selection + 1) {
             var audio = list.entries[selection];
             ui_input_set_value(list.root.el_name, audio.name);
-            ui_input_set_value(list.root.el_sample_rate, string(audio.fmod_rate));
+            ui_input_set_value(list.root.el_sample_rate, string(audio.sample_rate));
             ui_input_set_value(list.root.el_name_internal, audio.internal_name);
-            ui_input_set_value(list.root.el_loop_start, string(audio.loop_start / audio.fmod_rate));
-            ui_input_set_value(list.root.el_loop_end, string(audio.loop_end / audio.fmod_rate));
-            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-            Stuff.fmod_sound = -1;
+            ui_input_set_value(list.root.el_loop_start, string(audio.loop_start / audio.sample_rate));
+            ui_input_set_value(list.root.el_loop_end, string(audio.loop_end / audio.sample_rate));
         }
     }, false, dg, list);
     el_list.entries_are = ListEntries.INSTANCES;
@@ -59,7 +57,6 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var data = list.entries[selection];
-            FMODGMS_Snd_Unload(data.fmod);
             array_delete(list.entries, array_search(list.entries, data), 1);
             data.Destroy();
             ui_list_deselect(list);
@@ -103,23 +100,20 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var what = list.entries[selection];
-            Stuff.fmod_sound = what.fmod;
-            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-            FMODGMS_Snd_PlaySound(Stuff.fmod_sound, Stuff.fmod_channel);
-            FMODGMS_Chan_Set_Frequency(Stuff.fmod_channel, what.fmod_rate);
+            wtf("To do - play audio");
         }
     }, dg);
     xx = xx + ((ew - 32) / 4);
     var el_pause = create_button(xx, yy, "Pause", ew / 4, eh, fa_center, function(button) {
-        FMODGMS_Chan_PauseChannel(Stuff.fmod_channel);
+            wtf("To do - pause audio");
     }, dg);
     xx = xx + ((ew - 32) / 4);
     var el_resume = create_button(xx, yy, "Rsm.", ew / 4, eh, fa_center, function(button) {
-        FMODGMS_Chan_ResumeChannel(Stuff.fmod_channel);
+            wtf("To do - resume audio");
     }, dg);
     xx = xx + ((ew - 32) / 4);
     var el_stop = create_button(xx, yy, "Stop", ew / 4, eh, fa_center, function(button) {
-        FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+            wtf("To do - stop audio");
     }, dg);
     
     yy += el_play.height + spacing * 2;
@@ -149,7 +143,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         if (selection + 1) {
             var what = list.entries[selection];
             what.SetSampleRate(44100);
-            ui_input_set_value(button.root.el_sample_rate, string(what.fmod_rate));
+            ui_input_set_value(button.root.el_sample_rate, string(what.sample_rate));
         }
     }, dg);
     xx = xx + ((ew - 32) / 2);
@@ -159,7 +153,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         if (selection + 1) {
             var what = list.entries[selection];
             what.SetSampleRate(48000);
-            ui_input_set_value(button.root.el_sample_rate, string(what.fmod_rate));
+            ui_input_set_value(button.root.el_sample_rate, string(what.sample_rate));
         }
     }, dg);
     xx = xx + ((ew - 32) / 2);
@@ -170,9 +164,10 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var audio = list.entries[selection];
-            text.text = "Length: " + string(FMODGMS_Snd_Get_Length(audio.fmod) / audio.fmod_rate) + " s";
+            text.text = "Length: N/A";
+            wtf("To do - get audio length");
         } else {
-            text.text = "Length: N.A";
+            text.text = "Length: N/A";
         }
         ui_render_text(text, x, y);
     };
@@ -184,12 +179,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var audio = list.entries[selection];
-            audio.loop_start = real(input.value) * audio.fmod_rate;
-            var position = FMODGMS_Chan_Get_Position(audio.fmod);
-            FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
-            // setting a loop point while the sound is playing makes audio weird so we just stop it instead
-            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-            FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
+            audio.loop_start = real(input.value) * audio.sample_rate;
         }
     }, 0, "seconds", validate_double, 0, 10000, 8, vx1, vy1, vx2, vy2, dg);
     dg.el_loop_start = el_loop_start;
@@ -199,31 +189,23 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var audio = list.entries[selection];
-            audio.loop_end = real(input.value) * audio.fmod_rate;
-            var position = FMODGMS_Chan_Get_Position(audio.fmod);
-            FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
-            // setting a loop point while the sound is playing makes things weird so we just stop it instead
-            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-            FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
+            audio.loop_end = real(input.value) * audio.sample_rate;
         }
     }, 0, "seconds", validate_double, 0, 10000, 8, vx1, vy1, vx2, vy2, dg);
     dg.el_loop_end = el_loop_end;
     yy += el_loop_end.height + spacing;
     var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, function(progress) {
-        FMODGMS_Chan_Set_Position(Stuff.fmod_channel, progress.value * FMODGMS_Snd_Get_Length(Stuff.fmod_sound));
+        /// @todo this
     }, 8, 0, dg);
     el_loop_progress.render = function(progress, x, y) {
-        if (Stuff.fmod_sound + 1) {
-            progress.value = FMODGMS_Chan_Get_Position(Stuff.fmod_channel) / FMODGMS_Snd_Get_Length(Stuff.fmod_sound);
-        } else {
-            progress.value = 0;
-        }
+        /// @todo this
+        progress.value = 0;
         
         var list = progress.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var audio = list.entries[selection];
-            var length = FMODGMS_Snd_Get_Length(audio.fmod);
+            var length = 1;
             var padding = 16;
             var x1 = x + progress.x + padding;
             var y1 = y + progress.y;

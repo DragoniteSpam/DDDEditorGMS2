@@ -74,12 +74,7 @@ alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #region initialize standalone systems
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
-
-FMODGMS_Sys_Create();
-FMODGMS_Sys_Initialize(32);
-
-fmod_channel = FMODGMS_Chan_CreateChannel();
-fmod_sound = -1;
+wtf("re-add nik's version of fmod audio eventually");
 #endregion
 
 #region editor modes (and similar things)

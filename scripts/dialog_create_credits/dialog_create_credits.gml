@@ -46,12 +46,6 @@ function dialog_create_credits(dialog) {
     el_ex_venomous_url.tooltip = "http://gmc.yoyogames.com/index.php?showtopic=632606 (Web Archive; the original page has long since been deleted)";
     var el_ex_venomous = create_text(32 + bw + spacing, yy, "     3D collisions (mostly raycasting): Venomous (Bullet)", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
-    var el_ex_fmod_url = create_button(32, yy, "itch.io (free)", bw, eh, fa_center, function(button) {
-        ds_stuff_open("https://quadolorgames.itch.io/fmodgms");
-    }, dg);
-    el_ex_fmod_url.tooltip = "https://quadolorgames.itch.io/fmodgms";
-    var el_ex_fmod = create_text(32 + bw + spacing, yy, "FMODGMS by quadolorgames", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
     var el_ex_scribble_url = create_button(32, yy, "Github", bw, eh, fa_center, function(button) {
         ds_stuff_open("https://github.com/JujuAdams/scribble");
     }, dg);
@@ -92,7 +86,6 @@ function dialog_create_credits(dialog) {
         el_help_who,
         el_ex,
         el_ex_venomous, el_ex_venomous_url,
-        el_ex_fmod, el_ex_fmod_url,
         el_ex_scribble, el_ex_scribble_url,
         el_ex_xpanda, el_ex_xpanda_url,
         el_asset,
