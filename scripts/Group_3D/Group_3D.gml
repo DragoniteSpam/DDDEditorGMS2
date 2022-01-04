@@ -48,20 +48,5 @@ function world_to_screen(x, y, z, V, P, w, h) {
 }
 
 function triangle_normal(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
-    gml_pragma("forceinline");
-    var v1x = x2 - x1;
-    var v1y = y2 - y1;
-    var v1z = z2 - z1;
-    var v2x = x3 - x1;
-    var v2y = y3 - y1;
-    var v2z = z3 - z1;
-    var cx = v1y * v2z - v1z * v2y;
-    var cy = -v1x * v2z + v1z * v2x;
-    var cz = v1x * v2y - v1y * v2x;
-    
-    // if this is zero, the triangle has zero area and won't be visible anyway
-    var cpl = point_distance_3d(0, 0, 0, cx, cy, cz);
-    
-    if (cpl != 0) return [cx / cpl, cy / cpl, cz / cpl];
-    return [0, 0, 1];
+    show_error("Please calculate triangle normals inline. It's 15-20% faster that way.", true);
 }
