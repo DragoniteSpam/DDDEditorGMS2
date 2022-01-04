@@ -321,10 +321,7 @@ function MeshSubmesh(source) constructor {
         threshold = dcos(threshold);
         internalSetNormalsFlat(buffer);
         
-        static triangleKey = function(x, y, z) {
-            var p = 3;
-            return string_format(x, 1, p) + "," + string_format(y, 1, p) + "," + string_format(z, 1, p);
-        };
+        var p = 3;
         
         buffer_seek(buffer, buffer_seek_start, 0);
         var normal_cache = { };
@@ -353,7 +350,10 @@ function MeshSubmesh(source) constructor {
             ];
             
             for (var i = 0; i < 3; i++) {
-                var key = triangleKey(xx[i], yy[i], zz[i]);
+                // normally i'd DRY this but calling a function to get the
+                // triangle key on every single vertex twice is slow if you
+                // have hundreds of thousand of vertices
+                var key = string_format(xx[i], 1, p) + "," + string_format(yy[i], 1, p) + "," + string_format(zz[i], 1, p);
                 if (normal_cache[$ key] != undefined) {
                     var existing = normal_cache[$ key];
                     existing[@ 0] += normals[0];
@@ -377,7 +377,7 @@ function MeshSubmesh(source) constructor {
             var ny = buffer_peek(buffer, position + 16, buffer_f32);
             var nz = buffer_peek(buffer, position + 20, buffer_f32);
             
-            var n = vector3_normalize(normal_cache[$ triangleKey(xx, yy, zz)]);
+            var n = vector3_normalize(normal_cache[$ string_format(xx, 1, p) + "," + string_format(yy, 1, p) + "," + string_format(zz, 1, p)]);
             if (dot_product_3d(n[0], n[1], n[2], nx, ny, nz) > threshold) {
                 buffer_poke(buffer, position + 12, buffer_f32, n[0]);
                 buffer_poke(buffer, position + 16, buffer_f32, n[1]);
