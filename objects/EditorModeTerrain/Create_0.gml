@@ -53,6 +53,8 @@ save = function() {
     Settings.terrain.save_scale = self.save_scale;
     Settings.terrain.export_all = self.export_all;
     Settings.terrain.view_water = self.view_water;
+    Settings.terrain.view_water_min_alpha = self.view_water_min_alpha;
+    Settings.terrain.view_water_max_alpha = self.view_water_max_alpha;
     Settings.terrain.water_level = self.water_level;
     Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.view_axes = self.view_axes;
@@ -80,6 +82,8 @@ view_scale = 4;
 save_scale = setting_get("terrain", "save_scale", 1);
 export_all = setting_get("terrain", "export_all", false);
 view_water = setting_get("terrain", "view_water", true);
+view_water_min_alpha = setting_get("terrain", "view_water_min_alpha", 0.5);
+view_water_max_alpha = setting_get("terrain", "view_water_max_alpha", 0.9);
 water_level = setting_get("terrain", "water_level", -0.2);
 view_grid = setting_get("terrain", "view_grid", true);
 view_axes = setting_get("terrain", "view_axes", true);
@@ -297,7 +301,9 @@ DrawWater = function(set_lights = true) {
     var water_level = 512 * power(self.water_level, 3);
     matrix_set(matrix_world, matrix_build(0, 0, water_level, 0, 0, 0, 1, 1, 1));
     texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
-    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_WaterAlphaBounds"), 0.4, 0.9);
+    var mn = min(self.view_water_min_alpha, self.view_water_max_alpha);
+    var mx = max(self.view_water_min_alpha, self.view_water_max_alpha);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_WaterAlphaBounds"), mn, mx);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), current_time / 1000, current_time / 1000);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Displacement"), 0.0625);
     vertex_submit(self.water, pr_trianglelist, sprite_get_texture(spr_terrain_water, 0));
