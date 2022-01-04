@@ -173,8 +173,8 @@ function dialog_create_terrain_new() {
         terrain.terrain_buffer = vertex_create_buffer();
         vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
         
-        for (var i = 0; i < width - 1; i++) {
-            for (var j = 0; j < height - 1; j++) {
+        for (var i = 0; i < width; i++) {
+            for (var j = 0; j < height; j++) {
                 var z00 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 0)) * 4, buffer_f32);
                 var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32);
                 var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32);

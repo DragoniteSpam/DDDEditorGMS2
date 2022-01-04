@@ -27,8 +27,8 @@ function terrain_import_heightmap(button, fn) {
     terrain.terrain_buffer = vertex_create_buffer();
     vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
     
-    for (var i = 0; i < terrain.width - 1; i++) {
-        for (var j = 0; j < terrain.height - 1; j++) {
+    for (var i = 0; i < terrain.width; i++) {
+        for (var j = 0; j < terrain.height; j++) {
             terrain_create_square(terrain.terrain_buffer, i, j, 0, 0, 0, 0);
         }
     }

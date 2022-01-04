@@ -132,7 +132,7 @@ water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
 var t = get_timer();
 
 GenerateHeightData = function(width = self.width, height = self.height) {
-    return buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
+    return buffer_create(buffer_sizeof(buffer_f32) * (width + 1) * (height + 1), buffer_fixed, 1);
 };
 
 height_data = self.GenerateHeightData();
@@ -186,8 +186,8 @@ color = new (function() constructor {
 self.terrain_buffer = vertex_create_buffer();
 vertex_begin(self.terrain_buffer, self.vertex_format);
 
-for (var i = 0; i < self.width - 1; i++) {
-    for (var j = 0; j < self.height - 1; j++) {
+for (var i = 0; i < self.width; i++) {
+    for (var j = 0; j < self.height; j++) {
         terrain_create_square(self.terrain_buffer, i, j, 0, 0, 0, 0);
     }
 }
@@ -336,8 +336,8 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     
     var output = buffer_create(1000, buffer_grow, 1);
     
-    for (var i = 0; i < self.width - density; i += density) {
-        for (var j = 0; j < self.height - density; j += density) {
+    for (var i = 0; i < self.width; i += density) {
+        for (var j = 0; j < self.height; j += density) {
             var x00 = i;
             var y00 = j;
             var z00 = terrain_get_z(self, x00, y00);
