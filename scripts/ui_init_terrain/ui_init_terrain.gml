@@ -72,6 +72,24 @@ function ui_init_terrain(mode) {
         
         yy += element.height + spacing;
         
+        element = create_checkbox(legal_x + spacing, yy, "Draw wireframe?", col_width, element_height, function(checkbox) {
+            Stuff.terrain.view_grid = checkbox.value;
+        }, mode.view_grid, t_general);
+        element.tooltip = "Toggles the the wireframe grid on the terrain";
+        t_general.element_draw_grid = element;
+        ds_list_add(t_general.contents, element);
+        
+        yy += element.height + spacing;
+        
+        element = create_checkbox(legal_x + spacing, yy, "Draw axes?", col_width, element_height, function(checkbox) {
+            Stuff.terrain.view_axes = checkbox.value;
+        }, mode.view_axes, t_general);
+        element.tooltip = "Toggles the the coordinate system axes.";
+        t_general.element_draw_grid = element;
+        ds_list_add(t_general.contents, element);
+        
+        yy += element.height + spacing;
+        
         element = create_text(legal_x + spacing, yy, "Water level:", col_width, element_height, fa_left, col_width, t_general);
         ds_list_add(t_general.contents, element);
         
@@ -83,15 +101,6 @@ function ui_init_terrain(mode) {
         }, 4, normalize(Stuff.terrain.water_level, 0, 1, -1, 1), t_general);
         element.tooltip = "A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision.";
         t_general.element_brush_radius_bar = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(legal_x + spacing, yy, "Draw wireframe?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.view_grid = checkbox.value;
-        }, mode.view_grid, t_general);
-        element.tooltip = "Toggles the the wireframe grid on the terrain";
-        t_general.element_draw_grid = element;
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
