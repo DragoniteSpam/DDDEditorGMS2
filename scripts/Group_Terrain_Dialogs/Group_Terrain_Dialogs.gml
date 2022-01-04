@@ -167,7 +167,7 @@ function dialog_create_terrain_new() {
             var hh = power(2, ceil(log2(height)));
             terrain.height_data = macaw_generate_dll(ww, hh, self.GetSibling("OCTAVES").value, real(self.GetSibling("SCALE").value)).noise;
         } else {
-            terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
+            terrain.height_data = terrain.GenerateHeightData();
         }
         
         terrain.terrain_buffer = vertex_create_buffer();

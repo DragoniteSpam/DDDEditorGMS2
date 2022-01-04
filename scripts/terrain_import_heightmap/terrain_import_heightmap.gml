@@ -22,7 +22,7 @@ function terrain_import_heightmap(button, fn) {
     buffer_delete(terrain.terrain_buffer_data);
     vertex_delete_buffer(terrain.terrain_buffer);
     
-    terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * terrain.width * terrain.height, buffer_fixed, 1);
+    terrain.height_data = terrain.GenerateHeightData();
     terrain.color.Reset();
     terrain.terrain_buffer = vertex_create_buffer();
     vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
