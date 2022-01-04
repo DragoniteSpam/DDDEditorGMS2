@@ -275,8 +275,8 @@ function ui_init_text() {
                         // "split" doesn't quite do it here
                         while (!ds_queue_empty(lines)) {
                             var line = ds_queue_dequeue(lines);
-                            var row_collection = ds_collection_create();
-                            rows[row_index++] = row_collection;
+                            var row_data = [];
+                            rows[row_index++] = row_data;
                             var block = "";
                             var enquoted = false;
                             for (var j = 1; j <= string_length(line); j++) {
@@ -284,7 +284,7 @@ function ui_init_text() {
                                 var c = string_char_at(line, j);
                                 var cnext = string_char_at(line, j + 1);
                                 if (!enquoted && c == "," || j == string_length(line)) {
-                                    ds_collection_add(row_collection, block);
+                                    array_push(row_data, block);
                                     block = "";
                                     continue;
                                 }
@@ -298,15 +298,15 @@ function ui_init_text() {
                                 block += c;
                             }
                         }
-                        var lcarr = rows[0][@ 0];
-                        for (var i = 1; i < rows[0][@ 2]; i++) {
+                        var lcarr = rows[0];
+                        for (var i = 1, len = array_length(rows[0]); i < n; i++) {
                             var lang_name = lcarr[i];
                             if (!variable_struct_exists(Game.languages.text, lang_name)) continue;
-                            for (var j = 1; j < array_length(rows); j++) {
-                                var key = rows[j][@ 0][0];
+                            for (var j = 1, lang_count = array_length(rows); i < lang_count; j++) {
+                                var key = rows[j][0];
                                 var lang = Game.languages.text[$ lang_name];
                                 if (variable_struct_exists(lang, key)) {
-                                    lang[$ key] = rows[j][@ 0][i];
+                                    lang[$ key] = rows[j][i];
                                 }
                             }
                         }

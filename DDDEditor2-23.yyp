@@ -888,7 +888,6 @@
     {"id":{"name":"scribble_autotype_set_pause","path":"scripts/scribble_autotype_set_pause/scribble_autotype_set_pause.yy",},"order":5,},
     {"id":{"name":"sPart Documentation","path":"notes/sPart Documentation/sPart Documentation.yy",},"order":1,},
     {"id":{"name":"ParticleSpriteLicence","path":"notes/ParticleSpriteLicence/ParticleSpriteLicence.yy",},"order":0,},
-    {"id":{"name":"Group_DS_Collections","path":"scripts/Group_DS_Collections/Group_DS_Collections.yy",},"order":0,},
     {"id":{"name":"EmuDialog","path":"scripts/EmuDialog/EmuDialog.yy",},"order":5,},
     {"id":{"name":"spr_emu_not_found","path":"sprites/spr_emu_not_found/spr_emu_not_found.yy",},"order":14,},
     {"id":{"name":"spart_emitter","path":"scripts/spart_emitter/spart_emitter.yy",},"order":1,},
