@@ -26,7 +26,6 @@ function sa_fill() {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.EFFECT]) {
                 var effect = new EntityEffect("Effect");
                 Stuff.map.active_map.Add(effect, x, y, z);
-                entity_effect_position_colliders(effect);
             }
         },
         function(x, y, z) {

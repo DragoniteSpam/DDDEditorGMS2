@@ -98,9 +98,6 @@ function omu_event_attain_map_data(argument0, argument1, argument2) {
     if (visible_map.preview) {
         vertex_delete_buffer(visible_map.preview);
         vertex_delete_buffer(visible_map.wpreview);
-        c_world_remove_object(Stuff.event.map.cpreview);
-        c_object_destroy(Stuff.event.map.cpreview);
-        c_shape_destroy(Stuff.event.map.cspreview);
     }
 
     batch_all_preview(visible_map);

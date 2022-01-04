@@ -44,36 +44,6 @@ function EditorGraphics() constructor {
         self.axes_center = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_axes);
         #endregion
         
-        c_transform_scaling(Stuff.tile_width, Stuff.tile_height, Stuff.tile_depth);
-        self.c_shape_tile = c_shape_create();
-        c_transform_position(0.5, 0.5, 0);
-        c_shape_add_box(self.c_shape_tile, 0.5, 0.5, 0);
-        c_transform_identity();
-        self.c_shape_block = c_shape_create();
-        c_transform_position(0.5, 0.5, 0.5);
-        c_shape_add_box(self.c_shape_block, 0.5, 0.5, 0.5);
-        c_transform_identity();
-        self.c_shape_sphere = c_shape_create();
-        c_shape_add_sphere(self.c_shape_sphere, 1);
-        
-        var thin_length = 8;
-        var long_length = 108;
-        self.c_shape_axis_x = c_shape_create();
-        self.c_shape_axis_y = c_shape_create();
-        self.c_shape_axis_z = c_shape_create();
-        self.c_shape_axis_x_plane = c_shape_create();
-        self.c_shape_axis_y_plane = c_shape_create();
-        self.c_shape_axis_z_plane = c_shape_create();
-        c_shape_add_box(self.c_shape_axis_x, long_length, thin_length, thin_length);
-        c_shape_add_box(self.c_shape_axis_y, thin_length, long_length, thin_length);
-        c_shape_add_box(self.c_shape_axis_z, thin_length, thin_length, long_length);
-        c_shape_add_plane(self.c_shape_axis_x_plane, 0, 1, 0, 0);
-        c_shape_add_plane(self.c_shape_axis_x_plane, 0, 0, 1, 0);
-        c_shape_add_plane(self.c_shape_axis_y_plane, 1, 0, 0, 0);
-        c_shape_add_plane(self.c_shape_axis_y_plane, 0, 0, 1, 0);
-        c_shape_add_plane(self.c_shape_axis_z_plane, 1, 0, 0, 0);
-        c_shape_add_plane(self.c_shape_axis_z_plane, 0, 0, 1, 0);
-        
         self.basic_cage = import_d3d("data/basic/cage.d3d", false);
         self.indexed_cage = import_d3d("data/basic/cage-indexed.d3d", false);
         self.indexed_cage_full = import_d3d("data/basic/cage-indexed-full.d3d", false);

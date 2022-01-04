@@ -1,5 +1,4 @@
 function Entity(source) constructor {
-    self.bullet_id = BulletUserIDCollection.Add(self);
     self.name = "Entity";
     self.etype = ETypes.ENTITY;
     self.etype_flags = ETypeFlags.ENTITY;
@@ -14,9 +13,6 @@ function Entity(source) constructor {
     // so the computer doesn't waste time drawing every single visible Entity
     // individually
     static batch = null;
-    
-    // when creating one giant collision shape
-    static batch_collision = null;
     
     // for things that don't fit into the above category, including but not limited
     // to NPCs, things that animate, things that move and things that need special shaders
@@ -98,21 +94,8 @@ function Entity(source) constructor {
     // objects at in the same cell
     self.coexist = false;
     
-    // collision data
-    self.cobject = noone;
-    
     self.get_bounding_box = function() {
         return new BoundingBox(self.xx, self.yy, self.zz, self.xx + 1, self.yy + 1, self.zz + 1);
-    };
-    
-    static SetCollisionTransform = function() {
-        if (c_object_exists(self.cobject)) {
-            c_world_add_object(self.cobject);
-            c_object_set_userid(self.cobject, self.bullet_id);
-            c_transform_position(self.xx * TILE_WIDTH, self.yy * TILE_HEIGHT, self.zz * TILE_DEPTH);
-            c_object_apply_transform(self.cobject);
-            c_transform_identity();
-        }
     };
     
     static SetStatic = function(state) {
@@ -247,16 +230,6 @@ function Entity(source) constructor {
     
     static DestroyBase = function() {
         refid_remove(self);
-        
-        if (self.cobject) {
-            // it turns out removing these things is REALLY SLOW, so instead
-            // we'll pool them to be removed in an orderly manner (and nullify
-            // their masks so they don't accidentally trigger interactions if
-            // you click on them)
-            c_object_set_mask(self.cobject, 0, 0);
-            c_object_set_userid(self.cobject, 0);
-            ds_queue_enqueue(Stuff.c_object_cache, self.cobject);
-        }
     };
     
     static Destroy = function() {
@@ -375,13 +348,7 @@ function EntityEffect(source) : Entity(source) constructor {
     static CreateJSON = function() {
         return self.CreateJSONEffect();
     };
-    // editor garbage
-    self.cobject_x_axis = new EditorComponentAxis(self, c_object_create_cached(Stuff.graphics.c_shape_axis_x, 0, 0), CollisionSpecialValues.TRANSLATE_X);
-    self.cobject_y_axis = new EditorComponentAxis(self, c_object_create_cached(Stuff.graphics.c_shape_axis_y, 0, 0), CollisionSpecialValues.TRANSLATE_Y);
-    self.cobject_z_axis = new EditorComponentAxis(self, c_object_create_cached(Stuff.graphics.c_shape_axis_z, 0, 0), CollisionSpecialValues.TRANSLATE_Z);
-    self.cobject_x_plane = new EditorComponentAxis(self, c_object_create_cached(Stuff.graphics.c_shape_axis_x_plane, 0, 0), CollisionSpecialValues.TRANSLATE_X);
-    self.cobject_y_plane = new EditorComponentAxis(self, c_object_create_cached(Stuff.graphics.c_shape_axis_y_plane, 0, 0), CollisionSpecialValues.TRANSLATE_Y);
-    self.cobject_z_plane = new EditorComponentAxis(self, c_object_create_cached(Stuff.graphics.c_shape_axis_z_plane, 0, 0), CollisionSpecialValues.TRANSLATE_Z);
+    
     self.axis_over = CollisionSpecialValues.NONE;
     
     static DestroyEffect = function() {
@@ -392,13 +359,6 @@ function EntityEffect(source) : Entity(source) constructor {
         if (light_index != -1) {
             map.lights[@ light_index] = NULL;
         }
-        
-        self.cobject_x_axis.Destroy();
-        self.cobject_y_axis.Destroy();
-        self.cobject_z_axis.Destroy();
-        self.cobject_x_plane.Destroy();
-        self.cobject_y_plane.Destroy();
-        self.cobject_z_plane.Destroy();
     };
     
     static Destroy = function() {
@@ -444,7 +404,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.scalable = true;
     
     static batch = batch_mesh;
-    static batch_collision = batch_collision_mesh;
     static render = render_mesh;
     
     static get_bounding_box = function() {
@@ -453,10 +412,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     };
     
     static SetMesh = function(mesh, submesh = undefined) {
-        c_object_set_mask(self.cobject, 0, 0);
-        c_object_set_userid(self.cobject, 0);
-        ds_queue_enqueue(Stuff.c_object_cache, self.cobject);
-        self.cobject = undefined;
         self.mesh_submesh = NULL;
         self.is_static = false;
         self.batchable = false;
@@ -469,7 +424,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
                     self.mesh_submesh = submesh ?? mesh.first_proto_guid;
                     self.is_static = true;
                     self.batchable = true;
-                    self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
                     self.SetStatic = function(state) { self.is_static = state; };
                     break;
                 case MeshTypes.SMF:
@@ -604,8 +558,6 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
         TOP, VERTICAL, BASE, SLOPE, __COUNT,
     }
     
-    self.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
-    
     self.is_static = true;
     // these things can't *not* be static
     static SetStatic = function(state) { };
@@ -655,7 +607,6 @@ function EntityPawn(source) : Entity(source) constructor {
     // editor properties
     self.slot = MapCellContents.PAWN;
     self.batchable = false;
-    self.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     // there will be other things here probably
     static batch = null;                     // you don't batch pawns
@@ -760,10 +711,7 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     self.slot = MapCellContents.TILE;
     
     static batch = batch_tile;
-    static batch_collision = batch_collision_tile;
     static render = render_tile;
-    
-    self.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     static Export = function(buffer) {
         return 0;

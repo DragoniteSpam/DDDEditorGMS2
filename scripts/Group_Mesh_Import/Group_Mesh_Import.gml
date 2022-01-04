@@ -22,15 +22,8 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
     file_text_readln(f);
     
     var vbuffer = vertex_create_buffer();
-    var cshape;
-    if (everything) {
-        cshape = c_shape_create();
-    }
     
     vertex_begin(vbuffer, Stuff.graphics.vertex_format);
-    if (everything) {
-        c_shape_begin_trimesh();
-    }
     
     var vc = 0;
     
@@ -101,10 +94,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
             vertex_point_complete(vbuffer, xx[1], yy[1], zz[1], nx[1], ny[1], nz[1], xtex[1], ytex[1], color[1], alpha[1]);
             vertex_point_complete(vbuffer, xx[2], yy[2], zz[2], nx[2], ny[2], nz[2], xtex[2], ytex[2], color[2], alpha[2]);
             
-            if (everything) {
-                c_shape_add_triangle(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
-            }
-            
             switch (tri_type) {
                 case tri_type_list:
                     xx[0] = 0; xx[1] = 0; xx[2] = 0;
@@ -161,12 +150,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
     }
     
     if (everything) {
-        if (vertex_get_number(vbuffer) > 0) {
-            c_shape_end_trimesh(cshape);
-        } else {
-            c_shape_destroy(cshape);
-        }
-        
         var base_name = filename_change_ext(filename_name(fn), "");
         var mesh = existing ? existing : new DataMesh(base_name);
         if (!existing) array_push(Game.meshes, mesh);
@@ -185,12 +168,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
         
         if (vertex_get_number(vbuffer) > 0) {
             mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, undefined, base_name, replace_index, fn);
-            if (!mesh.cshape) {
-                mesh.cshape = cshape;
-            } else {
-                c_shape_destroy(cshape);
-            }
-            
             vertex_freeze(vbuffer);
         }
         
@@ -201,7 +178,7 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
 }
 
 function import_dae(filename, adjust_uvs = true, existing = undefined, replace_index = -1) {
-    var container = dotdae_model_load_file(filename);
+    var container = dotdae_model_load_file(filename, adjust_uvs, false);
     
     var base_name = filename_change_ext(filename_name(filename), "");
     var mesh = new DataMesh(base_name);
@@ -223,10 +200,6 @@ function import_dae(filename, adjust_uvs = true, existing = undefined, replace_i
     var vbs = container[@ eDotDae.VertexBufferList];
 
     if (everything) {
-        var cshape = c_shape_create();
-        c_shape_begin_trimesh();
-        c_shape_end_trimesh(cshape);
-    
         var base_name = filename_change_ext(filename_name(filename), "");
         var mesh = existing ? existing : new DataMesh(base_name);
         if (!existing) array_push(Game.meshes, mesh);
@@ -241,11 +214,6 @@ function import_dae(filename, adjust_uvs = true, existing = undefined, replace_i
         
             data_mesh_recalculate_bounds(mesh);
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-        }
-    
-        if (mesh.cshape) {
-            c_shape_destroy(cshape);
-            cshape = mesh.cshape;
         }
     
         for (var i = 0; i < ds_list_size(vbs); i++) {
@@ -667,7 +635,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     }
     
     var vbuffers = { };
-    var cshape = c_shape_create();
     
     var vc = 0;
     
@@ -725,9 +692,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         if (!vbuffers[$ bmtl]) {
             vbuffers[$ bmtl] = vertex_create_buffer();
             vertex_begin(vbuffers[$ bmtl], Stuff.graphics.vertex_format);
-            if (everything) {
-                c_shape_begin_trimesh();
-            }
         }
         
         var vb = vbuffers[$ bmtl];
@@ -735,12 +699,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         vertex_point_complete(vb, bxx[vc], byy[vc], bzz[vc], bnx, bny, bnz, bxtex, bytex, bcolor, balpha);
         
         vc = (++vc) % 3;
-        
-        if (everything && vc == 0) {
-            if (bmtl == base_mtl) {
-                c_shape_add_triangle(bxx[0], byy[0], bzz[0], bxx[1], byy[1], bzz[1], bxx[2], byy[2], bzz[2]);
-            }
-        }
     }
     
     if (max_alpha < 0.05 && !warn_invisible) {
@@ -765,8 +723,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         }
     }
     
-    c_shape_destroy(cshape);
-    
     if (everything) {
         var mesh = existing ? existing : new DataMesh(base_name);
         if (!existing) array_push(Game.meshes, mesh);
@@ -781,15 +737,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
             
             data_mesh_recalculate_bounds(mesh);
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-        }
-        
-        if (vertex_get_number(vb_base) > 0) {
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vb_base, buffer_fixed, 1), vb_base, undefined, base_name + "." + string(base_mtl), -1, fn);
-            if (mesh.cshape) {
-                c_shape_destroy(cshape);
-            } else {
-                mesh.cshape = cshape;
-            }
         }
         
         //This is untested and will probably break in a lot of places
@@ -811,8 +758,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         
         return mesh;
     }
-    
-    c_shape_destroy(cshape);
     
     if (vertex_get_number(vb_base) > 0) {
         vertex_freeze(vb_base);

@@ -111,8 +111,6 @@ instance_deactivate_object(UIThing);
 
 #region stuff related to garbage collection
 stuff_to_destroy = ds_queue_create();
-c_object_cache = ds_queue_create();
-
 gpu_base_state = gpu_get_state();
 #endregion
 

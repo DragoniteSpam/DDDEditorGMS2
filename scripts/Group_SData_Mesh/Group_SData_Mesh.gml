@@ -2,10 +2,6 @@ function DataMesh(source) : SData(source) constructor {
     self.type = MeshTypes.RAW;
     
     self.submeshes = [];
-    // there will only be one collision shape, defined as the first mesh
-    // you import; this is a good reason to make all meshes in a series
-    // the same shape, or almost the same shape
-    self.cshape = undefined;
     
     self.proto_guids = { };
     self.proto_guid_current = 0;
@@ -326,9 +322,6 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
             var thing = map.contents.all_entities[| i];
             if (thing.etype == ETypes.ENTITY_MESH && thing.mesh == self.GUID) {
-                c_world_destroy_object(thing.cobject);
-                thing.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
-                thing.SetCollisionTransform();
                 editor_map_mark_changed(thing);
             }
         }

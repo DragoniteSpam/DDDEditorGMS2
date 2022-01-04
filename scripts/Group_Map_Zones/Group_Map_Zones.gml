@@ -12,8 +12,6 @@ function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     // this is updated with z1 just so that it can interface with Selection instances
     self.zz = z1;
     
-    self.cobject = noone;
-    self.cshape = noone;
     self.editor_color = c_white;
     
     static EditScript = function(root) { };
@@ -91,12 +89,6 @@ function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     };
     
     static Destroy = function() {
-        if (self.cobject) {
-            c_world_remove_object(self.cobject);
-            c_object_destroy(self.cobject);
-            c_shape_destroy(self.cshape);
-        }
-        
         var map_contents = Stuff.map.active_map.contents;
         array_delete(map_contents.all_zones, array_search(map_contents.all_zones, self), 1);
     };

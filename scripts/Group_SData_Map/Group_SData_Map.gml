@@ -59,8 +59,6 @@ function DataMap(source, directory) : SData(source) constructor {
             entity.yy = y;
             entity.zz = z;
             
-            entity.SetCollisionTransform();
-            
             if (add_to_lists) {
                 ds_list_add(self.contents.all_entities, entity);
             }
@@ -491,9 +489,6 @@ function DataMap(source, directory) : SData(source) constructor {
         if (self.data_buffer) buffer_delete(self.data_buffer);
         if (self.preview) buffer_delete(self.preview);
         if (self.wpreview) buffer_delete(self.wpreview);
-        if (self.cpreview) c_world_remove_object(self.cpreview);
-        if (self.cpreview) c_object_destroy(self.cpreview);
-        if (self.cspreview) c_shape_destroy(self.cspreview);
         self.contents = undefined;
     };
     
