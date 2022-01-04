@@ -284,10 +284,11 @@ function dialog_terrain_export() {
         (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = real(self.value);
         })),
-        (new EmuText(352, 16, 256, 32, "Chunk size: (disabled)"))
+        (new EmuText(352, 16, 256, 32, "Chunk size: " + ((Stuff.terrain.export_chunk_size > 0) ? string(Stuff.terrain.export_chunk_size) : "(disabled)")))
             .SetID("LABEL_CHUNKS"),
-        (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, default_lod_levels, function() {
+        (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, Stuff.terrain.export_chunk_size, function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: " + ((self.value > 0) ? string(self.value) : "(disabled)");
+            Stuff.terrain.export_chunk_size = self.value;
         }))
             .SetValueRange(0, 256)
             .SetIntegersOnly(true)
