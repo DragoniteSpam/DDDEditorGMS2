@@ -294,7 +294,7 @@ function dialog_terrain_export() {
             .SetTooltip("Align the terrain around the center of the world origin instead of sticking it in the corner."),
         #endregion
         #region column 2
-        (new EmuInput(352, 48, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
+        (new EmuInput(352, 64, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = real(self.value);
         })),
         (new EmuText(352, EMU_AUTO, 256, 32, "Chunk size: " + ((Stuff.terrain.export_chunk_size > 0) ? string(Stuff.terrain.export_chunk_size) : "(disabled)")))
