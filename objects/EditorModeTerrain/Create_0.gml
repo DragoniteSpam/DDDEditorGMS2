@@ -76,7 +76,7 @@ height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
 color_scale = 8;
 
-view_scale = 32;
+view_scale = 4;
 save_scale = setting_get("terrain", "save_scale", 1);
 export_all = setting_get("terrain", "export_all", false);
 view_water = setting_get("terrain", "view_water", true);
