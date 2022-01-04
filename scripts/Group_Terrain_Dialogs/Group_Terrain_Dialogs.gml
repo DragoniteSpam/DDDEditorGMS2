@@ -348,7 +348,6 @@ function dialog_terrain_export() {
                     Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i), false, false, chunk_size);
                 }
             }
-            self.root.Dispose();
         })),
         new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
         (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
