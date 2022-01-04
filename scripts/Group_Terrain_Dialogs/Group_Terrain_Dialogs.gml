@@ -284,7 +284,7 @@ function dialog_terrain_export() {
         (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = real(self.value);
         })),
-        (new EmuText(352, 32, 256, 32, "Chunk size: (disabled)"))
+        (new EmuText(352, 16, 256, 32, "Chunk size: (disabled)"))
             .SetID("LABEL_CHUNKS"),
         (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, default_lod_levels, function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: " + ((self.value > 0) ? string(self.value) : "(disabled)");
@@ -303,12 +303,13 @@ function dialog_terrain_export() {
             // every iteration (1/3^n: 1/1, 1/3, 1*9, etc)
             var reduction = self.GetSibling("REDUCTION").value;
             var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
+            var chunk_size = self.GetSibling("CHUNKS").value;
             
             if (levels == 0) {
-                Stuff.terrain.AddToProject("Terrain");
+                Stuff.terrain.AddToProject("Terrain", 1, false, false, chunk_size);
             } else {
                 for (var i = 0; i < levels; i++) {
-                    Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i));
+                    Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i), false, false, chunk_size);
                 }
             }
             self.root.Dispose();
@@ -329,23 +330,24 @@ function dialog_terrain_export() {
         var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
         var reduction = self.GetSibling("REDUCTION").value;
         var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
+        var chunk_size = self.GetSibling("CHUNKS").value;
         
         var filename = get_save_filename_mesh("Terrain");
         if (filename != "") {
             if (levels == 0) {
                 switch (filename_ext(filename)) {
-                    case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(filename); break;
-                    case ".obj": Stuff.terrain.ExportOBJ(filename); break;
-                    case ".vbuff": Stuff.terrain.ExportVbuff(filename); break;
+                    case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(filename, chunk_size); break;
+                    case ".obj": Stuff.terrain.ExportOBJ(filename, chunk_size); break;
+                    case ".vbuff": Stuff.terrain.ExportVbuff(filename, chunk_size); break;
                 }
             } else {
                 for (var i = 0; i < levels; i++) {
                     var lod_filename = filename_change_ext(filename, "") + ".LOD" + string(i) + filename_ext(filename);
                     var lod_density = power(reduction, i);
                     switch (filename_ext(filename)) {
-                        case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(lod_filename, lod_density); break;
-                        case ".obj": Stuff.terrain.ExportOBJ(lod_filename, lod_density); break;
-                        case ".vbuff": Stuff.terrain.ExportVbuff(lod_filename, lod_density); break;
+                        case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(lod_filename, lod_density, chunk_size); break;
+                        case ".obj": Stuff.terrain.ExportOBJ(lod_filename, lod_density, chunk_size); break;
+                        case ".vbuff": Stuff.terrain.ExportVbuff(lod_filename, lod_density, chunk_size); break;
                     }
                 }
             }
