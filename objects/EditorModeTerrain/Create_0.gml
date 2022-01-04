@@ -60,6 +60,7 @@ save = function() {
     Settings.terrain.export_swap_zup = self.export_swap_zup;
     Settings.terrain.export_centered = self.export_centered;
     Settings.terrain.export_chunk_size = self.export_chunk_size;
+    Settings.terrain.export_smooth = self.export_smooth;
     Settings.terrain.output_vertex_format = self.output_vertex_format;
 };
 
@@ -84,6 +85,7 @@ export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
 export_swap_zup = setting_get("terrain", "export_swap_zup", false);
 export_centered = setting_get("terrain", "export_centered", false);
 export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
+export_smooth = setting_get("terrain", "export_smooth", false);
 smooth_shading = false;
 dual_layer = false;
 orthographic = false;

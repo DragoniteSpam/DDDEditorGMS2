@@ -237,8 +237,9 @@ function dialog_terrain_export() {
     
     var ew = 256;
     
-    var dialog = new EmuDialog(640, 540, "Export Terrain");
+    var dialog = new EmuDialog(960, 540, "Export Terrain");
     dialog.AddContent([
+        #region column 1
         new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
         (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
             .SetID("LABEL"),
@@ -281,10 +282,15 @@ function dialog_terrain_export() {
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Centered?", Stuff.terrain.export_centered, function() {
             Stuff.terrain.export_centered = self.value;
         })),
-        (new EmuInput(32, EMU_AUTO, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Stuff.terrain.export_smooth, function() {
+            Stuff.terrain.export_smooth = self.value;
+        })),
+        #endregion
+        #region column 2
+        (new EmuInput(352, 16, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = real(self.value);
         })),
-        (new EmuText(352, 16, 256, 32, "Chunk size: " + ((Stuff.terrain.export_chunk_size > 0) ? string(Stuff.terrain.export_chunk_size) : "(disabled)")))
+        (new EmuText(352, EMU_AUTO, 256, 32, "Chunk size: " + ((Stuff.terrain.export_chunk_size > 0) ? string(Stuff.terrain.export_chunk_size) : "(disabled)")))
             .SetID("LABEL_CHUNKS"),
         (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, Stuff.terrain.export_chunk_size, function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: " + ((self.value > 0) ? string(self.value) : "(disabled)");
@@ -313,7 +319,9 @@ function dialog_terrain_export() {
             self.GetSibling("CHUNKS").SetValue(128);
         }))
             .SetTooltip("Preset chunk size of 128"),
-        (new EmuButton(352, EMU_AUTO, 256, 32, "Add to Project", function() {
+        #endregion
+        #region column 3
+        (new EmuButton(672, 16, 256, 32, "Add to Project", function() {
             var min_side_length = 10;
             var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
             // if it's not immediately clear what this does - the reduction value
@@ -335,17 +343,18 @@ function dialog_terrain_export() {
             }
             self.root.Dispose();
         })),
-        new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
-        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
+        new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
+        (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
             Stuff.terrain.export_swap_zup = self.value;
         })),
-        (new EmuCheckbox(352, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Stuff.terrain.export_swap_uvs, function() {
+        (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Stuff.terrain.export_swap_uvs, function() {
             Stuff.terrain.export_swap_uvs = self.value;
         })),
-        new EmuText(352, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
-        (new EmuButton(352, EMU_AUTO, 256, 32, "Vertex format", function() {
+        new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
+        (new EmuButton(672, EMU_AUTO, 256, 32, "Vertex format", function() {
             emu_dialog_vertex_format(Stuff.terrain.output_vertex_format, function(value) { Stuff.terrain.output_vertex_format = value; });
         })),
+        #endregion
     ]).AddDefaultConfirmCancelButtons("Save", function() {
         var min_side_length = 10;
         var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
