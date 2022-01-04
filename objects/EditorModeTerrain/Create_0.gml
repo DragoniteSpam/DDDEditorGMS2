@@ -61,6 +61,7 @@ save = function() {
     Settings.terrain.export_centered = self.export_centered;
     Settings.terrain.export_chunk_size = self.export_chunk_size;
     Settings.terrain.export_smooth = self.export_smooth;
+    Settings.terrain.export_smooth_threshold = self.export_smooth_threshold;
     Settings.terrain.output_vertex_format = self.output_vertex_format;
 };
 
@@ -86,6 +87,7 @@ export_swap_zup = setting_get("terrain", "export_swap_zup", false);
 export_centered = setting_get("terrain", "export_centered", false);
 export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
 export_smooth = setting_get("terrain", "export_smooth", false);
+export_smooth_threshold = setting_get("terrain", "export_smooth_threshold", 60);
 smooth_shading = false;
 dual_layer = false;
 orthographic = false;
@@ -446,8 +448,7 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     buffer_resize(output, buffer_tell(output));
     
     if (Stuff.terrain.export_smooth) {
-        var normal_threshold = 60;
-        (new MeshSubmesh("dummy mesh that isnt used but i need the smooth normals method to be accessible")).internalSetNormalsSmooth(output, normal_threshold);
+        (new MeshSubmesh("dummy mesh that isnt used but i need the smooth normals method to be accessible")).internalSetNormalsSmooth(output, Stuff.terrain.export_smooth_threshold);
     }
     
     return output;

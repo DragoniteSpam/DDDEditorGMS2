@@ -276,6 +276,14 @@ function dialog_terrain_export() {
             self.GetSibling("REDUCTION").SetValue(4);
         }))
             .SetTooltip("Preset 4.0x LOD reduction."),
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Stuff.terrain.export_smooth, function() {
+            Stuff.terrain.export_smooth = self.value;
+        }))
+            .SetTooltip("Smooth the normals of the terrain before saving it. [c_red]Warning! This can be very slow on large terrains."),
+        (new EmuInput(32, EMU_AUTO, 256, 32, "Threshold:", string(Stuff.terrain.export_smooth_threshold), "0...90 degrees", 4, E_InputTypes.REAL, function() {
+            Stuff.terrain.export_smooth_threshold = real(self.value);
+        }))
+            .SetTooltip("The angle tolerance of smoothed normals. A higher value means more smoothing. I recommend somethingn between 45 and 75."),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Stuff.terrain.export_all, function() {
             Stuff.terrain.export_all = self.value;
         }))
@@ -284,13 +292,9 @@ function dialog_terrain_export() {
             Stuff.terrain.export_centered = self.value;
         }))
             .SetTooltip("Align the terrain around the center of the world origin instead of sticking it in the corner."),
-        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Stuff.terrain.export_smooth, function() {
-            Stuff.terrain.export_smooth = self.value;
-        }))
-            .SetTooltip("Smooth the normals of the terrain before saving it. [c_red]Warning! This can be very slow on large terrains."),
         #endregion
         #region column 2
-        (new EmuInput(352, 16, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
+        (new EmuInput(352, 48, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
             Stuff.terrain.save_scale = real(self.value);
         })),
         (new EmuText(352, EMU_AUTO, 256, 32, "Chunk size: " + ((Stuff.terrain.export_chunk_size > 0) ? string(Stuff.terrain.export_chunk_size) : "(disabled)")))
