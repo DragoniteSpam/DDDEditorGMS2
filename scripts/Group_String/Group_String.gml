@@ -22,9 +22,11 @@ function string_comma(n) {
 function string_filename(str) {
     // removes all invalid characters for a filename (plus whitespace) and
     // replaces them with a hyphen
-    regex_setexpression("[<>:\"\\/\\\\|?*\\s]");
-    regex_setinput(str);
-    return regex_replace("-");
+    static invalid_characters = ["<", ">", ":", "\"", "/", "\\", "|", "?", "*", " ", "\n"];
+    for (var i = 0, n = array_length(invalid_characters); i < n; i++) {
+        str = string_replace_all(str, invalid_characters[i], "-");
+    }
+    return str;
 }
 
 function string_hash_simple(str) {

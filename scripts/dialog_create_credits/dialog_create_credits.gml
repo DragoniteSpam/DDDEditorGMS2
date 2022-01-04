@@ -64,8 +64,6 @@ function dialog_create_credits(dialog) {
     el_ex_xpanda_url.tooltip = "https://github.com/GameMakerDiscord/Xpanda/";
     var el_ex_xpanda = create_text(32 + bw + spacing, yy, "Xpanda, shader management by kraifpatrik", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
-    var el_ex_regex = create_text(32, yy, "     There's a really great regex extension by Upset Baby Games, but it appears to have been delisted", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
     
     var el_asset = create_text(32, yy, "[c_blue]Default assets", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
@@ -97,7 +95,6 @@ function dialog_create_credits(dialog) {
         el_ex_fmod, el_ex_fmod_url,
         el_ex_scribble, el_ex_scribble_url,
         el_ex_xpanda, el_ex_xpanda_url,
-        el_ex_regex,
         el_asset,
         el_asset_water, el_asset_wate_url,
         el_asset_npc,

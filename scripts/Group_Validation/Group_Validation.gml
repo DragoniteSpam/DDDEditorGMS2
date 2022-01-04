@@ -1,15 +1,9 @@
-function regex(expression, str) {
-    regex_setexpression(expression);
-    regex_setinput(str);
-    return regex_match();
-}
-
 function ui_value_real(str) {
     return real(str);
 }
 
 function ui_value_string(str) {
-    return str;
+    return true;
 }
 
 // These can take an input parameter if they need to - but most of the time,
@@ -20,18 +14,32 @@ function validate_code(expression) {
 }
 
 function validate_double(str) {
-    if (string_length(str) == 0) return false;
-    return regex("[-+]?[0-9]*\.?[0-9]+", str);
+    try {
+        real(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
 
 function validate_hex(str) {
-    if (string_length(str) == 0) return false;
-    return regex("[-+]?[0-9A-Fa-f]+", str);
+    try {
+        emu_hex(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
 
 function validate_int(str) {
-    if (string_length(str) == 0) return false;
-    return regex("((\\+)|(\\-))?(\\d)+", str);
+	if (string_count(".", str) > 0) return false;
+	if (string_count("e", str) > 0) return false;
+    try {
+        real(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
 
 function validate_int_create_map_size(str, input) {
@@ -68,8 +76,17 @@ function validate_string(str) {
 }
 
 function validate_string_event_name(str, input) {
-    if (string_length(str) == 0) return false;
-    if (!regex("[A-Za-z0-9_\+\$]+", str)) return false;
+	static other_valid_characters = ["_", "+", "$"];
+	
+    var str_len = string_length(str);
+    if (str_len == 0) return false;
+    
+    var str_len_valid = string_length(string_lettersdigits(str));
+    for (var i = 0, n = array_length(other_valid_characters); i < n; i++) {
+        str_len_valid += string_count(other_valid_characters[i], str);
+    }
+    
+    if (str_len_valid != str_len) return false;
     
     if (input) {
         var node = input.root.node;
@@ -82,10 +99,17 @@ function validate_string_event_name(str, input) {
 }
 
 function validate_string_internal_name(str) {
-    // characters must be save to use as a file name; to keep things simple we'll
-    // use the A-Za-z0-9\_ pattern of variable names, although we don't care if
-    // they start with a digit in this case
-    return regex("[A-Za-z0-9_]+", str);
+	static other_valid_characters = ["_"];
+	
+    var str_len = string_length(str);
+    if (str_len == 0) return false;
+    
+    var str_len_valid = string_length(string_lettersdigits(str));
+    for (var i = 0, n = array_length(other_valid_characters); i < n; i++) {
+        str_len_valid += string_count(other_valid_characters[i], str);
+    }
+    
+    return (str_len_valid == str_len);
 }
 
 function validate_string_internal_name_or_empty(str) {
