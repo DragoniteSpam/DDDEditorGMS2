@@ -1,19 +1,5 @@
-/// @param DataMesh
-/// @param buffer
-/// @param vbuffer
-/// @param [proto-guid]
-/// @param [name]
-/// @param [replace-index]
-/// @param [path]
-function mesh_create_submesh() {
-    var mesh = argument[0];
-    var buffer = argument[1];
-    var vbuffer = argument[2];
-    var proto_guid = (argument_count > 3) ? argument[3] : undefined;
-    var name = (argument_count > 4 && argument[4] != undefined) ? argument[4] : "Submesh" + string(array_length(mesh.submeshes));
-    var replace_index = (argument_count > 5 && argument[5] != undefined) ? argument[5] : -1;
+function mesh_create_submesh(mesh, buffer, vbuffer, proto_guid = undefined, name = "Submesh" + string(array_length(mesh.submeshes)), replace_index = -1, path = undefined) {
     var submesh = (replace_index == -1) ? undefined : mesh.submeshes[replace_index];
-    var path = (argument_count > 6) ? argument[6] : undefined;
     
     if (submesh) {
         buffer_delete(submesh.buffer);
