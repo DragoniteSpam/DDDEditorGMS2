@@ -260,31 +260,34 @@ function dialog_terrain_export() {
             self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 1.5";
             self.GetSibling("REDUCTION").SetValue(1.5);
         }))
-            .SetTooltip("Preset 1.5x LOD reduction"),
+            .SetTooltip("Preset 1.5x LOD reduction."),
         (new EmuButton(32 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "2.0x", function() {
             self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 2";
             self.GetSibling("REDUCTION").SetValue(2);
         }))
-            .SetTooltip("Preset 2.0x LOD reduction"),
+            .SetTooltip("Preset 2.0x LOD reduction."),
         (new EmuButton(32 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "3.0x", function() {
             self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 3";
             self.GetSibling("REDUCTION").SetValue(3);
         }))
-            .SetTooltip("Preset 3.0x LOD reduction"),
+            .SetTooltip("Preset 3.0x LOD reduction."),
         (new EmuButton(32 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "4.0x", function() {
             self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 4";
             self.GetSibling("REDUCTION").SetValue(4);
         }))
-            .SetTooltip("Preset 4.0x LOD reduction"),
+            .SetTooltip("Preset 4.0x LOD reduction."),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Stuff.terrain.export_all, function() {
             Stuff.terrain.export_all = self.value;
-        })),
+        }))
+            .SetTooltip("You can choose to remove triangles where all three vertices are below z = 0."),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Centered?", Stuff.terrain.export_centered, function() {
             Stuff.terrain.export_centered = self.value;
-        })),
+        }))
+            .SetTooltip("Align the terrain around the center of the world origin instead of sticking it in the corner."),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Stuff.terrain.export_smooth, function() {
             Stuff.terrain.export_smooth = self.value;
-        })),
+        }))
+            .SetTooltip("Smooth the normals of the terrain before saving it. [c_red]Warning! This can be very slow on large terrains."),
         #endregion
         #region column 2
         (new EmuInput(352, 16, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {

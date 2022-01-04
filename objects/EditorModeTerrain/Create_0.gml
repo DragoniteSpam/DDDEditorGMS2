@@ -445,6 +445,11 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     
     buffer_resize(output, buffer_tell(output));
     
+    if (Stuff.terrain.export_smooth) {
+        var normal_threshold = 60;
+        (new MeshSubmesh("dummy mesh that isnt used but i need the smooth normals method to be accessible")).internalSetNormalsSmooth(output, normal_threshold);
+    }
+    
     return output;
 };
 
