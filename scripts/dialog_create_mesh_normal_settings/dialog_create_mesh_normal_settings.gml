@@ -1,61 +1,30 @@
 function dialog_create_mesh_normal_settings(root, selection) {
     var mode = Stuff.mesh_ed;
     
-    var dw = 320;
-    var dh = 320;
+    var dialog = new EmuDialog(320, 240, "Normals");
+    dialog.root = root;
+    dialog.selection = selection;
     
-    var dg = dialog_create(dw, dh, "Normals", dialog_default, dialog_destroy, root);
-    dg.selection = selection;
-    
-    var columns = 1;
-    var ew = dw / columns - 64;
-    var eh = 24;
-    
-    var vx1 = ew / 2;
-    var vy1 = 0;
-    var vx2 = ew;
-    var vy2 = eh;
-    
-    var c1x = 0 * dw / columns + 32;
-    var spacing = 16;
-    
-    var yy = 64;
-    var yy_base = 64;
-    
-    var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, function(button) {
-        var selection = button.root.selection;
-        for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            Game.meshes[index].SetNormalsFlat();
-        }
-        batch_again();
-    }, dg);
-    el_flat.tooltip = "Set the normals of each vertex to the normals of their triangle.";
-    yy += el_flat.height + spacing;
-    
-    var el_smooth = create_button(c1x, yy, "Set Smooth Normals", ew, eh, fa_center, function(button) {
-        var selection = button.root.selection;
-        for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            Game.meshes[index].SetNormalsSmooth(Settings.config.normal_threshold);
-        }
-        batch_again();
-    }, dg);
-    el_smooth.tooltip = "Weigh the normals of each vertex based on the angle of their surrounding triangles, if the angle between them is less than the specified threshold.";
-    yy += el_smooth.height + spacing;
-    
-    var el_smooth_threshold = create_input(c1x, yy, "Threshold:", ew, eh, function(input) {
-        Settings.config.normal_threshold = real(input.value);
-    }, Settings.config.normal_threshold, "angle", validate_double, 0, 360, 5, vx1, vy1, vx2, vy2, dg);
-    el_smooth_threshold.tooltip = "The threshold which the angle between two triangles must be less than in order for their vertix normals to be smoothed. (A threshold of zero is the same as flat shading.)";
-    yy += el_smooth_threshold.height + spacing;
-    
-    var b_width = 128;
-    var b_height = 32;
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-    
-    ds_list_add(dg.contents,
-        el_flat, el_smooth, el_smooth_threshold,
-        el_confirm
-    );
-    
-    return dg;
+    return dialog.AddContent([
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Set Flat Normals", function() {
+            var selection = self.root.selection;
+            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                Game.meshes[index].SetNormalsFlat();
+            }
+            batch_again();
+        }))
+            .SetTooltip("Set the normals of each vertex equal to the normals of their triangle."),
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Set Flat Normals", function() {
+            var selection = self.root.selection;
+            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                Game.meshes[index].SetNormalsSmooth(Settings.config.normal_threshold);
+            }
+            batch_again();
+        }))
+            .SetTooltip("Weigh the normals of each vertex based on the angle of their surrounding triangles, if the angle between them is less than the specified threshold."),
+        (new EmuInput(32, EMU_AUTO, 256, 32, "Threshold:", string(Settings.config.normal_threshold), "degrees", 5, E_InputTypes.REAL, function() {
+            Settings.config.normal_threshold = real(self.value);
+        }))
+            .SetTooltip("The threshold which the angle between two triangles must be less than in order for their vertix normals to be smoothed. (A threshold of zero is the same as flat shading.)"),
+    ]).AddDefaultCloseButton();
 }
