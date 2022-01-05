@@ -111,17 +111,6 @@ function MeshSubmesh(source) constructor {
         self.reflect_vbuffer = t;
     };
     
-    static SetNormalsZero = function() {
-        if (self.buffer) {
-            internalSetNormalsZero(self.buffer, 1);
-            internalSetVertexBuffer();
-        }
-        if (self.reflect_buffer) {
-            internalSetNormalsZero(self.reflect_buffer, -1);
-            internalSetReflectVertexBuffer();
-        }
-    };
-    
     static SetNormalsFlat = function() {
         if (self.buffer) {
             internalSetNormalsFlat(self.buffer);
@@ -205,18 +194,6 @@ function MeshSubmesh(source) constructor {
         if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
         vertex_freeze(self.reflect_vbuffer);
-    };
-    
-    static internalSetNormalsZero = function(buffer, val) {
-        buffer_seek(buffer, buffer_seek_start, 0);
-        var position = 0;
-        
-        while (position < buffer_get_size(buffer)) {
-            buffer_poke(buffer, position + VERTEX_SIZE + 12, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE + 16, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE + 20, buffer_f32, val);
-            position += VERTEX_SIZE;
-        }
     };
     
     static internalSetNormalsFlat = function(buffer) {

@@ -141,12 +141,6 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    static SetNormalsZero = function() {
-        for (var i = 0; i < array_length(submeshes); i++) {
-            submeshes[i].SetNormalsZero();
-        }
-    };
-    
     static SetNormalsFlat = function() {
         for (var i = 0; i < array_length(submeshes); i++) {
             submeshes[i].SetNormalsFlat();

@@ -22,16 +22,6 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var yy = 64;
     var yy_base = 64;
     
-    var el_none = create_button(c1x, yy, "Remove Normals", ew, eh, fa_center, function(button) {
-        var selection = button.root.selection;
-        for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            Game.meshes[index].SetNormalsZero();
-        }
-        batch_again();
-    }, dg);
-    el_none.tooltip = "Re-initialize all normals (to 0, 0, 1), so that the entire model is lit the same way.";
-    yy += el_none.height + spacing;
-    
     var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
@@ -63,7 +53,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     
     ds_list_add(dg.contents,
-        el_none, el_flat, el_smooth, el_smooth_threshold,
+        el_flat, el_smooth, el_smooth_threshold,
         el_confirm
     );
     
