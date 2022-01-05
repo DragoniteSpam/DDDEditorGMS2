@@ -912,6 +912,7 @@
     {"id":{"name":"UIColorPickerInput","path":"objects/UIColorPickerInput/UIColorPickerInput.yy",},"order":10,},
     {"id":{"name":"UIProgressBar","path":"objects/UIProgressBar/UIProgressBar.yy",},"order":11,},
     {"id":{"name":"UIInputCode","path":"objects/UIInputCode/UIInputCode.yy",},"order":12,},
+    {"id":{"name":"MeshOp","path":"extensions/MeshOp/MeshOp.yy",},"order":101,},
     {"id":{"name":"UIList","path":"objects/UIList/UIList.yy",},"order":13,},
     {"id":{"name":"UIListTimeline","path":"objects/UIListTimeline/UIListTimeline.yy",},"order":14,},
     {"id":{"name":"sh_spart_sec","path":"shaders/sh_spart_sec/sh_spart_sec.yy",},"order":2,},
