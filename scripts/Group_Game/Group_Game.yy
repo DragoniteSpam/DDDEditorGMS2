@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "DDDEditor2-23",
-    "path": "DDDEditor2-23.yyp",
+    "name": "Data",
+    "path": "folders/Data.yy",
   },
   "resourceVersion": "1.0",
   "name": "Group_Game",
