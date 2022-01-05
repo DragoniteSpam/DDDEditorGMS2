@@ -167,8 +167,8 @@
   "iosCocoaPodDependencies": "",
   "tvosCocoaPodDependencies": "",
   "parent": {
-    "name": "DDDEditor2-23",
-    "path": "DDDEditor2-23.yyp",
+    "name": "Extensions",
+    "path": "folders/Extensions.yy",
   },
   "resourceVersion": "1.2",
   "name": "MeshOp",
