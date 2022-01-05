@@ -1,6 +1,4 @@
 function dialog_create_mesh_collision_settings(root, selection) {
-    var mode = Stuff.mesh_ed;
-    
     root.Dispose();
     
     var dw = 640;
@@ -9,8 +7,9 @@ function dialog_create_mesh_collision_settings(root, selection) {
     var c1x = 32;
     var c2x = 352;
     
-    var dg = new EmuDialog(dw, dh, "Collision Shapes");
-    dg.AddContent([
+    var dialog = new EmuDialog(dw, dh, "Collision Shapes");
+    
+    return dialog.AddContent([
         // column 1
         (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 10, function() {
             var selection = self.GetSelection();
@@ -147,14 +146,5 @@ function dialog_create_mesh_collision_settings(root, selection) {
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "Length:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].length = real(self.value);
         })).SetRealNumberBounds(0.001, 9999).SetRootVariableName("other_length").SetInteractive(false),
-        
-        new EmuButton(dw / 2 - 160 / 2, dh - 48, 160, 32, "Done", function() {
-            self.root.Dispose();
-        }),
-    ]);
-    
-    dg.active_shade = 0;
-    dg.mesh = Game.meshes[selection];
-    
-    return dg;
+    ]).AddDefaultCloseButton();
 }
