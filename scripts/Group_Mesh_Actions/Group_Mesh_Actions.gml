@@ -20,17 +20,8 @@ function mesh_mirror_x(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
     
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        buffer_poke(buffer, position, buffer_f32, -buffer_peek(buffer, position, buffer_f32));
-        buffer_poke(buffer, position + 12, buffer_f32, -buffer_peek(buffer, position + 12, buffer_f32));
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
-    }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
+    meshops_mirror_axis_x(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
     
     vertex_delete_buffer(submesh.vbuffer);
     submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
@@ -41,17 +32,8 @@ function mesh_mirror_y(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
     
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        buffer_poke(buffer, position + 4, buffer_f32, -buffer_peek(buffer, position + 4, buffer_f32));
-        buffer_poke(buffer, position + 16, buffer_f32, -buffer_peek(buffer, position + 16, buffer_f32));
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
-    }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
+    meshops_mirror_axis_y(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
     
     vertex_delete_buffer(submesh.vbuffer);
     submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
@@ -62,17 +44,8 @@ function mesh_mirror_z(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
     
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        buffer_poke(buffer, position + 8, buffer_f32, -buffer_peek(buffer, position + 8, buffer_f32));
-        buffer_poke(buffer, position + 20, buffer_f32, -buffer_peek(buffer, position + 20, buffer_f32));
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
-    }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
+    meshops_mirror_axis_z(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
     
     vertex_delete_buffer(submesh.vbuffer);
     submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
