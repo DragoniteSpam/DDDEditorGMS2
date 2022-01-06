@@ -298,8 +298,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Apply Scale", ew, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                mesh_set_all_scale(mesh, Stuff.mesh_ed.draw_scale);
+                Game.meshes[index].ActionScale(Stuff.mesh_ed.draw_scale);
             }
             Stuff.mesh_ed.draw_scale = 1;
             ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
@@ -370,7 +369,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Flip Texture U", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                mesh_set_all_flip_tex_h(Game.meshes[index]);
+                Game.meshes[index].ActionFlipTexU();
             }
             batch_again();
         }, id);
@@ -379,7 +378,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x + ew / 2, yy, "Flip Texture V", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                mesh_set_all_flip_tex_v(Game.meshes[index]);
+                Game.meshes[index].ActionFlipTexV();
             }
             batch_again();
         }, id);

@@ -770,7 +770,6 @@
     {"id":{"name":"ui_render_bitfield_option_picture","path":"scripts/ui_render_bitfield_option_picture/ui_render_bitfield_option_picture.yy",},"order":0,},
     {"id":{"name":"ui_render_bitfield_option_text","path":"scripts/ui_render_bitfield_option_text/ui_render_bitfield_option_text.yy",},"order":1,},
     {"id":{"name":"spr_emu_radio","path":"sprites/spr_emu_radio/spr_emu_radio.yy",},"order":16,},
-    {"id":{"name":"Group_Mesh_Actions","path":"scripts/Group_Mesh_Actions/Group_Mesh_Actions.yy",},"order":7,},
     {"id":{"name":"ui_render_list_event_node","path":"scripts/ui_render_list_event_node/ui_render_list_event_node.yy",},"order":5,},
     {"id":{"name":"ui_render_list_entity_events","path":"scripts/ui_render_list_entity_events/ui_render_list_entity_events.yy",},"order":8,},
     {"id":{"name":"ui_render_list_data_instances","path":"scripts/ui_render_list_data_instances/ui_render_list_data_instances.yy",},"order":12,},

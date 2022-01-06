@@ -25,7 +25,7 @@ function dialog_create_mesh_other_settings(root, selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Invert Transparency", function() {
             var selection = self.root.selection;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                mesh_all_invert_alpha(Game.meshes[index]);
+                Game.meshes[index].ActionInvertAlpha();
             }
             batch_again();
         }))
@@ -33,7 +33,7 @@ function dialog_create_mesh_other_settings(root, selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Transparency", function() {
             var selection = self.root.selection;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                mesh_all_reset_alpha(Game.meshes[index]);
+                Game.meshes[index].ActionResetAlpha();
             }
             batch_again();
         }))
@@ -41,8 +41,7 @@ function dialog_create_mesh_other_settings(root, selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Vertex Color", function() {
             var selection = self.root.selection;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                mesh_all_reset_color(mesh);
+                Game.meshes[index].ActionResetColour();
             }
             batch_again();
         }))

@@ -159,11 +159,84 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
+    #region Actions
     static PositionAtCenter = function() {
+        if (self.type == MeshTypes.SMF) return;
         for (var i = 0; i < array_length(self.submeshes); i++) {
             self.submeshes[i].PositionAtCenter();
         }
     };
+    
+    static ActionScale = function(scale) {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBufferParam(function(buffer, scale) {
+            meshops_transform_scale(buffer_get_address(buffer), buffer_get_size(buffer), scale);
+        }, scale);
+    };
+    
+    static ActionMirrorX = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_mirror_axis_x(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
+    static ActionMirrorY = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_mirror_axis_y(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
+    static ActionMirrorZ = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_mirror_axis_z(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
+    static ActionRotateUpAxis = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_rotate_up(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
+    static ActionInvertAlpha = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_invert_alpha(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
+    static ActionResetAlpha = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_set_alpha(buffer_get_address(buffer), buffer_get_size(buffer), 1);
+        });
+    };
+    
+    static ActionResetColour = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_set_color(buffer_get_address(buffer), buffer_get_size(buffer), c_white);
+        });
+    };
+    
+    static ActionFlipTexU = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_flip_tex_u(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
+    static ActionFlipTexV = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_flip_tex_v(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    #endregion
     
     static Reload = function() {
         for (var i = 0; i < array_length(submeshes); i++) {
@@ -321,6 +394,32 @@ function DataMesh(source) : SData(source) constructor {
         }
         
         array_delete(Game.meshes, array_search(Game.meshes, self), 1);
+    };
+    
+    /// @ignore
+    static foreachSubmeshBuffer = function(f) {
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            var submesh = self.submeshes[i];
+            f(submesh.buffer);
+            submesh.internalSetVertexBuffer();
+            if (submesh.reflect_buffer) {
+                f(submesh.reflect_buffer);
+                submesh.internalSetReflectVertexBuffer();
+            }
+        }
+    };
+    
+    /// @ignore
+    static foreachSubmeshBufferParam = function(f, arg) {
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            var submesh = self.submeshes[i];
+            f(submesh.buffer, arg);
+            submesh.internalSetVertexBuffer();
+            if (submesh.reflect_buffer) {
+                f(submesh.reflect_buffer, arg);
+                submesh.internalSetReflectVertexBuffer();
+            }
+        }
     };
 }
 
