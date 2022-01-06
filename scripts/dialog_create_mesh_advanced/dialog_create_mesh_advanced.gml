@@ -212,35 +212,6 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_swap_reflect.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
     yy += el_swap_reflect.height + spacing;
     
-    var el_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, function(button) {
-        var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
-        if (submesh) {
-            submesh.SetNormalsFlat();
-        }
-        batch_again(false);
-    }, dg);
-    el_normal_flat.tooltip = "Flattens all normals in all submeshes mesh.";
-    yy += el_normal_flat.height + spacing;
-    
-    var el_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, function(button) {
-        var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
-        if (submesh) {
-            submesh.SetNormalsSmooth(Settings.config.normal_threshold);
-        }
-        batch_again(false);
-    }, dg);
-    el_normal_smooth.tooltip = "Smooths all normals in all submeshes. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
-    yy += el_normal_smooth.height + spacing;
-    
-    var el_up_axis = create_button(col3_x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
-        button.root.mesh.ActionRotateUpAxis();
-        batch_again(false);
-    }, dg);
-    el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
-    yy += el_up_axis.height + spacing;
-    
     var el_reload = create_button(col3_x, yy, "Reload", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
         var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
@@ -298,6 +269,13 @@ function dialog_create_mesh_advanced(root, mesh) {
     }, dg);
     el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
     yy += el_all_normal_smooth.height + spacing;
+    
+    var el_up_axis = create_button(col4_x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
+        button.root.mesh.ActionRotateUpAxis();
+        batch_again(false);
+    }, dg);
+    el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
+    yy += el_up_axis.height + spacing;
     
     var el_all_reload = create_button(col4_x, yy, "Reload", ew, eh, fa_center, function(button) {
         button.root.mesh.Reload();
