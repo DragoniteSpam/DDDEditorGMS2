@@ -333,6 +333,7 @@ function ui_init_mesh(mode) {
         }, id);
         element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/";
         ds_list_add(contents, element);
+        yy += element.height + spacing;
         
         element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
