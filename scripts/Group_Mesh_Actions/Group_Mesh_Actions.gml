@@ -1,54 +1,39 @@
 function mesh_mirror_all_x(mesh) {
+    if (mesh.type == MeshTypes.SMF) return;
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
-        mesh_mirror_x(mesh, i);
+        var submesh = mesh.submeshes[i];
+        meshops_mirror_axis_x(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_mirror_axis_x(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
 }
 
 function mesh_mirror_all_y(mesh) {
+    if (mesh.type == MeshTypes.SMF) return;
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
-        mesh_mirror_y(mesh, i);
+        var submesh = mesh.submeshes[i];
+        meshops_mirror_axis_y(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_mirror_axis_y(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
 }
 
 function mesh_mirror_all_z(mesh) {
+    if (mesh.type == MeshTypes.SMF) return;
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
-        mesh_mirror_z(mesh, i);
-    }
-}
-
-function mesh_mirror_x(mesh, index) {
-    if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    meshops_mirror_axis_x(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    submesh.internalSetVertexBuffer();
-    if (submesh.reflect_buffer) {
-        meshops_mirror_axis_x(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
-        submesh.internalSetReflectVertexBuffer();
-    }
-}
-
-function mesh_mirror_y(mesh, index) {
-    if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    meshops_mirror_axis_y(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    submesh.internalSetVertexBuffer();
-    if (submesh.reflect_buffer) {
-        meshops_mirror_axis_y(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
-        submesh.internalSetReflectVertexBuffer();
-    }
-}
-
-function mesh_mirror_z(mesh, index) {
-    if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    meshops_mirror_axis_z(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    submesh.internalSetVertexBuffer();
-    if (submesh.reflect_buffer) {
-        meshops_mirror_axis_z(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
-        submesh.internalSetReflectVertexBuffer();
+        var submesh = mesh.submeshes[i];
+        meshops_mirror_axis_y(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_mirror_axis_y(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
 }
 
@@ -172,44 +157,34 @@ function mesh_reset_color(mesh, index) {
 }
 
 function mesh_set_all_flip_tex_h(mesh) {
+    if (mesh.type == MeshTypes.SMF) return;
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
-        mesh_set_flip_tex_h(mesh, i);
+        var submesh = mesh.submeshes[i];
+        meshops_flip_tex_u(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_flip_tex_u(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
 }
 
 function mesh_set_all_flip_tex_v(mesh) {
+    if (mesh.type == MeshTypes.SMF) return;
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
-        mesh_set_flip_tex_v(mesh, i);
+        var submesh = mesh.submeshes[i];
+        meshops_flip_tex_v(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_flip_tex_v(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
 }
 
 function mesh_set_all_scale(mesh, scale) {
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_set_scale(mesh, i, scale);
-    }
-}
-
-function mesh_set_flip_tex_h(mesh, index) {
-    if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    meshops_flip_tex_u(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    submesh.internalSetVertexBuffer();
-    if (submesh.reflect_buffer) {
-        meshops_flip_tex_u(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
-        submesh.internalSetReflectVertexBuffer();
-    }
-}
-
-function mesh_set_flip_tex_v(mesh, index) {
-    if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    meshops_flip_tex_v(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    submesh.internalSetVertexBuffer();
-    if (submesh.reflect_buffer) {
-        meshops_flip_tex_v(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
-        submesh.internalSetReflectVertexBuffer();
     }
 }
 
