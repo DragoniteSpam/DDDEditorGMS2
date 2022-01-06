@@ -15,12 +15,12 @@ view_set_yport(view_overlay, 0);
 view_set_wport(view_overlay, ww);
 view_set_hport(view_overlay, hh);
 
-var status = ds_stuff_fetch_status();
+var status = drago_window_fetch_status();
 
 if (status == WINDOW_CLOSE) {
     var top = EmuOverlay.GetTop();
     if (top && (top.flags & DialogFlags.IS_QUIT)) {
-        is_quitting = true;
+        self.is_quitting = true;
         game_end();
     } else {
         momu_exit();
@@ -28,4 +28,4 @@ if (status == WINDOW_CLOSE) {
 }
 
 // if you want to do other things with the program window in c++ do them before you reset the status
-ds_stuff_reset_status();
+drago_window_reset_status();

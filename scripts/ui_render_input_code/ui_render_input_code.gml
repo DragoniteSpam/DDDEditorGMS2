@@ -30,12 +30,6 @@ function ui_render_input_code(code, xx, yy) {
         if (code.editor_handle) {
             code.onsave(code);
             code.onvaluechange(code);
-            
-            if (ds_stuff_process_complete(code.editor_handle)) {
-                code.editor_handle = noone;
-                var location = code.is_code ? get_temp_code_path(code) : get_temp_text_path(code);
-                file_delete(location);
-            }
         }
         
         if (!code.editor_handle) {

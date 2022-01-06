@@ -188,8 +188,7 @@ function draw_event_node(node) {
                                         if (node.editor_handle == noone) {
                                             var location = get_temp_code_path(node);
                                             buffer_write_file(list_code[i], location);
-                                            node.editor_handle = ds_stuff_open_local(location);
-                                            node.editor_handle_index = i;
+                                            emu_dialog_notice("The \"open\" command is temporarily unavailable. I might bring it back some other time if it's really needed. Sorry!");
                                         }
                                         break;
                                 }
@@ -255,11 +254,6 @@ function draw_event_node(node) {
                 
                 if (node.editor_handle) {
                     list_code[@ node.editor_handle_index] = uios_code_text(node, list_code[node.editor_handle_index]);
-                    if (ds_stuff_process_complete(node.editor_handle)) {
-                        node.editor_handle = noone;
-                        node.editor_handle_index = -1;
-                        file_delete(get_temp_code_path(node));
-                    }
                 }
                 
                 var n = array_length(node.outbound);
@@ -461,7 +455,7 @@ function draw_event_node(node) {
                                             if (node.editor_handle == noone) {
                                                 var location = get_temp_code_path(node);
                                                 buffer_write_file(custom_data_list[i], location);
-                                                node.editor_handle = ds_stuff_open_local(location);
+                                                emu_dialog_notice("The \"open\" command is temporarily unavailable. I might bring it back some other time if it's really needed. Sorry!");
                                             }
                                             break;
                                         case DataTypes.COLOR:
@@ -550,10 +544,6 @@ function draw_event_node(node) {
                     if (node.editor_handle && type.type == DataTypes.CODE) {
                         custom_data_list[@ i] = uios_code_text(node, custom_data_list[i]);
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy - tolerance + eh, c, c, c, c, false);
-                        if (ds_stuff_process_complete(node.editor_handle)) {
-                            node.editor_handle = noone;
-                            file_delete(get_temp_code_path(node));
-                        }
                     }
                     
                     var message = type.name + " ";

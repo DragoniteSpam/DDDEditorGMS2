@@ -41,19 +41,19 @@ function dialog_create_credits(dialog) {
     var el_ex = create_text(16, yy, "[c_blue]Some Game Maker extensions were used", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
     var el_ex_venomous_url = create_button(32, yy, "GMC Forum thread", bw, eh, fa_center, function(button) {
-        ds_stuff_open("https://web.archive.org/web/20191214124933/http://gmc.yoyogames.com/index.php?showtopic=632606");
+        url_open("https://web.archive.org/web/20191214124933/http://gmc.yoyogames.com/index.php?showtopic=632606");
     }, dg);
     el_ex_venomous_url.tooltip = "http://gmc.yoyogames.com/index.php?showtopic=632606 (Web Archive; the original page has long since been deleted)";
     var el_ex_venomous = create_text(32 + bw + spacing, yy, "     3D collisions (mostly raycasting): Venomous (Bullet)", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
     var el_ex_scribble_url = create_button(32, yy, "Github", bw, eh, fa_center, function(button) {
-        ds_stuff_open("https://github.com/JujuAdams/scribble");
+        url_open("https://github.com/JujuAdams/scribble");
     }, dg);
     el_ex_scribble_url.tooltip = "https://github.com/JujuAdams/scribble";
     var el_ex_scribble = create_text(32 + bw + spacing, yy, "[rainbow][wave]Scribble,[] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
     var el_ex_xpanda_url = create_button(32, yy, "Github", bw, eh, fa_center, function(button) {
-        ds_stuff_open("https://github.com/GameMakerDiscord/Xpanda/");
+        url_open("https://github.com/GameMakerDiscord/Xpanda/");
     }, dg);
     el_ex_xpanda_url.tooltip = "https://github.com/GameMakerDiscord/Xpanda/";
     var el_ex_xpanda = create_text(32 + bw + spacing, yy, "Xpanda, shader management by kraifpatrik", ew, eh, fa_left, dw - 32, dg);
@@ -62,7 +62,7 @@ function dialog_create_credits(dialog) {
     var el_asset = create_text(32, yy, "[c_blue]Default assets", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
     var el_asset_wate_url = create_button(32, yy, "GodsAndIdols.com", bw, eh, fa_center, function(button) {
-        ds_stuff_open("www.godsandidolds.com");
+        url_open("www.godsandidolds.com");
     }, dg);
     el_asset_wate_url.tooltip = "www.godsandidolds.com";
     var el_asset_water = create_text(32 + bw + spacing, yy, "Water textures: Aswin Vos and GodsAndIdols", ew, eh, fa_left, dw - 32, dg);

@@ -1,12 +1,12 @@
-var files = ds_stuff_fetch_dropped_files();
+var files = drago_get_dropped_files();
 if (array_length(files) > 0) {
-    files_dropped = files;
+    self.files_dropped = files;
 } else {
-    files_dropped = [];
+    self.files_dropped = [];
 }
 
-if (is_struct(mode)) {
-    mode.Update();
+if (is_struct(self.mode)) {
+    self.mode.Update();
 } else {
-    mode.update(mode);
+    self.mode.update(mode);
 }

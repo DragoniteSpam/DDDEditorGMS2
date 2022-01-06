@@ -6,7 +6,6 @@ function dmu_graphic_export_generic(button) {
         try {
             var fn = get_save_filename_image(what.name + ".png");
             sprite_save(what.picture, 0, fn);
-            //ds_stuff_open(fn);
         } catch (e) {
             wtf("Could not save the image: " + e.message);
         }
