@@ -330,11 +330,8 @@ function dialog_create_data_types(dialog) {
     
     yy += eh + spacing;
     
-    var el_property_default_code = create_input_code(col3_x, yy, "Default:", ew, eh, vx1, vy1, vx2, vy2, "", function(input) {
-        // @todo else make it red or something
-        if (validate_code(input.value)) {
-            input.root.selected_property.default_code = input.value;
-        }
+    var el_property_default_code = create_button(col3_x, yy, "Default:", ew, eh, fa_middle, function(input) {
+        emu_dialog_notice("create some new code editor sometime maybe");
     }, dg);
     el_property_default_code.enabled = false;
     dg.el_property_default_code = el_property_default_code;

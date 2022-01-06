@@ -185,11 +185,7 @@ function draw_event_node(node) {
                                     case ConditionBasicTypes.SELF_SWITCH: dialog_create_condition_switch_self_data(node, i); break;
                                     case ConditionBasicTypes.SELF_VARIABLE: dialog_create_condition_variable_self_data(node, i); break;
                                     case ConditionBasicTypes.SCRIPT:
-                                        if (node.editor_handle == noone) {
-                                            var location = get_temp_code_path(node);
-                                            buffer_write_file(list_code[i], location);
-                                            emu_dialog_notice("The \"open\" command is temporarily unavailable. I might bring it back some other time if it's really needed. Sorry!");
-                                        }
+                                        emu_dialog_notice("The \"open\" command is temporarily unavailable. I might bring it back some other time if it's really needed. Sorry!");
                                         break;
                                 }
                             }
@@ -235,10 +231,7 @@ function draw_event_node(node) {
                             break;
                         case ConditionBasicTypes.SCRIPT:
                             str = "Code: " + string_comma(string_length(list_code[i])) + " bytes";
-                        
-                            if (node.editor_handle_index == i) {
-                                draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
-                            }
+                            draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
                             break;
                     }
                     
@@ -250,10 +243,6 @@ function draw_event_node(node) {
                     }
                     
                     entry_yy = entry_yy + rh + eh;
-                }
-                
-                if (node.editor_handle) {
-                    list_code[@ node.editor_handle_index] = uios_code_text(node, list_code[node.editor_handle_index]);
                 }
                 
                 var n = array_length(node.outbound);
@@ -452,11 +441,7 @@ function draw_event_node(node) {
                                             dialog_create_event_node_animation(noone, node, i, 0);
                                             break;
                                         case DataTypes.CODE:
-                                            if (node.editor_handle == noone) {
-                                                var location = get_temp_code_path(node);
-                                                buffer_write_file(custom_data_list[i], location);
-                                                emu_dialog_notice("The \"open\" command is temporarily unavailable. I might bring it back some other time if it's really needed. Sorry!");
-                                            }
+                                            emu_dialog_notice("The \"open\" command is temporarily unavailable. I might bring it back some other time if it's really needed. Sorry!");
                                             break;
                                         case DataTypes.COLOR:
                                             var picker = dialog_create_color_picker_options(node, custom_data_list[0], function(picker) {
@@ -539,11 +524,6 @@ function draw_event_node(node) {
                                 }
                             }
                         }
-                    }
-                    
-                    if (node.editor_handle && type.type == DataTypes.CODE) {
-                        custom_data_list[@ i] = uios_code_text(node, custom_data_list[i]);
-                        draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy - tolerance + eh, c, c, c, c, false);
                     }
                     
                     var message = type.name + " ";

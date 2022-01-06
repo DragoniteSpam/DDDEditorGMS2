@@ -6,13 +6,6 @@ function ui_value_string(str) {
     return true;
 }
 
-// These can take an input parameter if they need to - but most of the time,
-// they don't need to
-function validate_code(expression) {
-    // @todo validate the Lua
-    return true;
-}
-
 function validate_double(str) {
     try {
         real(str);

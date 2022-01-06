@@ -158,8 +158,8 @@ function dialog_create_settings_map(dialog) {
     el_code_heading.color = c_blue;
     yy += el_code_heading.height + spacing;
     
-    var el_code = create_input_code(col3_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, map.code, function(code) {
-        code.root.map.code = code.value;
+    var el_code = create_button(col3_x, yy, "Code:", ew, eh, fa_middle, function(code) {
+        emu_dialog_notice("create some new code editor sometime maybe");
     }, dg);
     el_code.interactive = false;
     el_code.tooltip = "Code which runs in each update step for the map";

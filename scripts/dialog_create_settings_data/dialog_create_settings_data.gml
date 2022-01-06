@@ -160,11 +160,10 @@ function dialog_create_settings_data(dialog) {
     el_edit_title.color = c_blue;
     yy += el_edit_title.height + spacing;
     
-    var el_edit_notes = create_input_code(col3_x, yy, "Game notes:", ew, eh, vx1, vy1, vx2, vy2, Game.meta.project.notes, function(code) {
-        Game.meta.project.notes = code.value;
+    var el_edit_notes = create_button(col3_x, yy, "Game notes:", ew, eh, function(code) {
+        emu_dialog_notice("create some new notes/code editor sometime maybe");
     }, dg);
     el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
-    el_edit_notes.is_code = false;
     yy += el_edit_notes.height + spacing;
     
     var el_data_files = create_button(col3_x, yy, "Data and Asset Files", ew, eh, fa_center, dialog_create_settings_data_asset_files, dg);

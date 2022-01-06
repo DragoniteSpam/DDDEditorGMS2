@@ -53,13 +53,14 @@ function dialog_create_entity_generic_data(dialog) {
     dg.el_data_ext_type = el_data_ext_type;
     yy += el_data_ext_type.height + spacing;
     
-    var el_data_property_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, "", uivc_input_entity_data_code, dg);
+    var el_data_property_code = create_button(col2_x, yy, "Code:", ew, eh, fa_middle, function() {
+        emu_dialog_notice("create some new code editor sometime maybe");
+    }, dg);
     el_data_property_code.interactive = false;
     el_data_property_code.enabled = false;
     dg.el_data_property_code = el_data_property_code;
     
     var el_data_property_string = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
-    el_data_property_string.is_code = false;
     el_data_property_string.interactive = false;
     el_data_property_string.enabled = false;
     dg.el_data_property_string = el_data_property_string;

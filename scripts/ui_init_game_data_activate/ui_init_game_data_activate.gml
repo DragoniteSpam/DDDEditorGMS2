@@ -148,9 +148,10 @@ function ui_init_game_data_activate() {
                                 break;
                             case DataTypes.CODE:
                                 element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);
-                                // the vx, vy coordinates are already located below the actual element, so the actual
-                                // element should be in the same for it to appear correctly (it's weird, i know)
-                                element = create_input_code(0, yy, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, uivc_data_set_property_code, noone, i);
+                                element = create_button(0, yy, property.name, ew, eh, fa_middle, function() {
+                                    emu_dialog_notice("re-implement some kind of code editor some time maybe");
+                                }, noone);
+                                element.key = i;
                                 var hh = vy2;
                                 break;
                             case DataTypes.COLOR:

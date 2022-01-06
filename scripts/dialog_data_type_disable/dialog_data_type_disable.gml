@@ -32,5 +32,4 @@ function dialog_data_type_disable(dialog) {
     dialog.el_property_default_real.enabled = false;
     dialog.el_property_default_int.enabled = false;
     dialog.el_property_default_bool.enabled = false;
-    dialog.el_property_default_code.editor_handle = noone;   // if something's open, we're just going to disown it
 }

@@ -26,7 +26,6 @@ function create_input() {
         validation = argument[8];
         
         switch (validation) {
-            case validate_code: value_conversion = ui_value_string; break;
             case validate_double: value_conversion = ui_value_real; break;
             case validate_hex: value_conversion = ui_value_string; break;
             case validate_int: value_conversion = ui_value_real; break;

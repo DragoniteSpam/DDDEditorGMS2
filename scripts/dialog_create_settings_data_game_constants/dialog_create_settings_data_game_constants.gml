@@ -313,11 +313,8 @@ function dialog_create_settings_data_game_constants(root) {
     
     yy = yy_base;
     
-    var el_value_code = create_input_code(col3_x, yy, "Value:", ew, eh, vx1, vy1, vx2, vy2, "", function(input) {
-        var selection = ui_list_selection(input.root.el_list);
-        if (selection + 1) {
-            Game.vars.constants[selection].value = input.value;
-        }
+    var el_value_code = create_button(col3_x, yy, "Value:", ew, eh, fa_middle, function() {
+        emu_dialog_notice("create some new code editor sometime maybe");
     }, dg);
     el_value_code.enabled = false;
     dg.el_value_code = el_value_code;

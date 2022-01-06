@@ -122,9 +122,8 @@ function dialog_create_map_generic_data(root) {
     el_data_property_entity.entries_are = ListEntries.INSTANCES;
     dg.el_data_property_entity = el_data_property_entity;
     
-    var el_data_property_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, "", function(code) {
-        var selection = ui_list_selection(code.root.el_list);
-        Stuff.map.active_map.generic_data[selection].value = code.value;
+    var el_data_property_code = create_button(col2_x, yy, "Code:", ew, eh, fa_middle, function(button) {
+        emu_dialog_notice("create some new code editor sometime maybe");
     }, dg);
     el_data_property_code.interactive = false;
     el_data_property_code.enabled = false;
@@ -134,7 +133,6 @@ function dialog_create_map_generic_data(root) {
         var selection = ui_list_selection(input.root.el_list);
         Stuff.map.active_map.generic_data[selection].value = input.value;
     }, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
-    el_data_property_string.is_code = false;
     el_data_property_string.interactive = false;
     el_data_property_string.enabled = false;
     dg.el_data_property_string = el_data_property_string;

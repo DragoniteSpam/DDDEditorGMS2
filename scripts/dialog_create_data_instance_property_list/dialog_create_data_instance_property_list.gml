@@ -116,7 +116,9 @@ function dialog_create_data_instance_property_list(root) {
             not_yet_implemented();
             break;
         case DataTypes.CODE:
-            var el_value = create_input_code(16, yy, "Code: ", ew, eh, vx1, vy1, vx2, vy2, "", uivc_data_property_list_string, dg, root.key);
+            var el_value = create_button(16, yy, "Code: ", ew, eh, fa_middle, function() {
+                emu_dialog_notice("create some new code editor sometime maybe");
+            }, dg);
             yy += el_value.height + spacing;
             break;
         case DataTypes.ENUM:

@@ -94,11 +94,6 @@ function ui_init_game_data_refresh() {
                             }
                             break;
                         case DataTypes.CODE:
-                            var location = get_temp_code_path(thingy);
-                            if (file_exists(location)) {
-                                file_delete(location);
-                                thingy.editor_handle = noone;
-                            }
                             break;
                         case DataTypes.ANIMATION:
                             ui_list_deselect(thingy);

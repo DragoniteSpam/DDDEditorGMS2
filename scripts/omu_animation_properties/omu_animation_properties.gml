@@ -74,9 +74,8 @@ function omu_animation_properties(root) {
         vx2 = ew;
         vy2 = eh;
         
-        var el_code = create_input_code(16, yy, "Code", ew, eh, vx1, vy1, vx2, vy2, animation.code, function(input) {
-            var animation = input.root.root.root.active_animation;
-            animation.code = input.value;
+        var el_code = create_button(16, yy, "Code", ew, eh, fa_middle, function() {
+            emu_dialog_notice("create some new code editor sometime maybe");
         }, dg);
         
         yy += el_code.height + spacing;

@@ -59,8 +59,7 @@ function dialog_create_entity_event_page(argument0) {
     vy2 = vy1 + eh;
 
     var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_code, page.condition_code_enabled, dg);
-    //var el_condition_code = create_button(16 + 64, yy, "Code Evaluation", ew - 64, eh, fa_center, null, dg);
-    var el_condition_code = create_input_code(16 + 64, yy, "Code", ew - 64, eh, vx1, vy1, vx2, vy2, page.condition_code, uivc_event_condition_code, dg);
+    var el_condition_code = create_button(16 + 64, yy, "Code Evaluation", ew - 64, eh, fa_center, null, dg);
     yy += el_condition_code.height + spacing + 80;
 
     var el_condition_explanation = create_text(16, yy,

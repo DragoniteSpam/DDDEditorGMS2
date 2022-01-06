@@ -45,7 +45,6 @@ function DataEventNode(source, parent, type = EventNodeTypes.ENTRYPOINT, custom 
     // editor only - set upon creation, or reset upon loading
     self.event = parent;                                                        // not a GUID - this doesnt need to be serialized
     self.valid_destination = true;                                              // can other nodes lead to this? basically here to denote comments
-    self.is_code = true;                                                        // for when you need code
     
     self.dragging = false;
     self.x = 0;
@@ -54,8 +53,6 @@ function DataEventNode(source, parent, type = EventNodeTypes.ENTRYPOINT, custom 
     self.offset_y = -1;
     
     self.ui_things = [];
-    self.editor_handle = noone;
-    self.editor_handle_index = -1;       // because sometimes the same node might want to spawn multiple editors and want to tell them apart
     
     static Setup = function(type, custom_guid) {
         if (type == undefined) return;

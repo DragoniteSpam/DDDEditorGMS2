@@ -97,7 +97,9 @@ function uivc_scribble_help(argument0) {
     var el_text_sample_pulse = create_text(xx_desc, yy + line_offset_scribble, "[pulse]Set/unset text to shrink and grow rhythmically", ew, eh, fa_left, ew, dg);
     yy += line_spacing;
 
-    var el_github = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, "View on Github", b_width, b_height, fa_center, uivc_scribble_github, dg);
+    var el_github = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, "View on Github", b_width, b_height, fa_center, function(button) {
+        url_open("https://github.com/JujuAdams/scribble");
+    }, dg);
     var el_done = create_button(dw * 2 / 3 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
     ds_list_add(dg.contents,
