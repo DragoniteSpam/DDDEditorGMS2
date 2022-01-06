@@ -17,120 +17,120 @@
   "installdir": "",
   "files": [
     {"filename":"MeshOperations.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"meshop_version","kind":1,"help":"meshop_version()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"meshop_version","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_init","kind":1,"help":"meshop_init(vertex_size)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_version","kind":1,"help":"meshops_version()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"meshops_version","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_init","kind":1,"help":"meshops_init(vertex_size)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
-          ],"resourceVersion":"1.0","name":"meshop_init","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_transform_position_set","kind":1,"help":"meshop_transform_position_set(x, y, z)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_init","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_position_set","kind":1,"help":"meshops_transform_position_set(x, y, z)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_transform_position_set","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_transform_position","kind":1,"help":"meshop_transform_position(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_transform_position_set","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_position","kind":1,"help":"meshops_transform_position(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_transform_position","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_transform_center","kind":1,"help":"meshop_transform_center(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_transform_position","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_center","kind":1,"help":"meshops_transform_center(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_transform_center","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_transform_rotate_x","kind":1,"help":"meshop_transform_rotate_x(data, len, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshop_transform_rotate_x","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_transform_rotate_y","kind":1,"help":"meshop_transform_rotate_z(data, length, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_transform_center","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_rotate_x","kind":1,"help":"meshops_transform_rotate_x(data, len, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_transform_rotate_y","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_transform_rotate_z","kind":1,"help":"meshop_transform_rotate_z(data, length, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_transform_rotate_x","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_rotate_y","kind":1,"help":"meshops_transform_rotate_z(data, length, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_transform_rotate_z","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_transform_scale","kind":1,"help":"meshop_transform_scale(data, length, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_transform_rotate_y","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_rotate_z","kind":1,"help":"meshops_transform_rotate_z(data, length, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_transform_scale","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_mirror_axis_x","kind":1,"help":"meshop_mirror_axis_x(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshop_mirror_axis_x","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_mirror_axis_y","kind":1,"help":"meshop_mirror_axis_y(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshop_mirror_axis_y","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_mirror_axis_z","kind":1,"help":"meshop_mirror_axis_z(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshop_mirror_axis_z","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_flip_tex_u","kind":1,"help":"meshop_flip_tex_u(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshop_flip_tex_u","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_flip_tex_v","kind":1,"help":"meshop_flip_tex_v(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshop_flip_tex_v","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_set_colour","kind":1,"help":"meshop_set_colour(data, length, colour)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_transform_rotate_z","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_scale","kind":1,"help":"meshops_transform_scale(data, length, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_set_colour","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_set_colour","kind":1,"help":"meshop_set_color(data, length, color)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_transform_scale","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_mirror_axis_x","kind":1,"help":"meshops_mirror_axis_x(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_mirror_axis_x","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_mirror_axis_y","kind":1,"help":"meshops_mirror_axis_y(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_mirror_axis_y","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_mirror_axis_z","kind":1,"help":"meshops_mirror_axis_z(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_mirror_axis_z","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_flip_tex_u","kind":1,"help":"meshops_flip_tex_u(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_flip_tex_u","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_flip_tex_v","kind":1,"help":"meshops_flip_tex_v(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_flip_tex_v","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_colour","kind":1,"help":"meshops_set_colour(data, length, colour)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_set_color","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_set_alpha","kind":1,"help":"meshop_set_alpha(data, length, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_set_colour","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_colour","kind":1,"help":"meshops_set_color(data, length, color)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_set_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_set_colour_and_alpha","kind":1,"help":"meshop_set_colour_and_alpha(data, length, colour, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_set_color","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_alpha","kind":1,"help":"meshops_set_alpha(data, length, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshop_set_colour_and_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_set_colour_and_alpha","kind":1,"help":"meshop_set_color_and_alpha(data, length, color, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_set_alpha","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_colour_and_alpha","kind":1,"help":"meshops_set_colour_and_alpha(data, length, colour, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_set_color_and_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_invert_alpha","kind":1,"help":"meshop_invert_alpha(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"resourceVersion":"1.0","name":"meshops_set_colour_and_alpha","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_colour_and_alpha","kind":1,"help":"meshops_set_color_and_alpha(data, length, color, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_invert_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshop_set_normals_flat","kind":1,"help":"meshop_set_normals_flat(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_set_color_and_alpha","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_invert_alpha","kind":1,"help":"meshops_invert_alpha(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshop_set_normals_flat","tags":[],"resourceType":"GMExtensionFunction",},
+          ],"resourceVersion":"1.0","name":"meshops_invert_alpha","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_normals_flat","kind":1,"help":"meshops_set_normals_flat(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_set_normals_flat","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
-        {"name":"meshop_version","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_init","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_transform_position_set","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_transform_position","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_transform_center","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_transform_rotate_x","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_transform_rotate_y","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_transform_rotate_z","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_transform_scale","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_mirror_axis_x","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_mirror_axis_y","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_mirror_axis_z","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_flip_tex_u","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_flip_tex_v","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_set_colour","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_set_color","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_set_alpha","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_set_colour_and_alpha","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_set_color_and_alpha","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_invert_alpha","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshop_set_normals_flat","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_position_set","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_position","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_center","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_rotate_x","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_rotate_y","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_rotate_z","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_scale","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_mirror_axis_x","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_mirror_axis_y","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_mirror_axis_z","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_flip_tex_u","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_flip_tex_v","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_set_colour","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_set_color","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_set_alpha","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_set_colour_and_alpha","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_set_color_and_alpha","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_invert_alpha","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_set_normals_flat","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",

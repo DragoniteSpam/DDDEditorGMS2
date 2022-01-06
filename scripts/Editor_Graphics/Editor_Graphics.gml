@@ -22,8 +22,8 @@ function EditorGraphics() constructor {
         self.format_size += 12;                                                 // should be 72
         self.vertex_format = vertex_format_end();
         
-        meshop_init(self.format_size);
-        show_debug_message("MeshOps version: " + string(meshop_version()));
+        meshops_init(self.format_size);
+        show_debug_message("MeshOps version: " + string(meshops_version()));
         
         vertex_format_begin();
         vertex_format_add_position_3d();

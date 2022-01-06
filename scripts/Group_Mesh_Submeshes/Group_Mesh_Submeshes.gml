@@ -113,11 +113,11 @@ function MeshSubmesh(source) constructor {
     
     static SetNormalsFlat = function() {
         if (self.buffer) {
-            meshop_set_normals_flat(buffer_get_address(self.buffer), buffer_get_size(self.buffer));
+            meshops_set_normals_flat(buffer_get_address(self.buffer), buffer_get_size(self.buffer));
             internalSetVertexBuffer();
         }
         if (self.reflect_buffer) {
-            meshop_set_normals_flat(buffer_get_address(self.reflect_buffer), buffer_get_size(self.reflect_buffer));
+            meshops_set_normals_flat(buffer_get_address(self.reflect_buffer), buffer_get_size(self.reflect_buffer));
             internalSetReflectVertexBuffer();
         }
     };
@@ -223,7 +223,7 @@ function MeshSubmesh(source) constructor {
     
     static internalSetNormalsSmooth = function(buffer, threshold) {
         threshold = dcos(threshold);
-        meshop_set_normals_flat(buffer_get_address(buffer), buffer_get_size(buffer));
+        meshops_set_normals_flat(buffer_get_address(buffer), buffer_get_size(buffer));
         
         var p = 3;
         
