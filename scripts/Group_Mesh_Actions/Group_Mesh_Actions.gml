@@ -45,35 +45,15 @@ function mesh_rotate_all_up_axis(mesh) {
 
 function mesh_rotate_up_axis(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        
-        var xx = buffer_peek(buffer, position, buffer_f32);
-        var yy = buffer_peek(buffer, position + 4, buffer_f32);
-        var zz = buffer_peek(buffer, position + 8, buffer_f32);
-        var nx = buffer_peek(buffer, position + 12, buffer_f32);
-        var ny = buffer_peek(buffer, position + 16, buffer_f32);
-        var nz = buffer_peek(buffer, position + 20, buffer_f32);
-        buffer_poke(buffer, position, buffer_f32, yy);
-        buffer_poke(buffer, position + 4, buffer_f32, zz);
-        buffer_poke(buffer, position + 8, buffer_f32, xx);
-        buffer_poke(buffer, position + 12, buffer_f32, ny);
-        buffer_poke(buffer, position + 16, buffer_f32, nz);
-        buffer_poke(buffer, position + 20, buffer_f32, nx);
-        
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
+        var submesh = mesh.submeshes[i];
+        meshops_rotate_up(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_rotate_up(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
 }
 
 function mesh_all_invert_alpha(mesh) {

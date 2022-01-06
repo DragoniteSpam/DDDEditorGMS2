@@ -109,6 +109,10 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"meshops_set_normals_flat","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_rotate_up","kind":1,"help":"meshops_rotate_up(data, len)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_rotate_up","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -119,6 +123,7 @@
         {"name":"meshops_transform_rotate_y","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_transform_rotate_z","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_transform_scale","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_rotate_up","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_mirror_axis_x","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_mirror_axis_y","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_mirror_axis_z","path":"extensions/MeshOps/MeshOps.yy",},
