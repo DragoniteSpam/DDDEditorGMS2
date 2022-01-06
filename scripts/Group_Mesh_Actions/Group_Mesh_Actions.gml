@@ -20,36 +20,24 @@ function mesh_mirror_x(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    
     meshops_mirror_axis_x(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
+    submesh.internalSetVertexBuffer();
 }
 
 function mesh_mirror_y(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    
     meshops_mirror_axis_y(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
+    submesh.internalSetVertexBuffer();
 }
 
 function mesh_mirror_z(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    
     meshops_mirror_axis_z(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
+    submesh.internalSetVertexBuffer();
 }
 
 function mesh_rotate_all_up_axis(mesh) {
