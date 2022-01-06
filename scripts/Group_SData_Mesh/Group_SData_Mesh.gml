@@ -162,9 +162,9 @@ function DataMesh(source) : SData(source) constructor {
     #region Actions
     static PositionAtCenter = function() {
         if (self.type == MeshTypes.SMF) return;
-        for (var i = 0; i < array_length(self.submeshes); i++) {
-            self.submeshes[i].PositionAtCenter();
-        }
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_transform_center(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
     };
     
     static ActionScale = function(scale) {

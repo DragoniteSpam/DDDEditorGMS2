@@ -133,17 +133,6 @@ function MeshSubmesh(source) constructor {
         }
     };
     
-    static PositionAtCenter = function() {
-        if (self.buffer) {
-            internalPositionAtCenter(self.buffer);
-            internalSetVertexBuffer();
-        }
-        if (self.reflect_buffer) {
-            internalPositionAtCenter(self.reflect_buffer);
-            internalSetReflectVertexBuffer();
-        }
-    };
-    
     static Reload = function() {
         var index = array_search(self.owner.submeshes, self);
         if (file_exists(self.path)) {
@@ -195,31 +184,6 @@ function MeshSubmesh(source) constructor {
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
         vertex_freeze(self.reflect_vbuffer);
     };
-    
-    static internalPositionAtCenter = function(buffer) {
-        buffer_seek(buffer, buffer_seek_start, 0);
-        var position = 0;
-        
-        var xtotal = 0;
-        var ytotal = 0;
-        var vertices = buffer_get_size(buffer) / VERTEX_SIZE;
-        
-        while (position < buffer_get_size(buffer)) {
-            xtotal += buffer_peek(buffer, position + 0, buffer_f32);
-            ytotal += buffer_peek(buffer, position + 4, buffer_f32);
-            position += VERTEX_SIZE;
-        }
-        
-        var xcenter = xtotal / vertices;
-        var ycenter = ytotal / vertices;
-        position = 0;
-        
-        while (position < buffer_get_size(buffer)) {
-            buffer_poke(buffer, position + 0, buffer_f32, buffer_peek(buffer, position, buffer_f32) - xcenter);
-            buffer_poke(buffer, position + 4, buffer_f32, buffer_peek(buffer, position + 4, buffer_f32) - ycenter);
-            position += VERTEX_SIZE;
-        }
-    }
     
     static internalSetNormalsSmooth = function(buffer, threshold) {
         threshold = dcos(threshold);
