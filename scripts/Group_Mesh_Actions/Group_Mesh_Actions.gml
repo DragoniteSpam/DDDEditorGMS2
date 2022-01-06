@@ -183,32 +183,14 @@ function mesh_set_all_flip_tex_v(mesh) {
 }
 
 function mesh_set_all_scale(mesh, scale) {
-    for (var i = 0; i < array_length(mesh.submeshes); i++) {
-        mesh_set_scale(mesh, i, scale);
-    }
-}
-
-function mesh_set_scale(mesh, index, scale) {
     if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        
-        buffer_poke(buffer, position, buffer_f32, buffer_peek(buffer, position, buffer_f32) * scale);
-        buffer_poke(buffer, position + 4, buffer_f32, buffer_peek(buffer, position + 4, buffer_f32) * scale);
-        buffer_poke(buffer, position + 8, buffer_f32, buffer_peek(buffer, position + 8, buffer_f32) * scale);
-        // if you scale uniformly, normals don't need to be scaled
-        
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
+        var submesh = mesh.submeshes[i];
+        meshops_transform_scale(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), scale);
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_transform_scale(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer), scale);
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
 }
