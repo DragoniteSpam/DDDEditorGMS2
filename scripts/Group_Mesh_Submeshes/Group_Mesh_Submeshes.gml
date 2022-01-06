@@ -111,28 +111,6 @@ function MeshSubmesh(source) constructor {
         self.reflect_vbuffer = t;
     };
     
-    static SetNormalsFlat = function() {
-        if (self.buffer) {
-            meshops_set_normals_flat(buffer_get_address(self.buffer), buffer_get_size(self.buffer));
-            internalSetVertexBuffer();
-        }
-        if (self.reflect_buffer) {
-            meshops_set_normals_flat(buffer_get_address(self.reflect_buffer), buffer_get_size(self.reflect_buffer));
-            internalSetReflectVertexBuffer();
-        }
-    };
-    
-    static SetNormalsSmooth = function(threshold) {
-        if (self.buffer) {
-            internalSetNormalsSmooth(self.buffer, threshold);
-            internalSetVertexBuffer();
-        }
-        if (self.reflect_buffer) {
-            internalSetNormalsSmooth(self.reflect_buffer, threshold);
-            internalSetReflectVertexBuffer();
-        }
-    };
-    
     static Reload = function() {
         var index = array_search(self.owner.submeshes, self);
         if (file_exists(self.path)) {
