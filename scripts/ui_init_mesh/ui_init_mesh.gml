@@ -325,8 +325,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                mesh_rotate_all_up_axis(mesh);
+                Game.meshes[index].ActionRotateUpAxis();
             }
             batch_again();
         }, id);
@@ -337,8 +336,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                mesh_mirror_all_x(mesh);
+                Game.meshes[index].ActionMirrorX();
             }
             batch_again();
         }, id);
@@ -347,8 +345,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x + ew / 3, yy, "Mirror Y Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                mesh_mirror_all_y(mesh);
+                Game.meshes[index].ActionMirrorY();
             }
             batch_again();
         }, id);
@@ -357,8 +354,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x + 2 * ew / 3, yy, "Mirror Z Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                mesh_mirror_all_z(mesh);
+                Game.meshes[index].ActionMirrorZ();
             }
             batch_again();
         }, id);

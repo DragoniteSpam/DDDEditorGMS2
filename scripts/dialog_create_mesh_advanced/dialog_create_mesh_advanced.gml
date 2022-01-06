@@ -235,10 +235,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_normal_smooth.height + spacing;
     
     var el_up_axis = create_button(col3_x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
-        var mesh = button.root.mesh;
-        for (var i = 0; i < array_length(mesh.submeshes); i++) {
-            mesh_rotate_up_axis(mesh, i);
-        }
+        button.root.mesh.ActionRotateUpAxis();
         batch_again(false);
     }, dg);
     el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
