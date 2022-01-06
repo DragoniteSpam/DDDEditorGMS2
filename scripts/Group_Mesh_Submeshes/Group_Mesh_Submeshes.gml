@@ -113,11 +113,11 @@ function MeshSubmesh(source) constructor {
     
     static SetNormalsFlat = function() {
         if (self.buffer) {
-            internalSetNormalsFlat(self.buffer);
+            meshop_set_normals_flat(buffer_get_address(self.buffer), buffer_get_size(self.buffer));
             internalSetVertexBuffer();
         }
         if (self.reflect_buffer) {
-            internalSetNormalsFlat(self.reflect_buffer);
+            meshop_set_normals_flat(buffer_get_address(self.reflect_buffer), buffer_get_size(self.reflect_buffer));
             internalSetReflectVertexBuffer();
         }
     };
@@ -196,79 +196,6 @@ function MeshSubmesh(source) constructor {
         vertex_freeze(self.reflect_vbuffer);
     };
     
-    static internalSetNormalsFlat = function(buffer) {
-        var x1 = 0;
-        var y1 = 0;
-        var z1 = 0;
-        var x2 = 0;
-        var y2 = 0;
-        var z2 = 0;
-        var x3 = 0;
-        var y3 = 0;
-        var z3 = 0;
-        var v1x = 0;
-        var v1y = 0;
-        var v1z = 0;
-        var v2x = 0;
-        var v2y = 0;
-        var v2z = 0;
-        var cx = 0;
-        var cy = 0;
-        var cz = 0;
-        var cpl = 0;
-        var nx = 0;
-        var ny = 0;
-        var nz = 0;
-        buffer_seek(buffer, buffer_seek_start, 0);
-        var position = 0;
-        
-        while (position < buffer_get_size(buffer)) {
-            // this is done inline instead of in a triangle normal function
-            // because it's about 20% faster this way
-            x1 = buffer_peek(buffer, position, buffer_f32);
-            y1 = buffer_peek(buffer, position + 4, buffer_f32);
-            z1 = buffer_peek(buffer, position + 8, buffer_f32);
-            
-            x2 = buffer_peek(buffer, position + VERTEX_SIZE, buffer_f32);
-            y2 = buffer_peek(buffer, position + VERTEX_SIZE + 4, buffer_f32);
-            z2 = buffer_peek(buffer, position + VERTEX_SIZE + 8, buffer_f32);
-            
-            x3 = buffer_peek(buffer, position + VERTEX_SIZE * 2, buffer_f32);
-            y3 = buffer_peek(buffer, position + VERTEX_SIZE * 2 + 4, buffer_f32);
-            z3 = buffer_peek(buffer, position + VERTEX_SIZE * 2 + 8, buffer_f32);
-            
-            v1x = x2 - x1;
-            v1y = y2 - y1;
-            v1z = z2 - z1;
-            v2x = x3 - x1;
-            v2y = y3 - y1;
-            v2z = z3 - z1;
-            cx = v1y * v2z - v1z * v2y;
-            cy = -v1x * v2z + v1z * v2x;
-            cz = v1x * v2y - v1y * v2x;
-            
-            cpl = point_distance_3d(0, 0, 0, cx, cy, cz);
-            
-            nx = cx / cpl;
-            ny = cy / cpl;
-            nz = cz / cpl;
-            
-            buffer_poke(buffer, position + VERTEX_SIZE * 0 + 12, buffer_f32, nx);
-            buffer_poke(buffer, position + VERTEX_SIZE * 1 + 12, buffer_f32, nx);
-            buffer_poke(buffer, position + VERTEX_SIZE * 2 + 12, buffer_f32, nx);
-            
-            buffer_poke(buffer, position + VERTEX_SIZE * 0 + 16, buffer_f32, ny);
-            buffer_poke(buffer, position + VERTEX_SIZE * 1 + 16, buffer_f32, ny);
-            buffer_poke(buffer, position + VERTEX_SIZE * 2 + 16, buffer_f32, ny);
-            
-            buffer_poke(buffer, position + VERTEX_SIZE * 0 + 20, buffer_f32, nz);
-            buffer_poke(buffer, position + VERTEX_SIZE * 1 + 20, buffer_f32, nz);
-            buffer_poke(buffer, position + VERTEX_SIZE * 2 + 20, buffer_f32, nz);
-            
-            position += VERTEX_SIZE * 3;
-        }
-    }
-    
     static internalPositionAtCenter = function(buffer) {
         buffer_seek(buffer, buffer_seek_start, 0);
         var position = 0;
@@ -296,7 +223,7 @@ function MeshSubmesh(source) constructor {
     
     static internalSetNormalsSmooth = function(buffer, threshold) {
         threshold = dcos(threshold);
-        internalSetNormalsFlat(buffer);
+        meshop_set_normals_flat(buffer_get_address(buffer), buffer_get_size(buffer));
         
         var p = 3;
         

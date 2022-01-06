@@ -442,7 +442,7 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     if (Stuff.terrain.export_smooth) {
         dummy_submesh.internalSetNormalsSmooth(output, Stuff.terrain.export_smooth_threshold);
     } else {
-        dummy_submesh.internalSetNormalsFlat(output);
+        meshop_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
     }
     
     return output;
