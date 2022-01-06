@@ -113,6 +113,11 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"meshops_rotate_up","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_normals_smooth","kind":1,"help":"meshops_set_normals_smooth(data, length, threshold)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_set_normals_smooth","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -136,6 +141,7 @@
         {"name":"meshops_set_color_and_alpha","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_invert_alpha","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_set_normals_flat","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_set_normals_smooth","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",

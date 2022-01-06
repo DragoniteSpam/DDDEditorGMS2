@@ -14,7 +14,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
             batch_again();
         }))
             .SetTooltip("Set the normals of each vertex equal to the normals of their triangle."),
-        (new EmuButton(32, EMU_AUTO, 256, 32, "Set Flat Normals", function() {
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Set Smooth Normals", function() {
             var selection = self.root.selection;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                 Game.meshes[index].ActionNormalsSmooth(Settings.config.normal_threshold);

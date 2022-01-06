@@ -235,8 +235,7 @@ function DataMesh(source) : SData(source) constructor {
     static ActionNormalsSmooth = function(threshold) {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBufferParam(function(buffer, threshold) {
-            //submeshes[i].SetNormalsSmooth(threshold);
-            throw "find a nice way to do this in a DLL";
+            meshops_set_normals_smooth(buffer_get_address(buffer), buffer_get_size(buffer), dcos(threshold));
         }, threshold);
     };
     #endregion
