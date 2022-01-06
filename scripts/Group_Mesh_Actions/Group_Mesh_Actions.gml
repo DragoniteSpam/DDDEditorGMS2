@@ -110,50 +110,28 @@ function mesh_all_reset_alpha(mesh) {
 
 function mesh_reset_alpha(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        buffer_poke(buffer, position + 35, buffer_u8, 255);
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
+        var submesh = mesh.submeshes[i];
+        meshops_set_alpha(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), 1);
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_set_alpha(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer), 1);
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
 }
 
 function mesh_all_reset_color(mesh) {
-    for (var i = 0; i < array_length(mesh.submeshes); i++) {
-        mesh_reset_color(mesh, i);
-    }
-}
-
-function mesh_reset_color(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
-    
-    var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        buffer_poke(buffer, position + 32, buffer_u8, 255);
-        buffer_poke(buffer, position + 33, buffer_u8, 255);
-        buffer_poke(buffer, position + 34, buffer_u8, 255);
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
+        var submesh = mesh.submeshes[i];
+        meshops_set_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), c_white);
+        submesh.internalSetVertexBuffer();
+        if (submesh.reflect_buffer) {
+            meshops_set_color(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer), c_white);
+            submesh.internalSetReflectVertexBuffer();
+        }
     }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
 }
 
 function mesh_set_all_flip_tex_h(mesh) {
