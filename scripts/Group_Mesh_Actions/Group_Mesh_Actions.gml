@@ -193,40 +193,24 @@ function mesh_set_flip_tex_h(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        buffer_poke(buffer, position + 24, buffer_f32, 1 - buffer_peek(buffer, position + 24, buffer_f32));
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+    meshops_flip_tex_u(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+    submesh.internalSetVertexBuffer();
+    if (submesh.reflect_buffer) {
+        meshops_flip_tex_u(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+        submesh.internalSetReflectVertexBuffer();
     }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
 }
 
 function mesh_set_flip_tex_v(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
     var submesh = mesh.submeshes[index];
-    var buffer = submesh.buffer;
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-        var position = buffer_tell(buffer);
-        buffer_poke(buffer, position + 28, buffer_f32, 1 - buffer_peek(buffer, position + 28, buffer_f32));
-        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+    meshops_flip_tex_v(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+    submesh.internalSetVertexBuffer();
+    if (submesh.reflect_buffer) {
+        meshops_flip_tex_v(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+        submesh.internalSetReflectVertexBuffer();
     }
-    
-    buffer_seek(buffer, buffer_seek_start, 0);
-    
-    vertex_delete_buffer(submesh.vbuffer);
-    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(submesh.vbuffer);
 }
 
 function mesh_set_scale(mesh, index, scale) {
