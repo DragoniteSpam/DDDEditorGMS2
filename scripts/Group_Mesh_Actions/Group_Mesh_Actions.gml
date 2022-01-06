@@ -22,6 +22,10 @@ function mesh_mirror_x(mesh, index) {
     var submesh = mesh.submeshes[index];
     meshops_mirror_axis_x(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
     submesh.internalSetVertexBuffer();
+    if (submesh.reflect_buffer) {
+        meshops_mirror_axis_x(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+        submesh.internalSetReflectVertexBuffer();
+    }
 }
 
 function mesh_mirror_y(mesh, index) {
@@ -30,6 +34,10 @@ function mesh_mirror_y(mesh, index) {
     var submesh = mesh.submeshes[index];
     meshops_mirror_axis_y(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
     submesh.internalSetVertexBuffer();
+    if (submesh.reflect_buffer) {
+        meshops_mirror_axis_y(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+        submesh.internalSetReflectVertexBuffer();
+    }
 }
 
 function mesh_mirror_z(mesh, index) {
@@ -38,6 +46,10 @@ function mesh_mirror_z(mesh, index) {
     var submesh = mesh.submeshes[index];
     meshops_mirror_axis_z(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
     submesh.internalSetVertexBuffer();
+    if (submesh.reflect_buffer) {
+        meshops_mirror_axis_z(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+        submesh.internalSetReflectVertexBuffer();
+    }
 }
 
 function mesh_rotate_all_up_axis(mesh) {
