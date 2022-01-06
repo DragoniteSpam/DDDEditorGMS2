@@ -859,6 +859,7 @@
     {"id":{"name":"shd_wireframe","path":"shaders/shd_wireframe/shd_wireframe.yy",},"order":8,},
     {"id":{"name":"FConsolas","path":"fonts/FConsolas/FConsolas.yy",},"order":4,},
     {"id":{"name":"FConsolasBold","path":"fonts/FConsolasBold/FConsolasBold.yy",},"order":5,},
+    {"id":{"name":"DragoExt","path":"extensions/DragoExt/DragoExt.yy",},"order":4,},
     {"id":{"name":"Group_Export_Main","path":"scripts/Group_Export_Main/Group_Export_Main.yy",},"order":0,},
     {"id":{"name":"FConsolasItalic","path":"fonts/FConsolasItalic/FConsolasItalic.yy",},"order":6,},
     {"id":{"name":"FConsolasBoldItalic","path":"fonts/FConsolasBoldItalic/FConsolasBoldItalic.yy",},"order":7,},
