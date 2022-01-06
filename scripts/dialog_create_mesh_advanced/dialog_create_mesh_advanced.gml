@@ -257,14 +257,14 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_auto_bounds.height + spacing;
     
     var el_all_normal_flat = create_button(col4_x, yy, "Normals: Flat", ew, eh, fa_center, function(button) {
-        button.root.mesh.SetNormalsFlat();
+        button.root.mesh.ActionNormalsFlat();
         batch_again(false);
     }, dg);
     el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
     yy += el_all_normal_flat.height + spacing;
     
     var el_all_normal_smooth = create_button(col4_x, yy, "Normals: Smooth", ew, eh, fa_center, function(button) {
-        button.root.mesh.SetNormalsSmooth(Settings.config.normal_threshold);
+        button.root.mesh.ActionNormalsSmooth(Settings.config.normal_threshold);
         batch_again(false);
     }, dg);
     el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";

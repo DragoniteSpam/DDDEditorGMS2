@@ -141,18 +141,6 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    static SetNormalsFlat = function() {
-        for (var i = 0; i < array_length(submeshes); i++) {
-            submeshes[i].SetNormalsFlat();
-        }
-    };
-    
-    static SetNormalsSmooth = function(threshold) {
-        for (var i = 0; i < array_length(submeshes); i++) {
-            submeshes[i].SetNormalsSmooth(threshold);
-        }
-    };
-    
     static SwapReflections = function() {
         for (var i = 0; i < array_length(submeshes); i++) {
             submeshes[i].SwapReflections();
@@ -235,6 +223,21 @@ function DataMesh(source) : SData(source) constructor {
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_flip_tex_v(buffer_get_address(buffer), buffer_get_size(buffer));
         });
+    };
+    
+    static ActionNormalsFlat = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_set_normals_flat(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
+    static ActionNormalsSmooth = function(threshold) {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBufferParam(function(buffer, threshold) {
+            //submeshes[i].SetNormalsSmooth(threshold);
+            throw "find a nice way to do this in a DLL";
+        }, threshold);
     };
     #endregion
     
