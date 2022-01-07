@@ -17,13 +17,13 @@
   "installdir": "",
   "files": [
     {"filename":"TerrainOperations.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"terrainops_to_heightmap","kind":1,"help":"__terrainops_to_heightmap","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_to_heightmap","kind":1,"help":"__terrainops_to_heightmap(data, output, length, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             1,
             2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_to_heightmap","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_from_heightmap","kind":1,"help":"__terrainops_from_heightmap","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_from_heightmap","kind":1,"help":"__terrainops_from_heightmap(data, input, length, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             1,
             2,
