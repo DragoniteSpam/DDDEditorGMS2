@@ -123,7 +123,7 @@
             2,
             1,
           ],"resourceVersion":"1.0","name":"__meshops_export_d3d","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_vertex_formatted","kind":1,"help":"__meshops_vertex_formatted","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_vertex_formatted","kind":1,"help":"__meshops_vertex_formatted(data, out, length, format)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             1,
             2,
