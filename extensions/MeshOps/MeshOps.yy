@@ -118,11 +118,17 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"meshops_set_normals_smooth","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_export_d3d","kind":1,"help":"meshops_export_d3d(data, length, output)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_export_d3d","kind":1,"help":"_meshops_export_d3d(data, length, output)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             1,
           ],"resourceVersion":"1.0","name":"__meshops_export_d3d","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_vertex_formatted","kind":1,"help":"__meshops_vertex_formatted","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__meshops_vertex_formatted","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -148,6 +154,7 @@
         {"name":"meshops_set_normals_flat","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_set_normals_smooth","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_export_d3d","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_vertex_formatted","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
