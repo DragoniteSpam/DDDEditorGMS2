@@ -128,6 +128,7 @@
     {"id":{"name":"control_duration_left","path":"scripts/control_duration_left/control_duration_left.yy",},"order":4,},
     {"id":{"name":"control_duration_right","path":"scripts/control_duration_right/control_duration_right.yy",},"order":5,},
     {"id":{"name":"control_duration_middle","path":"scripts/control_duration_middle/control_duration_middle.yy",},"order":6,},
+    {"id":{"name":"TerrainOps","path":"extensions/TerrainOps/TerrainOps.yy",},"order":6,},
     {"id":{"name":"control_global","path":"scripts/control_global/control_global.yy",},"order":7,},
     {"id":{"name":"dotdae_image_add","path":"scripts/dotdae_image_add/dotdae_image_add.yy",},"order":4,},
     {"id":{"name":"event_prefab_render_switch_name","path":"scripts/event_prefab_render_switch_name/event_prefab_render_switch_name.yy",},"order":0,},
