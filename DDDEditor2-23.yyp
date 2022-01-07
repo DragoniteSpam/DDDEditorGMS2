@@ -388,6 +388,7 @@
     {"id":{"name":"dialog_create_event_node_input_string","path":"scripts/dialog_create_event_node_input_string/dialog_create_event_node_input_string.yy",},"order":38,},
     {"id":{"name":"dialog_create_event_node_input_real","path":"scripts/dialog_create_event_node_input_real/dialog_create_event_node_input_real.yy",},"order":39,},
     {"id":{"name":"dialog_create_event_custom_delete","path":"scripts/dialog_create_event_custom_delete/dialog_create_event_custom_delete.yy",},"order":40,},
+    {"id":{"name":"TerrainOpsGML","path":"scripts/TerrainOpsGML/TerrainOpsGML.yy",},"order":7,},
     {"id":{"name":"dialog_create_event_delete","path":"scripts/dialog_create_event_delete/dialog_create_event_delete.yy",},"order":41,},
     {"id":{"name":"dialog_create_entity_remove_event_page","path":"scripts/dialog_create_entity_remove_event_page/dialog_create_entity_remove_event_page.yy",},"order":42,},
     {"id":{"name":"Group_Color","path":"scripts/Group_Color/Group_Color.yy",},"order":16,},
