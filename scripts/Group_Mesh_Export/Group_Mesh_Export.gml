@@ -14,16 +14,12 @@ function export_vb(base_filename, mesh, format_type) {
 function export_d3d(base_filename, mesh) {
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
     
-    wtf("TIMING D3D EXPORT");
-    debug_timer_start();
-    
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
         var number_ext = (array_length(mesh.submeshes) == 1) ? "" : ("_" + mesh.submeshes[i].name);
         meshops_export_d3d(mesh_filename + number_ext + filename_ext(base_filename), mesh.submeshes[i].buffer);
     }
-    
-    debug_timer_finish();
 }
+
 function export_obj(base_filename, mesh, title = "DDD") {
     var path = filename_path(base_filename);
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
