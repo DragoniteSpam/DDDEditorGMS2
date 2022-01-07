@@ -7,3 +7,5 @@ function terrainops_to_heightmap(data, scale) {
 function terrainops_from_heightmap(data, source, scale) {
     __terrainops_from_heightmap(buffer_get_address(data), buffer_get_address(source), min(buffer_get_size(data), buffer_get_size(source)), scale);
 }
+
+show_debug_message("TerrainOps version: " + terrainops_version());

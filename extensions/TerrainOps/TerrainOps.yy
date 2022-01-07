@@ -44,11 +44,13 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_build_settings","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_version","kind":1,"help":"terrainops_version()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"terrainops_version","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"__terrainops_to_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_from_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build_settings","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
