@@ -19,3 +19,11 @@ function meshops_export_d3d(filename, buffer) {
         buffer_resize(output, 0x200000);
     }
 }
+
+function meshops_vertex_formatted(buffer, format) {
+    var output = buffer_create(buffer_get_size(buffer), buffer_fixed, 1);
+    buffer_fill(output, 0, buffer_u32, 0, buffer_get_size(buffer));
+    var length = __meshops_vertex_formatted(buffer_get_address(buffer), buffer_get_address(output), buffer_get_size(buffer), format);
+    buffer_resize(output, length);
+    return output;
+}
