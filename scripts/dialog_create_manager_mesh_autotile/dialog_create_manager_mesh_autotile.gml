@@ -229,10 +229,10 @@ function dialog_create_manager_mesh_autotile(root) {
             if (folder != "") {
                 for (var i = 0; i < AUTOTILE_COUNT; i++) {
                     if (autotile.layers[layer_index].tiles[i].buffer) {
-                        export_d3d_raw(folder + string(i) + ".d3d", autotile.layers[layer_index].tiles[i].buffer);
+                        meshops_export_d3d(folder + string(i) + ".d3d", autotile.layers[layer_index].tiles[i].buffer);
                     }
                     if (autotile.layers[layer_index].tiles[i].reflect_buffer) {
-                        export_d3d_raw(folder + string(i) + "r.d3d", autotile.layers[layer_index].tiles[i].reflect_buffer);
+                        meshops_export_d3d(folder + string(i) + "r.d3d", autotile.layers[layer_index].tiles[i].reflect_buffer);
                     }
                 }
             }
