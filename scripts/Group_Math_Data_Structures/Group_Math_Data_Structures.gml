@@ -219,7 +219,7 @@ function buffer_write_buffer(to, from) {
 }
 
 function buffer_write_vertex_buffer(buffer, vbuff_data) {
-    var formatted = vertex_buffer_formatted(vbuff_data, Game.meta.export.vertex_format);
+    var formatted = meshops_vertex_formatted(vbuff_data, Game.meta.export.vertex_format);
     buffer_write_buffer(buffer, formatted);
     buffer_delete(formatted);
 }
