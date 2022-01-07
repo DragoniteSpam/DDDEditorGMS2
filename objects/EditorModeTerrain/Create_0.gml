@@ -467,19 +467,7 @@ ExportVbuff = function(filename, density = 1, chunk_size = 0) {
 };
 
 ExportHeightmap = function(filename, scale) {
-    var buffer = buffer_create(buffer_sizeof(buffer_u32) * self.width * self.height, buffer_fixed, 1);
-    buffer_seek(self.height_data, buffer_seek_start, 0);
-    
-    for (var i = 0; i < self.height; i++) {
-        for (var j = 0; j < self.width; j++) {
-            // in a perfect world i'd be using all 32 bits available of each
-            // pixel, but it seems tradition for heightmap images to be 8-bit
-            var zz = clamp(round(buffer_read(self.height_data, buffer_f32) * scale), 0, 255);
-            var color = (zz | zz << 8 | zz << 16) | 0xff000000;
-            buffer_write(buffer, buffer_u32, color);
-        }
-    }
-    
+    var buffer = terrainops_to_heightmap(self.height_data, scale);
     var surface = surface_create(self.width, self.height);
     buffer_set_surface(buffer, surface, 0);
     surface_save(surface, filename);
