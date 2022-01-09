@@ -8,9 +8,8 @@ function meshops_export_d3d(filename, buffer) {
     // file writer from overflowing the buffer and crashing the editor
     static output = buffer_create(1024, buffer_fixed, 1);
     buffer_resize(output, max(buffer_get_size(output), 1024 + 144 * ((buffer_get_size(buffer) / VERTEX_SIZE) + 2)));
-    // if you don't do something to the buffer in GameMaker land, it might
-    // not actually be allocated when it gets to the dll
-    buffer_fill(output, 0, buffer_f32, 0, buffer_get_size(output));
+    buffer_poke(output, 0, buffer_u32, 0);
+    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
     var size = __meshops_export_d3d(buffer_get_address(buffer), buffer_get_size(buffer), buffer_get_address(output));
     buffer_save_ext(output, filename, 0, size);
     // if the buffer takes up a significant amount of space, shrink it back down
@@ -22,7 +21,8 @@ function meshops_export_d3d(filename, buffer) {
 
 function meshops_vertex_formatted(buffer, format) {
     var output = buffer_create(buffer_get_size(buffer), buffer_fixed, 1);
-    buffer_fill(output, 0, buffer_u32, 0, buffer_get_size(buffer));
+    buffer_poke(output, 0, buffer_u32, 0);
+    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
     var length = __meshops_vertex_formatted(buffer_get_address(buffer), buffer_get_address(output), buffer_get_size(buffer), format);
     buffer_resize(output, length);
     return output;
