@@ -25,12 +25,3 @@ function terrain_refresh_vertex_buffer(terrain) {
     terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
     vertex_freeze(terrain.terrain_buffer);
 }
-
-function terrain_create_square(buffer, xx, yy, z00, z10, z11, z01) {
-    vertex_position_3d(buffer, xx, yy, z00);
-    vertex_position_3d(buffer, xx + 1, yy, z10);
-    vertex_position_3d(buffer, xx + 1, yy + 1, z11);
-    vertex_position_3d(buffer, xx + 1, yy + 1, z11);
-    vertex_position_3d(buffer, xx, yy + 1, z01);
-    vertex_position_3d(buffer, xx, yy, z00);
-}
