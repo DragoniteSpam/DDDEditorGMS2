@@ -107,6 +107,34 @@ function ui_init_terrain(mode) {
             (new EmuTab("Texture")).AddContent([
             ]),
             (new EmuTab("Painting")).AddContent([
+                #region
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Set Mode: Paint", function() {
+                    Stuff.terrain.mode = TerrainModes.COLOR;
+                }),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength: " + string(mode.paint_strength)))
+                    .SetID("PAINT_STENGTH_LABEL"),
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.paint_strength_min, mode.paint_strength_max, true, mode.paint_strength, function() {
+                    Stuff.terrain.paint_strength = self.value;
+                    self.GetSibling("PAINT_STENGTH_LABEL").text = "Paint strength: " + string(self.value);
+                }))
+                    .SetTooltip("A lower strength value will cause the color to blend with the existing color, and a greater one will cause it to replace the existing color."),
+                (new EmuColorPicker(col1x, EMU_AUTO, col_width, 32, "Color:", mode.paint_color, function() {
+                    Stuff.terrain.paint_color = self.value;
+                }))
+                    .SetTooltip("I really hope you enjoy this color picker because it was probably my favorite UI element to work on."),
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear color", function() {
+                    Stuff.terrain.color.Clear(Stuff.terrain.paint_color);
+                }),
+                (new EmuList(col2x + 16, EMU_BASE, col_width, 32, "Paintbrush:", 32, 12, function() {
+                    Stuff.terrain.color.brush_index = self.GetSelection();
+                }))
+                    .AddEntries([
+                        "Pixel", "Disc", "Square", "Line", "Star", "Circle",
+                        "Ring", "Sphere", "Flare", "Spark", "Explosion",
+                        "Cloud", "Smoke", "Snow"
+                    ])
+                    .Select(mode.color.brush_index),
+                #endregion
             ]),
         ])
     ]);
@@ -386,62 +414,6 @@ function ui_init_terrain(mode) {
         }, t_general);
         ds_list_add(t_texture.contents, element);
         
-        yy += element.height + spacing;
-        #endregion
-        
-        #region tab: painting
-        yy = legal_y + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Set Mode: Paint", col_width, element_height, fa_center, function(button) {
-            button.root.root.t_general.element_mode.value = TerrainModes.COLOR;
-            Stuff.terrain.mode = TerrainModes.COLOR;
-        }, t_general);
-        ds_list_add(t_paint.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Paint strength: " + string(mode.paint_strength), col_width, element_height, fa_left, col_width, t_paint);
-        t_paint.element_paint_strength = element;
-        ds_list_add(t_paint.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, function(bar) {
-            Stuff.terrain.paint_strength = normalize(bar.value, Stuff.terrain.paint_strength_min, Stuff.terrain.paint_strength_max, 0, 1);
-            bar.root.element_paint_strength.text = "Paint strength: " + string(Stuff.terrain.paint_strength);
-        }, 4, normalize(mode.paint_strength, 0, 1, mode.paint_strength_min, mode.paint_strength_max), t_paint);
-        element.tooltip = "A lower strength value will cause the color to blend with the existing color, and a greater one will cause it to replace the existing color.";
-        t_paint.element_paint_strength_bar = element;
-        ds_list_add(t_paint.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, function(picker) {
-            Stuff.terrain.paint_color = picker.value;
-        }, mode.paint_color, vx1, vy1, vx2, vy2, t_paint);
-        element.tooltip = "I really hope you enjoy this color picker because it was probably my favorite UI element to work on.";
-        t_paint.element_paint_color = element;
-        ds_list_add(t_paint.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Clear Color", col_width, element_height, fa_center, function(button) {
-            Stuff.terrain.color.Clear(Stuff.terrain.paint_color);
-        }, t_general);
-        ds_list_add(t_paint.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = new EmuList(legal_x + spacing, yy, col_width, element_height, "Paintbrush", element_height, 8, function() {
-            Stuff.terrain.color.brush_index = self.GetSelection();
-        });
-        element.AddEntries([
-            "Pixel", "Disc", "Square", "Line", "Star", "Circle", "Ring",
-            "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow"
-        ]);
-        element.Select(mode.color.brush_index);
-        
-        ds_list_add(t_paint.contents, element);
         yy += element.height + spacing;
         #endregion
         
