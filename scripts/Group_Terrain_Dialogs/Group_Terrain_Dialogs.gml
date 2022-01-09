@@ -172,10 +172,12 @@ function dialog_create_terrain_new() {
         var width = real(self.GetSibling("WIDTH").value);
         var height = real(self.GetSibling("HEIGHT").value);
         
-        terrain.width = width;
         terrain.ui.t_general.element_width.text = "Width: " + string(width);
-        terrain.height = height;
         terrain.ui.t_general.element_height.text = "Height: " + string(height);
+        width--;
+        height--;
+        terrain.width = width;
+        terrain.height = height;
         
         buffer_delete(terrain.height_data);
         buffer_delete(terrain.terrain_buffer_data);
