@@ -132,7 +132,7 @@ water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
 var t = get_timer();
 
 GenerateHeightData = function(width = self.width, height = self.height) {
-    return buffer_create(buffer_sizeof(buffer_f32) * (width + 1) * (height + 1), buffer_fixed, 1);
+    return buffer_create(4 * (width + 1) * (height + 1), buffer_fixed, 1);
 };
 
 height_data = self.GenerateHeightData();

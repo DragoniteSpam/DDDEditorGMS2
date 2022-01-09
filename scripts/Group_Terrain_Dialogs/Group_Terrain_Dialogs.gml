@@ -170,21 +170,8 @@ function dialog_create_terrain_new() {
             terrain.height_data = terrain.GenerateHeightData();
         }
         
-        terrain.terrain_buffer = vertex_create_buffer();
-        vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
-        
-        for (var i = 0; i < width; i++) {
-            for (var j = 0; j < height; j++) {
-                var z00 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 0)) * 4, buffer_f32);
-                var z01 = buffer_peek(terrain.height_data, (((i + 0) * height) + (j + 1)) * 4, buffer_f32);
-                var z10 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 0)) * 4, buffer_f32);
-                var z11 = buffer_peek(terrain.height_data, (((i + 1) * height) + (j + 1)) * 4, buffer_f32);
-                terrain_create_square(terrain.terrain_buffer, i, j, z00, z10, z11, z01);
-            }
-        }
-        
-        vertex_end(terrain.terrain_buffer);
-        terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_buffer, buffer_fixed, 1);
+        terrain.terrain_buffer_data = terrainops_generate(terrain.height_data, width, height);
+        terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
         vertex_freeze(terrain.terrain_buffer);
         
         self.root.Dispose();

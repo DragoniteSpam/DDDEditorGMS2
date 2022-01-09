@@ -52,11 +52,11 @@
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_generate","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+        {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_to_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_from_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build_settings","path":"extensions/TerrainOps/TerrainOps.yy",},
-        {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_generate","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
