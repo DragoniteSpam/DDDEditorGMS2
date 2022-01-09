@@ -2,6 +2,8 @@
 
 varying vec2 v_vWorldXY;
 
+uniform float wireframeEnabled;
+
 uniform vec2 terrainSize;
 uniform vec2 mouse;
 uniform float mouseRadius;

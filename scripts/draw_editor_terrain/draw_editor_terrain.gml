@@ -40,19 +40,13 @@ function draw_editor_terrain() {
     }
     texture_set_stage(shader_get_sampler_index(shd_terrain, "texColor"), surface_get_texture(Stuff.terrain.color.surface));
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "wireframeEnabled"), Stuff.terrain.view_grid);
     vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture, 0));
     
     if (Stuff.terrain.view_axes) {
         matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, 2, 2, 2));
         shader_set(shd_basic_colors);
         vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
-        shader_reset();
-    }
-    
-    if (Stuff.terrain.view_grid) {
-        matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, Stuff.terrain.view_scale, Stuff.terrain.view_scale, Stuff.terrain.view_scale));
-        shader_set(shd_terrain_wire);
-        vertex_submit(Stuff.terrain.terrain_buffer, pr_linelist, -1);
         shader_reset();
     }
     
