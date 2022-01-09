@@ -1,10 +1,8 @@
 function terrain_import_heightmap(button, fn) {
     var image = sprite_add(fn, 0, false, false, 0, 0);
     var terrain = Stuff.terrain;
-    var dual = button.root.el_dual_layer.value;
     var scale = string(button.root.el_scale.value);
     
-    terrain.dual_layer = dual;
     terrain.width = sprite_get_width(image);
     terrain.height = sprite_get_height(image);
     

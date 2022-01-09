@@ -119,9 +119,6 @@ function dialog_create_terrain_new() {
             self.GetSibling("HEIGHT").SetValue("512");
         }))
             .SetTooltip("Preset 512x512 map size"),
-        //(new EmuCheckbox(col1_x, EMU_AUTO, ew, eh, "Dual layer?", false, function() { }))
-        //    .SetTooltip("Enable the secondary texture layer for the terrain")
-        //    .SetID("USE_DUAL_LAYER"),
         (new EmuCheckbox(col1_x, EMU_AUTO, ew, eh, "Generate noise?", false, function() {
             self.GetSibling("OCTAVES").SetInteractive(self.value);
             self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
@@ -149,7 +146,6 @@ function dialog_create_terrain_new() {
         
         var width = real(self.GetSibling("WIDTH").value);
         var height = real(self.GetSibling("HEIGHT").value);
-        //var dual = self.GetSibling("USE_DUAL_LAYER").value;
         
         terrain.width = width;
         terrain.ui.t_general.element_width.text = "Width: " + string(width);

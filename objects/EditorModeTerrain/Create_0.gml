@@ -95,7 +95,6 @@ export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
 export_smooth = setting_get("terrain", "export_smooth", false);
 export_smooth_threshold = setting_get("terrain", "export_smooth_threshold", 60);
 smooth_shading = false;
-dual_layer = false;
 orthographic = false;
 orthographic_scale = 1;
 output_vertex_format = setting_get("terrain", "output_vertex_format", DEFAULT_VERTEX_FORMAT);
@@ -216,14 +215,12 @@ SaveAsset = function(directory) {
 LoadJSON = function(json) {
     self.width = json.width;
     self.height = json.height;
-    self.dual_layer = json.settings.dual_layer;
 };
 
 CreateJSON = function() {
     return {
         width: self.width,
         height: self.height,
-        dual_layer: self.dual_layer,
     };
 };
 
