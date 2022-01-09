@@ -145,8 +145,8 @@ function dialog_create_terrain_new() {
                 var terrain = Stuff.terrain;
                 var scale = real(self.GetSibling("SCALE").value);
                 
-                terrain.width = sprite_get_width(image);
-                terrain.height = sprite_get_height(image);
+                terrain.width = sprite_get_width(image) - 1;
+                terrain.height = sprite_get_height(image) - 1;
                 
                 var buffer = sprite_to_buffer(image, 0);
                 

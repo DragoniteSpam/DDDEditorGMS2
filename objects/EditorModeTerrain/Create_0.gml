@@ -356,7 +356,7 @@ ExportVbuff = function(filename, density = 1, chunk_size = 0) {
 
 ExportHeightmap = function(filename, scale) {
     var buffer = terrainops_to_heightmap(self.height_data, scale);
-    var surface = surface_create(self.width, self.height);
+    var surface = surface_create(self.width + 1, self.height + 1);
     buffer_set_surface(buffer, surface, 0);
     surface_save(surface, filename);
     buffer_delete(buffer);
