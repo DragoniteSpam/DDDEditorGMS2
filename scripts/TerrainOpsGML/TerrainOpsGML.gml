@@ -28,7 +28,7 @@ function terrainops_build(source, width, height, vertex_size, export_all, swap_z
     buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
     __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, width, height, save_scale);
     var bytes = __terrainops_build(buffer_get_address(source), buffer_get_address(output), buffer_get_size(source));
-    buffer_resize(output, bytes);
+    if (bytes != buffer_get_size(output)) buffer_resize(output, bytes);
     return output;
 }
 
