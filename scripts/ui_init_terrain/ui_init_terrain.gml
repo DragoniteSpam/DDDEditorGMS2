@@ -79,6 +79,30 @@ function ui_init_terrain(mode) {
             (new EmuTab("Lighting")).AddContent([
             ]),
             (new EmuTab("Deform")).AddContent([
+                #region
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Set Mode: Deform", function() {
+                    Stuff.terrain.mode = TerrainModes.Z;
+                }),
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
+                    Stuff.terrain.Flatten();
+                }),
+                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Deformation mode:", Stuff.terrain.submode, function() {
+                    Stuff.terrain.submode = self.value;
+                }))
+                    .AddOptions(["Mound", "Average", "Flat Average", "Zero"])
+                    .SetTooltip("The method which you would like to use to mold the terrain."),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate: " + string_format(mode.rate, 1, 3) + string(mode.radius)))
+                    .SetID("DEFORMATION_RATE_LABEL"),
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.rate_min, mode.rate_max, true, Stuff.terrain.water_level, function() {
+                    Stuff.terrain.radius = self.value;
+                    self.GetSibling("DEFORMATION_RATE_LABEL").text = "Deformation rate: " + string_format(self.value, 1, 3);
+                }))
+                    .SetTooltip("A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic."),
+                (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Mutate", function() {
+                    dialog_terrain_mutate();
+                }))
+                    .SetID("Add or subtract a random amount to the terrain. You can select a sprite to use as a mutation template, sort of like a heightmap."),
+                #endregion
             ]),
             (new EmuTab("Texture")).AddContent([
             ]),
@@ -90,23 +114,6 @@ function ui_init_terrain(mode) {
     return container;
     
     with (instance_create_depth(0, 0, 0, UIMain)) {
-        home_row_y = 32;
-        
-        #region setup
-        t_general = create_tab("General", 0, id);
-        t_lighting = create_tab("Lighting", 0, id);
-        t_heightmap = create_tab("Deform", 0, id);
-        t_texture = create_tab("Texture", 0, id);
-        t_paint = create_tab("Paint", 0, id);
-        
-        // the game will crash if you create a tab row with zero width.
-        var tr_general = ds_list_create();
-        ds_list_add(tr_general, t_general, t_lighting, t_heightmap, t_texture, t_paint);
-        ds_list_add(tabs, tr_general);
-        
-        active_tab = t_general;
-        #endregion
-        
         #region tab: lights
         yy = legal_y + spacing;
         
@@ -310,60 +317,6 @@ function ui_init_terrain(mode) {
         ds_list_add(t_lighting.contents, element);
         t_lighting.el_point_radius = element;
         yy += element.height + spacing;
-        #endregion
-        
-        #region tab: deform
-        yy = legal_y + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Set Mode: Deform", col_width, element_height, fa_center, function(button) {
-            button.root.root.t_general.element_mode.value = TerrainModes.Z;
-            Stuff.terrain.mode = TerrainModes.Z;
-        }, t_general);
-        ds_list_add(t_heightmap.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Reset Height", col_width, element_height, fa_center, function(button) {
-            Stuff.terrain.Flatten();
-        }, t_general);
-        ds_list_add(t_heightmap.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, function(option) {
-            Stuff.terrain.submode = option.root.value;
-        }, mode.submode, t_heightmap);
-        element.tooltip = "The method which you would like to use to mold the terrain.";
-        create_radio_array_options(element, ["Mound", "Average", "Flat Average", "Zero (Erase)"]);
-        t_heightmap.element_deform_mode = element;
-        ds_list_add(t_heightmap.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Deformation rate: " + string_format(mode.rate, 1, 3), col_width, element_height, fa_left, col_width, t_heightmap);
-        t_heightmap.element_deform_rate = element;
-        ds_list_add(t_heightmap.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, function(bar) {
-            Stuff.terrain.rate = normalize(bar.value, Stuff.terrain.rate_min, Stuff.terrain.rate_max, 0, 1);
-            bar.root.element_deform_rate.text = "Deformation rate: " + string_format(Stuff.terrain.rate, 1, 3);
-        }, 4, normalize(mode.rate, 0, 1, mode.rate_min, mode.rate_max), t_heightmap);
-        element.tooltip = "A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic.";
-        t_heightmap.element_deform_rate_bar = element;
-        ds_list_add(t_heightmap.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Mutate", col_width, element_height, fa_center, function(button) {
-            dialog_terrain_mutate();
-        }, t_heightmap);
-        element.tooltip = "Add or subtract a random amount to the terrain. You can select a sprite to ";
-        ds_list_add(t_heightmap.contents, element);
-        
-        yy += element.height + spacing;
-        
         #endregion
         
         #region tab: texture
