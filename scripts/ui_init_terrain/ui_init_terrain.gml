@@ -1,4 +1,94 @@
 function ui_init_terrain(mode) {
+    var hud_width = camera_get_view_width(view_get_camera(view_hud));
+    var hud_height = window_get_height();
+    var col1x = 32;
+    var col2x = 256;
+    var col_width = 224;
+    
+    var container = new EmuCore(0, 0, hud_width, hud_height);
+    
+    container.AddContent([
+        (new EmuTabGroup(0, 32, hud_width, hud_height - 32, 1, 32)).AddTabs(0, [
+            (new EmuTab("General")).AddContent([
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]General Settings"),
+                #region
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Width"))
+                    .SetID("LABEL_WIDTH"),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Height:"))
+                    .SetID("LABEL_HEIGHT"),
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", Stuff.terrain.orthographic, function() {
+                    Stuff.terrain.orthographic = self.value;
+                }))
+                    .SetInteractive(false)                                          // for now
+                    .SetTooltip("View the world through an overhead camera."),
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", Stuff.terrain.view_water, function() {
+                    Stuff.terrain.view_water = self.value;
+                }))
+                    .SetInteractive(false)
+                    .SetTooltip("Toggles the the water layer under the terrain."),
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Stuff.terrain.view_grid, function() {
+                    Stuff.terrain.view_grid = self.value;
+                }))
+                    .SetInteractive(false)
+                    .SetTooltip("Toggles the the wireframe grid on the terrain."),
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", Stuff.terrain.view_axes, function() {
+                    Stuff.terrain.view_axes = self.value;
+                }))
+                    .SetInteractive(false)
+                    .SetTooltip("Toggles the the coordinate system axes."),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, Stuff.terrain.water_level, function() {
+                    Stuff.terrain.water_level = self.value;
+                }))
+                    .SetTooltip("If water is drawn, this will determine the water level."),
+                #endregion
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]Editor Settings"),
+                #region
+                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Brush shape:", Stuff.terrain.style, function() {
+                    Stuff.terrain.style = self.value;
+                }))
+                    .AddOptions(["Block", "Circle"])
+                    .SetTooltip("In case you want to use a different shape to edit terrain."),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(mode.radius)))
+                    .SetID("BRUSH_RADIUS_LABEL"),
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.brush_min, mode.brush_max, true, Stuff.terrain.water_level, function() {
+                    Stuff.terrain.radius = self.value;
+                    self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
+                }))
+                    .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
+                #endregion
+                #region
+                new EmuText(col2x, EMU_BASE, col_width, 32, "[c_blue]Saving and Loading"),
+                new EmuButton(col2x, EMU_AUTO, col_width, 32, "New Terrain", function() {
+                    dialog_create_terrain_new();
+                }),
+                new EmuButton(col2x, EMU_AUTO, col_width, 32, "Save Terrain", function() {
+                    terrain_save();
+                }),
+                new EmuButton(col2x, EMU_AUTO, col_width, 32, "Load Terrain", function() {
+                    terrain_load();
+                }),
+                new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Terrain", function() {
+                    dialog_terrain_export();
+                }),
+                new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Heightmap", function() {
+                    dialog_create_export_heightmap();
+                }),
+                #endregion
+            ]),
+            (new EmuTab("Lighting")).AddContent([
+            ]),
+            (new EmuTab("Deform")).AddContent([
+            ]),
+            (new EmuTab("Texture")).AddContent([
+            ]),
+            (new EmuTab("Painting")).AddContent([
+            ]),
+        ])
+    ]);
+    
+    return container;
+    
     with (instance_create_depth(0, 0, 0, UIMain)) {
         home_row_y = 32;
         
@@ -15,193 +105,6 @@ function ui_init_terrain(mode) {
         ds_list_add(tabs, tr_general);
         
         active_tab = t_general;
-        #endregion
-        
-        // don't try to make three columns. the math has been hard-coded
-        // for two. everything will go very badly if you try three or more.
-        var element;
-        var spacing = 16;
-        var legal_x = 32;
-        var legal_y = home_row_y + 32;
-        var legal_width = self.GetLegalWidth();
-        var col_width = legal_width / 2 - spacing * 1.5;
-        var col2_x = legal_x + col_width + spacing * 2;
-        
-        var vx1 = col_width / 2;
-        var vy1 = 0;
-        var vx2 = col_width;
-        var vy2 = vy1 + 24;
-        
-        var button_width = 128;
-        
-        #region tab: general
-        var yy = legal_y + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "General Settings", col_width, element_height, fa_left, col_width, t_general);
-        element.color = c_blue;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Width: " + string(mode.width), col_width, element_height, fa_left, col_width, t_general);
-        t_general.element_width = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Height: " + string(mode.height), col_width, element_height, fa_left, col_width, t_general);
-        t_general.element_height = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(legal_x + spacing, yy, "Orthographic?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.orthographic = checkbox.value;
-        }, mode.orthographic, t_general);
-        element.tooltip = "View the terrain from 2D top-down perspective, as opposed to a 3D one";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.view_water = checkbox.value;
-        }, mode.view_water, t_general);
-        element.tooltip = "Toggles the the water layer under the terrain";
-        t_general.element_draw_water = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(legal_x + spacing, yy, "Draw wireframe?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.view_grid = checkbox.value;
-        }, mode.view_grid, t_general);
-        element.tooltip = "Toggles the the wireframe grid on the terrain";
-        t_general.element_draw_grid = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(legal_x + spacing, yy, "Draw axes?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.view_axes = checkbox.value;
-        }, mode.view_axes, t_general);
-        element.tooltip = "Toggles the the coordinate system axes.";
-        t_general.element_draw_grid = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Water level:", col_width, element_height, fa_left, col_width, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, function(bar) {
-            // if(/when) you ever convert this to regular Emu, you'll be able to ignore the range conversion
-            Stuff.terrain.water_level = normalize(bar.value, -1, 1, 0, 1);
-        }, 4, normalize(Stuff.terrain.water_level, 0, 1, -1, 1), t_general);
-        element.tooltip = "A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision.";
-        t_general.element_brush_radius_bar = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, function(checkbox) {
-            Stuff.terrain.smooth_shading = checkbox.value;
-        }, mode.smooth_shading, t_general);
-        element.tooltip = "Toggles smooth vs flat shading on the terrain";
-        t_general.element_smooth_shading = element;
-        //ds_list_add(t_general.contents, element);
-        
-        //yy += element.height + spacing;
-        element = create_text(legal_x + spacing, yy, "Editor Settings", col_width, element_height, fa_left, col_width, t_general);
-        element.color = c_blue;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_radio_array(legal_x + spacing, yy, "Mode:", col_width, element_height, function(option) {
-            Stuff.terrain.mode = option.root.value;
-        }, mode.mode, t_general);
-        element.tooltip = "Edit the terrain's shape, texture or color. You may also set the mode by clicking the button at the top of each of the respective tabs.";
-        create_radio_array_options(element, ["Deform", "Texture", "Paint"]);
-        t_general.element_mode = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_radio_array(legal_x + spacing, yy, "Brush shape:", col_width, element_height, function(option) {
-            Stuff.terrain.style = option.value;
-        }, mode.style, t_general);
-        element.tooltip = "In case you want to use a different shape to edit terrain.";
-        create_radio_array_options(element, ["Block", "Circle"]);
-        t_general.element_brush_shape = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Brush radius: " + string(mode.radius) + " cells", col_width, element_height, fa_left, col_width, t_general);
-        t_general.element_brush_radius = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, function(bar) {
-            Stuff.terrain.radius = normalize(bar.value, Stuff.terrain.brush_min, Stuff.terrain.brush_max, 0, 1);
-            bar.root.element_brush_radius.text = "Brush radius: " + string(Stuff.terrain.radius) + " cells";
-        }, 4, normalize(mode.radius, 0, 1, mode.brush_min, mode.brush_max), t_general);
-        element.tooltip = "A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision.";
-        t_general.element_brush_radius_bar = element;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        // second column
-        yy = legal_y + spacing;
-        
-        element = create_text(col2_x, yy, "Exporting Terrain", col_width, element_height, fa_left, col_width, t_general);
-        element.color = c_blue;
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "New Terrain", col_width, element_height, fa_center, function(button) {
-            dialog_create_terrain_new();
-        }, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Save Terrain", col_width, element_height, fa_center, function(button) {
-            var fn = get_save_filename_terrain("terrain");
-            if (fn != "") {
-                terrain_save(fn);
-            }
-        }, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Load Terrain", col_width, element_height, fa_center, function(button) {
-            var fn = get_open_filename_terrain();
-            if (fn != "") {
-                terrain_load(fn);
-            }
-        }, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Export Terrain", col_width, element_height, fa_center, function(button) {
-            dialog_terrain_export();
-        }, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Export Heightmap", col_width, element_height, fa_center, function(button) {
-            dialog_create_export_heightmap();
-        }, t_general);
-        ds_list_add(t_general.contents, element);
         #endregion
         
         #region tab: lights
