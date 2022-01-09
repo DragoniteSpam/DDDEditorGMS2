@@ -1,6 +1,6 @@
 {
   "ConfigValues": {
-    "Terrain": {"option_windows_display_name":"DDD Terrain",},
+    "Terrain": {"option_windows_display_name":"DDD Terrain","option_windows_version":"2022.0.1.60",},
     "particle": {"option_windows_display_name":"DDD Particle Lab","option_windows_icon":"${project_dir}\\\\options\\\\windows\\\\icons\\\\icon.ico",},
     "spart": {"option_windows_display_name":"DDD Particle Lab 3D",},
     "scribble": {"option_windows_display_name":"DDD Visual Scribble",},
