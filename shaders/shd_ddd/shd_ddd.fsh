@@ -9,7 +9,7 @@ varying vec3 v_vBarycentric;
 #pragma include("lighting.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
 
-#define MAX_LIGHTS 16
+#define MAX_LIGHTS 8
 #define LIGHT_DIRECTIONAL 1.
 #define LIGHT_POINT 2.
 #define LIGHT_SPOT 3.
@@ -36,14 +36,6 @@ void CommonLight(inout vec4 baseColor) {
     CommonLightEvaluate(5, lightColor);
     CommonLightEvaluate(6, lightColor);
     CommonLightEvaluate(7, lightColor);
-    CommonLightEvaluate(8, lightColor);
-    CommonLightEvaluate(9, lightColor);
-    CommonLightEvaluate(10, lightColor);
-    CommonLightEvaluate(11, lightColor);
-    CommonLightEvaluate(12, lightColor);
-    CommonLightEvaluate(13, lightColor);
-    CommonLightEvaluate(14, lightColor);
-    CommonLightEvaluate(15, lightColor);
     
     baseColor *= clamp(lightColor, vec4(0.), vec4(1.));
 }
