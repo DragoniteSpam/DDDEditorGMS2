@@ -130,7 +130,7 @@ function ui_init_terrain(mode) {
         yy += element.GetHeight() + spacing;
         
         element = create_radio_array(legal_x + spacing, yy, "Brush shape:", col_width, element_height, function(option) {
-            Stuff.terrain.style = option.root.value;
+            Stuff.terrain.style = option.value;
         }, mode.style, t_general);
         element.tooltip = "In case you want to use a different shape to edit terrain.";
         create_radio_array_options(element, ["Block", "Circle"]);
@@ -309,7 +309,7 @@ function ui_init_terrain(mode) {
         yy += element.GetHeight() + spacing;
         
         element = create_color_picker(col2_x, yy, "Color:", col_width, element_height, function(picker) {
-            Stuff.terrain.lights[ui_list_selection(color.root.el_light_list)].color = color.value;
+            Stuff.terrain.lights[ui_list_selection(picker.root.el_light_list)].color = picker.value;
         }, c_white, vx1, vy1, vx2, vy2, t_lighting);
         ds_list_add(t_lighting.contents, element);
         t_lighting.el_light_color = element;

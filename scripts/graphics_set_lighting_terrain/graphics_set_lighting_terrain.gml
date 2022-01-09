@@ -1,9 +1,6 @@
-/// @param shader
-function graphics_set_lighting_terrain(argument0) {
-
-    var shader = argument0;
+function graphics_set_lighting_terrain(shader) {
     var lights = Stuff.terrain.lights;
-
+    
     shader_set(shader);
     var light_data = array_create(MAX_LIGHTS * 12);
     array_clear(light_data, 0);
@@ -30,14 +27,15 @@ function graphics_set_lighting_terrain(argument0) {
             case LightTypes.SPOT: break;
         }
     }
-
+    
+    // might implement these later
+    shader_set_uniform_f(shader_get_uniform(shader, "lightDayTimeColor"), 1, 1, 1);
+    shader_set_uniform_f(shader_get_uniform(shader, "lightWeatherColor"), 1, 1, 1);
     shader_set_uniform_f(shader_get_uniform(shader, "lightAmbientColor"), (ambient & 0x0000ff) / 0xff, ((ambient & 0x00ff00) >> 8) / 0xff, ((ambient & 0xff0000) >> 16) / 0xff);
     shader_set_uniform_f_array(shader_get_uniform(shader, "lightData"), light_data);
-
+    
     shader_set_uniform_f(shader_get_uniform(shader, "fogStrength"), Stuff.terrain.terrain_fog_enabled ? 1 : 0);
     shader_set_uniform_f(shader_get_uniform(shader, "fogStart"), Stuff.terrain.terrain_fog_start);
     shader_set_uniform_f(shader_get_uniform(shader, "fogEnd"), Stuff.terrain.terrain_fog_end);
     shader_set_uniform_f(shader_get_uniform(shader, "fogColor"), (Stuff.terrain.terrain_fog_color & 0x0000ff) / 0xff, ((Stuff.terrain.terrain_fog_color & 0x00ff00) >> 8) / 0xff, ((Stuff.terrain.terrain_fog_color & 0xff0000) >> 16) / 0xff);
-
-
 }
