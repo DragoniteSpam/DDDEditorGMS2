@@ -16,42 +16,42 @@ function ui_init_terrain(mode) {
                     .SetID("LABEL_WIDTH"),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Height:"))
                     .SetID("LABEL_HEIGHT"),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", Stuff.terrain.orthographic, function() {
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", mode.orthographic, function() {
                     Stuff.terrain.orthographic = self.value;
                 }))
                     .SetInteractive(false)                                          // for now
                     .SetTooltip("View the world through an overhead camera."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", Stuff.terrain.view_water, function() {
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", mode.view_water, function() {
                     Stuff.terrain.view_water = self.value;
                 }))
                     .SetInteractive(false)
                     .SetTooltip("Toggles the the water layer under the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Stuff.terrain.view_grid, function() {
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", mode.view_grid, function() {
                     Stuff.terrain.view_grid = self.value;
                 }))
                     .SetInteractive(false)
                     .SetTooltip("Toggles the the wireframe grid on the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", Stuff.terrain.view_axes, function() {
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", mode.view_axes, function() {
                     Stuff.terrain.view_axes = self.value;
                 }))
                     .SetInteractive(false)
                     .SetTooltip("Toggles the the coordinate system axes."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, Stuff.terrain.water_level, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, mode.water_level, function() {
                     Stuff.terrain.water_level = self.value;
                 }))
                     .SetTooltip("If water is drawn, this will determine the water level."),
                 #endregion
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]Editor Settings"),
                 #region
-                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Brush shape:", Stuff.terrain.style, function() {
+                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Brush shape:", mode.style, function() {
                     Stuff.terrain.style = self.value;
                 }))
                     .AddOptions(["Block", "Circle"])
                     .SetTooltip("In case you want to use a different shape to edit terrain."),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(mode.radius)))
                     .SetID("BRUSH_RADIUS_LABEL"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.brush_min, mode.brush_max, true, Stuff.terrain.water_level, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.brush_min, mode.brush_max, true, mode.radius, function() {
                     Stuff.terrain.radius = self.value;
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
@@ -86,15 +86,15 @@ function ui_init_terrain(mode) {
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
                     Stuff.terrain.Flatten();
                 }),
-                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Deformation mode:", Stuff.terrain.submode, function() {
+                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Deformation mode:", mode.submode, function() {
                     Stuff.terrain.submode = self.value;
                 }))
                     .AddOptions(["Mound", "Average", "Flat Average", "Zero"])
                     .SetTooltip("The method which you would like to use to mold the terrain."),
-                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate: " + string_format(mode.rate, 1, 3) + string(mode.radius)))
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate: " + string_format(mode.rate, 1, 3)))
                     .SetID("DEFORMATION_RATE_LABEL"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.rate_min, mode.rate_max, true, Stuff.terrain.water_level, function() {
-                    Stuff.terrain.radius = self.value;
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.rate_min, mode.rate_max, true, mode.rate, function() {
+                    Stuff.terrain.rate = self.value;
                     self.GetSibling("DEFORMATION_RATE_LABEL").text = "Deformation rate: " + string_format(self.value, 1, 3);
                 }))
                     .SetTooltip("A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic."),
