@@ -2,6 +2,12 @@
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Emu/wiki
 function EmuText(x, y, w, h, text) : EmuCore(x, y, w, h) constructor {
     self.text = text;
+    self.get_text = function() { return self.text; };
+    
+    static SetUpdateText = function(get_text) {
+        self.get_text = get_text;
+        return self;
+    };
     
     Render = function(base_x, base_y) {
         processAdvancement();
@@ -23,6 +29,6 @@ function EmuText(x, y, w, h, text) : EmuCore(x, y, w, h) constructor {
         
         scribble_set_wrap(width, height);
         scribble_set_box_align(alignment, valignment);
-        scribble_draw(tx, ty, text);
+        scribble_draw(tx, ty, self.get_text());
     }
 }
