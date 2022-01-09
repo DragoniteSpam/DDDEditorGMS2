@@ -138,7 +138,7 @@ GenerateHeightData = function(width = self.width, height = self.height) {
 height_data = self.GenerateHeightData();
 
 color = new (function() constructor {
-    self.surface = surface_create(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
+    self.surface = surface_create(min(Stuff.terrain.width * Stuff.terrain.color_scale, 0x4000), min(Stuff.terrain.height * Stuff.terrain.color_scale, 0x4000));
     self.sprite = -1;
     surface_set_target(self.surface);
     draw_clear_alpha(c_white, 1);
@@ -150,7 +150,7 @@ color = new (function() constructor {
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
-        self.surface = surface_create(width * Stuff.terrain.color_scale, height * Stuff.terrain.color_scale);
+        self.surface = surface_create(min(width * Stuff.terrain.color_scale, 0x4000), min(height * Stuff.terrain.color_scale, 0x4000));
         surface_set_target(self.surface);
         draw_clear_alpha(c_white, 1);
         surface_reset_target();
