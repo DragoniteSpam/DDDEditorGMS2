@@ -60,7 +60,7 @@ function EmuProgressBar(x, y, w, h, thickness, value_min, value_max, draggable, 
             if (_currently_dragging) {
                 if (getMouseHold(0, 0, window_get_width(), window_get_height())) {
                     knob_color = EMU_COLOR_SELECTED;
-                    value = clamp((window_mouse_get_x() - bx1) / (bx2 - bx1) * (value_max - value_min) + value_min, value_min, value_max);
+                    value = clamp(((window_mouse_get_x() - view_get_xport(view_current)) - bx1) / (bx2 - bx1) * (value_max - value_min) + value_min, value_min, value_max);
                     if (_integers_only) {
                         value = round(value);
                     }
