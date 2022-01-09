@@ -24,17 +24,6 @@ function terrain_import_heightmap(button, fn) {
     
     terrain.height_data = terrain.GenerateHeightData();
     terrain.color.Reset();
-    terrain.terrain_buffer = vertex_create_buffer();
-    vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
-    
-    for (var i = 0; i < terrain.width; i++) {
-        for (var j = 0; j < terrain.height; j++) {
-            terrain_create_square(terrain.terrain_buffer, i, j, 0, 0, 0, 0);
-        }
-    }
-    
-    vertex_end(terrain.terrain_buffer);
-    terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_buffer, buffer_fixed, 1);
     
     // the first pass is reading out the data
     for (var i = 0; i < terrain.width; i++) {
@@ -45,13 +34,11 @@ function terrain_import_heightmap(button, fn) {
             var bb = (color & 0xff0000) >> 16;
             var zz = mean(rr, gg, bb) / scale;
             buffer_write(terrain.height_data, buffer_f32, zz);
-            terrain_set_z(terrain, i, j, zz);
         }
     }
     
-    vertex_freeze(terrain.terrain_buffer);
-    
-    terrain_refresh_vertex_buffer(terrain);
+    terrain.terrain_buffer_data = terrainops_generate(terrain.height_data, terrain.width, terrain.height);
+    terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
     
     buffer_delete(buffer);
     surface_free(surface);
