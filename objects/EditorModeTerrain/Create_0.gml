@@ -297,7 +297,9 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
     var chunks = self.BuildBufferChunks(density, swap_zup, swap_uv, chunk_size);
     var mesh = new DataMesh(name);
     for (var i = 0, n = array_length(chunks); i < n; i++) {
-        mesh_create_submesh(mesh, chunks[i].buffer, vertex_create_buffer_from_buffer(chunks[i].buffer, Stuff.graphics.vertex_format), undefined, chunks[i].name);
+        var vbuff = vertex_create_buffer_from_buffer(chunks[i].buffer, Stuff.graphics.vertex_format);
+        vertex_freeze(vbuff);
+        mesh_create_submesh(mesh, chunks[i].buffer, vbuff, undefined, chunks[i].name);
     }
     array_push(Game.meshes, mesh);
     return mesh;
