@@ -1173,7 +1173,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"waterfall.dddp","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"glow.dddp","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_1.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-sphere.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-cube.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-capsule.d3d","resourceType":"GMIncludedFile",},

@@ -526,7 +526,7 @@ function ui_init_terrain(mode) {
         var yy_aftergrid = yy;
         
         element = create_button(legal_x + spacing, yy, "Clear Texture", col_width, element_height, fa_center, function(button) {
-            Stuff.terrain.SetTexture(Stuff.terrain.tile_brush_x, Stuff.terrain.tile_brush_y);
+            Stuff.terrain.ClearTexture(Stuff.terrain.tile_brush_x, Stuff.terrain.tile_brush_y);
         }, t_general);
         ds_list_add(t_texture.contents, element);
         
