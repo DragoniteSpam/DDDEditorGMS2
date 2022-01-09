@@ -13,10 +13,10 @@ function ui_init_terrain(mode) {
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]General Settings"),
                 #region
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Width"))
-                    .SetTextUpdate(function() { return "Width: " + string(Stuff.terrain.width + 1); })
+                    .SetTextUpdate(function() { return "Width: " + string(Stuff.terrain.width); })
                     .SetID("LABEL_WIDTH"),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Height:"))
-                    .SetTextUpdate(function() { return "Height: " + string(Stuff.terrain.height + 1); })
+                    .SetTextUpdate(function() { return "Height: " + string(Stuff.terrain.height); })
                     .SetID("LABEL_HEIGHT"),
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", mode.orthographic, function() {
                     Stuff.terrain.orthographic = self.value;

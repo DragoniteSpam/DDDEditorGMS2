@@ -144,8 +144,8 @@ function dialog_create_terrain_new() {
                 var terrain = Stuff.terrain;
                 var scale = real(self.GetSibling("SCALE").value);
                 
-                terrain.width = sprite_get_width(image) - 1;
-                terrain.height = sprite_get_height(image) - 1;
+                terrain.width = sprite_get_width(image);
+                terrain.height = sprite_get_height(image);
                 
                 var buffer = sprite_to_buffer(image, 0);
                 
@@ -168,8 +168,8 @@ function dialog_create_terrain_new() {
     ]).AddDefaultConfirmCancelButtons("Create", function() {
         var terrain = Stuff.terrain;
         
-        var width = real(self.GetSibling("WIDTH").value) - 1;
-        var height = real(self.GetSibling("HEIGHT").value) - 1;
+        var width = real(self.GetSibling("WIDTH").value);
+        var height = real(self.GetSibling("HEIGHT").value);
         
         terrain.width = width;
         terrain.height = height;
