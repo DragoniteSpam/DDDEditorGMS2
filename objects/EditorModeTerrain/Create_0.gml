@@ -334,115 +334,21 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     var sw = sprite_get_width(color_sprite) / self.color_scale;
     var sh = sprite_get_height(color_sprite) / self.color_scale;
     
-    // these will be calculated at the end
-    var nx = 0;
-    var ny = 0;
-    var nz = 0;
+    var output = buffer_create(self.width * self.height * 6 * VERTEX_SIZE * 4, buffer_fixed, 1);
     
-    var output = buffer_create(1000, buffer_grow, 1);
-    
-    for (var i = 0; i < self.width; i += density) {
-        for (var j = 0; j < self.height; j += density) {
-            var x00 = i;
-            var y00 = j;
-            var z00 = terrain_get_z(self, x00, y00);
-            var x10 = i + density;
-            var y10 = j;
-            var z10 = terrain_get_z(self, x10, y10);
-            var x11 = i + density;
-            var y11 = j + density;
-            var z11 = terrain_get_z(self, x11, y11);
-            var x01 = i;
-            var y01 = j + density;
-            var z01 = terrain_get_z(self, x01, y01);
-            
-            /// @todo: calculate texture coordinates
-            var xt00 = undefined;
-            var yt00 = undefined;
-            var c00 = undefined;
-            var xt10 = undefined;
-            var yt10 = undefined;
-            var c10 = undefined;
-            var xt11 = undefined;
-            var yt11 = undefined;
-            var c11 = undefined;
-            var xt01 = undefined;
-            var yt01 = undefined;
-            var c01 = undefined;
-            
-            if (self.export_all || z00 > 0 || z10 > 0 || z11 > 0) {
-                xt00 = 0;
-                yt00 = 0;
-                c00 = sprite_sample(color_sprite, 0, x00 / sw, y00 / sh);
-                xt10 = 0;
-                yt10 = 0;
-                c10 = sprite_sample(color_sprite, 0, x10 / sw, y10 / sh);
-                xt11 = 0;
-                yt11 = 0;
-                c11 = sprite_sample(color_sprite, 0, x11 / sw, y11 / sh);
-                
-                if (swap_uv) {
-                    yt00 = 1 - yt00;
-                    yt10 = 1 - yt10;
-                    yt11 = 1 - yt11;
-                }
-                
-                if (swap_zup) {
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x10 + xoff) * scale, z10 * scale, (y10 + yoff) * scale, nx, ny, nz, xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                } else {
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x10 + xoff) * scale, (y10 + yoff) * scale, z10 * scale, nx, ny, nz, xt10, yt10, c10 & 0x00ffffff, (c10 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                }
-            }
-            
-            if (self.export_all || z11 > 0 || z01 > 0 || z00 > 0) {
-                // 11 and 00 may have already been calculated so theres no point
-                // in doing it again!
-                if (xt11 == undefined) {
-                    xt11 = 0;
-                    yt11 = 0;
-                    c11 = sprite_sample(color_sprite, 0, x11 / sw, y11 / sh);
-                    if (swap_uv) yt11 = 1 - yt11;
-                }
-                xt01 = 0;
-                yt01 = 0;
-                c01 = sprite_sample(color_sprite, 0, x01 / sw, y01 / sh);
-                if (swap_uv) yt01 = 1 - yt01;
-                
-                if (xt00 == undefined) {
-                    xt00 = 0;
-                    yt00 = 0;
-                    c00 = sprite_sample(color_sprite, 0, x00 / sw, y00 / sh);
-                    if (swap_uv) yt00 = 1 - yt00;
-                }
-                
-                if (swap_zup) {
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, z11 * scale, (y11 + yoff) * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x01 + xoff) * scale, z01 * scale, (y01 + yoff) * scale, nx, ny, nz, xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, z00 * scale, (y00 + yoff) * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                } else {
-                    vertex_point_complete_raw(output, (x11 + xoff) * scale, (y11 + yoff) * scale, z11 * scale, nx, ny, nz, xt11, yt11, c11 & 0x00ffffff, (c11 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x01 + xoff) * scale, (y01 + yoff) * scale, z01 * scale, nx, ny, nz, xt01, yt01, c01 & 0x00ffffff, (c01 >> 24) / 0xff);
-                    vertex_point_complete_raw(output, (x00 + xoff) * scale, (y00 + yoff) * scale, z00 * scale, nx, ny, nz, xt00, yt00, c00 & 0x00ffffff, (c00 >> 24) / 0xff);
-                }
-            }
-        }
-    }
+    buffer_poke(output, 0, buffer_u32, 0);
+    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
+    __terrainops_build_settings(self.export_all, swap_zup, swap_uv, self.export_centered, density, self.width, self.height, self.save_scale);
+    var bytes = __terrainops_build(buffer_get_address(self.height_data), buffer_get_address(output), buffer_get_size(self.height_data));
+    buffer_resize(output, bytes);
     
     sprite_sample_remove_from_cache(color_sprite, 0);
     sprite_delete(color_sprite);
     
-    buffer_resize(output, buffer_tell(output));
-    
-    static dummy_submesh = new MeshSubmesh("dummy mesh that isnt used but i need the normals methods to be accessible");
-    
     if (Stuff.terrain.export_smooth) {
-        dummy_submesh.internalSetNormalsSmooth(output, Stuff.terrain.export_smooth_threshold);
+        meshops_set_normals_smooth(buffer_get_address(output), bytes, Stuff.terrain.export_smooth_threshold);
     } else {
-        meshops_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
+        meshops_set_normals_flat(buffer_get_address(output), bytes);
     }
     
     return output;
