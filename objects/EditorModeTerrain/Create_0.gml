@@ -334,7 +334,7 @@ BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
     var sw = sprite_get_width(color_sprite) / self.color_scale;
     var sh = sprite_get_height(color_sprite) / self.color_scale;
     
-    var output = buffer_create(self.width * self.height * 6 * VERTEX_SIZE * 4, buffer_fixed, 1);
+    var output = buffer_create(self.width * self.height * 6 * VERTEX_SIZE, buffer_fixed, 1);
     
     buffer_poke(output, 0, buffer_u32, 0);
     buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
