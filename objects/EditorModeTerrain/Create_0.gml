@@ -43,6 +43,7 @@ render = function() {
     }
 };
 save = function() {
+    // camera settings
     Settings.terrain.x = self.x;
     Settings.terrain.y = self.y;
     Settings.terrain.z = self.z;
@@ -50,14 +51,16 @@ save = function() {
     Settings.terrain.yto = self.yto;
     Settings.terrain.zto = self.zto;
     Settings.terrain.fov = self.fov;
-    Settings.terrain.save_scale = self.save_scale;
-    Settings.terrain.export_all = self.export_all;
+    // viewer settings
     Settings.terrain.view_water = self.view_water;
     Settings.terrain.view_water_min_alpha = self.view_water_min_alpha;
     Settings.terrain.view_water_max_alpha = self.view_water_max_alpha;
     Settings.terrain.water_level = self.water_level;
     Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.view_axes = self.view_axes;
+    // export settings
+    Settings.terrain.save_scale = self.save_scale;
+    Settings.terrain.export_all = self.export_all;
     Settings.terrain.heightmap_scale = self.heightmap_scale;
     Settings.terrain.export_swap_uvs = self.export_swap_uvs;
     Settings.terrain.export_swap_zup = self.export_swap_zup;
@@ -66,6 +69,17 @@ save = function() {
     Settings.terrain.export_smooth = self.export_smooth;
     Settings.terrain.export_smooth_threshold = self.export_smooth_threshold;
     Settings.terrain.output_vertex_format = self.output_vertex_format;
+    // editing settings
+    // height defaults
+    Settings.terrain.rate = self.rate;
+    Settings.terrain.radius = self.radius;
+    Settings.terrain.mode = self.mode;
+    Settings.terrain.submode = self.submode;
+    Settings.terrain.style = self.style;
+    Settings.terrain.tile_brush_x = self.tile_brush_x;
+    Settings.terrain.tile_brush_y = self.tile_brush_y;
+    Settings.terrain.paint_color = self.paint_color;
+    Settings.terrain.paint_strength = self.paint_strength;
 };
 
 texture_name = DEFAULT_TILESET;
@@ -106,20 +120,20 @@ brush_max = 20;
 rate_min = 0.02;
 rate_max = 1;
 // height settings
-rate = 0.125;
-radius = 4;
-mode = TerrainModes.Z;
-submode = TerrainSubmodes.MOUND;
-style = TerrainStyles.CIRCLE;
+rate = setting_get("terrain", "rate", 0.125);
+radius = setting_get("terrain", "radius", 4);
+mode = setting_get("terrain", "mode", TerrainModes.Z);
+submode = setting_get("terrain", "submode", TerrainSubmodes.MOUND);
+style = setting_get("terrain", "style", TerrainStyles.CIRCLE);
 // texture settings
-tile_brush_x = terrain_tile_size;
-tile_brush_y = terrain_tile_size;
+tile_brush_x = setting_get("terrain", "tile_brush_x", 0);
+tile_brush_y = setting_get("terrain", "tile_brush_y", 0);
 // paint defaults
 paint_strength_min = 0.01;
 paint_strength_max = 1;
 // paint settings
-paint_color = 0xffffffff;
-paint_strength = 0.05;
+paint_color = setting_get("terrain", "paint_color", 0xffffffff);
+paint_strength = setting_get("terrain", "paint_strength", 0.05);
 
 mutation_sprites = [
     spr_terrain_gen_flat,
@@ -356,7 +370,7 @@ ExportVbuff = function(filename, density = 1, chunk_size = 0) {
 
 ExportHeightmap = function(filename, scale) {
     var buffer = terrainops_to_heightmap(self.height_data, scale);
-    var surface = surface_create(self.width + 1, self.height + 1);
+    var surface = surface_create(self.width, self.height);
     buffer_set_surface(buffer, surface, 0);
     surface_save(surface, filename);
     buffer_delete(buffer);
