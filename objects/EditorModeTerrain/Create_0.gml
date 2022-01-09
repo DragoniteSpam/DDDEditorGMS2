@@ -294,7 +294,7 @@ DrawWater = function(set_lights = true) {
 
 #region Export methods
 AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size = 0) {
-    var chunks = self.BuildBufferChunks(density, swap_zup, swap_uv, chunk_size);
+    var chunks = self.BuildBufferChunks(density, chunk_size);
     var mesh = new DataMesh(name);
     for (var i = 0, n = array_length(chunks); i < n; i++) {
         var vbuff = vertex_create_buffer_from_buffer(chunks[i].buffer, Stuff.graphics.vertex_format);
@@ -306,10 +306,10 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
 };
 
 /// @return an array of { buffer, name }
-BuildBufferChunks = function(density = 1, swap_zup = false, swap_uv = false, chunk_size = 0) {
+BuildBufferChunks = function(density = 1, chunk_size = 0) {
     var collection = [];
     
-    var main_buffer = self.BuildBuffer(density, swap_zup, swap_uv);
+    var main_buffer = self.BuildBuffer(density);
     
     if (chunk_size > 0) {
         var chunks = vertex_buffer_as_chunks(main_buffer, chunk_size, max(1, ceil(self.width / chunk_size)), max(1, ceil(self.height / chunk_size)));
@@ -326,31 +326,23 @@ BuildBufferChunks = function(density = 1, swap_zup = false, swap_uv = false, chu
     return collection;
 };
 
-BuildBuffer = function(density = 1, swap_zup = false, swap_uv = false) {
+BuildBuffer = function(density = 1) {
     density = floor(density);
-    var scale = self.save_scale;
-    var xoff = self.export_centered ? -self.width / 2 : 0;
-    var yoff = self.export_centered ? -self.height / 2 : 0;
     
     var color_sprite = sprite_create_from_surface(self.color.surface, 0, 0, surface_get_width(self.color.surface), surface_get_height(self.color.surface), false, false, 0, 0);
     var sw = sprite_get_width(color_sprite) / self.color_scale;
     var sh = sprite_get_height(color_sprite) / self.color_scale;
     
-    var output = buffer_create(self.width * self.height * 6 * VERTEX_SIZE, buffer_fixed, 1);
-    
-    buffer_poke(output, 0, buffer_u32, 0);
-    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
-    __terrainops_build_settings(self.export_all, swap_zup, swap_uv, self.export_centered, density, self.width, self.height, self.save_scale);
-    var bytes = __terrainops_build(buffer_get_address(self.height_data), buffer_get_address(output), buffer_get_size(self.height_data));
-    buffer_resize(output, bytes);
+    // at some point it'd be nice to properly sample from the color sprite again
+    var output = terrainops_build(self.height_data, self.width, self.height, VERTEX_SIZE, self.export_all, self.export_swap_zup, self.export_swap_uvs, self.export_centered, density, self.save_scale);
     
     sprite_sample_remove_from_cache(color_sprite, 0);
     sprite_delete(color_sprite);
     
     if (Stuff.terrain.export_smooth) {
-        meshops_set_normals_smooth(buffer_get_address(output), bytes, Stuff.terrain.export_smooth_threshold);
+        meshops_set_normals_smooth(buffer_get_address(output), buffer_get_size(output), Stuff.terrain.export_smooth_threshold);
     } else {
-        meshops_set_normals_flat(buffer_get_address(output), bytes);
+        meshops_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
     }
     
     return output;
