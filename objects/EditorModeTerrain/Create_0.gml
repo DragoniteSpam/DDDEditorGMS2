@@ -135,7 +135,11 @@ GenerateHeightData = function(width = self.width, height = self.height) {
     return buffer_create(4 * (width + 1) * (height + 1), buffer_fixed, 1);
 };
 
-height_data = self.GenerateHeightData();
+self.height_data = self.GenerateHeightData();
+
+self.terrain_buffer_data = terrainops_generate(self.height_data, self.width, self.height);
+self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
+vertex_freeze(self.terrain_buffer);
 
 color = new (function() constructor {
     self.surface = surface_create(min(Stuff.terrain.width * Stuff.terrain.color_scale, 0x4000), min(Stuff.terrain.height * Stuff.terrain.color_scale, 0x4000));
@@ -182,19 +186,6 @@ color = new (function() constructor {
         self.SaveState();
     };
 })();
-
-self.terrain_buffer = vertex_create_buffer();
-vertex_begin(self.terrain_buffer, self.vertex_format);
-
-for (var i = 0; i < self.width; i++) {
-    for (var j = 0; j < self.height; j++) {
-        terrain_create_square(self.terrain_buffer, i, j, 0, 0, 0, 0);
-    }
-}
-
-vertex_end(self.terrain_buffer);
-self.terrain_buffer_data = buffer_create_from_vertex_buffer(self.terrain_buffer, buffer_fixed, 1);
-vertex_freeze(self.terrain_buffer);
 
 LoadAsset = function(directory) {
     directory += "/";
