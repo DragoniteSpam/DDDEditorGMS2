@@ -24,17 +24,14 @@ function ui_init_terrain(mode) {
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", mode.view_water, function() {
                     Stuff.terrain.view_water = self.value;
                 }))
-                    .SetInteractive(false)
                     .SetTooltip("Toggles the the water layer under the terrain."),
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", mode.view_grid, function() {
                     Stuff.terrain.view_grid = self.value;
                 }))
-                    .SetInteractive(false)
                     .SetTooltip("Toggles the the wireframe grid on the terrain."),
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", mode.view_axes, function() {
                     Stuff.terrain.view_axes = self.value;
                 }))
-                    .SetInteractive(false)
                     .SetTooltip("Toggles the the coordinate system axes."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, mode.water_level, function() {
