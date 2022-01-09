@@ -77,6 +77,9 @@ function ui_init_terrain(mode) {
                 #endregion
             ]),
             (new EmuTab("Lighting")).AddContent([
+                #region
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "I'll re-implement this later (hopefully soon)"),
+                #endregion
             ]),
             (new EmuTab("Deform")).AddContent([
                 #region
@@ -105,6 +108,12 @@ function ui_init_terrain(mode) {
                 #endregion
             ]),
             (new EmuTab("Texture")).AddContent([
+                #region
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Set Mode: Texture", function() {
+                    Stuff.terrain.mode = TerrainModes.COLOR;
+                }),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "I'll re-implement this later (hopefully soon)"),
+                #endregion
             ]),
             (new EmuTab("Painting")).AddContent([
                 #region
