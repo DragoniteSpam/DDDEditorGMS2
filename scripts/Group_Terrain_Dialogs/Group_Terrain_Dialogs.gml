@@ -138,7 +138,32 @@ function dialog_create_terrain_new() {
             .SetInteractive(false)
             .SetTooltip("The number of octaves to be used in generation")
             .SetID("OCTAVES"),
-        (new EmuButton(col2_x, 32, ew, b_height, "Import Heightmap", dmu_terrain_import_heightmap))
+        (new EmuButton(col2_x, 32, ew, b_height, "Import Heightmap", function() {
+            var fn = get_open_filename_image();
+            if (fn != "") {
+                var image = sprite_add(fn, 0, false, false, 0, 0);
+                var terrain = Stuff.terrain;
+                var scale = real(self.GetSibling("SCALE").value);
+                
+                terrain.width = sprite_get_width(image);
+                terrain.height = sprite_get_height(image);
+                
+                var buffer = sprite_to_buffer(image, 0);
+                
+                buffer_delete(terrain.height_data);
+                buffer_delete(terrain.terrain_buffer_data);
+                vertex_delete_buffer(terrain.terrain_buffer);
+                
+                terrain.color.Reset(terrain.width, terrain.height);
+                terrain.height_data = terrainops_from_heightmap(buffer, scale);
+                terrain.terrain_buffer_data = terrainops_generate(terrain.height_data, terrain.width, terrain.height);
+                terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
+                
+                buffer_delete(buffer);
+                sprite_delete(image);
+                self.root.Dispose();
+            }
+        }))
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
     ]).AddDefaultConfirmCancelButtons("Create", function() {
@@ -172,14 +197,6 @@ function dialog_create_terrain_new() {
         
         self.root.Dispose();
     }, "Cancel", emu_dialog_close_auto);
-}
-
-function dmu_terrain_import_heightmap(button) {
-    var fn = get_open_filename_image();
-    if (fn != "") {
-        terrain_import_heightmap(button, fn);
-        button.root.commit(button.root);
-    }
 }
 
 function uivc_terrain_light_enable_by_type(list) {
