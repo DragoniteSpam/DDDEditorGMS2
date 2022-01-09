@@ -93,6 +93,8 @@ function EmuCore(x, y, w, h) constructor {
                 } else {
                     thing.y = self._element_spacing_x;
                 }
+            } else if (thing.y == EMU_BASE) {
+                thing.y = self._element_spacing_x;
             }
             ds_list_add(self._contents, thing);
             thing.root = self;
