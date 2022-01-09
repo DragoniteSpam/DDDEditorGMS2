@@ -26,10 +26,20 @@ void CommonFogSetup() {
 }
 // include("fog.v.xsh")
 
+varying vec3 v_barycentric;
+
 void main() {
     CommonLightSetup();
     CommonFogSetup();
     
-    v_vWorldXY = in_Position.xy;
-    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1);
+    v_vWorldXY = floor(in_Position.xy);
+    
+    float f = fract(in_Position.x) * 8.0;
+    v_barycentric = vec3(
+        1.0 - min(abs(1.0 - f), 1.0),
+        1.0 - min(abs(2.0 - f), 1.0),
+        1.0 - min(abs(4.0 - f), 1.0)
+    );
+    
+    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(v_vWorldXY, in_Position.z, 1);
 }

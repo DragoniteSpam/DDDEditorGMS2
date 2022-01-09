@@ -2,8 +2,6 @@
 
 varying vec2 v_vWorldXY;
 
-uniform float wireframeEnabled;
-
 uniform vec2 terrainSize;
 uniform vec2 mouse;
 uniform float mouseRadius;
@@ -105,6 +103,15 @@ void CommonFog(inout vec4 baseColor) {
 }
 // include("fog.f.xsh")
 
+uniform vec3 u_WireColor;
+uniform float u_WireThickness;
+varying vec3 v_barycentric;
+
+float wireEdgeFactor(vec3 barycentric, float thickness) {
+    vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
+    return min(min(a3.x, a3.y), a3.z);
+}
+
 void main() {
     vec4 color = vec4(texture2D(texColor, v_vWorldXY / terrainSize).rgb, 1) * texture2D(gm_BaseTexture, v_vWorldXY / terrainSize);
     
@@ -115,6 +122,8 @@ void main() {
     float dist = length(v_vWorldXY - mouse);
     float strength = clamp(-2.0 / (r * r) * (dist + r) * (dist - r), 0.0, 1.0);
     color = mix(color, cursorColor, strength);
+    
+    color.rgb = mix(color.rgb, u_WireColor, 1.0 - wireEdgeFactor(v_barycentric, u_WireThickness));
     
     gl_FragColor = color;
 }
