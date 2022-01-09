@@ -108,7 +108,6 @@ export_centered = setting_get("terrain", "export_centered", false);
 export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
 export_smooth = setting_get("terrain", "export_smooth", false);
 export_smooth_threshold = setting_get("terrain", "export_smooth_threshold", 60);
-smooth_shading = false;
 orthographic = false;
 orthographic_scale = 1;
 output_vertex_format = setting_get("terrain", "output_vertex_format", DEFAULT_VERTEX_FORMAT);
