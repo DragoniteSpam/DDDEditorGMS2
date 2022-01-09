@@ -123,9 +123,9 @@
 
 #macro CONTROL_3D_LOOK                      (Controller.mouse_middle)
 
-#macro DEFAULT_TERRAIN_HEIGHT               256
+#macro DEFAULT_TERRAIN_HEIGHT               255
 #macro DEFAULT_TERRAIN_HEIGHTMAP_SCALE      256
-#macro DEFAULT_TERRAIN_WIDTH                256
+#macro DEFAULT_TERRAIN_WIDTH                255
 #macro MAX_TERRAIN_HEIGHT                   2048
 #macro MAX_TERRAIN_WIDTH                    2048
 #macro MIN_TERRAIN_HEIGHT                   32

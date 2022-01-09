@@ -47,8 +47,7 @@ function dialog_terrain_mutate() {
             "Flat",
             "Bullseye",
         ]).SetID("SPRITE_LIST"),
-        (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null)
-        )
+        (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null))
             .SetID("SPRITE_PREVIEW")
             .SetImageAlignment(fa_left, fa_top)
             .SetCheckerboard(true),
@@ -169,13 +168,9 @@ function dialog_create_terrain_new() {
     ]).AddDefaultConfirmCancelButtons("Create", function() {
         var terrain = Stuff.terrain;
         
-        var width = real(self.GetSibling("WIDTH").value);
-        var height = real(self.GetSibling("HEIGHT").value);
+        var width = real(self.GetSibling("WIDTH").value) - 1;
+        var height = real(self.GetSibling("HEIGHT").value) - 1;
         
-        terrain.ui.t_general.element_width.text = "Width: " + string(width);
-        terrain.ui.t_general.element_height.text = "Height: " + string(height);
-        width--;
-        height--;
         terrain.width = width;
         terrain.height = height;
         
