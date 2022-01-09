@@ -298,8 +298,6 @@ function dialog_create_mesh_advanced(root, mesh) {
         el_auto_reflect,
         el_swap_reflect,
         el_auto_bounds,
-        el_normal_flat,
-        el_normal_smooth,
         el_up_axis,
         el_reload,
         el_markers,

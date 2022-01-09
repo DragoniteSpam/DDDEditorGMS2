@@ -125,7 +125,7 @@ function dialog_create_terrain_new() {
         }))
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
-        (new EmuInput(col1_x, EMU_AUTO, ew, eh, "Scale:", "10", "1...255", 3, E_InputTypes.INT, function() { }))
+        (new EmuInput(col1_x, EMU_AUTO, ew, eh, "Scale:", string(Stuff.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() { }))
             .SetTooltip("The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient). This is only useful when importing a heightmap.")
             .SetID("SCALE"),
         (new EmuText(col1_x, EMU_AUTO, ew, eh, "Smoothness: 6"))
