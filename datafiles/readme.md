@@ -41,6 +41,7 @@ You probably want to know about some of the things that are incomplete, or some 
 
  - Perlin noise generation/mtuation will produce strange results on terrains that are not powers of 2. There's a small oversight in my noise generation code that I'll fix eventually, although most of you are probably going to make power-of-two terrains anyway so it's not a top priority
 
+ - Project save and load: it'd be super helpful to be able to come back to a project later, instead of executing a one-way export and being done with it.
  - Import/export: currently only 3D Position, Face Normal, and  Barycentric Coordinate actually do anything. The other attributes will resolve to 0, or (in the case of colo(u)r) c_white
  - Editing: there are still some things I can probably do to make the program even faster for editing, and support even larger terrain sizes
  - Editing/mutation: more terrain deformation options, and some streamlining of the editing tools
