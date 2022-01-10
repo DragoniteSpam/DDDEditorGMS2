@@ -50,6 +50,7 @@ You probably want to know about some of the things that are incomplete, or some 
  - Lighting: settings not yet implemented, aside from the default light
  - Texture: settings not yet implemented; I'm still undecided on what the best way to handle this will be, but getting it in will be a priority
  - View: 2D orthographic view - this might not come back because I'm currently unconvinced of its utility
+ - View: shadowmapping is fun, I want to add it eventually
 
 ## Bug reporting
 
