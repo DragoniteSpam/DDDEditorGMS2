@@ -18,7 +18,6 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
     
     self.changed = false;
     self.sprite_close = spr_emu_close;
-    self.color_header = EMU_COLOR_WINDOWSKIN;
     self.color_back = EMU_COLOR_BACK;
     
     self._header_height = 32;
@@ -113,7 +112,7 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
         
         draw_sprite_stretched_ext(sprite_nineslice, 1, x1, y1, x2 - x1, y2 - y1, color_back, 1);
         draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, y2 - y1, color, 1);
-        var ch = merge_colour(color_header, EMU_DIALOG_SHADE_COLOR, active ? 0 : 0.5);
+        var ch = merge_colour(EMU_COLOR_WINDOWSKIN, EMU_DIALOG_SHADE_COLOR, active ? 0 : 0.5);
         draw_sprite_stretched_ext(sprite_nineslice, 1, x1, y1, x2 - x1, _header_height, ch, 1);
         draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, _header_height, color, 1);
         
