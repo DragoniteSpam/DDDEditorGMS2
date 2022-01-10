@@ -1,98 +1,48 @@
-function dialog_create_credits(dialog) {
+function dialog_create_credits() {
     var dw = 960;
     var dh = 400;
+    var cx = 32;
+    var cw = 896;
+    var ch = 32;
     
-    var dg = dialog_create(dw, dh, "Credits", dialog_default, dialog_destroy, dialog);
+    var dialog = new EmuDialog(960, 480, "Credits");
     
-    var columns = 1;
-    var spacing = 16;
-    var ew = dw / columns - spacing * 2;
-    var eh = 24;
-    var bw = ew / 5;
+    dialog.AddContent([
+        new EmuText(cx, EMU_AUTO, cw, ch, "[FDefault20][c_blue]DDD Game Editor"),
+        
+        #region me
+        new EmuText(cx, EMU_AUTO, cw, ch, "Author: @DragoniteSpam"),
+        new EmuButton(cx, EMU_AUTO, 216, 32, "Twitter", function() {
+            url_open("https://twitter.com/dragonitespam");
+        }),
+        new EmuButton(cx + 224, EMU_INLINE, 216, 32, "YouTube", function() {
+            url_open("https://www.youtube.com/c/dragonitespam");
+        }),
+        new EmuButton(cx + 224 * 2, EMU_INLINE, 216, 32, "Github", function() {
+            url_open("https://github.com/DragoniteSpam");
+        }),
+        new EmuButton(cx + 224 * 3, EMU_INLINE, 216, 32, "Itch.io", function() {
+            url_open("https://dragonite.itch.io/");
+        }),
+        #endregion
+        
+        #region extensions
+        new EmuText(cx, EMU_AUTO, cw, ch, "[c_blue]Some GameMaker extensions were used"),
+        new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
+            url_open("https://github.com/JujuAdams/scribble");
+        }),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[rainbow][wave]Scribble,[] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)"),
+        new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
+            url_open("https://github.com/GameMakerDiscord/Xpanda/");
+        }),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "Xpanda, shader management by kraifpatrik"),
+        #endregion
+        
+        #region default assets
+        new EmuText(cx, EMU_AUTO, cw, ch, "[c_blue]Default assets"),
+        new EmuText(cx, EMU_AUTO, cw, ch, "Water textures: Aswin Vos, and GodsAndIdols"),
+        #endregion
+    ]).AddDefaultCloseButton();
     
-    var yy = 64;
-    var el_text = create_text(16, yy, "[FDefault20][c_blue]DDD Game Editor", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_author = create_text(16, yy, "Author: Michael Peng (DragoniteSpam)", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_author_1 = create_button(32 + (bw + spacing) * 0, yy, "Twitter", bw, eh, fa_center, function(button) {
-        url_open("https://twitter.com/dragonitespam");
-    }, dg);
-    el_author_1.tooltip = "https://twitter.com/dragonitespam";
-    var el_author_2 = create_button(32 + (bw + spacing) * 1, yy, "YouTube", bw, eh, fa_center, function(button) {
-        url_open("https://www.youtube.com/c/dragonitespam/about");
-    }, dg);
-    el_author_2.tooltip = "https://www.youtube.com/c/dragonitespam/about";
-    var el_author_3 = create_button(32 + (bw + spacing) * 2, yy, "Github", bw, eh, fa_center, function(button) {
-        url_open("https://github.com/DragoniteSpam");
-    }, dg);
-    el_author_3.tooltip = "https://github.com/DragoniteSpam";
-    var el_author_4 = create_button(32 + (bw + spacing) * 3, yy, "Itch.io", bw, eh, fa_center, function(button) {
-        url_open("https://dragonite.itch.io/");
-    }, dg);
-    el_author_4.tooltip = "https://dragonite.itch.io/";
-    yy += 40;
-    
-    var el_help = create_text(16, yy, "[c_blue]With help from:", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_help_who = create_text(32, yy, "     RatcheT2497, Nate Robbins, YouTube stream chat", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    
-    var el_ex = create_text(16, yy, "[c_blue]Some Game Maker extensions were used", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_ex_venomous_url = create_button(32, yy, "GMC Forum thread", bw, eh, fa_center, function(button) {
-        url_open("https://web.archive.org/web/20191214124933/http://gmc.yoyogames.com/index.php?showtopic=632606");
-    }, dg);
-    el_ex_venomous_url.tooltip = "http://gmc.yoyogames.com/index.php?showtopic=632606 (Web Archive; the original page has long since been deleted)";
-    var el_ex_venomous = create_text(32 + bw + spacing, yy, "     3D collisions (mostly raycasting): Venomous (Bullet)", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_ex_scribble_url = create_button(32, yy, "Github", bw, eh, fa_center, function(button) {
-        url_open("https://github.com/JujuAdams/scribble");
-    }, dg);
-    el_ex_scribble_url.tooltip = "https://github.com/JujuAdams/scribble";
-    var el_ex_scribble = create_text(32 + bw + spacing, yy, "[rainbow][wave]Scribble,[] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_ex_xpanda_url = create_button(32, yy, "Github", bw, eh, fa_center, function(button) {
-        url_open("https://github.com/GameMakerDiscord/Xpanda/");
-    }, dg);
-    el_ex_xpanda_url.tooltip = "https://github.com/GameMakerDiscord/Xpanda/";
-    var el_ex_xpanda = create_text(32 + bw + spacing, yy, "Xpanda, shader management by kraifpatrik", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    
-    var el_asset = create_text(32, yy, "[c_blue]Default assets", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_asset_wate_url = create_button(32, yy, "GodsAndIdols.com", bw, eh, fa_center, function(button) {
-        url_open("www.godsandidolds.com");
-    }, dg);
-    el_asset_wate_url.tooltip = "www.godsandidolds.com";
-    var el_asset_water = create_text(32 + bw + spacing, yy, "Water textures: Aswin Vos and GodsAndIdols", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    var el_asset_npc = create_text(32, yy, "     Default NPC: Lanea Zimmerman", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
-    
-    // this is easier than resizing the dialog manually every time (up to the point where it flows off the screen)
-    dh = yy + 64;
-    dg.height = dh;
-    
-    var b_width = 128;
-    var b_height = 32;
-    var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Wow, thanks!", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-    
-    ds_list_add(dg.contents,
-        el_text,
-        el_author,
-        el_author_1, el_author_2, el_author_3, el_author_4,
-        el_help,
-        el_help_who,
-        el_ex,
-        el_ex_venomous, el_ex_venomous_url,
-        el_ex_scribble, el_ex_scribble_url,
-        el_ex_xpanda, el_ex_xpanda_url,
-        el_asset,
-        el_asset_water, el_asset_wate_url,
-        el_asset_npc,
-        el_close
-    );
-
-    return dg;
+    return dialog;
 }
