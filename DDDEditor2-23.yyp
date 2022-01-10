@@ -593,7 +593,6 @@
     {"id":{"name":"EmuText","path":"scripts/EmuText/EmuText.yy",},"order":15,},
     {"id":{"name":"uivc_animation_keyframe_graphic_type","path":"scripts/uivc_animation_keyframe_graphic_type/uivc_animation_keyframe_graphic_type.yy",},"order":11,},
     {"id":{"name":"uivc_animation_keyframe_graphic_sprite","path":"scripts/uivc_animation_keyframe_graphic_sprite/uivc_animation_keyframe_graphic_sprite.yy",},"order":12,},
-    {"id":{"name":"shd_wireframe_basic","path":"shaders/shd_wireframe_basic/shd_wireframe_basic.yy",},"order":9,},
     {"id":{"name":"uivc_animation_keyframe_graphic_mesh","path":"scripts/uivc_animation_keyframe_graphic_mesh/uivc_animation_keyframe_graphic_mesh.yy",},"order":13,},
     {"id":{"name":"uivc_animation_keyframe_graphic_frame","path":"scripts/uivc_animation_keyframe_graphic_frame/uivc_animation_keyframe_graphic_frame.yy",},"order":14,},
     {"id":{"name":"uivc_animation_keyframe_graphic_direction","path":"scripts/uivc_animation_keyframe_graphic_direction/uivc_animation_keyframe_graphic_direction.yy",},"order":15,},
