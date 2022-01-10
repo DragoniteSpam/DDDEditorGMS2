@@ -288,6 +288,7 @@ DrawWater = function(set_lights = true) {
     
     var water_level = 512 * power(self.water_level, 3);
     matrix_set(matrix_world, matrix_build(0, 0, water_level, 0, 0, 0, 1, 1, 1));
+    gpu_set_cullmode(cull_noculling);
     texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
     var mn = min(self.view_water_min_alpha, self.view_water_max_alpha);
     var mx = max(self.view_water_min_alpha, self.view_water_max_alpha);
