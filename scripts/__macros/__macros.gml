@@ -45,6 +45,9 @@
 #macro mesh:RIBBON_MENU                     menu_init_mesh
 #macro Terrain:RIBBON_MENU                  menu_init_terrain
 //
+#macro TERRAIN_MODE                         false
+#macro Terrain:TERRAIN_MODE                 true
+//
 #macro DEFAULT_TILESET                      "b_tileset_overworld_0.png"
 #macro mesh:DEFAULT_TILESET                 "b_magenta.png"
 
