@@ -1,6 +1,6 @@
 #extension GL_OES_standard_derivatives : enable
 
-varying vec2 v_vWorldXY;
+varying vec3 v_vWorldPosition;
 
 uniform vec2 terrainSize;
 uniform vec2 mouse;
@@ -112,14 +112,25 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
     return min(min(a3.x, a3.y), a3.z);
 }
 
+uniform vec3 u_WaterLevels;             // start, end, strength
+uniform vec3 u_WaterColor;
+
+void waterFog(inout vec4 baseColor) {
+    float dist_to_camera = min(v_barycentric.w, 1.0);
+    float dist_below = u_WaterLevels.y - v_vWorldPosition.z;
+    float f = clamp(dist_below * dist_to_camera * u_WaterLevels.z / (u_WaterLevels.y - u_WaterLevels.x), 0.0, 1.0);
+    baseColor.rgb = mix(baseColor.rgb, u_WaterColor, f);
+}
+
 void main() {
-    vec4 color = vec4(texture2D(texColor, v_vWorldXY / terrainSize).rgb, 1) * texture2D(gm_BaseTexture, v_vWorldXY / terrainSize);
+    vec4 color = vec4(texture2D(texColor, v_vWorldPosition.xy / terrainSize).rgb, 1) * texture2D(gm_BaseTexture, v_vWorldPosition.xy / terrainSize);
     
     CommonLight(color);
     CommonFog(color);
+    waterFog(color);
     
     float r = mouseRadius;
-    float dist = length(v_vWorldXY - mouse);
+    float dist = length(v_vWorldPosition.xy - mouse);
     float strength = clamp(-2.0 / (r * r) * (dist + r) * (dist - r), 0.0, 1.0);
     color = mix(color, cursorColor, strength);
     

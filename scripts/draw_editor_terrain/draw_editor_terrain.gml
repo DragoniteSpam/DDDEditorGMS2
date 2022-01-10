@@ -42,6 +42,10 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireThickness"), Stuff.terrain.view_grid ? 1 : 0);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireColor"), 1, 1, 1);
+    
+    var water_level = 512 * power(Stuff.terrain.water_level, 3) / Stuff.terrain.view_scale;
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WaterLevels"), water_level - 64, water_level, 0.75 * Stuff.terrain.view_water);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WaterColor"), 0.1, 0.1, 1);
     vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture, 0));
     
     if (Stuff.terrain.view_axes) {
