@@ -22,7 +22,7 @@ function menu_render(menu, x1, y1) {
             }
         }
         
-        draw_text(tx, ty, string(menu.text));
+        draw_text(tx, ty - 4, string(menu.text));
     }
     
     if (menu_is_active(menu)) {
