@@ -35,9 +35,11 @@ Here's a list of change and additions from the last version. Items marked with a
 
  - A metric buttload of internal changes, optimizations, and bug fixes
 
-## WIP items
+## WIP items and known issues
 
 You probably want to know about some of the things that are incomplete, or some of the features from the last version that are (currently) not available in the beta.
+
+ - Perlin noise generation/mtuation will produce strange results on terrains that are not powers of 2. There's a small oversight in my noise generation code that I'll fix eventually, although most of you are probably going to make power-of-two terrains anyway so it's not a top priority
 
  - Import/export: currently only 3D Position, Face Normal, and  Barycentric Coordinate actually do anything. The other attributes will resolve to 0, or (in the case of colo(u)r) c_white
  - Editing: there are still some things I can probably do to make the program even faster for editing, and support even larger terrain sizes
