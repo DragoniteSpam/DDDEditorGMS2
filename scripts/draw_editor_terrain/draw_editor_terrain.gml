@@ -48,10 +48,11 @@ function draw_editor_terrain() {
         matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, 2, 2, 2));
         shader_set(shd_basic_colors);
         vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
-        shader_reset();
     }
     
     Stuff.terrain.DrawWater(true);
+    
+    shader_reset();
     
     matrix_set(matrix_world, matrix_build_identity());
 }
