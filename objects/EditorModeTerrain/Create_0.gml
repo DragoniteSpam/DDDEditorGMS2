@@ -347,7 +347,7 @@ BuildBuffer = function(density = 1) {
     sprite_delete(color_sprite);
     
     if (Stuff.terrain.export_smooth) {
-        meshops_set_normals_smooth(buffer_get_address(output), buffer_get_size(output), Stuff.terrain.export_smooth_threshold);
+        meshops_set_normals_smooth(buffer_get_address(output), buffer_get_size(output), dcos(Stuff.terrain.export_smooth_threshold));
     } else {
         meshops_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
     }
