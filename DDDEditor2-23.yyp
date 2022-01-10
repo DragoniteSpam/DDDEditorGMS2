@@ -358,6 +358,7 @@
     {"id":{"name":"dialog_create_event_node_audio_se","path":"scripts/dialog_create_event_node_audio_se/dialog_create_event_node_audio_se.yy",},"order":16,},
     {"id":{"name":"dialog_create_event_node_animation","path":"scripts/dialog_create_event_node_animation/dialog_create_event_node_animation.yy",},"order":17,},
     {"id":{"name":"scribble_set_state","path":"scripts/scribble_set_state/scribble_set_state.yy",},"order":9,},
+    {"id":{"name":"menu_init_terrain","path":"scripts/menu_init_terrain/menu_init_terrain.yy",},"order":13,},
     {"id":{"name":"dialog_create_event_node_img_tileset","path":"scripts/dialog_create_event_node_img_tileset/dialog_create_event_node_img_tileset.yy",},"order":18,},
     {"id":{"name":"dialog_create_event_node_img_battlers","path":"scripts/dialog_create_event_node_img_battlers/dialog_create_event_node_img_battlers.yy",},"order":19,},
     {"id":{"name":"dialog_create_event_node_img_overworlds","path":"scripts/dialog_create_event_node_img_overworlds/dialog_create_event_node_img_overworlds.yy",},"order":20,},

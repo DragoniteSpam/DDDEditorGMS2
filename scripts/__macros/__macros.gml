@@ -13,6 +13,7 @@
 #macro doodle:EDITOR_FORCE_SINGLE_MODE      true
 #macro particle:EDITOR_FORCE_SINGLE_MODE    true
 #macro mesh:EDITOR_FORCE_SINGLE_MODE        true
+#macro Terrain:EDITOR_FORCE_SINGLE_MODE     true
 //
 #macro MENU_EDITOR_ENABLED                  true
 #macro scribble:MENU_EDITOR_ENABLED         false
@@ -30,6 +31,7 @@
 #macro doodle:GLOBAL_CONTORLS_ENABLED       false
 #macro particle:GLOBAL_CONTORLS_ENABLED     false
 #macro mesh:GLOBAL_CONTORLS_ENABLED         false
+#macro Terrain:GLOBAL_CONTORLS_ENABLED      false
 //
 #macro PROJECT_MENU_ENABLED                 true
 #macro scribble:PROJECT_MENU_ENABLED        false
@@ -37,9 +39,11 @@
 #macro doodle:PROJECT_MENU_ENABLED          false
 #macro particle:PROJECT_MENU_ENABLED        false
 #macro mesh:PROJECT_MENU_ENABLED            false
+#macro Terrain:PROJECT_MENU_ENABLED         false
 //
 #macro RIBBON_MENU                          menu_init_main
 #macro mesh:RIBBON_MENU                     menu_init_mesh
+#macro Terrain:RIBBON_MENU                  menu_init_terrain
 //
 #macro DEFAULT_TILESET                      "b_tileset_overworld_0.png"
 #macro mesh:DEFAULT_TILESET                 "b_magenta.png"
