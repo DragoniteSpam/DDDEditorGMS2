@@ -139,6 +139,7 @@ mutation_sprites = [
     spr_terrain_gen_mountain,
     spr_terrain_gen_craters,
     spr_terrain_gen_drago,
+    spr_terrain_gen_juju,
 ];
 
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);

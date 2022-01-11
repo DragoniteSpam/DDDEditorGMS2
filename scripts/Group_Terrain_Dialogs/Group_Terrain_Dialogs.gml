@@ -44,7 +44,7 @@ function dialog_terrain_mutate() {
                 self.GetSibling("SPRITE_PREVIEW").sprite = Stuff.terrain.mutation_sprites[selection];
             }
         })).SetEntryTypes(ListEntries.STRINGS).AddEntries([
-            "Flat", "Bullseye", "Mountain", "Craters", "Dragon"
+            "Flat", "Bullseye", "Mountain", "Craters", "Dragon", "Juju"
         ]).SetID("SPRITE_LIST"),
         (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null))
             .SetID("SPRITE_PREVIEW")
