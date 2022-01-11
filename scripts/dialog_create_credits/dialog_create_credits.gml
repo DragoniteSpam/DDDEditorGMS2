@@ -8,7 +8,7 @@ function dialog_create_credits() {
     var dialog = new EmuDialog(960, 480, "Credits");
     
     dialog.AddContent([
-        new EmuText(cx, EMU_AUTO, cw, ch, "[FDefault20][c_blue]DDD Game Editor"),
+        new EmuText(cx, EMU_AUTO, cw, 40, "[FDefault20][c_blue]DDD Game Editor"),
         
         #region me
         new EmuText(cx, EMU_AUTO, cw, ch, "Author: @DragoniteSpam"),
