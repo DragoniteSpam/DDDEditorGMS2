@@ -18,7 +18,14 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
     self._header_width = 0;
     self._header_height = 0;
     
+    self._on_click = function() { };
+    
     self._override_root_check = true;
+    
+    static SetOnClick = function(f) {
+        self._on_click = method(self, f);
+        return self;
+    };
     
     Render = function(base_x, base_y) {
         processAdvancement();
@@ -40,6 +47,7 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
         
         if (getMouseReleased(hx1, hy1, hx2, hy2)) {
             Activate();
+            self._on_click();
             root.RequestActivateTab(self);
         }
         
@@ -67,10 +75,6 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
     // keyboard input
     isActiveTab = function() {
         return (root._active_tab == self);
-    }
-    
-    RequestActivate = function() {
-        root.RequestActivateTab(self);
     }
     
     GetInteractive = function() {
