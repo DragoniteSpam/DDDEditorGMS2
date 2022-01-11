@@ -11,7 +11,6 @@ function ui_init_terrain(mode) {
         (new EmuTabGroup(0, 32, hud_width, hud_height - 32, 1, 32)).AddTabs(0, [
             (new EmuTab("General")).AddContent([
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]General Settings"),
-                #region
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Width"))
                     .SetTextUpdate(function() { return "Width: " + string(Stuff.terrain.width); })
                     .SetID("LABEL_WIDTH"),
@@ -73,18 +72,11 @@ function ui_init_terrain(mode) {
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Heightmap", function() {
                     dialog_create_export_heightmap();
                 }),
-                #endregion
             ]),
             (new EmuTab("Lighting")).AddContent([
-                #region
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "I'll re-implement this later (hopefully soon)"),
-                #endregion
             ]),
             (new EmuTab("Deform")).AddContent([
-                #region
-                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Set Mode: Deform", function() {
-                    Stuff.terrain.mode = TerrainModes.Z;
-                }),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
                     Stuff.terrain.Flatten();
                 }),
@@ -104,13 +96,10 @@ function ui_init_terrain(mode) {
                     dialog_terrain_mutate();
                 }))
                     .SetID("Add or subtract a random amount to the terrain. You can select a sprite to use as a mutation template, sort of like a heightmap."),
-                #endregion
-            ]),
+            ]).SetOnClick(function() {
+                Stuff.terrain.mode = TerrainModes.Z;
+            }),
             (new EmuTab("Texture")).AddContent([
-                #region
-                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Set Mode: Texture", function() {
-                    Stuff.terrain.mode = TerrainModes.COLOR;
-                }),
                 new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2, function() {
                     self.drawCheckerbox(0, 0, self.width, self.height);
                     draw_sprite(Stuff.terrain.texture, 0, 0, 0);
@@ -135,13 +124,10 @@ function ui_init_terrain(mode) {
                         Stuff.terrain.tile_brush_h = ty2 - Stuff.terrain.tile_brush_y;
                     }
                 }, null, null),
-                #endregion
-            ]),
+            ]).SetOnClick(function() {
+                Stuff.terrain.mode = TerrainModes.COLOR;
+            }),
             (new EmuTab("Painting")).AddContent([
-                #region
-                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Set Mode: Paint", function() {
-                    Stuff.terrain.mode = TerrainModes.COLOR;
-                }),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength: " + string(mode.paint_strength)))
                     .SetID("PAINT_STENGTH_LABEL"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.paint_strength_min, mode.paint_strength_max, true, mode.paint_strength, function() {
@@ -165,8 +151,9 @@ function ui_init_terrain(mode) {
                         "Cloud", "Smoke", "Snow"
                     ])
                     .Select(mode.color.brush_index),
-                #endregion
-            ]),
+            ]).SetOnClick(function() {
+                Stuff.terrain.mode = TerrainModes.COLOR;
+            }),
         ])
     ]);
     
