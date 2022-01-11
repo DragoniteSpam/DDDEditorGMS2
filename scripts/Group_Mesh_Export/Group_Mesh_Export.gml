@@ -100,7 +100,7 @@ function export_obj(base_filename, mesh, title = "DDD") {
         
         var keys = variable_struct_get_names(mtl_alpha);
         for (var k = 0; k < array_length(keys); k++) {
-            var mtl = keys[i];
+            var mtl = keys[k];
             buffer_write(buffer, buffer_text, "\r\nnewmtl " + mtl + "\r\n");
             buffer_write(buffer, buffer_text, "Kd " + string(mtl_r[$ mtl]) + " " + string(mtl_g[$ mtl]) + " " + string(mtl_b[$ mtl]) + "\r\n");
             buffer_write(buffer, buffer_text, "d " + string(mtl_alpha[$ mtl]) + "\r\n");
