@@ -134,9 +134,12 @@ paint_strength_max = 1;
 paint_color = setting_get("terrain", "paint_color", 0xffffffff);
 paint_strength = setting_get("terrain", "paint_strength", 0.05);
 
+// remember to add these to the list in dialog_terrain_mutate()
 mutation_sprites = [
     spr_terrain_gen_flat,
     spr_terrain_gen_bullseye,
+    spr_terrain_gen_mountain,
+    spr_terrain_gen_craters,
 ];
 
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
