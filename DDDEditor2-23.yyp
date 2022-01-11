@@ -872,6 +872,7 @@
     {"id":{"name":"EditorModeSpart","path":"objects/EditorModeSpart/EditorModeSpart.yy",},"order":5,},
     {"id":{"name":"EditorModeParticle","path":"objects/EditorModeParticle/EditorModeParticle.yy",},"order":6,},
     {"id":{"name":"EditorModeEvent","path":"objects/EditorModeEvent/EditorModeEvent.yy",},"order":7,},
+    {"id":{"name":"spr_terrain_texture_selection","path":"sprites/spr_terrain_texture_selection/spr_terrain_texture_selection.yy",},"order":6,},
     {"id":{"name":"EditorModeData","path":"objects/EditorModeData/EditorModeData.yy",},"order":8,},
     {"id":{"name":"EditorModeMap","path":"objects/EditorModeMap/EditorModeMap.yy",},"order":9,},
     {"id":{"name":"EditorModeAnimation","path":"objects/EditorModeAnimation/EditorModeAnimation.yy",},"order":10,},
