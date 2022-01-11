@@ -111,7 +111,17 @@ function ui_init_terrain(mode) {
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Set Mode: Texture", function() {
                     Stuff.terrain.mode = TerrainModes.COLOR;
                 }),
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "I'll re-implement this later (hopefully soon)"),
+                new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2, function() {
+                    self.drawCheckerbox(0, 0, self.width, self.height);
+                    draw_sprite(Stuff.terrain.texture, 0, 0, 0);
+                    for (var i = 16; i < self.width; i += 16) {
+                        draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
+                        draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
+                    }
+                    draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
+                }, function() {
+                    // step
+                }, null, null),
                 #endregion
             ]),
             (new EmuTab("Painting")).AddContent([
