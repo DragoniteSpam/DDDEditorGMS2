@@ -242,6 +242,7 @@
     {"id":{"name":"Group_Game","path":"scripts/Group_Game/Group_Game.yy",},"order":4,},
     {"id":{"name":"editor_particle_type_set_color","path":"scripts/editor_particle_type_set_color/editor_particle_type_set_color.yy",},"order":2,},
     {"id":{"name":"editor_particle_type_set_sprite","path":"scripts/editor_particle_type_set_sprite/editor_particle_type_set_sprite.yy",},"order":3,},
+    {"id":{"name":"spr_terrain_gen_drago","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"order":4,},
     {"id":{"name":"editor_particle_emitter_create_region","path":"scripts/editor_particle_emitter_create_region/editor_particle_emitter_create_region.yy",},"order":4,},
     {"id":{"name":"editor_particle_generate_code","path":"scripts/editor_particle_generate_code/editor_particle_generate_code.yy",},"order":5,},
     {"id":{"name":"editor_particle_rate_odds","path":"scripts/editor_particle_rate_odds/editor_particle_rate_odds.yy",},"order":6,},
