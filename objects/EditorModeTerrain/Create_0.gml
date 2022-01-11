@@ -85,8 +85,6 @@ save = function() {
 texture_name = DEFAULT_TILESET;
 texture = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
 
-vertices_per_square = 6;
-
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
