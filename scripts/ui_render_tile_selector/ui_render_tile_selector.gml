@@ -50,7 +50,7 @@ function ui_render_tile_selector(argument0, argument1, argument2) {
     // drawing the data on the tile is also a pain, although you only need to do it if
     // the selector represents a tileset and not just a single image
     if (ts) {
-        draw_set_font(FDefault12Bold);
+        draw_set_font(FDefaultBold);
         draw_set_halign(fa_center);
         // the current valign is middle already
     
@@ -68,7 +68,7 @@ function ui_render_tile_selector(argument0, argument1, argument2) {
         }
     
         draw_set_halign(fa_left);
-        draw_set_font(FDefault12);
+        draw_set_font(FDefault);
     }
 
     if (!dialog_is_active(selector.root)) return;

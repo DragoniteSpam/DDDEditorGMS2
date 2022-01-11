@@ -64,7 +64,7 @@ function draw_tooltip(x, y, text) {
     
     draw_set_halign(fa_center);
     draw_set_valign(fa_top);
-    draw_set_font(FDefault12);
+    draw_set_font(FDefault);
     
     draw_text_colour(x, y, text, c_black, c_black, c_black, c_black, 1);
     

@@ -11,7 +11,7 @@ function ui_render_main(ui) {
 
     draw_clear(c_white);
     draw_set_color(c_black);
-    draw_set_font(FDefault12);
+    draw_set_font(FDefault);
     draw_set_valign(fa_middle);
 
     // in this program there's going to be nothing in here, just

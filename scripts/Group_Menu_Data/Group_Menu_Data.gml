@@ -60,11 +60,6 @@ function momu_editor_particles() {
     menu_activate(noone);
 }
 
-function momu_editor_scribble() {
-    editor_mode_scribble();
-    menu_activate(noone);
-}
-
 function momu_editor_spart() {
     editor_mode_spart();
     menu_activate(noone);

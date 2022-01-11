@@ -72,6 +72,8 @@ alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion
 
 #region initialize standalone systems
+scribble_init("data/fonts", "FDefault", true);
+scribble_set_starting_format("FDefault", c_black, fa_left);
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
 wtf("re-add nik's version of fmod audio eventually");
@@ -91,7 +93,6 @@ event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 mesh_ed = instance_create_depth(0, 0, 0, EditorModeMeshes);
-scribble = instance_create_depth(0, 0, 0, EditorModeScribble);
 spart = instance_create_depth(0, 0, 0, EditorModeSpart);
 doodle = instance_create_depth(0, 0, 0, EditorModeDoodle);
 particle = instance_create_depth(0, 0, 0, EditorModeParticle);

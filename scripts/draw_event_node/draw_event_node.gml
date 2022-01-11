@@ -1,5 +1,5 @@
 function draw_event_node(node) {
-    // color is set to black, font to FDefault12, alignment to left/middle
+    // color is set to black, font to FDefault, alignment to left/middle
     // if you change any of these in this script, you need to change them
     // back when youre done
     var x1 = node.x;

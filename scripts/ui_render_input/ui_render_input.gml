@@ -51,7 +51,7 @@ function ui_render_input(input, xx, yy) {
     draw_clear_alpha(input.interactive ? input.back_color : c_ltgray, 1);
     
     if (input.emphasis) {
-        draw_set_font(FDefault12Italic);
+        draw_set_font(FDefaultItalic);
     }
     
     var display_text = value + (ui_is_active(input) && (floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
@@ -95,7 +95,7 @@ function ui_render_input(input, xx, yy) {
         var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
         var vty = input.GetTextY(vy1, vy2, fa_top);
         draw_text_ext_colour(vtx - vx1, min(vty - vy1, hh - spacing - sh), display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
-        draw_set_font(FDefault12);
+        draw_set_font(FDefault);
         if (string_length(value) == 0) {
             draw_text_colour(vtx - vx1, min(vty - vy1, hh - spacing - sh), string(input.value_default), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
         }
@@ -104,7 +104,7 @@ function ui_render_input(input, xx, yy) {
         var sw_begin = min(vtx - vx1, ww - offset - sw);
         draw_text_colour(sw_begin, vty - vy1, display_text, c, c, c, c, 1);
         sw_end = sw_begin + sw + 4;
-        draw_set_font(FDefault12);
+        draw_set_font(FDefault);
         if (string_length(value) == 0) {
             draw_text_colour(vtx - vx1, vty - vy1, string(input.value_default), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
         }

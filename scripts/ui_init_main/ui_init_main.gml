@@ -611,7 +611,7 @@ function ui_init_main(mode) {
         #region tab: entity
         yy = legal_y + spacing;
         
-        draw_set_font(FDefault12);
+        draw_set_font(FDefault);
         var max_characters = 32;
         vx2 = vx1 + 288;
         

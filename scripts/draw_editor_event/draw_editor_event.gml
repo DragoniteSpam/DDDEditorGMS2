@@ -32,7 +32,7 @@ function draw_editor_event() {
     gpu_set_zwriteenable(false);
     
     draw_set_color(c_white);
-    draw_set_font(FDefault12);
+    draw_set_font(FDefault);
     draw_set_valign(fa_middle);
     
     var checker_width = sprite_get_width(b_tileset_checkers);

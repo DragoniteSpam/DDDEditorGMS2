@@ -2,7 +2,7 @@ function menu_render_main(menu, xx, yy) {
     draw_set_color(c_white);
     draw_rectangle(0, 0, xx + room_width, yy + menu.element_height, false);
     draw_set_color(c_black);
-    draw_set_font(FDefault12);
+    draw_set_font(FDefault);
     draw_set_valign(fa_middle);
     
     menu.mouse_over = noone;
