@@ -45,6 +45,7 @@ You probably want to know about some of the things that are incomplete, or some 
 
  - Project save and load: it'd be super helpful to be able to come back to a project later, instead of executing a one-way export and being done with it. (The only reason it's not already included is because if the terrain data changes as I continue working on this, I don't want existing save files to need a messy conversion process.)
  - Import/export: currently only 3D Position, Face Normal, and  Barycentric Coordinate actually do anything. The other attributes will resolve to 0, or (in the case of colo(u)r) c_white
+ - Editing: if you look closely (or not that closely) you'll probably see how the deformation tool works, which is to say, it samples the mouse's position once per frame and applies a bit of deformation on that point. This is obviously less-than-ideal
  - Editing: there are still some things I can probably do to make the program even faster for editing, and support even larger terrain sizes
  - Editing/mutation: more terrain deformation options, and some streamlining of the editing tools
  - Editing/mutation: more stock heightmaps will be added, and eventually I'm going to add the ability to import your own heightmap for the purpose of modifying the terrain instead of only creating a new terrain
