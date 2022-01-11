@@ -292,7 +292,6 @@ DrawWater = function(set_lights = true) {
         graphics_set_lighting_terrain(shd_terrain_water);
     }
     
-    
     var water_level = 512 * power(self.water_level, 3);
     gpu_set_cullmode(cull_noculling);
     texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
