@@ -118,9 +118,22 @@ function ui_init_terrain(mode) {
                         draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
                         draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
                     }
+                    draw_sprite_stretched(spr_terrain_texture_selection, 0, Stuff.terrain.tile_brush_x, Stuff.terrain.tile_brush_y, Stuff.terrain.tile_brush_w, Stuff.terrain.tile_brush_h);
                     draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
-                }, function() {
-                    // step
+                }, function(mx, my) {
+                    mx -= view_get_xport(view_current);
+                    my -= view_get_yport(view_current);
+                    var tx1 = 16 * (mx div 16);
+                    var ty1 = 16 * (my div 16);
+                    var tx2 = 16 * ceil(mx / 16);
+                    var ty2 = 16 * ceil(my / 16);
+                    if (mouse_check_button_pressed(mb_left)) {
+                        Stuff.terrain.tile_brush_x = tx1;
+                        Stuff.terrain.tile_brush_y = ty1;
+                    } else if (mouse_check_button(mb_left)) {
+                        Stuff.terrain.tile_brush_w = tx2 - Stuff.terrain.tile_brush_x;
+                        Stuff.terrain.tile_brush_h = ty2 - Stuff.terrain.tile_brush_y;
+                    }
                 }, null, null),
                 #endregion
             ]),

@@ -125,6 +125,8 @@ style = setting_get("terrain", "style", TerrainStyles.CIRCLE);
 // texture settings
 tile_brush_x = setting_get("terrain", "tile_brush_x", 0);
 tile_brush_y = setting_get("terrain", "tile_brush_y", 0);
+tile_brush_w = setting_get("terrain", "tile_brush_w", 16);
+tile_brush_h = setting_get("terrain", "tile_brush_h", 16);
 // paint defaults
 paint_strength_min = 0.01;
 paint_strength_max = 1;
