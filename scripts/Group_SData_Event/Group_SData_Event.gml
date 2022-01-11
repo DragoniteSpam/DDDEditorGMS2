@@ -87,7 +87,7 @@ function DataEventNode(source, parent, type = EventNodeTypes.ENTRYPOINT, custom 
                     [-1],
                     [Comparisons.EQUAL],
                     [1],
-                    [Stuff.default_lua_event_node_conditional],
+                    [""],
                 ];
                 
                 var radio = create_radio_array(16, 48, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, self);

@@ -160,12 +160,6 @@ function dialog_create_settings_data(dialog) {
     el_edit_title.color = c_blue;
     yy += el_edit_title.height + spacing;
     
-    var el_edit_notes = create_button(col3_x, yy, "Game notes:", ew, eh, function(code) {
-        emu_dialog_notice("create some new notes/code editor sometime maybe");
-    }, dg);
-    el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
-    yy += el_edit_notes.height + spacing;
-    
     var el_data_files = create_button(col3_x, yy, "Data and Asset Files", ew, eh, fa_center, dialog_create_settings_data_asset_files, dg);
     el_data_files.tooltip = "You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control.";
     yy += el_data_files.height + spacing;
@@ -209,7 +203,6 @@ function dialog_create_settings_data(dialog) {
         el_common_code,
         // other things
         el_edit_title,
-        el_edit_notes,
         el_data_files,
         // confirm
         el_confirm

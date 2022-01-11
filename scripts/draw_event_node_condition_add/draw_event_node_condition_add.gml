@@ -24,7 +24,7 @@ function draw_event_node_condition_add(argument0, argument1, argument2) {
             array_push(list_branch_indices, -1);
             array_push(list_branch_comparisons, Comparisons.EQUAL);
             array_push(list_branch_values, 1);
-            array_push(list_branch_code, Stuff.default_lua_event_node_conditional);
+            array_push(list_branch_code, "");
         
             var radio = create_radio_array(16, 32, "Else if:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);
             radio.adjust_view = true;

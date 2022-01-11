@@ -4,12 +4,6 @@
 
 randomize();
 
-default_lua_map = file_get_contents(PATH_LUA + "map.lua");
-default_lua_event_page_condition = file_get_contents(PATH_LUA + "event-page-condition.lua");
-default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-conditional.lua");
-default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
-default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
-
 // local storage folders
 if (!directory_exists(PATH_TEMP)) directory_create(PATH_TEMP);
 if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
@@ -64,9 +58,6 @@ try {
 } catch (e) {
     all_projects = { projects: [] };
 }
-
-code_extension_map = [".txt", ".lua", ".gml"];
-text_extension_map = [".txt", ".md"];
 
 alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion

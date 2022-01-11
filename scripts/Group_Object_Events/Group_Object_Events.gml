@@ -26,7 +26,7 @@ function InstantiatedEvent(source) constructor {
     
     // no actor condition because I don't foresee those being used
     self.condition_code_enabled = false;
-    self.condition_code = Stuff.default_lua_event_page_condition;
+    self.condition_code = "";
     
     // by default the zeroth event trigger (probably the action button) is enabled
     self.trigger = 0x01;

@@ -3,7 +3,7 @@ function DataAnimation(source) : SData(source) constructor {
     self.moments = self.frames_per_second * 2;
     self.loops = true;
     
-    self.code = Stuff.default_lua_animation;
+    self.code = "";
     
     if (is_struct(source)) {
         self.frames_per_second = source.frames_per_second;

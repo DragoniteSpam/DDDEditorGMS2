@@ -35,7 +35,7 @@ function DataMap(source, directory) : SData(source) constructor {
     self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);               // 3D flag array
     self.lights = array_create(MAX_LIGHTS, NULL);                               // GUID array
     self.discovery = 0;                                                         // index
-    self.code = Stuff.default_lua_map;                                          // code
+    self.code = "";                                                             // code
     self.generic_data = [];                                                     // similar to that attached to Entities
     
     // not saved to project - this is auto-generated when you export
