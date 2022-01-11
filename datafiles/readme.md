@@ -39,9 +39,11 @@ Here's a list of change and additions from the last version. Items marked with a
 
 You probably want to know about some of the things that are incomplete, or some of the features from the last version that are (currently) not available in the beta.
 
- - Perlin noise generation/mtuation will produce strange results on terrains that are not powers of 2. There's a small oversight in my noise generation code that I'll fix eventually, although most of you are probably going to make power-of-two terrains anyway so it's not a top priority
+ - Documentation: there currently is none, but we've reached the point where there really, really should be
 
- - Project save and load: it'd be super helpful to be able to come back to a project later, instead of executing a one-way export and being done with it.
+ - Perlin noise generation/mutation will produce strange results on terrains that are not powers of 2. There's a small oversight in my noise generation code that I'll fix eventually, although most of you are probably going to make power-of-two terrains anyway so it's not a top priority
+
+ - Project save and load: it'd be super helpful to be able to come back to a project later, instead of executing a one-way export and being done with it. (The only reason it's not already included is because if the terrain data changes as I continue working on this, I don't want existing save files to need a messy conversion process.)
  - Import/export: currently only 3D Position, Face Normal, and  Barycentric Coordinate actually do anything. The other attributes will resolve to 0, or (in the case of colo(u)r) c_white
  - Editing: there are still some things I can probably do to make the program even faster for editing, and support even larger terrain sizes
  - Editing/mutation: more terrain deformation options, and some streamlining of the editing tools
