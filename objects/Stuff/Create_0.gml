@@ -72,8 +72,12 @@ alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion
 
 #region initialize standalone systems
-scribble_init("data/fonts", "FDefault", true);
+scribble_init("data/fonts", "FDefault", false);
 scribble_set_starting_format("FDefault", c_black, fa_left);
+scribble_add_font("FDefault");
+scribble_add_font("FDefault20");
+scribble_add_font("FDefaultBold");
+scribble_add_font("FDefaultItalic");
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
 wtf("re-add nik's version of fmod audio eventually");
