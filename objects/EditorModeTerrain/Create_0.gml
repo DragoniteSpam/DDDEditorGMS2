@@ -138,14 +138,18 @@ mutation_sprites = [
     spr_terrain_gen_bullseye,
     spr_terrain_gen_mountain,
     spr_terrain_gen_craters,
+    spr_terrain_gen_drago,
 ];
 
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
 
 var t = get_timer();
 
-GenerateHeightData = function(width = self.width, height = self.height) {
-    return buffer_create(4 * (width + 1) * (height + 1), buffer_fixed, 1);
+GenerateHeightData = function() {
+    var data = buffer_create(4 * width * height, buffer_fixed, 1);
+    buffer_poke(data, 0, buffer_u32, 0);
+    buffer_poke(data, buffer_get_size(data) - 4, buffer_u32, 0);
+    return data;
 };
 
 self.height_data = self.GenerateHeightData();
@@ -255,7 +259,7 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, texture_streng
     var hh = self.height;
     var sprite = self.mutation_sprites[mutation_sprite_index];
     var data = macaw_generate_dll(ww, hh, octaves, noise_strength).noise;
-    for (var i = 0; i < ww * hh; i++) {
+    for (var i = 0; i < (ww - 1) * (hh - 1); i++) {
         var sample = sprite_sample(sprite, 0, (i % ww) / ww, (i div ww) / hh);
         var sample_r = (( sample        & 0xff) / 0x7f - 1) * texture_strength;
         var sample_g = (((sample >>  8) & 0xff) / 0x7f - 1) * texture_strength;
