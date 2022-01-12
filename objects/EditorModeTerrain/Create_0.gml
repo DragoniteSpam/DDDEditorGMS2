@@ -161,65 +161,11 @@ self.terrain_buffer_data = terrainops_generate(self.height_data, self.width, sel
 self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
 vertex_freeze(self.terrain_buffer);
 
-color = new (function() constructor {
-    self.surface = surface_create(min(Stuff.terrain.width * Stuff.terrain.color_scale, 0x4000), min(Stuff.terrain.height * Stuff.terrain.color_scale, 0x4000));
-    self.sprite = -1;
-    surface_set_target(self.surface);
-    draw_clear_alpha(c_white, 1);
-    surface_reset_target();
-    
-    self.brush_index = 7;
-    
-    static Reset = function(width, height) {
-        if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
-        if (surface_exists(self.surface)) surface_free(self.surface);
-        self.sprite = -1;
-        self.surface = surface_create(min(width * Stuff.terrain.color_scale, 0x4000), min(height * Stuff.terrain.color_scale, 0x4000));
-        surface_set_target(self.surface);
-        draw_clear_alpha(c_white, 1);
-        surface_reset_target();
-    };
-    static SaveState = function() {
-        if (!surface_exists(self.surface)) return;
-        if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
-        self.sprite = sprite_create_from_surface(self.surface, 0, 0, surface_get_width(self.surface), surface_get_height(self.surface), false, false, 0, 0);
-    };
-    static LoadState = function() {
-        if (!sprite_exists(self.sprite)) return;
-        if (surface_exists(self.surface)) surface_free(self.surface);
-        self.surface = sprite_to_surface(self.sprite, 0);
-    };
-    static Clear = function(color) {
-        surface_set_target(self.surface);
-        draw_clear_alpha(color, 1);
-        surface_reset_target();
-    };
-    static Paint = function(x, y, radius, color) {
-        if (!surface_exists(self.surface)) self.LoadState();
-        surface_set_target(self.surface);
-        shader_set(shd_terrain_paint);
-        draw_sprite_ext(spr_terrain_default_brushes, clamp(self.brush_index, 0, sprite_get_number(spr_terrain_default_brushes) - 1), x, y, radius / 32, radius / 32, 0, color, Stuff.terrain.paint_strength);
-        shader_reset();
-        surface_reset_target();
-    };
-    static Finish = function() {
-        self.SaveState();
-    };
-})();
+color = new Painter(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
 
 LoadAsset = function(directory) {
     directory += "/";
     try {
-        var old_height_data = self.height_data;
-        var old_terrain_buffer_data = self.terrain_buffer_data;
-        self.height_data = buffer_load(directory + "height.terrain");
-        self.terrain_buffer_data = buffer_load(directory + "terrain.terrain");
-        self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
-        vertex_freeze(self.terrain_buffer);
-        self.color.sprite = sprite_add(directory + "color.png", 1, false, false, 0, 0);
-        self.color.LoadState();
-        buffer_delete(self.height_data);
-        buffer_delete(self.terrain_buffer_data);
     } catch (e) {
         wtf("Could not load saved terrain data");
     }
@@ -227,10 +173,6 @@ LoadAsset = function(directory) {
 
 SaveAsset = function(directory) {
     directory += "/";
-    buffer_save(self.height_data, directory + "height.terrain");
-    self.color.SaveState();
-    if (sprite_exists(self.color.sprite)) sprite_save(self.color.sprite, 0, directory + "color.png");
-    buffer_save(self.terrain_buffer_data, directory + "terrain.terrain");
 };
 
 LoadJSON = function(json) {
@@ -345,7 +287,9 @@ BuildBufferChunks = function(density = 1, chunk_size = 0) {
 BuildBuffer = function(density = 1) {
     density = floor(density);
     
-    var color_sprite = sprite_create_from_surface(self.color.surface, 0, 0, surface_get_width(self.color.surface), surface_get_height(self.color.surface), false, false, 0, 0);
+    self.color.SaveState();
+    var color_sprite = self.color.GetSprite();
+    
     var sw = sprite_get_width(color_sprite) / self.color_scale;
     var sh = sprite_get_height(color_sprite) / self.color_scale;
     
@@ -360,6 +304,8 @@ BuildBuffer = function(density = 1) {
     } else {
         meshops_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
     }
+    
+    self.color.LoadState();
     
     return output;
 };
