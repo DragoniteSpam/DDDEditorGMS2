@@ -14,9 +14,9 @@ self.camera.Load(setting_get("terrain", "camera", undefined));
 self.mouse_interaction = function(mouse_vector) {
     self.cursor_position = undefined;
     
-    if (mouse_vector[vec3.zz] < self.camera.z) {
-        var f = abs(self.camera.z / mouse_vector[vec3.zz]);
-        self.cursor_position = new vec2((self.camera.x + mouse_vector[vec3.xx] * f) / self.view_scale, (self.camera.y + mouse_vector[vec3.yy] * f) / self.view_scale);
+    if (mouse_vector[vec3.zz] < mouse_vector[5]) {
+        var f = abs(mouse_vector[5] / mouse_vector[vec3.zz]);
+        self.cursor_position = new vec2((mouse_vector[3] + mouse_vector[vec3.xx] * f) / self.view_scale, (mouse_vector[4] + mouse_vector[vec3.yy] * f) / self.view_scale);
         
         if (Controller.mouse_left) {
             switch (self.mode) {
