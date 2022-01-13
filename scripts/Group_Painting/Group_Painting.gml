@@ -1,8 +1,8 @@
 function Painter(width, height) constructor {
-    self.width = width;
-    self.height = height;
+    self.width = min(width, 0x4000);
+    self.height = min(height, 0x4000);
     
-    self.surface = surface_create(min(width, 0x4000), min(height, 0x4000));
+    self.surface = surface_create(self.width, self.height);
     self.sprite = -1;
     surface_set_target(self.surface);
     draw_clear_alpha(c_white, 1);
@@ -11,10 +11,12 @@ function Painter(width, height) constructor {
     self.brush_index = 7;
     
     static Reset = function(width, height) {
+        self.width = min(width, 0x4000);
+        self.height = min(height, 0x4000);
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
-        self.surface = surface_create(min(width, 0x4000), min(height, 0x4000));
+        self.surface = surface_create(self.width, self.height);
         surface_set_target(self.surface);
         draw_clear_alpha(c_white, 1);
         surface_reset_target();
@@ -47,11 +49,16 @@ function Painter(width, height) constructor {
         surface_reset_target();
     };
     
+    static Validate = function() {
+        if (!surface_exists(self.surface)) self.LoadState();
+        if (!surface_exists(self.surface)) self.Reset(self.width, self.height);
+    };
+    
     static Finish = function() {
         self.SaveState();
     };
     
     static GetSprite = function() {
         return sprite_create_from_surface(self.surface, 0, 0, surface_get_width(self.surface), surface_get_height(self.surface), false, false, 0, 0);
-    }
+    };
 }

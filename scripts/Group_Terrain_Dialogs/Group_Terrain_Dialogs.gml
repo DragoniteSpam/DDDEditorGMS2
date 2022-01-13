@@ -350,8 +350,6 @@ function dialog_terrain_export() {
                     Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i), false, false, chunk_size);
                 }
             }
-            
-            Stuff.terrain.color.LoadState();
         }))
             .SetInteractive(!TERRAIN_MODE),
         new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
@@ -395,7 +393,5 @@ function dialog_terrain_export() {
                 }
             }
         }
-        
-        Stuff.terrain.color.LoadState();
     }, "Done", emu_dialog_close_auto);
 }

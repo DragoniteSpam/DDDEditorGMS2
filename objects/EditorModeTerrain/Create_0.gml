@@ -34,6 +34,7 @@ pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
 update = editor_update_terrain;
+
 render = function() {
     gpu_set_cullmode(cull_noculling);
     switch (view_current) {
