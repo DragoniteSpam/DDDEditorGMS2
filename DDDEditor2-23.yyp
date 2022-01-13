@@ -125,8 +125,6 @@
     {"id":{"name":"data_mesh_recalculate_bounds","path":"scripts/data_mesh_recalculate_bounds/data_mesh_recalculate_bounds.yy",},"order":5,},
     {"id":{"name":"control_map","path":"scripts/control_map/control_map.yy",},"order":0,},
     {"id":{"name":"__dotdae_trace","path":"scripts/__dotdae_trace/__dotdae_trace.yy",},"order":6,},
-    {"id":{"name":"control_terrain_3d","path":"scripts/control_terrain_3d/control_terrain_3d.yy",},"order":1,},
-    {"id":{"name":"control_terrain_3d_ortho","path":"scripts/control_terrain_3d_ortho/control_terrain_3d_ortho.yy",},"order":2,},
     {"id":{"name":"control_animator","path":"scripts/control_animator/control_animator.yy",},"order":3,},
     {"id":{"name":"control_duration_left","path":"scripts/control_duration_left/control_duration_left.yy",},"order":4,},
     {"id":{"name":"control_duration_right","path":"scripts/control_duration_right/control_duration_right.yy",},"order":5,},
