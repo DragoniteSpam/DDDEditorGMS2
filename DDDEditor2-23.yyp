@@ -101,7 +101,6 @@
     {"id":{"name":"draw_editor_hud","path":"scripts/draw_editor_hud/draw_editor_hud.yy",},"order":9,},
     {"id":{"name":"draw_editor_menu","path":"scripts/draw_editor_menu/draw_editor_menu.yy",},"order":10,},
     {"id":{"name":"dotdae_model_draw_texture","path":"scripts/dotdae_model_draw_texture/dotdae_model_draw_texture.yy",},"order":7,},
-    {"id":{"name":"draw_editor_terrain_menu","path":"scripts/draw_editor_terrain_menu/draw_editor_terrain_menu.yy",},"order":11,},
     {"id":{"name":"scribble_set_line_height","path":"scripts/scribble_set_line_height/scribble_set_line_height.yy",},"order":7,},
     {"id":{"name":"draw_camera_controls_overlay","path":"scripts/draw_camera_controls_overlay/draw_camera_controls_overlay.yy",},"order":12,},
     {"id":{"name":"graphics_draw_water","path":"scripts/graphics_draw_water/graphics_draw_water.yy",},"order":5,},
