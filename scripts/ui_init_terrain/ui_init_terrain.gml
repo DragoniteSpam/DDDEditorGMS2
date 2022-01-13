@@ -106,7 +106,9 @@ function ui_init_terrain(mode) {
                         draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
                         draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
                     }
-                    draw_sprite_stretched(spr_terrain_texture_selection, 0, Stuff.terrain.tile_brush_x, Stuff.terrain.tile_brush_y, Stuff.terrain.tile_brush_w, Stuff.terrain.tile_brush_h);
+                    var tx = min(Stuff.terrain.tile_brush_x, Stuff.terrain.tile_brush_x + Stuff.terrain.tile_brush_w);
+                    var ty = min(Stuff.terrain.tile_brush_y, Stuff.terrain.tile_brush_y + Stuff.terrain.tile_brush_h);
+                    draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, abs(Stuff.terrain.tile_brush_w), abs(Stuff.terrain.tile_brush_h));
                     draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
                 }, function(mx, my) {
                     mx -= view_get_xport(view_current);
@@ -118,13 +120,15 @@ function ui_init_terrain(mode) {
                     if (mouse_check_button_pressed(mb_left)) {
                         Stuff.terrain.tile_brush_x = tx1;
                         Stuff.terrain.tile_brush_y = ty1;
+                        Stuff.terrain.tile_brush_w = 0;
+                        Stuff.terrain.tile_brush_h = 0;
                     } else if (mouse_check_button(mb_left)) {
                         Stuff.terrain.tile_brush_w = tx2 - Stuff.terrain.tile_brush_x;
                         Stuff.terrain.tile_brush_h = ty2 - Stuff.terrain.tile_brush_y;
                     }
                 }, null, null),
             ]).SetOnClick(function() {
-                Stuff.terrain.mode = TerrainModes.COLOR;
+                Stuff.terrain.mode = TerrainModes.TEXTURE;
             }),
             (new EmuTab("Painting")).AddContent([
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength: " + string(mode.paint_strength)))
