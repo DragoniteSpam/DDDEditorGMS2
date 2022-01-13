@@ -121,18 +121,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
             self.direction = source.direction;
             self.pitch = source.pitch;
         } catch (e) {
-            self.x = self.def_x;
-            self.y = self.def_y;
-            self.z = self.def_z;
-            self.xto = self.def_xto;
-            self.yto = self.def_yto;
-            self.zto = self.def_zto;
-            self.xup = self.def_xup;
-            self.yup = self.def_yup;
-            self.zup = self.def_zup;
-            self.fov = self.def_fov;
-            self.direction = self.def_direction;
-            self.pitch = self.def_pitch;
+            self.Reset();
         }
     };
 }
