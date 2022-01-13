@@ -139,7 +139,7 @@ function ui_init_terrain(mode) {
                     var ty = min(Stuff.terrain.tile_brush_y, Stuff.terrain.tile_brush_y + Stuff.terrain.tile_brush_h);
                     tx = floor(255 * tx / sprite_get_width(Stuff.terrain.texture_image));
                     ty = floor(255 * ty / sprite_get_height(Stuff.terrain.texture_image));
-                    Stuff.terrain.color.Clear(tx | (ty << 8) | (tx << 16), ty / 255);
+                    Stuff.terrain.texture.Clear(tx | (ty << 8) | (tx << 16), ty / 255);
                 }),
             ]).SetOnClick(function() {
                 Stuff.terrain.mode = TerrainModes.TEXTURE;
