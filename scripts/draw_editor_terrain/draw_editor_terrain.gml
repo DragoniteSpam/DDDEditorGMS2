@@ -4,12 +4,13 @@ function draw_editor_terrain() {
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     gpu_set_ztestenable(true);
     
+    self.camera.SetProjection();
+    self.camera.DrawSkybox();
+    
     if (self.orthographic) {
         self.camera.SetProjectionOrtho();
-        self.camera.DrawSkyboxOrtho();
     } else {
         self.camera.SetProjection();
-        self.camera.DrawSkybox();
     }
     
     graphics_set_lighting_terrain(shd_terrain);
