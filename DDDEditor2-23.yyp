@@ -23,6 +23,7 @@
     {"id":{"name":"spr_event_info","path":"sprites/spr_event_info/spr_event_info.yy",},"order":12,},
     {"id":{"name":"spr_event_info_scribble","path":"sprites/spr_event_info_scribble/spr_event_info_scribble.yy",},"order":13,},
     {"id":{"name":"spr_event_prefab","path":"sprites/spr_event_prefab/spr_event_prefab.yy",},"order":14,},
+    {"id":{"name":"Editor_Camera","path":"scripts/Editor_Camera/Editor_Camera.yy",},"order":4,},
     {"id":{"name":"spr_event_prefab_break","path":"sprites/spr_event_prefab_break/spr_event_prefab_break.yy",},"order":15,},
     {"id":{"name":"spr_event_prefab_revert","path":"sprites/spr_event_prefab_revert/spr_event_prefab_revert.yy",},"order":16,},
     {"id":{"name":"spr_help","path":"sprites/spr_help/spr_help.yy",},"order":17,},
