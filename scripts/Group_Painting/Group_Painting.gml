@@ -1,11 +1,12 @@
-function Painter(width, height) constructor {
+function Painter(width, height, def_color = c_white) constructor {
     self.width = min(width, 0x4000);
     self.height = min(height, 0x4000);
+    self.def_color = def_color;
     
     self.surface = surface_create(self.width, self.height);
     self.sprite = -1;
     surface_set_target(self.surface);
-    draw_clear_alpha(c_white, 1);
+    draw_clear_alpha(def_color, 1);
     surface_reset_target();
     
     self.brush_index = 7;
@@ -37,7 +38,7 @@ function Painter(width, height) constructor {
         self.sprite = -1;
         self.surface = surface_create(self.width, self.height);
         surface_set_target(self.surface);
-        draw_clear_alpha(c_white, 1);
+        draw_clear_alpha(self.def_color, 1);
         surface_reset_target();
     };
     

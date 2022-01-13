@@ -261,7 +261,7 @@ vertex_freeze(self.terrain_buffer);
 color = new Painter(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
 color.SetBrush(spr_terrain_default_brushes, 7);
 color.SetShader(shd_terrain_paint);
-texture = new Painter(Stuff.terrain.width, Stuff.terrain.height);
+texture = new Painter(Stuff.terrain.width, Stuff.terrain.height, c_black);
 texture.SetBrush(spr_terrain_default_brushes, 7);
 texture.SetBlendEnable(false);
 
