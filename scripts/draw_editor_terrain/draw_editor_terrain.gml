@@ -33,7 +33,7 @@ function draw_editor_terrain() {
     matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, Stuff.terrain.view_scale, Stuff.terrain.view_scale, Stuff.terrain.view_scale));
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), Stuff.terrain.width, Stuff.terrain.height);
     // editor stuff
-    if (!Stuff.terrain.cursor_position) {
+    if (!Stuff.terrain.cursor_position || !Stuff.terrain.view_cursor) {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), -MILLION, -MILLION);
     } else {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), Stuff.terrain.cursor_position.x, Stuff.terrain.cursor_position.y);

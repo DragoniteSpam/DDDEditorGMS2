@@ -33,6 +33,10 @@ function ui_init_terrain(mode) {
                     Stuff.terrain.view_axes = self.value;
                 }))
                     .SetTooltip("Toggles the the coordinate system axes."),
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", mode.view_axes, function() {
+                    Stuff.terrain.view_cursor = self.value;
+                }))
+                    .SetTooltip("Toggles the the cursor on the terrain."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, mode.water_level, function() {
                     Stuff.terrain.water_level = self.value;

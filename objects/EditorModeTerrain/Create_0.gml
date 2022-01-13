@@ -136,6 +136,7 @@ save = function() {
     Settings.terrain.view_water_max_alpha = self.view_water_max_alpha;
     Settings.terrain.water_level = self.water_level;
     Settings.terrain.view_grid = self.view_grid;
+    Settings.terrain.view_cursor = self.view_cursor;
     Settings.terrain.view_axes = self.view_axes;
     Settings.terrain.orthographic = self.orthographic;
     // export settings
@@ -178,6 +179,7 @@ view_water_min_alpha = setting_get("terrain", "view_water_min_alpha", 0.5);
 view_water_max_alpha = setting_get("terrain", "view_water_max_alpha", 0.9);
 water_level = setting_get("terrain", "water_level", -0.2);
 view_grid = setting_get("terrain", "view_grid", true);
+view_cursor = setting_get("terrain", "view_cursor", true);
 view_axes = setting_get("terrain", "view_axes", true);
 heightmap_scale = setting_get("terrain", "heightmap_scale", 10);
 export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
