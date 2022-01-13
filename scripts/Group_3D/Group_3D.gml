@@ -37,14 +37,16 @@ function world_to_screen(x, y, z, V, P, w, h) {
         if (ww == 0) return [-1, -1];
         var cx = P[8] + P[0] * (V[0] * x + V[4] * y + V[8] * z + V[12]) / ww;
         var cy = P[9] + P[5] * (V[1] * x + V[5] * y + V[9] * z + V[13]) / ww;
+        // the original script had (0.5 - 0.5 * cy) for the y component, but that was
+        // causing things to be upside-down for some reason?
+        return [(0.5 + 0.5 * cx) * w, (0.5 - 0.5 * cy) * h];
     } else {    //This is an ortho projection
         var cx = P[12] + P[0] * (V[0] * x + V[4] * y + V[8]  * z + V[12]);
         var cy = P[13] + P[5] * (V[1] * x + V[5] * y + V[9]  * z + V[13]);
+        // the original script had (0.5 - 0.5 * cy) for the y component, but that was
+        // causing things to be upside-down for some reason?
+        return [(0.5 + 0.5 * cx) * w, (0.5 - 0.5 * cy) * h];
     }
-
-    // the original script had (0.5 - 0.5 * cy) for the y component, but that was
-    // causing things to be upside-down for some reason?
-    return [(0.5 + 0.5 * cx) * w, (0.5 - 0.5 * cy) * h];
 }
 
 function triangle_normal(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
