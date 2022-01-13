@@ -66,7 +66,11 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
             yspeed += dcos(self.direction) * mspd;
         }
         
-        if (CONTROL_3D_LOOK) {
+        if (CONTROL_3D_LOOK_DOWN) {
+            var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) div 2;
+            var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) div 2;
+            window_mouse_set(camera_cx, camera_cy);
+        } else if (CONTROL_3D_LOOK) {
             var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) div 2;
             var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) div 2;
             window_mouse_set(camera_cx, camera_cy);
