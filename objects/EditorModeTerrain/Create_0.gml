@@ -259,7 +259,9 @@ self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data,
 vertex_freeze(self.terrain_buffer);
 
 color = new Painter(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
-
+color.SetBrush(spr_terrain_default_brushes, 7);
+color.SetShader(shd_terrain_paint);
+texture = new Painter(Stuff.terrain.width, Stuff.terrain.height);
 
 LoadAsset = function(directory) {
     directory += "/";

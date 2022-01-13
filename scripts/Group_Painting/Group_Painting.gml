@@ -9,6 +9,19 @@ function Painter(width, height) constructor {
     surface_reset_target();
     
     self.brush_index = 7;
+    self.brush_sprite = -1;
+    self.shader = -1;
+    
+    static SetBrush = function(sprite, index) {
+        self.brush_sprite = sprite;
+        self.brush_index = index;
+        return self;
+    };
+    
+    static SetShader = function(shader) {
+        self.shader = shader;
+        return self;
+    };
     
     static Reset = function(width, height) {
         self.width = min(width, 0x4000);
@@ -42,9 +55,10 @@ function Painter(width, height) constructor {
     
     static Paint = function(x, y, radius, color, strength) {
         if (!surface_exists(self.surface)) self.LoadState();
+        if (!sprite_exists(self.brush_sprite)) return;
         surface_set_target(self.surface);
-        shader_set(shd_terrain_paint);
-        draw_sprite_ext(spr_terrain_default_brushes, clamp(self.brush_index, 0, sprite_get_number(spr_terrain_default_brushes) - 1), x, y, radius / 32, radius / 32, 0, color, strength);
+        if (self.shader != -1) shader_set(self.shader);
+        draw_sprite_ext(self.brush_sprite, clamp(self.brush_index, 0, sprite_get_number(self.brush_sprite) - 1), x, y, radius / 32, radius / 32, 0, color, strength);
         shader_reset();
         surface_reset_target();
     };

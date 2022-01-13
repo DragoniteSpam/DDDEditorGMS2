@@ -146,7 +146,7 @@ function ui_init_terrain(mode) {
                     Stuff.terrain.color.Clear(Stuff.terrain.paint_color);
                 }),
                 (new EmuList(col2x + 16, EMU_BASE, col_width, 32, "Paintbrush:", 32, 12, function() {
-                    Stuff.terrain.color.brush_index = self.GetSelection();
+                    Stuff.terrain.color.SetBrush(spr_terrain_default_brushes, self.GetSelection());
                 }))
                     .AddEntries([
                         "Pixel", "Disc", "Square", "Line", "Star", "Circle",
