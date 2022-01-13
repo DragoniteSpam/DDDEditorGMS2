@@ -6,32 +6,8 @@ vertex_format_begin();
 vertex_format_add_position_3d();
 self.vertex_format = vertex_format_end();
 
-def_x = -1024;
-def_y = -1024;
-def_z = 1024;
-def_xto = 1024;
-def_yto = 1024;
-def_zto = 0;
-def_xup = 0;
-def_yup = 0;
-def_zup = 1;
-def_fov = 60;
-
-x = setting_get("terrain", "x", def_x);
-y = setting_get("terrain", "y", def_y);
-z = setting_get("terrain", "z", def_z);
-
-xto = setting_get("terrain", "xto", def_xto);
-yto = setting_get("terrain", "yto", def_yto);
-zto = setting_get("terrain", "zto", def_zto);
-
-xup = def_xup;
-yup = def_yup;
-zup = def_zup;
-
-fov = setting_get("terrain", "fov", def_fov);
-pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
-direction = point_direction(x, y, xto, yto);
+self.camera = new Camera(-1024, -1024, 1024, 1024, 1024, 0, 0, 0, 1, 60, 1, 10000);
+self.camera.Load(setting_get("terrain", "cam", undefined));
 
 update = function() {
     self.color.Validate();
@@ -54,15 +30,8 @@ render = function() {
 };
 
 save = function() {
-    // camera settings
-    Settings.terrain.x = self.x;
-    Settings.terrain.y = self.y;
-    Settings.terrain.z = self.z;
-    Settings.terrain.xto = self.xto;
-    Settings.terrain.yto = self.yto;
-    Settings.terrain.zto = self.zto;
-    Settings.terrain.fov = self.fov;
     // viewer settings
+    Settings.terrain.camera = self.camera.Save();
     Settings.terrain.view_water = self.view_water;
     Settings.terrain.view_water_min_alpha = self.view_water_min_alpha;
     Settings.terrain.view_water_max_alpha = self.view_water_max_alpha;
