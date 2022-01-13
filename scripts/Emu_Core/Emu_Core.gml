@@ -55,6 +55,12 @@ function EmuCore(x, y, w, h) constructor {
         return self;
     };
     
+    static SetAlignment = function(h, v) {
+        self.alignment = h;
+        self.valignment = v;
+        return self;
+    };
+    
     static GetChild = function(identifier) {
         identifier = string(identifier);
         return self.child_ids[$ identifier];
