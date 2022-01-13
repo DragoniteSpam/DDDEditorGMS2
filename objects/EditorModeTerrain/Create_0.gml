@@ -47,25 +47,7 @@ EditModeTexture = function(position) {
     var xtex = self.tile_brush_x;
     var ytex = self.tile_brush_y;
     
-    var n = 0;
-    var coeff = self.radius * self.style_radius_coefficient[self.style];
-    
-    for (var i = max(0, position.x - self.radius + 1); i < min(self.width, position.x + self.radius + 1); i++) {
-        for (var j = max(0, position.y - self.radius + 1); j < min(self.height, position.y + self.radius + 1); j++) {
-            var d1 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 0.5);
-            var d2 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 0.5);
-            var d3 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 1.5);
-            var d4 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 1.5);
-            if (d1 <= coeff && d2 <= coeff && d3 <= coeff && d4 <= coeff) {
-                terrain_set_texture(self, floor(i), floor(j), xtex, ytex);
-                n++;
-            }
-        }
-    }
-    
-    if (n) {
-        terrain_refresh_vertex_buffer(self);
-    }
+    //self.texture.Paint(position.x * self.color_scale, position.y * self.color_scale, self.radius * self.color_scale, self.paint_color, self.paint_strength);
 }
 
 EditModeColor = function(position) {
@@ -339,6 +321,7 @@ DrawWater = function() {
     gpu_set_cullmode(cull_noculling);
     gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain_water, "displacementMap"), true);
     gpu_set_texrepeat_ext(shader_get_sampler_index(shd_terrain_water, "displacementMap"), true);
+    gpu_set_texfilter(true);
     texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
     var mn = min(self.view_water_min_alpha, self.view_water_max_alpha);
     var mx = max(self.view_water_min_alpha, self.view_water_max_alpha);
