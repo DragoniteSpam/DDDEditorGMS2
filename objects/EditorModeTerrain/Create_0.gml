@@ -33,7 +33,16 @@ fov = setting_get("terrain", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
-update = editor_update_terrain;
+update = function() {
+    self.color.Validate();
+    if (mouse_within_view(view_3d) && !dialog_exists()) {
+        if (self.orthographic) {
+            control_terrain_3d_ortho(self);
+        } else {
+            control_terrain_3d(self);
+        }
+    }
+};
 
 render = function() {
     gpu_set_cullmode(cull_noculling);
