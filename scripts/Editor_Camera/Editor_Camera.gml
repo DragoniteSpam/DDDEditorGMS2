@@ -14,7 +14,6 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
     
     self.znear = znear;
     self.zfar = zfar;
-    self.aspect = -window_get_width() / window_get_height();
     
     self.x = x;
     self.y = y;
@@ -56,6 +55,24 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
         camera_apply(camera);
     };
     
+    static DrawSkybox = function() {
+        gpu_set_zwriteenable(false);
+        gpu_set_ztestenable(false);
+        transform_set(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1);
+        vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
+        gpu_set_zwriteenable(true);
+        gpu_set_ztestenable(true);
+    }
+    
+    static DrawSkyboxOrtho = function() {
+        gpu_set_zwriteenable(false);
+        gpu_set_ztestenable(false);
+        transform_set(self.x, self.y, self.zfar - 256, 0, 0, 0, 1, 1, 1);
+        vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
+        gpu_set_zwriteenable(true);
+        gpu_set_ztestenable(true);
+    }
+    
     static Reset = function() {
         self.x = self.def_x;
         self.y = self.def_y;
@@ -69,6 +86,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
         self.fov = self.def_fov;
         self.direction = self.def_direction;
         self.pitch = self.def_pitch;
+        self.scale = 1;
     };
     
     static Save = function() {
