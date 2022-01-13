@@ -138,6 +138,7 @@ save = function() {
     Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.view_cursor = self.view_cursor;
     Settings.terrain.view_axes = self.view_axes;
+    Settings.terrain.view_normals = self.view_normals;
     Settings.terrain.orthographic = self.orthographic;
     // export settings
     Settings.terrain.save_scale = self.save_scale;
@@ -181,6 +182,7 @@ water_level = setting_get("terrain", "water_level", -0.2);
 view_grid = setting_get("terrain", "view_grid", true);
 view_cursor = setting_get("terrain", "view_cursor", true);
 view_axes = setting_get("terrain", "view_axes", true);
+view_normals = setting_get("terrain", "view_normals", false);
 heightmap_scale = setting_get("terrain", "heightmap_scale", 10);
 export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
 export_swap_zup = setting_get("terrain", "export_swap_zup", false);

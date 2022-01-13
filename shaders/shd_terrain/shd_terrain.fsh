@@ -57,20 +57,28 @@ void WaterFog(inout vec4 baseColor) {
 
 uniform sampler2D u_TexLookup;
 
+uniform float u_OptViewNormals;
+
 void main() {
-    vec4 textureSamplerUV = texture2D(u_TexLookup, v_vWorldPosition.xy / u_TerrainSize);
-    vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg);
-    vec4 color = vec4(texture2D(u_TexColor, v_vWorldPosition.xy / u_TerrainSize).rgb, 1) * sampled;
-    
-    CommonLight(color);
-    CommonFog(color);
-    WaterFog(color);
-    
-    float dist = length(v_vWorldPosition.xy - u_Mouse);
-    float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
-    color = mix(color, CURSOR_COLOR, strength);
-    
-    color.rgb = mix(color.rgb, u_WireColor, (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
-    
-    gl_FragColor = color;
+    if (u_OptViewNormals == 1.0) {
+        vec3 normal = cross(dFdx(v_FragWorldPosition), dFdy(v_FragWorldPosition));
+        normal = normalize(normal * sign(normal.z));
+        gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
+    } else {
+        vec4 textureSamplerUV = texture2D(u_TexLookup, v_vWorldPosition.xy / u_TerrainSize);
+        vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg);
+        vec4 color = vec4(texture2D(u_TexColor, v_vWorldPosition.xy / u_TerrainSize).rgb, 1) * sampled;
+        
+        CommonLight(color);
+        CommonFog(color);
+        WaterFog(color);
+        
+        float dist = length(v_vWorldPosition.xy - u_Mouse);
+        float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
+        color = mix(color, CURSOR_COLOR, strength);
+        
+        color.rgb = mix(color.rgb, u_WireColor, (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
+        
+        gl_FragColor = color;
+    }
 }

@@ -37,6 +37,10 @@ function ui_init_terrain(mode) {
                     Stuff.terrain.view_cursor = self.value;
                 }))
                     .SetTooltip("Toggles the the cursor on the terrain."),
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw normals?", mode.view_axes, function() {
+                    Stuff.terrain.view_normals = self.value;
+                }))
+                    .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, mode.water_level, function() {
                     Stuff.terrain.water_level = self.value;
