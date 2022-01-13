@@ -262,6 +262,8 @@ color = new Painter(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terra
 color.SetBrush(spr_terrain_default_brushes, 7);
 color.SetShader(shd_terrain_paint);
 texture = new Painter(Stuff.terrain.width, Stuff.terrain.height);
+texture.SetBrush(spr_terrain_default_brushes, 7);
+texture.SetBlendEnable(false);
 
 LoadAsset = function(directory) {
     directory += "/";

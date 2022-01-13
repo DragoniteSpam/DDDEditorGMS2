@@ -11,6 +11,7 @@ function Painter(width, height) constructor {
     self.brush_index = 7;
     self.brush_sprite = -1;
     self.shader = -1;
+    self.blend_enable = true;
     
     static SetBrush = function(sprite, index) {
         self.brush_sprite = sprite;
@@ -20,6 +21,11 @@ function Painter(width, height) constructor {
     
     static SetShader = function(shader) {
         self.shader = shader;
+        return self;
+    };
+    
+    static SetBlendEnable = function(enable) {
+        self.blend_enable = enable;
         return self;
     };
     
@@ -58,7 +64,9 @@ function Painter(width, height) constructor {
         if (!sprite_exists(self.brush_sprite)) return;
         surface_set_target(self.surface);
         if (self.shader != -1) shader_set(self.shader);
+        gpu_set_blendenable(self.blend_enable);
         draw_sprite_ext(self.brush_sprite, clamp(self.brush_index, 0, sprite_get_number(self.brush_sprite) - 1), x, y, radius / 32, radius / 32, 0, color, strength);
+        gpu_set_blendenable(true);
         shader_reset();
         surface_reset_target();
     };
