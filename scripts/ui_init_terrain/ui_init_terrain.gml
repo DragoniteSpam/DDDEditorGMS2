@@ -20,7 +20,6 @@ function ui_init_terrain(mode) {
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", mode.orthographic, function() {
                     Stuff.terrain.orthographic = self.value;
                 }))
-                    .SetInteractive(false)                                          // for now
                     .SetTooltip("View the world through an overhead camera."),
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", mode.view_water, function() {
                     Stuff.terrain.view_water = self.value;
