@@ -301,11 +301,6 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, texture_streng
     terrain_refresh_vertex_buffer(self);
 };
 
-ClearTexture = function(tx, ty) {
-    // we'll re-implement this later
-    return;
-};
-
 DrawWater = function() {
     if (!self.view_water) return;
     
