@@ -41,6 +41,7 @@ function draw_editor_terrain() {
     texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexColor"), surface_get_texture(Stuff.terrain.color.surface));
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_MouseRadius"), Stuff.terrain.radius);
     
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TextureTileSize"), Stuff.terrain.texture.width, Stuff.terrain.texture.height);
     gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain, "u_TexLookup"), false);
     texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexLookup"), surface_get_texture(Stuff.terrain.texture.surface));
     
