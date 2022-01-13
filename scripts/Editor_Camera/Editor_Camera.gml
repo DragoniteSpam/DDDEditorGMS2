@@ -28,6 +28,33 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
     self.fov = fov;
     self.direction = self.def_direction;
     self.pitch = self.def_pitch;
+    self.scale = 1;
+    
+    static SetProjection = function() {
+        var camera = view_get_camera(view_current);
+        var vw = view_get_wport(view_current);
+        var vh = view_get_hport(view_current);
+        
+        var view = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
+        var proj = matrix_build_projection_perspective_fov(-self.fov, -vw / vh, self.znear, self.zfar);
+        
+        camera_set_view_mat(camera, view);
+        camera_set_proj_mat(camera, proj);
+        camera_apply(camera);
+    };
+    
+    static SetProjectionOrtho = function() {
+        var camera = view_get_camera(view_current);
+        var vw = view_get_wport(view_current);
+        var vh = view_get_hport(view_current);
+        
+        var view = matrix_build_lookat(x, y, self.zfar - 256, x, y, 0, 0, 1, 0);
+        var proj = matrix_build_projection_ortho(-vw * self.scale, vh * self.scale, self.znear, self.zfar);
+        
+        camera_set_view_mat(camera, view);
+        camera_set_proj_mat(camera, proj);
+        camera_apply(camera);
+    };
     
     static Reset = function() {
         self.x = self.def_x;
