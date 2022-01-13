@@ -39,7 +39,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         self.callback(screen_to_world(window_mouse_get_x(), window_get_height() - window_mouse_get_y(), self.view_mat, self.proj_mat, CW, CH));
         
         // move the camera
-        var mspd = get_camera_speed(self.z);
+        var mspd = self.GetCameraSpeed();
         var xspeed = 0;
         var yspeed = 0;
         var zspeed = 0;
@@ -97,7 +97,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         
         // move the camera
         if (!keyboard_check(vk_control)) {
-            var mspd = get_camera_speed(self.z);
+            var mspd = 4;
             var xspeed = 0;
             var yspeed = 0;
             
@@ -224,5 +224,11 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         } catch (e) {
             self.Reset();
         }
+    };
+    
+    static GetCameraSpeed = function() {
+        var base_speed = 256;
+        var accelerate_time = 6;
+        return max(1, (base_speed * (logn(32, max(self.z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / accelerate_time * Settings.config.camera_fly_rate, 10));
     };
 }
