@@ -181,7 +181,7 @@ save = function() {
 };
 
 texture_name = DEFAULT_TILESET;
-texture = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
+texture_image = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
 
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;
@@ -259,6 +259,7 @@ self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data,
 vertex_freeze(self.terrain_buffer);
 
 color = new Painter(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
+
 
 LoadAsset = function(directory) {
     directory += "/";

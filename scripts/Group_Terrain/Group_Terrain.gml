@@ -1,4 +1,4 @@
-#macro terrain_texture_size                                                     sprite_get_height(Stuff.terrain.texture)
+#macro terrain_texture_size                                                     sprite_get_height(Stuff.terrain.texture_image)
 #macro terrain_tile_size                                                        (32 / terrain_texture_size)
 
 function terrain_get_z(terrain, xx, yy) {
