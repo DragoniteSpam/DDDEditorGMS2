@@ -54,7 +54,7 @@ function Phoenix(width, height, def_color = c_white) constructor {
         self.surface = sprite_to_surface(self.sprite, 0);
     };
     
-    static Clear = function(color) {
+    static Clear = function(color, alpha = 1) {
         surface_set_target(self.surface);
         draw_clear_alpha(color, 1);
         surface_reset_target();
