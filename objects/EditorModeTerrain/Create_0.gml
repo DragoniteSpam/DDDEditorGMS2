@@ -11,6 +11,67 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 });
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
+EditModeZ = function(position, dir) {
+    var t = 0;
+    var coeff = self.radius * self.style_radius_coefficient[self.style];
+    var list_range = ds_list_create();
+    
+    for (var i = max(0, position.x - self.radius + 1); i < min(self.width, position.x + self.radius + 1); i++) {
+        for (var j = max(0, position.y - self.radius + 1); j < min(self.height, position.y + self.radius + 1); j++) {
+            var d1 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 0.5);
+            var d2 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 0.5);
+            var d3 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 1.5);
+            var d4 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 1.5);
+            if (d1 <= coeff && d2 <= coeff && d3 <= coeff && d4 <= coeff) {
+                t = t + terrain_get_z(self, floor(i), floor(j));
+                ds_list_add(list_range, [floor(i), floor(j), mean(d1, d2, d3, d4)]);
+            }
+        }
+    }
+    
+    var avg = t / ds_list_size(list_range);
+    
+    for (var i = 0; i < ds_list_size(list_range); i++) {
+        var coordinates = list_range[| i];
+        self.submode_equation[self.submode](coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
+    }
+    
+    if (!ds_list_empty(list_range)) {
+        terrain_refresh_vertex_buffer(self);
+    }
+    
+    ds_list_destroy(list_range);
+}
+
+EditModeTexture = function(position) {
+    var xtex = self.tile_brush_x;
+    var ytex = self.tile_brush_y;
+    
+    var n = 0;
+    var coeff = self.radius * self.style_radius_coefficient[self.style];
+    
+    for (var i = max(0, position.x - self.radius + 1); i < min(self.width, position.x + self.radius + 1); i++) {
+        for (var j = max(0, position.y - self.radius + 1); j < min(self.height, position.y + self.radius + 1); j++) {
+            var d1 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 0.5);
+            var d2 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 0.5);
+            var d3 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 1.5);
+            var d4 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 1.5);
+            if (d1 <= coeff && d2 <= coeff && d3 <= coeff && d4 <= coeff) {
+                terrain_set_texture(self, floor(i), floor(j), xtex, ytex);
+                n++;
+            }
+        }
+    }
+    
+    if (n) {
+        terrain_refresh_vertex_buffer(self);
+    }
+}
+
+EditModeColor = function(position) {
+    self.color.Paint(position.x * self.color_scale, position.y * self.color_scale, self.radius * self.color_scale, self.paint_color, self.paint_strength);
+}
+
 self.mouse_interaction = function(mouse_vector) {
     self.cursor_position = undefined;
     
@@ -20,17 +81,17 @@ self.mouse_interaction = function(mouse_vector) {
         
         if (Controller.mouse_left) {
             switch (self.mode) {
-                case TerrainModes.Z: terrain_mode_z(self, self.cursor_position, 1); break;
-                case TerrainModes.TEXTURE: terrain_mode_texture(self, self.cursor_position); break;
-                case TerrainModes.COLOR: terrain_mode_color(self, self.cursor_position); break;
+                case TerrainModes.Z: self.EditModeZ(self.cursor_position, 1); break;
+                case TerrainModes.TEXTURE: self.EditModeTexture(self.cursor_position); break;
+                case TerrainModes.COLOR: self.EditModeColor(self.cursor_position); break;
             }
         }
         
         if (Controller.mouse_right) {
             switch (self.mode) {
-                case TerrainModes.Z: terrain_mode_z(self, self.cursor_position, -1); break;
-                case TerrainModes.TEXTURE: terrain_mode_texture(self, self.cursor_position); break;
-                case TerrainModes.COLOR: terrain_mode_color(self, self.cursor_position); break;
+                case TerrainModes.Z: self.EditModeZ(self.cursor_position, -1); break;
+                case TerrainModes.TEXTURE: self.EditModeTexture(self.cursor_position); break;
+                case TerrainModes.COLOR: self.EditModeColor(self.cursor_position); break;
             }
         }
         
@@ -397,21 +458,22 @@ enum TerrainStyles {
     CIRCLE,
 }
 
-submode_equation[TerrainSubmodes.MOUND] = function(terrain, x, y, dir, avg, dist) {
-    terrain_add_z(terrain, x, y, dir * terrain.rate * dcos(max(1, dist)));
-};
-submode_equation[TerrainSubmodes.AVERAGE] = function(terrain, x, y, dir, avg, dist) {
-    terrain_set_z(terrain, x, y, lerp(terrain_get_z(terrain, x, y), avg, terrain.rate / 20));
-};
-submode_equation[TerrainSubmodes.AVG_FLAT] = function(terrain, x, y, dir, avg, dist) {
-    terrain_set_z(terrain, x, y, avg);
-};
-submode_equation[TerrainSubmodes.ZERO] = function(terrain, x, y, dir, avg, dist) {
-    terrain_set_z(terrain, x, y, 0);
-};
+submode_equation = [
+    function(x, y, dir, avg, dist) {
+        terrain_add_z(self, x, y, dir * self.rate * dcos(max(1, dist)));
+    },
+    function(x, y, dir, avg, dist) {
+        terrain_set_z(self, x, y, lerp(terrain_get_z(self, x, y), avg, self.rate / 20));
+    },
+    function(x, y, dir, avg, dist) {
+        terrain_set_z(self, x, y, avg);
+    },
+    function(x, y, dir, avg, dist) {
+        terrain_set_z(self, x, y, 0);
+    }
+];
 
-style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effectively fill the entire space
-style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
+style_radius_coefficient = [2, 1];
 
 lights = array_create(MAX_TERRAIN_LIGHTS);
 #macro MAX_TERRAIN_LIGHTS 16
