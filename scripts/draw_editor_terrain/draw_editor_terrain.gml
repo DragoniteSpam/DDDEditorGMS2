@@ -49,7 +49,7 @@ function draw_editor_terrain() {
         vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
     }
     
-    Stuff.terrain.DrawWater(true);
+    Stuff.terrain.DrawWater();
     
     shader_reset();
     
