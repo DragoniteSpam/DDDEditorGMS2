@@ -13,24 +13,34 @@ function draw_editor_terrain() {
         self.camera.SetProjection();
     }
     
-    graphics_set_lighting_terrain(shd_terrain);
-    matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, Stuff.terrain.view_scale, Stuff.terrain.view_scale, Stuff.terrain.view_scale));
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), Stuff.terrain.width, Stuff.terrain.height);
-    
-    if (!Stuff.terrain.cursor_position) {
-        shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), -MILLION, -MILLION);
-    } else {
-        shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), Stuff.terrain.cursor_position.x, Stuff.terrain.cursor_position.y);
-    }
-    
-    texture_set_stage(shader_get_sampler_index(shd_terrain, "texColor"), surface_get_texture(Stuff.terrain.color.surface));
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
+    shader_set(shd_terrain);
+    // lighting uniforms
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightAmbientColor"), 0.25, 0.25, 0.25);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirection"), 1, 1, -1);
+    // fog uniforms
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogStrength"), Stuff.terrain.terrain_fog_enabled ? 1 : 0);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogStart"), Stuff.terrain.terrain_fog_start);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogEnd"), Stuff.terrain.terrain_fog_end);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogColor"), (Stuff.terrain.terrain_fog_color & 0x0000ff) / 0xff, ((Stuff.terrain.terrain_fog_color & 0x00ff00) >> 8) / 0xff, ((Stuff.terrain.terrain_fog_color & 0xff0000) >> 16) / 0xff);
+    // wireframe uniforms
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireThickness"), Stuff.terrain.view_grid ? 1 : 0);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireColor"), 1, 1, 1);
-    
+    // water uniforms
     var water_level = 512 * power(Stuff.terrain.water_level, 3) / Stuff.terrain.view_scale;
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WaterLevels"), water_level - 64, water_level, 0.75 * Stuff.terrain.view_water);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WaterColor"), 0.1, 0.1, 1);
+    // terrain stuff
+    matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, Stuff.terrain.view_scale, Stuff.terrain.view_scale, Stuff.terrain.view_scale));
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), Stuff.terrain.width, Stuff.terrain.height);
+    // editor stuff
+    if (!Stuff.terrain.cursor_position) {
+        shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), -MILLION, -MILLION);
+    } else {
+        shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), Stuff.terrain.cursor_position.x, Stuff.terrain.cursor_position.y);
+    }
+    texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexColor"), surface_get_texture(Stuff.terrain.color.surface));
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_MouseRadius"), Stuff.terrain.radius);
+    
     vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
     
     if (Stuff.terrain.view_axes) {
