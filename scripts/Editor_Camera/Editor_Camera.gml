@@ -42,4 +42,38 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar,
         self.direction = self.def_direction;
         self.pitch = self.def_pitch;
     };
+    
+    static Save = function() {
+        return {
+            x: self.x,
+            y: self.y,
+            z: self.z,
+            xto: self.xto,
+            yto: self.yto,
+            zto: self.zto,
+            xup: self.xup,
+            yup: self.yup,
+            zup: self.zup,
+            znear: self.znear,
+            zfar: self.zfar,
+            direction: self.direction,
+            pitch: self.pitch,
+        };
+    };
+    
+    static Load = function(source) {
+        self.x = source.def_x;
+        self.y = source.def_y;
+        self.z = source.def_z;
+        self.xto = source.def_xto;
+        self.yto = source.def_yto;
+        self.zto = source.def_zto;
+        self.xup = source.def_xup;
+        self.yup = source.def_yup;
+        self.zup = source.def_zup;
+        self.znear = source.def_znear;
+        self.zfar = source.def_zfar;
+        self.direction = source.def_direction;
+        self.pitch = source.def_pitch;
+    };
 }
