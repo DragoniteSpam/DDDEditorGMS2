@@ -1,4 +1,4 @@
-function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constructor {
+function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callback) constructor {
     self.def_x = x;
     self.def_y = y;
     self.def_z = z;
@@ -14,6 +14,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
     
     self.znear = znear;
     self.zfar = zfar;
+    self.callback = method(self, callback);
     
     self.x = x;
     self.y = y;
@@ -29,16 +30,80 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
     self.pitch = self.def_pitch;
     self.scale = 1;
     
+    self.view_mat = undefined;
+    self.proj_mat = undefined;
+    
+    static Update = function() {
+        if (self.view_mat == undefined || self.proj_mat == undefined) return;
+        
+        self.callback(screen_to_world(window_mouse_get_x(), window_get_height() - window_mouse_get_y(), self.view_mat, self.proj_mat, CW, CH));
+        
+        // move the camera
+        var mspd = get_camera_speed(self.z);
+        var xspeed = 0;
+        var yspeed = 0;
+        var zspeed = 0;
+        
+        if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
+            xspeed += dcos(self.direction) * mspd;
+            yspeed -= dsin(self.direction) * mspd;
+            zspeed -= dsin(self.pitch) * mspd;
+        }
+        
+        if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
+            xspeed -= dcos(self.direction) * mspd;
+            yspeed += dsin(self.direction) * mspd;
+            zspeed += dsin(self.pitch) * mspd;
+        }
+        
+        if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
+            xspeed -= dsin(self.direction) * mspd;
+            yspeed -= dcos(self.direction) * mspd;
+        }
+        
+        if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
+            xspeed += dsin(self.direction) * mspd;
+            yspeed += dcos(self.direction) * mspd;
+        }
+        
+        if (CONTROL_3D_LOOK) {
+            var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) div 2;
+            var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) div 2;
+            window_mouse_set(camera_cx, camera_cy);
+            var dx = (mouse_x - camera_cx) / 16;
+            var dy = (mouse_y - camera_cy) / 16;
+            self.direction = (360 + self.direction - dx) % 360;
+            self.pitch = clamp(self.pitch + dy, -89, 89);
+            self.xto = self.x + dcos(self.direction) * dcos(self.pitch);
+            self.yto = self.y - dsin(self.direction) * dcos(self.pitch);
+            self.zto = self.z - dsin(self.pitch);
+        }
+        
+        self.x += xspeed;
+        self.y += yspeed;
+        self.z += zspeed;
+        self.xto += xspeed;
+        self.yto += yspeed;
+        self.zto += zspeed;
+        self.xup = 0;
+        self.yup = 0;
+        self.zup = 1;
+    };
+    
+    static UpdateOrtho = function() {
+        
+    };
+    
     static SetProjection = function() {
         var camera = view_get_camera(view_current);
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
         
-        var view = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
-        var proj = matrix_build_projection_perspective_fov(-self.fov, -vw / vh, self.znear, self.zfar);
+        self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
+        self.proj_mat = matrix_build_projection_perspective_fov(-self.fov, -vw / vh, self.znear, self.zfar);
         
-        camera_set_view_mat(camera, view);
-        camera_set_proj_mat(camera, proj);
+        camera_set_view_mat(camera, self.view_mat);
+        camera_set_proj_mat(camera, self.proj_mat);
         camera_apply(camera);
     };
     
@@ -47,11 +112,11 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
         
-        var view = matrix_build_lookat(x, y, self.zfar - 256, x, y, 0, 0, 1, 0);
-        var proj = matrix_build_projection_ortho(-vw * self.scale, vh * self.scale, self.znear, self.zfar);
+        self.view_mat = matrix_build_lookat(self.x, self.y, self.zfar - 256, self.x, self.y, 0, 0, 1, 0);
+        self.proj_mat = matrix_build_projection_ortho(-vw * self.scale, vh * self.scale, self.znear, self.zfar);
         
-        camera_set_view_mat(camera, view);
-        camera_set_proj_mat(camera, proj);
+        camera_set_view_mat(camera, self.view_mat);
+        camera_set_proj_mat(camera, self.proj_mat);
         camera_apply(camera);
     };
     
@@ -62,7 +127,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
-    }
+    };
     
     static DrawSkyboxOrtho = function() {
         gpu_set_zwriteenable(false);
@@ -71,7 +136,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar) constru
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
-    }
+    };
     
     static Reset = function() {
         self.x = self.def_x;

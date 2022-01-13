@@ -6,16 +6,72 @@ vertex_format_begin();
 vertex_format_add_position_3d();
 self.vertex_format = vertex_format_end();
 
-self.camera = new Camera(-1024, -1024, 1024, 1024, 1024, 0, 0, 0, 1, 60, 1, 10000);
+self.camera = new Camera(-1024, -1024, 1024, 1024, 1024, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+    Stuff.terrain.mouse_interaction(mouse_vector);
+});
 self.camera.Load(setting_get("terrain", "cam", undefined));
+
+self.mouse_interaction = function(mouse_vector) {
+    self.cursor_position = undefined;
+    
+    if (mouse_vector[vec3.zz] < self.camera.z) {
+        var f = abs(self.camera.z / mouse_vector[vec3.zz]);
+        self.cursor_position = new vec2((self.camera.x + mouse_vector[vec3.xx] * f) / self.view_scale, (self.camera.y + mouse_vector[vec3.yy] * f) / self.view_scale);
+        
+        if (Controller.mouse_left) {
+            switch (self.mode) {
+                case TerrainModes.Z: terrain_mode_z(self, self.cursor_position, 1); break;
+                case TerrainModes.TEXTURE: terrain_mode_texture(self, self.cursor_position); break;
+                case TerrainModes.COLOR: terrain_mode_color(self, self.cursor_position); break;
+            }
+        }
+        
+        if (Controller.mouse_right) {
+            switch (self.mode) {
+                case TerrainModes.Z: terrain_mode_z(self, self.cursor_position, -1); break;
+                case TerrainModes.TEXTURE: terrain_mode_texture(self, self.cursor_position); break;
+                case TerrainModes.COLOR: terrain_mode_color(self, self.cursor_position); break;
+            }
+        }
+        
+        if (Controller.release_right) {
+            switch (self.mode) {
+                case TerrainModes.Z: break;
+                case TerrainModes.TEXTURE: break;
+                case TerrainModes.COLOR: self.color.Finish(); break;
+            }
+        }
+        
+        if (Controller.release_left) {
+            switch (self.mode) {
+                case TerrainModes.Z: break;
+                case TerrainModes.TEXTURE: break;
+                case TerrainModes.COLOR: self.color.Finish(); break;
+            }
+        }
+    }
+    
+    if (keyboard_check_pressed(vk_space)) {
+    
+    }
+    
+    if (keyboard_check_pressed(vk_delete)) {
+    
+    }
+}
 
 update = function() {
     self.color.Validate();
-    if (mouse_within_view(view_3d) && !dialog_exists()) {
+    
+    if (Stuff.menu.active_element) {
+        return false;
+    }
+    
+    if (mouse_within_view(view_3d)) {
         if (self.orthographic) {
-            control_terrain_3d_ortho(self);
+            self.camera.UpdateOrtho();
         } else {
-            control_terrain_3d(self);
+            self.camera.Update();
         }
     }
 };
@@ -87,7 +143,6 @@ export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
 export_smooth = setting_get("terrain", "export_smooth", false);
 export_smooth_threshold = setting_get("terrain", "export_smooth_threshold", 60);
 orthographic = false;
-orthographic_scale = 1;
 output_vertex_format = setting_get("terrain", "output_vertex_format", DEFAULT_VERTEX_FORMAT);
 
 cursor_position = undefined;
