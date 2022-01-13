@@ -9,7 +9,7 @@ self.vertex_format = vertex_format_end();
 self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
     Stuff.terrain.mouse_interaction(mouse_vector);
 });
-self.camera.Load(setting_get("terrain", "cam", undefined));
+self.camera.Load(setting_get("terrain", "camera", undefined));
 
 self.mouse_interaction = function(mouse_vector) {
     self.cursor_position = undefined;
