@@ -94,6 +94,7 @@ save = function() {
     Settings.terrain.water_level = self.water_level;
     Settings.terrain.view_grid = self.view_grid;
     Settings.terrain.view_axes = self.view_axes;
+    Settings.terrain.orthographic = self.orthographic;
     // export settings
     Settings.terrain.save_scale = self.save_scale;
     Settings.terrain.export_all = self.export_all;
@@ -142,7 +143,7 @@ export_centered = setting_get("terrain", "export_centered", false);
 export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
 export_smooth = setting_get("terrain", "export_smooth", false);
 export_smooth_threshold = setting_get("terrain", "export_smooth_threshold", 60);
-orthographic = false;
+orthographic = setting_get("terrain", "orthographic", false);
 output_vertex_format = setting_get("terrain", "output_vertex_format", DEFAULT_VERTEX_FORMAT);
 
 cursor_position = undefined;
