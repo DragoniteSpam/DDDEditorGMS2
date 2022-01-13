@@ -1,4 +1,4 @@
-function Painter(width, height, def_color = c_white) constructor {
+function Phoenix(width, height, def_color = c_white) constructor {
     self.width = min(width, 0x4000);
     self.height = min(height, 0x4000);
     self.def_color = def_color;

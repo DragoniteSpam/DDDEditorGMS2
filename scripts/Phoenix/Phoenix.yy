@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Painting",
-    "path": "folders/Painting.yy",
+    "name": "Phoenix",
+    "path": "folders/Phoenix.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Group_Painting",
+  "name": "Phoenix",
   "tags": [],
   "resourceType": "GMScript",
 }
