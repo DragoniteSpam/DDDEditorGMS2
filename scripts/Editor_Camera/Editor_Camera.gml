@@ -91,7 +91,43 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static UpdateOrtho = function() {
+        if (self.view_mat == undefined || self.proj_mat == undefined) return;
         
+        self.callback(screen_to_world(window_mouse_get_x(), window_get_height() - window_mouse_get_y(), self.view_mat, self.proj_mat, CW, CH));
+        
+        // move the camera
+        if (!keyboard_check(vk_control)) {
+            var mspd = get_camera_speed(self.z);
+            var xspeed = 0;
+            var yspeed = 0;
+            
+            if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
+                yspeed = yspeed - mspd;
+            }
+            
+            if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
+                yspeed = yspeed + mspd;
+            }
+            
+            if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
+                xspeed = xspeed - mspd;
+            }
+            
+            if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
+                xspeed = xspeed + mspd;
+            }
+            
+            if (mouse_wheel_up()) {
+                self.scale = max(0.5, self.scale * 0.95);
+            } else if (mouse_wheel_down()) {
+                self.scale = min(10, self.scale * 1.05);
+            }
+            
+            self.x += xspeed;
+            self.y += yspeed;
+            self.xto += xspeed;
+            self.yto += yspeed;
+        }
     };
     
     static SetProjection = function() {
