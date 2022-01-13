@@ -113,6 +113,9 @@ function ui_init_terrain(mode) {
                 }, function(mx, my) {
                     mx -= view_get_xport(view_current);
                     my -= view_get_yport(view_current);
+                    
+                    if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
+                    
                     var tx1 = 16 * (mx div 16);
                     var ty1 = 16 * (my div 16);
                     var tx2 = 16 * ceil(mx / 16);
