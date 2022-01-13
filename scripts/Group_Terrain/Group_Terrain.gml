@@ -47,10 +47,3 @@ function terrain_set_z(terrain, x, y, value) {
         buffer_poke(terrain.terrain_buffer_data, terrain_get_vertex_index(terrain, x, y, 5) + 8, buffer_f32, value);
     }
 }
-
-function terrain_set_texture(terrain, x, y, xtex, ytex) {
-    var xtex2 = xtex + terrain_tile_size;
-    var ytex2 = ytex + terrain_tile_size;
-    
-    wtf("terrain_set_texture - use the black magic of texture samplers for this");
-}
