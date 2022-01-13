@@ -7,7 +7,7 @@ varying vec3 v_vBarycentric;
 
 uniform sampler2D displacementMap;
 uniform float u_Displacement;
-uniform vec2 u_Time;
+uniform float u_Time;
 
 #define ALPHA_REF 0.2
 #define WIRE_ALPHA 0.5
@@ -21,9 +21,9 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 }
 
 void main() {
-    vec3 colorDM = texture2D(displacementMap, v_vTexcoord - vec2(mod(2.0 * u_Time.x / 10.0, 1.0), mod(-u_Time.y / 10.0, 1.0))).rgb;
-    vec2 offset = vec2((colorDM.r + colorDM.g + colorDM.b) / 3.0 - 0.5) * u_Displacement;
-    vec4 finalColor = texture2D(gm_BaseTexture, v_vTexcoord + vec2(mod(u_Time.x / 10.0, 1.0), mod(u_Time.y / 10.0, 1.0)) + offset) * v_vColour;
+    vec3 colorDM = 2.0 * texture2D(displacementMap, v_vTexcoord - u_Time).rgb - 0.5;
+    vec2 offset = colorDM.rg * u_Displacement;
+    vec4 finalColor = texture2D(gm_BaseTexture, v_vTexcoord + offset) * v_vColour;
     
     gl_FragColor = finalColor;
 }

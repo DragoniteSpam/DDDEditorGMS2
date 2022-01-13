@@ -337,12 +337,15 @@ DrawWater = function() {
     shader_set(shd_terrain_water);
     var water_level = 512 * power(self.water_level, 3);
     gpu_set_cullmode(cull_noculling);
+    gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain_water, "displacementMap"), true);
+    gpu_set_texrepeat_ext(shader_get_sampler_index(shd_terrain_water, "displacementMap"), true);
     texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
     var mn = min(self.view_water_min_alpha, self.view_water_max_alpha);
     var mx = max(self.view_water_min_alpha, self.view_water_max_alpha);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_WaterAlphaBounds"), mn, mx);
-    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), current_time / 1000, current_time / 1000);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), frac(current_time / 20000));
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Displacement"), 0.0625);
+    gpu_set_texfilter(false);
     matrix_set(matrix_world, matrix_build(self.x, self.y, water_level, 0, 0, 0, 5, 5, 5));
     vertex_submit(self.water, pr_trianglelist, sprite_get_texture(spr_terrain_water, 0));
     shader_reset();
