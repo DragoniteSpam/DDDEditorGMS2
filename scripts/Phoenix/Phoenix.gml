@@ -56,7 +56,7 @@ function Phoenix(width, height, def_color = c_white) constructor {
     
     static Clear = function(color, alpha = 1) {
         surface_set_target(self.surface);
-        draw_clear_alpha(color, 1);
+        draw_clear_alpha(color, alpha);
         surface_reset_target();
     };
     
