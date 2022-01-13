@@ -341,6 +341,8 @@ function dialog_terrain_export() {
             var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
             var chunk_size = self.GetSibling("CHUNKS").value;
             
+            Stuff.terrain.color.SaveState();
+            
             if (levels == 0) {
                 Stuff.terrain.AddToProject("Terrain", 1, false, false, chunk_size);
             } else {
@@ -348,6 +350,8 @@ function dialog_terrain_export() {
                     Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i), false, false, chunk_size);
                 }
             }
+            
+            Stuff.terrain.color.LoadState();
         }))
             .SetInteractive(!TERRAIN_MODE),
         new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
@@ -369,6 +373,8 @@ function dialog_terrain_export() {
         var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
         var chunk_size = self.GetSibling("CHUNKS").value;
         
+        Stuff.terrain.color.SaveState();
+        
         var filename = get_save_filename_mesh("Terrain");
         if (filename != "") {
             if (levels == 0) {
@@ -389,5 +395,7 @@ function dialog_terrain_export() {
                 }
             }
         }
+        
+        Stuff.terrain.color.LoadState();
     }, "Done", emu_dialog_close_auto);
 }

@@ -42,6 +42,7 @@ render = function() {
         case view_hud: draw_editor_hud(); break;
     }
 };
+
 save = function() {
     // camera settings
     Settings.terrain.x = self.x;
@@ -287,7 +288,6 @@ BuildBufferChunks = function(density = 1, chunk_size = 0) {
 BuildBuffer = function(density = 1) {
     density = floor(density);
     
-    self.color.SaveState();
     var color_sprite = self.color.GetSprite();
     
     var sw = sprite_get_width(color_sprite) / self.color_scale;
@@ -304,8 +304,6 @@ BuildBuffer = function(density = 1) {
     } else {
         meshops_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
     }
-    
-    self.color.LoadState();
     
     return output;
 };

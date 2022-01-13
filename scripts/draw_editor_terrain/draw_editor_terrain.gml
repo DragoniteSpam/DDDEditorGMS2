@@ -38,6 +38,7 @@ function draw_editor_terrain() {
     } else {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), Stuff.terrain.cursor_position.x, Stuff.terrain.cursor_position.y);
     }
+    
     texture_set_stage(shader_get_sampler_index(shd_terrain, "texColor"), surface_get_texture(Stuff.terrain.color.surface));
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), Stuff.terrain.radius);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireThickness"), Stuff.terrain.view_grid ? 1 : 0);
