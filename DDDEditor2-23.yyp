@@ -1081,7 +1081,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"fire.dddp","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"waterfall.dddp","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"glow.dddp","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-sphere.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-cube.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-capsule.d3d","resourceType":"GMIncludedFile",},
@@ -1100,6 +1099,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/fonts","resourceVersion":"1.0","name":"FDefault20.yy","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/fonts","resourceVersion":"1.0","name":"FDefaultItalic.yy","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/fonts","resourceVersion":"1.0","name":"fnt_emu_default.yy","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.7.606",
