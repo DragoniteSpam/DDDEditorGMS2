@@ -55,11 +55,6 @@ function momu_editor_text() {
     menu_activate(noone);
 }
 
-function momu_editor_particles() {
-    editor_mode_particle();
-    menu_activate(noone);
-}
-
 function momu_editor_spart() {
     editor_mode_spart();
     menu_activate(noone);

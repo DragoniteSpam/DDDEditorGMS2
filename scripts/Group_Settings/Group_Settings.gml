@@ -45,7 +45,6 @@ try {
         location: { },
         selection: { },
         view: { },
-        particle: { },
         mesh: { },
         spart: { },
         hide_warnings: { },

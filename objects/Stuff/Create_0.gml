@@ -23,10 +23,8 @@ enum ModeIDs {
     DATA,
     ANIMATION,
     TERRAIN,
-    SCRIBBLE,
     SPART,
     DOODLE,
-    PARTICLE,
     MESH,
     TEXT,
 }
@@ -90,7 +88,6 @@ terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 mesh_ed = instance_create_depth(0, 0, 0, EditorModeMeshes);
 spart = instance_create_depth(0, 0, 0, EditorModeSpart);
 doodle = instance_create_depth(0, 0, 0, EditorModeDoodle);
-particle = instance_create_depth(0, 0, 0, EditorModeParticle);
 text = new EditorModeText();
 menu = RIBBON_MENU();
 
@@ -260,10 +257,8 @@ switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
     case ModeIDs.DATA: editor_mode_data(); break;
     case ModeIDs.ANIMATION: editor_mode_animation(); break;
     case ModeIDs.TERRAIN: editor_mode_heightmap(); break;
-    case ModeIDs.SCRIBBLE: editor_mode_scribble(); break;
     case ModeIDs.SPART: editor_mode_spart(); break;
     case ModeIDs.DOODLE: editor_mode_doodle(); break;
-    case ModeIDs.PARTICLE: editor_mode_particle(); break;
     case ModeIDs.MESH: editor_mode_meshes(); break;
     case ModeIDs.TEXT: editor_mode_text(); break;
 }

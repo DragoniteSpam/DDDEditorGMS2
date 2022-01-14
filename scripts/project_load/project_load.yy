@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "project",
-    "path": "folders/Serialization/project.yy",
+    "name": "Project Serialization",
+    "path": "folders/Project Serialization.yy",
   },
   "resourceVersion": "1.0",
   "name": "project_load",
