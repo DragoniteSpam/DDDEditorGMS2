@@ -251,6 +251,16 @@ texture = new Phoenix(Stuff.terrain.width, Stuff.terrain.height, c_black);
 texture.SetBrush(spr_terrain_default_brushes, 7);
 texture.SetBlendEnable(false);
 
+GetTextureColorCode = function() {
+    var tx = min(self.tile_brush_x, self.tile_brush_x + self.tile_brush_w);
+    var ty = min(self.tile_brush_y, self.tile_brush_y + self.tile_brush_h);
+    tx = floor(255 * tx / sprite_get_width(self.texture_image));
+    ty = floor(255 * ty / sprite_get_height(self.texture_image));
+    /// @todo let's figure out what we're going to do with the second triangle
+    // texture eventually
+    return tx | (ty << 8) | (tx << 16) | (ty << 24);
+};
+
 LoadAsset = function(directory) {
     directory += "/";
     try {
