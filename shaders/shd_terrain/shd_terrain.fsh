@@ -76,12 +76,6 @@ void main() {
         CommonFog(color);
         WaterFog(color);
         
-        float dist = length(v_WorldPosition.xy - u_Mouse);
-        float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
-        color = mix(color, CURSOR_COLOR, strength);
-        
-        color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
-        
         gl_FragColor = color;
     } else if (u_OptViewData == DATA_POSITION) {
         gl_FragColor = vec4(v_WorldPosition.xyz / vec3(u_TerrainSizeF, 256), 1);
@@ -97,4 +91,10 @@ void main() {
     } else {
         gl_FragColor = vec4(1);
     }
+    
+    float dist = length(v_WorldPosition.xy - u_Mouse);
+    float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
+    gl_FragColor = mix(gl_FragColor, CURSOR_COLOR, strength);
+    
+    gl_FragColor.rgb = mix(gl_FragColor.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
 }
