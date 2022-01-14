@@ -2,15 +2,14 @@
 
 varying float v_FragDistance;
 varying vec4 v_WorldPosition;
-varying vec3 v_FragWorldPosition;
 varying vec3 v_Barycentric;
-varying vec4 v_Texcoord;
+varying vec2 v_Texcoord;
 
 uniform vec3 u_LightAmbientColor;
 uniform vec3 u_LightDirection;
 
 void CommonLight(inout vec4 baseColor) {
-    vec3 normal = cross(dFdx(v_FragWorldPosition), dFdy(v_FragWorldPosition));
+    vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
     normal = normalize(normal * sign(normal.z));
     
     vec3 lightColor = u_LightAmbientColor;
@@ -61,13 +60,13 @@ uniform float u_OptViewNormals;
 
 void main() {
     if (u_OptViewNormals == 1.0) {
-        vec3 normal = cross(dFdx(v_FragWorldPosition), dFdy(v_FragWorldPosition));
+        vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
         normal = normalize(normal * sign(normal.z));
         gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
     } else {
         vec2 worldTextureUV = v_WorldPosition.xy / u_TerrainSizeF;
-        vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV + v_Texcoord.zw);
-        vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord.xy);
+        vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV);
+        vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord);
         vec4 color = vec4(texture2D(u_TexColor, worldTextureUV).rgb, 1) * sampled;
         
         CommonLight(color);
