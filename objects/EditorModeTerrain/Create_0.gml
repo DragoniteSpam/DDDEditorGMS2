@@ -46,7 +46,7 @@ EditModeZ = function(position, dir) {
 
 EditModeTexture = function(position) {
     var color_code = self.GetTextureColorCode();
-    self.texture.Paint(position.x, position.y, Settings.terrain.radius, color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+    self.texture.Paint(position.x, position.y, Settings.terrain.radius, color_code, 1);
 }
 
 EditModeColor = function(position) {
@@ -233,9 +233,7 @@ texture.SetShader(shd_terrain_paint_texture);
 GetTextureColorCode = function() {
     var tx = floor(256 * Settings.terrain.tile_brush_x / sprite_get_width(self.texture_image));
     var ty = floor(256 * Settings.terrain.tile_brush_y / sprite_get_height(self.texture_image));
-    /// @todo let's figure out what we're going to do with the second triangle
-    // texture eventually
-    return tx | (ty << 8) | (tx << 16) | (ty << 24);
+    return tx | (ty << 8) | 0xff000000;
 };
 
 LoadAsset = function(directory) {
