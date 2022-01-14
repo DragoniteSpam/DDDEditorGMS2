@@ -177,8 +177,7 @@ Settings.terrain.style = Settings.terrain[$ "style"] ?? TerrainStyles.CIRCLE;
 // texture settings
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
-Settings.terrain.tile_brush_w = Settings.terrain[$ "tile_brush_w"] ?? 16;
-Settings.terrain.tile_brush_h = Settings.terrain[$ "tile_brush_h"] ?? 16;
+Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
 // paint defaults
 Settings.terrain.paint_strength_min = Settings.terrain[$ "paint_strength_min"] ?? 0.01;
 Settings.terrain.paint_strength_max = Settings.terrain[$ "paint_strength_max"] ?? 1;
@@ -230,10 +229,8 @@ texture.SetBrush(spr_terrain_default_brushes, 7);
 texture.SetBlendEnable(false);
 
 GetTextureColorCode = function() {
-    var tx = min(Settings.terrain.tile_brush_x, Settings.terrain.tile_brush_x + Settings.terrain.tile_brush_w);
-    var ty = min(Settings.terrain.tile_brush_y, Settings.terrain.tile_brush_y + Settings.terrain.tile_brush_h);
-    tx = floor(255 * tx / sprite_get_width(self.texture_image));
-    ty = floor(255 * ty / sprite_get_height(self.texture_image));
+    var tx = floor(256 * Settings.terrain.tile_brush_x / sprite_get_width(self.texture_image));
+    var ty = floor(256 * Settings.terrain.tile_brush_y / sprite_get_height(self.texture_image));
     /// @todo let's figure out what we're going to do with the second triangle
     // texture eventually
     return tx | (ty << 8) | (tx << 16) | (ty << 24);

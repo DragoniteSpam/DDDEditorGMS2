@@ -114,9 +114,9 @@ function ui_init_terrain(mode) {
                         draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
                         draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
                     }
-                    var tx = min(Settings.terrain.tile_brush_x, Settings.terrain.tile_brush_x + Settings.terrain.tile_brush_w);
-                    var ty = min(Settings.terrain.tile_brush_y, Settings.terrain.tile_brush_y + Settings.terrain.tile_brush_h);
-                    draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, abs(Settings.terrain.tile_brush_w), abs(Settings.terrain.tile_brush_h));
+                    var tx = Settings.terrain.tile_brush_x;
+                    var ty = Settings.terrain.tile_brush_y;
+                    draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Settings.terrain.tile_brush_size, Settings.terrain.tile_brush_size);
                     draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
                 }, function(mx, my) {
                     mx -= view_get_xport(view_current);
@@ -124,18 +124,11 @@ function ui_init_terrain(mode) {
                     
                     if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
                     
-                    var tx1 = 16 * (mx div 16);
-                    var ty1 = 16 * (my div 16);
-                    var tx2 = 16 * ceil(mx / 16);
-                    var ty2 = 16 * ceil(my / 16);
-                    if (mouse_check_button_pressed(mb_left)) {
-                        Settings.terrain.tile_brush_x = tx1;
-                        Settings.terrain.tile_brush_y = ty1;
-                        Settings.terrain.tile_brush_w = 0;
-                        Settings.terrain.tile_brush_h = 0;
-                    } else if (mouse_check_button(mb_left)) {
-                        Settings.terrain.tile_brush_w = tx2 - Settings.terrain.tile_brush_x;
-                        Settings.terrain.tile_brush_h = ty2 - Settings.terrain.tile_brush_y;
+                    var tx = 16 * (mx div 16);
+                    var ty = 16 * (my div 16);
+                    if (mouse_check_button(mb_left)) {
+                        Settings.terrain.tile_brush_x = tx;
+                        Settings.terrain.tile_brush_y = ty;
                     }
                 }, null, null),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
