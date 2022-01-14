@@ -141,8 +141,11 @@ function ui_init_terrain(mode) {
                     }
                 }, null, null),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
-                    var color_code = Stuff.terrain.GetTextureColorCode();
-                    Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+                    emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
+                        var color_code = Stuff.terrain.GetTextureColorCode();
+                        Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+                        self.root.Dispose();
+                    });
                 }),
                 (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Tile size:", Settings.terrain.tile_brush_size, string(Settings.terrain.tile_brush_size_min) + "..." + string(Settings.terrain.tile_brush_size_max), 3, E_InputTypes.INT, function() {
                     Settings.terrain.tile_brush_size = real(self.value);
