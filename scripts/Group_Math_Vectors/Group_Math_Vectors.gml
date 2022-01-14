@@ -55,6 +55,11 @@ function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
         );
     };
     
+    static Center = function() {
+        var dim = self.GetAbsDimensions();
+        return new BoundingBox(self.x1 - dim.x / 2, self.y1 - dim.y / 2, self.z1 - dim.z / 2, self.x2 - dim.x / 2, self.y2 - dim.y / 2, self.z2 - dim.z / 2);
+    };
+    
     static GetAbsDimensions = function() {
         return { x: abs(self.x2 - self.x1), y: abs(self.y2 - self.y1), z: abs(self.z2 - self.z1) };
     };
