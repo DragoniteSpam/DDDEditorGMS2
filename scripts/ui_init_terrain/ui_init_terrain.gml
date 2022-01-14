@@ -158,7 +158,7 @@ function ui_init_terrain(mode) {
                 }))
                     .SetTooltip("I really hope you enjoy this color picker because it was probably my favorite UI element to work on."),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear color", function() {
-                    Stuff.terrain.color.Clear(Settings.terrain.terrain.paint_color);
+                    Stuff.terrain.color.Clear(Settings.terrain.paint_color);
                 }),
                 (new EmuList(col2x + 16, EMU_BASE, col_width, 32, "Paintbrush:", 32, 12, function() {
                     Stuff.terrain.color.SetBrush(spr_terrain_default_brushes, self.GetSelection());
