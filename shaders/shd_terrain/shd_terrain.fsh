@@ -88,7 +88,7 @@ void main() {
         gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
     } else if (u_OptViewData == DATA_DEPTH) {
     } else if (u_OptViewData == DATA_BARYCENTRIC) {
-        
+        gl_FragColor = vec4(v_Barycentric, 1);
     } else {
         gl_FragColor = vec4(1);
     }
