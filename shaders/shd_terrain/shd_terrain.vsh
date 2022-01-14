@@ -5,8 +5,9 @@ varying float v_FragDistance;
 varying vec4 v_vWorldPosition;
 varying vec3 v_FragWorldPosition;
 varying vec3 v_Barycentric;
-varying vec3 v_TextureOff;
+varying vec3 v_Texcoord;
 
+uniform vec2 u_TerrainSize;
 uniform vec2 u_TextureTileSize;
 
 void main() {
@@ -26,12 +27,12 @@ void main() {
     // the triangle internal texture offset gets squeezed into the fractional part of the Y coordinate, also
 	//  - (U + tile size) coordinate: 0.25
 	//  - (V + tile size) coordinate: 0.125
-	v_TextureOff.x = floor(fract(in_Position.y * 2.0) * 2.0);
-	v_TextureOff.y = floor(fract(in_Position.y * 4.0) * 2.0);
-	v_TextureOff.xy /= u_TextureTileSize;
+	v_Texcoord.x = floor(fract(in_Position.y * 2.0) * 2.0);
+	v_Texcoord.y = floor(fract(in_Position.y * 4.0) * 2.0);
+	v_Texcoord.xy /= u_TextureTileSize;
     
     // triangle index:
     //  - 0.0: first triangle (RG)
     //  - 0.5: second triangle (BA)
-    v_TextureOff.z = floor(in_Position.y * 2.0);
+    v_Texcoord.z = floor(in_Position.y * 2.0);
 }

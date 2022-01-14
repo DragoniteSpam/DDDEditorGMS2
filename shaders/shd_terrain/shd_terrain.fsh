@@ -4,15 +4,7 @@ varying float v_FragDistance;
 varying vec4 v_vWorldPosition;
 varying vec3 v_FragWorldPosition;
 varying vec3 v_Barycentric;
-varying vec3 v_TextureOff;
-
-uniform vec2 u_TerrainSize;
-uniform vec2 u_Mouse;
-uniform float u_MouseRadius;
-
-const vec4 CURSOR_COLOR = vec4(0.6, 0., 0., 1.);
-
-uniform sampler2D u_TexColor;
+varying vec3 v_Texcoord;
 
 uniform vec3 u_LightAmbientColor;
 uniform vec3 u_LightDirection;
@@ -56,6 +48,14 @@ void WaterFog(inout vec4 baseColor) {
 }
 
 uniform sampler2D u_TexLookup;
+uniform sampler2D u_TexColor;
+
+uniform vec2 u_TerrainSize;
+
+uniform vec2 u_Mouse;
+uniform float u_MouseRadius;
+
+const vec4 CURSOR_COLOR = vec4(0.6, 0., 0., 1.);
 
 uniform float u_OptViewNormals;
 
@@ -65,9 +65,10 @@ void main() {
         normal = normalize(normal * sign(normal.z));
         gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
     } else {
-        vec4 textureSamplerUV = texture2D(u_TexLookup, (v_vWorldPosition.xy / u_TerrainSize) + v_TextureOff.xy);
-        vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg);
-        vec4 color = vec4(texture2D(u_TexColor, v_vWorldPosition.xy / u_TerrainSize).rgb, 1) * sampled;
+        vec2 worldTextureUV = v_vWorldPosition.xy / u_TerrainSize;
+        vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV);
+        vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord.xy);
+        vec4 color = texture2D(u_TexColor, worldTextureUV) * sampled;
         
         CommonLight(color);
         CommonFog(color);
