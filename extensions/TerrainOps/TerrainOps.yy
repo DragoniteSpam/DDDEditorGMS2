@@ -57,6 +57,12 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_apply_scale","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_flatten","kind":1,"help":"__terrainops_flatten(data, vertex, length, height)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__terrainops_flatten","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_to_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -65,6 +71,7 @@
         {"name":"__terrainops_build_settings","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_generate","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_apply_scale","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_flatten","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",

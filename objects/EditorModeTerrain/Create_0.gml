@@ -262,11 +262,8 @@ CreateJSON = function() {
 };
 
 #region terrain actions
-Flatten = function() {
-    buffer_fill(self.height_data, 0, buffer_f32, 0, buffer_get_size(self.height_data));
-    for (var i = 8, n = buffer_get_size(self.terrain_buffer_data); i < n; i += VERTEX_SIZE_TERRAIN) {
-        buffer_poke(self.terrain_buffer_data, i, buffer_f32, 0);
-    }
+Flatten = function(height = 0) {
+    terrainops_flatten(self.height_data, self.terrain_buffer_data, height);
     terrain_refresh_vertex_buffer(self);
 };
 
