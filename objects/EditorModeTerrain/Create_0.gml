@@ -228,7 +228,7 @@ color.SetBrush(spr_terrain_default_brushes, 7);
 color.SetShader(shd_terrain_paint);
 texture = new Phoenix(self.width, self.height, c_black);
 texture.SetBrush(spr_terrain_default_brushes, 7);
-texture.SetBlendEnable(false);
+texture.SetShader(shd_terrain_paint_texture);
 
 GetTextureColorCode = function() {
     var tx = floor(256 * Settings.terrain.tile_brush_x / sprite_get_width(self.texture_image));
