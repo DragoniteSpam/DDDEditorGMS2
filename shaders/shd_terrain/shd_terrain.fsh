@@ -68,7 +68,7 @@ void main() {
         vec2 worldTextureUV = v_vWorldPosition.xy / u_TerrainSize;
         vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV);
         vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord.xy);
-        vec4 color = texture2D(u_TexColor, worldTextureUV) * sampled;
+        vec4 color = vec4(texture2D(u_TexColor, worldTextureUV).rgb, 1) * sampled;
         
         CommonLight(color);
         CommonFog(color);
