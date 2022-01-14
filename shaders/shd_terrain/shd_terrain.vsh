@@ -2,20 +2,20 @@ attribute vec3 in_Position;
 attribute vec3 in_Normal;
 
 varying float v_FragDistance;
-varying vec4 v_vWorldPosition;
+varying vec4 v_WorldPosition;
 varying vec3 v_FragWorldPosition;
 varying vec3 v_Barycentric;
-varying vec3 v_Texcoord;
+varying vec4 v_Texcoord;
 
-uniform vec2 u_TerrainSize;
+uniform vec2 u_TerrainSizeV;
 uniform vec2 u_TextureTileSize;
 
 void main() {
-    v_vWorldPosition = vec4(floor(in_Position.xy), in_Position.z, 1);
-    v_FragWorldPosition = (gm_Matrices[MATRIX_WORLD] * v_vWorldPosition).xyz;
-    v_FragDistance = length((gm_Matrices[MATRIX_WORLD_VIEW] * v_vWorldPosition).xyz);
+    v_WorldPosition = vec4(floor(in_Position.xy), in_Position.z, 1);
+    v_FragWorldPosition = (gm_Matrices[MATRIX_WORLD] * v_WorldPosition).xyz;
+    v_FragDistance = length((gm_Matrices[MATRIX_WORLD_VIEW] * v_WorldPosition).xyz);
     
-    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * v_vWorldPosition;
+    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * v_WorldPosition;
     
     float f = fract(in_Position.x) * 8.0;
     v_Barycentric = vec3(
@@ -29,10 +29,10 @@ void main() {
 	//  - (V + tile size) coordinate: 0.125
 	v_Texcoord.xy = vec2(floor(fract(in_Position.y * 2.0) * 2.0), floor(fract(in_Position.y * 4.0) * 2.0)) / u_TextureTileSize;
 	// get rid of the one pixel seam at the edge of tiles
-	v_Texcoord.xy -= (1.0 / u_TerrainSize) * ceil(v_Texcoord.xy);
+	v_Texcoord.xy -= (1.0 / u_TerrainSizeV) * ceil(v_Texcoord.xy);
     
     // triangle index:
     //  - 0.0: first triangle (RG)
-    //  - 0.5: second triangle (BA)
-    v_Texcoord.z = floor(in_Position.y * 2.0);
+    //  - 0.5: second triangle (BA) - use the next cell over
+    v_Texcoord.zw = vec2(floor(fract(in_Position.y) * 2.0)) / u_TerrainSizeV;
 }

@@ -1,10 +1,10 @@
 #extension GL_OES_standard_derivatives : enable
 
 varying float v_FragDistance;
-varying vec4 v_vWorldPosition;
+varying vec4 v_WorldPosition;
 varying vec3 v_FragWorldPosition;
 varying vec3 v_Barycentric;
-varying vec3 v_Texcoord;
+varying vec4 v_Texcoord;
 
 uniform vec3 u_LightAmbientColor;
 uniform vec3 u_LightDirection;
@@ -42,7 +42,7 @@ uniform vec3 u_WaterColor;
 
 void WaterFog(inout vec4 baseColor) {
     float dist_to_camera = min(v_FragDistance, 1.0);
-    float dist_below = u_WaterLevels.y - v_vWorldPosition.z;
+    float dist_below = u_WaterLevels.y - v_WorldPosition.z;
     float f = clamp(dist_below * dist_to_camera * u_WaterLevels.z / (u_WaterLevels.y - u_WaterLevels.x), 0.0, 1.0);
     baseColor.rgb = mix(baseColor.rgb, u_WaterColor, f);
 }
@@ -50,12 +50,12 @@ void WaterFog(inout vec4 baseColor) {
 uniform sampler2D u_TexLookup;
 uniform sampler2D u_TexColor;
 
-uniform vec2 u_TerrainSize;
+uniform vec2 u_TerrainSizeF;
 
 uniform vec2 u_Mouse;
 uniform float u_MouseRadius;
 
-const vec4 CURSOR_COLOR = vec4(0.6, 0., 0., 1.);
+const vec4 CURSOR_COLOR = vec4(0.6, 0, 0, 1);
 
 uniform float u_OptViewNormals;
 
@@ -65,8 +65,8 @@ void main() {
         normal = normalize(normal * sign(normal.z));
         gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
     } else {
-        vec2 worldTextureUV = v_vWorldPosition.xy / u_TerrainSize;
-        vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV);
+        vec2 worldTextureUV = v_WorldPosition.xy / u_TerrainSizeF;
+        vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV + v_Texcoord.zw);
         vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord.xy);
         vec4 color = vec4(texture2D(u_TexColor, worldTextureUV).rgb, 1) * sampled;
         
@@ -74,7 +74,7 @@ void main() {
         CommonFog(color);
         WaterFog(color);
         
-        float dist = length(v_vWorldPosition.xy - u_Mouse);
+        float dist = length(v_WorldPosition.xy - u_Mouse);
         float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
         color = mix(color, CURSOR_COLOR, strength);
         

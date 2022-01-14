@@ -43,7 +43,9 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_MouseRadius"), Settings.terrain.radius);
     // texture stuff
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TextureTileSize"), sprite_get_width(Stuff.terrain.texture_image) / Settings.terrain.tile_brush_size, sprite_get_height(Stuff.terrain.texture_image) / Settings.terrain.tile_brush_size);
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TerrainSize"), Stuff.terrain.texture.width, Stuff.terrain.texture.height);
+    // because gamemaker doesnt like sharing uniforms between vertex and fragment shader apparently
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TerrainSizeV"), Stuff.terrain.width, Stuff.terrain.height);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TerrainSizeF"), Stuff.terrain.width, Stuff.terrain.height);
     gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain, "u_TexLookup"), false);
     texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexLookup"), surface_get_texture(Stuff.terrain.texture.surface));
     // other stuff
