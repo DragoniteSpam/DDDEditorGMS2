@@ -35,6 +35,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     
     static Update = function() {
         if (self.view_mat == undefined || self.proj_mat == undefined) return;
+        if (EmuOverlay.GetTop() || !ds_list_empty(Stuff.dialogs)) return;
         
         self.callback(screen_to_world(window_mouse_get_x(), window_get_height() - window_mouse_get_y(), self.view_mat, self.proj_mat, CW, CH));
         
