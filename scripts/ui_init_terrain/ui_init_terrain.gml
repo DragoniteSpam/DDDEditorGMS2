@@ -2,8 +2,8 @@ function ui_init_terrain(mode) {
     var hud_width = camera_get_view_width(view_get_camera(view_hud));
     var hud_height = window_get_height();
     var col1x = 32;
-    var col2x = 256;
-    var col_width = 224;
+    var col2x = 272;
+    var col_width = 216;
     
     var container = new EmuCore(0, 0, hud_width, hud_height);
     
@@ -17,45 +17,64 @@ function ui_init_terrain(mode) {
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Height:"))
                     .SetTextUpdate(function() { return "Height: " + string(Stuff.terrain.height); })
                     .SetID("LABEL_HEIGHT"),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", Settings.terrain.orthographic, function() {
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic view?", Settings.terrain.orthographic, function() {
                     Settings.terrain.orthographic = self.value;
                 }))
                     .SetTooltip("View the world through an overhead camera."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", Settings.terrain.view_water, function() {
-                    Settings.terrain.view_water = self.value;
+                (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Viewer Settings", function() {
+                    var dialog = new EmuDialog(640, 540, "Terrain viewer settings");
+                    dialog.active_shade = 0;
+                    dialog.x = 920;
+                    dialog.y = 120;
+                    
+                    var col1x = 32;
+                    var col2x = 336;
+                    var col_width = 288;
+                    
+                    dialog.AddContent([
+                        #region column 1
+                        new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]Viewer settings"),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", Settings.terrain.view_water, function() {
+                            Settings.terrain.view_water = self.value;
+                        }))
+                            .SetTooltip("Toggles the the water layer under the terrain."),
+                        new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, Settings.terrain.water_level, function() {
+                            Settings.terrain.water_level = self.value;
+                        }))
+                            .SetTooltip("If water is drawn, this will determine the water level."),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Settings.terrain.view_wireframe, function() {
+                            Settings.terrain.view_wireframe = self.value;
+                        }))
+                            .SetTooltip("Toggles the the wireframe grid on the terrain."),
+                        new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.wireframe_alpha, function() {
+                            Settings.terrain.wireframe_alpha = self.value;
+                        }))
+                            .SetTooltip("Fade out the wireframes a bit if you think they're took disracting but you still want them around."),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", Settings.terrain.view_axes, function() {
+                            Settings.terrain.view_axes = self.value;
+                        }))
+                            .SetTooltip("Toggles the the coordinate system axes."),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", Settings.terrain.view_cursor, function() {
+                            Settings.terrain.view_cursor = self.value;
+                        }))
+                            .SetTooltip("Toggles the the cursor on the terrain."),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw skybox?", Settings.terrain.view_skybox, function() {
+                            Settings.terrain.view_skybox = self.value;
+                        }))
+                            .SetTooltip("Toggles the the skybox. In the future I might add the ability to import your own."),
+                        #endregion
+                        #region column 2
+                        new EmuText(col2x, EMU_BASE, col_width, 32, ""),        // just here to take up space
+                        (new EmuCheckbox(col2x, EMU_AUTO, col_width, 32, "Draw normals?", Settings.terrain.view_normals, function() {
+                            Settings.terrain.view_normals = self.value;
+                        }))
+                            .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
+                        #endregion
+                    ]).AddDefaultCloseButton();
                 }))
-                    .SetTooltip("Toggles the the water layer under the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Settings.terrain.view_wireframe, function() {
-                    Settings.terrain.view_wireframe = self.value;
-                }))
-                    .SetTooltip("Toggles the the wireframe grid on the terrain."),
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.wireframe_alpha, function() {
-                    Settings.terrain.wireframe_alpha = self.value;
-                }))
-                    .SetTooltip("Fade out the wireframes a bit if you think they're took disracting but you still want them around."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", Settings.terrain.view_axes, function() {
-                    Settings.terrain.view_axes = self.value;
-                }))
-                    .SetTooltip("Toggles the the coordinate system axes."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", Settings.terrain.view_cursor, function() {
-                    Settings.terrain.view_cursor = self.value;
-                }))
-                    .SetTooltip("Toggles the the cursor on the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw skybox?", Settings.terrain.view_skybox, function() {
-                    Settings.terrain.view_skybox = self.value;
-                }))
-                    .SetTooltip("Toggles the the skybox. In the future I might add the ability to import your own."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw normals?", Settings.terrain.view_normals, function() {
-                    Settings.terrain.view_normals = self.value;
-                }))
-                    .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, Settings.terrain.water_level, function() {
-                    Settings.terrain.water_level = self.value;
-                }))
-                    .SetTooltip("If water is drawn, this will determine the water level."),
-                #endregion
+                    .SetTooltip("A few settings for how the terrain is drawn."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]Editor Settings"),
                 #region
                 (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Brush shape:", Settings.terrain.style, function() {
