@@ -54,4 +54,8 @@ function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
             self.z2 / scale,
         );
     };
+    
+    static toString = function() {
+        return "(" + string(self.x1) + ", " + string(self.y1) + ", " + string(self.z1) + ") to (" + string(self.x2) + ", " + string(self.y2) + ", " + string(self.z2) + ")";
+    };
 }
