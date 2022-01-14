@@ -59,6 +59,11 @@ function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
         return { x: abs(self.x2 - self.x1), y: abs(self.y2 - self.y1), z: abs(self.z2 - self.z1) };
     };
     
+    static GetContainedChunks = function(size) {
+        var dim = self.GetAbsDimensions();
+        return ceil(dim.x / size) * ceil(dim.y / size);
+    };
+    
     static toString = function() {
         return "(" + string(self.x1) + ", " + string(self.y1) + ", " + string(self.z1) + ") to (" + string(self.x2) + ", " + string(self.y2) + ", " + string(self.z2) + ")";
     };
