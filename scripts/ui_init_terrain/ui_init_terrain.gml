@@ -139,7 +139,7 @@ function ui_init_terrain(mode) {
                     }
                 }, null, null),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
-                    var color_code = Settings.terrain.GetTextureColorCode();
+                    var color_code = Stuff.terrain.GetTextureColorCode();
                     Settings.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                 }),
             ]).SetOnClick(function() {
