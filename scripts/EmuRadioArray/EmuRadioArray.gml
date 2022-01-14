@@ -100,7 +100,7 @@ function EmuRadioArray(x, y, w, h, text, value, callback) : EmuCallback(x, y, w,
         }
         
         GetInteractive = function() {
-            return enabled && interactive && root.interactive && root.isActiveDialog();
+            return enabled && interactive && root.interactive && root.isActiveDialog() && (!self.root.root || self.root.root.contents_interactive);
         }
     }
 }

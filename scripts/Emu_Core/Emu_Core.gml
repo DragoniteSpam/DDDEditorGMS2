@@ -15,6 +15,7 @@ function EmuCore(x, y, w, h) constructor {
     
     self.enabled = true;
     self.interactive = true;
+    self.contents_interactive = true;
     self.outline = true;             // not used in all element types
     self.tooltip = "";               // not used by all element types
     self.color = EMU_COLOR_DEFAULT;
@@ -263,7 +264,7 @@ function EmuCore(x, y, w, h) constructor {
     self.time_click_left_last = -10000;
     
     static GetInteractive = function() {
-        return self.enabled && self.interactive && self.isActiveDialog();
+        return self.enabled && self.interactive && self.isActiveDialog() && (!self.root || self.root.contents_interactive);
     }
     
     static GetTop = function() {

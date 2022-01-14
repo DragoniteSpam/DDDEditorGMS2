@@ -126,7 +126,7 @@ function EmuBitfieldOption(text, value, callback, eval) : EmuCallback(0, 0, 0, 0
     }
     
     GetInteractive = function() {
-        return enabled && interactive && root.interactive && root.isActiveDialog();
+        return enabled && interactive && root.interactive && root.isActiveDialog() && (!self.root.root || self.root.root.contents_interactive);
     }
 }
 

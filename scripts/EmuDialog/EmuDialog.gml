@@ -7,6 +7,8 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
     
     SetCallback(function() { Close(); });
     
+    self.contents_interactive = false;
+    
     var size = ds_list_size(EmuOverlay._contents);
     x = 64 * (size + 1);
     y = 64 * (size + 1);
@@ -130,6 +132,10 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
         
         if (kill) {
             callback();
+        }
+        
+        if (device_mouse_check_button_released(0, mb_left)) {
+            self.contents_interactive = true;
         }
     }
     
