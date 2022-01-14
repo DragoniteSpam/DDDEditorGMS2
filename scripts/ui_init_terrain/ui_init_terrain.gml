@@ -85,7 +85,10 @@ function ui_init_terrain(mode) {
             ]),
             (new EmuTab("Deform")).AddContent([
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
-                    Stuff.terrain.Flatten();
+                    emu_dialog_confirm(undefined, "Would you like to reset the terrain's height?", function() {
+                        Stuff.terrain.Flatten();
+                        self.root.Dispose();
+                    });
                 }),
                 (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Deformation mode:", Settings.terrain.submode, function() {
                     Settings.terrain.submode = self.value;
