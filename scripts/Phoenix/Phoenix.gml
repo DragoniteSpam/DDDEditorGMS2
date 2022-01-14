@@ -49,9 +49,9 @@ function Phoenix(width, height, def_color = c_white) constructor {
     };
     
     static LoadState = function() {
-        if (!sprite_exists(self.sprite)) return;
         if (surface_exists(self.surface)) surface_free(self.surface);
-        self.surface = sprite_to_surface(self.sprite, 0);
+        if (sprite_exists(self.sprite)) self.surface = sprite_to_surface(self.sprite, 0);
+        if (!surface_exists(self.surface)) self.Reset(self.width, self.height);
     };
     
     static Clear = function(color, alpha = 1) {
