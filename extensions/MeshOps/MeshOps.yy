@@ -129,6 +129,11 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__meshops_vertex_formatted","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_get_bounds","kind":1,"help":"__meshops_get_bounds(data, output, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"__meshops_get_bounds","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -155,6 +160,7 @@
         {"name":"meshops_set_normals_smooth","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_export_d3d","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_vertex_formatted","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_get_bounds","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
