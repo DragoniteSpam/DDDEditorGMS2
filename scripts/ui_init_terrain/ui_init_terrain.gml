@@ -67,9 +67,10 @@ function ui_init_terrain(mode) {
                         #endregion
                         #region column 2
                         new EmuText(col2x, EMU_BASE, col_width, 32, ""),        // just here to take up space
-                        (new EmuCheckbox(col2x, EMU_AUTO, col_width, 32, "Draw normals?", Settings.terrain.view_normals, function() {
-                            Settings.terrain.view_normals = self.value;
+                        (new EmuRadioArray(col2x, EMU_AUTO, 256, 32, "View data:", Settings.terrain.view_data, function() {
+                            Settings.terrain.view_data = self.value;
                         }))
+                            .AddOptions(["Diffuse", "Normal", "Depth", "Barycentric"])
                             .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
                         #endregion
                     ]).AddDefaultCloseButton();

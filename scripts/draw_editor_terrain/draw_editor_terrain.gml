@@ -52,7 +52,7 @@ function draw_editor_terrain() {
     gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain, "u_TexLookup"), false);
     texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexLookup"), surface_get_texture(Stuff.terrain.texture.surface));
     // other stuff
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewNormals"), Settings.terrain.view_normals);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewData"), Settings.terrain.view_data);
     
     vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
     

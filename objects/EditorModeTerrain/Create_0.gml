@@ -133,6 +133,10 @@ save = function() {
     // all of the other things now go directly to the terrain settings object
 };
 
+enum TerrainViewData {
+    DIFFUSE, NORMAL, DEPTH, BARYCENTRIC,
+}
+
 // general editing settings
 Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? 8;
 // import and export settings
@@ -156,7 +160,7 @@ Settings.terrain.wireframe_alpha = Settings.terrain[$ "wireframe_alpha"] ?? 0.5;
 Settings.terrain.view_skybox = Settings.terrain[$ "view_skybox"] ?? true;
 Settings.terrain.view_cursor = Settings.terrain[$ "view_cursor"] ?? true;
 Settings.terrain.view_axes = Settings.terrain[$ "view_axes"] ?? true;
-Settings.terrain.view_normals = Settings.terrain[$ "view_normals"] ?? false;
+Settings.terrain.view_data = Settings.terrain[$ "view_data"] ?? TerrainViewData.DIFFUSE;
 Settings.terrain.orthographic = Settings.terrain[$ "orthographic"] ?? false;
 Settings.terrain.view_scale = Settings.terrain[$ "view_scale"] ?? 4;
 Settings.terrain.light_enabled = Settings.terrain[$ "light_enabled"] ?? true;

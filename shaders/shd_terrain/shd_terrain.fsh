@@ -57,14 +57,15 @@ uniform float u_MouseRadius;
 
 const vec4 CURSOR_COLOR = vec4(0.6, 0, 0, 1);
 
-uniform float u_OptViewNormals;
+#define DATA_DIFFUSE                0.0
+#define DATA_NORMAL                 1.0
+#define DATA_DEPTH                  2.0
+#define DATA_BARYCENTRIC            3.0
+
+uniform float u_OptViewData;
 
 void main() {
-    if (u_OptViewNormals == 1.0) {
-        vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
-        normal = normalize(normal * sign(normal.z));
-        gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
-    } else {
+    if (u_OptViewData == DATA_DIFFUSE) {
         vec2 worldTextureUV = v_WorldPosition.xy / u_TerrainSizeF;
         vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV);
         vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord);
@@ -81,5 +82,14 @@ void main() {
         color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
         
         gl_FragColor = color;
+    } else if (u_OptViewData == DATA_NORMAL) {
+        vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
+        normal = normalize(normal * sign(normal.z));
+        gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
+    } else if (u_OptViewData == DATA_DEPTH) {
+    } else if (u_OptViewData == DATA_BARYCENTRIC) {
+        
+    } else {
+        gl_FragColor = vec4(1);
     }
 }
