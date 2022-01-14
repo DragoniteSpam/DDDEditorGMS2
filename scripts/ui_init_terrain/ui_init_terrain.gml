@@ -114,10 +114,12 @@ function ui_init_terrain(mode) {
             ]),
             (new EmuTab("Deform")).AddContent([
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
-                    emu_dialog_confirm(undefined, "Would you like to reset the terrain's height?", function() {
+                    var dialog = emu_dialog_confirm(undefined, "Would you like to reset the terrain's height?", function() {
                         Stuff.terrain.Flatten();
                         self.root.Dispose();
                     });
+                    dialog.x = 920;
+                    dialog.y = 120;
                 }),
                 (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Deformation mode:", Settings.terrain.submode, function() {
                     Settings.terrain.submode = self.value;
@@ -141,12 +143,14 @@ function ui_init_terrain(mode) {
                     .SetID("SCALE_INPUT")
                     .SetTooltip("Scale every vertex up or down."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Apply global scale", function() {
-                    emu_dialog_confirm(self, "Apply the global scale?", function() {
+                    var dialog = emu_dialog_confirm(self, "Apply the global scale?", function() {
                         Stuff.terrain.ApplyScale(Settings.terrain.global_scale);
                         Settings.terrain.global_scale = 1;
                         self.root.root.GetSibling("SCALE_INPUT").SetValue("1");
                         self.root.Dispose();
                     });
+                    dialog.x = 920;
+                    dialog.y = 120;
                 })),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.Z;
@@ -185,11 +189,13 @@ function ui_init_terrain(mode) {
                     }
                 }, null, null),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
-                    emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
+                    var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
                         var color_code = Stuff.terrain.GetTextureColorCode();
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         self.root.Dispose();
                     });
+                    dialog.x = 920;
+                    dialog.y = 120;
                 }),
                 (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Tile size:", Settings.terrain.tile_brush_size, string(Settings.terrain.tile_brush_size_min) + "..." + string(Settings.terrain.tile_brush_size_max), 3, E_InputTypes.INT, function() {
                     Settings.terrain.tile_brush_size = real(self.value);
@@ -212,10 +218,12 @@ function ui_init_terrain(mode) {
                 }))
                     .SetTooltip("I really hope you enjoy this color picker because it was probably my favorite UI element to work on."),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear color", function() {
-                    emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this color?", function() {
+                    var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this color?", function() {
                         Stuff.terrain.color.Clear(Settings.terrain.paint_color);
                         self.root.Dispose();
                     });
+                    dialog.x = 920;
+                    dialog.y = 120;
                 }),
                 (new EmuList(col2x + 16, EMU_BASE, col_width, 32, "Paintbrush:", 32, 12, function() {
                     Stuff.terrain.color.SetBrush(spr_terrain_default_brushes, self.GetSelection());

@@ -28,6 +28,9 @@ function dialog_create_export_heightmap() {
 
 function dialog_terrain_mutate() {
     var dialog = new EmuDialog(640, 560, "Mutate Terrain");
+    dialog.x = 920;
+    dialog.y = 120;
+    
     dialog.AddContent([
         new EmuText(32, 32, 360, 24, "Smoothness:"),
         (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 4, emu_null))
