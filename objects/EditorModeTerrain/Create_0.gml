@@ -365,7 +365,7 @@ BuildBuffer = function(density = 1) {
     
     // at some point it'd be nice to properly sample from the color sprite again
     var output = terrainops_build(
-        Settings.terrain.height_data, Settings.terrain.width, Settings.terrain.height,
+        self.height_data, self.width, self.height,
         VERTEX_SIZE, Settings.terrain.export_all, Settings.terrain.export_swap_zup,
         Settings.terrain.export_swap_uvs, Settings.terrain.export_centered,
         density, Settings.terrain.save_scale
