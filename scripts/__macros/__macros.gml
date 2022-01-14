@@ -78,7 +78,6 @@
 #macro EXPORT_EXTENSION_PROJECT             ".dragon"
 #macro FLAG_COUNT                           63
 #macro FLAG_MAX_VALUE                       0x7fffffffffffffff
-#macro IMPORT_GRID_SIZE                     32                                  // for setting the bounds of imported meshes, and possibly other things
 #macro INTERNAL_NAME_LENGTH                 32
 #macro VISIBLE_NAME_LENGTH                  32
 #macro MAP_AXIS_LIMIT                       0x800

@@ -39,13 +39,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
     var color = [0, 0, 0];
     var alpha = [0, 0, 0];
     
-    var minx = 0;
-    var miny = 0;
-    var minz = 0;
-    var maxx = 0;
-    var maxy = 0;
-    var maxz = 0;
-    
     #macro tri_type_list 4
     #macro tri_type_strip 5
     #macro tri_type_fan 6
@@ -79,13 +72,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
         // the texture pages are 4k, so this is four pixels squared
         xtex[vc] = round_ext(xtex[vc], 1 / 1024);
         ytex[vc] = round_ext(ytex[vc], 1 / 1024);
-        
-        minx = min(minx, xx[vc]);
-        miny = min(miny, yy[vc]);
-        minz = min(minz, zz[vc]);
-        maxx = max(maxx, xx[vc]);
-        maxy = max(maxy, yy[vc]);
-        maxz = max(maxz, zz[vc]);
         
         vc++;
         
@@ -155,13 +141,6 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
         if (!existing) array_push(Game.meshes, mesh);
         
         if (!existing) {
-            mesh.xmin = 0;
-            mesh.ymin = 0;
-            mesh.zmin = 0;
-            mesh.xmax = 1;
-            mesh.ymax = 1;
-            mesh.zmax = 1;
-            
             data_mesh_recalculate_bounds(mesh);
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
@@ -169,6 +148,8 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
         if (vertex_get_number(vbuffer) > 0) {
             mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, undefined, base_name, replace_index, fn);
             vertex_freeze(vbuffer);
+        } else {
+            vertex_delete_buffer(vbuffer);
         }
         
         return mesh;
@@ -205,13 +186,6 @@ function import_dae(filename, adjust_uvs = true, existing = undefined, replace_i
         if (!existing) array_push(Game.meshes, mesh);
     
         if (!existing) {
-            mesh.xmin = 0;
-            mesh.ymin = 0;
-            mesh.zmin = 0;
-            mesh.xmax = 1;
-            mesh.ymax = 1;
-            mesh.zmax = 1;
-        
             data_mesh_recalculate_bounds(mesh);
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
@@ -643,13 +617,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     var bzz = [0, 0, 0];
     var bnx, bny, bnz, bxtex, bytex, bcolor, balpha, bmtl;
     
-    var minx = 0;
-    var miny = 0;
-    var minz = 0;
-    var maxx = 0;
-    var maxy = 0;
-    var maxz = 0;
-    
     var max_alpha = 0;
     
     for (var i = 0; i < n; i++) {
@@ -681,13 +648,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         max_alpha = max(max_alpha, balpha);
         
         base_mtl ??= bmtl;
-        
-        minx = min(minx, v[0]);
-        miny = min(miny, v[1]);
-        minz = min(minz, v[2]);
-        maxx = max(maxx, v[0]);
-        maxy = max(maxy, v[1]);
-        maxz = max(maxz, v[2]);
         
         if (!vbuffers[$ bmtl]) {
             vbuffers[$ bmtl] = vertex_create_buffer();
@@ -728,13 +688,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         if (!existing) array_push(Game.meshes, mesh);
         
         if (!existing) {
-            mesh.xmin = round(minx / IMPORT_GRID_SIZE);
-            mesh.ymin = round(miny / IMPORT_GRID_SIZE);
-            mesh.zmin = round(minz / IMPORT_GRID_SIZE);
-            mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
-            mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
-            mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
-            
             data_mesh_recalculate_bounds(mesh);
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
