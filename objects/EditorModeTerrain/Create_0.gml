@@ -134,7 +134,7 @@ save = function() {
 };
 
 enum TerrainViewData {
-    DIFFUSE, NORMAL, DEPTH, BARYCENTRIC,
+    DIFFUSE, POSITION, NORMAL, DEPTH, BARYCENTRIC,
 }
 
 // general editing settings

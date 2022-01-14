@@ -70,7 +70,7 @@ function ui_init_terrain(mode) {
                         (new EmuRadioArray(col2x, EMU_AUTO, 256, 32, "View data:", Settings.terrain.view_data, function() {
                             Settings.terrain.view_data = self.value;
                         }))
-                            .AddOptions(["Diffuse", "Normal", "Depth", "Barycentric"])
+                            .AddOptions(["Diffuse", "Position", "Normal", "Depth", "Barycentric"])
                             .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
                         #endregion
                     ]).AddDefaultCloseButton();

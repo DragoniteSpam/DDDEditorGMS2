@@ -58,9 +58,10 @@ uniform float u_MouseRadius;
 const vec4 CURSOR_COLOR = vec4(0.6, 0, 0, 1);
 
 #define DATA_DIFFUSE                0.0
-#define DATA_NORMAL                 1.0
-#define DATA_DEPTH                  2.0
-#define DATA_BARYCENTRIC            3.0
+#define DATA_POSITION               1.0
+#define DATA_NORMAL                 2.0
+#define DATA_DEPTH                  3.0
+#define DATA_BARYCENTRIC            4.0
 
 uniform float u_OptViewData;
 
@@ -82,6 +83,8 @@ void main() {
         color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
         
         gl_FragColor = color;
+    } else if (u_OptViewData == DATA_POSITION) {
+        gl_FragColor = vec4(v_WorldPosition.xyz / vec3(u_TerrainSizeF, 256), 1);
     } else if (u_OptViewData == DATA_NORMAL) {
         vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
         normal = normalize(normal * sign(normal.z));
