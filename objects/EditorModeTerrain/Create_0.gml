@@ -323,6 +323,11 @@ DrawWater = function() {
 
 #region Export methods
 AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size = 0) {
+    // figure out the chunk bounds
+    var bounds = new BoundingBox(0, 0, 0, self.width, self.height, 0);
+    if (Settings.terrain.export_centered) bounds = bounds.Center();
+    
+    // generate the buffers
     var chunks = self.BuildBufferChunks(density, chunk_size);
     var mesh = new DataMesh(name);
     for (var i = 0, n = array_length(chunks); i < n; i++) {
