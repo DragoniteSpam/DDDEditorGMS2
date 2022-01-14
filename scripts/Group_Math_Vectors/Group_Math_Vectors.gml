@@ -55,6 +55,10 @@ function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
         );
     };
     
+    static GetAbsDimensions = function() {
+        return { x: abs(self.x2 - self.x1), y: abs(self.y2 - self.y1), z: abs(self.z2 - self.z1) };
+    };
+    
     static toString = function() {
         return "(" + string(self.x1) + ", " + string(self.y1) + ", " + string(self.z1) + ") to (" + string(self.x2) + ", " + string(self.y2) + ", " + string(self.z2) + ")";
     };
