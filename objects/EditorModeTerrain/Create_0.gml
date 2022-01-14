@@ -152,6 +152,7 @@ Settings.terrain.view_water_min_alpha = Settings.terrain[$ "view_water_min_alpha
 Settings.terrain.view_water_max_alpha = Settings.terrain[$ "view_water_max_alpha"] ?? 0.9;
 Settings.terrain.water_level = Settings.terrain[$ "water_level"] ?? -0.2;
 Settings.terrain.view_grid = Settings.terrain[$ "view_grid"] ?? true;
+Settings.terrain.view_skybox = Settings.terrain[$ "view_skybox"] ?? true;
 Settings.terrain.view_cursor = Settings.terrain[$ "view_cursor"] ?? true;
 Settings.terrain.view_axes = Settings.terrain[$ "view_axes"] ?? true;
 Settings.terrain.view_normals = Settings.terrain[$ "view_normals"] ?? false;

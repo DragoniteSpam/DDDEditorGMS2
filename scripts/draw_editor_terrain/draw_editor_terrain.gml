@@ -5,7 +5,9 @@ function draw_editor_terrain() {
     gpu_set_ztestenable(true);
     
     self.camera.SetProjection();
-    self.camera.DrawSkybox();
+    if (Settings.terrain.view_skybox) {
+        self.camera.DrawSkybox();
+    }
     
     if (Settings.terrain.orthographic) {
         self.camera.SetProjectionOrtho();

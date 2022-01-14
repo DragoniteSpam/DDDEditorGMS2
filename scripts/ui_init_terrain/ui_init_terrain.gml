@@ -37,6 +37,10 @@ function ui_init_terrain(mode) {
                     Settings.terrain.view_cursor = self.value;
                 }))
                     .SetTooltip("Toggles the the cursor on the terrain."),
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw skybox?", Settings.terrain.view_skybox, function() {
+                    Settings.terrain.view_skybox = self.value;
+                }))
+                    .SetTooltip("Toggles the the skybox. In the future I might add the ability to import your own."),
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw normals?", Settings.terrain.view_normals, function() {
                     Settings.terrain.view_normals = self.value;
                 }))
