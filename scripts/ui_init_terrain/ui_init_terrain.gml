@@ -110,7 +110,9 @@ function ui_init_terrain(mode) {
                 new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2, function() {
                     self.drawCheckerbox(0, 0, self.width, self.height);
                     draw_sprite(Stuff.terrain.texture_image, 0, 0, 0);
-                    for (var i = 16; i < self.width; i += 16) {
+                    
+                    var bs = Settings.terrain.tile_brush_size;
+                    for (var i = bs; i < self.width; i += bs) {
                         draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
                         draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
                     }
@@ -124,8 +126,9 @@ function ui_init_terrain(mode) {
                     
                     if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
                     
-                    var tx = 16 * (mx div 16);
-                    var ty = 16 * (my div 16);
+                    var bs = Settings.terrain.tile_brush_size;
+                    var tx = bs * (mx div bs);
+                    var ty = bs * (my div bs);
                     if (mouse_check_button(mb_left)) {
                         Settings.terrain.tile_brush_x = tx;
                         Settings.terrain.tile_brush_y = ty;
@@ -135,6 +138,11 @@ function ui_init_terrain(mode) {
                     var color_code = Stuff.terrain.GetTextureColorCode();
                     Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                 }),
+                (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Tile size:", Settings.terrain.tile_brush_size, "In pixels", 3, E_InputTypes.INT, function() {
+                    Settings.terrain.tile_brush_size = real(self.value);
+                }))
+                    .SetRealNumberBounds(1, 256)
+                    .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common."),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.TEXTURE;
             }),
