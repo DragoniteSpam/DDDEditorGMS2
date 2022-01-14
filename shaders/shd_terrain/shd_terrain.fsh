@@ -30,6 +30,7 @@ void CommonFog(inout vec4 baseColor) {
 
 uniform vec3 u_WireColor;
 uniform float u_WireThickness;
+uniform float u_WireAlpha;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
@@ -77,7 +78,7 @@ void main() {
         float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
         color = mix(color, CURSOR_COLOR, strength);
         
-        color.rgb = mix(color.rgb, u_WireColor, (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
+        color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
         
         gl_FragColor = color;
     }

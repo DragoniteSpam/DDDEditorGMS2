@@ -25,7 +25,8 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogEnd"), Settings.terrain.fog_end);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogColor"), (Settings.terrain.fog_color & 0x0000ff) / 0xff, ((Settings.terrain.fog_color & 0x00ff00) >> 8) / 0xff, ((Settings.terrain.fog_color & 0xff0000) >> 16) / 0xff);
     // wireframe uniforms
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireThickness"), Settings.terrain.view_grid ? 1 : 0);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireThickness"), Settings.terrain.view_wireframe ? 1 : 0);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireAlpha"), Settings.terrain.wireframe_alpha);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireColor"), 1, 1, 1);
     // water uniforms
     var water_level = 512 * power(Settings.terrain.water_level, 3) / Settings.terrain.view_scale;

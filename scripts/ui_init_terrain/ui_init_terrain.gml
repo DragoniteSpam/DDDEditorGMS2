@@ -25,10 +25,15 @@ function ui_init_terrain(mode) {
                     Settings.terrain.view_water = self.value;
                 }))
                     .SetTooltip("Toggles the the water layer under the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Settings.terrain.view_grid, function() {
-                    Settings.terrain.view_grid = self.value;
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Settings.terrain.view_wireframe, function() {
+                    Settings.terrain.view_wireframe = self.value;
                 }))
                     .SetTooltip("Toggles the the wireframe grid on the terrain."),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.wireframe_alpha, function() {
+                    Settings.terrain.wireframe_alpha = self.value;
+                }))
+                    .SetTooltip("Fade out the wireframes a bit if you think they're took disracting but you still want them around."),
                 (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", Settings.terrain.view_axes, function() {
                     Settings.terrain.view_axes = self.value;
                 }))
