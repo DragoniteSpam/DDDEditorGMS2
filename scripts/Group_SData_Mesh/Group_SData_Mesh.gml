@@ -113,24 +113,22 @@ function DataMesh(source) : SData(source) constructor {
         self.zmax = -infinity;
         
         for (var i = 0; i < array_length(self.submeshes); i++) {
-            var sub = self.submeshes[i];
-            buffer_seek(sub.buffer, buffer_seek_start, 0);
-            
-            while (buffer_tell(sub.buffer) < buffer_get_size(sub.buffer)) {
-                var xx = round(buffer_read(sub.buffer, buffer_f32) / TILE_WIDTH);
-                var yy = round(buffer_read(sub.buffer, buffer_f32) / TILE_HEIGHT);
-                var zz = round(buffer_read(sub.buffer, buffer_f32) / TILE_DEPTH);
-                buffer_seek(sub.buffer, buffer_seek_relative, VERTEX_SIZE - 12);
-                self.xmin = min(self.xmin, xx);
-                self.ymin = min(self.ymin, yy);
-                self.zmin = min(self.zmin, zz);
-                self.xmax = max(self.xmax, xx);
-                self.ymax = max(self.ymax, yy);
-                self.zmax = max(self.zmax, zz);
-            }
-            
-            buffer_seek(sub.buffer, buffer_seek_start, 0);
+            if (!self.submeshes[i].buffer) continue;
+            var sub_bounds = meshops_get_bounds(self.submeshes.buffer);
+            self.xmin = min(self.xmin, sub_bounds.x1);
+            self.ymin = min(self.ymin, sub_bounds.y1);
+            self.zmin = min(self.zmin, sub_bounds.y1);
+            self.xmax = max(self.xmax, sub_bounds.x2);
+            self.ymax = max(self.ymax, sub_bounds.y2);
+            self.zmax = max(self.zmax, sub_bounds.z2);
         }
+        
+        self.xmin = round(self.xmin / TILE_WIDTH);
+        self.ymin = round(self.ymin / TILE_HEIGHT);
+        self.zmin = round(self.zmin / TILE_DEPTH);
+        self.xmax = round(self.xmax / TILE_WIDTH);
+        self.ymax = round(self.ymax / TILE_HEIGHT);
+        self.zmax = round(self.zmax / TILE_DEPTH);
         
         data_mesh_recalculate_bounds(self);
     };
