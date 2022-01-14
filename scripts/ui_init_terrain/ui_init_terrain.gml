@@ -135,6 +135,8 @@ function ui_init_terrain(mode) {
                     var bs = Settings.terrain.tile_brush_size;
                     var tx = bs * (mx div bs);
                     var ty = bs * (my div bs);
+                    tx = clamp(tx, 0, sprite_get_width(Stuff.terrain.texture_image) - bs);
+                    ty = clamp(ty, 0, sprite_get_height(Stuff.terrain.texture_image) - bs);
                     if (mouse_check_button(mb_left)) {
                         Settings.terrain.tile_brush_x = tx;
                         Settings.terrain.tile_brush_y = ty;
