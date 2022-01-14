@@ -178,6 +178,8 @@ Settings.terrain.style = Settings.terrain[$ "style"] ?? TerrainStyles.CIRCLE;
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
 Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
+Settings.terrain.tile_brush_size_min = Settings.terrain[$ "tile_brush_size_min"] ?? 4;
+Settings.terrain.tile_brush_size_max = Settings.terrain[$ "tile_brush_size_max"] ?? 256;
 // paint defaults
 Settings.terrain.paint_strength_min = Settings.terrain[$ "paint_strength_min"] ?? 0.01;
 Settings.terrain.paint_strength_max = Settings.terrain[$ "paint_strength_max"] ?? 1;

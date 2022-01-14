@@ -138,10 +138,10 @@ function ui_init_terrain(mode) {
                     var color_code = Stuff.terrain.GetTextureColorCode();
                     Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                 }),
-                (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Tile size:", Settings.terrain.tile_brush_size, "In pixels", 3, E_InputTypes.INT, function() {
+                (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Tile size:", Settings.terrain.tile_brush_size, string(Settings.terrain.tile_brush_size_min) + "..." + string(Settings.terrain.tile_brush_size_max), 3, E_InputTypes.INT, function() {
                     Settings.terrain.tile_brush_size = real(self.value);
                 }))
-                    .SetRealNumberBounds(1, 256)
+                    .SetRealNumberBounds(Settings.terrain.tile_brush_size_min, Settings.terrain.tile_brush_size_max)
                     .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common."),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.TEXTURE;
