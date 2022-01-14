@@ -112,10 +112,13 @@ function ui_init_terrain(mode) {
                     draw_sprite(Stuff.terrain.texture_image, 0, 0, 0);
                     
                     var bs = Settings.terrain.tile_brush_size;
+                    draw_set_alpha(min(bs / 8, 1));
                     for (var i = bs; i < self.width; i += bs) {
                         draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
                         draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
                     }
+                    draw_set_alpha(1);
+                    
                     var tx = Settings.terrain.tile_brush_x;
                     var ty = Settings.terrain.tile_brush_y;
                     draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Settings.terrain.tile_brush_size, Settings.terrain.tile_brush_size);
