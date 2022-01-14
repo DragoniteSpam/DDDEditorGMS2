@@ -17,47 +17,47 @@ function ui_init_terrain(mode) {
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Height:"))
                     .SetTextUpdate(function() { return "Height: " + string(Stuff.terrain.height); })
                     .SetID("LABEL_HEIGHT"),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", mode.orthographic, function() {
-                    Stuff.terrain.orthographic = self.value;
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Orthographic?", Settings.terrain.orthographic, function() {
+                    Settings.terrain.orthographic = self.value;
                 }))
                     .SetTooltip("View the world through an overhead camera."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", mode.view_water, function() {
-                    Stuff.terrain.view_water = self.value;
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", Settings.terrain.view_water, function() {
+                    Settings.terrain.view_water = self.value;
                 }))
                     .SetTooltip("Toggles the the water layer under the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", mode.view_grid, function() {
-                    Stuff.terrain.view_grid = self.value;
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Settings.terrain.view_grid, function() {
+                    Settings.terrain.view_grid = self.value;
                 }))
                     .SetTooltip("Toggles the the wireframe grid on the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", mode.view_axes, function() {
-                    Stuff.terrain.view_axes = self.value;
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", Settings.terrain.view_axes, function() {
+                    Settings.terrain.view_axes = self.value;
                 }))
                     .SetTooltip("Toggles the the coordinate system axes."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", mode.view_axes, function() {
-                    Stuff.terrain.view_cursor = self.value;
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", Settings.terrain.view_axes, function() {
+                    Settings.terrain.view_cursor = self.value;
                 }))
                     .SetTooltip("Toggles the the cursor on the terrain."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw normals?", mode.view_axes, function() {
-                    Stuff.terrain.view_normals = self.value;
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw normals?", Settings.terrain.view_normals, function() {
+                    Settings.terrain.view_normals = self.value;
                 }))
                     .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, mode.water_level, function() {
-                    Stuff.terrain.water_level = self.value;
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, Settings.terrain.water_level, function() {
+                    Settings.terrain.water_level = self.value;
                 }))
                     .SetTooltip("If water is drawn, this will determine the water level."),
                 #endregion
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]Editor Settings"),
                 #region
-                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Brush shape:", mode.style, function() {
-                    Stuff.terrain.style = self.value;
+                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Brush shape:", Settings.terrain.style, function() {
+                    Settings.terrain.style = self.value;
                 }))
                     .AddOptions(["Block", "Circle"])
                     .SetTooltip("In case you want to use a different shape to edit terrain."),
-                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(mode.radius)))
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(Settings.terrain.radius)))
                     .SetID("BRUSH_RADIUS_LABEL"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.brush_min, mode.brush_max, true, mode.radius, function() {
-                    Stuff.terrain.radius = self.value;
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, mode.brush_min, mode.brush_max, true, Settings.terrain.radius, function() {
+                    Settings.terrain.radius = self.value;
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),

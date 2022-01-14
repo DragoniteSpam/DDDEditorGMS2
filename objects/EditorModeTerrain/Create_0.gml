@@ -57,7 +57,7 @@ self.mouse_interaction = function(mouse_vector) {
     
     if (mouse_vector[vec3.zz] < mouse_vector[5]) {
         var f = abs(mouse_vector[5] / mouse_vector[vec3.zz]);
-        self.cursor_position = new vec2((mouse_vector[3] + mouse_vector[vec3.xx] * f) / self.view_scale, (mouse_vector[4] + mouse_vector[vec3.yy] * f) / self.view_scale);
+        self.cursor_position = new vec2((mouse_vector[3] + mouse_vector[vec3.xx] * f) / Settings.terrain.view_scale, (mouse_vector[4] + mouse_vector[vec3.yy] * f) / Settings.terrain.view_scale);
         
         if (Controller.mouse_left) {
             switch (self.mode) {
@@ -109,7 +109,7 @@ update = function() {
     }
     
     if (mouse_within_view(view_3d)) {
-        if (self.orthographic) {
+        if (Settings.terrain.orthographic) {
             self.camera.UpdateOrtho();
         } else {
             self.camera.Update();
@@ -129,26 +129,6 @@ render = function() {
 save = function() {
     // viewer settings
     Settings.terrain.camera = self.camera.Save();
-    Settings.terrain.view_water = self.view_water;
-    Settings.terrain.view_water_min_alpha = self.view_water_min_alpha;
-    Settings.terrain.view_water_max_alpha = self.view_water_max_alpha;
-    Settings.terrain.water_level = self.water_level;
-    Settings.terrain.view_grid = self.view_grid;
-    Settings.terrain.view_cursor = self.view_cursor;
-    Settings.terrain.view_axes = self.view_axes;
-    Settings.terrain.view_normals = self.view_normals;
-    Settings.terrain.orthographic = self.orthographic;
-    // export settings
-    Settings.terrain.save_scale = self.save_scale;
-    Settings.terrain.export_all = self.export_all;
-    Settings.terrain.heightmap_scale = self.heightmap_scale;
-    Settings.terrain.export_swap_uvs = self.export_swap_uvs;
-    Settings.terrain.export_swap_zup = self.export_swap_zup;
-    Settings.terrain.export_centered = self.export_centered;
-    Settings.terrain.export_chunk_size = self.export_chunk_size;
-    Settings.terrain.export_smooth = self.export_smooth;
-    Settings.terrain.export_smooth_threshold = self.export_smooth_threshold;
-    Settings.terrain.output_vertex_format = self.output_vertex_format;
     // editing settings
     // height defaults
     Settings.terrain.rate = self.rate;
@@ -170,26 +150,34 @@ height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
 color_scale = 8;
 
-view_scale = 4;
-save_scale = setting_get("terrain", "save_scale", 1);
-export_all = setting_get("terrain", "export_all", false);
-view_water = setting_get("terrain", "view_water", true);
-view_water_min_alpha = setting_get("terrain", "view_water_min_alpha", 0.5);
-view_water_max_alpha = setting_get("terrain", "view_water_max_alpha", 0.9);
-water_level = setting_get("terrain", "water_level", -0.2);
-view_grid = setting_get("terrain", "view_grid", true);
-view_cursor = setting_get("terrain", "view_cursor", true);
-view_axes = setting_get("terrain", "view_axes", true);
-view_normals = setting_get("terrain", "view_normals", false);
-heightmap_scale = setting_get("terrain", "heightmap_scale", 10);
-export_swap_uvs = setting_get("terrain", "export_swap_uvs", false);
-export_swap_zup = setting_get("terrain", "export_swap_zup", false);
-export_centered = setting_get("terrain", "export_centered", false);
-export_chunk_size = setting_get("terrain", "export_chunk_size", 64);
-export_smooth = setting_get("terrain", "export_smooth", false);
-export_smooth_threshold = setting_get("terrain", "export_smooth_threshold", 60);
-orthographic = setting_get("terrain", "orthographic", false);
-output_vertex_format = setting_get("terrain", "output_vertex_format", DEFAULT_VERTEX_FORMAT);
+Settings.terrain.save_scale = Settings.terrain[$ "save_scale"] ?? 1;
+Settings.terrain.export_all = Settings.terrain[$ "export_all"] ?? false;
+Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? true;
+Settings.terrain.view_water_min_alpha = Settings.terrain[$ "view_water_min_alpha"] ?? 0.5;
+Settings.terrain.view_water_max_alpha = Settings.terrain[$ "view_water_max_alpha"] ?? 0.9;
+Settings.terrain.water_level = Settings.terrain[$ "water_level"] ?? -0.2;
+Settings.terrain.view_grid = Settings.terrain[$ "view_grid"] ?? true;
+Settings.terrain.view_cursor = Settings.terrain[$ "view_cursor"] ?? true;
+Settings.terrain.view_axes = Settings.terrain[$ "view_axes"] ?? true;
+Settings.terrain.view_normals = Settings.terrain[$ "view_normals"] ?? false;
+Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? 10;
+Settings.terrain.export_swap_uvs = Settings.terrain[$ "export_swap_uvs"] ?? false;
+Settings.terrain.export_swap_zup = Settings.terrain[$ "export_swap_zup"] ?? false;
+Settings.terrain.export_centered = Settings.terrain[$ "export_centered"] ?? false;
+Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? 64;
+Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? false;
+Settings.terrain.export_smooth_threshold = Settings.terrain[$ "export_smooth_threshold"] ?? 60;
+Settings.terrain.orthographic = Settings.terrain[$ "orthographic"] ?? false;
+Settings.terrain.output_vertex_format = Settings.terrain[$ "output_vertex_format"] ?? DEFAULT_VERTEX_FORMAT;
+
+Settings.terrain.view_scale = Settings.terrain[$ "view_scale"] ?? 4;
+Settings.terrain.light_enabled = Settings.terrain[$ "light_enabled"] ?? true;
+Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? c_black;
+
+Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? true;
+Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
+Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
+Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 
 cursor_position = undefined;
 // height defaults
@@ -314,17 +302,17 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, texture_streng
 };
 
 DrawWater = function() {
-    if (!self.view_water) return;
+    if (!Settings.terrain.view_water) return;
     
     shader_set(shd_terrain_water);
-    var water_level = 512 * power(self.water_level, 3);
+    var water_level = 512 * power(Settings.terrain.water_level, 3);
     gpu_set_cullmode(cull_noculling);
     gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain_water, "displacementMap"), true);
     gpu_set_texrepeat_ext(shader_get_sampler_index(shd_terrain_water, "displacementMap"), true);
     gpu_set_texfilter(true);
     texture_set_stage(shader_get_sampler_index(shd_terrain_water, "displacementMap"), sprite_get_texture(spr_terrain_water_disp, 0));
-    var mn = min(self.view_water_min_alpha, self.view_water_max_alpha);
-    var mx = max(self.view_water_min_alpha, self.view_water_max_alpha);
+    var mn = min(Settings.terrain.view_water_min_alpha, Settings.terrain.view_water_max_alpha);
+    var mx = max(Settings.terrain.view_water_min_alpha, Settings.terrain.view_water_max_alpha);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_WaterAlphaBounds"), mn, mx);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), frac(current_time / 20000));
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Displacement"), 0.0625);
@@ -378,13 +366,18 @@ BuildBuffer = function(density = 1) {
     var sh = sprite_get_height(color_sprite) / self.color_scale;
     
     // at some point it'd be nice to properly sample from the color sprite again
-    var output = terrainops_build(self.height_data, self.width, self.height, VERTEX_SIZE, self.export_all, self.export_swap_zup, self.export_swap_uvs, self.export_centered, density, self.save_scale);
+    var output = terrainops_build(
+        Settings.terrain.height_data, Settings.terrain.width, Settings.terrain.height,
+        VERTEX_SIZE, Settings.terrain.export_all, Settings.terrain.export_swap_zup,
+        Settings.terrain.export_swap_uvs, Settings.terrain.export_centered,
+        density, Settings.terrain.save_scale
+    );
     
     sprite_sample_remove_from_cache(color_sprite, 0);
     sprite_delete(color_sprite);
     
-    if (Stuff.terrain.export_smooth) {
-        meshops_set_normals_smooth(buffer_get_address(output), buffer_get_size(output), dcos(Stuff.terrain.export_smooth_threshold));
+    if (Settings.terrain.export_smooth) {
+        meshops_set_normals_smooth(buffer_get_address(output), buffer_get_size(output), dcos(Settings.terrain.export_smooth_threshold));
     } else {
         meshops_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
     }
@@ -399,14 +392,14 @@ ExportD3D = function(filename, density = 1, chunk_size = 0) {
 };
 
 ExportOBJ = function(filename, density = 1, chunk_size = 0) {
-    var mesh = self.AddToProject("Terrain", density, self.export_swap_zup, self.export_swap_uvs, chunk_size);
+    var mesh = self.AddToProject("Terrain", density, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, chunk_size);
     export_obj(filename, mesh, "DDD Terrain");
     mesh.Destroy();
 }
 
 ExportVbuff = function(filename, density = 1, chunk_size = 0) {
     var mesh = self.AddToProject("Terrain", density, false, false, chunk_size);
-    export_vb(filename, mesh, self.output_vertex_format);
+    export_vb(filename, mesh, Settings.terrain.output_vertex_format);
     mesh.Destroy();
 };
 
@@ -462,25 +455,6 @@ submode_equation = [
 ];
 
 style_radius_coefficient = [2, 1];
-
-lights = array_create(MAX_TERRAIN_LIGHTS);
-#macro MAX_TERRAIN_LIGHTS 16
-for (var i = 0; i < MAX_TERRAIN_LIGHTS; i++) {
-    lights[@ i] =new EditorTerrainLightData("Light" + string(i));
-}
-
-lights[0].type = LightTypes.DIRECTIONAL;
-lights[0].x = 1;
-lights[0].y = 1;
-lights[0].z = -1;
-
-terrain_light_enabled = setting_get("terrain", "light_enabled", true);
-terrain_light_ambient = setting_get("terrain", "light_ambient", c_black);
-
-terrain_fog_enabled = setting_get("terrain", "fog_enabled", true);
-terrain_fog_color = setting_get("terrain", "fog_color", c_white);
-terrain_fog_start = setting_get("terrain", "fog_start", 1000);
-terrain_fog_end = setting_get("terrain", "fog_end", 32000);
 
 ui = ui_init_terrain(id);
 mode_id = ModeIDs.TERRAIN;

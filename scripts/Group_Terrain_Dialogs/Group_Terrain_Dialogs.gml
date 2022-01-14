@@ -4,8 +4,8 @@ function dialog_create_export_heightmap() {
     
     var dg = new EmuDialog(dw, dh, "Heightmap Settings");
     dg.AddContent([
-        (new EmuInput(32, EMU_AUTO, 320, 32, "Heightmap scale:", string(Stuff.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() {
-            Stuff.terrain.heightmap_scale = string(self.value);
+        (new EmuInput(32, EMU_AUTO, 320, 32, "Heightmap scale:", string(Settings.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() {
+            Settings.terrain.heightmap_scale = string(self.value);
         }))
             .SetTooltip("The brightest point on the heightmap will correspond to this value. In most casesm a value of 10 or 16 will be sufficient.")
             .SetID("SCALE"),
@@ -123,7 +123,7 @@ function dialog_create_terrain_new() {
         }))
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
-        (new EmuInput(col1_x, EMU_AUTO, ew, eh, "Scale:", string(Stuff.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() { }))
+        (new EmuInput(col1_x, EMU_AUTO, ew, eh, "Scale:", string(Settings.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() { }))
             .SetTooltip("The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient). This is only useful when importing a heightmap.")
             .SetID("SCALE"),
         (new EmuText(col1_x, EMU_AUTO, ew, eh, "Smoothness: 6"))
@@ -272,32 +272,32 @@ function dialog_terrain_export() {
             self.GetSibling("REDUCTION").SetValue(4);
         }))
             .SetTooltip("Preset 4.0x LOD reduction."),
-        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Stuff.terrain.export_smooth, function() {
-            Stuff.terrain.export_smooth = self.value;
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Settings.terrain.export_smooth, function() {
+            Settings.terrain.export_smooth = self.value;
         }))
             .SetTooltip("Smooth the normals of the terrain before saving it. [c_red]Warning! This can be very slow on large terrains."),
-        (new EmuInput(32, EMU_AUTO, 256, 32, "Threshold:", string(Stuff.terrain.export_smooth_threshold), "0...90 degrees", 4, E_InputTypes.REAL, function() {
-            Stuff.terrain.export_smooth_threshold = real(self.value);
+        (new EmuInput(32, EMU_AUTO, 256, 32, "Threshold:", string(Settings.terrain.export_smooth_threshold), "0...90 degrees", 4, E_InputTypes.REAL, function() {
+            Settings.terrain.export_smooth_threshold = real(self.value);
         }))
             .SetTooltip("The angle tolerance of smoothed normals. A higher value means more smoothing. I recommend somethingn between 45 and 75."),
-        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Stuff.terrain.export_all, function() {
-            Stuff.terrain.export_all = self.value;
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Settings.terrain.export_all, function() {
+            Settings.terrain.export_all = self.value;
         }))
             .SetTooltip("You can choose to remove triangles where all three vertices are below z = 0."),
-        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Centered?", Stuff.terrain.export_centered, function() {
-            Stuff.terrain.export_centered = self.value;
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Centered?", Settings.terrain.export_centered, function() {
+            Settings.terrain.export_centered = self.value;
         }))
             .SetTooltip("Align the terrain around the center of the world origin instead of sticking it in the corner."),
         #endregion
         #region column 2
-        (new EmuInput(352, 64, 256, 32, "Export scale:", string(Stuff.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
-            Stuff.terrain.save_scale = real(self.value);
+        (new EmuInput(352, 64, 256, 32, "Export scale:", string(Settings.terrain.save_scale), "0.01...100", 4, E_InputTypes.REAL, function() {
+            Settings.terrain.save_scale = real(self.value);
         })),
-        (new EmuText(352, EMU_AUTO, 256, 32, "Chunk size: " + ((Stuff.terrain.export_chunk_size > 0) ? string(Stuff.terrain.export_chunk_size) : "(disabled)")))
+        (new EmuText(352, EMU_AUTO, 256, 32, "Chunk size: " + ((Settings.terrain.export_chunk_size > 0) ? string(Settings.terrain.export_chunk_size) : "(disabled)")))
             .SetID("LABEL_CHUNKS"),
-        (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, Stuff.terrain.export_chunk_size, function() {
+        (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, Settings.terrain.export_chunk_size, function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: " + ((self.value > 0) ? string(self.value) : "(disabled)");
-            Stuff.terrain.export_chunk_size = self.value;
+            Settings.terrain.export_chunk_size = self.value;
         }))
             .SetValueRange(0, 256)
             .SetIntegersOnly(true)
@@ -305,25 +305,25 @@ function dialog_terrain_export() {
         (new EmuButton(352 + 0 * ew / 4, EMU_AUTO, ew / 4, 32, "N/A", function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: (disabled)";
             self.GetSibling("CHUNKS").SetValue(0);
-            Stuff.terrain.export_chunk_size = 0;
+            Settings.terrain.export_chunk_size = 0;
         }))
             .SetTooltip("Disable chunking"),
         (new EmuButton(352 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "32", function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 32";
             self.GetSibling("CHUNKS").SetValue(32);
-            Stuff.terrain.export_chunk_size = 32;
+            Settings.terrain.export_chunk_size = 32;
         }))
             .SetTooltip("Preset chunk size of 32"),
         (new EmuButton(352 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "64", function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 64";
             self.GetSibling("CHUNKS").SetValue(64);
-            Stuff.terrain.export_chunk_size = 64;
+            Settings.terrain.export_chunk_size = 64;
         }))
             .SetTooltip("Preset chunk size of 64"),
         (new EmuButton(352 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "128", function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 128";
             self.GetSibling("CHUNKS").SetValue(128);
-            Stuff.terrain.export_chunk_size = 128;
+            Settings.terrain.export_chunk_size = 128;
         }))
             .SetTooltip("Preset chunk size of 128"),
         #endregion
@@ -353,15 +353,15 @@ function dialog_terrain_export() {
         }))
             .SetInteractive(!TERRAIN_MODE),
         new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
-        (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Use Y-up?", Stuff.terrain.export_swap_zup, function() {
-            Stuff.terrain.export_swap_zup = self.value;
+        (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Use Y-up?", Settings.terrain.export_swap_zup, function() {
+            Settings.terrain.export_swap_zup = self.value;
         })),
-        (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Stuff.terrain.export_swap_uvs, function() {
-            Stuff.terrain.export_swap_uvs = self.value;
+        (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Settings.terrain.export_swap_uvs, function() {
+            Settings.terrain.export_swap_uvs = self.value;
         })),
         new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
         (new EmuButton(672, EMU_AUTO, 256, 32, "Vertex format", function() {
-            emu_dialog_vertex_format(Stuff.terrain.output_vertex_format, function(value) { Stuff.terrain.output_vertex_format = value; });
+            emu_dialog_vertex_format(Settings.terrain.output_vertex_format, function(value) { Settings.terrain.output_vertex_format = value; });
         })),
         #endregion
     ]).AddDefaultConfirmCancelButtons("Save", function() {
