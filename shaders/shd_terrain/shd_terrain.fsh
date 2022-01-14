@@ -65,7 +65,7 @@ void main() {
         normal = normalize(normal * sign(normal.z));
         gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
     } else {
-        vec4 textureSamplerUV = texture2D(u_TexLookup, v_vWorldPosition.xy / u_TerrainSize);
+        vec4 textureSamplerUV = texture2D(u_TexLookup, (v_vWorldPosition.xy / u_TerrainSize) + v_TextureOff.xy);
         vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg);
         vec4 color = vec4(texture2D(u_TexColor, v_vWorldPosition.xy / u_TerrainSize).rgb, 1) * sampled;
         

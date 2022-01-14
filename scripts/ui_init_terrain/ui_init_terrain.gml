@@ -141,8 +141,8 @@ function ui_init_terrain(mode) {
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
                     var tx = min(Stuff.terrain.tile_brush_x, Stuff.terrain.tile_brush_x + Stuff.terrain.tile_brush_w);
                     var ty = min(Stuff.terrain.tile_brush_y, Stuff.terrain.tile_brush_y + Stuff.terrain.tile_brush_h);
-                    tx = floor(255 * tx / sprite_get_width(Stuff.terrain.texture_image));
-                    ty = floor(255 * ty / sprite_get_height(Stuff.terrain.texture_image));
+                    tx = floor(255 * tx / sprite_get_width(Stuff.terrain.texture_image) + 1);
+                    ty = floor(255 * ty / sprite_get_height(Stuff.terrain.texture_image) + 1);
                     Stuff.terrain.texture.Clear(tx | (ty << 8) | (tx << 16), ty / 255);
                 }),
             ]).SetOnClick(function() {
