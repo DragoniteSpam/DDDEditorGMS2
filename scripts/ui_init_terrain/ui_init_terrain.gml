@@ -33,7 +33,7 @@ function ui_init_terrain(mode) {
                     Settings.terrain.view_axes = self.value;
                 }))
                     .SetTooltip("Toggles the the coordinate system axes."),
-                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", Settings.terrain.view_axes, function() {
+                (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", Settings.terrain.view_cursor, function() {
                     Settings.terrain.view_cursor = self.value;
                 }))
                     .SetTooltip("Toggles the the cursor on the terrain."),
