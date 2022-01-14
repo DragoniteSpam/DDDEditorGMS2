@@ -90,6 +90,8 @@ void main() {
         normal = normalize(normal * sign(normal.z));
         gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
     } else if (u_OptViewData == DATA_DEPTH) {
+        float fd = v_FragDistance / 1000.0;
+        gl_FragColor = vec4(fd, fd, fd, 1);
     } else if (u_OptViewData == DATA_BARYCENTRIC) {
         gl_FragColor = vec4(v_Barycentric, 1);
     } else {
