@@ -113,7 +113,7 @@ function ui_init_terrain(mode) {
                     .SetTooltip("Scale every vertex up or down."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Apply global scale", function() {
                     emu_dialog_confirm(self, "Apply the global scale?", function() {
-                        // logic here
+                        Stuff.terrain.ApplyScale(Settings.terrain.global_scale);
                         Settings.terrain.global_scale = 1;
                         self.root.root.GetSibling("SCALE_INPUT").SetValue("1");
                         self.root.Dispose();

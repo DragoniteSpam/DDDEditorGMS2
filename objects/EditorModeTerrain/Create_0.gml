@@ -270,6 +270,11 @@ Flatten = function() {
     terrain_refresh_vertex_buffer(self);
 };
 
+ApplyScale = function(scale = Settings.terrain.global_scale) {
+    terrainops_apply_scale(self.height_data, self.terrain_buffer_data, scale);
+    terrain_refresh_vertex_buffer(self);
+};
+
 Mutate = function(mutation_sprite_index, octaves, noise_strength, texture_strength) {
     if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.mutation_sprites)) {
         mutation_sprite_index = 0;
