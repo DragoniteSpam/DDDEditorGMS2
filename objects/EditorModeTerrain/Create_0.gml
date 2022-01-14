@@ -44,10 +44,8 @@ EditModeZ = function(position, dir) {
 }
 
 EditModeTexture = function(position) {
-    var xtex = self.tile_brush_x;
-    var ytex = self.tile_brush_y;
-    
-    //self.texture.Paint(position.x * self.color_scale, position.y * self.color_scale, self.radius * self.color_scale, self.paint_color, self.paint_strength);
+    var color_code = self.GetTextureColorCode();
+    self.texture.Paint(position.x, position.y, self.radius, color_code & 0x00ffffff, (color_code >> 24) / 0xff);
 }
 
 EditModeColor = function(position) {
