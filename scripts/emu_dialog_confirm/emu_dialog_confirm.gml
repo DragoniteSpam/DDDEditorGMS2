@@ -5,6 +5,7 @@ function emu_dialog_confirm(root, message, action_confirm, caption_message = "Im
     var b_height = 32;
     
     var dialog = new EmuDialog(dw, dh, caption_message);
+    dialog.root = root;
     
     dialog.AddContent([
         (new EmuText(32, EMU_AUTO, dw - 64, dh - 64 - b_height, message))

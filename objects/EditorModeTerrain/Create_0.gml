@@ -174,6 +174,7 @@ Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = Settings.terrain[$ "mode"] ?? TerrainModes.Z;
 Settings.terrain.submode = Settings.terrain[$ "submode"] ?? TerrainSubmodes.MOUND;
 Settings.terrain.style = Settings.terrain[$ "style"] ?? TerrainStyles.CIRCLE;
+Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
 // texture settings
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;

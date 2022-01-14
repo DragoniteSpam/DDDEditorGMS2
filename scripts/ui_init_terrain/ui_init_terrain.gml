@@ -105,7 +105,20 @@ function ui_init_terrain(mode) {
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Mutate", function() {
                     dialog_terrain_mutate();
                 }))
-                    .SetID("Add or subtract a random amount to the terrain. You can select a sprite to use as a mutation template, sort of like a heightmap."),
+                    .SetTooltip("Add or subtract a random amount to the terrain. You can select a sprite to use as a mutation template, sort of like a heightmap."),
+                (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Scale:", "1", "Global scale", 4, E_InputTypes.REAL, function() {
+                    Settings.terrain.global_scale = real(self.value);
+                }))
+                    .SetID("SCALE_INPUT")
+                    .SetTooltip("Scale every vertex up or down."),
+                (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Apply global scale", function() {
+                    emu_dialog_confirm(self, "Apply the global scale?", function() {
+                        // logic here
+                        Settings.terrain.global_scale = 1;
+                        self.root.root.GetSibling("SCALE_INPUT").SetValue("1");
+                        self.root.Dispose();
+                    });
+                })),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.Z;
             }),
