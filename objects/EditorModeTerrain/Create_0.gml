@@ -12,12 +12,13 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
+    var r = Settings.terrain.radius;
     var t = 0;
-    var coeff = self.radius * self.style_radius_coefficient[self.style];
+    var coeff = r * self.style_radius_coefficient[Settings.terrain.style];
     var list_range = ds_list_create();
     
-    for (var i = max(0, position.x - self.radius + 1); i < min(self.width, position.x + self.radius + 1); i++) {
-        for (var j = max(0, position.y - self.radius + 1); j < min(self.height, position.y + self.radius + 1); j++) {
+    for (var i = max(0, position.x - r + 1); i < min(self.width, position.x + r + 1); i++) {
+        for (var j = max(0, position.y - r + 1); j < min(self.height, position.y + r + 1); j++) {
             var d1 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 0.5);
             var d2 = point_distance(position.x + 0.5, position.y + 0.5, i + 1.5, j + 0.5);
             var d3 = point_distance(position.x + 0.5, position.y + 0.5, i + 0.5, j + 1.5);
@@ -33,7 +34,7 @@ EditModeZ = function(position, dir) {
     
     for (var i = 0; i < ds_list_size(list_range); i++) {
         var coordinates = list_range[| i];
-        self.submode_equation[self.submode](coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
+        self.submode_equation[Settings.terrain.submode](coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
     }
     
     if (!ds_list_empty(list_range)) {
@@ -45,11 +46,12 @@ EditModeZ = function(position, dir) {
 
 EditModeTexture = function(position) {
     var color_code = self.GetTextureColorCode();
-    self.texture.Paint(position.x, position.y, self.radius, color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+    self.texture.Paint(position.x, position.y, Settings.terrain.radius, color_code & 0x00ffffff, (color_code >> 24) / 0xff);
 }
 
 EditModeColor = function(position) {
-    self.color.Paint(position.x * self.color_scale, position.y * self.color_scale, self.radius * self.color_scale, self.paint_color, self.paint_strength);
+    var cs = Settings.terrain.color_scale;
+    self.color.Paint(position.x * cs, position.y * cs, Settings.terrain.radius * cs, Settings.terrain.paint_color, Settings.terrain.paint_strength);
 }
 
 self.mouse_interaction = function(mouse_vector) {
@@ -60,7 +62,7 @@ self.mouse_interaction = function(mouse_vector) {
         self.cursor_position = new vec2((mouse_vector[3] + mouse_vector[vec3.xx] * f) / Settings.terrain.view_scale, (mouse_vector[4] + mouse_vector[vec3.yy] * f) / Settings.terrain.view_scale);
         
         if (Controller.mouse_left) {
-            switch (self.mode) {
+            switch (Settings.terrain.mode) {
                 case TerrainModes.Z: self.EditModeZ(self.cursor_position, 1); break;
                 case TerrainModes.TEXTURE: self.EditModeTexture(self.cursor_position); break;
                 case TerrainModes.COLOR: self.EditModeColor(self.cursor_position); break;
@@ -68,7 +70,7 @@ self.mouse_interaction = function(mouse_vector) {
         }
         
         if (Controller.mouse_right) {
-            switch (self.mode) {
+            switch (Settings.terrain.mode) {
                 case TerrainModes.Z: self.EditModeZ(self.cursor_position, -1); break;
                 case TerrainModes.TEXTURE: self.EditModeTexture(self.cursor_position); break;
                 case TerrainModes.COLOR: self.EditModeColor(self.cursor_position); break;
@@ -76,7 +78,7 @@ self.mouse_interaction = function(mouse_vector) {
         }
         
         if (Controller.release_right) {
-            switch (self.mode) {
+            switch (Settings.terrain.mode) {
                 case TerrainModes.Z: break;
                 case TerrainModes.TEXTURE: break;
                 case TerrainModes.COLOR: self.color.Finish(); break;
@@ -84,7 +86,7 @@ self.mouse_interaction = function(mouse_vector) {
         }
         
         if (Controller.release_left) {
-            switch (self.mode) {
+            switch (Settings.terrain.mode) {
                 case TerrainModes.Z: break;
                 case TerrainModes.TEXTURE: break;
                 case TerrainModes.COLOR: self.color.Finish(); break;
@@ -127,31 +129,24 @@ render = function() {
 };
 
 save = function() {
-    // viewer settings
     Settings.terrain.camera = self.camera.Save();
-    // editing settings
-    // height defaults
-    Settings.terrain.rate = self.rate;
-    Settings.terrain.radius = self.radius;
-    Settings.terrain.mode = self.mode;
-    Settings.terrain.submode = self.submode;
-    Settings.terrain.style = self.style;
-    Settings.terrain.tile_brush_x = self.tile_brush_x;
-    Settings.terrain.tile_brush_y = self.tile_brush_y;
-    Settings.terrain.paint_color = self.paint_color;
-    Settings.terrain.paint_strength = self.paint_strength;
+    // all of the other things now go directly to the terrain settings object
 };
 
-texture_name = DEFAULT_TILESET;
-texture_image = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
-
-// general settings
-height = DEFAULT_TERRAIN_HEIGHT;
-width = DEFAULT_TERRAIN_WIDTH;
-color_scale = 8;
-
+// general editing settings
+Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? 8;
+// import and export settings
+Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? 10;
 Settings.terrain.save_scale = Settings.terrain[$ "save_scale"] ?? 1;
 Settings.terrain.export_all = Settings.terrain[$ "export_all"] ?? false;
+Settings.terrain.export_swap_uvs = Settings.terrain[$ "export_swap_uvs"] ?? false;
+Settings.terrain.export_swap_zup = Settings.terrain[$ "export_swap_zup"] ?? false;
+Settings.terrain.export_centered = Settings.terrain[$ "export_centered"] ?? false;
+Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? 64;
+Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? false;
+Settings.terrain.export_smooth_threshold = Settings.terrain[$ "export_smooth_threshold"] ?? 60;
+Settings.terrain.output_vertex_format = Settings.terrain[$ "output_vertex_format"] ?? DEFAULT_VERTEX_FORMAT;
+// viewer settings
 Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? true;
 Settings.terrain.view_water_min_alpha = Settings.terrain[$ "view_water_min_alpha"] ?? 0.5;
 Settings.terrain.view_water_max_alpha = Settings.terrain[$ "view_water_max_alpha"] ?? 0.9;
@@ -160,48 +155,45 @@ Settings.terrain.view_grid = Settings.terrain[$ "view_grid"] ?? true;
 Settings.terrain.view_cursor = Settings.terrain[$ "view_cursor"] ?? true;
 Settings.terrain.view_axes = Settings.terrain[$ "view_axes"] ?? true;
 Settings.terrain.view_normals = Settings.terrain[$ "view_normals"] ?? false;
-Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? 10;
-Settings.terrain.export_swap_uvs = Settings.terrain[$ "export_swap_uvs"] ?? false;
-Settings.terrain.export_swap_zup = Settings.terrain[$ "export_swap_zup"] ?? false;
-Settings.terrain.export_centered = Settings.terrain[$ "export_centered"] ?? false;
-Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? 64;
-Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? false;
-Settings.terrain.export_smooth_threshold = Settings.terrain[$ "export_smooth_threshold"] ?? 60;
 Settings.terrain.orthographic = Settings.terrain[$ "orthographic"] ?? false;
-Settings.terrain.output_vertex_format = Settings.terrain[$ "output_vertex_format"] ?? DEFAULT_VERTEX_FORMAT;
-
 Settings.terrain.view_scale = Settings.terrain[$ "view_scale"] ?? 4;
 Settings.terrain.light_enabled = Settings.terrain[$ "light_enabled"] ?? true;
 Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? c_black;
-
 Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? true;
 Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
 Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
+// height defaults
+Settings.terrain.brush_min = Settings.terrain[$ "brush_min"] ?? 1.5;
+Settings.terrain.brush_max = Settings.terrain[$ "brush_max"] ?? 20;
+Settings.terrain.rate_min = Settings.terrain[$ "rate_min"] ?? 0.02;
+Settings.terrain.rate_max = Settings.terrain[$ "rate_max"] ?? 1;
+// height settings
+Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.125;
+Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
+Settings.terrain.mode = Settings.terrain[$ "mode"] ?? TerrainModes.Z;
+Settings.terrain.submode = Settings.terrain[$ "submode"] ?? TerrainSubmodes.MOUND;
+Settings.terrain.style = Settings.terrain[$ "style"] ?? TerrainStyles.CIRCLE;
+// texture settings
+Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
+Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
+Settings.terrain.tile_brush_w = Settings.terrain[$ "tile_brush_w"] ?? 16;
+Settings.terrain.tile_brush_h = Settings.terrain[$ "tile_brush_h"] ?? 16;
+// paint defaults
+Settings.terrain.paint_strength_min = Settings.terrain[$ "paint_strength_min"] ?? 0.01;
+Settings.terrain.paint_strength_max = Settings.terrain[$ "paint_strength_max"] ?? 1;
+// paint settings
+Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
+Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
+
+texture_name = DEFAULT_TILESET;
+texture_image = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
+
+// general settings
+height = DEFAULT_TERRAIN_HEIGHT;
+width = DEFAULT_TERRAIN_WIDTH;
 
 cursor_position = undefined;
-// height defaults
-brush_min = 1.5;
-brush_max = 20;
-rate_min = 0.02;
-rate_max = 1;
-// height settings
-rate = setting_get("terrain", "rate", 0.125);
-radius = setting_get("terrain", "radius", 4);
-mode = setting_get("terrain", "mode", TerrainModes.Z);
-submode = setting_get("terrain", "submode", TerrainSubmodes.MOUND);
-style = setting_get("terrain", "style", TerrainStyles.CIRCLE);
-// texture settings
-tile_brush_x = setting_get("terrain", "tile_brush_x", 0);
-tile_brush_y = setting_get("terrain", "tile_brush_y", 0);
-tile_brush_w = setting_get("terrain", "tile_brush_w", 16);
-tile_brush_h = setting_get("terrain", "tile_brush_h", 16);
-// paint defaults
-paint_strength_min = 0.01;
-paint_strength_max = 1;
-// paint settings
-paint_color = setting_get("terrain", "paint_color", 0xffffffff);
-paint_strength = setting_get("terrain", "paint_strength", 0.05);
 
 // remember to add these to the list in dialog_terrain_mutate()
 mutation_sprites = [
@@ -230,16 +222,16 @@ self.terrain_buffer_data = terrainops_generate(self.height_data, self.width, sel
 self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
 vertex_freeze(self.terrain_buffer);
 
-color = new Phoenix(Stuff.terrain.width * Stuff.terrain.color_scale, Stuff.terrain.height * Stuff.terrain.color_scale);
+color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale);
 color.SetBrush(spr_terrain_default_brushes, 7);
 color.SetShader(shd_terrain_paint);
-texture = new Phoenix(Stuff.terrain.width, Stuff.terrain.height, c_black);
+texture = new Phoenix(self.width, self.height, c_black);
 texture.SetBrush(spr_terrain_default_brushes, 7);
 texture.SetBlendEnable(false);
 
 GetTextureColorCode = function() {
-    var tx = min(self.tile_brush_x, self.tile_brush_x + self.tile_brush_w);
-    var ty = min(self.tile_brush_y, self.tile_brush_y + self.tile_brush_h);
+    var tx = min(Settings.terrain.tile_brush_x, Settings.terrain.tile_brush_x + Settings.terrain.tile_brush_w);
+    var ty = min(Settings.terrain.tile_brush_y, Settings.terrain.tile_brush_y + Settings.terrain.tile_brush_h);
     tx = floor(255 * tx / sprite_get_width(self.texture_image));
     ty = floor(255 * ty / sprite_get_height(self.texture_image));
     /// @todo let's figure out what we're going to do with the second triangle
@@ -362,8 +354,8 @@ BuildBuffer = function(density = 1) {
     
     var color_sprite = self.color.GetSprite();
     
-    var sw = sprite_get_width(color_sprite) / self.color_scale;
-    var sh = sprite_get_height(color_sprite) / self.color_scale;
+    var sw = sprite_get_width(color_sprite) / Settings.terrain.color_scale;
+    var sh = sprite_get_height(color_sprite) / Settings.terrain.color_scale;
     
     // at some point it'd be nice to properly sample from the color sprite again
     var output = terrainops_build(
@@ -441,10 +433,10 @@ enum TerrainStyles {
 
 submode_equation = [
     function(x, y, dir, avg, dist) {
-        terrain_add_z(self, x, y, dir * self.rate * dcos(max(1, dist)));
+        terrain_add_z(self, x, y, dir * Settings.terrain.rate * dcos(max(1, dist)));
     },
     function(x, y, dir, avg, dist) {
-        terrain_set_z(self, x, y, lerp(terrain_get_z(self, x, y), avg, self.rate / 20));
+        terrain_set_z(self, x, y, lerp(terrain_get_z(self, x, y), avg, Settings.terrain.rate / 20));
     },
     function(x, y, dir, avg, dist) {
         terrain_set_z(self, x, y, avg);
