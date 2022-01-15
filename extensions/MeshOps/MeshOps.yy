@@ -134,6 +134,19 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"__meshops_get_bounds","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_chunk_settings","kind":1,"help":"__meshops_chunk_settings","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__meshops_chunk_settings","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_chunk_analyze","kind":1,"help":"__meshops_chunk_analyze(data, meta, data_length, meta_length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__meshops_chunk_analyze","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -161,6 +174,8 @@
         {"name":"__meshops_export_d3d","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_vertex_formatted","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_get_bounds","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_chunk_settings","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_chunk_analyze","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
