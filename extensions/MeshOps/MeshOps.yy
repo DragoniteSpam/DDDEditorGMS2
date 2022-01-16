@@ -134,7 +134,7 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"__meshops_get_bounds","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_chunk_settings","kind":1,"help":"__meshops_chunk_settings","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_chunk_settings","kind":1,"help":"__meshops_chunk_settings(chunk_size, startx, starty, endx, endy)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
             2,
             2,
