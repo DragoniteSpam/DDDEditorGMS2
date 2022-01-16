@@ -21,6 +21,10 @@ function meshops_chunk_analyze(data, meta) {
     __meshops_chunk_analyze(buffer_get_address(data), buffer_get_address(meta), buffer_get_size(data), buffer_get_size(meta));
 }
 
+function meshops_chunk(data, meta) {
+    __meshops_chunk(buffer_get_address(data), buffer_get_address(meta), buffer_get_size(data));
+}
+
 function meshops_export_d3d(filename, buffer) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     // estimating the number of characters it takes to represent a vertex can
