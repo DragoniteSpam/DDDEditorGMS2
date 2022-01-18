@@ -30,14 +30,9 @@ function terrainops_flatten(data, vertex_data, height) {
     __terrainops_flatten(buffer_get_address(data), buffer_get_address(vertex_data), buffer_get_size(data), height);
 }
 
-function terrainops_build(source, width, height, vertex_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale) {
-    var output = buffer_create(width * height * 6 * vertex_size, buffer_fixed, 1);
-    buffer_poke(output, 0, buffer_u32, 0);
-    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
+function terrainops_build(metadata, source, width, height, vertex_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale) {
     __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, width, height, save_scale);
-    var bytes = __terrainops_build(buffer_get_address(source), buffer_get_address(output), buffer_get_size(source));
-    if (bytes != buffer_get_size(output)) buffer_resize(output, bytes);
-    return output;
+    var bytes = __terrainops_build(buffer_get_address(source), buffer_get_address(metadata), buffer_get_size(source), buffer_get_size(metadata));
 }
 
 show_debug_message("TerrainOps version: " + terrainops_version());

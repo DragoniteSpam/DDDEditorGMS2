@@ -323,15 +323,15 @@ DrawWater = function() {
 
 #region Export methods
 AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size_x = self.width, chunk_size_y = self.height) {
-    // let's try this again
+    density = floor(density);
+    
+    // metadata setup
     var hcount = ceil(self.width / chunk_size_x);
     var vcount = ceil(self.height / chunk_size_y);
     
     var chunk_array = array_create(hcount * vcount);
-    // we only really need a normal int to keep track of the vertices in a chunk
-    // but if we use a long int the pointer size and the counter size will be
-    // the same, which should save us some trouble
-    var chunk_meta = buffer_create(hcount * vcount * 2 * 8, buffer_fixed, 1);
+    // vertex count, output address, x1, y1, x2, y2
+    var chunk_meta = buffer_create(hcount * vcount * 6 * 8, buffer_fixed, 1);
     
     for (var i = 0, n = hcount * vcount; i < n; i++) {
         var xcell = i mod hcount;
@@ -340,50 +340,51 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
         var y1 = ycell * chunk_size_y;
         var x2 = min((xcell + 1) * chunk_size_x, self.width);
         var y2 = min((ycell + 1) * chunk_size_y, self.height);
+        
         chunk_array[i] = {
             position: { x: xcell, y: ycell },
             bounds: { x1: x1, y1: y1, x2: x2, y2: y2 },
             name: "Chunk" + string(xcell) + "_" + string(ycell),
-            buffer: buffer_create((x2 - x1) * (y2 - y1) * 6 * VERTEX_SIZE, buffer_fixed, 1),
+            buffer: buffer_create(((x2 - x1) * (y2 - y1) + 1) * 6 * VERTEX_SIZE, buffer_fixed, 1),
         };
         
-        buffer_poke(chunk_meta, i * 2 * 8, buffer_f64, 0);
-        buffer_poke(chunk_meta, i * 2 * 8 + 8, buffer_u64, int64(buffer_get_address(chunk_array[i].buffer)));
+        buffer_poke(chunk_array[i].buffer, 0, buffer_u8, 0);
+        buffer_poke(chunk_array[i].buffer, buffer_get_size(chunk_array[i].buffer) - 8, buffer_u8, 0);
+        
+        buffer_poke(chunk_meta, i * 6 * 8, buffer_u64, 0);
+        buffer_poke(chunk_meta, i * 6 * 8 + 8, buffer_u64, int64(buffer_get_address(chunk_array[i].buffer)));
+        buffer_poke(chunk_meta, i * 6 * 8 + 16, buffer_u64, x1);
+        buffer_poke(chunk_meta, i * 6 * 8 + 24, buffer_u64, y1);
+        buffer_poke(chunk_meta, i * 6 * 8 + 32, buffer_u64, x2);
+        buffer_poke(chunk_meta, i * 6 * 8 + 40, buffer_u64, y2);
     }
     
-    buffer_delete(chunk_meta);
+    // build the output buffers
+    var color_sprite = self.color.GetSprite();
     
-    return;
-    meshops_chunk_settings(
-        chunk_size,
-        Settings.terrain.export_centered ? (-self.width / 2) : 0,
-        Settings.terrain.export_centered ? (-self.height / 2) : 0,
-        Settings.terrain.export_centered ? (self.width / 2) : self.width,
-        Settings.terrain.export_centered ? (self.height / 2) : self.height
+    var sw = sprite_get_width(color_sprite) / Settings.terrain.color_scale;
+    var sh = sprite_get_height(color_sprite) / Settings.terrain.color_scale;
+    
+    // at some point it'd be nice to properly sample from the color sprite again
+    terrainops_build(
+        chunk_meta, self.height_data, self.width, self.height,
+        VERTEX_SIZE, Settings.terrain.export_all, Settings.terrain.export_swap_zup,
+        Settings.terrain.export_swap_uvs, Settings.terrain.export_centered,
+        density, Settings.terrain.save_scale
     );
     
-    var main_buffer = self.BuildBuffer(density);
-    meshops_chunk_analyze(main_buffer, chunk_meta);
+    sprite_sample_remove_from_cache(color_sprite, 0);
+    sprite_delete(color_sprite);
     
-    for (var i = 0, n = array_length(chunk_array); i < n; i++) {
-        var chunk = chunk_array[i];
-        chunk.vertices = buffer_peek(chunk_meta, i * 2 * 8, buffer_u64);
-        chunk.buffer = buffer_create(chunk.vertices * VERTEX_SIZE, buffer_fixed, 1);
-        buffer_poke(chunk.buffer, 0, buffer_u8, 0);
-        buffer_poke(chunk.buffer, buffer_get_size(chunk.buffer) - 8, buffer_u8, 0);
-        chunk.name = string(chunk.meta.x1) + "," + string(chunk.meta.y1);
-        buffer_poke(chunk_meta, i * 2 * 8, buffer_f64, 0);
-        buffer_poke(chunk_meta, i * 2 * 8 + 8, buffer_u64, int64(buffer_get_address(chunk.buffer)));
-    }
-    
-    meshops_chunk(main_buffer, chunk_meta);
-    
+    // assemble the mesh data
     var mesh = new DataMesh(name);
-    for (var i = 0, n = array_length(chunk_array); i < n; i++) {
-        var vbuff = vertex_create_buffer_from_buffer(chunk_array[0].buffer, Stuff.graphics.vertex_format);
+    for (var i = 0, n = hcount * vcount; i < n; i++) {
+        buffer_resize(chunk_array[i].buffer, buffer_peek(chunk_meta, i * 6 * 8, buffer_u64));
+        var vbuff = vertex_create_buffer_from_buffer(chunk_array[i].buffer, Stuff.graphics.vertex_format);
         vertex_freeze(vbuff);
         mesh_create_submesh(mesh, chunk_array[i].buffer, vbuff, undefined, chunk_array[i].name);
     }
+    
     array_push(Game.meshes, mesh);
     
     return mesh;
@@ -410,48 +411,20 @@ BuildBufferChunks = function(density = 1, chunk_size = 0) {
     return collection;
 };
 
-BuildBuffer = function(density = 1) {
-    density = floor(density);
-    
-    var color_sprite = self.color.GetSprite();
-    
-    var sw = sprite_get_width(color_sprite) / Settings.terrain.color_scale;
-    var sh = sprite_get_height(color_sprite) / Settings.terrain.color_scale;
-    
-    // at some point it'd be nice to properly sample from the color sprite again
-    var output = terrainops_build(
-        self.height_data, self.width, self.height,
-        VERTEX_SIZE, Settings.terrain.export_all, Settings.terrain.export_swap_zup,
-        Settings.terrain.export_swap_uvs, Settings.terrain.export_centered,
-        density, Settings.terrain.save_scale
-    );
-    
-    sprite_sample_remove_from_cache(color_sprite, 0);
-    sprite_delete(color_sprite);
-    
-    if (Settings.terrain.export_smooth) {
-        meshops_set_normals_smooth(buffer_get_address(output), buffer_get_size(output), dcos(Settings.terrain.export_smooth_threshold));
-    } else {
-        meshops_set_normals_flat(buffer_get_address(output), buffer_get_size(output));
-    }
-    
-    return output;
-};
-
 ExportD3D = function(filename, density = 1, chunk_size = 0) {
-    var mesh = self.AddToProject("Terrain", density, false, false, chunk_size);
+    var mesh = self.AddToProject("Terrain", density, false, false, chunk_size, chunk_size);
     export_d3d(filename, mesh);
     mesh.Destroy();
 };
 
 ExportOBJ = function(filename, density = 1, chunk_size = 0) {
-    var mesh = self.AddToProject("Terrain", density, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, chunk_size);
+    var mesh = self.AddToProject("Terrain", density, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, chunk_size, chunk_size);
     export_obj(filename, mesh, "DDD Terrain");
     mesh.Destroy();
 }
 
 ExportVbuff = function(filename, density = 1, chunk_size = 0) {
-    var mesh = self.AddToProject("Terrain", density, false, false, chunk_size);
+    var mesh = self.AddToProject("Terrain", density, false, false, chunk_size, chunk_size);
     export_vb(filename, mesh, Settings.terrain.output_vertex_format);
     mesh.Destroy();
 };

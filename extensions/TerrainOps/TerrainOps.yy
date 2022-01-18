@@ -29,9 +29,10 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_from_heightmap","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_build","kind":1,"help":"__terrainops_build(data, out, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_build","kind":1,"help":"__terrainops_build(data, meta, length, meta_length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             1,
+            2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_build","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, width, height, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
