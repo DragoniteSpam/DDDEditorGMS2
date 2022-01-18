@@ -94,6 +94,10 @@ function dialog_default(dialog) {
             dialog.cmx = mouse_x;
             dialog.cmy = mouse_y;
         }
+        
+        if (device_mouse_check_button_released(0, mb_left)) {
+            self.contents_interactive = true;
+        }
     }
     
     // re-set these in case you dragged the window around, in which case they got moved

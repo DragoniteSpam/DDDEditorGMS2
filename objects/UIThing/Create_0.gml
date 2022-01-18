@@ -18,6 +18,8 @@ color = c_black;
 alignment = fa_left;
 valignment = fa_middle;
 
+contents_interactive = true;
+
 // if you have a list of ui things in a list, and want to iterate over the list, but
 // want to ignore this one
 is_aux = false;

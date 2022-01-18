@@ -5,6 +5,8 @@ commit = null;
 close = dialog_destroy;
 changed = false;
 
+contents_interactive = false;
+
 // for dragging the dialog around with the mouse
 cmx = -1;
 cmy = -1;
