@@ -176,13 +176,8 @@ function ui_init_mesh(mode) {
             });
             
             dg.selection = selection;
-            
-            dg.height -= 64;
-            dg.el_confirm.y -= 64;
-            dg.el_cancel.y -= 64;
-            dg.el_text.y -= 32;
         }, id);
-        element.tooltip = "Remove the selected 3D meshes.";
+        element.tooltip = "Combine the submeshes of the selected 3D meshes.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
