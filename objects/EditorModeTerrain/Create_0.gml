@@ -175,7 +175,7 @@ Settings.terrain.brush_max = Settings.terrain[$ "brush_max"] ?? 20;
 Settings.terrain.rate_min = Settings.terrain[$ "rate_min"] ?? 0.02;
 Settings.terrain.rate_max = Settings.terrain[$ "rate_max"] ?? 1;
 // height settings
-Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.125;
+Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = Settings.terrain[$ "mode"] ?? TerrainModes.Z;
 Settings.terrain.submode = Settings.terrain[$ "submode"] ?? TerrainSubmodes.MOUND;

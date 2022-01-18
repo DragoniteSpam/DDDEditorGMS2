@@ -33,13 +33,13 @@ function dialog_terrain_mutate() {
     
     dialog.AddContent([
         new EmuText(32, 32, 360, 24, "Smoothness:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 4, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 6, emu_null))
             .SetID("SMOOTHNESS"),
         new EmuText(32, EMU_AUTO, 360, 24, "Noise amplitude:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 6, emu_null))
             .SetID("NOISE_STRENGTH"),
         new EmuText(32, EMU_AUTO, 360, 24, "Texture amplitude:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 4, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 12, emu_null))
             .SetID("TEXTURE_STRENGTH"),
         (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
             var selection = self.GetSelection();
