@@ -147,11 +147,11 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__meshops_chunk_analyze","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_chunk","kind":1,"help":"meshops_chunk(data, meta, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_chunk","kind":1,"help":"__meshops_chunk(data, meta, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_chunk","tags":[],"resourceType":"GMExtensionFunction",},
+          ],"resourceVersion":"1.0","name":"__meshops_chunk","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -181,7 +181,7 @@
         {"name":"__meshops_get_bounds","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_chunk_settings","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_chunk_analyze","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_chunk","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_chunk","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
