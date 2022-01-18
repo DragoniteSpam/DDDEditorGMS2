@@ -323,19 +323,55 @@ DrawWater = function() {
 
 #region Export methods
 AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size = 0) {
-    // figure out the chunk bounds
-    var bounds = new BoundingBox(0, 0, 0, self.width, self.height, 0);
+    // figure out the chunk bounds; z2 of 1 is a bit of a dumb hack because a
+    // bounding box needs non-zero volume in order to be chunked
+    var bounds = new BoundingBox(0, 0, 0, self.width, self.height, 1);
     if (Settings.terrain.export_centered) bounds = bounds.Center();
     
-    // generate the buffers
-    var chunks = self.BuildBufferChunks(density, chunk_size);
+    // at some point i'd like to modify this so that we can deal with chunks
+    // that are not perfect cubes
+    var chunk_array = bounds.GetAllChunks(chunk_size);
+    // we only really need a normal int to keep track of the vertices in a chunk
+    // but if we use a long int the pointer size and the counter size will be
+    // the same, which should save us some trouble
+    var chunk_meta = buffer_create(array_length(chunk_array) * 2 * 8, buffer_fixed, 1);
+    for (var i = 0, n = array_length(chunk_array); i < n; i++) {
+        buffer_poke(chunk_meta, i * 2 * 8, buffer_f64, 0);
+        chunk_array[i] = { meta: chunk_array[i], buffer: undefined };
+    }
+    
+    meshops_chunk_settings(
+        chunk_size,
+        Settings.terrain.export_centered ? (-self.width / 2) : 0,
+        Settings.terrain.export_centered ? (-self.height / 2) : 0,
+        Settings.terrain.export_centered ? (self.width / 2) : self.width,
+        Settings.terrain.export_centered ? (self.height / 2) : self.height
+    );
+    
+    var main_buffer = self.BuildBuffer(density);
+    meshops_chunk_analyze(main_buffer, chunk_meta);
+    
+    for (var i = 0, n = array_length(chunk_array); i < n; i++) {
+        var chunk = chunk_array[i];
+        chunk.vertices = buffer_peek(chunk_meta, i * 2 * 8, buffer_u64);
+        chunk.buffer = buffer_create(chunk.vertices * VERTEX_SIZE, buffer_fixed, 1);
+        buffer_poke(chunk.buffer, 0, buffer_u8, 0);
+        buffer_poke(chunk.buffer, buffer_get_size(chunk.buffer) - 8, buffer_u8, 0);
+        chunk.name = string(chunk.meta.x1) + "," + string(chunk.meta.y1);
+        buffer_poke(chunk_meta, i * 2 * 8, buffer_f64, 0);
+        buffer_poke(chunk_meta, i * 2 * 8 + 8, buffer_u64, int64(buffer_get_address(chunk.buffer)));
+    }
+    
+    meshops_chunk(main_buffer, chunk_meta);
+    
     var mesh = new DataMesh(name);
-    for (var i = 0, n = array_length(chunks); i < n; i++) {
-        var vbuff = vertex_create_buffer_from_buffer(chunks[i].buffer, Stuff.graphics.vertex_format);
+    for (var i = 0, n = array_length(chunk_array); i < n; i++) {
+        var vbuff = vertex_create_buffer_from_buffer(chunk_array[0].buffer, Stuff.graphics.vertex_format);
         vertex_freeze(vbuff);
-        mesh_create_submesh(mesh, chunks[i].buffer, vbuff, undefined, chunks[i].name);
+        mesh_create_submesh(mesh, chunk_array[i].buffer, vbuff, undefined, chunk_array[i].name);
     }
     array_push(Game.meshes, mesh);
+    
     return mesh;
 };
 
