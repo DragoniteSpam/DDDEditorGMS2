@@ -322,24 +322,38 @@ DrawWater = function() {
 #endregion
 
 #region Export methods
-AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size = 0) {
-    // figure out the chunk bounds; z2 of 1 is a bit of a dumb hack because a
-    // bounding box needs non-zero volume in order to be chunked
-    var bounds = new BoundingBox(0, 0, 0, self.width, self.height, 1);
-    if (Settings.terrain.export_centered) bounds = bounds.Center();
+AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size_x = self.width, chunk_size_y = self.height) {
+    // let's try this again
+    var hcount = ceil(self.width / chunk_size_x);
+    var vcount = ceil(self.height / chunk_size_y);
     
-    // at some point i'd like to modify this so that we can deal with chunks
-    // that are not perfect cubes
-    var chunk_array = bounds.GetAllChunks(chunk_size);
+    var chunk_array = array_create(hcount * vcount);
     // we only really need a normal int to keep track of the vertices in a chunk
     // but if we use a long int the pointer size and the counter size will be
     // the same, which should save us some trouble
-    var chunk_meta = buffer_create(array_length(chunk_array) * 2 * 8, buffer_fixed, 1);
-    for (var i = 0, n = array_length(chunk_array); i < n; i++) {
+    var chunk_meta = buffer_create(hcount * vcount * 2 * 8, buffer_fixed, 1);
+    
+    for (var i = 0, n = hcount * vcount; i < n; i++) {
+        var xcell = i mod hcount;
+        var ycell = i div hcount;
+        var x1 = xcell * chunk_size_x;
+        var y1 = ycell * chunk_size_y;
+        var x2 = min((xcell + 1) * chunk_size_x, self.width);
+        var y2 = min((ycell + 1) * chunk_size_y, self.height);
+        chunk_array[i] = {
+            position: { x: xcell, y: ycell },
+            bounds: { x1: x1, y1: y1, x2: x2, y2: y2 },
+            name: "Chunk" + string(xcell) + "_" + string(ycell),
+            buffer: buffer_create((x2 - x1) * (y2 - y1) * 6 * VERTEX_SIZE, buffer_fixed, 1),
+        };
+        
         buffer_poke(chunk_meta, i * 2 * 8, buffer_f64, 0);
-        chunk_array[i] = { meta: chunk_array[i], buffer: undefined };
+        buffer_poke(chunk_meta, i * 2 * 8 + 8, buffer_u64, int64(buffer_get_address(chunk_array[i].buffer)));
     }
     
+    buffer_delete(chunk_meta);
+    
+    return;
     meshops_chunk_settings(
         chunk_size,
         Settings.terrain.export_centered ? (-self.width / 2) : 0,
