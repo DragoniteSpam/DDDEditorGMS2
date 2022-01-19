@@ -203,7 +203,6 @@ width = DEFAULT_TERRAIN_WIDTH;
 
 cursor_position = undefined;
 
-// remember to add these to the list in dialog_terrain_mutate()
 mutation_sprites = [
     spr_terrain_gen_flat,
     spr_terrain_gen_bullseye,
@@ -211,6 +210,15 @@ mutation_sprites = [
     spr_terrain_gen_craters,
     spr_terrain_gen_drago,
     spr_terrain_gen_juju,
+];
+
+mutation_sprite_names = [
+    "Flat",
+    "Bullseye",
+    "Mountain",
+    "Craters",
+    "Drago",
+    "Juju",
 ];
 
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
