@@ -140,7 +140,7 @@ function project_save() {
     
     setting_project_add(fn, project_id);
     
-    wtf("Saving took " + debug_timer_finish();
+    wtf("Saving took " + debug_timer_finish());
 }
 
 enum ProjectSaveVersions {
