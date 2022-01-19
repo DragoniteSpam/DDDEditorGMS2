@@ -17,8 +17,8 @@
   "includeTTF": false,
   "TTFName": "",
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "scribble",
+    "path": "texturegroups/scribble",
   },
   "ascenderOffset": 0,
   "glyphs": {
