@@ -161,7 +161,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         scribble(self.text)
         	.align(fa_left, fa_middle)
         	.wrap(self.width, self.height)
-        	.draw(tx + txoffset, ty, text);
+        	.draw(tx + txoffset, ty);
         #endregion
         
         #region list drawing
@@ -210,6 +210,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 }
                 
                 scribble(index_text)
+                	.align(fa_left, fa_middle)
                 	.starting_format(undefined, c)
                 	.wrap(self.width, self.height)
                 	.draw(tx - x1, tya - y2);
