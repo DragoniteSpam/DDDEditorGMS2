@@ -22,10 +22,10 @@ function terrainops_generate(source, w, h) {
     return output;
 }
 
-function terrainops_mutate(height_data, w, h, noise_data, noise_w, noise_h, noise_strength, sprite_data, sprite_w, sprite_h, sprite_strength) {
-    __terrainops_mutate_set_noise(buffer_get_address(noise_data), noise_w, noise_h, sprite_strength);
-    __terrainops_mutate_set_texture(buffer_get_address(sprite_data), sprite_w, sprite_h, noise_strength);
-    __terrainops_mutate(buffer_get_address(height_data), w, h);
+function terrainops_mutate(height_data, vertex_data, w, h, noise_data, noise_w, noise_h, noise_strength, sprite_data, sprite_w, sprite_h, sprite_strength) {
+    __terrainops_mutate_set_noise(buffer_get_address(noise_data), noise_w, noise_h, noise_strength);
+    __terrainops_mutate_set_texture(buffer_get_address(sprite_data), sprite_w, sprite_h, sprite_strength);
+    __terrainops_mutate(buffer_get_address(height_data), buffer_get_address(vertex_data), w, h);
 }
 
 function terrainops_apply_scale(data, vertex_data, scale) {

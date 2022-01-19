@@ -76,7 +76,8 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_mutate_set_texture","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_mutate","kind":1,"help":"__terrainops_mutate(data, w, h)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_mutate","kind":1,"help":"__terrainops_mutate(data, vertex, w, h)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
             1,
             2,
             2,
