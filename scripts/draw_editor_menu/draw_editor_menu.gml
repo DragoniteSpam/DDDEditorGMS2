@@ -18,11 +18,6 @@ function draw_editor_menu(camera_controls = false) {
         Stuff.menu.render(Stuff.menu, 0, yy);
     }
     
-    // these are going to be uncommon and short-lived, so don't bother deactivating them.
-    with (UINotification) {
-        render();
-    }
-    
     if (DEBUG) {
         draw_set_halign(fa_left);
         draw_rectangle_colour(0, 0, room_width, yy, false, c_white, c_white, c_white, c_white);
