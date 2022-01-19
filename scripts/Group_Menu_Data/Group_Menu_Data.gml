@@ -35,11 +35,6 @@ function momu_editor_data() {
     menu_activate(noone);
 }
 
-function momu_editor_doodle() {
-    editor_mode_doodle();
-    menu_activate(noone);
-}
-
 function momu_editor_event() {
     editor_mode_event();
     menu_activate(noone);

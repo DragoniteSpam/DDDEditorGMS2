@@ -116,7 +116,6 @@ function menu_init_main() {
         var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
         var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
         var md_text = create_menu_element("Language Text (F11)", momu_editor_text, menu_help);
-        var md_doodle = create_menu_element("Doodle", momu_editor_doodle, menu_help);
         md_data_types.interactive = MENU_EDITOR_ENABLED;
         md_meshes.interactive = MENU_EDITOR_ENABLED;
         md_3d.interactive = MENU_EDITOR_ENABLED;
@@ -125,7 +124,6 @@ function menu_init_main() {
         md_animation.interactive = MENU_EDITOR_ENABLED;
         md_heightmap.interactive = MENU_EDITOR_ENABLED;
         md_text.interactive = MENU_EDITOR_ENABLED;
-        md_doodle.interactive = MENU_EDITOR_ENABLED;
         ds_list_add(menu_data.contents,
             md_graphics,
             md_audio,
@@ -142,8 +140,8 @@ function menu_init_main() {
             md_heightmap,
             md_text,
             //
-            m_separator,
-            md_doodle,
+            //m_separator,
+            // uncomment this if you add other things
         );
         #endregion
         

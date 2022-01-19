@@ -2,18 +2,15 @@
 #macro EDITOR_BASE_MODE                     ModeIDs.MAP
 #macro Terrain:EDITOR_BASE_MODE             ModeIDs.TERRAIN
 #macro spart:EDITOR_BASE_MODE               ModeIDs.SPART
-#macro doodle:EDITOR_BASE_MODE              ModeIDs.DOODLE
 #macro mesh:EDITOR_BASE_MODE                ModeIDs.MESH
 // standalone tools will not have the rest of the program enabled
 #macro EDITOR_FORCE_SINGLE_MODE             false
 #macro spart:EDITOR_FORCE_SINGLE_MODE       true
-#macro doodle:EDITOR_FORCE_SINGLE_MODE      true
 #macro mesh:EDITOR_FORCE_SINGLE_MODE        true
 #macro Terrain:EDITOR_FORCE_SINGLE_MODE     true
 //
 #macro MENU_EDITOR_ENABLED                  true
 #macro spart:MENU_EDITOR_ENABLED            false
-#macro doodle:MENU_EDITOR_ENABLED           false
 #macro mesh:MENU_EDITOR_ENABLED             false
 //
 #macro MENU_EDITOR_PARTICLE_OVERRIDE        false
@@ -21,13 +18,11 @@
 //
 #macro GLOBAL_CONTORLS_ENABLED              true
 #macro spart:GLOBAL_CONTORLS_ENABLED        false
-#macro doodle:GLOBAL_CONTORLS_ENABLED       false
 #macro mesh:GLOBAL_CONTORLS_ENABLED         false
 #macro Terrain:GLOBAL_CONTORLS_ENABLED      false
 //
 #macro PROJECT_MENU_ENABLED                 true
 #macro spart:PROJECT_MENU_ENABLED           false
-#macro doodle:PROJECT_MENU_ENABLED          false
 #macro mesh:PROJECT_MENU_ENABLED            false
 #macro Terrain:PROJECT_MENU_ENABLED         false
 //
