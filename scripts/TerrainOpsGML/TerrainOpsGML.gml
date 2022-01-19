@@ -22,6 +22,13 @@ function terrainops_generate(source, w, h) {
     return output;
 }
 
+function terrainops_mutate(height_data, noise_data, sprite_data, w, h, sprite_strength, noise_strength) {
+    __terrainops_mutate_set_noise(buffer_get_address(noise_data), buffer_get_size(noise_data));
+    __terrainops_mutate_set_texture(buffer_get_address(sprite_data), buffer_get_size(sprite_data));
+    __terrainops_mutate_set_parameters(sprite_strength, noise_strength);
+    __terrainops_mutate(buffer_get_address(height_data), w, h);
+}
+
 function terrainops_apply_scale(data, vertex_data, scale) {
     __terrainops_apply_scale(buffer_get_address(data), buffer_get_address(vertex_data), buffer_get_size(data), scale);
 }

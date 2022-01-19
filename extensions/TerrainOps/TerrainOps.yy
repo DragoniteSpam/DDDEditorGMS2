@@ -64,6 +64,23 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_flatten","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_mutate_set_noise","kind":1,"help":"__terrainops_mutate_set_noise(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"__terrainops_mutate_set_noise","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_mutate_set_texture","kind":1,"help":"__terrainops_mutate_set_texture(data, noise)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"__terrainops_mutate_set_texture","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_mutate_set_parameters","kind":1,"help":"__terrainops_mutate_set_parameters(sprite_strength, noise_strength)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__terrainops_mutate_set_parameters","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_mutate","kind":1,"help":"__terrainops_mutate(data, w, h)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__terrainops_mutate","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_to_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -73,6 +90,10 @@
         {"name":"__terrainops_generate","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_apply_scale","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_flatten","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_mutate_set_noise","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_mutate_set_texture","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_mutate_set_parameters","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_mutate","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
