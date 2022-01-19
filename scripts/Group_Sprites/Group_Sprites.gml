@@ -172,6 +172,9 @@ function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
             }
             variable_struct_remove(cache, sprite_id);
             return;
+        case "buffer":
+            sprite_sample(sprite, index, 0, 0);     // ensure that it exists in the cache
+            return cache[$ sprite_id];
     }
     
     if (buffer == undefined) {
@@ -199,4 +202,8 @@ function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
 
 function sprite_sample_remove_from_cache(sprite, index) {
     sprite_sample_pixel(sprite, index, 0, 0, "remove");
+}
+
+function sprite_sample_get_buffer(sprite, index) {
+    return sprite_sample_pixel(sprite, index, 0, 0, "buffer");
 }
