@@ -256,7 +256,7 @@ AddStatusMessage = function(text) {
         
         static Update = function(target_y) {
             self.y = lerp(self.y, target_y, 0.1);
-            self.duration -= Stuff.dt;
+            self.duration -= game_get_speed(gamespeed_microseconds) / 10000000;
             return self.duration > 0;
         };
         
