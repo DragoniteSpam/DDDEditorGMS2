@@ -123,7 +123,6 @@ element_tooltip_t = -1;
 
 screen_icons = ds_queue_create();
 unlit_meshes = ds_queue_create();
-status_messages = [];
 
 default_pawn = new DataImage("Default Pawn");
 default_pawn.texture_exclude = true;
@@ -249,6 +248,60 @@ data_type_meta = [
  *  18. enum DataVersions - you most likely will need a new data version to handle the new data
  *  19. loading data in the game - read the data out
  */
+#endregion
+
+#region status messages
+status_messages = [];
+function StatusMessage(text, duration = 10) constructor {
+    self.text = text;
+    self.duration = duration;
+    self.x = 32;
+    self.y = 48;
+    
+    array_insert(Stuff.status_messages, 0, self);
+    
+    static Update = function(target_y) {
+        self.y = lerp(self.y, target_y, 0.1);
+        self.duration -= Stuff.dt;
+        return self.duration > 0;
+    };
+    
+    static Render = function() {
+        scribble_set_blend(c_white, min(1, self.duration));
+        scribble_set_box_align(fa_left, fa_top);
+        scribble_set_wrap(window_get_width() - 64, 32);
+        scribble_draw(self.x, self.y, self.text);
+        scribble_set_blend(c_white, 1);
+    };
+}
+#endregion
+
+#region status messages
+status_messages = [];
+AddStatusMessage = function(text) {
+    static statusMessage = function(text) constructor {
+        self.text = text;
+        self.duration = 15;
+        self.x = 32;
+        self.y = 48;
+        
+        static Update = function(target_y) {
+            self.y = lerp(self.y, target_y, 0.1);
+            self.duration -= Stuff.dt;
+            return self.duration > 0;
+        };
+        
+        static Render = function() {
+            scribble_set_blend(c_white, min(1, self.duration));
+            scribble_set_box_align(fa_left, fa_top);
+            scribble_set_wrap(window_get_width() - 64, 32);
+            scribble_draw(self.x, self.y, self.text);
+            scribble_set_blend(c_white, 1);
+        };
+    };
+    
+    array_insert(Stuff.status_messages, 0, new statusMessage(text));
+}
 #endregion
 
 // default editor mode

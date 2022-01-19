@@ -105,7 +105,6 @@
     {"id":{"name":"graphics_draw_water","path":"scripts/graphics_draw_water/graphics_draw_water.yy",},"order":5,},
     {"id":{"name":"FDefault20","path":"fonts/FDefault20/FDefault20.yy",},"order":4,},
     {"id":{"name":"graphics_set_lighting","path":"scripts/graphics_set_lighting/graphics_set_lighting.yy",},"order":6,},
-    {"id":{"name":"Editor_Status_Message","path":"scripts/Editor_Status_Message/Editor_Status_Message.yy",},"order":5,},
     {"id":{"name":"graphics_add_gizmo","path":"scripts/graphics_add_gizmo/graphics_add_gizmo.yy",},"order":8,},
     {"id":{"name":"surface_rebuild","path":"scripts/surface_rebuild/surface_rebuild.yy",},"order":11,},
     {"id":{"name":"map_zone_collision","path":"scripts/map_zone_collision/map_zone_collision.yy",},"order":6,},

@@ -115,8 +115,10 @@ function ui_init_terrain(mode) {
             (new EmuTab("Deform")).AddContent([
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to reset the terrain's height?", function() {
+                        debug_timer_start();
                         Stuff.terrain.Flatten();
                         self.root.Dispose();
+                        Stuff.AddStatusMessage("Resetting terrain height took " + debug_timer_finish());
                     });
                     dialog.x = 920;
                     dialog.y = 120;
@@ -144,10 +146,12 @@ function ui_init_terrain(mode) {
                     .SetTooltip("Scale every vertex up or down."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Apply global scale", function() {
                     var dialog = emu_dialog_confirm(self, "Apply the global scale?", function() {
+                        debug_timer_start();
                         Stuff.terrain.ApplyScale(Settings.terrain.global_scale);
                         Settings.terrain.global_scale = 1;
                         self.root.root.GetSibling("SCALE_INPUT").SetValue("1");
                         self.root.Dispose();
+                        Stuff.AddStatusMessage("Scaling thet terrain took " + debug_timer_finish());
                     });
                     dialog.x = 920;
                     dialog.y = 120;

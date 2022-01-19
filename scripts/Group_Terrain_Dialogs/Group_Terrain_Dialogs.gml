@@ -12,7 +12,9 @@ function dialog_create_export_heightmap() {
         (new EmuButton(32, EMU_AUTO, 320, 32, "Save Data Buffer", function() {
             var fn = get_save_filename("Heightmap files|*.hm", "heightmap.hm");
             if (fn != "") {
+                debug_timer_start();
                 Stuff.terrain.ExportHeightmapData(fn);
+                Stuff.AddStatusMessage("Exporting terrain heightmap buffer took " + debug_timer_finish());
             }
         }))
             .SetTooltip("Directly save the buffer of 32-bit floats that the editor uses internally.")
@@ -20,7 +22,9 @@ function dialog_create_export_heightmap() {
     ]).AddDefaultConfirmCancelButtons("Save", function() {
         var fn = get_save_filename_image("heightmap");
         if (fn != "") {
+            debug_timer_start();
             Stuff.terrain.ExportHeightmap(fn, real(self.GetSibling("SCALE").value));
+            Stuff.AddStatusMessage("Exporting terrain heightmap took " + debug_timer_finish());
         }
         self.root.Dispose();
     }, "Close", emu_dialog_close_auto);
@@ -55,8 +59,12 @@ function dialog_terrain_mutate() {
             .SetImageAlignment(fa_left, fa_top)
             .SetCheckerboard(true),
     ]).AddDefaultCloseButton("Okay", function() {
+        debug_timer_start();
+        
         Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value, self.GetSibling("TEXTURE_STRENGTH").value);
         self.root.Dispose();
+        
+        Stuff.AddStatusMessage("Mutating terrain took " + debug_timer_finish());
     });
     dialog.active_shade = 0;
 }
@@ -143,6 +151,7 @@ function dialog_create_terrain_new() {
         (new EmuButton(col2_x, 32, ew, b_height, "Import Heightmap", function() {
             var fn = get_open_filename_image();
             if (fn != "") {
+                debug_timer_start();
                 var image = sprite_add(fn, 0, false, false, 0, 0);
                 var terrain = Stuff.terrain;
                 var scale = real(self.GetSibling("SCALE").value);
@@ -164,11 +173,14 @@ function dialog_create_terrain_new() {
                 buffer_delete(buffer);
                 sprite_delete(image);
                 self.root.Dispose();
+                
+                Stuff.AddStatusMessage("Terrain generation took " + debug_timer_finish());
             }
         }))
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
     ]).AddDefaultConfirmCancelButtons("Create", function() {
+        debug_timer_start();
         var terrain = Stuff.terrain;
         
         var width = real(self.GetSibling("WIDTH").value);
@@ -196,6 +208,8 @@ function dialog_create_terrain_new() {
         vertex_freeze(terrain.terrain_buffer);
         
         self.root.Dispose();
+        
+        Stuff.AddStatusMessage("Terrain generation took " + debug_timer_finish());
     }, "Cancel", emu_dialog_close_auto);
 }
 
@@ -300,6 +314,7 @@ function dialog_terrain_export() {
         #endregion
         #region column 3
         (new EmuButton(672, 16, 256, 32, "Add to Project", function() {
+            debug_timer_start();
             var min_side_length = 10;
             var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
             // if it's not immediately clear what this does - the reduction value
@@ -321,6 +336,8 @@ function dialog_terrain_export() {
                     Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i), false, false, chunk_size, chunk_size);
                 }
             }
+            
+            Stuff.AddStatusMessage("Adding terrain to the project took " + debug_timer_finish());
         }))
             .SetInteractive(!TERRAIN_MODE),
         new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
@@ -346,6 +363,8 @@ function dialog_terrain_export() {
         
         var filename = get_save_filename_mesh("Terrain");
         if (filename != "") {
+            debug_timer_start();
+            
             if (levels == 0) {
                 switch (filename_ext(filename)) {
                     case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(filename, chunk_size); break;
@@ -363,6 +382,8 @@ function dialog_terrain_export() {
                     }
                 }
             }
+            
+            Stuff.AddStatusMessage("Exporting terrain as " + filename_ext(filename) + " took " + debug_timer_finish());
         }
     }, "Done", emu_dialog_close_auto);
 }
