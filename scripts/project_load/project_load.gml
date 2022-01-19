@@ -1,5 +1,5 @@
 function project_load(id) {
-    var t0 = get_timer();
+    debug_timer_start();
     
     #region helper functions
     static project_load_data = function(filename) {
@@ -234,5 +234,5 @@ function project_load(id) {
         show_debug_message("Error loading primary map (is there one?)");
     }
     
-    wtf("Loading took " + string((get_timer() - t0) / 1000) + " ms");
+    wtf("Loading took " + debug_timer_finish());
 }

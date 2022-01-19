@@ -48,7 +48,7 @@ function project_export() {
         var fn = get_save_filename_dddd(Stuff.save_name);
         
         if (string_length(fn) > 0) {
-            var t0 = get_timer();
+            debug_timer_start();
             
             var save_directory = filename_path(fn);
             var buffers = array_create(array_length(Game.meta.export.files));
@@ -105,7 +105,7 @@ function project_export() {
                 buffer_delete(buffer);
             }
             
-            wtf("Export took " + string((get_timer() - t0) / 1000) + " ms");
+            wtf("Export took " + debug_timer_finish());
         }
         
         #macro LAST_SAFE_VERSION DataVersions.V2

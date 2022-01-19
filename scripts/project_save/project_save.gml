@@ -19,7 +19,8 @@ function project_save() {
         }
     };
     
-    var t0 = get_timer();
+    debug_timer_start();
+    
     var project_id = Game.meta.project.id + "_" + md5_string_utf8(fn);
     var folder_name = PATH_PROJECTS + project_id + "/";
     var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
@@ -139,7 +140,7 @@ function project_save() {
     
     setting_project_add(fn, project_id);
     
-    wtf("Saving took " + string((get_timer() - t0) / 1000) + " ms");
+    wtf("Saving took " + debug_timer_finish();
 }
 
 enum ProjectSaveVersions {

@@ -1,5 +1,7 @@
 event_inherited();
 
+debug_timer_start();
+
 Stuff.terrain = self;
 
 vertex_format_begin();
@@ -222,8 +224,6 @@ mutation_sprite_names = [
 ];
 
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
-
-var t = get_timer();
 
 GenerateHeightData = function() {
     var data = buffer_create(4 * width * height, buffer_fixed, 1);
@@ -451,7 +451,7 @@ ExportHeightmapData = function(filename) {
 };
 #endregion
 
-wtf("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
+wtf("Terrain initialization took " + debug_timer_finish());
 
 enum TerrainModes {
     Z,
