@@ -120,10 +120,15 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     camera_set_proj_mat(cam, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(cam);
     
-    scribble_set_wrap(-1, -1);
-    scribble_set_box_align(fa_left, fa_top);
-    scribble_draw(20, 20, "[c_white]Use WASD to fly around, and hold the middle mouse button to aim the camera");
-    scribble_draw(20, 40, "[c_white]Use Q and E to rotate the light source");
+    scribble("[c_white]Use WASD to fly around, and hold the middle mouse button to aim the camera")
+        .align(fa_left, fa_top)
+        .wrap(-1, -1)
+        .draw(20, 20);
+    
+    scribble("[c_white]Use Q and E to rotate the light source")
+        .align(fa_left, fa_top)
+        .wrap(-1, -1)
+        .draw(20, 40);
     
     // this is like draw_camera_controls_overlay but different enough that i
     // don't want to generic-ize it

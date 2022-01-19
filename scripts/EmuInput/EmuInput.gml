@@ -88,9 +88,10 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         var sw_end = sw + 4;
         
         #region work out the input color
-        scribble_set_box_align(fa_left, fa_middle);
-        scribble_set_wrap(width, height);
-        scribble_draw(tx, ty, string(text));
+        scribble(string(self.text))
+        	.align(fa_left, fa_middle)
+        	.wrap(self.width, self.height)
+        	.draw(tx, ty);
         
         if (ValidateInput(_working_value)) {
             var cast_value = CastInput(_working_value);
@@ -133,7 +134,9 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 var remaining_h = string_height(string(remaining));
                 var remaining_x = ww - 4 - remaining_w;
                 var remaining_y = hh - remaining_h;
-                scribble_draw(remaining_x, remaining_y, string(remaining));
+                
+                scribble(string(remaining))
+                	.draw(remaining_x, remaining_y);
             } else {
                 var remaining_x = ww - 16;
                 var remaining_y = hh - 16;

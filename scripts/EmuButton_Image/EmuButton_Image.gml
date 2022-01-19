@@ -89,9 +89,11 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
             }
         }
         
-        scribble_set_box_align(alignment, valignment);
-        scribble_set_wrap(width, height);
-        scribble_draw(width div 2, height div 2, text);
+        scribble(self.text)
+            .align(self.alignment, self.valignment)
+            .wrap(self.width, self.height)
+            .draw(width div 2, height div 2);
+        
         surface_reset_target();
         #endregion
         

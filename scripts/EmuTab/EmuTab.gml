@@ -51,18 +51,16 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
             root.RequestActivateTab(self);
         }
         
-        if (isActiveTab() || root._active_tab && (root._active_tab._row != _row)) {
-            var index = 0;
-        } else {
-            var index = 2;
-        }
+        var index = (isActiveTab() || root._active_tab && (root._active_tab._row != _row)) ? 0 : 2;
         
         var back_color = getMouseHover(hx1, hy1, hx2, hy2) ? color_hover : (GetInteractive() ? color_back : color_disabled);
         draw_sprite_stretched_ext(sprite_nineslice, 1, hx1, hy1, hx2 - hx1, hy2 - hy1, back_color, 1);
         draw_sprite_stretched_ext(sprite_nineslice, index, hx1, hy1, hx2 - hx1, hy2 - hy1, color, 1);
-        scribble_set_box_align(alignment, valignment);
-        scribble_set_wrap(_header_width, _header_height);
-        scribble_draw(floor(mean(hx1, hx2)), floor(mean(hy1, hy2)), text);
+        
+        scribble(self.text)
+            .align(self.alignment, self.valignment)
+            .wrap(self._header_width, self._header_height)
+            .draw(floor(mean(hx1, hx2)), floor(mean(hy1, hy2)));
         #endregion
         
         if (isActiveTab()) {

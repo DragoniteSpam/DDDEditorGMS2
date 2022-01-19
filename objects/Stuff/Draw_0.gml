@@ -27,20 +27,16 @@ if (view_current == view_overlay) {
     if (Settings.config.tooltip && Stuff.element_tooltip && (Stuff.element_tooltip_t > -1 && (Stuff.time - Stuff.element_tooltip_t > 1))) {
         instance_activate_object(Stuff.element_tooltip);
         if (instance_exists(Stuff.element_tooltip) && string_length(Stuff.element_tooltip.tooltip) > 0) {
-            var str = Stuff.element_tooltip.tooltip;
             var str_padding = 8;
             var text_width = 540;
-            var halign = global.scribble_state_box_halign;
-            var valign = global.scribble_state_box_valign;
-            var starting_font = global.scribble_state_starting_font;
-            var starting_color = global.scribble_state_starting_color;
-            var starting_halign = global.scribble_state_starting_halign;
-            scribble_set_box_align(fa_left, fa_top);
-            scribble_set_wrap(text_width, -1);
-            scribble_set_starting_format("FDefault", c_black, fa_left);
-            var scribble = scribble_cache(str, "", true, true);
-            var str_width = scribble_get_width(scribble) + str_padding * 2;
-            var str_height = scribble_get_height(scribble) + str_padding * 2;
+            
+            var scribb = scribble(Stuff.element_tooltip.tooltip)
+                .align(fa_left, fa_top)
+                .padding(str_padding, str_padding, str_padding, str_padding)
+                .wrap(text_width, -1);
+            
+            var str_width = scribb.get_width();
+            var str_height = scribb.get_height();
             var tooltip_x = min(window_mouse_get_x() + 16, view_get_wport(view_current) - str_width);
             var tooltip_y = min(window_mouse_get_y() + 16, view_get_hport(view_current) - str_height);
             draw_rectangle_colour(
@@ -51,9 +47,9 @@ if (view_current == view_overlay) {
                 tooltip_x, tooltip_y, tooltip_x + str_width, tooltip_y + str_height,
                 c_black, c_black, c_black, c_black, true
             );
-            scribble_draw(tooltip_x + str_padding, tooltip_y + str_padding, scribble);
-            scribble_set_box_align(halign, valign);
-            scribble_set_starting_format(starting_font, starting_color, starting_halign);
+            
+            scribb.draw(tooltip_x, tooltip_y);
+            
             instance_deactivate_object(Stuff.element_tooltip);
         }
     }

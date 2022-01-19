@@ -1,7 +1,5 @@
 // Emu (c) 2020 @dragonitespam
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Emu/wiki
-// !
-//scribble_init("emu", "fnt_emu_default");
 
 #region some macros which you may want to set
 #macro EMU_COLOR_BACK                                                           0xffffff

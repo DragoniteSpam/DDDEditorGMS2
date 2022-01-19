@@ -61,12 +61,9 @@ alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion
 
 #region initialize standalone systems
-scribble_init("data/fonts", "FDefault", false);
-scribble_set_starting_format("FDefault", c_black, fa_left);
-scribble_add_font("FDefault");
-scribble_add_font("FDefault20");
-scribble_add_font("FDefaultBold");
-scribble_add_font("FDefaultItalic");
+
+scribble_font_set_default("FDefault");
+
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
 wtf("re-add nik's version of fmod audio eventually");
@@ -252,32 +249,6 @@ data_type_meta = [
 
 #region status messages
 status_messages = [];
-function StatusMessage(text, duration = 10) constructor {
-    self.text = text;
-    self.duration = duration;
-    self.x = 32;
-    self.y = 48;
-    
-    array_insert(Stuff.status_messages, 0, self);
-    
-    static Update = function(target_y) {
-        self.y = lerp(self.y, target_y, 0.1);
-        self.duration -= Stuff.dt;
-        return self.duration > 0;
-    };
-    
-    static Render = function() {
-        scribble_set_blend(c_white, min(1, self.duration));
-        scribble_set_box_align(fa_left, fa_top);
-        scribble_set_wrap(window_get_width() - 64, 32);
-        scribble_draw(self.x, self.y, self.text);
-        scribble_set_blend(c_white, 1);
-    };
-}
-#endregion
-
-#region status messages
-status_messages = [];
 AddStatusMessage = function(text) {
     static statusMessage = function(text) constructor {
         self.text = text;
@@ -292,11 +263,11 @@ AddStatusMessage = function(text) {
         };
         
         static Render = function() {
-            scribble_set_blend(c_white, min(1, self.duration));
-            scribble_set_box_align(fa_left, fa_top);
-            scribble_set_wrap(window_get_width() - 64, 32);
-            scribble_draw(self.x, self.y, self.text);
-            scribble_set_blend(c_white, 1);
+            scribble(self.text)
+                .blend(c_white, min(1, self.duration))
+                .align(fa_left, fa_top)
+                .wrap(window_get_width() - 64, 32)
+                .draw(self.x, self.y);
         };
     };
     

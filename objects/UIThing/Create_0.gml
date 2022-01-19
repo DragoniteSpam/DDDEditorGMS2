@@ -63,16 +63,16 @@ GetTop = function() {
 
 GetTextX = function(x1, x2, align = self.alignment) {
     switch (align) {
-        case fa_left: return x1 + self.offset;
+        case fa_left: return floor(x1 + self.offset);
         case fa_center: return floor(mean(x1, x2));
-        case fa_right: return x2 - self.offset;
+        case fa_right: return floor(x2 - self.offset);
     }
 };
 
 GetTextY = function(y1, y2, align = self.alignment) {
     switch (align) {
-        case fa_top: return y1 + self.offset;
+        case fa_top: return floor(y1 + self.offset);
         case fa_middle: return floor(mean(y1, y2));
-        case fa_bottom: return y2 - self.offset;
+        case fa_bottom: return floor(y2 - self.offset);
     }
 };

@@ -124,17 +124,17 @@ function EmuCore(x, y, w, h) constructor {
     
     static getTextX = function(_x) {
         switch (self.alignment) {
-            case fa_left: return _x + self.offset;
-            case fa_center: return _x + self.width / 2;
-            case fa_right: return _x + self.width - self.offset;
+            case fa_left: return floor(_x + self.offset);
+            case fa_center: return floor(_x + self.width / 2);
+            case fa_right: return floor(_x + self.width - self.offset);
         }
     }
     
     static getTextY = function(_y) {
         switch (self.valignment) {
-            case fa_top: return _y + self.offset;
-            case fa_middle: return _y + self.height / 2;
-            case fa_bottom: return _y + self.height - self.offset;
+            case fa_top: return floor(_y + self.offset);
+            case fa_middle: return floor(_y + self.height / 2);
+            case fa_bottom: return floor(_y + self.height - self.offset);
         }
     }
     
