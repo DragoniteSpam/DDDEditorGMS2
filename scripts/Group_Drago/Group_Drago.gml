@@ -13,3 +13,10 @@ function drago_get_dropped_files() {
     
 	return array;
 }
+
+show_debug_message("DragoExt version " + drago_version());
+show_debug_message("System info:");
+show_debug_message("    CPU model: " + dragosys_processor_info());
+show_debug_message("    Logical cores: " + string(dragosys_processor_count()));
+show_debug_message("    Architecture: " + dragosys_processor_architecture());
+show_debug_message("Memory: " + string(dragosys_memory_total() / 0x100000) + "mb");
