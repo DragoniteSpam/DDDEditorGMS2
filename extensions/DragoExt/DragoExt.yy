@@ -36,6 +36,7 @@
         {"externalName":"dragosys_memory_total","kind":1,"help":"dragosys_memory_total()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"dragosys_memory_total","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"dragosys_memory_available","kind":1,"help":"dragosys_memory_available","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"dragosys_memory_available","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"dragosys_memory_load","kind":1,"help":"dragosys_memory_load()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"dragosys_memory_load","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"dragosys_os_info","kind":1,"help":"dragosys_os_info()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"dragosys_os_info","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[
         {"value":"0","hidden":false,"resourceVersion":"1.0","name":"WINDOW_NEVERMIND","tags":[],"resourceType":"GMExtensionConstant",},
         {"value":"1","hidden":false,"resourceVersion":"1.0","name":"WINDOW_CLOSE","tags":[],"resourceType":"GMExtensionConstant",},
@@ -54,6 +55,7 @@
         {"name":"dragosys_memory_total","path":"extensions/DragoExt/DragoExt.yy",},
         {"name":"dragosys_memory_available","path":"extensions/DragoExt/DragoExt.yy",},
         {"name":"dragosys_memory_load","path":"extensions/DragoExt/DragoExt.yy",},
+        {"name":"dragosys_os_info","path":"extensions/DragoExt/DragoExt.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
