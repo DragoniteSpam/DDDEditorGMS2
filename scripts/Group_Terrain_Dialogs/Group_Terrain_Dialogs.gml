@@ -130,7 +130,6 @@ function dialog_create_terrain_new() {
         }))
             .SetTooltip("Preset 512x512 map size"),
         (new EmuCheckbox(col1_x, EMU_AUTO, ew, eh, "Generate noise?", false, function() {
-            self.GetSibling("OCTAVES").SetInteractive(self.value);
             self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
         }))
             .SetTooltip("Generate a random terrain using noise?")
@@ -145,7 +144,6 @@ function dialog_create_terrain_new() {
             self.GetSibling("OCTAVES_LABEL").text = "Smoothness: " + string(self.value);
         }))
             .SetIntegersOnly(true)
-            .SetInteractive(false)
             .SetTooltip("The number of octaves to be used in generation")
             .SetID("OCTAVES"),
         (new EmuButton(col2_x, 32, ew, b_height, "Import Heightmap", function() {
