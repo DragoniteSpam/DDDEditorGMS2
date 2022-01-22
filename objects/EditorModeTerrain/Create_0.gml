@@ -14,6 +14,35 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
+    var mutation_sprite_index = 0;
+    if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.mutation_sprites)) {
+        mutation_sprite_index = 0;
+    }
+    var sprite = self.mutation_sprites[mutation_sprite_index];
+    var sprite_data = sprite_sample_get_buffer(sprite, 0);
+    
+    terrainops_deform_settings(sprite_data, 8, 8, position.x, position.y, Settings.terrain.radius, 1);
+    
+    switch (Settings.terrain.submode) {
+        case TerrainSubmodes.MOUND:
+            terrainops_deform_mold(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
+            break;
+        case TerrainSubmodes.AVERAGE:
+            terrainops_deform_average(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
+            break;
+        case TerrainSubmodes.AVG_FLAT:
+            terrainops_deform_average_flat(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
+            break;
+        case TerrainSubmodes.ZERO:
+            terrainops_deform_zero(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
+            break;
+    }
+    
+    sprite_sample_remove_from_cache(sprite, 0);
+    
+    terrain_refresh_vertex_buffer(self);
+    
+    return;
     var r = Settings.terrain.radius;
     var t = 0;
     var coeff = r * self.style_radius_coefficient[Settings.terrain.style];
