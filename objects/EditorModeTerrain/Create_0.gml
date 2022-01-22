@@ -200,12 +200,11 @@ Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? true;
 Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
 Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
-// height defaults
-Settings.terrain.brush_min = Settings.terrain[$ "brush_min"] ?? 1.5;
-Settings.terrain.brush_max = Settings.terrain[$ "brush_max"] ?? 50;
-Settings.terrain.rate_min = Settings.terrain[$ "rate_min"] ?? 0.02;
-Settings.terrain.rate_max = Settings.terrain[$ "rate_max"] ?? 1;
 // height settings
+Settings.terrain.brush_min = 1.5;
+Settings.terrain.brush_max = 50;
+Settings.terrain.rate_min = 0.02;
+Settings.terrain.rate_max = 1;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = Settings.terrain[$ "mode"] ?? TerrainModes.Z;
@@ -213,15 +212,14 @@ Settings.terrain.submode = Settings.terrain[$ "submode"] ?? TerrainSubmodes.MOUN
 Settings.terrain.style = Settings.terrain[$ "style"] ?? TerrainStyles.CIRCLE;
 Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
 // texture settings
+Settings.terrain.tile_brush_size_min = 4;
+Settings.terrain.tile_brush_size_max = 256;
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
 Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
-Settings.terrain.tile_brush_size_min = Settings.terrain[$ "tile_brush_size_min"] ?? 4;
-Settings.terrain.tile_brush_size_max = Settings.terrain[$ "tile_brush_size_max"] ?? 256;
-// paint defaults
-Settings.terrain.paint_strength_min = Settings.terrain[$ "paint_strength_min"] ?? 0.01;
-Settings.terrain.paint_strength_max = Settings.terrain[$ "paint_strength_max"] ?? 1;
 // paint settings
+Settings.terrain.paint_strength_min = 0.01;
+Settings.terrain.paint_strength_max = 1;
 Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 
