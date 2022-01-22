@@ -82,6 +82,15 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_mutate","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_deform_brush","kind":1,"help":"__terrainops_deform_brush(brush, w, h)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__terrainops_deform_brush","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_deform_settings","kind":1,"help":"__terrainops_deform_settings(radius, velocity)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__terrainops_deform_settings","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_to_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -94,6 +103,8 @@
         {"name":"__terrainops_mutate_set_noise","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_mutate_set_texture","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_mutate","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_deform_brush","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_deform_settings","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",

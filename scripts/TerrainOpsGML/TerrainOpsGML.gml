@@ -22,6 +22,11 @@ function terrainops_generate(source, w, h) {
     return output;
 }
 
+function terrainops_deform_settings(texture, w, h, radius, velocity) {
+    __terrainops_deform_brush(buffer_get_address(texture), w, h);
+    __terrainops_deform_settings(radius, velocity);
+}
+
 function terrainops_mutate(height_data, vertex_data, w, h, noise_data, noise_w, noise_h, noise_strength, sprite_data, sprite_w, sprite_h, sprite_strength) {
     __terrainops_mutate_set_noise(buffer_get_address(noise_data), noise_w, noise_h, noise_strength);
     __terrainops_mutate_set_texture(buffer_get_address(sprite_data), sprite_w, sprite_h, sprite_strength);
