@@ -202,7 +202,7 @@ Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 // height defaults
 Settings.terrain.brush_min = Settings.terrain[$ "brush_min"] ?? 1.5;
-Settings.terrain.brush_max = Settings.terrain[$ "brush_max"] ?? 20;
+Settings.terrain.brush_max = Settings.terrain[$ "brush_max"] ?? 50;
 Settings.terrain.rate_min = Settings.terrain[$ "rate_min"] ?? 0.02;
 Settings.terrain.rate_max = Settings.terrain[$ "rate_max"] ?? 1;
 // height settings
