@@ -215,7 +215,7 @@ function ui_init_terrain(mode) {
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
-                (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 10, function() {
+                (new EmuList(col2x, col_width * 2 + 32, col_width, 32, "Brush:", 32, 8, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
                         Settings.terrain.tile_brush_index = Stuff.terrain.mutation_sprites[selection];
