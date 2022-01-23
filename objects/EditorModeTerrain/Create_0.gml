@@ -138,6 +138,24 @@ enum TerrainViewData {
 }
 
 #region
+self.mutation_sprites = [
+    spr_terrain_gen_flat,
+    spr_terrain_gen_bullseye,
+    spr_terrain_gen_mountain,
+    spr_terrain_gen_craters,
+    spr_terrain_gen_drago,
+    spr_terrain_gen_juju,
+];
+
+self.mutation_sprite_names = [
+    "Flat",
+    "Bullseye",
+    "Mountain",
+    "Craters",
+    "Drago",
+    "Juju",
+];
+
 // general editing settings
 Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? 8;
 // import and export settings
@@ -176,6 +194,7 @@ Settings.terrain.brush_max = 50;
 Settings.terrain.rate_min = 0.05;
 Settings.terrain.rate_max = 1;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
+Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 0, 0, array_length(self.mutation_sprites) - 1);
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = Settings.terrain[$ "mode"] ?? TerrainModes.Z;
 Settings.terrain.submode = Settings.terrain[$ "submode"] ?? TerrainSubmodes.MOUND;
@@ -183,12 +202,15 @@ Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
 // texture settings
 Settings.terrain.tile_brush_size_min = 4;
 Settings.terrain.tile_brush_size_max = 256;
+Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? 4;
+Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 0, 0, array_length(self.mutation_sprites) - 1);
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
 Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
 // paint settings
 Settings.terrain.paint_strength_min = 0.025;
 Settings.terrain.paint_strength_max = 1;
+Settings.terrain.paint_brush_radius = Settings.terrain[$ "paint_brush_radius"] ?? 4;
 Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 #endregion
@@ -201,24 +223,6 @@ height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
 
 cursor_position = undefined;
-
-mutation_sprites = [
-    spr_terrain_gen_flat,
-    spr_terrain_gen_bullseye,
-    spr_terrain_gen_mountain,
-    spr_terrain_gen_craters,
-    spr_terrain_gen_drago,
-    spr_terrain_gen_juju,
-];
-
-mutation_sprite_names = [
-    "Flat",
-    "Bullseye",
-    "Mountain",
-    "Craters",
-    "Drago",
-    "Juju",
-];
 
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
 
