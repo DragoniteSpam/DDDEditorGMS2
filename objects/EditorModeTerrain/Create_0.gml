@@ -1,3 +1,6 @@
+#macro TERRAIN_GEN_SPRITE_INDEX_MUTATE                                          0
+#macro TERRAIN_GEN_SPRITE_INDEX_BRUSH                                           1
+
 event_inherited();
 
 debug_timer_start();
@@ -18,10 +21,11 @@ EditModeZ = function(position, dir) {
     if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.mutation_sprites)) {
         mutation_sprite_index = 0;
     }
-    var sprite = self.mutation_sprites[mutation_sprite_index];
-    var sprite_data = sprite_sample_get_buffer(sprite, 0);
     
-    terrainops_deform_settings(sprite_data, 8, 8, position.x, position.y, Settings.terrain.radius, Settings.terrain.rate);
+    var sprite = self.mutation_sprites[mutation_sprite_index];
+    var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH);
+    
+    terrainops_deform_settings(sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), position.x, position.y, Settings.terrain.radius, Settings.terrain.rate);
     
     switch (Settings.terrain.submode) {
         case TerrainSubmodes.MOUND:
@@ -321,7 +325,7 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strengt
     var hh = self.height;
     var sprite = self.mutation_sprites[mutation_sprite_index];
     var macaw = macaw_generate_dll(ww, hh, octaves, noise_strength).noise;
-    var sprite_data = sprite_sample_get_buffer(sprite, 0);
+    var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_MUTATE);
     terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw, ww, hh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);
     sprite_sample_remove_from_cache(sprite, 0);
     buffer_delete(macaw);

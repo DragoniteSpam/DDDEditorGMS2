@@ -27,6 +27,9 @@
     {"compositeImage":{"FrameId":{"name":"cac993ae-b3e1-433b-a3c4-8f027dbfdc12","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"cac993ae-b3e1-433b-a3c4-8f027dbfdc12","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"LayerId":{"name":"86c60fb5-4450-4804-8934-48269b849f41","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_terrain_gen_craters","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"resourceVersion":"1.0","name":"cac993ae-b3e1-433b-a3c4-8f027dbfdc12","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"LayerId":{"name":"86c60fb5-4450-4804-8934-48269b849f41","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_terrain_gen_craters","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"resourceVersion":"1.0","name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_terrain_gen_craters","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},
@@ -36,12 +39,13 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 2.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"d8dec9f6-741f-46f0-98c6-6dcf65a0fe48","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"cac993ae-b3e1-433b-a3c4-8f027dbfdc12","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"fdea635c-d49f-4397-bc9e-d8099e67859a","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
