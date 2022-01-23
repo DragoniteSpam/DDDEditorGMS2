@@ -196,8 +196,8 @@ Settings.terrain.rate_max = 1;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
 Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 0, 0, array_length(self.mutation_sprites) - 1);
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
-Settings.terrain.mode = Settings.terrain[$ "mode"] ?? TerrainModes.Z;
-Settings.terrain.submode = Settings.terrain[$ "submode"] ?? TerrainSubmodes.MOUND;
+Settings.terrain.mode = TerrainModes.Z;
+Settings.terrain.submode = TerrainSubmodes.MOUND;
 Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
 // texture settings
 Settings.terrain.tile_brush_size_min = 4;
