@@ -148,6 +148,16 @@ function ui_init_terrain(mode) {
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
+                (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 10, function() {
+                    var selection = self.GetSelection();
+                    if (selection + 1) {
+                        Settings.terrain.brush_index = Stuff.terrain.mutation_sprites[selection];
+                    }
+                }))
+                    .SetEntryTypes(ListEntries.STRINGS)
+                    .AddEntries(Stuff.terrain.mutation_sprite_names)
+                    .Select(Settings.terrain.brush_index)
+                    .SetID("SPRITE_LIST"),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.Z;
             }),
@@ -205,6 +215,16 @@ function ui_init_terrain(mode) {
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
+                (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 10, function() {
+                    var selection = self.GetSelection();
+                    if (selection + 1) {
+                        Settings.terrain.tile_brush_index = Stuff.terrain.mutation_sprites[selection];
+                    }
+                }))
+                    .SetEntryTypes(ListEntries.STRINGS)
+                    .AddEntries(Stuff.terrain.mutation_sprite_names)
+                    .Select(Settings.terrain.tile_brush_index)
+                    .SetID("SPRITE_LIST"),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.TEXTURE;
             }),
