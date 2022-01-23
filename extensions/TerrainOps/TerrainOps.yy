@@ -113,12 +113,6 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"terrainops_deform_average","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_deform_average_flat","kind":1,"help":"terrainops_deform_average_flat(data, vertex, w, h)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"terrainops_deform_average_flat","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_to_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -136,7 +130,6 @@
         {"name":"__terrainops_deform_brush_position","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_deform_mold","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_deform_average","path":"extensions/TerrainOps/TerrainOps.yy",},
-        {"name":"terrainops_deform_average_flat","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_deform_zero","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],

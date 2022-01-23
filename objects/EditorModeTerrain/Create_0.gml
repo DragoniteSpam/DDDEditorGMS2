@@ -34,9 +34,6 @@ EditModeZ = function(position, dir) {
         case TerrainSubmodes.AVERAGE:
             terrainops_deform_average(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
             break;
-        case TerrainSubmodes.AVG_FLAT:
-            terrainops_deform_average_flat(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
-            break;
         case TerrainSubmodes.ZERO:
             terrainops_deform_zero(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
             break;
@@ -462,7 +459,6 @@ enum TerrainModes {
 enum TerrainSubmodes {
     MOUND,
     AVERAGE,
-    AVG_FLAT,
     ZERO,
     TEXTURE,
     COLOR,
