@@ -44,7 +44,7 @@ EditModeZ = function(position, dir) {
     
     sprite_sample_remove_from_cache(sprite, 0);
     
-    terrain_refresh_vertex_buffer(self);
+    self.Refresh();
 }
 
 EditModeTexture = function(position) {
@@ -233,6 +233,12 @@ GenerateHeightData = function() {
     return data;
 };
 
+Refresh = function() {
+    vertex_delete_buffer(self.terrain_buffer);
+    self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
+    vertex_freeze(self.terrain_buffer);
+};
+
 self.height_data = self.GenerateHeightData();
 
 self.terrain_buffer_data = terrainops_generate(self.height_data, self.width, self.height);
@@ -279,12 +285,12 @@ CreateJSON = function() {
 #region terrain actions
 Flatten = function(height = 0) {
     terrainops_flatten(self.height_data, self.terrain_buffer_data, height);
-    terrain_refresh_vertex_buffer(self);
+    self.Refresh();
 };
 
 ApplyScale = function(scale = Settings.terrain.global_scale) {
     terrainops_apply_scale(self.height_data, self.terrain_buffer_data, scale);
-    terrain_refresh_vertex_buffer(self);
+    self.Refresh();
 };
 
 Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strength) {
@@ -299,7 +305,7 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strengt
     terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw, ww, hh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);
     sprite_sample_remove_from_cache(sprite, 0);
     buffer_delete(macaw);
-    terrain_refresh_vertex_buffer(self);
+    self.Refresh();
 };
 
 DrawWater = function() {
