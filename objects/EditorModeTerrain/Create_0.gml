@@ -383,7 +383,11 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
     for (var i = 0, n = hcount * vcount; i < n; i++) {
         buffer_resize(chunk_array[i].buffer, buffer_peek(chunk_meta, i * 6 * 8, buffer_u64));
         var vbuff = vertex_create_buffer_from_buffer(chunk_array[i].buffer, Stuff.graphics.vertex_format);
-        vertex_freeze(vbuff);
+        // there's a part of me that wants to just not include empty vertex
+        // buffers, but i'd still prefer to save empty chunks so that the user
+        // knows that something actually happened and the program didntn fail
+        // randomly
+        if (vertex_get_number(vbuff) > 0) vertex_freeze(vbuff);
         mesh_create_submesh(mesh, chunk_array[i].buffer, vbuff, undefined, chunk_array[i].name);
     }
     
