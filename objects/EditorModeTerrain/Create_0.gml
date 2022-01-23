@@ -17,12 +17,7 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
-    var mutation_sprite_index = 0;
-    if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.mutation_sprites)) {
-        mutation_sprite_index = 0;
-    }
-    
-    var sprite = self.mutation_sprites[mutation_sprite_index];
+    var sprite = Settings.terrain.brush_index;
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH);
     
     terrainops_deform_settings(sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
