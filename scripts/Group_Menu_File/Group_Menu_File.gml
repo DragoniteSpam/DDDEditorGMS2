@@ -2,6 +2,7 @@ function momu_exit() {
     var dialog = emu_dialog_confirm(undefined, "Do you want to close the program?", function() {
         game_end();
     });
+    dialog.contents_interactive = true;
     dialog.flags |= DialogFlags.IS_QUIT;
 }
 
