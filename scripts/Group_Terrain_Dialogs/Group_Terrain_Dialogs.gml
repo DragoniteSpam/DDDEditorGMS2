@@ -52,7 +52,7 @@ function dialog_terrain_mutate() {
             }
         }))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-            .AddEntries(Stuff.terrain.gen_sprites)
+            .SetList(Stuff.terrain.gen_sprites)
             .SetID("SPRITE_LIST"),
         (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null))
             .SetID("SPRITE_PREVIEW")

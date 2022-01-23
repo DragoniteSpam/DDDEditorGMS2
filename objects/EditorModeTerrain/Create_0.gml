@@ -242,7 +242,7 @@ color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Set
 color.SetBrush(spr_terrain_default_brushes, Settings.terrain.paint_brush_index);
 color.SetShader(shd_terrain_paint);
 texture = new Phoenix(self.width, self.height, c_black);
-texture.SetBrush(self.gen_sprites[Settings.terrain.tile_brush_index], TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+texture.SetBrush(self.gen_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
 texture.SetShader(shd_terrain_paint_texture);
 
 GetTextureColorCode = function() {

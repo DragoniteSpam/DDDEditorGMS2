@@ -218,8 +218,8 @@ function ui_init_terrain(mode) {
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x, col_width * 2 + 32, col_width, 32, "Brush:", 32, 8, function() {
                     var selection = self.GetSelection();
-                    Settings.terrain.tile_brush_index = selection;
                     if (selection + 1) {
+                        Settings.terrain.tile_brush_index = selection;
                         Stuff.terrain.texture.SetBrush(Stuff.terrain.gen_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
                     }
                 }))
