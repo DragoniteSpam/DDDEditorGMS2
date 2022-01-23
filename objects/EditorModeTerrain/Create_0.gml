@@ -43,12 +43,12 @@ EditModeZ = function(position, dir) {
 EditModeTexture = function(position) {
     var color_code = self.GetTextureColorCode();
     self.texture.SetBrush(Settings.terrain.tile_brush_index, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
-    self.texture.Paint(position.x, position.y, Settings.terrain.radius, color_code, 1);
+    self.texture.Paint(position.x, position.y, Settings.terrain.tile_brush_radius, color_code, 1);
 };
 
 EditModeColor = function(position) {
     var cs = Settings.terrain.color_scale;
-    self.color.Paint(position.x * cs, position.y * cs, Settings.terrain.radius * cs, Settings.terrain.paint_color, Settings.terrain.paint_strength);
+    self.color.Paint(position.x * cs, position.y * cs, Settings.terrain.paint_brush_radius * cs, Settings.terrain.paint_color, Settings.terrain.paint_strength);
 };
 
 self.mouse_interaction = function(mouse_vector) {
