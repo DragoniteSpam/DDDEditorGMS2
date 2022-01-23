@@ -68,9 +68,11 @@ function Phoenix(width, height, def_color = c_white) constructor {
         gpu_set_blendenable(self.blend_enable);
         var sw = sprite_get_width(self.brush_sprite);
         var sh = sprite_get_height(self.brush_sprite);
+        var sx = radius / sw;
+        var sy = radius / sh;
         draw_sprite_ext(
             self.brush_sprite, clamp(self.brush_index, 0, sprite_get_number(self.brush_sprite) - 1),
-            x - sw * 4 / radius, y - sh * 4 / radius, radius / sw, radius / sh, 0,
+            x - sw / 2 * sx, y - sh / 2 * sy, sx, sy, 0,
             color, strength
         );
         gpu_set_blendenable(true);
