@@ -187,7 +187,7 @@ Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 // height settings
 Settings.terrain.brush_min = 1.5;
-Settings.terrain.brush_max = 50;
+Settings.terrain.brush_max = 160;
 Settings.terrain.rate_min = 0.05;
 Settings.terrain.rate_max = 2.5;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
@@ -197,6 +197,8 @@ Settings.terrain.mode = TerrainModes.Z;
 Settings.terrain.submode = TerrainSubmodes.MOUND;
 Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
 // texture settings
+Settings.terrain.tile_brush_min = 1.5;
+Settings.terrain.tile_brush_max = 250;
 Settings.terrain.tile_brush_size_min = 4;
 Settings.terrain.tile_brush_size_max = 256;
 Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? 4;
@@ -205,6 +207,8 @@ Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
 Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
 // paint settings
+Settings.terrain.paint_brush_min = 1.5;
+Settings.terrain.paint_brush_max = 250;
 Settings.terrain.paint_strength_min = 0.025;
 Settings.terrain.paint_strength_max = 1;
 Settings.terrain.paint_brush_radius = Settings.terrain[$ "paint_brush_radius"] ?? 4;

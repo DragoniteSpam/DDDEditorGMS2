@@ -194,7 +194,7 @@ function ui_init_terrain(mode) {
                         Settings.terrain.tile_brush_y = ty;
                     }
                 }, null, null),
-                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
+                (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
                         var color_code = Stuff.terrain.GetTextureColorCode();
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
@@ -202,7 +202,8 @@ function ui_init_terrain(mode) {
                     });
                     dialog.x = 920;
                     dialog.y = 120;
-                }),
+                }))
+                    .SetID("CLEAR_TEXTURE_BUTTON"),
                 (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Tile size:", Settings.terrain.tile_brush_size, string(Settings.terrain.tile_brush_size_min) + "..." + string(Settings.terrain.tile_brush_size_max), 3, E_InputTypes.INT, function() {
                     Settings.terrain.tile_brush_size = real(self.value);
                 }))
@@ -210,7 +211,7 @@ function ui_init_terrain(mode) {
                     .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common."),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(Settings.terrain.tile_brush_radius)))
                     .SetID("BRUSH_RADIUS_LABEL"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.tile_brush_radius, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
                     Settings.terrain.tile_brush_radius = self.value;
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
@@ -250,7 +251,7 @@ function ui_init_terrain(mode) {
                 }),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(Settings.terrain.paint_brush_radius)))
                     .SetID("BRUSH_RADIUS_LABEL"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.paint_brush_radius, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, Settings.terrain.paint_brush_radius, function() {
                     Settings.terrain.paint_brush_radius = self.value;
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
