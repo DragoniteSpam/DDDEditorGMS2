@@ -135,7 +135,8 @@ enum TerrainViewData {
 
 #region
 self.gen_sprites = [
-    { sprite: spr_terrain_gen_flat, name: "Flat" },
+    { sprite: spr_terrain_gen_flat, name: "Square" },
+    { sprite: spr_terrain_gen_dot, name: "Circle" },
     { sprite: spr_terrain_gen_bullseye, name: "Bullseye" },
     { sprite: spr_terrain_gen_mountain, name: "Mountain" },
     { sprite: spr_terrain_gen_craters, name: "Craters" },
@@ -181,7 +182,7 @@ Settings.terrain.brush_max = 160;
 Settings.terrain.rate_min = 0.05;
 Settings.terrain.rate_max = 2.5;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
-Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 0, 0, array_length(self.gen_sprites) - 1);
+Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 1, 0, array_length(self.gen_sprites) - 1);
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = TerrainModes.Z;
 Settings.terrain.submode = TerrainSubmodes.MOUND;
@@ -192,7 +193,7 @@ Settings.terrain.tile_brush_max = 250;
 Settings.terrain.tile_brush_size_min = 4;
 Settings.terrain.tile_brush_size_max = 256;
 Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? 4;
-Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 0, 0, array_length(self.gen_sprites) - 1);
+Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 1, 0, array_length(self.gen_sprites) - 1);
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
 Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;

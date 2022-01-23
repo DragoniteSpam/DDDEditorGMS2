@@ -393,6 +393,7 @@
     {"id":{"name":"omu_event_attain_mesh_anim_end_action","path":"scripts/omu_event_attain_mesh_anim_end_action/omu_event_attain_mesh_anim_end_action.yy",},"order":13,},
     {"id":{"name":"omu_event_attain_map_data","path":"scripts/omu_event_attain_map_data/omu_event_attain_map_data.yy",},"order":14,},
     {"id":{"name":"dialog_create_color_picker_options","path":"scripts/dialog_create_color_picker_options/dialog_create_color_picker_options.yy",},"order":19,},
+    {"id":{"name":"spr_terrain_gen_dot","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"order":6,},
     {"id":{"name":"dialog_create_refid_list","path":"scripts/dialog_create_refid_list/dialog_create_refid_list.yy",},"order":20,},
     {"id":{"name":"scribble_font_rename","path":"scripts/scribble_font_rename/scribble_font_rename.yy",},"order":8,},
     {"id":{"name":"dialog_create_manager_mesh_autotile","path":"scripts/dialog_create_manager_mesh_autotile/dialog_create_manager_mesh_autotile.yy",},"order":1,},
