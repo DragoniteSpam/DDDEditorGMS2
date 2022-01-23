@@ -468,22 +468,5 @@ enum TerrainStyles {
     CIRCLE,
 }
 
-submode_equation = [
-    function(x, y, dir, avg, dist) {
-        terrain_add_z(self, x, y, dir * Settings.terrain.rate * dcos(max(1, dist)));
-    },
-    function(x, y, dir, avg, dist) {
-        terrain_set_z(self, x, y, lerp(terrain_get_z(self, x, y), avg, Settings.terrain.rate / 20));
-    },
-    function(x, y, dir, avg, dist) {
-        terrain_set_z(self, x, y, avg);
-    },
-    function(x, y, dir, avg, dist) {
-        terrain_set_z(self, x, y, 0);
-    }
-];
-
-style_radius_coefficient = [2, 1];
-
 ui = ui_init_terrain(id);
 mode_id = ModeIDs.TERRAIN;
