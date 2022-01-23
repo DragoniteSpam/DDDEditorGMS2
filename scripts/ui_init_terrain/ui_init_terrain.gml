@@ -151,7 +151,7 @@ function ui_init_terrain(mode) {
                 (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 10, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
-                        Settings.terrain.brush_index = Stuff.terrain.mutation_sprites[selection];
+                        Settings.terrain.brush_index = selection;
                     }
                 }))
                     .SetEntryTypes(ListEntries.STRINGS)
@@ -218,8 +218,9 @@ function ui_init_terrain(mode) {
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x, col_width * 2 + 32, col_width, 32, "Brush:", 32, 8, function() {
                     var selection = self.GetSelection();
+                    Settings.terrain.tile_brush_index = selection;
                     if (selection + 1) {
-                        Settings.terrain.tile_brush_index = Stuff.terrain.mutation_sprites[selection];
+                        Stuff.terrain.texture.SetBrush(Stuff.terrain.mutation_sprites[selection], TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
                     }
                 }))
                     .SetEntryTypes(ListEntries.STRINGS)
@@ -257,14 +258,16 @@ function ui_init_terrain(mode) {
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x + 16, EMU_BASE, col_width, 32, "Paintbrush:", 32, 12, function() {
-                    Stuff.terrain.color.SetBrush(spr_terrain_default_brushes, self.GetSelection());
+                    var selection = self.GetSelection();
+                    Settings.terrain.paint_brush_index = selection;
+                    Stuff.terrain.color.SetBrush(spr_terrain_default_brushes, selection);
                 }))
                     .AddEntries([
                         "Pixel", "Disc", "Square", "Line", "Star", "Circle",
                         "Ring", "Sphere", "Flare", "Spark", "Explosion",
                         "Cloud", "Smoke", "Snow"
                     ])
-                    .Select(mode.color.brush_index),
+                    .Select(Settings.terrain.paint_brush_index),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.COLOR;
             }),

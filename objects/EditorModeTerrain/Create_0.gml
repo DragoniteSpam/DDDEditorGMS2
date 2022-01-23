@@ -18,7 +18,7 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
-    var sprite = Settings.terrain.brush_index;
+    var sprite = self.mutation_sprites[Settings.terrain.brush_index];
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH);
     
     terrainops_deform_settings(sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
@@ -42,7 +42,6 @@ EditModeZ = function(position, dir) {
 
 EditModeTexture = function(position) {
     var color_code = self.GetTextureColorCode();
-    self.texture.SetBrush(Settings.terrain.tile_brush_index, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
     self.texture.Paint(position.x, position.y, Settings.terrain.tile_brush_radius, color_code, 1);
 };
 
@@ -212,6 +211,7 @@ Settings.terrain.paint_brush_max = 250;
 Settings.terrain.paint_strength_min = 0.025;
 Settings.terrain.paint_strength_max = 1;
 Settings.terrain.paint_brush_radius = Settings.terrain[$ "paint_brush_radius"] ?? 4;
+Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index"] ?? 7, 0, array_length(self.mutation_sprites) - 1);
 Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 #endregion
@@ -247,10 +247,10 @@ self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data,
 vertex_freeze(self.terrain_buffer);
 
 color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale);
-color.SetBrush(spr_terrain_default_brushes, 7);
+color.SetBrush(spr_terrain_default_brushes, Settings.terrain.paint_brush_index);
 color.SetShader(shd_terrain_paint);
 texture = new Phoenix(self.width, self.height, c_black);
-texture.SetBrush(spr_terrain_default_brushes, 13);
+texture.SetBrush(self.mutation_sprites[Settings.terrain.tile_brush_index], TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
 texture.SetShader(shd_terrain_paint_texture);
 
 GetTextureColorCode = function() {
