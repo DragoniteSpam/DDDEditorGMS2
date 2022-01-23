@@ -18,7 +18,7 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
-    var sprite = self.mutation_sprites[Settings.terrain.brush_index];
+    var sprite = self.gen_sprites[Settings.terrain.brush_index].sprite;
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH);
     
     terrainops_deform_settings(sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
@@ -134,22 +134,13 @@ enum TerrainViewData {
 }
 
 #region
-self.mutation_sprites = [
-    spr_terrain_gen_flat,
-    spr_terrain_gen_bullseye,
-    spr_terrain_gen_mountain,
-    spr_terrain_gen_craters,
-    spr_terrain_gen_drago,
-    spr_terrain_gen_juju,
-];
-
-self.mutation_sprite_names = [
-    "Flat",
-    "Bullseye",
-    "Mountain",
-    "Craters",
-    "Drago",
-    "Juju",
+self.gen_sprites = [
+    { sprite: spr_terrain_gen_flat, name: "Flat" },
+    { sprite: spr_terrain_gen_bullseye, name: "Bullseye" },
+    { sprite: spr_terrain_gen_mountain, name: "Mountain" },
+    { sprite: spr_terrain_gen_craters, name: "Craters" },
+    { sprite: spr_terrain_gen_drago, name: "Drago" },
+    { sprite: spr_terrain_gen_juju, name: "Juju" },
 ];
 
 // general editing settings
@@ -190,7 +181,7 @@ Settings.terrain.brush_max = 160;
 Settings.terrain.rate_min = 0.05;
 Settings.terrain.rate_max = 2.5;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
-Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 0, 0, array_length(self.mutation_sprites) - 1);
+Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 0, 0, array_length(self.gen_sprites) - 1);
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = TerrainModes.Z;
 Settings.terrain.submode = TerrainSubmodes.MOUND;
@@ -201,7 +192,7 @@ Settings.terrain.tile_brush_max = 250;
 Settings.terrain.tile_brush_size_min = 4;
 Settings.terrain.tile_brush_size_max = 256;
 Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? 4;
-Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 0, 0, array_length(self.mutation_sprites) - 1);
+Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 0, 0, array_length(self.gen_sprites) - 1);
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
 Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
@@ -211,7 +202,7 @@ Settings.terrain.paint_brush_max = 250;
 Settings.terrain.paint_strength_min = 0.025;
 Settings.terrain.paint_strength_max = 1;
 Settings.terrain.paint_brush_radius = Settings.terrain[$ "paint_brush_radius"] ?? 4;
-Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index"] ?? 7, 0, array_length(self.mutation_sprites) - 1);
+Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index"] ?? 7, 0, array_length(self.gen_sprites) - 1);
 Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 #endregion
@@ -250,7 +241,7 @@ color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Set
 color.SetBrush(spr_terrain_default_brushes, Settings.terrain.paint_brush_index);
 color.SetShader(shd_terrain_paint);
 texture = new Phoenix(self.width, self.height, c_black);
-texture.SetBrush(self.mutation_sprites[Settings.terrain.tile_brush_index], TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+texture.SetBrush(self.gen_sprites[Settings.terrain.tile_brush_index], TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
 texture.SetShader(shd_terrain_paint_texture);
 
 GetTextureColorCode = function() {
@@ -295,12 +286,12 @@ ApplyScale = function(scale = Settings.terrain.global_scale) {
 };
 
 Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strength) {
-    if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.mutation_sprites)) {
+    if (mutation_sprite_index < 0 || mutation_sprite_index >= array_length(self.gen_sprites)) {
         mutation_sprite_index = 0;
     }
     var ww = self.width;
     var hh = self.height;
-    var sprite = self.mutation_sprites[mutation_sprite_index];
+    var sprite = self.gen_sprites[mutation_sprite_index].sprite;
     var macaw = macaw_generate_dll(ww, hh, octaves, noise_strength).noise;
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_MUTATE);
     terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw, ww, hh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);

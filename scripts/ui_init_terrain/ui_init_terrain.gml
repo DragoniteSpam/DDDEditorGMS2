@@ -154,8 +154,8 @@ function ui_init_terrain(mode) {
                         Settings.terrain.brush_index = selection;
                     }
                 }))
-                    .SetEntryTypes(ListEntries.STRINGS)
-                    .AddEntries(Stuff.terrain.mutation_sprite_names)
+                    .SetEntryTypes(ListEntries.INSTANCES)
+                    .AddEntries(Stuff.terrain.gen_sprites)
                     .Select(Settings.terrain.brush_index)
                     .SetID("SPRITE_LIST"),
             ]).SetOnClick(function() {
@@ -220,11 +220,11 @@ function ui_init_terrain(mode) {
                     var selection = self.GetSelection();
                     Settings.terrain.tile_brush_index = selection;
                     if (selection + 1) {
-                        Stuff.terrain.texture.SetBrush(Stuff.terrain.mutation_sprites[selection], TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+                        Stuff.terrain.texture.SetBrush(Stuff.terrain.gen_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
                     }
                 }))
-                    .SetEntryTypes(ListEntries.STRINGS)
-                    .AddEntries(Stuff.terrain.mutation_sprite_names)
+                    .SetEntryTypes(ListEntries.INSTANCES)
+                    .AddEntries(Stuff.terrain.gen_sprites)
                     .Select(Settings.terrain.tile_brush_index)
                     .SetID("SPRITE_LIST"),
             ]).SetOnClick(function() {

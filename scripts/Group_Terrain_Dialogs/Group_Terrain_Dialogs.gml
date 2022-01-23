@@ -48,11 +48,11 @@ function dialog_terrain_mutate() {
         (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
             var selection = self.GetSelection();
             if (selection + 1) {
-                self.GetSibling("SPRITE_PREVIEW").sprite = Stuff.terrain.mutation_sprites[selection];
+                self.GetSibling("SPRITE_PREVIEW").sprite = Stuff.terrain.gen_sprites[selection].sprite;
             }
         }))
-            .SetEntryTypes(ListEntries.STRINGS)
-            .AddEntries(Stuff.terrain.mutation_sprite_names)
+            .SetEntryTypes(ListEntries.INSTANCES)
+            .AddEntries(Stuff.terrain.gen_sprites)
             .SetID("SPRITE_LIST"),
         (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null))
             .SetID("SPRITE_PREVIEW")
