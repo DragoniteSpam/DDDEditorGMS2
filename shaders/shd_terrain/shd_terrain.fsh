@@ -94,7 +94,7 @@ void main() {
     
     float dist = length(v_WorldPosition.xy - u_Mouse);
     float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
-    gl_FragColor = mix(gl_FragColor, CURSOR_COLOR, strength);
+    gl_FragColor = mix(gl_FragColor, CURSOR_COLOR, strength / 3.0);
     
     gl_FragColor.rgb = mix(gl_FragColor.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
 }
