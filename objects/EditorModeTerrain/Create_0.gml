@@ -182,7 +182,6 @@ Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = Settings.terrain[$ "mode"] ?? TerrainModes.Z;
 Settings.terrain.submode = Settings.terrain[$ "submode"] ?? TerrainSubmodes.MOUND;
-Settings.terrain.style = Settings.terrain[$ "style"] ?? TerrainStyles.CIRCLE;
 Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
 // texture settings
 Settings.terrain.tile_brush_size_min = 4;
@@ -467,11 +466,6 @@ enum TerrainSubmodes {
     ZERO,
     TEXTURE,
     COLOR,
-}
-
-enum TerrainStyles {
-    BLOCK,
-    CIRCLE,
 }
 
 ui = ui_init_terrain(id);

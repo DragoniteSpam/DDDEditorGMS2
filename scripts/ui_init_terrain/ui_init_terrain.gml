@@ -78,11 +78,6 @@ function ui_init_terrain(mode) {
                     .SetTooltip("A few settings for how the terrain is drawn."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]Editor Settings"),
                 #region
-                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Brush shape:", Settings.terrain.style, function() {
-                    Settings.terrain.style = self.value;
-                }))
-                    .AddOptions(["Block", "Circle"])
-                    .SetTooltip("In case you want to use a different shape to edit terrain."),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(Settings.terrain.radius)))
                     .SetID("BRUSH_RADIUS_LABEL"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.radius, function() {
