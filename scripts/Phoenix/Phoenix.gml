@@ -66,7 +66,11 @@ function Phoenix(width, height, def_color = c_white) constructor {
         surface_set_target(self.surface);
         if (self.shader != -1) shader_set(self.shader);
         gpu_set_blendenable(self.blend_enable);
-        draw_sprite_ext(self.brush_sprite, clamp(self.brush_index, 0, sprite_get_number(self.brush_sprite) - 1), x, y, radius / 32, radius / 32, 0, color, strength);
+        draw_sprite_ext(
+            self.brush_sprite, clamp(self.brush_index, 0, sprite_get_number(self.brush_sprite) - 1),
+            x, y, radius / sprite_get_width(self.brush_sprite), radius / sprite_get_height(self.brush_sprite), 0,
+            color, strength
+        );
         gpu_set_blendenable(true);
         shader_reset();
         surface_reset_target();
