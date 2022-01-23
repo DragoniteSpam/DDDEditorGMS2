@@ -1,5 +1,6 @@
 #macro TERRAIN_GEN_SPRITE_INDEX_MUTATE                                          0
 #macro TERRAIN_GEN_SPRITE_INDEX_BRUSH                                           1
+#macro TERRAIN_GEN_SPRITE_INDEX_TEXTURE                                         2
 
 event_inherited();
 
@@ -41,13 +42,14 @@ EditModeZ = function(position, dir) {
 
 EditModeTexture = function(position) {
     var color_code = self.GetTextureColorCode();
+    self.texture.SetBrush(Settings.terrain.tile_brush_index, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
     self.texture.Paint(position.x, position.y, Settings.terrain.radius, color_code, 1);
-}
+};
 
 EditModeColor = function(position) {
     var cs = Settings.terrain.color_scale;
     self.color.Paint(position.x * cs, position.y * cs, Settings.terrain.radius * cs, Settings.terrain.paint_color, Settings.terrain.paint_strength);
-}
+};
 
 self.mouse_interaction = function(mouse_vector) {
     self.cursor_position = undefined;
@@ -244,7 +246,7 @@ color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Set
 color.SetBrush(spr_terrain_default_brushes, 7);
 color.SetShader(shd_terrain_paint);
 texture = new Phoenix(self.width, self.height, c_black);
-texture.SetBrush(spr_terrain_default_brushes, 7);
+texture.SetBrush(spr_terrain_default_brushes, 13);
 texture.SetShader(shd_terrain_paint_texture);
 
 GetTextureColorCode = function() {
