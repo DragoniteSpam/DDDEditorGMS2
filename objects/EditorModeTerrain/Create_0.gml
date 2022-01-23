@@ -25,7 +25,7 @@ EditModeZ = function(position, dir) {
     var sprite = self.mutation_sprites[mutation_sprite_index];
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH);
     
-    terrainops_deform_settings(sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), position.x, position.y, Settings.terrain.radius, Settings.terrain.rate);
+    terrainops_deform_settings(sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
     
     switch (Settings.terrain.submode) {
         case TerrainSubmodes.MOUND:
