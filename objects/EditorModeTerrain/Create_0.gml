@@ -65,7 +65,7 @@ self.mouse_interaction = function(mouse_vector) {
         if (Controller.release_right) {
             switch (Settings.terrain.mode) {
                 case TerrainModes.Z: break;
-                case TerrainModes.TEXTURE: break;
+                case TerrainModes.TEXTURE: self.texture.Finish(); break;
                 case TerrainModes.COLOR: self.color.Finish(); break;
             }
         }
@@ -73,7 +73,7 @@ self.mouse_interaction = function(mouse_vector) {
         if (Controller.release_left) {
             switch (Settings.terrain.mode) {
                 case TerrainModes.Z: break;
-                case TerrainModes.TEXTURE: break;
+                case TerrainModes.TEXTURE: self.texture.Finish(); break;
                 case TerrainModes.COLOR: self.color.Finish(); break;
             }
         }
@@ -89,6 +89,7 @@ self.mouse_interaction = function(mouse_vector) {
 }
 
 update = function() {
+    self.texture.Validate();
     self.color.Validate();
     
     if (Stuff.menu.active_element) {
