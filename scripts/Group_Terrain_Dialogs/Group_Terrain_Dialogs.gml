@@ -453,6 +453,7 @@ function dialog_create_terrain_brush_manager() {
             });
             self.GetSibling("BRUSH_LIST").ClearSelection();
             self.GetSibling("BRUSH_LIST").Select(selection);
+            self.GetSibling("LOAD").callback();
         }),
         (new EmuButton(col1x, EMU_AUTO, ew, eh, "Delete", function() {
             var selection = self.GetSibling("BRUSH_LIST").GetSelection();
@@ -471,13 +472,48 @@ function dialog_create_terrain_brush_manager() {
             if (selection == -1 || Stuff.terrain.brush_sprites[selection].builtin) return;
             Stuff.terrain.brush_sprites[selection].name = self.value;
         }))
+            .SetInteractive(false)
             .SetID("NAME"),
         (new EmuText(col2x, EMU_AUTO, ew, eh, "Dimensions:"))
             .SetID("DIMENSIONS"),
         (new EmuButton(col2x, EMU_AUTO, ew, eh, "Load", function() {
             var selection = self.GetSibling("BRUSH_LIST").GetSelection();
             if (selection == -1 || Stuff.terrain.brush_sprites[selection].builtin) return;
+            var filename = get_open_filename_image();
+            
+            var spr_raw = -1;
+            var assembly_surface = -1;
+            
+            try {
+                spr_raw = sprite_add(filename, 0, false, false, 0, 0);
+                var w = min(512, sprite_get_width(spr_raw));
+                var h = min(512, sprite_get_height(spr_raw));
+                
+                assembly_surface = surface_create(w * 3, h);
+                surface_set_target(assembly_surface);
+                draw_clear_alpha(c_black, 0);
+                draw_rectangle_colour(0, 0, w, h, 0x8c8c8c, 0x8c8c8c, 0x8c8c8c, 0x8c8c8c, false);
+                draw_rectangle_colour(w, 0, w * 2 - 1/*gamemaker why are you like this*/, h, c_black, c_black, c_black, c_black, false);
+                gpu_set_blendmode(bm_add);
+                draw_sprite_stretched(spr_raw, 0, 0, 0, w, h);
+                draw_sprite_stretched(spr_raw, 0, w, 0, w, h);
+                draw_sprite_stretched(spr_raw, 0, w * 2, 0, w, h);
+                gpu_set_blendmode(bm_normal);
+                surface_reset_target();
+                
+                surface_save(assembly_surface, PATH_TEMP + "brush.png");
+                
+                Stuff.terrain.brush_sprites[selection].sprite = sprite_add(PATH_TEMP + "brush.png", 3, false, false, 0, 0);
+            } catch (e) {
+                Stuff.AddStatusMessage("Could not load the file! " + e.message);
+            } finally {
+                if (spr_raw != -1) sprite_delete(spr_raw);
+                if (assembly_surface != -1) surface_free(assembly_surface);
+            }
+            
+            self.GetSibling("BRUSH_LIST").Select(selection);
         }))
+            .SetInteractive(false)
             .SetID("LOAD"),
         (new EmuButtonImage(col2x, EMU_AUTO, ew, ew, -1, TERRAIN_GEN_SPRITE_INDEX_BRUSH, c_white, 1, true, emu_null))
             .SetID("PREVIEW")
