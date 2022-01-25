@@ -124,8 +124,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "brushes",
-    "path": "folders/Scripts/modes/terrain/brushes.yy",
+    "name": "Generation",
+    "path": "folders/Terrain/Generation.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_terrain_default_brushes",
