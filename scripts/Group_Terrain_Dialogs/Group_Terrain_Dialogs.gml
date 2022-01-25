@@ -71,12 +71,12 @@ function dialog_terrain_mutate() {
 
 function dialog_create_terrain_new() {
     var dw = 640;
-    var dh = 360;
+    var dh = 400;
     
     var columns = 2;
     var spacing = 32;
     var ew = dw / columns - spacing * 2;
-    var eh = 24;
+    var eh = 32;
     
     var col1_x = spacing;
     var col2_x = spacing + dw / 2;
@@ -97,22 +97,22 @@ function dialog_create_terrain_new() {
             .SetRealNumberBounds(MIN_TERRAIN_HEIGHT, MAX_TERRAIN_HEIGHT)
             .SetTooltip("Height of the terrain")
             .SetID("HEIGHT"),
-        (new EmuButton(col1_x + 0 * ew / 4, EMU_AUTO, ew / 4, b_height, "64", function() {
+        (new EmuButton(col1_x + 0 * ew / 4, EMU_AUTO, ew / 4, eh, "64", function() {
             self.GetSibling("WIDTH").SetValue("64");
             self.GetSibling("HEIGHT").SetValue("64");
         }))
             .SetTooltip("Preset 64x64 map size"),
-        (new EmuButton(col1_x + 1 * ew / 4, EMU_INLINE, ew / 4, b_height, "128", function() {
+        (new EmuButton(col1_x + 1 * ew / 4, EMU_INLINE, ew / 4, eh, "128", function() {
             self.GetSibling("WIDTH").SetValue("128");
             self.GetSibling("HEIGHT").SetValue("128");
         }))
             .SetTooltip("Preset 128x128 map size"),
-        (new EmuButton(col1_x + 2 * ew / 4, EMU_INLINE, ew / 4, b_height, "256", function() {
+        (new EmuButton(col1_x + 2 * ew / 4, EMU_INLINE, ew / 4, eh, "256", function() {
             self.GetSibling("WIDTH").SetValue("256");
             self.GetSibling("HEIGHT").SetValue("256");
         }))
             .SetTooltip("Preset 256x256 map size"),
-        (new EmuButton(col1_x + 3 * ew / 4, EMU_INLINE, ew / 4, b_height, "512", function() {
+        (new EmuButton(col1_x + 3 * ew / 4, EMU_INLINE, ew / 4, eh, "512", function() {
             self.GetSibling("WIDTH").SetValue("512");
             self.GetSibling("HEIGHT").SetValue("512");
         }))
@@ -134,7 +134,7 @@ function dialog_create_terrain_new() {
             .SetIntegersOnly(true)
             .SetTooltip("The number of octaves to be used in generation")
             .SetID("OCTAVES"),
-        (new EmuButton(col2_x, 32, ew, b_height, "Import Heightmap", function() {
+        (new EmuButton(col2_x, 32, ew, eh, "Import Heightmap", function() {
             var fn = get_open_filename_image();
             if (fn != "") {
                 debug_timer_start();
