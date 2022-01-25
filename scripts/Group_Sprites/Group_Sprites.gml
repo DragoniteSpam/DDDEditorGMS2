@@ -1,6 +1,8 @@
 #macro sprite_save sprite_save_fixed
 #macro __sprite_add_old sprite_add
 #macro sprite_add sprite_add_fixed
+#macro sprite_delete sprite_delete_ext
+#macro __sprite_delete_old sprite_delete
 
 function sprite_add_fixed(filename, imagenum, removeback, smooth, xorig, yorig) {
     var sprite = __sprite_add_old(filename, imagenum, false, false, xorig, yorig);
@@ -31,6 +33,13 @@ function sprite_save_fixed(sprite, subimg, path) {
     var t = sprite_to_surface(sprite, subimg);
     surface_save(t, path);
     surface_free(t);
+}
+
+function sprite_delete_ext(sprite) {
+    for (var i = 0, n = sprite_get_number(sprite); i < n; i++) {
+        sprite_sample_remove_from_cache(sprite, i);
+    }
+    __sprite_delete_old(sprite);
 }
 
 function sprite_to_buffer(sprite, subimg) {

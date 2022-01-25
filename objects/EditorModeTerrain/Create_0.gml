@@ -32,8 +32,6 @@ EditModeZ = function(position, dir) {
             break;
     }
     
-    sprite_sample_remove_from_cache(self.gen_sprites[Settings.terrain.brush_index].sprite, 0);
-    
     self.Refresh();
 }
 
@@ -294,7 +292,6 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strengt
     var macaw = macaw_generate_dll(ww, hh, octaves, noise_strength).noise;
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_MUTATE);
     terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw, ww, hh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);
-    sprite_sample_remove_from_cache(sprite, 0);
     buffer_delete(macaw);
     self.Refresh();
 };
@@ -373,7 +370,6 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
         density, Settings.terrain.save_scale
     );
     
-    sprite_sample_remove_from_cache(color_sprite, 0);
     sprite_delete(color_sprite);
     
     // assemble the mesh data
