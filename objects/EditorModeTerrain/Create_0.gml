@@ -133,6 +133,22 @@ self.gen_sprites = [
     { sprite: spr_terrain_gen_juju, name: "Juju" },
 ];
 
+self.brush_sprites = array_clone(self.gen_sprites);
+
+array_push(self.brush_sprites,
+    { sprite: spr_terrain_gen_part_disc, name: "Disc" },
+    { sprite: spr_terrain_gen_part_star, name: "Star" },
+    { sprite: spr_terrain_gen_part_circle, name: "Circle" },
+    { sprite: spr_terrain_gen_part_ring, name: "Ring" },
+    { sprite: spr_terrain_gen_part_sphere, name: "Sphere" },
+    { sprite: spr_terrain_gen_part_flare, name: "Flare" },
+    { sprite: spr_terrain_gen_part_spark, name: "Spark" },
+    { sprite: spr_terrain_gen_part_explosion, name: "Explosion" },
+    { sprite: spr_terrain_gen_part_cloud, name: "Cloud" },
+    { sprite: spr_terrain_gen_part_smoke, name: "Smoke" },
+    { sprite: spr_terrain_gen_part_snow, name: "Snow" },
+);
+
 // general editing settings
 Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? 8;
 // import and export settings
@@ -229,7 +245,7 @@ self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data,
 vertex_freeze(self.terrain_buffer);
 
 color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale);
-color.SetBrush(spr_terrain_default_brushes, Settings.terrain.paint_brush_index);
+color.SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
 color.SetShader(shd_terrain_paint);
 texture = new Phoenix(self.width, self.height, c_black);
 texture.SetBrush(self.gen_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);

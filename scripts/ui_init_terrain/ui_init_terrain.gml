@@ -259,14 +259,13 @@ function ui_init_terrain(mode) {
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x + 16, EMU_BASE, col_width, 32, "Paintbrush:", 32, 12, function() {
                     var selection = self.GetSelection();
-                    Settings.terrain.paint_brush_index = selection;
-                    Stuff.terrain.color.SetBrush(spr_terrain_default_brushes, selection);
+                    if (selection + 1) {
+                        Settings.terrain.paint_brush_index = selection;
+                        Stuff.terrain.color.SetBrush(Stuff.terrain.brush_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+                    }
                 }))
-                    .AddEntries([
-                        "Pixel", "Disc", "Square", "Line", "Star", "Circle",
-                        "Ring", "Sphere", "Flare", "Spark", "Explosion",
-                        "Cloud", "Smoke", "Snow"
-                    ])
+                    .SetList(Stuff.terrain.brush_sprites)
+                    .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                     .Select(Settings.terrain.paint_brush_index),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.COLOR;
