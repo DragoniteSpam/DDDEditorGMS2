@@ -125,29 +125,29 @@ enum TerrainViewData {
 
 #region
 self.gen_sprites = [
-    { sprite: spr_terrain_gen_flat, name: "Square" },
-    { sprite: spr_terrain_gen_dot, name: "Circle" },
-    { sprite: spr_terrain_gen_bullseye, name: "Bullseye" },
-    { sprite: spr_terrain_gen_mountain, name: "Mountain" },
-    { sprite: spr_terrain_gen_craters, name: "Craters" },
-    { sprite: spr_terrain_gen_drago, name: "Drago" },
-    { sprite: spr_terrain_gen_juju, name: "Juju" },
+    { sprite: spr_terrain_gen_flat, name: "Square", builtin: true, },
+    { sprite: spr_terrain_gen_dot, name: "Circle", builtin: true, },
+    { sprite: spr_terrain_gen_bullseye, name: "Bullseye", builtin: true, },
+    { sprite: spr_terrain_gen_mountain, name: "Mountain", builtin: true, },
+    { sprite: spr_terrain_gen_craters, name: "Craters", builtin: true, },
+    { sprite: spr_terrain_gen_drago, name: "Drago", builtin: true, },
+    { sprite: spr_terrain_gen_juju, name: "Juju", builtin: true, },
 ];
 
 self.brush_sprites = array_clone(self.gen_sprites);
 
 array_push(self.brush_sprites,
-    { sprite: spr_terrain_gen_part_disc, name: "Disc" },
-    { sprite: spr_terrain_gen_part_star, name: "Star" },
-    { sprite: spr_terrain_gen_part_circle, name: "Circle" },
-    { sprite: spr_terrain_gen_part_ring, name: "Ring" },
-    { sprite: spr_terrain_gen_part_sphere, name: "Sphere" },
-    { sprite: spr_terrain_gen_part_flare, name: "Flare" },
-    { sprite: spr_terrain_gen_part_spark, name: "Spark" },
-    { sprite: spr_terrain_gen_part_explosion, name: "Explosion" },
-    { sprite: spr_terrain_gen_part_cloud, name: "Cloud" },
-    { sprite: spr_terrain_gen_part_smoke, name: "Smoke" },
-    { sprite: spr_terrain_gen_part_snow, name: "Snow" },
+    { sprite: spr_terrain_gen_part_disc, name: "Disc", builtin: true, },
+    { sprite: spr_terrain_gen_part_star, name: "Star", builtin: true, },
+    { sprite: spr_terrain_gen_part_circle, name: "Circle", builtin: true, },
+    { sprite: spr_terrain_gen_part_ring, name: "Ring", builtin: true, },
+    { sprite: spr_terrain_gen_part_sphere, name: "Sphere", builtin: true, },
+    { sprite: spr_terrain_gen_part_flare, name: "Flare", builtin: true, },
+    { sprite: spr_terrain_gen_part_spark, name: "Spark", builtin: true, },
+    { sprite: spr_terrain_gen_part_explosion, name: "Explosion", builtin: true, },
+    { sprite: spr_terrain_gen_part_cloud, name: "Cloud", builtin: true, },
+    { sprite: spr_terrain_gen_part_smoke, name: "Smoke", builtin: true, },
+    { sprite: spr_terrain_gen_part_snow, name: "Snow", builtin: true, },
 );
 
 // general editing settings
