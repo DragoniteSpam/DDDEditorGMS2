@@ -220,6 +220,7 @@ function dialog_create_terrain_new() {
 
 function dialog_terrain_export() {
     var default_lod_levels = min(10, ceil(power(mean(Stuff.terrain.width, Stuff.terrain.height), 0.25)));
+    var is_large_terrain = (Stuff.terrain.width * Stuff.terrain.height) > 1000000;
     
     var ew = 256;
     
@@ -289,7 +290,7 @@ function dialog_terrain_export() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: " + ((self.value > 0) ? string(self.value) : "(disabled)");
             Settings.terrain.export_chunk_size = self.value;
         }))
-            .SetValueRange(0, 256)
+            .SetValueRange(is_large_terrain ? 32 : 0, 256)
             .SetIntegersOnly(true)
             .SetID("CHUNKS"),
         (new EmuButton(352 + 0 * ew / 4, EMU_AUTO, ew / 4, 32, "N/A", function() {
@@ -297,6 +298,7 @@ function dialog_terrain_export() {
             self.GetSibling("CHUNKS").SetValue(0);
             Settings.terrain.export_chunk_size = 0;
         }))
+            .SetInteractive(!is_large_terrain)
             .SetTooltip("Disable chunking"),
         (new EmuButton(352 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "32", function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 32";
@@ -317,7 +319,7 @@ function dialog_terrain_export() {
         }))
             .SetTooltip("Preset chunk size of 128"),
         new EmuText(352, EMU_AUTO, 256, 48, "[c_blue]Each chunk and each LOD level will be saved as separate files."),
-        new EmuText(352, EMU_AUTO, 256, 48, ((Stuff.terrain.width * Stuff.terrain.height) > 1000000) ? "[c_blue]Terrains with an area larger than one million must be chunked." : ""),
+        new EmuText(352, EMU_AUTO, 256, 48, is_large_terrain ? "[c_blue]Terrains with an area larger than one million must be chunked." : ""),
         #endregion
         #region column 3
         (new EmuButton(672, 16, 256, 32, "Add to Project", function() {
