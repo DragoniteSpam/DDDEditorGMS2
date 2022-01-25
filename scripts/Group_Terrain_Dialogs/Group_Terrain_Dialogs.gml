@@ -374,9 +374,9 @@ function dialog_terrain_export() {
             
             if (levels == 0) {
                 switch (filename_ext(filename)) {
-                    case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(filename, chunk_size); break;
-                    case ".obj": Stuff.terrain.ExportOBJ(filename, chunk_size); break;
-                    case ".vbuff": Stuff.terrain.ExportVbuff(filename, chunk_size); break;
+                    case ".d3d": case ".gmmod": Stuff.terrain.ExportD3D(filename, 1, chunk_size); break;
+                    case ".obj": Stuff.terrain.ExportOBJ(filename, 1, chunk_size); break;
+                    case ".vbuff": Stuff.terrain.ExportVbuff(filename, 1, chunk_size); break;
                 }
             } else {
                 for (var i = 0; i < levels; i++) {
