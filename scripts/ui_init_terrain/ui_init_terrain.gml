@@ -139,7 +139,7 @@ function ui_init_terrain(mode) {
                     dialog_terrain_mutate();
                 }))
                     .SetTooltip("Add or subtract a random amount to the terrain. You can select a sprite to use as a mutation template, sort of like a heightmap."),
-                (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Scale:", "1", "Global scale", 4, E_InputTypes.REAL, function() {
+                (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Scale:", string(Settings.terrain.global_scale), "Global scale", 4, E_InputTypes.REAL, function() {
                     Settings.terrain.global_scale = real(self.value);
                 }))
                     .SetID("SCALE_INPUT")
