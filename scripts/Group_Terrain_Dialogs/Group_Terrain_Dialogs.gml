@@ -165,7 +165,9 @@ function dialog_create_terrain_new() {
                 
                 terrain.color.Reset(terrain.width, terrain.height);
                 terrain.height_data = terrainops_from_heightmap(buffer, scale);
-                terrain.terrain_buffer_data = terrainops_generate(terrain.height_data, terrain.width, terrain.height);
+                terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
+                terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, terrain.width, terrain.height);
+                terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
                 terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
                 
                 buffer_delete(buffer);
@@ -201,7 +203,9 @@ function dialog_create_terrain_new() {
             terrain.height_data = terrain.GenerateHeightData();
         }
         
-        terrain.terrain_buffer_data = terrainops_generate(terrain.height_data, width, height);
+        terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
+        terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, width, height);
+        terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
         terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
         vertex_freeze(terrain.terrain_buffer);
         

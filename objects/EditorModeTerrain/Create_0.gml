@@ -18,24 +18,21 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
-    var sprite = self.gen_sprites[Settings.terrain.brush_index].sprite;
-    var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH);
-    
-    terrainops_deform_settings(sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
+    terrainops_deform_settings(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
     
     switch (Settings.terrain.submode) {
         case TerrainSubmodes.MOUND:
-            terrainops_deform_mold(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
+            terrainops_deform_mold();
             break;
         case TerrainSubmodes.AVERAGE:
-            terrainops_deform_average(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
+            terrainops_deform_average();
             break;
         case TerrainSubmodes.ZERO:
-            terrainops_deform_zero(buffer_get_address(self.height_data), buffer_get_address(self.terrain_buffer_data), self.width, self.height);
+            terrainops_deform_zero();
             break;
     }
     
-    sprite_sample_remove_from_cache(sprite, 0);
+    sprite_sample_remove_from_cache(self.gen_sprites[Settings.terrain.brush_index].sprite, 0);
     
     self.Refresh();
 }
@@ -220,7 +217,7 @@ cursor_position = undefined;
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
 
 GenerateHeightData = function() {
-    var data = buffer_create(4 * width * height, buffer_fixed, 1);
+    var data = buffer_create(4 * self.width * self.height, buffer_fixed, 1);
     buffer_poke(data, 0, buffer_u32, 0);
     buffer_poke(data, buffer_get_size(data) - 4, buffer_u32, 0);
     return data;
@@ -233,8 +230,9 @@ Refresh = function() {
 };
 
 self.height_data = self.GenerateHeightData();
-
-self.terrain_buffer_data = terrainops_generate(self.height_data, self.width, self.height);
+terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
+self.terrain_buffer_data = terrainops_generate_internal(self.height_data, self.width, self.height);
+terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
 self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
 vertex_freeze(self.terrain_buffer);
 
