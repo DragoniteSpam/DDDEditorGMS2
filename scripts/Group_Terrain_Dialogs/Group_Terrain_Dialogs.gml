@@ -435,9 +435,9 @@ function dialog_create_terrain_brush_manager() {
                 builtin: false,
             };
             array_insert(Stuff.terrain.brush_sprites, selection, data);
+            data.name = self.GetSibling("LOAD").callback();
             self.GetSibling("BRUSH_LIST").ClearSelection();
             self.GetSibling("BRUSH_LIST").Select(selection);
-            self.GetSibling("LOAD").callback();
             // i like to think this is somewhat clever
             array_push(Stuff.terrain.gen_sprites, data);
         }),
@@ -505,6 +505,8 @@ function dialog_create_terrain_brush_manager() {
             }
             
             self.GetSibling("BRUSH_LIST").Select(selection);
+            
+            return string_copy(filename_change_ext(filename_name(filename), ""), 1, 32);
         }))
             .SetInteractive(false)
             .SetID("LOAD"),
