@@ -11,4 +11,7 @@ function file_write_text(filename, text) {
     buffer_write(buffer, buffer_text, text);
     buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
 }
+
+function file_touch(filename) {
+    file_write_text(filename, "");
 }
