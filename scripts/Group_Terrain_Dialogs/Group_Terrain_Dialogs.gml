@@ -316,6 +316,8 @@ function dialog_terrain_export() {
             Settings.terrain.export_chunk_size = 128;
         }))
             .SetTooltip("Preset chunk size of 128"),
+        new EmuText(352, EMU_AUTO, 256, 48, "[c_blue]Each chunk and each LOD level will be saved as separate files."),
+        new EmuText(352, EMU_AUTO, 256, 48, ((Stuff.terrain.width * Stuff.terrain.height) > 1000000) ? "[c_blue]Terrains with an area larger than one million must be chunked." : ""),
         #endregion
         #region column 3
         (new EmuButton(672, 16, 256, 32, "Add to Project", function() {

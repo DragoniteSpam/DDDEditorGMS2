@@ -62,6 +62,11 @@ function EmuCore(x, y, w, h) constructor {
         return self;
     };
     
+    static SetEnabled = function(enabled) {
+        self.enabled = enabled;
+        return self;
+    };
+    
     static GetChild = function(identifier) {
         identifier = string(identifier);
         return self.child_ids[$ identifier];
