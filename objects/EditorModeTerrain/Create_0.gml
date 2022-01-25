@@ -384,27 +384,6 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
     return mesh;
 };
 
-/// @return an array of { buffer, name }
-BuildBufferChunks = function(density = 1, chunk_size = 0) {
-    var collection = [];
-    
-    var main_buffer = self.BuildBuffer(density);
-    
-    if (chunk_size > 0) {
-        var chunks = vertex_buffer_as_chunks(main_buffer, chunk_size, max(1, ceil(self.width / chunk_size)), max(1, ceil(self.height / chunk_size)));
-        buffer_delete(main_buffer);
-        var keys = variable_struct_get_names(chunks);
-        for (var i = 0, n = array_length(keys); i < n; i++) {
-            var chunk = chunks[$ keys[i]];
-            array_push(collection, { buffer: chunk.buffer, name: string(chunk.coords.x) + "_" + string(chunk.coords.y) });
-        }
-    } else {
-        array_push(collection, { buffer: main_buffer, name: "" });
-    }
-    
-    return collection;
-};
-
 ExportD3D = function(filename, density = 1, chunk_size = 0) {
     var mesh = self.AddToProject("Terrain", density, false, false, chunk_size, chunk_size);
     export_d3d(filename, mesh);
