@@ -33,7 +33,6 @@ function ui_init_terrain(mode) {
                     
                     dialog.AddContent([
                         #region column 1
-                        new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]Viewer settings"),
                         (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", Settings.terrain.view_water, function() {
                             Settings.terrain.view_water = self.value;
                         }))
@@ -66,12 +65,30 @@ function ui_init_terrain(mode) {
                             .SetTooltip("Toggles the the skybox. In the future I might add the ability to import your own."),
                         #endregion
                         #region column 2
-                        new EmuText(col2x, EMU_BASE, col_width, 32, ""),        // just here to take up space
-                        (new EmuRadioArray(col2x, EMU_AUTO, 256, 32, "View data:", Settings.terrain.view_data, function() {
+                        (new EmuRadioArray(col2x, EMU_BASE, 256, 32, "View data:", Settings.terrain.view_data, function() {
                             Settings.terrain.view_data = self.value;
                         }))
                             .AddOptions(["Diffuse", "Position", "Normal", "Depth", "Barycentric"])
                             .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
+                        new EmuText(col2x, EMU_AUTO, col_width, 32, "[c_blue]Fog settings"),
+                        (new EmuCheckbox(col2x, EMU_AUTO, col_width, 32, "Draw fog?", Settings.terrain.fog_enabled, function() {
+                            Settings.terrain.fog_enabled = self.value;
+                        }))
+                            .SetTooltip("Whether or not to draw fog over the terrain at great distances."),
+                        (new EmuInput(col2x, EMU_AUTO, col_width, 32, "Fog start:", string(Settings.terrain.fog_start), "0...32000", 5, E_InputTypes.REAL, function() {
+                            Settings.terrain.fog_start = real(self.value);
+                        }))
+                            .SetRealNumberBounds(0, 32000)
+                            .SetTooltip("Distance at which the pixel fog begins."),
+                        (new EmuInput(col2x, EMU_AUTO, col_width, 32, "Fog end:", string(Settings.terrain.fog_end), "0...32000", 5, E_InputTypes.REAL, function() {
+                            Settings.terrain.fog_end = real(self.value);
+                        }))
+                            .SetRealNumberBounds(0, 32000)
+                            .SetTooltip("Distance at which the pixel fog ends."),
+                        (new EmuColorPicker(col2x, EMU_AUTO, col_width, 32, "Fog color:", Settings.terrain.fog_color, function() {
+                            Settings.terrain.fog_color = self.value;
+                        }))
+                            .SetTooltip("The color of the pixel fog."),
                         #endregion
                     ]).AddDefaultCloseButton();
                 }))
@@ -82,10 +99,10 @@ function ui_init_terrain(mode) {
                     dialog_create_terrain_new();
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Save Terrain", function() {
-                    terrain_save();
+                    
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Load Terrain", function() {
-                    terrain_load();
+                    
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Terrain", function() {
                     dialog_terrain_export();
