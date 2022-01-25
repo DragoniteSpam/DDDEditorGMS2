@@ -18,19 +18,12 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
-    var sprite = self.gen_sprites[Settings.terrain.brush_index].sprite;
-    terrainops_deform_settings(sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
+    terrainops_deform_settings(self.gen_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
     
     switch (Settings.terrain.submode) {
-        case TerrainSubmodes.MOUND:
-            terrainops_deform_mold();
-            break;
-        case TerrainSubmodes.AVERAGE:
-            terrainops_deform_average();
-            break;
-        case TerrainSubmodes.ZERO:
-            terrainops_deform_zero();
-            break;
+        case TerrainSubmodes.MOUND: terrainops_deform_mold(); break;
+        case TerrainSubmodes.AVERAGE: terrainops_deform_average(); break;
+        case TerrainSubmodes.ZERO: terrainops_deform_zero(); break;
     }
     
     self.Refresh();

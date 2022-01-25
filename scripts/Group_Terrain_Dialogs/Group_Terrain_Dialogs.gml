@@ -203,7 +203,7 @@ function dialog_create_terrain_new() {
             terrain.height_data = terrain.GenerateHeightData();
         }
         
-        terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
+        terrainops_set_active_data(buffer_get_address(terrain.height_data), terrain.width, terrain.height);
         terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, width, height);
         terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
         terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
