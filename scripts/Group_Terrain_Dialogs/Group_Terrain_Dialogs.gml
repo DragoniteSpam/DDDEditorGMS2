@@ -163,7 +163,9 @@ function dialog_create_terrain_new() {
                 buffer_delete(terrain.terrain_buffer_data);
                 vertex_delete_buffer(terrain.terrain_buffer);
                 
-                terrain.color.Reset(terrain.width, terrain.height);
+                terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
+                terrain.texture.Reset(terrain.width, terrain.height);
+                
                 terrain.height_data = terrainops_from_heightmap(buffer, scale);
                 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
                 terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, terrain.width, terrain.height);
@@ -193,7 +195,8 @@ function dialog_create_terrain_new() {
         buffer_delete(terrain.terrain_buffer_data);
         vertex_delete_buffer(terrain.terrain_buffer);
         
-        terrain.color.Reset(width, height);
+        terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
+        terrain.texture.Reset(width, height);
         
         if (self.GetSibling("USE_NOISE").value) {
             var ww = power(2, ceil(log2(width)));
