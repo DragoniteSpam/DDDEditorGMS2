@@ -399,27 +399,65 @@ function dialog_terrain_export() {
 
 function dialog_create_terrain_brush_manager() {
     var dw = 640;
-    var dh = 360;
+    var dh = 540;
     
     var columns = 2;
     var spacing = 32;
     var ew = dw / columns - spacing * 2;
-    var eh = 24;
-    
-    var vx1 = ew / 2;
-    var vy1 = 0;
-    var vx2 = ew;
-    var vy2 = eh;
+    var eh = 32;
     
     var b_width = 128;
     var b_height = 32;
     
     var yy_base = 32;
     
-    var col1_x = spacing;
-    var col2_x = spacing + dw / 2;
+    var col1x = spacing;
+    var col2x = spacing + dw / 2;
     
     var dialog = new EmuDialog(dw, dh, "Terrain brushes");
     dialog.AddContent([
+        #region column 1
+        (new EmuList(col1x, EMU_BASE, ew, eh, "Brushes:", eh, 10, function() {
+            var selection = self.GetSelection();
+            if (selection + 1) {
+                var data = Stuff.terrain.brush_sprites[selection];
+                self.GetSibling("NAME").SetInteractive(!data.builtin);
+                self.GetSibling("LOAD").SetInteractive(!data.builtin);
+                self.GetSibling("PREVIEW").SetInteractive(!data.builtin);
+                self.GetSibling("DELETE").SetInteractive(!data.builtin);
+                
+                self.GetSibling("NAME").SetValue(data.name);
+                self.GetSibling("PREVIEW").sprite = data.sprite;
+                self.GetSibling("DIMENSIONS").text = "Dimensions: " + string(sprite_get_width(data.sprite)) + " x " + string(sprite_get_height(data.sprite));
+            }
+        }))
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetList(Stuff.terrain.brush_sprites)
+            .SetID("BRUSH_LIST"),
+        new EmuButton(col1x, EMU_AUTO, ew, eh, "Add", function() {
+            
+        }),
+        (new EmuButton(col1x, EMU_AUTO, ew, eh, "Delete", function() {
+            
+        }))
+            .SetID("DELETE"),
+        #endregion
+        #region column 2
+        (new EmuInput(col2x, EMU_BASE, ew, eh, "Name:", "", "Brush name", 32, E_InputTypes.STRING, function() {
+            
+        }))
+            .SetID("NAME"),
+        (new EmuText(col2x, EMU_AUTO, ew, eh, "Dimensions:"))
+            .SetID("DIMENSIONS"),
+        (new EmuButton(col2x, EMU_AUTO, ew, eh, "Load", function() {
+            
+        }))
+            .SetID("LOAD"),
+        (new EmuButtonImage(col2x, EMU_AUTO, ew, ew, -1, TERRAIN_GEN_SPRITE_INDEX_BRUSH, c_white, 1, true, emu_null))
+            .SetID("PREVIEW")
+            .SetImageAlignment(fa_left, fa_top)
+            .SetAllowShrink(true)
+            .SetCheckerboard(true),
+        #endregion
     ]).AddDefaultCloseButton("Done");
 }
