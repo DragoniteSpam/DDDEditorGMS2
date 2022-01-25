@@ -37,6 +37,11 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
         return self;
     };
     
+    static SetAllowShrink = function(allow) {
+        self.allow_shrink = allow;
+        return self;
+    };
+    
     static SetCheckerboard = function(draw_checkerboard) {
         self.checker_background = draw_checkerboard;
         return self;
@@ -71,7 +76,15 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
                 if (self.allow_shrink) {
                     scale = min(self.width / sprite_get_width(sprite), self.height / sprite_get_height(sprite));
                 }
-                draw_sprite_ext(sprite, self._index, self.width / 2, self.height / 2, scale, scale, 0, blend, alpha);
+                var sprite_x = self.width / 2;
+                var sprite_y = self.height / 2;
+                if (self.image_align.h == fa_left) {
+                    sprite_x = 0;
+                }
+                if (self.image_align.v == fa_top) {
+                    sprite_y = 0;
+                }
+                draw_sprite_ext(sprite, self._index, sprite_x, sprite_y, scale, scale, 0, blend, alpha);
             } else {
                 var sprite_x = 0;
                 var sprite_y = 0;

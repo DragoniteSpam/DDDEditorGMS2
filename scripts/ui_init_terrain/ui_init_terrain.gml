@@ -148,16 +148,24 @@ function ui_init_terrain(mode) {
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
-                (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 10, function() {
+                (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 16, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
                         Settings.terrain.brush_index = selection;
+                        if (self.GetSibling("BRUSH_PREVIEW")) {
+                            self.GetSibling("BRUSH_PREVIEW").sprite = Stuff.terrain.brush_sprites[selection].sprite;
+                        }
                     }
                 }))
                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                     .SetList(Stuff.terrain.brush_sprites)
                     .Select(Settings.terrain.brush_index)
                     .SetID("SPRITE_LIST"),
+                (new EmuButtonImage(col2x, EMU_AUTO, col_width, col_width, Stuff.terrain.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, c_white, 1, true, emu_null))
+                    .SetID("BRUSH_PREVIEW")
+                    .SetImageAlignment(fa_left, fa_top)
+                    .SetAllowShrink(true)
+                    .SetCheckerboard(true),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.Z;
             }),
@@ -216,7 +224,7 @@ function ui_init_terrain(mode) {
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
-                (new EmuList(col2x, col_width * 2 + 32, col_width, 32, "Brush:", 32, 8, function() {
+                (new EmuList(col2x, col_width * 2 + 32, col_width, 32, "Brush:", 32, 10, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
                         Settings.terrain.tile_brush_index = selection;
@@ -257,16 +265,24 @@ function ui_init_terrain(mode) {
                     self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
-                (new EmuList(col2x + 16, EMU_BASE, col_width, 32, "Paintbrush:", 32, 12, function() {
+                (new EmuList(col2x, EMU_BASE, col_width, 32, "Paintbrush:", 32, 16, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
                         Settings.terrain.paint_brush_index = selection;
                         Stuff.terrain.color.SetBrush(Stuff.terrain.brush_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+                        if (self.GetSibling("BRUSH_PREVIEW")) {
+                            self.GetSibling("BRUSH_PREVIEW").sprite = Stuff.terrain.brush_sprites[selection].sprite;
+                        }
                     }
                 }))
                     .SetList(Stuff.terrain.brush_sprites)
                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                     .Select(Settings.terrain.paint_brush_index),
+                (new EmuButtonImage(col2x, EMU_AUTO, col_width, col_width, Stuff.terrain.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, c_white, 1, true, emu_null))
+                    .SetID("BRUSH_PREVIEW")
+                    .SetImageAlignment(fa_left, fa_top)
+                    .SetAllowShrink(true)
+                    .SetCheckerboard(true),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.COLOR;
             }),
