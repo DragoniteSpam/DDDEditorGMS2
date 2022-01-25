@@ -147,14 +147,14 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
     
     static AddDefaultCloseButton = function(name = "Close", callback = function() { self.root.Dispose(); }) {
         return self.AddContent([new EmuButton(self.width / 2 - EMU_DEFAULT_CLOSE_BUTTON_WIDTH / 2, self.height - 48, EMU_DEFAULT_CLOSE_BUTTON_WIDTH, EMU_DEFAULT_CLOSE_BUTTON_HEIGHT, name, callback)]);
-    }
+    };
     
     static AddDefaultConfirmCancelButtons = function(confirm_name, confirm_callback, cancel_name, cancel_callback) {
         return self.AddContent([
             new EmuButton(self.width / 2 - EMU_DEFAULT_CLOSE_BUTTON_WIDTH - 16, self.height - 48, EMU_DEFAULT_CLOSE_BUTTON_WIDTH, EMU_DEFAULT_CLOSE_BUTTON_HEIGHT, confirm_name, confirm_callback),
             new EmuButton(self.width / 2 + 16, self.height - 48, EMU_DEFAULT_CLOSE_BUTTON_WIDTH, EMU_DEFAULT_CLOSE_BUTTON_HEIGHT, cancel_name, cancel_callback)
         ]);
-    }
+    };
 }
 
 function emu_dialog_close_auto() {

@@ -396,3 +396,30 @@ function dialog_terrain_export() {
         }
     }, "Done", emu_dialog_close_auto);
 }
+
+function dialog_create_terrain_brush_manager() {
+    var dw = 640;
+    var dh = 360;
+    
+    var columns = 2;
+    var spacing = 32;
+    var ew = dw / columns - spacing * 2;
+    var eh = 24;
+    
+    var vx1 = ew / 2;
+    var vy1 = 0;
+    var vx2 = ew;
+    var vy2 = eh;
+    
+    var b_width = 128;
+    var b_height = 32;
+    
+    var yy_base = 32;
+    
+    var col1_x = spacing;
+    var col2_x = spacing + dw / 2;
+    
+    var dialog = new EmuDialog(dw, dh, "Terrain brushes");
+    dialog.AddContent([
+    ]).AddDefaultCloseButton("Done");
+}
