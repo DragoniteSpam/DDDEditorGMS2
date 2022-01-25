@@ -446,14 +446,17 @@ function dialog_create_terrain_brush_manager() {
         new EmuButton(col1x, EMU_AUTO, ew, eh, "Add", function() {
             var selection = self.GetSibling("BRUSH_LIST").GetSelection();
             if (selection == -1) selection = array_length(Stuff.terrain.brush_sprites);
-            array_insert(Stuff.terrain.brush_sprites, selection, {
+            var data = {
                 sprite: -1,
                 name: "Brush" + string(array_length(Stuff.terrain.brush_sprites)),
                 builtin: false,
-            });
+            };
+            array_insert(Stuff.terrain.brush_sprites, selection, data);
             self.GetSibling("BRUSH_LIST").ClearSelection();
             self.GetSibling("BRUSH_LIST").Select(selection);
             self.GetSibling("LOAD").callback();
+            // i like to think this is somewhat clever
+            array_push(Stuff.terrain.gen_sprites, data);
         }),
         (new EmuButton(col1x, EMU_AUTO, ew, eh, "Delete", function() {
             var selection = self.GetSibling("BRUSH_LIST").GetSelection();
@@ -463,6 +466,13 @@ function dialog_create_terrain_brush_manager() {
             if (sprite_exists(data.sprite)) sprite_delete(data.sprite);
             array_delete(Stuff.terrain.brush_sprites, selection, 1);
             self.GetSibling("BRUSH_LIST").ClearSelection();
+            // also delete the brush from the generation sprites list
+            for (var i = 0, n = array_length(Stuff.terrain.gen_sprites); i < n; i++) {
+                if (Stuff.terrain.gen_sprites[i].sprite == data.sprite) {
+                    array_delete(Stuff.terrain.gen_sprites, i, 1);
+                    break;
+                }
+            }
         }))
             .SetID("DELETE"),
         #endregion
