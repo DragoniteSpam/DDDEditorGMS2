@@ -5,13 +5,6 @@ function file_get_contents(filename) {
     return contents;
 }
 
-function file_write_text(filename, text) {
-    static buffer = buffer_create(1024, buffer_grow, 1);
-    buffer_seek(buffer, buffer_seek_start, 0);
-    buffer_write(buffer, buffer_text, text);
-    buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
-}
-
 function file_touch(filename) {
-    file_write_text(filename, "");
+    buffer_write_file(filename, "");
 }
