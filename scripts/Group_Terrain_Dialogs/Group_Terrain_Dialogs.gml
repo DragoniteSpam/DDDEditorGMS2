@@ -54,7 +54,7 @@ function dialog_terrain_mutate() {
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetList(Stuff.terrain.gen_sprites)
             .SetID("SPRITE_LIST"),
-        (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, false, emu_null))
+        (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, true, emu_null))
             .SetID("SPRITE_PREVIEW")
             .SetImageAlignment(fa_left, fa_top)
             .SetCheckerboard(true),
@@ -78,27 +78,16 @@ function dialog_create_terrain_new() {
     var ew = dw / columns - spacing * 2;
     var eh = 24;
     
-    var vx1 = ew / 2;
-    var vy1 = 0;
-    var vx2 = ew;
-    var vy2 = eh;
-    
-    var b_width = 128;
-    var b_height = 32;
-    
-    var yy_base = 32;
-    
     var col1_x = spacing;
     var col2_x = spacing + dw / 2;
     
     var dialog = new EmuDialog(dw, dh, "New Terrain");
     dialog.AddContent([
         (new EmuInput(
-            col1_x, yy_base, ew, eh, "Width:", string(DEFAULT_TERRAIN_WIDTH), string(MIN_TERRAIN_WIDTH) + "..." + string(MAX_TERRAIN_WIDTH),
+            col1_x, EMU_BASE, ew, eh, "Width:", string(DEFAULT_TERRAIN_WIDTH), string(MIN_TERRAIN_WIDTH) + "..." + string(MAX_TERRAIN_WIDTH),
             number_max_digits(MAX_TERRAIN_WIDTH), E_InputTypes.INT, function() { }
         ))
             .SetRealNumberBounds(MIN_TERRAIN_WIDTH, MAX_TERRAIN_WIDTH)
-            .SetInputBoxPosition(vx1, vy1, vx2, vy2)
             .SetTooltip("Height of the terrain")
             .SetID("WIDTH"),
         (new EmuInput(
@@ -106,7 +95,6 @@ function dialog_create_terrain_new() {
             number_max_digits(MAX_TERRAIN_HEIGHT), E_InputTypes.INT, function() { }
         ))
             .SetRealNumberBounds(MIN_TERRAIN_HEIGHT, MAX_TERRAIN_HEIGHT)
-            .SetInputBoxPosition(vx1, vy1, vx2, vy2)
             .SetTooltip("Height of the terrain")
             .SetID("HEIGHT"),
         (new EmuButton(col1_x + 0 * ew / 4, EMU_AUTO, ew / 4, b_height, "64", function() {
@@ -405,11 +393,6 @@ function dialog_create_terrain_brush_manager() {
     var spacing = 32;
     var ew = dw / columns - spacing * 2;
     var eh = 32;
-    
-    var b_width = 128;
-    var b_height = 32;
-    
-    var yy_base = 32;
     
     var col1x = spacing;
     var col2x = spacing + dw / 2;
