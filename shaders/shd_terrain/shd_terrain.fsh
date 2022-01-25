@@ -60,7 +60,7 @@ const vec4 CURSOR_COLOR = vec4(0.6, 0, 0, 1);
 #define DATA_DIFFUSE                0.0
 #define DATA_POSITION               1.0
 #define DATA_NORMAL                 2.0
-#define DATA_DEPTH                  3.0
+#define DATA_HEIGHT                 3.0
 #define DATA_BARYCENTRIC            4.0
 
 uniform float u_OptViewData;
@@ -83,8 +83,9 @@ void main() {
         vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
         normal = normalize(normal * sign(normal.z));
         gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
-    } else if (u_OptViewData == DATA_DEPTH) {
-        float fd = v_FragDistance / 1000.0;
+    } else if (u_OptViewData == DATA_HEIGHT) {
+        float max_height = 256.0;
+        float fd = max(min(v_WorldPosition.z / max_height, 1.0), 0.0);
         gl_FragColor = vec4(fd, fd, fd, 1);
     } else if (u_OptViewData == DATA_BARYCENTRIC) {
         gl_FragColor = vec4(v_Barycentric, 1);

@@ -68,7 +68,7 @@ function ui_init_terrain(mode) {
                         (new EmuRadioArray(col2x, EMU_BASE, 256, 32, "View data:", Settings.terrain.view_data, function() {
                             Settings.terrain.view_data = self.value;
                         }))
-                            .AddOptions(["Diffuse", "Position", "Normal", "Depth", "Barycentric"])
+                            .AddOptions(["Diffuse", "Position", "Normal", "Heightmap", "Barycentric"])
                             .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
                         new EmuText(col2x, EMU_AUTO, col_width, 32, "[c_blue]Fog settings"),
                         (new EmuCheckbox(col2x, EMU_AUTO, col_width, 32, "Draw fog?", Settings.terrain.fog_enabled, function() {
