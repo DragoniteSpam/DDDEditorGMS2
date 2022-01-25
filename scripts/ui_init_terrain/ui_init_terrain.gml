@@ -130,11 +130,9 @@ function ui_init_terrain(mode) {
                 }))
                     .AddOptions(["Mound", "Average", "Zero"])
                     .SetTooltip("The method which you would like to use to mold the terrain."),
-                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate: " + string_format(Settings.terrain.rate, 1, 3)))
-                    .SetID("DEFORMATION_RATE_LABEL"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.rate_min, Settings.terrain.rate_max, true, Settings.terrain.rate, function() {
                     Settings.terrain.rate = self.value;
-                    self.GetSibling("DEFORMATION_RATE_LABEL").text = "Deformation rate: " + string_format(self.value, 1, 3);
                 }))
                     .SetTooltip("A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Mutate", function() {
@@ -158,11 +156,9 @@ function ui_init_terrain(mode) {
                     dialog.x = 920;
                     dialog.y = 120;
                 })),
-                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(Settings.terrain.radius)))
-                    .SetID("BRUSH_RADIUS_LABEL"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.radius, function() {
                     Settings.terrain.radius = self.value;
-                    self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 16, function() {
@@ -234,11 +230,9 @@ function ui_init_terrain(mode) {
                 }))
                     .SetRealNumberBounds(Settings.terrain.tile_brush_size_min, Settings.terrain.tile_brush_size_max)
                     .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common."),
-                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(Settings.terrain.tile_brush_radius)))
-                    .SetID("BRUSH_RADIUS_LABEL"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
                     Settings.terrain.tile_brush_radius = self.value;
-                    self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x, col_width * 2 + 32, col_width, 32, "Brush:", 32, 10, function() {
@@ -256,11 +250,9 @@ function ui_init_terrain(mode) {
                 Settings.terrain.mode = TerrainModes.TEXTURE;
             }),
             (new EmuTab("Painting")).AddContent([
-                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength: " + string(Settings.terrain.paint_strength)))
-                    .SetID("PAINT_STENGTH_LABEL"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.paint_strength_min, Settings.terrain.paint_strength_max, true, Settings.terrain.paint_strength, function() {
                     Settings.terrain.paint_strength = self.value;
-                    self.GetSibling("PAINT_STENGTH_LABEL").text = "Paint strength: " + string(self.value);
                 }))
                     .SetTooltip("A lower strength value will cause the color to blend with the existing color, and a greater one will cause it to replace the existing color."),
                 (new EmuColorPicker(col1x, EMU_AUTO, col_width, 32, "Color:", Settings.terrain.paint_color, function() {
@@ -275,11 +267,9 @@ function ui_init_terrain(mode) {
                     dialog.x = 920;
                     dialog.y = 120;
                 }),
-                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius: " + string(Settings.terrain.paint_brush_radius)))
-                    .SetID("BRUSH_RADIUS_LABEL"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, Settings.terrain.paint_brush_radius, function() {
                     Settings.terrain.paint_brush_radius = self.value;
-                    self.GetSibling("BRUSH_RADIUS_LABEL").text = "Brush radius: " + string(self.value);
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x, EMU_BASE, col_width, 32, "Paintbrush:", 32, 16, function() {
