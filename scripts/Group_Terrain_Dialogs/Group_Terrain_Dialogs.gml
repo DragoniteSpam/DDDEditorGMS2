@@ -418,46 +418,75 @@ function dialog_create_terrain_brush_manager() {
     dialog.AddContent([
         #region column 1
         (new EmuList(col1x, EMU_BASE, ew, eh, "Brushes:", eh, 10, function() {
+            if (!self.GetSibling("NAME")) return;
             var selection = self.GetSelection();
             if (selection + 1) {
                 var data = Stuff.terrain.brush_sprites[selection];
                 self.GetSibling("NAME").SetInteractive(!data.builtin);
                 self.GetSibling("LOAD").SetInteractive(!data.builtin);
-                self.GetSibling("PREVIEW").SetInteractive(!data.builtin);
                 self.GetSibling("DELETE").SetInteractive(!data.builtin);
+                self.GetSibling("DEF_NOTICE").text = data.builtin ? "Default brushes cannot be edited." : "";
                 
                 self.GetSibling("NAME").SetValue(data.name);
                 self.GetSibling("PREVIEW").sprite = data.sprite;
-                self.GetSibling("DIMENSIONS").text = "Dimensions: " + string(sprite_get_width(data.sprite)) + " x " + string(sprite_get_height(data.sprite));
+                if (sprite_exists(data.sprite)) {
+                    self.GetSibling("DIMENSIONS").text = "Dimensions: " + string(sprite_get_width(data.sprite)) + " x " + string(sprite_get_height(data.sprite));
+                } else {
+                    self.GetSibling("DIMENSIONS").text = "Dimensions:";
+                }
+            } else {
+                self.GetSibling("NAME").SetInteractive(false);
+                self.GetSibling("LOAD").SetInteractive(false);
+                self.GetSibling("DELETE").SetInteractive(false);
             }
         }))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetList(Stuff.terrain.brush_sprites)
             .SetID("BRUSH_LIST"),
         new EmuButton(col1x, EMU_AUTO, ew, eh, "Add", function() {
-            
+            var selection = self.GetSibling("BRUSH_LIST").GetSelection();
+            if (selection == -1) selection = array_length(Stuff.terrain.brush_sprites);
+            array_insert(Stuff.terrain.brush_sprites, selection, {
+                sprite: -1,
+                name: "Brush" + string(array_length(Stuff.terrain.brush_sprites)),
+                builtin: false,
+            });
+            self.GetSibling("BRUSH_LIST").ClearSelection();
+            self.GetSibling("BRUSH_LIST").Select(selection);
         }),
         (new EmuButton(col1x, EMU_AUTO, ew, eh, "Delete", function() {
-            
+            var selection = self.GetSibling("BRUSH_LIST").GetSelection();
+            if (selection == -1) return;
+            var data = Stuff.terrain.brush_sprites[selection];
+            if (data.builtin) return;
+            if (sprite_exists(data.sprite)) sprite_delete(data.sprite);
+            array_delete(Stuff.terrain.brush_sprites, selection, 1);
+            self.GetSibling("BRUSH_LIST").ClearSelection();
         }))
             .SetID("DELETE"),
         #endregion
         #region column 2
         (new EmuInput(col2x, EMU_BASE, ew, eh, "Name:", "", "Brush name", 32, E_InputTypes.STRING, function() {
-            
+            var selection = self.GetSibling("BRUSH_LIST").GetSelection();
+            if (selection == -1 || Stuff.terrain.brush_sprites[selection].builtin) return;
+            Stuff.terrain.brush_sprites[selection].name = self.value;
         }))
             .SetID("NAME"),
         (new EmuText(col2x, EMU_AUTO, ew, eh, "Dimensions:"))
             .SetID("DIMENSIONS"),
         (new EmuButton(col2x, EMU_AUTO, ew, eh, "Load", function() {
-            
+            var selection = self.GetSibling("BRUSH_LIST").GetSelection();
+            if (selection == -1 || Stuff.terrain.brush_sprites[selection].builtin) return;
         }))
             .SetID("LOAD"),
         (new EmuButtonImage(col2x, EMU_AUTO, ew, ew, -1, TERRAIN_GEN_SPRITE_INDEX_BRUSH, c_white, 1, true, emu_null))
             .SetID("PREVIEW")
             .SetImageAlignment(fa_left, fa_top)
             .SetAllowShrink(true)
-            .SetCheckerboard(true),
+            .SetCheckerboard(true)
+            .SetInteractive(false),
+        (new EmuText(col2x, EMU_AUTO, ew, eh, ""))
+            .SetID("DEF_NOTICE"),
         #endregion
     ]).AddDefaultCloseButton("Done");
 }
