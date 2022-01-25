@@ -18,7 +18,7 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 EditModeZ = function(position, dir) {
-    terrainops_deform_settings(self.gen_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
+    terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
     
     switch (Settings.terrain.submode) {
         case TerrainSubmodes.MOUND: terrainops_deform_mold(); break;
@@ -187,7 +187,7 @@ Settings.terrain.brush_max = 160;
 Settings.terrain.rate_min = 0.05;
 Settings.terrain.rate_max = 2.5;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
-Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 1, 0, array_length(self.gen_sprites) - 1);
+Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 1, 0, array_length(self.brush_sprites) - 1);
 Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
 Settings.terrain.mode = TerrainModes.Z;
 Settings.terrain.submode = TerrainSubmodes.MOUND;
@@ -198,7 +198,7 @@ Settings.terrain.tile_brush_max = 250;
 Settings.terrain.tile_brush_size_min = 4;
 Settings.terrain.tile_brush_size_max = 256;
 Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? 4;
-Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 1, 0, array_length(self.gen_sprites) - 1);
+Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 1, 0, array_length(self.brush_sprites) - 1);
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
 Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
@@ -208,7 +208,7 @@ Settings.terrain.paint_brush_max = 250;
 Settings.terrain.paint_strength_min = 0.025;
 Settings.terrain.paint_strength_max = 1;
 Settings.terrain.paint_brush_radius = Settings.terrain[$ "paint_brush_radius"] ?? 4;
-Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index"] ?? 7, 0, array_length(self.gen_sprites) - 1);
+Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index"] ?? 7, 0, array_length(self.brush_sprites) - 1);
 Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 #endregion
@@ -248,7 +248,7 @@ color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Set
 color.SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
 color.SetShader(shd_terrain_paint);
 texture = new Phoenix(self.width, self.height, c_black);
-texture.SetBrush(self.gen_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+texture.SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
 texture.SetShader(shd_terrain_paint_texture);
 
 GetTextureColorCode = function() {
