@@ -435,8 +435,11 @@ function dialog_create_terrain_brush_manager() {
                 builtin: false,
             };
             array_insert(Stuff.terrain.brush_sprites, selection, data);
-            data.name = self.GetSibling("LOAD").callback();
             self.GetSibling("BRUSH_LIST").ClearSelection();
+            // this activates the Load button
+            self.GetSibling("BRUSH_LIST").Select(selection);
+            data.name = self.GetSibling("LOAD").callback();
+            // yes, again - this updates the display
             self.GetSibling("BRUSH_LIST").Select(selection);
             // i like to think this is somewhat clever
             array_push(Stuff.terrain.gen_sprites, data);
@@ -473,6 +476,8 @@ function dialog_create_terrain_brush_manager() {
             var selection = self.GetSibling("BRUSH_LIST").GetSelection();
             if (selection == -1 || Stuff.terrain.brush_sprites[selection].builtin) return;
             var filename = get_open_filename_image();
+            
+            if (!file_exists(filename)) return Stuff.terrain.brush_sprites[selection].name;
             
             var spr_raw = -1;
             var assembly_surface = -1;
