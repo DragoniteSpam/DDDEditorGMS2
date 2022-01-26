@@ -288,22 +288,22 @@ function dialog_terrain_export() {
         }))
             .SetInteractive(!is_large_terrain)
             .SetTooltip("Disable chunking"),
-        (new EmuButton(352 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "32", function() {
-            self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 32";
-            self.GetSibling("CHUNKS").SetValue(32);
-            Settings.terrain.export_chunk_size = 32;
-        }))
-            .SetTooltip("Preset chunk size of 32"),
-        (new EmuButton(352 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "64", function() {
+        (new EmuButton(352 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "64", function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 64";
             self.GetSibling("CHUNKS").SetValue(64);
             Settings.terrain.export_chunk_size = 64;
         }))
-            .SetTooltip("Preset chunk size of 64"),
-        (new EmuButton(352 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "128", function() {
+            .SetTooltip("Preset chunk size of 32"),
+        (new EmuButton(352 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "128", function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 128";
             self.GetSibling("CHUNKS").SetValue(128);
             Settings.terrain.export_chunk_size = 128;
+        }))
+            .SetTooltip("Preset chunk size of 64"),
+        (new EmuButton(352 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "256", function() {
+            self.GetSibling("LABEL_CHUNKS").text = "Chunk size: 256";
+            self.GetSibling("CHUNKS").SetValue(256);
+            Settings.terrain.export_chunk_size = 256;
         }))
             .SetTooltip("Preset chunk size of 128"),
         new EmuText(352, EMU_AUTO, 256, 48, "[c_blue]Each chunk and each LOD level will be saved as separate files."),
