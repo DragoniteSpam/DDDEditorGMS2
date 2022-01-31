@@ -43,6 +43,18 @@ function terrainops_flatten(data, vertex_data, height) {
     __terrainops_flatten(height);
 }
 
+function TERRAINOPS_BUILD_D3D(out) {
+    return __terrainops_build_d3d(buffer_get_address(out));
+}
+
+function TERRAINOPS_BUILD_OBJ(out) {
+    return __terrainops_build_obj(buffer_get_address(out));
+}
+
+function TERRAINOPS_BUILD_VBUFF(out) {
+    return __terrainops_build_vbuff(buffer_get_address(out));
+}
+
 function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     static output = buffer_create(1024, buffer_fixed, 1);
@@ -59,7 +71,7 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     
     for (var i = 0; i < w ; i += chunk_size) {
         for (var j = 0; j < h; j += chunk_size) {
-            //terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
+            terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
             var bytes = builder_function(output);
             buffer_save_ext(output, fn + ((chunk_size < w || chunk_size < h) ? ("." + string(i div chunk_size) + "_" + string(j div chunk_size) + ext) : ""), 0, bytes);
         }
