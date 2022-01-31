@@ -43,9 +43,27 @@ function terrainops_flatten(data, vertex_data, height) {
     __terrainops_flatten(height);
 }
 
-function terrainops_build(metadata, source, width, height, vertex_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale) {
-    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, width, height, save_scale);
-    var bytes = __terrainops_build(buffer_get_address(metadata), buffer_get_size(metadata));
+function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale) {
+    // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
+    static output = buffer_create(1024, buffer_fixed, 1);
+    buffer_resize(output, max(buffer_get_size(output), 1024 + 144 * 6 * chunk_size * chunk_size));
+    buffer_poke(output, 0, buffer_u32, 0);
+    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
+    
+    var w = Stuff.terrain.width;
+    var h = Stuff.terrain.height;
+    var fn = filename_change_ext(filename, "");
+    var ext = filename_ext(filename);
+    
+    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale);
+    
+    for (var i = 0; i < w ; i += chunk_size) {
+        for (var j = 0; j < h; j += chunk_size) {
+            //terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
+            var bytes = builder_function(output);
+            buffer_save_ext(output, fn + ((chunk_size < w || chunk_size < h) ? ("." + string(i div chunk_size) + "_" + string(j div chunk_size) + ext) : ""), 0, bytes);
+        }
+    }
 }
 
 show_debug_message("TerrainOps version: " + terrainops_version());

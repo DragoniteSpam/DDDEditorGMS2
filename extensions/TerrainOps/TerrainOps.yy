@@ -1,4 +1,7 @@
 {
+  "ConfigValues": {
+    "Terrain": {"copyToTargets":"-1",},
+  },
   "optionsFile": "options.json",
   "options": [],
   "exportToGame": true,
@@ -29,9 +32,7 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_build","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, width, height, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
-            2,
-            2,
+        {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
             2,
             2,
@@ -86,6 +87,21 @@
         {"externalName":"terrainops_set_active_vertex_data","kind":1,"help":"terrainops_set_active_vertex_data(vertex)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"terrainops_set_active_vertex_data","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_build_bounds","kind":1,"help":"terrainops_build_bounds(x1, y1, x2, y2)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"terrainops_build_bounds","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_build_d3d","kind":1,"help":"terrainops_build_d3d(out)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"TERRAINOPS_BUILD_D3D","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_build_vbuff","kind":1,"help":"terrainops_build_vbuff(out)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"TERRAINOPS_BUILD_VBUFF","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_build_obj","kind":1,"help":"terrainops_build_obj(out)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"TERRAINOPS_BUILD_OBJ","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_set_active_data","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -106,6 +122,10 @@
         {"name":"terrainops_deform_mold","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_deform_average","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_deform_zero","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"terrainops_build_bounds","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"TERRAINOPS_BUILD_D3D","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"TERRAINOPS_BUILD_VBUFF","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"TERRAINOPS_BUILD_OBJ","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",

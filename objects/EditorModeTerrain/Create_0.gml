@@ -333,6 +333,7 @@ DrawWater = function() {
 AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size_x = self.width, chunk_size_y = self.height) {
     density = floor(density);
     
+    /*
     // metadata setup
     var hcount = ceil(self.width / chunk_size_x);
     var vcount = ceil(self.height / chunk_size_y);
@@ -399,24 +400,19 @@ AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv
     array_push(Game.meshes, mesh);
     
     return mesh;
+    */
 };
 
 ExportD3D = function(filename, density = 1, chunk_size = 0) {
-    var mesh = self.AddToProject("Terrain", density, false, false, chunk_size, chunk_size);
-    export_d3d(filename, mesh);
-    mesh.Destroy();
+    terrainops_build_file(filename, TERRAINOPS_BUILD_D3D, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale);
 };
 
 ExportOBJ = function(filename, density = 1, chunk_size = 0) {
-    var mesh = self.AddToProject("Terrain", density, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, chunk_size, chunk_size);
-    export_obj(filename, mesh, "DDD Terrain");
-    mesh.Destroy();
-}
+    terrainops_build_file(filename, TERRAINOPS_BUILD_OBJ, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale);
+};
 
 ExportVbuff = function(filename, density = 1, chunk_size = 0) {
-    var mesh = self.AddToProject("Terrain", density, false, false, chunk_size, chunk_size);
-    export_vb(filename, mesh, Settings.terrain.output_vertex_format);
-    mesh.Destroy();
+    terrainops_build_file(filename, TERRAINOPS_BUILD_VBUFF, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale);
 };
 
 ExportHeightmap = function(filename, scale) {
