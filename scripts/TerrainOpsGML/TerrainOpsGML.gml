@@ -55,7 +55,7 @@ function TERRAINOPS_BUILD_VBUFF(out) {
     return __terrainops_build_vbuff(buffer_get_address(out));
 }
 
-function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale) {
+function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale, format = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     static output = buffer_create(1024, buffer_fixed, 1);
     buffer_resize(output, max(buffer_get_size(output), 1024 + 144 * 6 * chunk_size * chunk_size));
@@ -67,7 +67,7 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     var fn = filename_change_ext(filename, "");
     var ext = filename_ext(filename);
     
-    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale);
+    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale, format);
     
     for (var i = 0; i < w ; i += chunk_size) {
         for (var j = 0; j < h; j += chunk_size) {

@@ -32,7 +32,8 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_build","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale, format)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
             2,
             2,
             2,
