@@ -99,23 +99,19 @@ function ui_init_terrain(mode) {
                 #region
                 new EmuText(col2x, EMU_BASE, col_width, 32, "[c_blue]Saving and Loading"),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "New Terrain", function() {
-                    dialog_create_terrain_new();
+                    momu_terrain_new();
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Save Terrain", function() {
-                    var filename = get_save_filename_terrain("terrain.dddt");
-                    if (filename == "") return;
-                    Stuff.terrain.SaveTerrainStandalone(filename);
+                    momu_terrain_save();
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Load Terrain", function() {
-                    var filename = get_open_filename_terrain();
-                    if (!file_exists(filename)) return;
-                    Stuff.terrain.LoadTerrainStandalone(filename);
+                    momu_terrain_load();
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Terrain", function() {
-                    dialog_terrain_export();
+                    momu_terrain_export();
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Heightmap", function() {
-                    dialog_create_export_heightmap();
+                    momu_terrain_heightmap();
                 }),
             ]),
             (new EmuTab("Lighting")).AddContent([

@@ -8,18 +8,20 @@ function menu_init_terrain() {
         var m_separator = create_menu_element("----------", null, id);
         
         #region file stuff
-        var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
-        var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
         ds_list_add(menu_file.contents,
-            mf_preferences,
-            mf_exit
+            create_menu_element("New Terrain (Ctrl + N)", momu_terrain_new, menu_file),
+            create_menu_element("Save Terrain (Ctrl + S)", momu_terrain_save, menu_file),
+            create_menu_element("Open Terrain (Ctrl + O)", momu_terrain_load, menu_file),
+            create_menu_element("Export Terrain (Ctrl + E)", momu_terrain_export, menu_file),
+            create_menu_element("Export Heightmap (Ctrl + Shift + E)", momu_terrain_heightmap, menu_file),
+            create_menu_element("Preferences", momu_preferences, menu_file),
+            create_menu_element("Exit (Alt+F4)", momu_exit, menu_file),
         );
         #endregion
         
         #region help stuff
-        var mh_credits = create_menu_element("Credits", momu_credits, menu_help);
         ds_list_add(menu_help.contents,
-            mh_credits
+            create_menu_element("Credits", momu_credits, menu_help)
         );
         #endregion
         

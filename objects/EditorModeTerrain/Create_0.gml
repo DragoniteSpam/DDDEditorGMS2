@@ -93,9 +93,29 @@ update = function() {
     self.texture.Validate();
     self.color.Validate();
     
-    if (Stuff.menu.active_element) {
-        return false;
+    // you only get the keyboard shortcuts if we're running under the terrain config
+    if (EDITOR_BASE_MODE == ModeIDs.TERRAIN) {
+        if (keyboard_check(vk_control)) {
+            if (keyboard_check_pressed(ord("S"))) {
+                momu_terrain_save();
+            }
+            else if (keyboard_check_pressed(ord("O"))) {
+                momu_terrain_load();
+            }
+            else if (keyboard_check_pressed(ord("E"))) {
+                if (keyboard_check(vk_shift)) {
+                    momu_terrain_heightmap();
+                } else {
+                    momu_terrain_export();
+                }
+            }
+            else if (keyboard_check_pressed(ord("N"))) {
+                momu_terrain_new();
+            }
+        }
     }
+    
+    if (Stuff.menu.active_element) return;
     
     if (mouse_within_view(view_3d)) {
         if (Settings.terrain.orthographic) {
