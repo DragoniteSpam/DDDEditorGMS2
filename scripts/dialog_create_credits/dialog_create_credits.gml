@@ -33,14 +33,13 @@ function dialog_create_credits() {
         }),
         new EmuText(cx + 224, EMU_INLINE, cw, ch, "[rainbow][wave]Scribble,[] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)"),
         new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
+            url_open("https://github.com/JujuAdams/carton");
+        }),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_blue]Carton[] by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)"),
+        new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
             url_open("https://github.com/GameMakerDiscord/Xpanda/");
         }),
-        new EmuText(cx + 224, EMU_INLINE, cw, ch, "Xpanda, shader management by kraifpatrik"),
-        #endregion
-        
-        #region default assets
-        new EmuText(cx, EMU_AUTO, cw, ch, "[c_blue]Default assets"),
-        new EmuText(cx, EMU_AUTO, cw, ch, "Water textures: Aswin Vos, and GodsAndIdols"),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_blue]Xpanda,[] shader management by kraifpatrik"),
         #endregion
     ]).AddDefaultCloseButton();
     
