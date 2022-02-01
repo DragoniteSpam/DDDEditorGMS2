@@ -1082,7 +1082,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"translation-y-gold.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"translation-z.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"translation.d3d","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_chr_default.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_magenta.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_sky_clouds_blue.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-sphere.d3d","resourceType":"GMIncludedFile",},
