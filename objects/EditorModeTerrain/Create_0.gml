@@ -259,7 +259,7 @@ GetTextureColorCode = function() {
     return tx | (ty << 8) | 0xff000000;
 };
 
-SaveTerrainStandalone = function() {
+SaveTerrainStandalone = function(filename) {
     var carton = carton_create();
     var header_buffer = buffer_create(1024, buffer_grow, 1);
     buffer_write(header_buffer, buffer_string, json_stringify({
@@ -270,10 +270,13 @@ SaveTerrainStandalone = function() {
     carton_add(carton, "height", self.height_data);
     carton_add(carton, "color", self.color.GetBuffer());
     carton_add(carton, "texture", self.texture.GetBuffer());
-    return carton;
+    
+    carton_save(carton, filename, false);
+    carton_destroy(carton);
 };
 
-LoadTerrainStandalone = function(carton) {
+LoadTerrainStandalone = function(filename) {
+    var carton = carton_load(filename, false);
     // cartons go into the buffer in order but
     for(var i = 0, n = carton_count(carton); i < n; i++) {
         switch (carton_get_metadata(carton, i)) {
