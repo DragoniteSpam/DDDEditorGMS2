@@ -198,11 +198,13 @@ Settings.terrain.view_data = Settings.terrain[$ "view_data"] ?? TerrainViewData.
 Settings.terrain.orthographic = Settings.terrain[$ "orthographic"] ?? false;
 Settings.terrain.view_scale = Settings.terrain[$ "view_scale"] ?? 4;
 Settings.terrain.light_enabled = Settings.terrain[$ "light_enabled"] ?? true;
-Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? c_black;
 Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? true;
 Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
 Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
+// light settings
+Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.25, g: 0.25, b: 0.25 };
+Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
 // height settings
 Settings.terrain.brush_min = 1.5;
 Settings.terrain.brush_max = 160;
