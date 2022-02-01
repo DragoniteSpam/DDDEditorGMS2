@@ -102,10 +102,14 @@ function ui_init_terrain(mode) {
                     dialog_create_terrain_new();
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Save Terrain", function() {
-                    
+                    var filename = get_save_filename_terrain("terrain.dddt");
+                    if (filename == "") return;
+                    Stuff.terrain.SaveTerrainStandalone(filename);
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Load Terrain", function() {
-                    
+                    var filename = get_open_filename_terrain();
+                    if (!file_exists(filename)) return;
+                    Stuff.terrain.LoadTerrainStandalone(filename);
                 }),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Terrain", function() {
                     dialog_terrain_export();
