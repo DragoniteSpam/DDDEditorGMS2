@@ -236,4 +236,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         var accelerate_time = 6;
         return max(1, (base_speed * (logn(32, max(self.z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / accelerate_time * Settings.config.camera_fly_rate, 10));
     };
+    
+    static GetVPMatrix = function() {
+        return matrix_multiply(self.view_mat, self.proj_mat);
+    };
 }
