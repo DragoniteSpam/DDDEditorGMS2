@@ -107,4 +107,17 @@ function Phoenix(width, height, def_color = c_white) constructor {
         sprite_delete(sprite);
         return buffer;
     };
+    
+    static SetSprite = function(sprite) {
+        if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
+        if (surface_exists(self.surface)) surface_free(self.surface);
+        self.sprite = sprite_duplicate(sprite);
+        self.LoadState();
+    };
+    
+    static SetBuffer = function(buffer) {
+        var sprite = sprite_from_buffer(buffer, self.w, self.h);
+        self.SetSprite(sprite);
+        sprite_delete(sprite);
+    };
 }
