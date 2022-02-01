@@ -1,4 +1,6 @@
 function draw_editor_terrain() {
+    Stuff.terrain.DrawDepth();
+    
     draw_set_color(c_white);
     gpu_set_zwriteenable(true);
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);

@@ -12,11 +12,6 @@ vertex_format_begin();
 vertex_format_add_position_3d();
 self.vertex_format = vertex_format_end();
 
-self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
-    Stuff.terrain.mouse_interaction(mouse_vector);
-});
-self.camera.Load(setting_get("terrain", "camera", undefined));
-
 EditModeZ = function(position, dir) {
     terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
     
@@ -123,6 +118,7 @@ update = function() {
         } else {
             self.camera.Update();
         }
+        self.camera_light.Update();
     }
 };
 
@@ -137,7 +133,7 @@ render = function() {
 
 save = function() {
     Settings.terrain.camera = self.camera.Save();
-    // all of the other things now go directly to the terrain settings object
+    Settings.terrain.camera_light = self.camera_light.Save();
 };
 
 enum TerrainViewData {
@@ -206,6 +202,7 @@ Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.25, g: 0.25, b: 0.25 };
 Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
 Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? true;
+Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? 4096;
 // height settings
 Settings.terrain.brush_min = 1.5;
 Settings.terrain.brush_max = 160;
@@ -238,6 +235,35 @@ Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 #endregion
 
+self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+    Stuff.terrain.mouse_interaction(mouse_vector);
+});
+self.camera.Load(setting_get("terrain", "camera", undefined));
+
+self.camera_light = new Camera(2000, -2000, 2256, 0, 0, 256, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, null);
+self.camera_light.Load(setting_get("terrain", "camera_light", undefined));
+self.camera_light.Update = method(self.camera_light, function() {
+    var main_camera = Stuff.terrain.camera;
+    var dist = 2000;
+    self.x = main_camera.x - dist * Settings.terrain.light_direction.x;
+    self.y = main_camera.y - dist * Settings.terrain.light_direction.y;
+    self.z = main_camera.z - dist * Settings.terrain.light_direction.z;
+    self.xto = self.x + Settings.terrain.light_direction.x;
+    self.yto = self.y + Settings.terrain.light_direction.y;
+    self.zto = self.z + Settings.terrain.light_direction.z;
+});
+self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
+    var vw = view_get_wport(view_current);
+    var vh = view_get_hport(view_current);
+    
+    self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
+    self.proj_mat = matrix_build_projection_ortho(4000, -4000, self.znear, self.zfar);
+    
+    camera_set_view_mat(self.camera, self.view_mat);
+    camera_set_proj_mat(self.camera, self.proj_mat);
+    camera_apply(self.camera);
+});
+
 texture_name = DEFAULT_TILESET;
 texture_image = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
 
@@ -248,6 +274,7 @@ width = DEFAULT_TERRAIN_WIDTH;
 cursor_position = undefined;
 
 water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
+depth_surface = surface_create(Settings.terrain.light_shadows_quality, Settings.terrain.light_shadows_quality);
 
 GenerateHeightData = function() {
     var data = buffer_create(4 * self.width * self.height, buffer_fixed, 1);
@@ -408,6 +435,34 @@ DrawWater = function() {
     vertex_submit(self.water, pr_trianglelist, sprite_get_texture(spr_terrain_water, 0));
     shader_reset();
 };
+
+DrawDepth = function() {
+    if (!Settings.terrain.light_shadows) return;
+    
+    var quality = Settings.terrain.light_shadows_quality;
+    var dir = Settings.terrain.light_direction;
+    var dist = 2000;
+    self.depth_surface = surface_rebuild(self.depth_surface, quality, quality);
+    
+    surface_set_target(self.depth_surface);
+    draw_clear_alpha(c_black, 1);
+    self.camera_light.SetProjectionOrtho();
+    
+    shader_set(shd_scene_depth);
+    gpu_set_ztestenable(true);
+    gpu_set_zwriteenable(true);
+    matrix_set(matrix_world, matrix_build_identity());
+    
+    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+    
+    matrix_set(matrix_world, matrix_build(self.camera.x, self.camera.y, self.camera.z, 0, 0, 0, 2, 2, 2));
+    
+    gpu_set_ztestenable(false);
+    gpu_set_zwriteenable(false);
+    shader_reset();
+    surface_reset_target();
+};
+
 #endregion
 
 #region Export methods

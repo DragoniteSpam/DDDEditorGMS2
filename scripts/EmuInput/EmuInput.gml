@@ -99,7 +99,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 c = color_warn;
             }
         } else {
-            var c = color_reject;
+            c = color_reject;
         }
         #endregion
         
