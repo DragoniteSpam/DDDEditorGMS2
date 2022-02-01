@@ -259,6 +259,20 @@ GetTextureColorCode = function() {
     return tx | (ty << 8) | 0xff000000;
 };
 
+SaveTerrainStandalone = function() {
+    var carton = carton_create();
+    var header_buffer = buffer_create(1024, buffer_grow, 1);
+    buffer_write(header_buffer, buffer_string, json_stringify({
+        width: self.width,
+        height: self.height,
+    }));
+    carton_add(carton, "header", header_buffer, 0, buffer_tell(header_buffer));
+    carton_add(carton, "height", self.height_data);
+    carton_add(carton, "color", self.color.GetBuffer());
+    carton_add(carton, "texture", self.texture.GetBuffer());
+    return carton;
+};
+
 LoadAsset = function(directory) {
     directory += "/";
     try {
