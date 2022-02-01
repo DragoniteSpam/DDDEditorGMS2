@@ -35,8 +35,9 @@ EditModeTexture = function(position) {
 };
 
 EditModeColor = function(position) {
-    var cs = Settings.terrain.color_scale;
-    self.color.Paint(position.x * cs, position.y * cs, Settings.terrain.paint_brush_radius * cs, Settings.terrain.paint_color, Settings.terrain.paint_strength);
+    var csx = surface_get_width(self.color.surface) / self.width;
+    var csy = surface_get_height(self.color.surface) / self.height;
+    self.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius, Settings.terrain.paint_color, Settings.terrain.paint_strength);
 };
 
 self.mouse_interaction = function(mouse_vector) {
