@@ -273,6 +273,45 @@ SaveTerrainStandalone = function() {
     return carton;
 };
 
+LoadTerrainStandalone = function(carton) {
+    // cartons go into the buffer in order but
+    for(var i = 0, n = carton_count(carton); i < n; i++) {
+        switch (carton_get_metadata(carton, i)) {
+            case "header":
+                var data = carton_get_buffer(carton, i);
+                var json = json_parse(buffer_read(data, buffer_text));
+                self.width = json.width;
+                self.height = json.height;
+                buffer_delete(data);
+                break;
+            case "height":
+                var data = carton_get_buffer(carton, i);
+                if (buffer_exists(self.height_data)) buffer_delete(self.height_data);
+                self.height_data = data;
+                terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
+                if (buffer_exists(self.terrain_buffer_data)) buffer_delete(self.terrain_buffer_data);
+                terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
+                if (self.terrain_buffer != -1) vertex_delete_buffer(self.terrain_buffer);
+                self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
+                vertex_freeze(self.terrain_buffer);
+                self.color.Reset(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale);
+                self.texture.Reset(self.width, self.height);
+                break;
+            case "color":
+                var data = carton_get_buffer(carton, i);
+                self.color.SetBuffer(data);
+                buffer_delete(data);
+                break;
+            case "texture":
+                var data = carton_get_buffer(carton, i);
+                self.texture.SetBuffer(data);
+                buffer_delete(data);
+                break;
+        }
+    }
+    carton_destroy(carton);
+};
+
 LoadAsset = function(directory) {
     directory += "/";
     try {
