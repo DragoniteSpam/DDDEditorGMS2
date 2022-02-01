@@ -22,6 +22,10 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightAmbientColor"), Settings.terrain.light_ambient.r, Settings.terrain.light_ambient.g, Settings.terrain.light_ambient.b);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirection"), Settings.terrain.light_direction.x, Settings.terrain.light_direction.y, Settings.terrain.light_direction.z);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightShadows"), Settings.terrain.light_shadows);
+    
+    shader_set_uniform_f_array(shader_get_uniform(shd_terrain, "u_LightVP"), self.camera_light.GetVPMatrix());
+    gpu_set_tex_filter_ext(shader_get_sampler_index(shd_terrain, "s_DepthTexture"), true);
+    texture_set_stage(shader_get_sampler_index(shd_terrain, "s_DepthTexture"), surface_get_texture(self.depth_surface));
     // fog uniforms
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogStrength"), Settings.terrain.fog_enabled * !Settings.terrain.orthographic ? 1 : 0);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogStart"), Settings.terrain.fog_start);

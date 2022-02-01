@@ -201,8 +201,8 @@ Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 // light settings
 Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.25, g: 0.25, b: 0.25 };
 Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
-Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? true;
-Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? 4096;
+Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? false;
+Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? 2048;
 // height settings
 Settings.terrain.brush_min = 1.5;
 Settings.terrain.brush_max = 160;
@@ -240,7 +240,7 @@ self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAME
 });
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
-self.camera_light = new Camera(2000, -2000, 2256, 0, 0, 256, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, null);
+self.camera_light = new Camera(2000, -2000, 2256, 0, 0, 256, 0, 0, 1, 60, CAMERA_ZNEAR, 10000, null);
 self.camera_light.Load(setting_get("terrain", "camera_light", undefined));
 self.camera_light.Update = method(self.camera_light, function() {
     var main_camera = Stuff.terrain.camera;
@@ -253,11 +253,8 @@ self.camera_light.Update = method(self.camera_light, function() {
     self.zto = self.z + Settings.terrain.light_direction.z;
 });
 self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
-    var vw = view_get_wport(view_current);
-    var vh = view_get_hport(view_current);
-    
     self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
-    self.proj_mat = matrix_build_projection_ortho(4000, -4000, self.znear, self.zfar);
+    self.proj_mat = matrix_build_projection_ortho(Settings.terrain.light_shadows_quality / 2, -Settings.terrain.light_shadows_quality / 2, self.znear, self.zfar);
     
     camera_set_view_mat(self.camera, self.view_mat);
     camera_set_proj_mat(self.camera, self.proj_mat);
@@ -440,8 +437,6 @@ DrawDepth = function() {
     if (!Settings.terrain.light_shadows) return;
     
     var quality = Settings.terrain.light_shadows_quality;
-    var dir = Settings.terrain.light_direction;
-    var dist = 2000;
     self.depth_surface = surface_rebuild(self.depth_surface, quality, quality);
     
     surface_set_target(self.depth_surface);
@@ -451,12 +446,14 @@ DrawDepth = function() {
     shader_set(shd_scene_depth);
     gpu_set_ztestenable(true);
     gpu_set_zwriteenable(true);
+    gpu_set_cullmode(cull_noculling);
+    gpu_set_blendenable(false);
     matrix_set(matrix_world, matrix_build_identity());
     
-    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
     
-    matrix_set(matrix_world, matrix_build(self.camera.x, self.camera.y, self.camera.z, 0, 0, 0, 2, 2, 2));
-    
+    gpu_set_cullmode(cull_counterclockwise);
+    gpu_set_blendenable(true);
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);
     shader_reset();

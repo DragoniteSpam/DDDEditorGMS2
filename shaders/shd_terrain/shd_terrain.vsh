@@ -10,6 +10,11 @@ varying vec2 v_Texcoord;
 uniform vec2 u_TerrainSizeV;
 uniform vec2 u_TextureTileSize;
 
+uniform mat4 u_LightVP;
+
+varying float v_LightDistance;
+varying vec2 v_ShadowTexcoord;
+
 void main() {
     v_WorldPosition = vec4(floor(in_Position.xy), in_Position.z, 1);
     v_FragDistance = length((gm_Matrices[MATRIX_WORLD_VIEW] * v_WorldPosition).xyz);
@@ -29,4 +34,9 @@ void main() {
 	v_Texcoord = vec2(floor(fract(in_Position.y * 2.0) * 2.0), floor(fract(in_Position.y * 4.0) * 2.0)) / u_TextureTileSize;
 	// get rid of the one pixel seam at the edge of tiles
 	v_Texcoord -= (1.0 / u_TerrainSizeV) * ceil(v_Texcoord);
+    
+    vec4 screenSpace = u_LightVP * v_WorldPosition;
+    
+    v_LightDistance = screenSpace.z / screenSpace.w;
+    v_ShadowTexcoord = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
 }

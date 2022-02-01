@@ -8,12 +8,9 @@ varying vec2 v_Texcoord;
 uniform vec3 u_LightAmbientColor;
 uniform vec3 u_LightDirection;
 
-void CommonLight(inout vec4 baseColor) {
-    vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
-    normal = normalize(normal * sign(normal.z));
-    
+void CommonLight(inout vec4 baseColor, float NdotL) {
     vec3 lightColor = u_LightAmbientColor;
-    lightColor += u_LightAmbientColor * max(dot(normal, -normalize(u_LightDirection)), 0.0);
+    lightColor += u_LightAmbientColor * NdotL;
     
     baseColor.rgb *= clamp(lightColor, vec3(0), vec3(1));
 }
@@ -65,14 +62,28 @@ const vec4 CURSOR_COLOR = vec4(0.6, 0, 0, 1);
 
 uniform float u_OptViewData;
 
+uniform sampler2D s_DepthTexture;
+uniform float u_LightShadows;
+
+varying float v_LightDistance;
+varying vec2 v_ShadowTexcoord;
+
+const vec3 UNDO = vec3(1.0, 256.0, 65536.0) / 16777215.0 * 255.0;
+float fromDepthColor(vec4 color) {
+    return dot(color.rgb, UNDO) + color.a;
+}
+
 void main() {
+    vec3 normal = normalize(cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz)));
+    float NdotL = clamp(dot(normal, -normalize(u_LightDirection)), 0.0, 1.0);
+    
     if (u_OptViewData == DATA_DIFFUSE) {
         vec2 worldTextureUV = v_WorldPosition.xy / u_TerrainSizeF;
         vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV);
         vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord);
         vec4 color = vec4(texture2D(u_TexColor, worldTextureUV).rgb, 1) * sampled;
         
-        CommonLight(color);
+        CommonLight(color, NdotL);
         CommonFog(color);
         WaterFog(color);
         
@@ -91,6 +102,14 @@ void main() {
         gl_FragColor = vec4(v_Barycentric, 1);
     } else {
         gl_FragColor = vec4(1);
+    }
+    
+    if (u_LightShadows == 1.0) {
+        float depthValue = fromDepthColor(texture2D(s_DepthTexture, v_ShadowTexcoord));
+        float depth_bias = 0.005 * tan(acos(NdotL));
+        if (v_LightDistance > depthValue + depth_bias) {
+            gl_FragColor.rgb *= u_LightAmbientColor;
+        }
     }
     
     float dist = length(v_WorldPosition.xy - u_Mouse);
