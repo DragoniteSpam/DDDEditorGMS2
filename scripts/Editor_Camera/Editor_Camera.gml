@@ -12,6 +12,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.def_direction = darctan2(z - zto, point_distance(x, y, xto, yto));
     self.def_pitch = point_direction(x, y, xto, yto);
     
+    self.camera = camera_create();
+    
     self.znear = znear;
     self.zfar = zfar;
     self.callback = method(self, callback);
@@ -136,29 +138,27 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static SetProjection = function() {
-        var camera = view_get_camera(view_current);
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
         
         self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
         self.proj_mat = matrix_build_projection_perspective_fov(-self.fov, -vw / vh, self.znear, self.zfar);
         
-        camera_set_view_mat(camera, self.view_mat);
-        camera_set_proj_mat(camera, self.proj_mat);
-        camera_apply(camera);
+        camera_set_view_mat(self.camera, self.view_mat);
+        camera_set_proj_mat(self.camera, self.proj_mat);
+        camera_apply(self.camera);
     };
     
     static SetProjectionOrtho = function() {
-        var camera = view_get_camera(view_current);
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
         
         self.view_mat = matrix_build_lookat(self.x, self.y, self.zfar - 256, self.x, self.y, 0, 0, 1, 0);
         self.proj_mat = matrix_build_projection_ortho(-vw * self.scale, vh * self.scale, self.znear, self.zfar);
         
-        camera_set_view_mat(camera, self.view_mat);
-        camera_set_proj_mat(camera, self.proj_mat);
-        camera_apply(camera);
+        camera_set_view_mat(self.camera, self.view_mat);
+        camera_set_proj_mat(self.camera, self.proj_mat);
+        camera_apply(self.camera);
     };
     
     static DrawSkybox = function() {
