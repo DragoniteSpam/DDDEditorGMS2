@@ -61,7 +61,10 @@ function sprite_from_buffer(buffer, w, h) {
 
 function sprite_to_surface(sprite, subimg) {
     // https://www.yoyogames.com/blog/60/alpha-and-surfaces
+    var dd = surface_get_depth_disable();
+    surface_depth_disable(true);
     var t = surface_create(sprite_get_width(sprite), sprite_get_height(sprite));
+    surface_depth_disable(dd);
     surface_set_target(t);
     draw_clear_alpha(c_black, 0);
     gpu_set_blendmode(bm_add);
