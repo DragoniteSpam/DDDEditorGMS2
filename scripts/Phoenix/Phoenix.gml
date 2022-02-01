@@ -3,7 +3,10 @@ function Phoenix(width, height, def_color = c_white) constructor {
     self.height = min(height, 0x4000);
     self.def_color = def_color;
     
+    var dd = surface_get_depth_disable();
+    surface_depth_disable(true);
     self.surface = surface_create(self.width, self.height);
+    surface_depth_disable(dd);
     self.sprite = -1;
     surface_set_target(self.surface);
     draw_clear_alpha(def_color, 1);
@@ -36,7 +39,10 @@ function Phoenix(width, height, def_color = c_white) constructor {
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
+        var dd = surface_get_depth_disable();
+        surface_depth_disable(true);
         self.surface = surface_create(self.width, self.height);
+        surface_depth_disable(dd);
         surface_set_target(self.surface);
         draw_clear_alpha(self.def_color, 1);
         surface_reset_target();
