@@ -205,6 +205,7 @@ Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 // light settings
 Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.25, g: 0.25, b: 0.25 };
 Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
+Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? true;
 // height settings
 Settings.terrain.brush_min = 1.5;
 Settings.terrain.brush_max = 160;
