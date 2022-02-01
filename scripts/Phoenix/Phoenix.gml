@@ -100,4 +100,11 @@ function Phoenix(width, height, def_color = c_white) constructor {
     static GetSprite = function() {
         return sprite_create_from_surface(self.surface, 0, 0, surface_get_width(self.surface), surface_get_height(self.surface), false, false, 0, 0);
     };
+    
+    static GetBuffer = function() {
+        var sprite = self.GetSprite();
+        var buffer = sprite_to_buffer(sprite, 0);
+        sprite_delete(sprite);
+        return buffer;
+    };
 }
