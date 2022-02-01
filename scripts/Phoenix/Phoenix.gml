@@ -1,6 +1,8 @@
 function Phoenix(width, height, def_color = c_white) constructor {
-    self.width = min(width, 0x4000);
-    self.height = min(height, 0x4000);
+    self.MAX_SIZE = 4096;
+    
+    self.width = min(width, self.MAX_SIZE);
+    self.height = min(height, self.MAX_SIZE);
     self.def_color = def_color;
     
     var dd = surface_get_depth_disable();
@@ -34,8 +36,8 @@ function Phoenix(width, height, def_color = c_white) constructor {
     };
     
     static Reset = function(width, height) {
-        self.width = min(width, 0x4000);
-        self.height = min(height, 0x4000);
+        self.width = min(width, self.MAX_SIZE);
+        self.height = min(height, self.MAX_SIZE);
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
