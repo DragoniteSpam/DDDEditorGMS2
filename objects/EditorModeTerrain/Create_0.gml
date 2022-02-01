@@ -293,6 +293,7 @@ LoadTerrainStandalone = function(filename) {
                 self.height_data = data;
                 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
                 if (buffer_exists(self.terrain_buffer_data)) buffer_delete(self.terrain_buffer_data);
+                self.terrain_buffer_data = terrainops_generate_internal(self.height_data, self.width, self.height);
                 terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
                 if (self.terrain_buffer != -1) vertex_delete_buffer(self.terrain_buffer);
                 self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);

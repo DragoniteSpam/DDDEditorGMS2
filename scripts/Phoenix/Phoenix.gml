@@ -116,7 +116,7 @@ function Phoenix(width, height, def_color = c_white) constructor {
     };
     
     static SetBuffer = function(buffer) {
-        var sprite = sprite_from_buffer(buffer, self.w, self.h);
+        var sprite = sprite_from_buffer(buffer, self.width, self.height);
         self.SetSprite(sprite);
         sprite_delete(sprite);
     };
