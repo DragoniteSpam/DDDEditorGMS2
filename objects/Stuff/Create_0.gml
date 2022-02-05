@@ -67,6 +67,7 @@ alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #region initialize standalone systems
 
 scribble_font_set_default("FDefault");
+scribble_font_bake_outline_4dir("FDefault", "FDefaultOutline", c_black, true);
 
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
@@ -254,7 +255,10 @@ data_type_meta = [
 status_messages = [];
 AddStatusMessage = function(text) {
     static statusMessage = function(text) constructor {
-        self.text = text;
+        self.text = scribble(text)
+            .starting_format("FDefaultOutline", c_white)
+            .align(fa_left, fa_top)
+            .wrap(window_get_width() - 64, 32);
         self.duration = 15;
         self.x = 32;
         self.y = 48;
@@ -266,10 +270,8 @@ AddStatusMessage = function(text) {
         };
         
         static Render = function() {
-            scribble(self.text)
+            self.text
                 .blend(c_white, min(1, self.duration))
-                .align(fa_left, fa_top)
-                .wrap(window_get_width() - 64, 32)
                 .draw(self.x, self.y);
         };
     };
