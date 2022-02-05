@@ -66,16 +66,23 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     var h = Stuff.terrain.height;
     var fn = filename_change_ext(filename, "");
     var ext = filename_ext(filename);
+    var texture_buffer = Stuff.terrain.texture.GetBuffer();
+    var colour_buffer = Stuff.terrain.color.GetBuffer();
     
     __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale, format);
+    __terrainops_build_texture(buffer_get_address(texture_buffer));
+    __terrainops_build_vertex_colour(buffer_get_address(colour_buffer));
     
     for (var i = 0; i < w ; i += chunk_size) {
         for (var j = 0; j < h; j += chunk_size) {
-            terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
+            __terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
             var bytes = builder_function(output);
             buffer_save_ext(output, fn + ((chunk_size < w || chunk_size < h) ? ("." + string(i div chunk_size) + "_" + string(j div chunk_size) + ext) : ""), 0, bytes);
         }
     }
+    
+    buffer_delete(texture_buffer);
+    buffer_delete(colour_buffer);
 }
 
 show_debug_message("TerrainOps version: " + terrainops_version());

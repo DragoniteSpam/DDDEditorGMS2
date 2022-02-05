@@ -93,7 +93,7 @@
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"terrainops_build_bounds","tags":[],"resourceType":"GMExtensionFunction",},
+          ],"resourceVersion":"1.0","name":"__terrainops_build_bounds","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"terrainops_build_d3d","kind":1,"help":"terrainops_build_d3d(out)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"__terrainops_build_d3d","tags":[],"resourceType":"GMExtensionFunction",},
@@ -103,6 +103,12 @@
         {"externalName":"terrainops_build_obj","kind":1,"help":"terrainops_build_obj(out)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"__terrainops_build_obj","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_build_texture","kind":1,"help":"terrainops_build_texture(buffer)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"__terrainops_build_texture","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_build_vertex_colour","kind":1,"help":"terrainops_build_vertex_colour(buffer)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"__terrainops_build_vertex_colour","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_set_active_data","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -110,11 +116,13 @@
         {"name":"terrainops_deform_mold","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_deform_average","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_deform_zero","path":"extensions/TerrainOps/TerrainOps.yy",},
-        {"name":"terrainops_build_bounds","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_to_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_from_heightmap","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build_settings","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_build_bounds","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_build_texture","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_build_vertex_colour","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_generate_internal","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_apply_scale","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_flatten","path":"extensions/TerrainOps/TerrainOps.yy",},
