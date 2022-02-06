@@ -32,7 +32,8 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"__terrainops_build","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale, format)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale, tex_size, format)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
             2,
             2,
             2,
@@ -88,7 +89,7 @@
         {"externalName":"terrainops_set_active_vertex_data","kind":1,"help":"terrainops_set_active_vertex_data(vertex)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"terrainops_set_active_vertex_data","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_build_bounds","kind":1,"help":"terrainops_build_bounds(x1, y1, x2, y2)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_build_bounds","kind":1,"help":"__terrainops_build_bounds(x1, y1, x2, y2)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
             2,
             2,
@@ -103,7 +104,7 @@
         {"externalName":"terrainops_build_obj","kind":1,"help":"terrainops_build_obj(out)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"__terrainops_build_obj","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_build_texture","kind":1,"help":"terrainops_build_texture(buffer)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"terrainops_build_texture","kind":1,"help":"__terrainops_build_texture(buffer)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"__terrainops_build_texture","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"terrainops_build_vertex_colour","kind":1,"help":"terrainops_build_vertex_colour(buffer)","hidden":false,"returnType":2,"argCount":0,"args":[

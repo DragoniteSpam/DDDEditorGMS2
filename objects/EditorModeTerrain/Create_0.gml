@@ -301,8 +301,8 @@ texture.SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, T
 texture.SetShader(shd_terrain_paint_texture);
 
 GetTextureColorCode = function() {
-    var tx = floor(256 * Settings.terrain.tile_brush_x / sprite_get_width(self.texture_image));
-    var ty = floor(256 * Settings.terrain.tile_brush_y / sprite_get_height(self.texture_image));
+    var tx = floor(0x100 * Settings.terrain.tile_brush_x / sprite_get_width(self.texture_image));
+    var ty = floor(0x100 * Settings.terrain.tile_brush_y / sprite_get_height(self.texture_image));
     return tx | (ty << 8) | 0xff000000;
 };
 
