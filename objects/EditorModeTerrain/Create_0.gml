@@ -542,6 +542,7 @@ ExportD3D = function(filename, density = 1, chunk_size = 0) {
 
 ExportOBJ = function(filename, density = 1, chunk_size = 0) {
     terrainops_build_file(filename, TERRAINOPS_BUILD_OBJ, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale);
+    terrainops_build_mtl(filename, self.texture_image);
 };
 
 ExportVbuff = function(filename, density = 1, chunk_size = 0) {
