@@ -77,7 +77,8 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
         for (var j = 0; j < h; j += chunk_size) {
             __terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
             var bytes = builder_function(output);
-            buffer_save_ext(output, fn + ((chunk_size < w || chunk_size < h) ? ("." + string(i div chunk_size) + "_" + string(j div chunk_size) + ext) : ""), 0, bytes);
+            var output_name = fn + ((chunk_size < w || chunk_size < h) ? ("." + string(i div chunk_size) + "_" + string(j div chunk_size) + ext) : ext);
+            buffer_save_ext(output, output_name, 0, bytes);
         }
     }
     
