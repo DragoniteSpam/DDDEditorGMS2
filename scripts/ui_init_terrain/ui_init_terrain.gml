@@ -285,6 +285,14 @@ function ui_init_terrain(mode) {
                     Settings.terrain.paint_brush_radius = self.value;
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Export canvas", function() {
+                    var filename = get_save_filename_image("canvas.png");
+                    if (filename != "") {
+                        var sprite = Stuff.terrain.color.GetSprite();
+                        sprite_save(sprite, 0, filename);
+                        sprite_delete(sprite);
+                    }
+                }),
                 (new EmuList(col2x, EMU_BASE, col_width, 32, "Paintbrush:", 32, 15, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
