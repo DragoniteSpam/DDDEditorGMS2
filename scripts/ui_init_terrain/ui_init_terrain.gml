@@ -96,7 +96,10 @@ function ui_init_terrain(mode) {
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Brushes...", function() {
                     dialog_create_terrain_brush_manager();
                 }),
-                #region
+                new EmuInput(col1x, EMU_AUTO, col_width, 32, "RNG seed:", "", "", 100, E_InputTypes.STRING, function() {
+                    macaw_set_seed(self.value);
+                }),
+                #region i/o stuff
                 new EmuText(col2x, EMU_BASE, col_width, 32, "[c_blue]Saving and Loading"),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "New Terrain", function() {
                     momu_terrain_new();
@@ -113,6 +116,7 @@ function ui_init_terrain(mode) {
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Heightmap", function() {
                     momu_terrain_heightmap();
                 }),
+                #endregion
             ]),
             (new EmuTab("Lighting")).AddContent([
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "I'll re-implement this later (hopefully soon)"),
