@@ -84,6 +84,8 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     
     buffer_delete(texture_buffer);
     buffer_delete(colour_buffer);
+    
+    sprite_save(sprite, 0, filename_path(filename) + "terrain.png");
 }
 
 function terrainops_build_mtl(filename, sprite) {
@@ -91,7 +93,6 @@ function terrainops_build_mtl(filename, sprite) {
     buffer_seek(output, buffer_seek_start, 0);
     buffer_write(output, buffer_text, "newmtl terrain\r\nKd 1.000 1.000 1.000\r\nmap_Kd terrain.png");
     buffer_save_ext(output, filename_path(filename) + "terrain.mtl", 0, buffer_tell(output));
-    sprite_save(sprite, 0, filename_path(filename) + "terrain.png");
 }
 
 show_debug_message("TerrainOps version: " + terrainops_version());
