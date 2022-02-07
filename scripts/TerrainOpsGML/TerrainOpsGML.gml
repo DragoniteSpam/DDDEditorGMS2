@@ -69,7 +69,7 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     var texture_buffer = Stuff.terrain.texture.GetBuffer();
     var colour_buffer = Stuff.terrain.color.GetBuffer();
     
-    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale, Settings.terrain.tile_brush_size / sprite_get_width(Stuff.terrain.texture_image), format);
+    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale, Settings.terrain.tile_brush_size / sprite_get_width(Stuff.terrain.texture_image), Settings.terrain.color_scale, format);
     __terrainops_build_texture(buffer_get_address(texture_buffer));
     __terrainops_build_vertex_colour(buffer_get_address(colour_buffer));
     
