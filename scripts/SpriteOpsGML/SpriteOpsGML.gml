@@ -1,0 +1,1 @@
+show_debug_message("SpriteOps version: " + spriteops_version());
