@@ -55,7 +55,7 @@ function TERRAINOPS_BUILD_VBUFF(out) {
     return __terrainops_build_vbuff(buffer_get_address(out));
 }
 
-function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale, format = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR) {
+function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale, sprite, format = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     static output = buffer_create(1024, buffer_fixed, 1);
     buffer_resize(output, max(buffer_get_size(output), 1024 + 144 * 6 * chunk_size * chunk_size));
@@ -88,7 +88,7 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     sprite_save(sprite, 0, filename_path(filename) + "terrain.png");
 }
 
-function terrainops_build_mtl(filename, sprite) {
+function terrainops_build_mtl(filename) {
     static output = buffer_create(1024, buffer_fixed, 1);
     buffer_seek(output, buffer_seek_start, 0);
     buffer_write(output, buffer_text, "newmtl terrain\r\nKd 1.000 1.000 1.000\r\nmap_Kd terrain.png");
