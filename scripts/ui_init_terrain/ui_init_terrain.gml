@@ -293,6 +293,31 @@ function ui_init_terrain(mode) {
                         sprite_delete(sprite);
                     }
                 }),
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Import canvas", function() {
+                    var filename = get_open_filename_image();
+                    var canvas = Stuff.terrain.color;
+                    if (filename != "") {
+                        // loading the canvas is a bit more involved because you
+                        // need to make sure it's the right size
+                        try {
+                            var sprite = sprite_add(filename, 0, false, false, 0, 0);
+                            var surface = sprite_to_surface(sprite, 0);
+                            var actual_surface = surface_create(canvas.width, canvas.height);
+                            surface_set_target(actual_surface);
+                            draw_clear_alpha(c_white, 1);
+                            surface_reset_target();
+                            surface_copy(actual_surface, 0, 0, surface);
+                            var actual_sprite = sprite_from_surface(actual_surface);
+                            canvas.SetSprite(actual_sprite);
+                            sprite_delete(sprite);
+                            sprite_delete(actual_sprite);
+                            surface_free(surface);
+                            surface_free(actual_surface);
+                        } catch (e) {
+                            canvas.Reset();
+                        }
+                    }
+                }),
                 (new EmuList(col2x, EMU_BASE, col_width, 32, "Paintbrush:", 32, 15, function() {
                     var selection = self.GetSelection();
                     if (selection + 1) {
