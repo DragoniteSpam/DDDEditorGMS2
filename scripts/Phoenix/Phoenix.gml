@@ -102,8 +102,10 @@ function Phoenix(width, height, def_color = c_white) constructor {
     };
     
     static GetBuffer = function() {
+        var sprite = self.GetSprite();
         var buffer = buffer_create(sprite_get_width(sprite) * sprite_get_height(sprite) * 4, buffer_fixed, 1);
         buffer_get_surface(buffer, self.surface, 0);
+        sprite_delete(sprite);
         return buffer;
     };
     
