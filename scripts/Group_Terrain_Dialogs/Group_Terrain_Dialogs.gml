@@ -97,26 +97,31 @@ function dialog_create_terrain_new() {
             .SetRealNumberBounds(MIN_TERRAIN_HEIGHT, MAX_TERRAIN_HEIGHT)
             .SetTooltip("Height of the terrain")
             .SetID("HEIGHT"),
-        (new EmuButton(col1_x + 0 * ew / 4, EMU_AUTO, ew / 4, eh, "64", function() {
+        (new EmuButton(col1_x + 0 * ew / 5, EMU_AUTO, ew / 5, eh, "64", function() {
             self.GetSibling("WIDTH").SetValue("64");
             self.GetSibling("HEIGHT").SetValue("64");
         }))
             .SetTooltip("Preset 64x64 map size"),
-        (new EmuButton(col1_x + 1 * ew / 4, EMU_INLINE, ew / 4, eh, "128", function() {
+        (new EmuButton(col1_x + 1 * ew / 5, EMU_INLINE, ew / 5, eh, "128", function() {
             self.GetSibling("WIDTH").SetValue("128");
             self.GetSibling("HEIGHT").SetValue("128");
         }))
             .SetTooltip("Preset 128x128 map size"),
-        (new EmuButton(col1_x + 2 * ew / 4, EMU_INLINE, ew / 4, eh, "256", function() {
+        (new EmuButton(col1_x + 2 * ew / 5, EMU_INLINE, ew / 5, eh, "256", function() {
             self.GetSibling("WIDTH").SetValue("256");
             self.GetSibling("HEIGHT").SetValue("256");
         }))
             .SetTooltip("Preset 256x256 map size"),
-        (new EmuButton(col1_x + 3 * ew / 4, EMU_INLINE, ew / 4, eh, "512", function() {
+        (new EmuButton(col1_x + 3 * ew / 5, EMU_INLINE, ew / 5, eh, "512", function() {
             self.GetSibling("WIDTH").SetValue("512");
             self.GetSibling("HEIGHT").SetValue("512");
         }))
             .SetTooltip("Preset 512x512 map size"),
+        (new EmuButton(col1_x + 4 * ew / 5, EMU_INLINE, ew / 5, eh, "1024", function() {
+            self.GetSibling("WIDTH").SetValue("1024");
+            self.GetSibling("HEIGHT").SetValue("1024");
+        }))
+            .SetTooltip("Preset 1024x1024 map size"),
         (new EmuCheckbox(col1_x, EMU_AUTO, ew, eh, "Generate noise?", false, function() {
             self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
         }))
