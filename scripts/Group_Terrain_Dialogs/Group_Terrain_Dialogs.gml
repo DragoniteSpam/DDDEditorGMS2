@@ -221,16 +221,17 @@ function dialog_terrain_export() {
     dialog.AddContent([
         #region column 1
         new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
-        (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (default_lod_levels > 0 ? string(default_lod_levels) : "none")))
+        (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (Settings.terrain.export_lod_levels > 0 ? string(Settings.terrain.export_lod_levels) : "none")))
             .SetID("LABEL"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 0, 10, true, default_lod_levels, function() {
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 0, 10, true, Settings.terrain.export_lod_levels, function() {
             self.GetSibling("LABEL").text = "Max LOD levels: " + (self.value > 0 ? string(self.value) : "none");
+            Settings.terrain.export_lod_levels = self.value;
         }))
             .SetIntegersOnly(true)
             .SetID("LEVELS"),
         (new EmuText(32, EMU_AUTO, 256, 32, "LOD reduction factor: 2"))
             .SetID("LABEL_REDUCTION"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 4, true, default_lod_levels, function() {
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 4, true, Settings.terrain.export_lod_levels, function() {
             self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: " + string(self.value);
         }))
             .SetValue(2)

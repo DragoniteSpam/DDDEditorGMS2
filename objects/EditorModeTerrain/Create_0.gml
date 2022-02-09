@@ -179,6 +179,7 @@ Settings.terrain.export_centered = Settings.terrain[$ "export_centered"] ?? fals
 Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? 64;
 Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? false;
 Settings.terrain.export_smooth_threshold = Settings.terrain[$ "export_smooth_threshold"] ?? 60;
+Settings.terrain.export_lod_levels = Settings.terrain[$ "export_lod_levels"] ?? 2;
 Settings.terrain.output_vertex_format = Settings.terrain[$ "output_vertex_format"] ?? DEFAULT_VERTEX_FORMAT;
 // viewer settings
 Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? true;
@@ -261,8 +262,7 @@ self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
     camera_apply(self.camera);
 });
 
-texture_name = DEFAULT_TILESET;
-texture_image = sprite_add(PATH_GRAPHICS + texture_name, 0, false, false, 0, 0);
+texture_image = sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
 
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;
