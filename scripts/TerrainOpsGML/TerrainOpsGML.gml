@@ -80,7 +80,7 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
             __terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
             var bytes = builder_function(output);
             var output_name = fn + ((chunk_size < w || chunk_size < h) ? ("." + string(i div chunk_size) + "_" + string(j div chunk_size) + ext) : ext);
-            buffer_save_ext(output, output_name, 0, bytes);
+            buffer_save_async(output, output_name, 0, bytes);
         }
     }
     
@@ -94,7 +94,7 @@ function terrainops_build_mtl(filename) {
     static output = buffer_create(1024, buffer_fixed, 1);
     buffer_seek(output, buffer_seek_start, 0);
     buffer_write(output, buffer_text, "newmtl terrain\r\nKd 1.000 1.000 1.000\r\nmap_Kd terrain.png");
-    buffer_save_ext(output, filename_path(filename) + "terrain.mtl", 0, buffer_tell(output));
+    buffer_save_async(output, filename_path(filename) + "terrain.mtl", 0, buffer_tell(output));
 }
 
 show_debug_message("TerrainOps version: " + terrainops_version());
