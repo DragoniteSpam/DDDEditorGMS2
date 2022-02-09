@@ -61,7 +61,8 @@ function dialog_terrain_mutate() {
     ]).AddDefaultCloseButton("Okay", function() {
         debug_timer_start();
         
-        Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value, self.GetSibling("TEXTURE_STRENGTH").value);
+        var max_dimension = max(max(Stuff.terrain.width, Stuff.terrain.height) / 256, 1);
+        Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value * max_dimension, self.GetSibling("TEXTURE_STRENGTH").value * max_dimension);
         self.root.Dispose();
         
         Stuff.AddStatusMessage("Mutating terrain took " + debug_timer_finish());
@@ -194,7 +195,8 @@ function dialog_create_terrain_new() {
         if (self.GetSibling("USE_NOISE").value) {
             var ww = power(2, ceil(log2(width)));
             var hh = power(2, ceil(log2(height)));
-            terrain.height_data = macaw_generate_dll(ww, hh, self.GetSibling("OCTAVES").value, real(self.GetSibling("SCALE").value)).noise;
+            var max_dimension = max(max(Stuff.terrain.width, Stuff.terrain.height) / 256, 1);
+            terrain.height_data = macaw_generate_dll(ww, hh, self.GetSibling("OCTAVES").value, real(self.GetSibling("SCALE").value) * max_dimension).noise;
         } else {
             terrain.height_data = terrain.GenerateHeightData();
         }
