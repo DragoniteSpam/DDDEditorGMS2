@@ -1,5 +1,5 @@
 function emu_dialog_confirm(root, message, action_confirm, caption_message = "Important!", confirm_message = "yeah!", cancel_message = "nope", action_cancel = function() { self.root.Dispose(); }) {
-    var dw = 400;
+    var dw = 480;
     var dh = 240;
     var b_width = 128;
     var b_height = 32;
@@ -13,4 +13,4 @@ function emu_dialog_confirm(root, message, action_confirm, caption_message = "Im
     ]).AddDefaultConfirmCancelButtons(confirm_message, action_confirm, cancel_message, action_cancel);
     
     return dialog;
-} 
+}
