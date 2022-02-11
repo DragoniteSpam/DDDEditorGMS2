@@ -13,6 +13,7 @@ randomize();
 if (!directory_exists(PATH_TEMP)) directory_create(PATH_TEMP);
 if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
 if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
+if (!directory_exists(PATH_TERRAIN)) directory_create(PATH_TERRAIN);
 
 dt = 0;
 time = 0;

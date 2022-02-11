@@ -203,6 +203,7 @@ function ui_init_terrain(mode) {
                         Stuff.terrain.texture_image = sprite_add(filename, 0, false, false, 0, 0);
                         if (sprite_exists(Stuff.terrain.texture_image)) {
                             sprite_delete(old_sprite);
+                            sprite_save(Stuff.terrain.texture_image, 0, PATH_TERRAIN + "tex.png");
                         } else {
                             Stuff.terrain.texture_image = old_sprite;
                         }

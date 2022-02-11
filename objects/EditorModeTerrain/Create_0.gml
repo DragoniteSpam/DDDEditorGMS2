@@ -262,7 +262,7 @@ self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
     camera_apply(self.camera);
 });
 
-texture_image = sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
+texture_image = file_exists(PATH_TERRAIN + "tex.png") ? sprite_add(PATH_TERRAIN + "tex.png", 0, false, false, 0, 0) : sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
 
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;

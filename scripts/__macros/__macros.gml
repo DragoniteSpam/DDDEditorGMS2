@@ -89,6 +89,7 @@
 #macro PATH_PROJECTS                        "projects/"
 #macro PATH_TEMP                            "temp/"                             // local storage - no leading punctuation - used for opening files
 #macro PATH_AUDIO                           "audio/"                            // local storage - no leading punctuation - used for opening files
+#macro PATH_TERRAIN                         "terrain/"
 #macro TEXTURE_WIDTH                        sprite_get_width(get_active_tileset().picture)
 #macro TEXTURE_HEIGHT                       sprite_get_height(get_active_tileset().picture)
 #macro TILE_DEPTH                           Stuff.tile_depth
