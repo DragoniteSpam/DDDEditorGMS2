@@ -135,7 +135,7 @@ function ui_init_terrain(mode) {
                 (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Deformation mode:", Settings.terrain.submode, function() {
                     Settings.terrain.submode = self.value;
                 }))
-                    .AddOptions(["Mound", "Average", "Zero"])
+                    .AddOptions(["Raise/Lower", "Average", "Zero"])
                     .SetTooltip("The method which you would like to use to mold the terrain."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.rate_min, Settings.terrain.rate_max, true, Settings.terrain.rate, function() {
