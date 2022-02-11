@@ -190,13 +190,13 @@ function ui_init_terrain(mode) {
                 Settings.terrain.mode = TerrainModes.Z;
             }),
             (new EmuTab("Texture")).AddContent([
-                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Export Texture", function() {
+                new EmuButton(col1x, EMU_AUTO, 144, 32, "Export Texture", function() {
                     var filename = get_save_filename_image("texture.png");
                     if (filename != "") {
                         sprite_save(Stuff.terrain.texture_image, 0, filename);
                     }
                 }),
-                new EmuButton(col2x, EMU_INLINE, col_width, 32, "Import Texture", function() {
+                new EmuButton(col1x + 144 + 16, EMU_INLINE, 144, 32, "Import Texture", function() {
                     var filename = get_open_filename_image();
                     if (file_exists(filename)) {
                         var old_sprite = Stuff.terrain.texture_image;
@@ -208,6 +208,12 @@ function ui_init_terrain(mode) {
                             Stuff.terrain.texture_image = old_sprite;
                         }
                     }
+                }),
+                new EmuButton(col1x + 288 + 32, EMU_INLINE, 144, 32, "Set default texture", function() {
+                    emu_dialog_confirm(self, "Would you like to reset the terrain texture?", function() {
+                        sprite_delete(Stuff.terrain.texture_image);
+                        Stuff.terrain.texture_image = sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
+                    });
                 }),
                 new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2 - 48, function() {
                     self.drawCheckerbox(0, 0, self.width, self.height);
