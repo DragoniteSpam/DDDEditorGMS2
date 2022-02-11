@@ -206,19 +206,23 @@ function ui_init_terrain(mode) {
                             sprite_save(Stuff.terrain.texture_image, 0, PATH_TERRAIN + "tex.png");
                             Settings.terrain.tile_brush_x = 0;
                             Settings.terrain.tile_brush_y = 0;
-                            Settings.terrain.tile_brush_size = 16;
+                            Settings.terrain.tile_brush_size = 32;
+                            var color_code = Stuff.terrain.GetTextureColorCode();
+                            Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         } else {
                             Stuff.terrain.texture_image = old_sprite;
                         }
                     }
                 }),
                 new EmuButton(col1x + 288 + 32, EMU_INLINE, 144, 32, "Set default texture", function() {
-                    emu_dialog_confirm(self, "Would you like to reset the terrain texture?", function() {
+                    emu_dialog_confirm(self, "Would you like to reset the terrain texture? This will reset the texture of the entire terrain!", function() {
                         sprite_delete(Stuff.terrain.texture_image);
                         Stuff.terrain.texture_image = sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
                         Settings.terrain.tile_brush_x = 0;
                         Settings.terrain.tile_brush_y = 0;
                         Settings.terrain.tile_brush_size = 16;
+                        var color_code = Stuff.terrain.GetTextureColorCode();
+                        Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         self.root.Dispose();
                     });
                 }),

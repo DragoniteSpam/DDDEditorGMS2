@@ -224,7 +224,7 @@ Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? 
 Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 1, 0, array_length(self.brush_sprites) - 1);
 Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
 Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
-Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 16;
+Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 32;
 // paint settings
 Settings.terrain.paint_brush_min = 1.5;
 Settings.terrain.paint_brush_max = 250;
