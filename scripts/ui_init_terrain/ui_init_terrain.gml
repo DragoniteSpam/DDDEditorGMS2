@@ -193,7 +193,12 @@ function ui_init_terrain(mode) {
                 Settings.terrain.mode = TerrainModes.Z;
             }),
             (new EmuTab("Texture")).AddContent([
-                new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2, function() {
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Export Texture", function() {
+                    var filename = get_save_filename_image("texture.png");
+                    if (filename != "") {
+                        sprite_save(Stuff.terrain.texture_image, 0, filename);
+                    }
+                }),
                     self.drawCheckerbox(0, 0, self.width, self.height);
                     draw_sprite(Stuff.terrain.texture_image, 0, 0, 0);
                     
