@@ -203,7 +203,7 @@ function ui_init_terrain(mode) {
                         Stuff.terrain.texture_image = sprite_add(filename, 0, false, false, 0, 0);
                         if (sprite_exists(Stuff.terrain.texture_image)) {
                             sprite_delete(old_sprite);
-                            sprite_save(Stuff.terrain.texture_image, 0, PATH_TERRAIN + "tex.png");
+                            sprite_save(Stuff.terrain.texture_image, 0, FILE_TERRAIN_TEXTURE);
                             Settings.terrain.tile_brush_x = 0;
                             Settings.terrain.tile_brush_y = 0;
                             Settings.terrain.tile_brush_size = 32;
@@ -227,8 +227,8 @@ function ui_init_terrain(mode) {
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         var texture_resolution_input = self.root.root.GetSibling("TEXTURE_RESOLUTION");
                         texture_resolution_input.SetValue(string(Settings.terrain.tile_brush_size));
-                        if (file_exists(PATH_TERRAIN + "tex.png")) {
-                            file_delete(PATH_TERRAIN + "tex.png");
+                        if (file_exists(FILE_TERRAIN_TEXTURE)) {
+                            file_delete(FILE_TERRAIN_TEXTURE);
                         }
                         self.root.Dispose();
                     });

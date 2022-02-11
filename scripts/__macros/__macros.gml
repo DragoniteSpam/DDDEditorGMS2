@@ -99,6 +99,7 @@
 #macro VERTEX_SIZE_TERRAIN                  12
 
 #macro FILE_SETTINGS                        "settings.json"
+#macro FILE_TERRAIN_TEXTURE                 PATH_TERRAIN + "tex.png"
 
 #macro PREFIX_GRAPHIC_BATTLER               "GBat"
 #macro PREFIX_GRAPHIC_OVERWORLD             "GOv"
