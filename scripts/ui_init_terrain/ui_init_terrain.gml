@@ -199,6 +199,19 @@ function ui_init_terrain(mode) {
                         sprite_save(Stuff.terrain.texture_image, 0, filename);
                     }
                 }),
+                new EmuButton(col2x, EMU_INLINE, col_width, 32, "Import Texture", function() {
+                    var filename = get_open_filename_image();
+                    if (file_exists(filename)) {
+                        var old_sprite = Stuff.terrain.texture_image;
+                        Stuff.terrain.texture_image = sprite_add(filename, 0, false, false, 0, 0);
+                        if (sprite_exists(Stuff.terrain.texture_image)) {
+                            sprite_delete(old_sprite);
+                        } else {
+                            Stuff.terrain.texture_image = old_sprite;
+                        }
+                    }
+                }),
+                new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2 - 48, function() {
                     self.drawCheckerbox(0, 0, self.width, self.height);
                     draw_sprite(Stuff.terrain.texture_image, 0, 0, 0);
                     
