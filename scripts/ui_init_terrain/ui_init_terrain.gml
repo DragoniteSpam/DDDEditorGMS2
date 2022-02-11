@@ -118,7 +118,7 @@ function ui_init_terrain(mode) {
                 }),
                 #endregion
             ]),
-            (new EmuTab("Language")).AddContent([
+            (new EmuTab("Lighting")).AddContent([
                 (new EmuRenderSurface(col1x, EMU_AUTO, col_width, 32, function() {
                     draw_clear(c_white);
                     draw_sprite_stretched(Stuff.terrain.gradient_images[Settings.terrain.gradient_image], 0, 0, 0, self.width, self.height);

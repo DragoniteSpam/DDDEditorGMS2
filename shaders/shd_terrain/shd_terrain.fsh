@@ -35,14 +35,15 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
     return min(min(a3.x, a3.y), a3.z);
 }
 
-uniform vec3 u_WaterLevels;             // start, end, strength
+uniform vec3 u_WaterLevels;             // end, start, strength
 uniform vec3 u_WaterColor;
 
 void WaterFog(inout vec4 baseColor) {
-    float dist_to_camera = min(v_FragDistance, 1.0);
+    float dist_to_camera = min(v_FragDistance, 4.0);                            // ensure that there will always be a little visibility if you're right in front of something
     float dist_below = u_WaterLevels.y - v_WorldPosition.z;
-    float f = clamp(dist_below * dist_to_camera * u_WaterLevels.z / (u_WaterLevels.y - u_WaterLevels.x), 0.0, 1.0);
-    baseColor.rgb = mix(baseColor.rgb, u_WaterColor, f);
+    float fdepth = clamp(dist_below * dist_to_camera / (u_WaterLevels.y - u_WaterLevels.x), 0.0, 1.0) * u_WaterLevels.z;
+    float fdistance = clamp(sign(dist_below) * v_FragDistance / 2048.0, 0.0, 1.0) * u_WaterLevels.z;
+    baseColor.rgb = mix(baseColor.rgb, u_WaterColor, max(fdepth, fdistance));
 }
 
 uniform sampler2D u_TexLookup;
