@@ -118,6 +118,17 @@ function ui_init_terrain(mode) {
                 }),
                 #endregion
             ]),
+            (new EmuTab("Language")).AddContent([
+                (new EmuRenderSurface(col1x, EMU_AUTO, col_width, 32, function() {
+                    draw_clear(c_white);
+                    draw_sprite_stretched(Stuff.terrain.gradient_images[Settings.terrain.gradient_image], 0, 0, 0, self.width, self.height);
+                }, emu_null, emu_null, emu_null)),
+                (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Shading gradient:", Settings.terrain.gradient_image, function() {
+                    Settings.terrain.gradient_image = self.value;
+                }))
+                    .AddOptions(["Smooth", "Four color", "Eight color"])
+                    .SetTooltip("The shading gradient. Useful for toon shading."),
+            ]),
             (new EmuTab("Deform")).AddContent([
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to reset the terrain's height?", function() {

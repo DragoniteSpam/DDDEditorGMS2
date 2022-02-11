@@ -199,6 +199,7 @@ Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? true;
 Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
 Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
+Settings.terrain.gradient_image = Settings.terrain[$ "gradient_image"] ?? 0;
 // light settings
 Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.25, g: 0.25, b: 0.25 };
 Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
@@ -263,6 +264,11 @@ self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
 });
 
 texture_image = file_exists(FILE_TERRAIN_TEXTURE) ? sprite_add(FILE_TERRAIN_TEXTURE, 0, false, false, 0, 0) : sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
+gradient_images = [
+    spr_gradient,
+    spr_gradient_4,
+    spr_gradient_8
+];
 
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;
