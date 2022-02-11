@@ -7,6 +7,7 @@ varying vec2 v_Texcoord;
 
 uniform vec3 u_LightAmbientColor;
 uniform vec3 u_LightDirection;
+uniform sampler2D s_ShadingGradient;
 
 void CommonLight(inout vec4 baseColor, float NdotL) {
     vec3 lightColor = u_LightAmbientColor;
@@ -76,6 +77,7 @@ float fromDepthColor(vec4 color) {
 void main() {
     vec3 normal = normalize(cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz)));
     float NdotL = clamp(dot(normal, -normalize(u_LightDirection)), 0.0, 1.0);
+    NdotL = texture2D(s_ShadingGradient, vec2(NdotL, 0)).r;
     
     if (u_OptViewData == DATA_DIFFUSE) {
         vec2 worldTextureUV = v_WorldPosition.xy / u_TerrainSizeF;
