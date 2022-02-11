@@ -204,6 +204,9 @@ function ui_init_terrain(mode) {
                         if (sprite_exists(Stuff.terrain.texture_image)) {
                             sprite_delete(old_sprite);
                             sprite_save(Stuff.terrain.texture_image, 0, PATH_TERRAIN + "tex.png");
+                            Settings.terrain.tile_brush_x = 0;
+                            Settings.terrain.tile_brush_y = 0;
+                            Settings.terrain.tile_brush_size = 16;
                         } else {
                             Stuff.terrain.texture_image = old_sprite;
                         }
@@ -213,6 +216,10 @@ function ui_init_terrain(mode) {
                     emu_dialog_confirm(self, "Would you like to reset the terrain texture?", function() {
                         sprite_delete(Stuff.terrain.texture_image);
                         Stuff.terrain.texture_image = sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
+                        Settings.terrain.tile_brush_x = 0;
+                        Settings.terrain.tile_brush_y = 0;
+                        Settings.terrain.tile_brush_size = 16;
+                        self.root.Dispose();
                     });
                 }),
                 new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2 - 48, function() {
