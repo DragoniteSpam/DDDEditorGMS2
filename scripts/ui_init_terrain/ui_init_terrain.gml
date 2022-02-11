@@ -118,9 +118,6 @@ function ui_init_terrain(mode) {
                 }),
                 #endregion
             ]),
-            (new EmuTab("Lighting")).AddContent([
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "I'll re-implement this later (hopefully soon)"),
-            ]),
             (new EmuTab("Deform")).AddContent([
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to reset the terrain's height?", function() {
