@@ -227,6 +227,9 @@ function ui_init_terrain(mode) {
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         var texture_resolution_input = self.root.root.GetSibling("TEXTURE_RESOLUTION");
                         texture_resolution_input.SetValue(string(Settings.terrain.tile_brush_size));
+                        if (file_exists(PATH_TERRAIN + "tex.png")) {
+                            file_delete(PATH_TERRAIN + "tex.png");
+                        }
                         self.root.Dispose();
                     });
                 }),
