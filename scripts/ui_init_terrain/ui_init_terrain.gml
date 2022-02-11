@@ -209,6 +209,8 @@ function ui_init_terrain(mode) {
                             Settings.terrain.tile_brush_size = 32;
                             var color_code = Stuff.terrain.GetTextureColorCode();
                             Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+                            var texture_resolution_input = self.root.root.GetSibling("TEXTURE_RESOLUTION");
+                            texture_resolution_input.SetValue(string(Settings.terrain.tile_brush_size));
                         } else {
                             Stuff.terrain.texture_image = old_sprite;
                         }
@@ -220,9 +222,11 @@ function ui_init_terrain(mode) {
                         Stuff.terrain.texture_image = sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
                         Settings.terrain.tile_brush_x = 0;
                         Settings.terrain.tile_brush_y = 0;
-                        Settings.terrain.tile_brush_size = 16;
+                        Settings.terrain.tile_brush_size = 32;
                         var color_code = Stuff.terrain.GetTextureColorCode();
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+                        var texture_resolution_input = self.root.root.GetSibling("TEXTURE_RESOLUTION");
+                        texture_resolution_input.SetValue(string(Settings.terrain.tile_brush_size));
                         self.root.Dispose();
                     });
                 }),
@@ -272,7 +276,8 @@ function ui_init_terrain(mode) {
                     Settings.terrain.tile_brush_size = real(self.value);
                 }))
                     .SetRealNumberBounds(Settings.terrain.tile_brush_size_min, Settings.terrain.tile_brush_size_max)
-                    .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common."),
+                    .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common.")
+                    .SetID("TEXTURE_RESOLUTION"),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
                     Settings.terrain.tile_brush_radius = self.value;
