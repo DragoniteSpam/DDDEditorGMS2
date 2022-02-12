@@ -220,8 +220,7 @@ function ui_init_terrain(mode) {
                             Settings.terrain.tile_brush_size = 32;
                             var color_code = Stuff.terrain.GetTextureColorCode();
                             Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
-                            var texture_resolution_input = self.root.root.GetSibling("TEXTURE_RESOLUTION");
-                            texture_resolution_input.SetValue(string(Settings.terrain.tile_brush_size));
+                            self.GetSibling("TEXTURE_RESOLUTION").SetValue(string(Settings.terrain.tile_brush_size));
                         } else {
                             Stuff.terrain.texture_image = old_sprite;
                         }
@@ -236,17 +235,19 @@ function ui_init_terrain(mode) {
                         Settings.terrain.tile_brush_size = 32;
                         var color_code = Stuff.terrain.GetTextureColorCode();
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
-                        var texture_resolution_input = self.root.root.GetSibling("TEXTURE_RESOLUTION");
-                        texture_resolution_input.SetValue(string(Settings.terrain.tile_brush_size));
+                        self.root.root.GetSibling("TEXTURE_RESOLUTION").SetValue(string(Settings.terrain.tile_brush_size));
                         if (file_exists(FILE_TERRAIN_TEXTURE)) {
                             file_delete(FILE_TERRAIN_TEXTURE);
                         }
                         self.root.Dispose();
                     });
                 }),
-                new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2 - 48, function() {
+                new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2 - 48, function(mx, my) {
+                    mx -= view_get_xport(view_current);
+                    my -= view_get_yport(view_current);
+                    
                     self.drawCheckerbox(0, 0, self.width, self.height);
-                    draw_sprite(Stuff.terrain.texture_image, 0, 0, 0);
+                    draw_sprite(Stuff.terrain.texture_image, 0, self.offset_x, self.offset_y);
                     
                     var bs = Settings.terrain.tile_brush_size;
                     draw_set_alpha(min(bs / 8, 1));
@@ -260,6 +261,10 @@ function ui_init_terrain(mode) {
                     var ty = Settings.terrain.tile_brush_y;
                     draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Settings.terrain.tile_brush_size, Settings.terrain.tile_brush_size);
                     draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
+                    
+                    if (mouse_check_button(mb_middle)) {
+                        draw_sprite(spr_scroll, 0, mx, my);
+                    }
                 }, function(mx, my) {
                     mx -= view_get_xport(view_current);
                     my -= view_get_yport(view_current);
@@ -276,6 +281,21 @@ function ui_init_terrain(mode) {
                         Settings.terrain.tile_brush_y = ty;
                     }
                 }, null, null),
+                    if (mouse_check_button_pressed(mb_middle)) {
+                        self.mx = mx;
+                        self.my = my;
+                    } else if (mouse_check_button(mb_middle)) {
+                        self.offset_x = clamp(self.offset_x + (mx - self.mx), min(0, self.width - sprite_get_width(Stuff.terrain.texture_image)), 0);
+                        self.offset_y = clamp(self.offset_y + (my - self.my), min(0, self.height - sprite_get_height(Stuff.terrain.texture_image)), 0);
+                        self.mx = mx;
+                        self.my = my;
+                    }
+                }, function() {
+                    self.mx = -1;
+                    self.my = -1;
+                    self.offset_x = 0;
+                    self.offset_y = 0;
+                }, null)
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
                         var color_code = Stuff.terrain.GetTextureColorCode();
