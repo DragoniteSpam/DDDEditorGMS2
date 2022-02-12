@@ -253,18 +253,21 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
 	            } catch (e) {
 	                return false;
 	            }
+	            return true;
         	case E_InputTypes.REAL:
 	            try {
 	                real(text);
 	            } catch (e) {
 	                return false;
 	            }
+	            return true;
             case E_InputTypes.HEX:
 	            try {
 	                emu_hex(text);
 	            } catch (e) {
 	                return false;
 	            }
+	            return true;
         }
         return true;
     }
@@ -304,10 +307,6 @@ function emu_string_hex() {
 
 function emu_hex(str) {
     var result = 0;
-    var ZERO = ord("0");
-    var NINE = ord("9");
-    var A = ord("A");
-    var F = ord("F");
     
     try {
         result = real(ptr(str));
