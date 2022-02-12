@@ -81,7 +81,7 @@ void DrawCursor(inout vec3 base, vec2 position) {
     vec2 cursorEnd = u_Mouse.xy + u_Mouse.z;
     vec2 cursorUV = clamp((position - cursorStart) / (cursorEnd - cursorStart), vec2(0), vec2(1));
     vec4 cursorSample = texture2D(u_CursorTexture, cursorUV);
-    base = mix(base, CURSOR_COLOR, cursorSample.r * u_Mouse.w);
+    base = mix(base, CURSOR_COLOR, cursorSample.r * cursorSample.a * u_Mouse.w);
 }
 #endregion
 

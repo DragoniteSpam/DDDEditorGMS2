@@ -186,7 +186,6 @@ Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? true;
 Settings.terrain.view_water_min_alpha = Settings.terrain[$ "view_water_min_alpha"] ?? 0.5;
 Settings.terrain.view_water_max_alpha = Settings.terrain[$ "view_water_max_alpha"] ?? 0.9;
 Settings.terrain.water_level = Settings.terrain[$ "water_level"] ?? -0.2;
-Settings.terrain.view_wireframe = Settings.terrain[$ "view_wireframe"] ?? true;
 Settings.terrain.wireframe_alpha = Settings.terrain[$ "wireframe_alpha"] ?? 0.5;
 Settings.terrain.view_skybox = Settings.terrain[$ "view_skybox"] ?? true;
 Settings.terrain.view_cursor = Settings.terrain[$ "view_cursor"] ?? true;
@@ -325,7 +324,7 @@ GetCurrentBrushTexture = function() {
 GetCurrentBrushRadius = function() {
     switch (Settings.terrain.mode) {
         case TerrainModes.Z: return Settings.terrain.radius;
-        case TerrainModes.TEXTURE: return Settings.terrain.tile_brush_radius / 3.6;
+        case TerrainModes.TEXTURE: return Settings.terrain.tile_brush_radius / 2;
         case TerrainModes.COLOR: return Settings.terrain.paint_brush_radius / (self.color.width / self.width * 2);
     }
     return 16;
