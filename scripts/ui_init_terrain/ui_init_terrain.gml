@@ -246,7 +246,7 @@ function ui_init_terrain(mode) {
                         self.root.Dispose();
                     });
                 }),
-                new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2 - 48, function(mx, my) {
+                (new EmuRenderSurface(col1x, EMU_AUTO, col_width * 2, col_width * 2 - 48, function(mx, my) {
                     mx -= view_get_xport(view_current);
                     my -= view_get_yport(view_current);
                     
@@ -255,8 +255,10 @@ function ui_init_terrain(mode) {
                     
                     var bs = Settings.terrain.tile_brush_size;
                     draw_set_alpha(min(bs / 8, 1));
-                    for (var i = bs; i < self.width; i += bs) {
+                    for (var i = self.offset_x % bs; i < self.width; i += bs) {
                         draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
+                    }
+                    for (var i = self.offset_y % bs; i < self.height; i += bs) {
                         draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
                     }
                     draw_set_alpha(1);
@@ -298,7 +300,7 @@ function ui_init_terrain(mode) {
                     self.my = -1;
                     self.offset_x = 0;
                     self.offset_y = 0;
-                }, null)
+                }, null))
                     .SetID("TEXTURE_PICKER"),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
