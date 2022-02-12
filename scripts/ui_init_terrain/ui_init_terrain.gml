@@ -263,8 +263,8 @@ function ui_init_terrain(mode) {
                     }
                     draw_set_alpha(1);
                     
-                    var tx = Settings.terrain.tile_brush_x;
-                    var ty = Settings.terrain.tile_brush_y;
+                    var tx = Settings.terrain.tile_brush_x + self.offset_x;
+                    var ty = Settings.terrain.tile_brush_y + self.offset_y;
                     draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Settings.terrain.tile_brush_size, Settings.terrain.tile_brush_size);
                     draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
                     
@@ -278,8 +278,8 @@ function ui_init_terrain(mode) {
                     if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
                     
                     var bs = Settings.terrain.tile_brush_size;
-                    var tx = bs * (mx div bs);
-                    var ty = bs * (my div bs);
+                    var tx = bs * ((mx - self.offset_x) div bs);
+                    var ty = bs * ((my - self.offset_y) div bs);
                     tx = clamp(tx, 0, sprite_get_width(Stuff.terrain.texture_image) - bs);
                     ty = clamp(ty, 0, sprite_get_height(Stuff.terrain.texture_image) - bs);
                     if (mouse_check_button(mb_left)) {
