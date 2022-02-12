@@ -35,7 +35,6 @@
     {"id":{"name":"spr_enter","path":"sprites/spr_enter/spr_enter.yy",},"order":21,},
     {"id":{"name":"spr_camera_icons","path":"sprites/spr_camera_icons/spr_camera_icons.yy",},"order":22,},
     {"id":{"name":"spr_direction","path":"sprites/spr_direction/spr_direction.yy",},"order":23,},
-    {"id":{"name":"spr_editor_icon","path":"sprites/spr_editor_icon/spr_editor_icon.yy",},"order":24,},
     {"id":{"name":"spr_crosshair_mask","path":"sprites/spr_crosshair_mask/spr_crosshair_mask.yy",},"order":25,},
     {"id":{"name":"spr_slider","path":"sprites/spr_slider/spr_slider.yy",},"order":26,},
     {"id":{"name":"spr_progress_fill","path":"sprites/spr_progress_fill/spr_progress_fill.yy",},"order":27,},
