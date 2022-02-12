@@ -299,12 +299,13 @@ terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
 self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, self.vertex_format);
 vertex_freeze(self.terrain_buffer);
 
-color = new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale);
-color.SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
-color.SetShader(shd_terrain_paint);
-texture = new Phoenix(self.width, self.height, c_black);
-texture.SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
-texture.SetShader(shd_terrain_paint_texture);
+color = (new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale))
+    .SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
+    .SetShader(shd_terrain_paint);
+texture = (new Phoenix(self.width, self.height, c_black))
+    .SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
+    .SetShader(shd_terrain_paint_texture)
+    .SetBlendEnable(false);
 
 GetTextureColorCode = function() {
     var tx = floor(0x100 * Settings.terrain.tile_brush_x / sprite_get_width(self.texture_image));
