@@ -221,6 +221,8 @@ function ui_init_terrain(mode) {
                             var color_code = Stuff.terrain.GetTextureColorCode();
                             Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                             self.GetSibling("TEXTURE_RESOLUTION").SetValue(string(Settings.terrain.tile_brush_size));
+                            self.GetSibling("TEXTURE_PICKER").offset_x = 0;
+                            self.GetSibling("TEXTURE_PICKER").offset_y = 0;
                         } else {
                             Stuff.terrain.texture_image = old_sprite;
                         }
@@ -236,6 +238,8 @@ function ui_init_terrain(mode) {
                         var color_code = Stuff.terrain.GetTextureColorCode();
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         self.root.root.GetSibling("TEXTURE_RESOLUTION").SetValue(string(Settings.terrain.tile_brush_size));
+                        self.root.root.GetSibling("TEXTURE_PICKER").offset_x = 0;
+                        self.root.root.GetSibling("TEXTURE_PICKER").offset_y = 0;
                         if (file_exists(FILE_TERRAIN_TEXTURE)) {
                             file_delete(FILE_TERRAIN_TEXTURE);
                         }
@@ -280,7 +284,6 @@ function ui_init_terrain(mode) {
                         Settings.terrain.tile_brush_x = tx;
                         Settings.terrain.tile_brush_y = ty;
                     }
-                }, null, null),
                     if (mouse_check_button_pressed(mb_middle)) {
                         self.mx = mx;
                         self.my = my;
@@ -296,6 +299,7 @@ function ui_init_terrain(mode) {
                     self.offset_x = 0;
                     self.offset_y = 0;
                 }, null)
+                    .SetID("TEXTURE_PICKER"),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
                         var color_code = Stuff.terrain.GetTextureColorCode();
