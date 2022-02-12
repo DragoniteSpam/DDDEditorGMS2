@@ -912,7 +912,6 @@
   ],
   "isDnDProject": false,
   "isEcma": false,
-  "tutorialPath": "",
   "configs": {
     "name": "Default",
     "children": [
@@ -1106,9 +1105,9 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.7.606",
+    "IDEVersion": "2022.200.0.475",
   },
-  "resourceVersion": "1.4",
+  "resourceVersion": "1.5",
   "name": "DDDEditor2-23",
   "tags": [],
   "resourceType": "GMProject",

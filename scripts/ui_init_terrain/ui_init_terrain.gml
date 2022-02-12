@@ -302,7 +302,7 @@ function ui_init_terrain(mode) {
                     self.offset_y = 0;
                 }, null))
                     .SetID("TEXTURE_PICKER"),
-                (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear texture", function() {
+                (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear Texture to Selection", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
                         var color_code = Stuff.terrain.GetTextureColorCode();
                         Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);

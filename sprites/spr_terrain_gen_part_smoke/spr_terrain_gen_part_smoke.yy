@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_smoke","path":"sprites/spr_terrain_gen_part_smoke/spr_terrain_gen_part_smoke.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_smoke",
     "tags": [],
     "resourceType": "GMSequence",

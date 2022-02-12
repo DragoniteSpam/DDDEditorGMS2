@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_circle","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_circle",
     "tags": [],
     "resourceType": "GMSequence",

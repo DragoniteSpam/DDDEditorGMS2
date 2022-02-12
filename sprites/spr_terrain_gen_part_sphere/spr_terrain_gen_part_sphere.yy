@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_sphere","path":"sprites/spr_terrain_gen_part_sphere/spr_terrain_gen_part_sphere.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_sphere",
     "tags": [],
     "resourceType": "GMSequence",

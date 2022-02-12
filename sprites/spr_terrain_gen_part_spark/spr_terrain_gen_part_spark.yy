@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_spark","path":"sprites/spr_terrain_gen_part_spark/spr_terrain_gen_part_spark.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_spark",
     "tags": [],
     "resourceType": "GMSequence",

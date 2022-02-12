@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_texture_selection","path":"sprites/spr_terrain_texture_selection/spr_terrain_texture_selection.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_texture_selection",
     "tags": [],
     "resourceType": "GMSequence",

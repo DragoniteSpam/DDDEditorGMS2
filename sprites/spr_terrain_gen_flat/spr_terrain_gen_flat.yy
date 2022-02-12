@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_flat","path":"sprites/spr_terrain_gen_flat/spr_terrain_gen_flat.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_flat",
     "tags": [],
     "resourceType": "GMSequence",

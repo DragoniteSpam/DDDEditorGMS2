@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_gradient_8","path":"sprites/spr_gradient_8/spr_gradient_8.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_gradient_8",
     "tags": [],
     "resourceType": "GMSequence",

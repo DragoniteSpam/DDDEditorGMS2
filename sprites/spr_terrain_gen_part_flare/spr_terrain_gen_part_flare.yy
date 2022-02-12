@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_flare","path":"sprites/spr_terrain_gen_part_flare/spr_terrain_gen_part_flare.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_flare",
     "tags": [],
     "resourceType": "GMSequence",

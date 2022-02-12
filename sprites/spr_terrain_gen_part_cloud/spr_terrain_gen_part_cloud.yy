@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_cloud","path":"sprites/spr_terrain_gen_part_cloud/spr_terrain_gen_part_cloud.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_cloud",
     "tags": [],
     "resourceType": "GMSequence",

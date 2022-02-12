@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_juju","path":"sprites/spr_terrain_gen_juju/spr_terrain_gen_juju.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_juju",
     "tags": [],
     "resourceType": "GMSequence",

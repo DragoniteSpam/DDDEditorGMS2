@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_craters","path":"sprites/spr_terrain_gen_craters/spr_terrain_gen_craters.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_craters",
     "tags": [],
     "resourceType": "GMSequence",

@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_bullseye",
     "tags": [],
     "resourceType": "GMSequence",

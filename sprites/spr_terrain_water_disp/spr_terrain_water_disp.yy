@@ -62,7 +62,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_water_disp","path":"sprites/spr_terrain_water_disp/spr_terrain_water_disp.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_water_disp",
     "tags": [],
     "resourceType": "GMSequence",

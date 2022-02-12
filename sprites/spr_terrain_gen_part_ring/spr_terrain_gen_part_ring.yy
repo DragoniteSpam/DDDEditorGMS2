@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_ring","path":"sprites/spr_terrain_gen_part_ring/spr_terrain_gen_part_ring.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_ring",
     "tags": [],
     "resourceType": "GMSequence",

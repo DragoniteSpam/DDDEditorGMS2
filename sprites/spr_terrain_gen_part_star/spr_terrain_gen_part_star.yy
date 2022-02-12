@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_star","path":"sprites/spr_terrain_gen_part_star/spr_terrain_gen_part_star.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_star",
     "tags": [],
     "resourceType": "GMSequence",

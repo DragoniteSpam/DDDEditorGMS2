@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_water","path":"sprites/spr_terrain_water/spr_terrain_water.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_water",
     "tags": [],
     "resourceType": "GMSequence",

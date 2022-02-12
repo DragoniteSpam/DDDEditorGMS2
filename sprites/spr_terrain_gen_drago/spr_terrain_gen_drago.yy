@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_drago","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_drago",
     "tags": [],
     "resourceType": "GMSequence",

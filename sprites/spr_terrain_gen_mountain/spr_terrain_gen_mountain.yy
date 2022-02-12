@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_mountain","path":"sprites/spr_terrain_gen_mountain/spr_terrain_gen_mountain.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_mountain",
     "tags": [],
     "resourceType": "GMSequence",

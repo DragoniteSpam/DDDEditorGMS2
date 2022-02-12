@@ -73,7 +73,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_part_snow","path":"sprites/spr_terrain_gen_part_snow/spr_terrain_gen_part_snow.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_part_snow",
     "tags": [],
     "resourceType": "GMSequence",
