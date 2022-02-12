@@ -45,15 +45,16 @@ function ui_init_terrain(mode) {
                         (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.wireframe_alpha, function() {
                             Settings.terrain.wireframe_alpha = self.value;
                         }))
-                            .SetTooltip("Fade out the wireframes a bit if you think they're took disracting but you still want them around."),
+                            .SetTooltip("Fade out the wireframes a bit if you think they're too disracting."),
+                        new EmuText(col1x, EMU_AUTO, col_width, 32, "Cursor alpha:"),
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.cursor_alpha, function() {
+                            Settings.terrain.cursor_alpha = self.value;
+                        }))
+                            .SetTooltip("Fade out the terrain cursor a bit if you think it's too disracting."),
                         (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw axes?", Settings.terrain.view_axes, function() {
                             Settings.terrain.view_axes = self.value;
                         }))
                             .SetTooltip("Toggles the the coordinate system axes."),
-                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw cursor?", Settings.terrain.view_cursor, function() {
-                            Settings.terrain.view_cursor = self.value;
-                        }))
-                            .SetTooltip("Toggles the the cursor on the terrain."),
                         (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw skybox?", Settings.terrain.view_skybox, function() {
                             Settings.terrain.view_skybox = self.value;
                         }))

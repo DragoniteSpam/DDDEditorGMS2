@@ -125,9 +125,7 @@ void main() {
         }
     }
     
-    if (u_Mouse.w > 0.0) {
-        DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
-    }
+    DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
     
     gl_FragColor.rgb = mix(gl_FragColor.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / 128.0));
 }

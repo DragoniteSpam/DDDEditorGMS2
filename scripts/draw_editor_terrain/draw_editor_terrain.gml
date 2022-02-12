@@ -46,7 +46,7 @@ function draw_editor_terrain() {
     // editor cursor stuff
     var xx = Stuff.terrain.cursor_position ? Stuff.terrain.cursor_position.x : 0;
     var yy = Stuff.terrain.cursor_position ? Stuff.terrain.cursor_position.y : 0;
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), xx, yy, self.GetCurrentBrushRadius(), (!Stuff.terrain.cursor_position || !Settings.terrain.view_cursor) ? 0 : 1);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), xx, yy, self.GetCurrentBrushRadius(), Stuff.terrain.cursor_position ? Settings.terrain.cursor_alpha : 0);
     texture_set_stage(shader_get_sampler_index(shd_terrain, "u_CursorTexture"), self.GetCurrentBrushTexture());
     // color stuff
     texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexColor"), surface_get_texture(Stuff.terrain.color.surface));
