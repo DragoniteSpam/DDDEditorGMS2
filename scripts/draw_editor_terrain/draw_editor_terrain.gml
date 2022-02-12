@@ -44,15 +44,13 @@ function draw_editor_terrain() {
     // terrain stuff
     matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, Settings.terrain.view_scale, Settings.terrain.view_scale, Settings.terrain.view_scale));
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), Stuff.terrain.width, Stuff.terrain.height);
-    // editor stuff
-    if (!Stuff.terrain.cursor_position || !Settings.terrain.view_cursor) {
-        shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), -MILLION, -MILLION);
-    } else {
-        shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), Stuff.terrain.cursor_position.x, Stuff.terrain.cursor_position.y);
-    }
+    // editor cursor stuff
+    var xx = Stuff.terrain.cursor_position ? Stuff.terrain.cursor_position.x : 0;
+    var yy = Stuff.terrain.cursor_position ? Stuff.terrain.cursor_position.y : 0;
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), xx, yy, self.GetCurrentBrushRadius(), (!Stuff.terrain.cursor_position || !Settings.terrain.view_cursor) ? 0 : 1);
+    texture_set_stage(shader_get_sampler_index(shd_terrain, "u_CursorTexture"), self.GetCurrentBrushTexture());
     // color stuff
     texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexColor"), surface_get_texture(Stuff.terrain.color.surface));
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_MouseRadius"), Settings.terrain.radius);
     // texture stuff
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TextureTileSize"), sprite_get_width(Stuff.terrain.texture_image) / Settings.terrain.tile_brush_size, sprite_get_height(Stuff.terrain.texture_image) / Settings.terrain.tile_brush_size);
     // because gamemaker doesnt like sharing uniforms between vertex and fragment shader apparently

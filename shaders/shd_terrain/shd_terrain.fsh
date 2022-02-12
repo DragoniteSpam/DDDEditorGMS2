@@ -51,11 +51,6 @@ uniform sampler2D u_TexColor;
 
 uniform vec2 u_TerrainSizeF;
 
-uniform vec2 u_Mouse;
-uniform float u_MouseRadius;
-
-const vec4 CURSOR_COLOR = vec4(0.6, 0, 0, 1);
-
 #define DATA_DIFFUSE                0.0
 #define DATA_POSITION               1.0
 #define DATA_NORMAL                 2.0
@@ -74,6 +69,21 @@ const vec3 UNDO = vec3(1.0, 256.0, 65536.0) / 16777215.0 * 255.0;
 float fromDepthColor(vec4 color) {
     return dot(color.rgb, UNDO) + color.a;
 }
+
+#region Cursor
+const vec3 CURSOR_COLOR = vec3(0.6, 0, 0);
+
+uniform vec4 u_Mouse;           // x, y, radius, strength
+uniform sampler2D u_CursorTexture;
+
+void DrawCursor(inout vec3 base, vec2 position) {
+    vec2 cursorStart = u_Mouse.xy - u_Mouse.z;
+    vec2 cursorEnd = u_Mouse.xy + u_Mouse.z;
+    vec2 cursorUV = clamp((position - cursorStart) / (cursorEnd - cursorStart), vec2(0), vec2(1));
+    vec4 cursorSample = texture2D(u_CursorTexture, cursorUV);
+    base = mix(base, CURSOR_COLOR, cursorSample.r * u_Mouse.w);
+}
+#endregion
 
 void main() {
     vec3 normal = normalize(cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz)));
@@ -115,9 +125,9 @@ void main() {
         }
     }
     
-    float dist = length(v_WorldPosition.xy - u_Mouse);
-    float strength = clamp(-2.0 / (u_MouseRadius * u_MouseRadius) * (dist + u_MouseRadius) * (dist - u_MouseRadius), 0.0, 1.0);
-    gl_FragColor = mix(gl_FragColor, CURSOR_COLOR, strength / 3.0);
+    if (u_Mouse.w > 0.0) {
+        DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
+    }
     
     gl_FragColor.rgb = mix(gl_FragColor.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
 }

@@ -313,6 +313,24 @@ GetTextureColorCode = function() {
     return tx | (ty << 8) | 0xff000000;
 };
 
+GetCurrentBrushTexture = function() {
+    switch (Settings.terrain.mode) {
+        case TerrainModes.Z: return sprite_get_texture(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+        case TerrainModes.TEXTURE: return sprite_get_texture(Stuff.terrain.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+        case TerrainModes.COLOR: return sprite_get_texture(Stuff.terrain.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH);
+    }
+    return spr_terrain_gen_part_circle;
+};
+
+GetCurrentBrushRadius = function() {
+    switch (Settings.terrain.mode) {
+        case TerrainModes.Z: return Settings.terrain.radius;
+        case TerrainModes.TEXTURE: return Settings.terrain.tile_brush_radius / 3.6;
+        case TerrainModes.COLOR: return Settings.terrain.paint_brush_radius / (self.color.width / self.width * 2);
+    }
+    return 16;
+};
+
 SaveTerrainStandalone = function(filename) {
     var carton = carton_create();
     var header_buffer = buffer_create(1024, buffer_grow, 1);
