@@ -40,12 +40,7 @@ function ui_init_terrain(mode) {
                         new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
                         (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, Settings.terrain.water_level, function() {
                             Settings.terrain.water_level = self.value;
-                        }))
-                            .SetTooltip("If water is drawn, this will determine the water level."),
-                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframe?", Settings.terrain.view_wireframe, function() {
-                            Settings.terrain.view_wireframe = self.value;
-                        }))
-                            .SetTooltip("Toggles the the wireframe grid on the terrain."),
+                        })),
                         new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
                         (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.wireframe_alpha, function() {
                             Settings.terrain.wireframe_alpha = self.value;

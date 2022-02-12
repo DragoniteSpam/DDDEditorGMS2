@@ -27,7 +27,7 @@ void CommonFog(inout vec4 baseColor) {
 }
 
 uniform vec3 u_WireColor;
-uniform float u_WireThickness;
+#define WIRE_THICKNESS 1.0
 uniform float u_WireAlpha;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
@@ -129,5 +129,5 @@ void main() {
         DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
     }
     
-    gl_FragColor.rgb = mix(gl_FragColor.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / 128.0));
+    gl_FragColor.rgb = mix(gl_FragColor.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / 128.0));
 }
