@@ -288,6 +288,7 @@ GenerateHeightData = function() {
 
 #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
 #macro TERRAIN_INTERNAL_LOD_REDUCTION 4
+#macro TERRAIN_INTERNAL_LOD_CUTOFF 1000
 
 self.height_data = self.GenerateHeightData();
 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
@@ -298,13 +299,31 @@ self.terrain_lod_data = terrainops_generate_lod_internal(self.height_data, self.
 terrainops_set_lod_vertex_data(buffer_get_address(self.terrain_lod_data));
 self.terrain_lods = [];
 
+GetTerrainBufferIndex = function(x, y) {
+    return x * ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) + y;
+};
+
+GetTerrainBufferPosition = function(index) {
+    return new vec2(
+        index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE),
+        index mod ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE),
+    );
+};
+
+GetTerrainBufferPositionWorld = function(index) {
+    return new vec2(
+        (index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
+        (index mod ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
+    );
+};
+
 RegenerateTerrainBuffer = function(x, y) {
 	var column_size = TERRAIN_INTERNAL_CHUNK_SIZE * self.height;
 	var local_chunk_width = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.width - x * TERRAIN_INTERNAL_CHUNK_SIZE);
 	var local_chunk_height = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.height - y * TERRAIN_INTERNAL_CHUNK_SIZE);
 	var column_address = x * column_size;
 	var chunk_address = column_address + y * TERRAIN_INTERNAL_CHUNK_SIZE /* dont use the local chunk height here */ * local_chunk_width;
-	var index = x * ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) + y;
+	var index = self.GetTerrainBufferIndex(x, y);
     if (self.terrain_buffers[index] != -1) {
         vertex_delete_buffer(self.terrain_buffers[index]);
         vertex_delete_buffer(self.terrain_lods[index]);
@@ -328,9 +347,8 @@ RegenerateAllTerrainBuffers = function() {
     self.terrain_buffers = array_create(ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) * ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE), -1);
     self.terrain_lods = array_create(array_length(self.terrain_buffers), -1);
     for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
-        var xx = i div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE);
-        var yy = i mod ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE);
-        self.RegenerateTerrainBuffer(xx, yy);
+        var position = self.GetTerrainBufferPosition(i);
+        self.RegenerateTerrainBuffer(position.x, position.y);
     }
 };
 
@@ -523,7 +541,9 @@ DrawDepth = function() {
     matrix_set(matrix_world, matrix_build_identity());
     
     for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
-        vertex_submit(Stuff.terrain.terrain_buffers[i], pr_trianglelist, -1);
+        var position = self.GetTerrainBufferPositionWorld(i);
+        var use_full_lod = self.camera_light.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= TERRAIN_INTERNAL_LOD_CUTOFF;
+        vertex_submit(use_full_lod ? Stuff.terrain.terrain_buffers[i] : Stuff.terrain.terrain_lods[i], pr_trianglelist, -1);
     }
     
     gpu_set_cullmode(cull_counterclockwise);

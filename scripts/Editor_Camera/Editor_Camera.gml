@@ -240,4 +240,12 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     static GetVPMatrix = function() {
         return matrix_multiply(self.view_mat, self.proj_mat);
     };
+    
+    static DistanceTo = function(x, y, z) {
+        return point_distance_3d(self.x, self.y, self.z, x, y, z);
+    };
+    
+    static DistanceTo2D = function(x, y) {
+        return point_distance(self.x, self.y, x, y);
+    };
 }
