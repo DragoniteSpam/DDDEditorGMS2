@@ -111,6 +111,9 @@
         {"externalName":"terrainops_build_vertex_colour","kind":1,"help":"__terrainops_build_vertex_colour(buffer)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"__terrainops_build_vertex_colour","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_set_lod_vertex_data","kind":1,"help":"terrainops_set_lod_vertex_data(vertex_lod)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"terrainops_set_lod_vertex_data","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_set_active_data","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -137,6 +140,7 @@
         {"name":"__terrainops_build_d3d","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build_vbuff","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build_obj","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"terrainops_set_lod_vertex_data","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
