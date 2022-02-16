@@ -13,7 +13,8 @@ vertex_format_add_position_3d();
 self.vertex_format = vertex_format_end();
 
 EditModeZ = function(position, dir) {
-    terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, Settings.terrain.radius, dir * Settings.terrain.rate);
+    var r = Settings.terrain.radius;
+    terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, r, dir * Settings.terrain.rate);
     
     switch (Settings.terrain.submode) {
         case TerrainSubmodes.MOUND: terrainops_deform_mold(); break;
@@ -21,7 +22,7 @@ EditModeZ = function(position, dir) {
         case TerrainSubmodes.ZERO: terrainops_deform_zero(); break;
     }
     
-    self.Refresh();
+    self.RegenerateTerrainBufferRange(position.x - r, position.y - r, position.x + r, position.y + r);
 }
 
 EditModeTexture = function(position) {
@@ -285,10 +286,6 @@ GenerateHeightData = function() {
     return data;
 };
 
-Refresh = function() {
-    
-};
-
 #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
 
 self.height_data = self.GenerateHeightData();
@@ -303,20 +300,38 @@ RegenerateTerrainBuffer = function(x, y) {
 	var local_chunk_height = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.height - y * TERRAIN_INTERNAL_CHUNK_SIZE);
 	var column_address = x * column_size;
 	var chunk_address = column_address + y * TERRAIN_INTERNAL_CHUNK_SIZE /* dont use the local chunk height here */ * local_chunk_width;
-    self.terrain_buffers[x * ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) + y] = vertex_create_buffer_from_buffer_ext(
+	var index = x * ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) + y;
+    if (self.terrain_buffers[index] != -1) {
+        vertex_delete_buffer(self.terrain_buffers[index]);
+    }
+    self.terrain_buffers[index] = vertex_create_buffer_from_buffer_ext(
         self.terrain_buffer_data, self.vertex_format, chunk_address * 3 * 6 * 4, local_chunk_width * local_chunk_height * 6
     );
+    vertex_freeze(self.terrain_buffers[index]);
 };
 
 RegenerateAllTerrainBuffers = function() {
     for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
         vertex_delete_buffer(self.terrain_buffers[i]);
+        self.terrain_buffers[i] = -1;
     }
-    self.terrain_buffers = array_create(ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) * ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE));
+    self.terrain_buffers = array_create(ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) * ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE), -1);
     for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
         var xx = i div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE);
         var yy = i mod ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE);
-        RegenerateTerrainBuffer(xx, yy);
+        self.RegenerateTerrainBuffer(xx, yy);
+    }
+};
+
+RegenerateTerrainBufferRange = function(x1, y1, x2, y2) {
+    x1 = floor(x1 / TERRAIN_INTERNAL_CHUNK_SIZE);
+    x2 = ceil(x2 / TERRAIN_INTERNAL_CHUNK_SIZE);
+    y1 = floor(y1 / TERRAIN_INTERNAL_CHUNK_SIZE);
+    y2 = ceil(y2 / TERRAIN_INTERNAL_CHUNK_SIZE);
+    for (var i = x1; i <= x2; i++) {
+        for (var j = y1; j <= y2; j++) {
+            self.RegenerateTerrainBuffer(i, j);
+        }
     }
 };
 
@@ -436,12 +451,12 @@ CreateJSON = function() {
 #region terrain actions
 Flatten = function(height = 0) {
     terrainops_flatten(self.height_data, self.terrain_buffer_data, height);
-    self.Refresh();
+    self.RegenerateAllTerrainBuffers();
 };
 
 ApplyScale = function(scale = Settings.terrain.global_scale) {
     terrainops_apply_scale(self.height_data, self.terrain_buffer_data, scale);
-    self.Refresh();
+    self.RegenerateAllTerrainBuffers();
 };
 
 Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strength) {
@@ -455,7 +470,7 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strengt
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_MUTATE);
     terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw, ww, hh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);
     buffer_delete(macaw);
-    self.Refresh();
+    self.RegenerateAllTerrainBuffers();
 };
 
 DrawWater = function() {
