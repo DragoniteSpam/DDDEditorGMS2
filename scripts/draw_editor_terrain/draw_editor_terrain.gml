@@ -60,7 +60,9 @@ function draw_editor_terrain() {
     // other stuff
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewData"), Settings.terrain.view_data);
     
-    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+    for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
+        vertex_submit(Stuff.terrain.terrain_buffers[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+    }
     
     if (Settings.terrain.view_axes) {
         matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, 2, 2, 2));

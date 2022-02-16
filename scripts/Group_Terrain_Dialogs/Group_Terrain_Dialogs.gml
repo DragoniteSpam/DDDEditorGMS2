@@ -155,7 +155,6 @@ function dialog_create_terrain_new() {
                 
                 buffer_delete(terrain.height_data);
                 buffer_delete(terrain.terrain_buffer_data);
-                vertex_delete_buffer(terrain.terrain_buffer);
                 
                 terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
                 terrain.texture.Reset(terrain.width, terrain.height);
@@ -164,7 +163,7 @@ function dialog_create_terrain_new() {
                 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
                 terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, terrain.width, terrain.height);
                 terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
-                terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
+                terrain.RegenerateAllTerrainBuffers();
                 
                 buffer_delete(buffer);
                 sprite_delete(image);
@@ -187,7 +186,6 @@ function dialog_create_terrain_new() {
         
         buffer_delete(terrain.height_data);
         buffer_delete(terrain.terrain_buffer_data);
-        vertex_delete_buffer(terrain.terrain_buffer);
         
         terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
         terrain.texture.Reset(width, height);
@@ -204,8 +202,7 @@ function dialog_create_terrain_new() {
         terrainops_set_active_data(buffer_get_address(terrain.height_data), terrain.width, terrain.height);
         terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, width, height);
         terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
-        terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
-        vertex_freeze(terrain.terrain_buffer);
+        terrain.RegenerateAllTerrainBuffers();
         
         self.root.Dispose();
         
