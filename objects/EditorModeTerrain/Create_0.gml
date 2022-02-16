@@ -287,12 +287,16 @@ GenerateHeightData = function() {
 };
 
 #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
+#macro TERRAIN_INTERNAL_LOD_REDUCTION 4
 
 self.height_data = self.GenerateHeightData();
 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
 self.terrain_buffer_data = terrainops_generate_internal(self.height_data, self.width, self.height);
 terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
 self.terrain_buffers = [];
+self.terrain_lod_data = terrainops_generate_lod_internal(self.height_data, self.width, self.height);
+terrainops_set_lod_vertex_data(buffer_get_address(self.terrain_lod_data));
+self.terrain_lod = [];
 
 RegenerateTerrainBuffer = function(x, y) {
 	var column_size = TERRAIN_INTERNAL_CHUNK_SIZE * self.height;

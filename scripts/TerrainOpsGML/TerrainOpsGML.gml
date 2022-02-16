@@ -22,6 +22,14 @@ function terrainops_generate_internal(source, w, h) {
     return output;
 }
 
+function terrainops_generate_lod_internal(source, w, h) {
+    var output = buffer_create(w * h * 18 * 4 / (TERRAIN_INTERNAL_LOD_REDUCTION * TERRAIN_INTERNAL_LOD_REDUCTION), buffer_fixed, 1);
+    buffer_poke(output, 0, buffer_u32, 0);
+    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
+    __terrainops_generate_lod_internal(buffer_get_address(output));
+    return output;
+}
+
 function terrainops_deform_settings(brush, index, x, y, radius, velocity) {
     var sprite_data = sprite_sample_get_buffer(brush, index);
     __terrainops_deform_brush(buffer_get_address(sprite_data), sprite_get_width(brush), sprite_get_height(brush));
