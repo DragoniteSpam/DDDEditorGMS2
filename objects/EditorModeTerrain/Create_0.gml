@@ -296,7 +296,7 @@ terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
 self.terrain_buffers = [];
 self.terrain_lod_data = terrainops_generate_lod_internal(self.height_data, self.width, self.height);
 terrainops_set_lod_vertex_data(buffer_get_address(self.terrain_lod_data));
-self.terrain_lod = [];
+self.terrain_lods = [];
 
 RegenerateTerrainBuffer = function(x, y) {
 	var column_size = TERRAIN_INTERNAL_CHUNK_SIZE * self.height;
@@ -307,19 +307,26 @@ RegenerateTerrainBuffer = function(x, y) {
 	var index = x * ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) + y;
     if (self.terrain_buffers[index] != -1) {
         vertex_delete_buffer(self.terrain_buffers[index]);
+        vertex_delete_buffer(self.terrain_lods[index]);
     }
     self.terrain_buffers[index] = vertex_create_buffer_from_buffer_ext(
         self.terrain_buffer_data, self.vertex_format, chunk_address * 3 * 6 * 4, local_chunk_width * local_chunk_height * 6
     );
+    self.terrain_lods[index] = vertex_create_buffer_from_buffer_ext(
+        self.terrain_lod_data, self.vertex_format, chunk_address * 3 * 6 * 4 / (TERRAIN_INTERNAL_LOD_REDUCTION * TERRAIN_INTERNAL_LOD_REDUCTION), local_chunk_width * local_chunk_height * 6 / (TERRAIN_INTERNAL_LOD_REDUCTION * TERRAIN_INTERNAL_LOD_REDUCTION)
+    );
     vertex_freeze(self.terrain_buffers[index]);
+    vertex_freeze(self.terrain_lods[index]);
 };
 
 RegenerateAllTerrainBuffers = function() {
     for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
         vertex_delete_buffer(self.terrain_buffers[i]);
+        vertex_delete_buffer(self.terrain_lods[i]);
         self.terrain_buffers[i] = -1;
     }
     self.terrain_buffers = array_create(ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) * ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE), -1);
+    self.terrain_lods = array_create(array_length(self.terrain_buffers), -1);
     for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
         var xx = i div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE);
         var yy = i mod ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE);
