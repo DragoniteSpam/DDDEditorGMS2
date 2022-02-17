@@ -1,8 +1,12 @@
-#macro MACAW_VERSION "1.0.4"
+#macro MACAW_VERSION            "1.0.5"
+
+#macro MACAW_MAX_GEN_SIZE       16384
 
 global.__macaw_seed = 0;
 
 function macaw_generate_dll(w, h, octaves, amplitude) {
+    w = min(MACAW_MAX_GEN_SIZE, w);
+    h = min(MACAW_MAX_GEN_SIZE, h);
     static warned = false;
     var perlin = buffer_create(w * h * 4, buffer_fixed, 4);
     
@@ -96,6 +100,8 @@ function macaw_generate(w, h, octave_count, amplitude) {
         return smooth_noise;
     };
     
+    w = min(MACAW_MAX_GEN_SIZE, w);
+    h = min(MACAW_MAX_GEN_SIZE, h);
     var base_noise = macaw_white_noise(w, h);
     var len = w * h * 4;
     var persistence = 0.5;
