@@ -117,13 +117,13 @@ void main() {
         gl_FragColor = vec4(1);
     }
     
-    if (u_LightShadows == 1.0) {
+    /*if (u_LightShadows == 1.0) {
         float depthValue = fromDepthColor(texture2D(s_DepthTexture, v_ShadowTexcoord));
         float depth_bias = 0.005 * tan(acos(NdotL));
         if (v_LightDistance > depthValue + depth_bias) {
             gl_FragColor.rgb *= u_LightAmbientColor;
         }
-    }
+    }*/
     
     DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
     
