@@ -63,7 +63,19 @@ function draw_editor_terrain() {
     for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
         var position = self.GetTerrainBufferPositionWorld(i);
         var use_lod_zero = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= TERRAIN_INTERNAL_LOD_CUTOFF;
-        vertex_submit(use_lod_zero ? Stuff.terrain.terrain_buffers[i] : Stuff.terrain.terrain_lods[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+        
+        var neighbor_use_lod_zero =
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF) ||
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF) ||
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF) ||
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF);
+        
+        if (neighbor_use_lod_zero || use_lod_zero) {
+            vertex_submit(Stuff.terrain.terrain_buffers[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+        }
+        if (!use_lod_zero) {
+            vertex_submit(Stuff.terrain.terrain_lods[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+        }
     }
     
     if (Settings.terrain.view_axes) {
