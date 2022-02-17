@@ -494,8 +494,8 @@ Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strengt
     var ww = self.width;
     var hh = self.height;
     var sprite = self.gen_sprites[mutation_sprite_index].sprite;
-    var nw = power(2, ceil(log2(ww)));
-    var nh = power(2, ceil(log2(hh)));
+    var nw = min(power(2, ceil(log2(ww))), 2048);
+    var nh = min(power(2, ceil(log2(hh))), 2048);
     var macaw = macaw_generate_dll(nw, nh, octaves, noise_strength).noise;
     var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_MUTATE);
     terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw, nw, nh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);
