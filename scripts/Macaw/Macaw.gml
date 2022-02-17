@@ -1,4 +1,4 @@
-#macro MACAW_VERSION "1.0.3"
+#macro MACAW_VERSION "1.0.4"
 
 global.__macaw_seed = 0;
 
@@ -48,6 +48,18 @@ function macaw_generate(w, h, octave_count, amplitude) {
             buffer_resize(smooth_noise, w * h * octave_count * 4);
         }
         
+        // the interpolation function you use can make quite a difference, it seems
+        // https://web.archive.org/web/20220130085702/https://en.wikipedia.org/wiki/Perlin_noise#Implementation
+        static macaw_lerp = lerp;
+        
+        static macaw_lerp_cubic = function(a, b, f) {
+            return (b - a) * (3.0 - f * 2.0) * f * f + a;
+        };
+        
+        static macaw_lerp_whatevers_better_than_cubic = function(a, b, f) {
+            return (b - a) * ((f * (f * 6.0 - 15.0) + 10.0) * f * f * f) + a;
+        };
+        
         for (var octave = 0; octave < octave_count; octave++) {
             var period = 1 << octave;
             var frequency = 1 / period;
@@ -73,9 +85,9 @@ function macaw_generate(w, h, octave_count, amplitude) {
                     var b01 = base_noise[i0 * h + j1];
                     var b11 = base_noise[i1 * h + j1];
                     
-                    var top = lerp(b00, b10, hblend);
-                    var bottom = lerp(b01, b11, hblend);
-                    buffer_poke(smooth_noise, (base_b + j++) * 4, buffer_f32, lerp(top, bottom, vblend));
+                    var top = macaw_lerp_whatevers_better_than_cubic(b00, b10, hblend);
+                    var bottom = macaw_lerp_whatevers_better_than_cubic(b01, b11, hblend);
+                    buffer_poke(smooth_noise, (base_b + j++) * 4, buffer_f32, macaw_lerp_whatevers_better_than_cubic(top, bottom, vblend));
                 }
                 i++;
             }

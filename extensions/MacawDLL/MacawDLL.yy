@@ -87,8 +87,8 @@
   "iosCocoaPodDependencies": "",
   "tvosCocoaPodDependencies": "",
   "parent": {
-    "name": "Extensions",
-    "path": "folders/Extensions.yy",
+    "name": "DDDEditor2-23",
+    "path": "DDDEditor2-23.yyp",
   },
   "resourceVersion": "1.2",
   "name": "MacawDLL",

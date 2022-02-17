@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Extensions",
-    "path": "folders/Extensions.yy",
+    "name": "DDDEditor2-23",
+    "path": "DDDEditor2-23.yyp",
   },
   "resourceVersion": "1.0",
   "name": "Macaw",
