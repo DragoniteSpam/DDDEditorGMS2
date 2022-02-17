@@ -288,7 +288,7 @@ GenerateHeightData = function() {
 
 #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
 #macro TERRAIN_INTERNAL_LOD_REDUCTION (4 * 4)
-#macro TERRAIN_INTERNAL_LOD_CUTOFF 2000
+#macro TERRAIN_INTERNAL_LOD_CUTOFF 1000
 
 self.height_data = self.GenerateHeightData();
 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);

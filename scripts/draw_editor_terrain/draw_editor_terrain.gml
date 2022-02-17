@@ -62,8 +62,8 @@ function draw_editor_terrain() {
     
     for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
         var position = self.GetTerrainBufferPositionWorld(i);
-        var use_full_lod = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= TERRAIN_INTERNAL_LOD_CUTOFF;
-        vertex_submit(use_full_lod ? Stuff.terrain.terrain_buffers[i] : Stuff.terrain.terrain_lods[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+        var use_lod_zero = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= TERRAIN_INTERNAL_LOD_CUTOFF;
+        vertex_submit(use_lod_zero ? Stuff.terrain.terrain_buffers[i] : Stuff.terrain.terrain_lods[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
     }
     
     if (Settings.terrain.view_axes) {
