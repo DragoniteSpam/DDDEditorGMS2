@@ -187,6 +187,7 @@ Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? true;
 Settings.terrain.view_water_min_alpha = Settings.terrain[$ "view_water_min_alpha"] ?? 0.5;
 Settings.terrain.view_water_max_alpha = Settings.terrain[$ "view_water_max_alpha"] ?? 0.9;
 Settings.terrain.water_level = Settings.terrain[$ "water_level"] ?? -0.2;
+Settings.terrain.view_distance = Settings.terrain[$ "view_distance"] ?? 1200;
 Settings.terrain.wireframe_alpha = Settings.terrain[$ "wireframe_alpha"] ?? 0.5;
 Settings.terrain.cursor_alpha = Settings.terrain[$ "cursor_alpha"] ?? 0.5;
 Settings.terrain.view_skybox = Settings.terrain[$ "view_skybox"] ?? true;
@@ -288,7 +289,6 @@ GenerateHeightData = function() {
 
 #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
 #macro TERRAIN_INTERNAL_LOD_REDUCTION (8 * 8)
-#macro TERRAIN_INTERNAL_LOD_CUTOFF 1000
 
 self.height_data = self.GenerateHeightData();
 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
@@ -543,7 +543,7 @@ DrawDepth = function() {
     
     for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
         var position = self.GetTerrainBufferPositionWorld(i);
-        var use_full_lod = self.camera_light.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= TERRAIN_INTERNAL_LOD_CUTOFF;
+        var use_full_lod = self.camera_light.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= Settings.terrain.view_distance;
         vertex_submit(use_full_lod ? Stuff.terrain.terrain_buffers[i] : Stuff.terrain.terrain_lods[i], pr_trianglelist, -1);
     }
     

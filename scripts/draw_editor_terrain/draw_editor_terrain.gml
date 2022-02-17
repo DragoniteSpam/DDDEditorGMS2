@@ -60,15 +60,16 @@ function draw_editor_terrain() {
     // other stuff
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewData"), Settings.terrain.view_data);
     
+    var cutoff = Settings.terrain.view_distance;
     for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
         var position = self.GetTerrainBufferPositionWorld(i);
-        var use_lod_zero = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= TERRAIN_INTERNAL_LOD_CUTOFF;
+        var use_lod_zero = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= cutoff;
         
         var neighbor_use_lod_zero =
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF) ||
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF) ||
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF) ||
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= TERRAIN_INTERNAL_LOD_CUTOFF);
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
         
         if (neighbor_use_lod_zero || use_lod_zero) {
             vertex_submit(Stuff.terrain.terrain_buffers[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
