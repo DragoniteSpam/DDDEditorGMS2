@@ -356,8 +356,8 @@ RegenerateTerrainBufferRange = function(x1, y1, x2, y2) {
     x2 = ceil(x2 / TERRAIN_INTERNAL_CHUNK_SIZE);
     y1 = floor(y1 / TERRAIN_INTERNAL_CHUNK_SIZE);
     y2 = ceil(y2 / TERRAIN_INTERNAL_CHUNK_SIZE);
-    for (var i = x1; i <= x2; i++) {
-        for (var j = y1; j <= y2; j++) {
+    for (var i = max(0, x1); i <= min(x2, (self.width div TERRAIN_INTERNAL_CHUNK_SIZE) - 1); i++) {
+        for (var j = max(0, y1); j <= min(y2, (self.height div TERRAIN_INTERNAL_CHUNK_SIZE) - 1); j++) {
             self.RegenerateTerrainBuffer(i, j);
         }
     }
