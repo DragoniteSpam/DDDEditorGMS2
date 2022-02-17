@@ -243,6 +243,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static GetVPMatrix = function() {
+        if (self.view_mat == undefined || self.proj_mat == undefined) return undefined;
         return matrix_multiply(self.view_mat, self.proj_mat);
     };
     
