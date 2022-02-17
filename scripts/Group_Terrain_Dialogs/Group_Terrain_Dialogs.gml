@@ -163,6 +163,8 @@ function dialog_create_terrain_new() {
                 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
                 terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, terrain.width, terrain.height);
                 terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
+                terrain.terrain_lod_data = terrainops_generate_lod_internal(terrain.height_data, terrain.width, terrain.height);
+                terrainops_set_lod_vertex_data(buffer_get_address(terrain.terrain_lod_data));
                 terrain.RegenerateAllTerrainBuffers();
                 
                 buffer_delete(buffer);
@@ -202,6 +204,8 @@ function dialog_create_terrain_new() {
         terrainops_set_active_data(buffer_get_address(terrain.height_data), terrain.width, terrain.height);
         terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, width, height);
         terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
+        terrain.terrain_lod_data = terrainops_generate_lod_internal(terrain.height_data, terrain.width, terrain.height);
+        terrainops_set_lod_vertex_data(buffer_get_address(terrain.terrain_lod_data));
         terrain.RegenerateAllTerrainBuffers();
         
         self.root.Dispose();

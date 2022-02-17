@@ -23,7 +23,7 @@ function terrainops_generate_internal(source, w, h) {
 }
 
 function terrainops_generate_lod_internal(source, w, h) {
-    var output = buffer_create(w * h * 18 * 4 / (TERRAIN_INTERNAL_LOD_REDUCTION * TERRAIN_INTERNAL_LOD_REDUCTION), buffer_fixed, 1);
+    var output = buffer_create(w * h * 18 * 4 / TERRAIN_INTERNAL_LOD_REDUCTION, buffer_fixed, 1);
     buffer_poke(output, 0, buffer_u32, 0);
     buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
     __terrainops_generate_lod_internal(buffer_get_address(output));

@@ -287,7 +287,7 @@ GenerateHeightData = function() {
 };
 
 #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
-#macro TERRAIN_INTERNAL_LOD_REDUCTION 4
+#macro TERRAIN_INTERNAL_LOD_REDUCTION (4 * 4)
 #macro TERRAIN_INTERNAL_LOD_CUTOFF 1000
 
 self.height_data = self.GenerateHeightData();
@@ -328,12 +328,11 @@ RegenerateTerrainBuffer = function(x, y) {
         vertex_delete_buffer(self.terrain_buffers[index]);
         vertex_delete_buffer(self.terrain_lods[index]);
     }
-    self.terrain_buffers[index] = vertex_create_buffer_from_buffer_ext(
-        self.terrain_buffer_data, self.vertex_format, chunk_address * 3 * 6 * 4, local_chunk_width * local_chunk_height * 6
-    );
-    self.terrain_lods[index] = vertex_create_buffer_from_buffer_ext(
-        self.terrain_lod_data, self.vertex_format, chunk_address * 3 * 6 * 4 / (TERRAIN_INTERNAL_LOD_REDUCTION * TERRAIN_INTERNAL_LOD_REDUCTION), local_chunk_width * local_chunk_height * 6 / (TERRAIN_INTERNAL_LOD_REDUCTION * TERRAIN_INTERNAL_LOD_REDUCTION)
-    );
+    var chunk_offset = chunk_address * 3 * 6 * 4;
+    var chunk_vertices = local_chunk_width * local_chunk_height * 6;
+    self.terrain_buffers[index] = vertex_create_buffer_from_buffer_ext(self.terrain_buffer_data, self.vertex_format, chunk_offset, chunk_vertices);
+    self.terrain_lods[index] = vertex_create_buffer_from_buffer_ext(self.terrain_lod_data, self.vertex_format, chunk_offset / TERRAIN_INTERNAL_LOD_REDUCTION, chunk_vertices / TERRAIN_INTERNAL_LOD_REDUCTION);
+    
     vertex_freeze(self.terrain_buffers[index]);
     vertex_freeze(self.terrain_lods[index]);
 };
