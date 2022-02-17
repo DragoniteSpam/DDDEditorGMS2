@@ -541,9 +541,7 @@ DrawDepth = function() {
     matrix_set(matrix_world, matrix_build_identity());
     
     for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
-        var position = self.GetTerrainBufferPositionWorld(i);
-        var use_full_lod = self.camera_light.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= Settings.terrain.view_distance;
-        vertex_submit(use_full_lod ? Stuff.terrain.terrain_buffers[i] : Stuff.terrain.terrain_lods[i], pr_trianglelist, -1);
+        vertex_submit(Stuff.terrain.terrain_lods[i], pr_trianglelist, -1);
     }
     
     gpu_set_cullmode(cull_counterclockwise);
