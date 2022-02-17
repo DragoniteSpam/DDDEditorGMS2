@@ -306,14 +306,14 @@ GetTerrainBufferIndex = function(x, y) {
 GetTerrainBufferPosition = function(index) {
     return new vec2(
         index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE),
-        index mod ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE),
+        index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE),
     );
 };
 
 GetTerrainBufferPositionWorld = function(index) {
     return new vec2(
         (index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
-        (index mod ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
+        (index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
     );
 };
 
@@ -341,7 +341,6 @@ RegenerateAllTerrainBuffers = function() {
     for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
         vertex_delete_buffer(self.terrain_buffers[i]);
         vertex_delete_buffer(self.terrain_lods[i]);
-        self.terrain_buffers[i] = -1;
     }
     self.terrain_buffers = array_create(ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) * ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE), -1);
     self.terrain_lods = array_create(array_length(self.terrain_buffers), -1);
