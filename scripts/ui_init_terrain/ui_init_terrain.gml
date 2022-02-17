@@ -22,7 +22,7 @@ function ui_init_terrain(mode) {
                 }))
                     .SetTooltip("View the world through an overhead camera."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Viewer Settings", function() {
-                    var dialog = new EmuDialog(640, 540, "Terrain viewer settings");
+                    var dialog = new EmuDialog(640, 600, "Terrain viewer settings");
                     dialog.active_shade = 0;
                     dialog.x = 920;
                     dialog.y = 120;
@@ -59,6 +59,11 @@ function ui_init_terrain(mode) {
                             Settings.terrain.view_skybox = self.value;
                         }))
                             .SetTooltip("Toggles the the skybox. In the future I might add the ability to import your own."),
+                        new EmuText(col1x, EMU_AUTO, col_width, 32, "View distance:"),
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 640, 2800, true, Settings.terrain.view_distance, function() {
+                            Settings.terrain.view_distance = self.value;
+                        }))
+                            .SetTooltip("The distance at which the terrain will switch to a lower level of detail. This can have a dramatic impact on performance."),
                         #endregion
                         #region column 2
                         (new EmuRadioArray(col2x, EMU_BASE, 256, 32, "View data:", Settings.terrain.view_data, function() {
