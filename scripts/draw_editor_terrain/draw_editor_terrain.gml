@@ -37,11 +37,11 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireAlpha"), Settings.terrain.wireframe_alpha);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireColor"), 1, 1, 1);
     // water uniforms
-    var water_level = 512 * power(Settings.terrain.water_level, 3) / Settings.terrain.view_scale;
+    var water_level = 512 * power(Settings.terrain.water_level, 3);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WaterLevels"), water_level - 320, water_level, 0.75 * Settings.terrain.view_water);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WaterColor"), 0.1, 0.1, 0.6);
     // terrain stuff
-    matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, Settings.terrain.view_scale, Settings.terrain.view_scale, Settings.terrain.view_scale));
+    matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 1, 1, 1));
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "terrainSize"), Stuff.terrain.width, Stuff.terrain.height);
     // editor cursor stuff
     var xx = Stuff.terrain.cursor_position ? Stuff.terrain.cursor_position.x : 0;
@@ -67,7 +67,7 @@ function draw_editor_terrain() {
     }
     
     if (Settings.terrain.view_axes) {
-        matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, 2, 2, 2));
+        matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, 0.5, 0.5, 0.5));
         shader_set(shd_basic_colors);
         vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
     }

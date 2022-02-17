@@ -41,7 +41,7 @@ self.mouse_interaction = function(mouse_vector) {
     
     if (mouse_vector[vec3.zz] < mouse_vector[5]) {
         var f = abs(mouse_vector[5] / mouse_vector[vec3.zz]);
-        self.cursor_position = new vec2((mouse_vector[3] + mouse_vector[vec3.xx] * f) / Settings.terrain.view_scale, (mouse_vector[4] + mouse_vector[vec3.yy] * f) / Settings.terrain.view_scale);
+        self.cursor_position = new vec2(mouse_vector[3] + mouse_vector[vec3.xx] * f, mouse_vector[4] + mouse_vector[vec3.yy] * f);
         
         if (Controller.mouse_left) {
             switch (Settings.terrain.mode) {
@@ -193,7 +193,6 @@ Settings.terrain.view_skybox = Settings.terrain[$ "view_skybox"] ?? true;
 Settings.terrain.view_axes = Settings.terrain[$ "view_axes"] ?? true;
 Settings.terrain.view_data = Settings.terrain[$ "view_data"] ?? TerrainViewData.DIFFUSE;
 Settings.terrain.orthographic = Settings.terrain[$ "orthographic"] ?? false;
-Settings.terrain.view_scale = Settings.terrain[$ "view_scale"] ?? 4;
 Settings.terrain.light_enabled = Settings.terrain[$ "light_enabled"] ?? true;
 Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? true;
 Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
@@ -237,7 +236,7 @@ Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 #endregion
 
-self.camera = new Camera(0, 0, 256, 256, 256, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
     Stuff.terrain.mouse_interaction(mouse_vector);
 });
 self.base_speed = 32;
@@ -289,7 +288,7 @@ GenerateHeightData = function() {
 
 #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
 #macro TERRAIN_INTERNAL_LOD_REDUCTION (4 * 4)
-#macro TERRAIN_INTERNAL_LOD_CUTOFF 1000
+#macro TERRAIN_INTERNAL_LOD_CUTOFF 2000
 
 self.height_data = self.GenerateHeightData();
 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
