@@ -242,11 +242,11 @@ self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_
 self.base_speed = 32;
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
-self.camera_light = new Camera(2000, -2000, 2256, 0, 0, 256, 0, 0, 1, 60, CAMERA_ZNEAR, 10000, null);
+self.camera_light = new Camera(500, -500, 564, 0, 0, 64, 0, 0, 1, 60, CAMERA_ZNEAR, 2500, null);
 self.camera_light.Load(setting_get("terrain", "camera_light", undefined));
 self.camera_light.Update = method(self.camera_light, function() {
     var main_camera = Stuff.terrain.camera;
-    var dist = 2000;
+    var dist = 500;
     self.x = main_camera.x - dist * Settings.terrain.light_direction.x;
     self.y = main_camera.y - dist * Settings.terrain.light_direction.y;
     self.z = main_camera.z - dist * Settings.terrain.light_direction.z;
