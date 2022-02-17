@@ -30,7 +30,10 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.fov = fov;
     self.direction = self.def_direction;
     self.pitch = self.def_pitch;
+    
     self.scale = 1;
+    self.base_speed = 256;
+    self.accelerate_time = 6;
     
     self.view_mat = undefined;
     self.proj_mat = undefined;
@@ -209,6 +212,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
             fov: self.fov,
             direction: self.direction,
             pitch: self.pitch,
+            base_speed: self.base_speed,
+            accelerate_time: self.accelerate_time,
         };
     };
     
@@ -226,15 +231,15 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
             self.fov = source.fov;
             self.direction = source.direction;
             self.pitch = source.pitch;
+            self.base_speed = source.base_speed;
+            self.accelerate_time = source.accelerate_time;
         } catch (e) {
             self.Reset();
         }
     };
     
     static GetCameraSpeed = function() {
-        var base_speed = 256;
-        var accelerate_time = 6;
-        return max(1, (base_speed * (logn(32, max(self.z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / accelerate_time * Settings.config.camera_fly_rate, 10));
+        return max(1, (self.base_speed * (logn(32, max(self.z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / self.accelerate_time * Settings.config.camera_fly_rate, 10));
     };
     
     static GetVPMatrix = function() {
