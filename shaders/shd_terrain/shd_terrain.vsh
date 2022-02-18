@@ -34,9 +34,10 @@ void main() {
 	v_Texcoord = vec2(floor(fract(in_Position.y * 2.0) * 2.0), floor(fract(in_Position.y * 4.0) * 2.0)) / u_TextureTileSize;
 	// get rid of the one pixel seam at the edge of tiles
 	v_Texcoord -= (1.0 / u_TerrainSizeV) * ceil(v_Texcoord);
-    
+    /*
     vec4 screenSpace = u_LightVP * v_WorldPosition;
     
     v_LightDistance = screenSpace.z / screenSpace.w;
     v_ShadowTexcoord = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
+    */
 }
