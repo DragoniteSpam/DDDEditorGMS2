@@ -299,7 +299,7 @@ GenerateHeightData = function() {
     return data;
 };
 
-#macro TERRAIN_INTERNAL_CHUNK_SIZE 256
+#macro TERRAIN_INTERNAL_CHUNK_SIZE 200
 #macro TERRAIN_INTERNAL_LOD_REDUCTION (8 * 8)
 
 self.height_data = self.GenerateHeightData();
