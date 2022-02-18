@@ -1088,7 +1088,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"translation-z.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"translation.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_magenta.png","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_sky_clouds_blue.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-sphere.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-cube.d3d","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"centered-capsule.d3d","resourceType":"GMIncludedFile",},
@@ -1103,6 +1102,7 @@
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"readme.md","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"water.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_sky_clouds_blue.png","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2022.200.0.475",
