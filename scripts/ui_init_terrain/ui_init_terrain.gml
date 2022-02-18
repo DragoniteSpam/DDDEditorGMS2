@@ -114,7 +114,7 @@ function ui_init_terrain(mode) {
                         var area_comparison =
                             area < MILLION ? (string(area / area_vatican_city) + "x Vatican City (0.44 km²)") :
                             (area < 3 * MILLION ? (string(area / area_barringer_crater) + "x Barringer Crater (1.09 km²)") :
-                            (area < 8 * MILLION ? (string(area / area_oblivion) + "x The Elder Scrolls IV: Obligion (4 km²)") :
+                            (area < 8 * MILLION ? (string(area / area_oblivion) + "x The Elder Scrolls IV: Oblivion (4 km²)") :
                             (area < 18 * MILLION ? (string(area / area_dublin_airport) + "x Dublin International Airport (10.84 km²)") :
                             (string(area / area_skyrim) + "x Skyrim (39 km²)"))));
                         
