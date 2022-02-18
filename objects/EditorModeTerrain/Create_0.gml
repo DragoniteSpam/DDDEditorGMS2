@@ -6,6 +6,14 @@ event_inherited();
 
 debug_timer_start();
 
+self.stats = {
+    chunks: {
+        full: 0,
+        lod: 0,
+    },
+    triangles: 0,
+};
+
 Stuff.terrain = self;
 
 vertex_format_begin();
@@ -88,6 +96,10 @@ self.mouse_interaction = function(mouse_vector) {
 update = function() {
     self.texture.Validate();
     self.color.Validate();
+    
+    self.stats.chunks.full = 0;
+    self.stats.chunks.lod = 0;
+    self.stats.triangles = 0;
     
     // you only get the keyboard shortcuts if we're running under the terrain config
     if (EDITOR_BASE_MODE == ModeIDs.TERRAIN) {

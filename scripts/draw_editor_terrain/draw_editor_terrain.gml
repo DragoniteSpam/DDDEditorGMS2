@@ -73,9 +73,13 @@ function draw_editor_terrain() {
         
         if (neighbor_use_lod_zero || use_lod_zero) {
             vertex_submit(Stuff.terrain.terrain_buffers[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+            self.stats.chunks.full++;
+            self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_buffers[i]);
         }
         if (!use_lod_zero) {
             vertex_submit(Stuff.terrain.terrain_lods[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+            self.stats.chunks.lod++;
+            self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_lods[i]);
         }
     }
     
