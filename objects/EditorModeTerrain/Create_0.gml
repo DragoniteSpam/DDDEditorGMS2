@@ -515,6 +515,7 @@ DrawWater = function() {
     var mn = min(Settings.terrain.view_water_min_alpha, Settings.terrain.view_water_max_alpha);
     var mx = max(Settings.terrain.view_water_min_alpha, Settings.terrain.view_water_max_alpha);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_WaterAlphaBounds"), mn, mx);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_DisplacementScale"), 1.15);
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), frac(current_time / 16000));
     shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Displacement"), 0.1);
     gpu_set_texfilter(false);
