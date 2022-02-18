@@ -1,4 +1,7 @@
 {
+  "ConfigValues": {
+    "Terrain": {"textureGroupId":"{\"name\":\"scribble\",\"path\":\"texturegroups/scribble\"}",},
+  },
   "hinting": 0,
   "glyphOperations": 0,
   "interpreter": 0,
@@ -21,6 +24,7 @@
     "path": "texturegroups/scribble",
   },
   "ascenderOffset": 0,
+  "ascender": 15,
   "glyphs": {
     "32": {"x":2,"y":2,"w":4,"h":21,"character":32,"shift":4,"offset":0,},
     "33": {"x":250,"y":94,"w":3,"h":21,"character":33,"shift":5,"offset":1,},

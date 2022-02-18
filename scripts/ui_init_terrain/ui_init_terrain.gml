@@ -117,9 +117,10 @@ function ui_init_terrain(mode) {
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Heightmap", function() {
                     momu_terrain_heightmap();
                 }),
-                (new EmuText(col2x, EMU_AUTO, col_width, 256, "[c_blue]Stats[]"))
+                (new EmuText(col2x, EMU_AUTO, col_width, 320, "[c_blue]Stats[]"))
                     .SetTextUpdate(function() {
                         var info = os_get_info();
+                        var area = Stuff.terrain.width * Stuff.terrain.height;
                         var output = "[c_blue]Stats[]\n\n" +
                             "Chunks:\n" +
                             "    Full: " + string(Stuff.terrain.stats.chunks.full) + "\n" +
@@ -127,7 +128,8 @@ function ui_init_terrain(mode) {
                             "Triangles rendered:\n" +
                             "    " + string_comma(Stuff.terrain.stats.triangles) + "\n\n" +
                             "GPU:\n" +
-                            "    " + info[? "video_adapter_description"] + "\n"
+                            "    " + info[? "video_adapter_description"] + "\n\n" +
+                            "Area: " + (area < MILLION ? (string_comma(area) + "m²") : (string(area / MILLION) + "km²"))
                         ;
                         ds_map_destroy(info);
                         return output;
