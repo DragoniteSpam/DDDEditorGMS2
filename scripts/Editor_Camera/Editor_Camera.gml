@@ -254,4 +254,12 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     static DistanceTo2D = function(x, y) {
         return point_distance(self.x, self.y, x, y);
     };
+    
+    static Dot = function(x, y, z) {
+        return dot_product_3d_normalized(self.xto - self.x, self.yto - self.y, self.zto - self.z, x - self.x, y - self.y, z - self.z);
+    };
+    
+    static Dot2D = function(x, y) {
+        return dot_product_normalized(self.xto - self.x, self.yto - self.y, x - self.x, y - self.y);
+    };
 }
