@@ -123,7 +123,7 @@ function ui_init_terrain(mode) {
                         var output = "[c_blue]Stats[]\n\n" +
                             "Chunks:\n" +
                             "    Full: " + string(Stuff.terrain.stats.chunks.full) + "\n" +
-                            "    LOD: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
+                            "    Reduced: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
                             "Triangles rendered:\n" +
                             "    " + string_comma(Stuff.terrain.stats.triangles) + "\n\n" +
                             "GPU:\n" +

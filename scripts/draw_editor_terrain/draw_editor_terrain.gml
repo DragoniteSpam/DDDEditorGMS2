@@ -61,9 +61,14 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewData"), Settings.terrain.view_data);
     
     var cutoff = Settings.terrain.view_distance;
+    var chunk_angle = dcos(Settings.terrain.camera.fov * 1.5);
     for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
         var position = self.GetTerrainBufferPositionWorld(i);
-        var use_lod_zero = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= cutoff;
+        var chunk_distance = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2);
+        
+        if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && self.camera.Dot2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= chunk_angle) continue;
+        
+        var use_lod_zero = chunk_distance <= cutoff;
         
         var neighbor_use_lod_zero =
             (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
