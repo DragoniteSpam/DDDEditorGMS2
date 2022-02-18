@@ -1,60 +1,68 @@
-Hello, this is the beta for a major update for this here terrain editor.
+I recently did a major update on this thing since the original release. Here's a list of change and additions from the last version. It's mostly finished, but I'll probably still do smaller fixes and minor additions from time to time.
 
-Here's a list of change and additions from the last version. Items marked with an * are still a work in progress:
-
-## Functionality
+## Performance
 
  - The whole thing is much, much faster in pretty much all regards
- - Certain tasks that used to be done in GML are now executed by a DLL, courtesy of C++*
+ - Certain tasks that used to be done in GML are now executed by a DLL, courtesy of C++
+ - No more VM/YYC versions, because all of the expensive stuff is done in a DLL anyway
+ - The editor internally uses chunking and LOD systems to drastically cut down on unnecessary work, and as such increasing the size of the terrain has little to no impact on the software's performance
 
 #### Import/export
 
- - Less buggy heightmap import/export?
+ - Less buggy heightmap import/export
  - Export a vertex buffer directly
  - Many, many export options have been added:
    - Multiple LOD levels, with the settings for the number of LOD levels and the reduction factor
    - Smooth normals on export
    - Split the terrain up into chunks (this works very well with LODs)
-   - Customize the vertex format*
+   - Customize the vertex format
 
 #### General editing
 
- - Max terrain size is now 2048x2048 - I don't really recommend this though, because DLL or not this will still be rather slow*
- - Mutate the terrain based on Perlin noise*
- - Mutate the terrain based on a heightmap*
- - Brushes for painting on the terrain*
+ - Max terrain size is now 5400x5400, and it performs pretty well, even while editing
+   - I would have made the limit even bigger except GameMaker doesn't allow buffers larger than about 2 GB, to my immeasurable disappointment
+ - Brushes for all terrain editing modes
+   - You may also import your own brushes
+
+#### Height
+
+ - "Average" and "Zero" tools now morph the terrain height towards the target, rather than doing it all at once
+ - Mutate the terrain based on Perlin noise
+ - Mutate the terrain based on a heightmap
+
+#### Texture
+
+ - Texture tile size can now be set by the user
+
+#### Painting
+
+ - Import/export the paint canvas as an image
+ - Obj does NOT support vertex color; in the past this was spoofed using materials, but I have no intent to do this again going forward
 
 ## Visuals
 
- - There's a real pretty skybox
  - Better water shader
- - The UI is a bit less awkward overall
+ - The UI is less awkward overall
  - Draw a wireframe on the terrain
+ - Viewer modes for diffuse color, vertex position, vertex normal, heightmap, and barycentric coordinates
+ - Plenty of other minor settings
+ - Terrain stats
 
 ## Other stuff
 
  - A metric buttload of internal changes, optimizations, and bug fixes
+ - Project save/load is incompatible with saved versions from the original version(s), although for what it's worth I'm pretty sure those didn't work anyway
 
 ## WIP items and known issues
 
 You probably want to know about some of the things that are incomplete, or some of the features from the last version that are (currently) not available in the beta.
 
- - Documentation: there currently is none, but we've reached the point where there really, really should be
-
- - Perlin noise generation/mutation will produce strange results on terrains that are not powers of 2. There's a small oversight in my noise generation code that I'll fix eventually, although most of you are probably going to make power-of-two terrains anyway so it's not a top priority
-
- - Project save and load: it'd be super helpful to be able to come back to a project later, instead of executing a one-way export and being done with it. (The only reason it's not already included is because if the terrain data changes as I continue working on this, I don't want existing save files to need a messy conversion process.)
- - Import/export: currently only 3D Position, Face Normal, and  Barycentric Coordinate actually do anything. The other attributes will resolve to 0, or (in the case of colo(u)r) c_white
- - Editing: if you look closely (or not that closely) you'll probably see how the deformation tool works, which is to say, it samples the mouse's position once per frame and applies a bit of deformation on that point. This is obviously less-than-ideal
- - Editing: there are still some things I can probably do to make the program even faster for editing, and support even larger terrain sizes
- - Editing/mutation: more terrain deformation options, and some streamlining of the editing tools
- - Editing/mutation: more stock heightmaps will be added, and eventually I'm going to add the ability to import your own heightmap for the purpose of modifying the terrain instead of only creating a new terrain
- - Editing: allow the user to enter a seed for the random number generation
- - Editing: use different brush shapes for terrain deformation and texture setting, the same as terrain painting
- - Lighting: settings not yet implemented, aside from the default light
- - Texture: settings not yet implemented; I'm still undecided on what the best way to handle this will be, but getting it in will be a priority
- - View: 2D orthographic view - this might not come back because I'm currently unconvinced of its utility
- - View: shadowmapping is fun, I want to add it eventually
+ - Documentation: there is none (yet)
+ - Editing: at some point I'd like to add the ability to rotate a brush, but that doesn't feel like a priority
+ - Editing: layered/blended textures
+ - Exporting: obj currently doesn't support smooth normals
+ - Lighting: settings not yet implemented, aside from the default light; this also doesn't feel like a priority
+ - Procedural tools: this is honestly probably best saved for another major release
 
 ## Bug reporting
 

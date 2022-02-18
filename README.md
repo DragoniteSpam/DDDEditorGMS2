@@ -36,7 +36,7 @@ There are some miscellaneous property editor form UI things.
 
 <img src="https://i.imgur.com/3Eqfov7.png" width="160">
 
-A long time ago I made a 3D terrain editor for Game Maker (two of them, in fact). It's not directly related to the rest of DDD but it uses a lot of the same code, the renderer, etc so when someone asked me to re-make it recently I decided to include it.
+A long time ago I made a 3D terrain editor for Game Maker. Several of them, in fact. It's not directly related to the rest of DDD but it uses a lot of the same code, the renderer, etc so when someone asked me to re-make it recently I decided to include it.
 
 <img src="https://i.imgur.com/cKyAlOY.png" width="160">
 
