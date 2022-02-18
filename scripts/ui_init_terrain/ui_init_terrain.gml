@@ -117,6 +117,21 @@ function ui_init_terrain(mode) {
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Heightmap", function() {
                     momu_terrain_heightmap();
                 }),
+                (new EmuText(col2x, EMU_AUTO, col_width, 256, "[c_blue]Stats[]"))
+                    .SetTextUpdate(function() {
+                        var info = os_get_info();
+                        var output = "[c_blue]Stats[]\n\n" +
+                            "Chunks:\n" +
+                            "    Full: " + string(Stuff.terrain.stats.chunks.full) + "\n" +
+                            "    LOD: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
+                            "Triangles rendered:\n" +
+                            "    " + string_comma(Stuff.terrain.stats.triangles) + "\n\n" +
+                            "GPU:\n" +
+                            "    " + info[? "video_adapter_description"] + "\n"
+                        ;
+                        ds_map_destroy(info);
+                        return output;
+                    }),
                 #endregion
             ]),
             (new EmuTab("Lighting")).AddContent([
