@@ -149,7 +149,7 @@ function macaw_version() {
 function macaw_set_seed(seed) {
     // MD5 will produce a hex value that's 32 hextets long, which will cause problems
     // if we try to convert it to an int64, so we only use the first 15 digits
-    seed = real(ptr(string_copy(md5_string_utf8(string(seed)), 1, 15)));
+    seed = int64(ptr(string_copy(md5_string_utf8(string(seed)), 1, 15)));
     global.__macaw_seed = seed;
     __macaw_set_seed(seed);
 }

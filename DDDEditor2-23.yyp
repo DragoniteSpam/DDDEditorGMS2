@@ -1105,7 +1105,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_sky_clouds_blue.png","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.200.0.475",
+    "IDEVersion": "2022.200.0.479",
   },
   "resourceVersion": "1.5",
   "name": "DDDEditor2-23",
