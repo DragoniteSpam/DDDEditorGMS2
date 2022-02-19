@@ -217,6 +217,20 @@ Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.2
 Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
 Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? false;
 Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? 2048;
+try {
+    var test = Settings.terrain.light_ambient.r / 1.0;
+    test = Settings.terrain.light_ambient.g / 1.0;
+    test = Settings.terrain.light_ambient.b / 1.0;
+} catch (e) {
+    Settings.terrain.light_ambient = { r: 0.25, g: 0.25, b: 0.25 };
+}
+try {
+    var test = Settings.terrain.light_direction.x / 1.0;
+    test = Settings.terrain.light_direction.y / 1.0;
+    test = Settings.terrain.light_direction.z / 1.0;
+} catch (e) {
+    Settings.terrain.light_direction = { x: -1, y: 1, z: -1 };
+}
 // height settings
 Settings.terrain.brush_min = 1.5;
 Settings.terrain.brush_max = 160;
@@ -224,7 +238,7 @@ Settings.terrain.rate_min = 0.05;
 Settings.terrain.rate_max = 2.5;
 Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
 Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 1, 0, array_length(self.brush_sprites) - 1);
-Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 4;
+Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 12;
 Settings.terrain.mode = TerrainModes.Z;
 Settings.terrain.submode = TerrainSubmodes.MOUND;
 Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
@@ -275,6 +289,9 @@ self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
     camera_set_proj_mat(self.camera, self.proj_mat);
     camera_apply(self.camera);
 });
+
+Settings.terrain.camera = self.camera.Save();
+Settings.terrain.camera_light = self.camera_light.Save();
 
 texture_image = file_exists(FILE_TERRAIN_TEXTURE) ? sprite_add(FILE_TERRAIN_TEXTURE, 0, false, false, 0, 0) : sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
 gradient_images = [
