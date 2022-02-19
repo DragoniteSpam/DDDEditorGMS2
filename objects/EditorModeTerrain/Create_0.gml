@@ -461,6 +461,8 @@ LoadTerrainStandalone = function(filename) {
                 if (buffer_exists(self.terrain_buffer_data)) buffer_delete(self.terrain_buffer_data);
                 self.terrain_buffer_data = terrainops_generate_internal(self.height_data, self.width, self.height);
                 terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
+                self.terrain_lod_data = terrainops_generate_lod_internal(self.height_data, self.width, self.height);
+                terrainops_set_lod_vertex_data(buffer_get_address(self.terrain_lod_data));
                 self.RegenerateAllTerrainBuffers();
                 self.color.Reset(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale);
                 self.texture.Reset(self.width, self.height);
