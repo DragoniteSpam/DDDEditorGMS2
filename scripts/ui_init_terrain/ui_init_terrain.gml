@@ -111,7 +111,7 @@ function ui_init_terrain(mode) {
                         static cpu_info = dragosys_processor_info();
                         static cpu_cores = string(dragosys_processor_count());
                         static cpu_architecture = dragosys_processor_architecture();
-                        static memory_total = string(dragosys_memory_total() / 0x100000);
+                        static memory_total = string_comma(dragosys_memory_total() div 0x100000);
                         
                         var info = os_get_info();
                         var area = Stuff.terrain.width * Stuff.terrain.height;
@@ -128,15 +128,15 @@ function ui_init_terrain(mode) {
                             "    Full: " + string(Stuff.terrain.stats.chunks.full) + "\n" +
                             "    Reduced: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
                             "Triangles rendered:\n" +
-                            "    " + string_comma(Stuff.terrain.stats.triangles) + "\n\n" +
+                            "    " + string_comma(Stuff.terrain.stats.triangles) + "\n" +
+                            "Terrain area: " + (area < MILLION ? (string_comma(area) + "m²") : (string(area / MILLION) + "km²")) + "\n" +
+                            "    " + area_comparison + "\n\n" +
+                            "[c_blue]System info[]\n\n" +
                             "CPU model: " + cpu_info + "\n" +
                             "    Logical cores: " + cpu_cores + "\n" +
-                            "    Architecture: " + cpu_architecture + "\n" +
-                            "Available memory: " + memory_total + "mb\n" +
-                            "GPU:\n" +
-                            "    " + info[? "video_adapter_description"] + "\n\n" +
-                            "Area: " + (area < MILLION ? (string_comma(area) + "m²") : (string(area / MILLION) + "km²")) + "\n" +
-                            "    " + area_comparison
+                            "    Architecture: " + cpu_architecture + "\n\n" +
+                            "Available memory: " + memory_total + " MB\n\n" +
+                            "GPU: " + info[? "video_adapter_description"]
                         ;
                         ds_map_destroy(info);
                         return output;
