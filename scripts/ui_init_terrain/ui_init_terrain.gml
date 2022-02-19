@@ -100,13 +100,18 @@ function ui_init_terrain(mode) {
                 new EmuInput(col1x, EMU_AUTO, col_width, 32, "RNG seed:", "", "", 100, E_InputTypes.STRING, function() {
                     macaw_set_seed(self.value);
                 }),
-                (new EmuText(col1x, EMU_AUTO, col_width * 2, 320, "[c_blue]Stats[]"))
+                (new EmuText(col1x, EMU_AUTO, col_width * 2, 400, "[c_blue]Stats[]"))
                     .SetTextUpdate(function() {
                         static area_vatican_city = 0.44 * MILLION;
                         static area_barringer_crater = 1.09 * MILLION;
                         static area_oblivion = 4 * MILLION;
                         static area_dublin_airport = 10.84 * MILLION;
                         static area_skyrim = 39 * MILLION;
+                        
+                        static cpu_info = dragosys_processor_info();
+                        static cpu_cores = string(dragosys_processor_count());
+                        static cpu_architecture = dragosys_processor_architecture();
+                        static memory_total = string(dragosys_memory_total() / 0x100000);
                         
                         var info = os_get_info();
                         var area = Stuff.terrain.width * Stuff.terrain.height;
@@ -124,6 +129,10 @@ function ui_init_terrain(mode) {
                             "    Reduced: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
                             "Triangles rendered:\n" +
                             "    " + string_comma(Stuff.terrain.stats.triangles) + "\n\n" +
+                            "CPU model: " + cpu_info + "\n" +
+                            "    Logical cores: " + cpu_cores + "\n" +
+                            "    Architecture: " + cpu_architecture + "\n" +
+                            "Available memory: " + memory_total + "mb\n" +
                             "GPU:\n" +
                             "    " + info[? "video_adapter_description"] + "\n\n" +
                             "Area: " + (area < MILLION ? (string_comma(area) + "m²") : (string(area / MILLION) + "km²")) + "\n" +
