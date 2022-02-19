@@ -266,7 +266,7 @@ Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
 self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
     Stuff.terrain.mouse_interaction(mouse_vector);
 });
-self.base_speed = 32;
+self.base_speed = 20;
 self.camera.Load(setting_get("terrain", "camera", undefined));
 
 self.camera_light = new Camera(500, -500, 564, 0, 0, 64, 0, 0, 1, 60, CAMERA_ZNEAR, 2500, null);
