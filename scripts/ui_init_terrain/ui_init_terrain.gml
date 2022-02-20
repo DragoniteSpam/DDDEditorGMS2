@@ -102,6 +102,7 @@ function ui_init_terrain(mode) {
                 }),
                 (new EmuText(col1x, EMU_AUTO, col_width * 2, 400, "[c_blue]Stats[]"))
                     .SetTextUpdate(function() {
+                        static area_baseball_diamond = 0.00075 * MILLION;
                         static area_vatican_city = 0.44 * MILLION;
                         static area_barringer_crater = 1.09 * MILLION;
                         static area_oblivion = 4 * MILLION;
@@ -117,11 +118,12 @@ function ui_init_terrain(mode) {
                         var area = Stuff.terrain.width * Stuff.terrain.height;
                         
                         var area_comparison =
-                            area < MILLION ? (string(area / area_vatican_city) + "x Vatican City (0.44 km²)") :
+                            area < 0.1 * MILLION ? (string(area / area_baseball_diamond) + "x baseball diamond (750 m²)") :
+                            (area < MILLION ? (string(area / area_vatican_city) + "x Vatican City (0.44 km²)") :
                             (area < 3 * MILLION ? (string(area / area_barringer_crater) + "x Barringer Crater (1.09 km²)") :
                             (area < 8 * MILLION ? (string(area / area_oblivion) + "x The Elder Scrolls IV: Oblivion (4 km²)") :
                             (area < 18 * MILLION ? (string(area / area_dublin_airport) + "x Dublin International Airport (10.84 km²)") :
-                            (string(area / area_skyrim) + "x Skyrim (39 km²)"))));
+                            (string(area / area_skyrim) + "x Skyrim (39 km²)")))));
                         
                         var output = "[c_blue]Stats[]\n\n" +
                             "Chunks:\n" +
