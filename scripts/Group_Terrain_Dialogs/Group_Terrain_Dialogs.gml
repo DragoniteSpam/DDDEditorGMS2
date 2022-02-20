@@ -160,7 +160,7 @@ function dialog_create_terrain_new() {
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
         (new EmuCheckbox(col2_x, EMU_BASE, ew, eh, "Generate noise?", false, function() {
-            self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
+            // not saved
         }))
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
@@ -174,7 +174,7 @@ function dialog_create_terrain_new() {
         (new EmuText(col2_x, EMU_AUTO, ew, eh, "Smoothness:"))
             .SetInteractive(false),
         (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 1, 10, true, 6, function() {
-            // not saved, at least for now
+            // not saved
         }))
             .SetIntegersOnly(true)
             .SetTooltip("The number of octaves to be used in generation")
