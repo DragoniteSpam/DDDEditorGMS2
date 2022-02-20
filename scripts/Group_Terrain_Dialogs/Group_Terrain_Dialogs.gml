@@ -72,7 +72,7 @@ function dialog_terrain_mutate() {
 
 function dialog_create_terrain_new() {
     var dw = 640;
-    var dh = 400;
+    var dh = 320;
     
     var columns = 2;
     var spacing = 32;
@@ -123,24 +123,7 @@ function dialog_create_terrain_new() {
             self.GetSibling("HEIGHT").SetValue("1024");
         }))
             .SetTooltip("Preset 1024x1024 map size"),
-        (new EmuCheckbox(col1_x, EMU_AUTO, ew, eh, "Generate noise?", false, function() {
-            self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
-        }))
-            .SetTooltip("Generate a random terrain using noise?")
-            .SetID("USE_NOISE"),
-        (new EmuInput(col1_x, EMU_AUTO, ew, eh, "Scale:", string(Settings.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() { }))
-            .SetTooltip("The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient). This is only useful when importing a heightmap.")
-            .SetID("SCALE"),
-        (new EmuText(col1_x, EMU_AUTO, ew, eh, "Smoothness: 6"))
-            .SetInteractive(false)
-            .SetID("OCTAVES_LABEL"),
-        (new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 8, 1, 10, true, 6, function() {
-            self.GetSibling("OCTAVES_LABEL").text = "Smoothness: " + string(self.value);
-        }))
-            .SetIntegersOnly(true)
-            .SetTooltip("The number of octaves to be used in generation")
-            .SetID("OCTAVES"),
-        (new EmuButton(col2_x, 32, ew, eh, "Import Heightmap", function() {
+        (new EmuButton(col1_x, EMU_AUTO, ew, eh, "Import Heightmap", function() {
             var fn = get_open_filename_image();
             if (fn != "") {
                 debug_timer_start();
@@ -176,6 +159,26 @@ function dialog_create_terrain_new() {
         }))
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
+        (new EmuCheckbox(col2_x, EMU_BASE, ew, eh, "Generate noise?", false, function() {
+            self.GetSibling("OCTAVES_LABEL").SetInteractive(self.value);
+        }))
+            .SetTooltip("Generate a random terrain using noise?")
+            .SetID("USE_NOISE"),
+        new EmuText(col2_x, EMU_AUTO, ew, eh, "Scale:"),
+        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 0, 255, true, Settings.terrain.heightmap_scale, function() {
+            Settings.terrain.heightmap_scale = self.value;
+        }))
+            .SetIntegersOnly(true)
+            .SetTooltip("The scale of the heightmap or of the noise generation.")
+            .SetID("SCALE"),
+        (new EmuText(col2_x, EMU_AUTO, ew, eh, "Smoothness:"))
+            .SetInteractive(false),
+        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 1, 10, true, 6, function() {
+            // not saved, at least for now
+        }))
+            .SetIntegersOnly(true)
+            .SetTooltip("The number of octaves to be used in generation")
+            .SetID("OCTAVES"),
     ]).AddDefaultConfirmCancelButtons("Create", function() {
         debug_timer_start();
         var terrain = Stuff.terrain;
