@@ -248,34 +248,38 @@ function dialog_terrain_export() {
         }))
             .SetIntegersOnly(true)
             .SetID("LEVELS"),
-        (new EmuText(32, EMU_AUTO, 256, 32, "LOD reduction factor: 2"))
+        (new EmuText(32, EMU_AUTO, 256, 32, "LOD reduction factor: " + string(Settings.terrain.export_lod_reduction)))
             .SetID("LABEL_REDUCTION"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 4, true, Settings.terrain.export_lod_levels, function() {
-            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: " + string(self.value);
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 25, true, Settings.terrain.export_lod_reduction, function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: " + string(self.value) + "x";
+            Settings.terrain.export_lod_reduction = self.value;
         }))
-            .SetValue(2)
             .SetIntegersOnly(false)
             .SetID("REDUCTION"),
-        (new EmuButton(32 + 0 * ew / 4, EMU_AUTO, ew / 4, 32, "1.5x", function() {
-            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 1.5";
-            self.GetSibling("REDUCTION").SetValue(1.5);
+        (new EmuButton(32 + 0 * ew / 4, EMU_AUTO, ew / 4, 32, "3x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 3x";
+            self.GetSibling("REDUCTION").value(3);
+            Settings.terrain.export_lod_reduction = 3;
         }))
-            .SetTooltip("Preset 1.5x LOD reduction."),
-        (new EmuButton(32 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "2.0x", function() {
-            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 2";
-            self.GetSibling("REDUCTION").SetValue(2);
-        }))
-            .SetTooltip("Preset 2.0x LOD reduction."),
-        (new EmuButton(32 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "3.0x", function() {
-            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 3";
-            self.GetSibling("REDUCTION").SetValue(3);
-        }))
-            .SetTooltip("Preset 3.0x LOD reduction."),
-        (new EmuButton(32 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "4.0x", function() {
-            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 4";
+            .SetTooltip("Preset 3x LOD reduction."),
+        (new EmuButton(32 + 1 * ew / 4, EMU_INLINE, ew / 4, 32, "4x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 4x";
             self.GetSibling("REDUCTION").SetValue(4);
+            Settings.terrain.export_lod_reduction = 4;
         }))
-            .SetTooltip("Preset 4.0x LOD reduction."),
+            .SetTooltip("Preset 4x LOD reduction."),
+        (new EmuButton(32 + 2 * ew / 4, EMU_INLINE, ew / 4, 32, "9x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 9x";
+            self.GetSibling("REDUCTION").SetValue(9);
+            Settings.terrain.export_lod_reduction = 9;
+        }))
+            .SetTooltip("Preset 9x LOD reduction."),
+        (new EmuButton(32 + 3 * ew / 4, EMU_INLINE, ew / 4, 32, "16x", function() {
+            self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: 16";
+            self.GetSibling("REDUCTION").SetValue(16);
+            Settings.terrain.export_lod_reduction = 16;
+        }))
+            .SetTooltip("Preset 16x LOD reduction."),
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Settings.terrain.export_smooth, function() {
             Settings.terrain.export_smooth = self.value;
         }))
@@ -347,7 +351,7 @@ function dialog_terrain_export() {
             // resolution will be halved for every iteration (1/2^n: 1/1, 1/2, 1/4)
             // while a value of 3 will mean that the resolution will be one third
             // every iteration (1/3^n: 1/1, 1/3, 1*9, etc)
-            var reduction = self.GetSibling("REDUCTION").value;
+            var reduction = sqrt(self.GetSibling("REDUCTION").value);
             var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
             var chunk_size = self.GetSibling("CHUNKS").value;
             
@@ -379,7 +383,7 @@ function dialog_terrain_export() {
     ]).AddDefaultConfirmCancelButtons("Save", function() {
         var min_side_length = 10;
         var max_dimension = max(Stuff.terrain.width, Stuff.terrain.height);
-        var reduction = self.GetSibling("REDUCTION").value;
+        var reduction = sqrt(self.GetSibling("REDUCTION").value);
         var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
         var chunk_size = self.GetSibling("CHUNKS").value;
         

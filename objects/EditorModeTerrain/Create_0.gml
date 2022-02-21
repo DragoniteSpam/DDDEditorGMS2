@@ -195,6 +195,7 @@ Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? 
 Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? false;
 Settings.terrain.export_smooth_threshold = Settings.terrain[$ "export_smooth_threshold"] ?? 60;
 Settings.terrain.export_lod_levels = Settings.terrain[$ "export_lod_levels"] ?? 2;
+Settings.terrain.export_lod_reduction = Settings.terrain[$ "export_lod_reduction"] ?? 4;
 Settings.terrain.output_vertex_format = Settings.terrain[$ "output_vertex_format"] ?? DEFAULT_VERTEX_FORMAT;
 // viewer settings
 Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? true;
