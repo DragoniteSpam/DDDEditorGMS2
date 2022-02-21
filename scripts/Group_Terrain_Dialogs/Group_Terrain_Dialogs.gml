@@ -232,7 +232,7 @@ function dialog_create_terrain_new() {
 
 function dialog_terrain_export() {
     var default_lod_levels = min(10, ceil(power(mean(Stuff.terrain.width, Stuff.terrain.height), 0.25)));
-    var is_large_terrain = (Stuff.terrain.width * Stuff.terrain.height) > 1000000;
+    var is_large_terrain = (Stuff.terrain.width > 1000 || Stuff.terrain.height > 1000);
     
     var ew = 256;
     
@@ -334,7 +334,7 @@ function dialog_terrain_export() {
         }))
             .SetTooltip("Preset chunk size of 128"),
         new EmuText(352, EMU_AUTO, 256, 48, "[c_blue]Each chunk and each LOD level will be saved as separate files."),
-        new EmuText(352, EMU_AUTO, 256, 48, is_large_terrain ? "[c_blue]Terrains with an area larger than one million must be chunked." : ""),
+        new EmuText(352, EMU_AUTO, 256, 48, is_large_terrain ? "[c_blue]Terrains larger than 1k² must be chunked." : ""),
         #endregion
         #region column 3
         (new EmuButton(672, 16, 256, 32, "Add to Project", function() {
