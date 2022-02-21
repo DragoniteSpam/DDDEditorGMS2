@@ -183,6 +183,8 @@ array_push(self.brush_sprites,
 // general editing settings
 Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? 8;
 // import and export settings
+Settings.terrain.gen_noise_scale = Settings.terrain[$ "gen_noise_scale"] ?? 0.5;
+Settings.terrain.gen_noise_smoothness = Settings.terrain[$ "gen_noise_smoothness"] ?? 0.5;
 Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? 0.5;
 Settings.terrain.save_scale = Settings.terrain[$ "save_scale"] ?? 1;
 Settings.terrain.export_all = Settings.terrain[$ "export_all"] ?? false;

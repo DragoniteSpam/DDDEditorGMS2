@@ -72,7 +72,7 @@ function dialog_terrain_mutate() {
 
 function dialog_create_terrain_new() {
     var dw = 640;
-    var dh = 320;
+    var dh = 360;
     
     var columns = 2;
     var spacing = 32;
@@ -161,25 +161,32 @@ function dialog_create_terrain_new() {
         }))
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
+        new EmuText(col1_x, EMU_AUTO, ew, eh, "Scale:"),
+        (new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.terrain.heightmap_scale, function() {
+            Settings.terrain.heightmap_scale = self.value;
+        }))
+            .SetIntegersOnly(false)
+            .SetTooltip("The scale of the heightmap. Maximum height is proportional to the dimensions of the heightmap.")
+            .SetID("SCALE"),
         (new EmuCheckbox(col2_x, EMU_BASE, ew, eh, "Generate noise?", false, function() {
             // not saved
         }))
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
         new EmuText(col2_x, EMU_AUTO, ew, eh, "Scale:"),
-        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.terrain.heightmap_scale, function() {
-            Settings.terrain.heightmap_scale = self.value;
+        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.terrain.gen_noise_scale, function() {
+            Settings.terrain.gen_noise_scale = self.value;
         }))
             .SetIntegersOnly(false)
-            .SetTooltip("The scale of the heightmap or of the noise generation.")
+            .SetTooltip("The scale of the terrain. Maximum height is proportional to the dimensions of the terrain.")
             .SetID("SCALE"),
         (new EmuText(col2_x, EMU_AUTO, ew, eh, "Smoothness:"))
             .SetInteractive(false),
-        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 1, 10, true, 6, function() {
-            // not saved
+        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 1, 10, true, Settings.terrain.gen_noise_smoothness, function() {
+            Settings.terrain.gen_noise_smoothness = self.value;
         }))
             .SetIntegersOnly(true)
-            .SetTooltip("The number of octaves to be used in generation")
+            .SetTooltip("The number of octaves to be used in generation.")
             .SetID("OCTAVES"),
     ]).AddDefaultConfirmCancelButtons("Create", function() {
         debug_timer_start();
