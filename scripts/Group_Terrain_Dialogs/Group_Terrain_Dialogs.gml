@@ -40,10 +40,10 @@ function dialog_terrain_mutate() {
         (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 6, emu_null))
             .SetID("SMOOTHNESS"),
         new EmuText(32, EMU_AUTO, 360, 24, "Noise amplitude:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 6, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 0, 1, true, 0.25, emu_null))
             .SetID("NOISE_STRENGTH"),
         new EmuText(32, EMU_AUTO, 360, 24, "Texture amplitude:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 32, true, 12, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 0, 1, true, 0.25, emu_null))
             .SetID("TEXTURE_STRENGTH"),
         (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
             var selection = self.GetSelection();
@@ -61,8 +61,8 @@ function dialog_terrain_mutate() {
     ]).AddDefaultCloseButton("Okay", function() {
         debug_timer_start();
         
-        var max_dimension = max(max(Stuff.terrain.width, Stuff.terrain.height) / 256, 1);
-        Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value * max_dimension, self.GetSibling("TEXTURE_STRENGTH").value * max_dimension);
+        var amplitude = Stuff.terrain.GetGenerationAmplitude(1);
+        Stuff.terrain.Mutate(self.GetSibling("SPRITE_LIST").GetSelection(), self.GetSibling("SMOOTHNESS").value, self.GetSibling("NOISE_STRENGTH").value * amplitude, self.GetSibling("TEXTURE_STRENGTH").value * amplitude);
         self.root.Dispose();
         
         Stuff.AddStatusMessage("Mutating terrain took " + debug_timer_finish());
@@ -129,7 +129,6 @@ function dialog_create_terrain_new() {
                 debug_timer_start();
                 var image = sprite_add(fn, 0, false, false, 0, 0);
                 var terrain = Stuff.terrain;
-                var scale = real(self.GetSibling("SCALE").value);
                 
                 terrain.width = sprite_get_width(image);
                 terrain.height = sprite_get_height(image);
@@ -142,7 +141,9 @@ function dialog_create_terrain_new() {
                 terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
                 terrain.texture.Reset(terrain.width, terrain.height);
                 
-                terrain.height_data = terrainops_from_heightmap(buffer, scale);
+                var amplitude = terrain.GetGenerationAmplitude(terrain.width, terrain.height, real(self.GetSibling("SCALE").value));
+                
+                terrain.height_data = terrainops_from_heightmap(buffer, amplitude);
                 terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
                 terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, terrain.width, terrain.height);
                 terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
@@ -165,10 +166,10 @@ function dialog_create_terrain_new() {
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
         new EmuText(col2_x, EMU_AUTO, ew, eh, "Scale:"),
-        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 0, 255, true, Settings.terrain.heightmap_scale, function() {
+        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.terrain.heightmap_scale, function() {
             Settings.terrain.heightmap_scale = self.value;
         }))
-            .SetIntegersOnly(true)
+            .SetIntegersOnly(false)
             .SetTooltip("The scale of the heightmap or of the noise generation.")
             .SetID("SCALE"),
         (new EmuText(col2_x, EMU_AUTO, ew, eh, "Smoothness:"))
@@ -198,8 +199,8 @@ function dialog_create_terrain_new() {
         if (self.GetSibling("USE_NOISE").value) {
             var ww = power(2, ceil(log2(width)));
             var hh = power(2, ceil(log2(height)));
-            var max_dimension = max(max(Stuff.terrain.width, Stuff.terrain.height) / 256, 1);
-            terrain.height_data = macaw_generate_dll(ww, hh, self.GetSibling("OCTAVES").value, real(self.GetSibling("SCALE").value) * max_dimension).noise;
+            var amplitude = terrain.GetGenerationAmplitude(real(self.GetSibling("SCALE").value));
+            terrain.height_data = macaw_generate_dll(ww, hh, self.GetSibling("OCTAVES").value, amplitude).noise;
         } else {
             terrain.height_data = terrain.GenerateHeightData();
         }

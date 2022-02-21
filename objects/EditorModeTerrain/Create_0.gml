@@ -183,7 +183,7 @@ array_push(self.brush_sprites,
 // general editing settings
 Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? 8;
 // import and export settings
-Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? 10;
+Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? 0.5;
 Settings.terrain.save_scale = Settings.terrain[$ "save_scale"] ?? 1;
 Settings.terrain.export_all = Settings.terrain[$ "export_all"] ?? false;
 Settings.terrain.export_swap_uvs = Settings.terrain[$ "export_swap_uvs"] ?? false;
@@ -423,6 +423,12 @@ GetCurrentBrushRadius = function() {
         case TerrainModes.COLOR: return Settings.terrain.paint_brush_radius / (self.color.width / self.width * 2);
     }
     return 16;
+};
+
+GetGenerationAmplitude = function(scale) {
+    var c = 10;
+    var max_amplitude = c * power(max(self.width, self.height), 0.4);
+    return max_amplitude * scale;
 };
 
 SaveTerrainStandalone = function(filename) {
