@@ -18,12 +18,32 @@ function draw_editor_menu(camera_controls = false) {
         Stuff.menu.render(Stuff.menu, 0, yy);
     }
     
+    static fps_real_history = ds_list_create();
+    static fps_real_current = 60;
+    static fps_real_interval = 20;
+    ds_list_add(fps_real_history, fps_real);
+    
+    if (ds_list_size(fps_real_history) == fps_real_interval) {
+        fps_real_current = 0;
+        for (var i = 0, n = fps_real_interval; i < n; i++) {
+            fps_real_current += fps_real_history[| i];
+        }
+        fps_real_current /= fps_real_interval;
+        ds_list_clear(fps_real_history);
+    }
+    
     if (DEBUG) {
         draw_set_halign(fa_left);
         draw_rectangle_colour(0, 0, room_width, yy, false, c_white, c_white, c_white, c_white);
-        draw_text_colour(64 * 0 + 16, yy / 2, "FPS: " + string(fps), c_black, c_black, c_black, c_black, 1);
-        draw_text_colour(64 * 2 + 16, yy / 2, "Instant: " + string(fps_real), c_black, c_black, c_black, c_black, 1);
-        draw_text_colour(64 * 4 + 16, yy / 2, "Average: " + string(Stuff.frames / Stuff.time), c_black, c_black, c_black, c_black, 1);
-        draw_text_colour(64 * 6 + 16, yy / 2, "Compiled: " + Stuff.tf[code_is_compiled()], c_black, c_black, c_black, c_black, 1);
+        var index = 0;
+        draw_text_colour(128 * index++ + 16, yy / 2, "FPS: " + string(fps), c_black, c_black, c_black, c_black, 1);
+        draw_text_colour(128 * index++ + 16, yy / 2, "CPU FPS: " + string(floor(fps_real_current)), c_black, c_black, c_black, c_black, 1);
+        draw_text_colour(
+            128 * index++ + 16, yy / 2,
+            "Version: " + GM_version + ";   " +
+            "Build date: " + date_datetime_string(GM_build_date) + ";   " +
+            "GameMaker runtime: " + GM_runtime_version,
+            c_black, c_black, c_black, c_black, 1
+        );
     }
 }
