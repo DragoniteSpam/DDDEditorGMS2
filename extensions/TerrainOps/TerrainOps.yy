@@ -117,6 +117,14 @@
         {"externalName":"terrainops_generate_lod_internal","kind":1,"help":"__terrainops_generate_lod_internal(out)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
           ],"resourceVersion":"1.0","name":"__terrainops_generate_lod_internal","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_max_height","kind":1,"help":"terrainops_max_height(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"terrainops_max_height","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_min_height","kind":1,"help":"terrainops_min_height(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"terrainops_min_height","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_set_active_data","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -145,6 +153,8 @@
         {"name":"__terrainops_build_d3d","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build_vbuff","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"__terrainops_build_obj","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"terrainops_max_height","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"terrainops_min_height","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
