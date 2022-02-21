@@ -681,8 +681,8 @@ ExportVbuff = function(filename, density = 1, chunk_size = 0) {
     terrainops_build_file(filename, TERRAINOPS_BUILD_VBUFF, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, Settings.terrain.output_vertex_format);
 };
 
-ExportHeightmap = function(filename, scale) {
-    var buffer = terrainops_to_heightmap(self.height_data, scale);
+ExportHeightmap = function(filename) {
+    var buffer = terrainops_to_heightmap(self.height_data);
     var surface = surface_create(self.width, self.height);
     buffer_set_surface(buffer, surface, 0);
     surface_save(surface, filename);

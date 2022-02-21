@@ -1,15 +1,24 @@
 function dialog_create_export_heightmap() {
-    var dw = 400;
-    var dh = 240;
+    var dw = 360;
+    var dh = 200;
     
     var dg = new EmuDialog(dw, dh, "Heightmap Settings");
+    dg.x = 920;
+    dg.y = 120;
+    
     dg.AddContent([
-        (new EmuInput(32, EMU_AUTO, 320, 32, "Heightmap scale:", string(Settings.terrain.heightmap_scale), "1...255", 3, E_InputTypes.INT, function() {
-            Settings.terrain.heightmap_scale = string(self.value);
+        (new EmuButton(32, EMU_AUTO, 280, 32, "Save Heightmap Image", function() {
+            var fn = get_save_filename_image("Heightmap");
+            if (fn != "") {
+                debug_timer_start();
+                Stuff.terrain.ExportHeightmap(fn);
+                Stuff.AddStatusMessage("Exporting terrain heightmap took " + debug_timer_finish());
+            }
+            self.root.Dispose();
         }))
-            .SetTooltip("The brightest point on the heightmap will correspond to this value. In most casesm a value of 10 or 16 will be sufficient.")
-            .SetID("SCALE"),
-        (new EmuButton(32, EMU_AUTO, 320, 32, "Save Data Buffer", function() {
+            .SetTooltip("Save a grayscale image where the brightness of pixels corresponds to the height of the terrain.")
+            .SetID("BUFFER"),
+        (new EmuButton(32, EMU_AUTO, 280, 32, "Save Data Buffer", function() {
             var fn = get_save_filename("Heightmap files|*.hm", "heightmap.hm");
             if (fn != "") {
                 debug_timer_start();
@@ -19,21 +28,14 @@ function dialog_create_export_heightmap() {
         }))
             .SetTooltip("Directly save the buffer of 32-bit floats that the editor uses internally.")
             .SetID("BUFFER")
-    ]).AddDefaultConfirmCancelButtons("Save", function() {
-        var fn = get_save_filename_image("heightmap");
-        if (fn != "") {
-            debug_timer_start();
-            Stuff.terrain.ExportHeightmap(fn, real(self.GetSibling("SCALE").value));
-            Stuff.AddStatusMessage("Exporting terrain heightmap took " + debug_timer_finish());
-        }
-        self.root.Dispose();
-    }, "Close", emu_dialog_close_auto);
+    ]).AddDefaultCloseButton();
 }
 
 function dialog_terrain_mutate() {
     var dialog = new EmuDialog(640, 560, "Mutate Terrain");
     dialog.x = 920;
     dialog.y = 120;
+    dialog.active_shade = 0;
     
     dialog.AddContent([
         new EmuText(32, 32, 360, 24, "Smoothness:"),
@@ -67,7 +69,6 @@ function dialog_terrain_mutate() {
         
         Stuff.AddStatusMessage("Mutating terrain took " + debug_timer_finish());
     });
-    dialog.active_shade = 0;
 }
 
 function dialog_create_terrain_new() {
@@ -83,6 +84,8 @@ function dialog_create_terrain_new() {
     var col2_x = spacing + dw / 2;
     
     var dialog = new EmuDialog(dw, dh, "New Terrain");
+    dialog.active_shade = 0;
+    
     dialog.AddContent([
         (new EmuInput(
             col1_x, EMU_BASE, ew, eh, "Width:", string(DEFAULT_TERRAIN_WIDTH), string(MIN_TERRAIN_WIDTH) + "..." + string(MAX_TERRAIN_WIDTH),
