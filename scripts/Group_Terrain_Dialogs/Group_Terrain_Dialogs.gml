@@ -137,6 +137,7 @@ function dialog_create_terrain_new() {
                 
                 buffer_delete(terrain.height_data);
                 buffer_delete(terrain.terrain_buffer_data);
+                buffer_delete(terrain.terrain_lod_data);
                 
                 terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
                 terrain.texture.Reset(terrain.width, terrain.height);
@@ -192,6 +193,7 @@ function dialog_create_terrain_new() {
         
         buffer_delete(terrain.height_data);
         buffer_delete(terrain.terrain_buffer_data);
+        buffer_delete(terrain.terrain_lod_data);
         
         terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
         terrain.texture.Reset(width, height);
