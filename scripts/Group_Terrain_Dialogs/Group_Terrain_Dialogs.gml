@@ -142,15 +142,19 @@ function dialog_create_terrain_new() {
                 terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
                 terrain.texture.Reset(terrain.width, terrain.height);
                 
-                var amplitude = terrain.GetGenerationAmplitude(terrain.width, terrain.height, real(self.GetSibling("SCALE").value));
-                
-                terrain.height_data = terrainops_from_heightmap(buffer, amplitude);
-                terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
+                var heightmap_amplitude = terrain.GetGenerationAmplitude(self.GetSibling("HEIGHTMAP_SCALE").value);
+                terrain.height_data = terrainops_from_heightmap(buffer, heightmap_amplitude, terrain.width, terrain.height);
+                terrainops_set_active_data(buffer_get_address(terrain.height_data), terrain.width, terrain.height);
                 terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, terrain.width, terrain.height);
                 terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
                 terrain.terrain_lod_data = terrainops_generate_lod_internal(terrain.height_data, terrain.width, terrain.height);
                 terrainops_set_lod_vertex_data(buffer_get_address(terrain.terrain_lod_data));
                 terrain.RegenerateAllTerrainBuffers();
+                
+                if (self.GetSibling("USE_NOISE").value) {
+                    var noise_amplitude = terrain.GetGenerationAmplitude(self.GetSibling("SCALE").value);
+                    //terrain.Mutate(0, self.GetSibling("OCTAVES").value, noise_amplitude, 0);
+                }
                 
                 buffer_delete(buffer);
                 sprite_delete(image);
@@ -167,7 +171,7 @@ function dialog_create_terrain_new() {
         }))
             .SetIntegersOnly(false)
             .SetTooltip("The scale of the heightmap. Maximum height is proportional to the dimensions of the heightmap.")
-            .SetID("SCALE"),
+            .SetID("HEIGHTMAP_SCALE"),
         (new EmuCheckbox(col2_x, EMU_BASE, ew, eh, "Generate noise?", false, function() {
             // not saved
         }))

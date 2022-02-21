@@ -1,15 +1,16 @@
-function terrainops_to_heightmap(data, scale) {
+function terrainops_to_heightmap(data) {
     var output = buffer_create(buffer_get_size(data), buffer_fixed, 1);
     buffer_poke(output, 0, buffer_u32, 0);
     buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
-    __terrainops_to_heightmap(buffer_get_address(output), scale);
+    __terrainops_to_heightmap(buffer_get_address(output));
     return output;
 }
 
-function terrainops_from_heightmap(data, scale) {
+function terrainops_from_heightmap(data, scale, w, h) {
     var output = buffer_create(buffer_get_size(data), buffer_fixed, 1);
     buffer_poke(output, 0, buffer_u32, 0);
     buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
+    terrainops_set_active_data(buffer_get_address(output), w, h);
     __terrainops_from_heightmap(buffer_get_address(data), scale);
     return output;
 }
