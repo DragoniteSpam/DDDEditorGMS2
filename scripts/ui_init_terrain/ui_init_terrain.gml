@@ -100,7 +100,7 @@ function ui_init_terrain(mode) {
                 new EmuInput(col1x, EMU_AUTO, col_width, 32, "RNG seed:", "", "", 100, E_InputTypes.STRING, function() {
                     macaw_set_seed(self.value);
                 }),
-                (new EmuText(col1x, EMU_AUTO, col_width * 2, 400, "[c_blue]Stats[]"))
+                (new EmuText(col1x, EMU_AUTO, col_width * 2, 512, "[c_blue]Stats[]"))
                     .SetTextUpdate(function() {
                         static area_baseball_diamond = 0.00075 * MILLION;
                         static area_vatican_city = 0.44 * MILLION;
@@ -113,36 +113,34 @@ function ui_init_terrain(mode) {
                         static cpu_cores = string(dragosys_processor_count());
                         static cpu_architecture = dragosys_processor_architecture();
                         static memory_total = string_comma(dragosys_memory_total() div 0x100000);
+                        static info = os_get_info();
                         
-                        var info = os_get_info();
                         var area = Stuff.terrain.width * Stuff.terrain.height;
                         
-                        var area_comparison =
-                            area < 0.1 * MILLION ? (string(area / area_baseball_diamond) + "x baseball diamond (750 m²)") :
-                            (area < MILLION ? (string(area / area_vatican_city) + "x Vatican City (0.44 km²)") :
-                            (area < 3 * MILLION ? (string(area / area_barringer_crater) + "x Barringer Crater (1.09 km²)") :
-                            (area < 8 * MILLION ? (string(area / area_oblivion) + "x The Elder Scrolls IV: Oblivion (4 km²)") :
-                            (area < 18 * MILLION ? (string(area / area_dublin_airport) + "x Dublin International Airport (10.84 km²)") :
-                            (string(area / area_skyrim) + "x Skyrim (39 km²)")))));
-                        
-                        var output = "[c_blue]Stats[]\n\n" +
+                        var output = "[c_blue]Stats[]\n" +
                             "Chunks:\n" +
                             "    Full: " + string(Stuff.terrain.stats.chunks.full) + "\n" +
                             "    Reduced: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
                             "Triangles rendered:\n" +
                             "    " + string_comma(Stuff.terrain.stats.triangles) + "\n" +
-                            "Terrain area: " + (area < MILLION ? (string_comma(area) + "m²") : (string(area / MILLION) + "km²")) + "\n" +
-                            "    " + area_comparison + "\n\n" +
-                            "[c_blue]System info[]\n\n" +
+                            "Terrain area: " + (area < MILLION ? (string_comma(area) + " m²") : (string(area / MILLION) + " km²")) + "\n" +
+                            "    " + string(area / area_baseball_diamond) + "x baseball diamond (750 m²)\n" +
+                            "    " + string(area / area_vatican_city) + "x Vatican City (0.44 km²)\n" +
+                            "    " + string(area / area_barringer_crater) + "x Barringer Crater (1.09 km²)\n" +
+                            "    " + string(area / area_oblivion) + "x The Elder Scrolls IV: Oblivion (4 km²)\n" +
+                            "    " + string(area / area_dublin_airport) + "x Dublin International Airport (10.84 km²)\n" +
+                            "    " + string(area / area_skyrim) + "x Skyrim (39 km²)\n\n" +
+                            "[c_blue]System info[]\n" +
                             "CPU model: " + cpu_info + "\n" +
                             "    Logical cores: " + cpu_cores + "\n" +
-                            "    Architecture: " + cpu_architecture + "\n\n" +
-                            "Available memory: " + memory_total + " MB\n\n" +
+                            "    Architecture: " + cpu_architecture + "\n" +
+                            "Available memory: " + memory_total + " MB\n" +
                             "GPU: " + info[? "video_adapter_description"]
                         ;
-                        ds_map_destroy(info);
+                        
                         return output;
-                    }),
+                    })
+                        .SetAlignment(fa_left, fa_top),
                 #region i/o stuff
                 new EmuText(col2x, EMU_BASE, col_width, 32, "[c_blue]Saving and Loading"),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "New Terrain", function() {
