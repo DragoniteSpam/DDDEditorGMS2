@@ -153,7 +153,7 @@ function dialog_create_terrain_new() {
                 
                 if (self.GetSibling("USE_NOISE").value) {
                     var noise_amplitude = terrain.GetGenerationAmplitude(self.GetSibling("SCALE").value);
-                    //terrain.Mutate(0, self.GetSibling("OCTAVES").value, noise_amplitude, 0);
+                    terrain.Mutate(0, self.GetSibling("OCTAVES").value, noise_amplitude, 0);
                 }
                 
                 buffer_delete(buffer);
@@ -209,21 +209,17 @@ function dialog_create_terrain_new() {
         terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
         terrain.texture.Reset(width, height);
         
-        if (self.GetSibling("USE_NOISE").value) {
-            var ww = power(2, ceil(log2(width)));
-            var hh = power(2, ceil(log2(height)));
-            var amplitude = terrain.GetGenerationAmplitude(real(self.GetSibling("SCALE").value));
-            terrain.height_data = macaw_generate_dll(ww, hh, self.GetSibling("OCTAVES").value, amplitude).noise;
-        } else {
-            terrain.height_data = terrain.GenerateHeightData();
-        }
-        
+        terrain.height_data = terrain.GenerateHeightData();
         terrainops_set_active_data(buffer_get_address(terrain.height_data), terrain.width, terrain.height);
         terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, width, height);
         terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
         terrain.terrain_lod_data = terrainops_generate_lod_internal(terrain.height_data, terrain.width, terrain.height);
         terrainops_set_lod_vertex_data(buffer_get_address(terrain.terrain_lod_data));
         terrain.RegenerateAllTerrainBuffers();
+        
+        if (self.GetSibling("USE_NOISE").value) {
+            terrain.Mutate(0, self.GetSibling("OCTAVES").value, terrain.GetGenerationAmplitude(self.GetSibling("SCALE").value), 0);
+        }
         
         self.root.Dispose();
         
