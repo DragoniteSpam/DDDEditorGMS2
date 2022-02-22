@@ -22,9 +22,9 @@ function ui_render_surface_control_map(surface, x1, y1, x2, y2) {
             x2 - x1, y2 - y1
         );
         
-        var xx = mouse_vector[vec3.xx] * MILLION;
-        var yy = mouse_vector[vec3.yy] * MILLION;
-        var zz = mouse_vector[vec3.zz] * MILLION;
+        var xx = mouse_vector.direction.x * MILLION;
+        var yy = mouse_vector.direction.y * MILLION;
+        var zz = mouse_vector.direction.z * MILLION;
         
         if (Controller.press_left) {
             if (c_raycast_world(Stuff.event.x, Stuff.event.y, Stuff.event.z, Stuff.event.x + xx, Stuff.event.y + yy, Stuff.event.z + zz, CollisionMasks.SURFACE)) {

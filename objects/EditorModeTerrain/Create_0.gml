@@ -47,9 +47,9 @@ EditModeColor = function(position) {
 self.mouse_interaction = function(mouse_vector) {
     self.cursor_position = undefined;
     
-    if (mouse_vector[vec3.zz] < mouse_vector[5]) {
-        var f = abs(mouse_vector[5] / mouse_vector[vec3.zz]);
-        self.cursor_position = new Vector2(mouse_vector[3] + mouse_vector[vec3.xx] * f, mouse_vector[4] + mouse_vector[vec3.yy] * f);
+    if (mouse_vector.direction.z < mouse_vector.origin.z) {
+        var f = abs(mouse_vector.origin.z / mouse_vector.direction.z);
+        self.cursor_position = new Vector2(mouse_vector.origin.x + mouse_vector.direction.x * f, mouse_vector.origin.y + mouse_vector.direction.y * f);
         
         if (Controller.mouse_left) {
             switch (Settings.terrain.mode) {
@@ -234,6 +234,7 @@ try {
 } catch (e) {
     Settings.terrain.light_direction = { x: -1, y: 1, z: -1 };
 }
+Settings.terrain.light_direction = new Vector3(Settings.terrain.light_direction.x, Settings.terrain.light_direction.y, Settings.terrain.light_direction.z);
 // height settings
 Settings.terrain.brush_min = 1.5;
 Settings.terrain.brush_max = 160;

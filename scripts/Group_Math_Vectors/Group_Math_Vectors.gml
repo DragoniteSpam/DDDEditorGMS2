@@ -1,8 +1,5 @@
 // these are for utility; please don't delete them just because they're not used
 // in the program anywhere
-enum vec3 {
-    xx, yy, zz
-}
 
 function Vertex() constructor {
     self.position = new Vector3(0, 0, 0);

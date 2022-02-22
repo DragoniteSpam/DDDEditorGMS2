@@ -25,7 +25,7 @@ function bezier_point(t, p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y) {
     px +=        ttt * p3x; //fourth term
     py +=        ttt * p3y;
     
-    return [px, py];
+    return new Vector2(px, py);
 }
 
 function ceil_ext(value, to) {

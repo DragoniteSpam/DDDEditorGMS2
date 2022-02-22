@@ -16,18 +16,18 @@ function render_effect(effect) {
     graphics_add_gizmo(Stuff.graphics.axes_translation_y, transform, false);
     graphics_add_gizmo(Stuff.graphics.axes_translation_z, transform, false);
     
-    render_effect_add_sprite(spr_star, position, [0, 0]);
+    render_effect_add_sprite(spr_star, position, new Vector2(0, 0));
     
     if (effect.com_light) {
-        render_effect_add_sprite(effect.com_light.sprite, position, [-com_offset, com_offset]);
+        render_effect_add_sprite(effect.com_light.sprite, position, new Vector2(-com_offset, com_offset));
         effect.com_light.render(effect.com_light);
     }
     if (effect.com_particle) {
-        render_effect_add_sprite(effect.com_particle.sprite, position, [0, com_offset]);
+        render_effect_add_sprite(effect.com_particle.sprite, position, new Vector2(0, com_offset));
         effect.com_particle.render(effect.com_particle);
     }
     if (effect.com_audio) {
-        render_effect_add_sprite(effect.com_audio.sprite, position, [com_offset, com_offset]);
+        render_effect_add_sprite(effect.com_audio.sprite, position, new Vector2(com_offset, com_offset));
         effect.com_audio.render(effect.com_audio);
     }
 }

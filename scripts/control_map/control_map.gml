@@ -18,9 +18,9 @@ function control_map(mode) {
         );
         
         // end point of the mouse vector
-        xx = mouse_vector[vec3.xx] * MILLION;
-        yy = mouse_vector[vec3.yy] * MILLION;
-        zz = mouse_vector[vec3.zz] * MILLION;
+        xx = mouse_vector.direction.x * MILLION;
+        yy = mouse_vector.direction.y * MILLION;
+        zz = mouse_vector.direction.z * MILLION;
         
         // raycast coordinates
         rc_xfrom = mode.x;

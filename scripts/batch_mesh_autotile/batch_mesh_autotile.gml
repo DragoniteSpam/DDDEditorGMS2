@@ -23,9 +23,9 @@ function batch_mesh_autotile(vbuff, reflect, mesh_autotile) {
         var npz = buffer_read(raw, buffer_f32);
         var transformed = transform_entity_point(mesh_autotile, npx, npy, npz);
         var vertex/*:Vertex*/ = data.vertex[vc];
-        vertex.position.x = transformed[vec3.xx];
-        vertex.position.y = transformed[vec3.yy];
-        vertex.position.z = transformed[vec3.zz];
+        vertex.position.x = transformed[0];
+        vertex.position.y = transformed[1];
+        vertex.position.z = transformed[2];
         vertex.normal.x = buffer_read(raw, buffer_f32);
         vertex.normal.y = buffer_read(raw, buffer_f32);
         vertex.normal.z = buffer_read(raw, buffer_f32);
