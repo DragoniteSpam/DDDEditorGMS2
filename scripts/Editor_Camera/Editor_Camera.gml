@@ -128,7 +128,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
             }
             
             if (mouse_wheel_up()) {
-                self.scale = max(0.5, self.scale * 0.95);
+                self.scale = max(0.125, self.scale * 0.95);
             } else if (mouse_wheel_down()) {
                 self.scale = min(10, self.scale * 1.05);
             }
