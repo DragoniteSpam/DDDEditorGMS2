@@ -216,7 +216,7 @@ Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 Settings.terrain.gradient_image = Settings.terrain[$ "gradient_image"] ?? 0;
 // light settings
-Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.25, g: 0.25, b: 0.25 };
+Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.35, g: 0.35, b: 0.35 };
 Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
 Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? false;
 Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? 2048;
