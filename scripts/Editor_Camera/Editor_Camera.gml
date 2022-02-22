@@ -9,8 +9,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.def_yup = yup;
     self.def_zup = zup;
     self.def_fov = fov;
-    self.def_direction = darctan2(z - zto, point_distance(x, y, xto, yto));
-    self.def_pitch = point_direction(x, y, xto, yto);
+    self.def_pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
+    self.def_direction = point_direction(x, y, xto, yto);
     
     self.camera = camera_create();
     
