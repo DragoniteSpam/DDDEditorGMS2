@@ -35,12 +35,21 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.base_speed = 256;
     self.accelerate_time = 6;
     
+    self.run_enabled = true;
+    self.run_speed = 3.2;
+    self.run_fov = 1.1;
+    self.run_fov_active = 1;
+    self.running = false;
+    
     self.view_mat = undefined;
     self.proj_mat = undefined;
     
     static Update = function() {
         if (self.view_mat == undefined || self.proj_mat == undefined) return;
         if (EmuOverlay.GetTop() || !ds_list_empty(Stuff.dialogs)) return;
+        
+        self.running = self.run_enabled && keyboard_check(vk_shift);
+        self.run_fov_active = lerp(self.run_fov_active, self.running ? self.run_fov : 1, 0.01);
         
         self.callback(screen_to_world(window_mouse_get_x(), window_get_height() - window_mouse_get_y(), self.view_mat, self.proj_mat, CW, CH));
         
@@ -103,6 +112,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     static UpdateOrtho = function() {
         if (self.view_mat == undefined || self.proj_mat == undefined) return;
         
+        self.running = self.run_enabled && keyboard_check(vk_shift);
+        
         self.callback(screen_to_world(window_mouse_get_x(), window_get_height() - window_mouse_get_y(), self.view_mat, self.proj_mat, CW, CH));
         
         // move the camera
@@ -112,19 +123,19 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
             var yspeed = 0;
             
             if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-                yspeed = yspeed - mspd;
+                yspeed -= mspd;
             }
             
             if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-                yspeed = yspeed + mspd;
+                yspeed += mspd;
             }
             
             if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-                xspeed = xspeed - mspd;
+                xspeed -= mspd;
             }
             
             if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-                xspeed = xspeed + mspd;
+                xspeed += mspd;
             }
             
             if (mouse_wheel_up()) {
@@ -145,7 +156,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         var vh = view_get_hport(view_current);
         
         self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
-        self.proj_mat = matrix_build_projection_perspective_fov(-self.fov, -vw / vh, self.znear, self.zfar);
+        self.proj_mat = matrix_build_projection_perspective_fov(-self.fov * self.run_fov_active, -vw / vh, self.znear, self.zfar);
         
         camera_set_view_mat(self.camera, self.view_mat);
         camera_set_proj_mat(self.camera, self.proj_mat);
@@ -239,7 +250,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static GetCameraSpeed = function() {
-        return max(1, (self.base_speed * (logn(32, max(self.z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / self.accelerate_time * Settings.config.camera_fly_rate, 10));
+        return max(1, (self.base_speed * (logn(32, max(self.z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / self.accelerate_time * Settings.config.camera_fly_rate, 10)) * (self.running ? self.run_speed : 1);
     };
     
     static GetVPMatrix = function() {
