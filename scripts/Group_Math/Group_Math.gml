@@ -87,7 +87,6 @@ function is_clamped(n, a, b) {
 
 // These arguments are in the backwards order
 function normalize(n, mn, mx, omin = 0, omax = 1) {
-    gml_pragma("forceinline");
     if (mn == mx && mn == n) return mn;
     return mn + ((n - omin) / (omax - omin)) * (mx - mn);
 }

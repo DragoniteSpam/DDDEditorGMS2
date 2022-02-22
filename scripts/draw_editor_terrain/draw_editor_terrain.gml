@@ -65,30 +65,59 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewData"), Settings.terrain.view_data);
     
     var cutoff = Settings.terrain.view_distance;
-    var chunk_angle = dcos(Settings.terrain.camera.fov * 1.5);
-    for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
-        var position = self.GetTerrainBufferPositionWorld(i);
-        var chunk_distance = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2);
+    
+    if (Settings.terrain.orthographic) {
+        var vw = view_get_wport(view_current);
+        var vh = view_get_hport(view_current);
+        var use_lod_zero = self.camera.scale <= normalize(cutoff, 1.5, 2.5, 640, 2800);
         
-        if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && self.camera.Dot(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2, 0) <= chunk_angle) continue;
+        var bounds_x1 = round((self.camera.x - vw * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE) - 1;
+        var bounds_x2 = round((self.camera.x + vw * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE);
+        var bounds_y1 = round((self.camera.y - vh * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE) - 1;
+        var bounds_y2 = round((self.camera.y + vh * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE);
         
-        var use_lod_zero = chunk_distance <= cutoff;
-        
-        var neighbor_use_lod_zero =
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-            (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
-        
-        if (neighbor_use_lod_zero || use_lod_zero) {
-            vertex_submit(Stuff.terrain.terrain_buffers[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
-            self.stats.chunks.full++;
-            self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_buffers[i]);
+        for (var i = bounds_x1; i <= bounds_x2; i++) {
+            for (var j = bounds_y1; j <= bounds_y2; j++) {
+                var index = self.GetTerrainBufferIndex(i, j);
+                if (!is_clamped(index, 0, array_length(Stuff.terrain.terrain_buffers) - 1)) continue;
+                
+                if (use_lod_zero) {
+                    vertex_submit(Stuff.terrain.terrain_buffers[index], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+                    self.stats.chunks.full++;
+                    self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_buffers[index]);
+                } else {
+                    vertex_submit(Stuff.terrain.terrain_lods[index], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+                    self.stats.chunks.lod++;
+                    self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_lods[index]);
+                }
+            }
         }
-        if (!use_lod_zero) {
-            vertex_submit(Stuff.terrain.terrain_lods[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
-            self.stats.chunks.lod++;
-            self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_lods[i]);
+    } else {
+        var chunk_angle = dcos(Settings.terrain.camera.fov * 1.5);
+        for (var i = 0, n = array_length(Stuff.terrain.terrain_buffers); i < n; i++) {
+            var position = self.GetTerrainBufferPositionWorld(i);
+            var chunk_distance = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2);
+            
+            if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && self.camera.Dot(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2, 0) <= chunk_angle) continue;
+            
+            var use_lod_zero = chunk_distance <= cutoff;
+            
+            var neighbor_use_lod_zero =
+                (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
+            
+            if (neighbor_use_lod_zero || use_lod_zero) {
+                vertex_submit(Stuff.terrain.terrain_buffers[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+                self.stats.chunks.full++;
+                self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_buffers[i]);
+            }
+            if (!use_lod_zero) {
+                vertex_submit(Stuff.terrain.terrain_lods[i], pr_trianglelist, sprite_get_texture(Stuff.terrain.texture_image, 0));
+                self.stats.chunks.lod++;
+                self.stats.triangles += vertex_get_number(Stuff.terrain.terrain_lods[i]);
+            }
         }
     }
     
