@@ -93,7 +93,7 @@ void main() {
         vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord);
         vec4 color = vec4(texture2D(u_TexColor, worldTextureUV).rgb, 1) * sampled;
         
-        vec3 accumulatedColor = u_LightAmbientColor * (NdotL + NdotLSecondary);
+        vec3 accumulatedColor = u_LightAmbientColor + (max(0.0, NdotL) + max(0.0, NdotLSecondary));
         color.rgb *= accumulatedColor;
         
         CommonFog(color);

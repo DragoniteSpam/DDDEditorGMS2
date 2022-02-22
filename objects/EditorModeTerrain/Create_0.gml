@@ -217,7 +217,10 @@ Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 32000;
 Settings.terrain.gradient_image = Settings.terrain[$ "gradient_image"] ?? 0;
 // light settings
 Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.35, g: 0.35, b: 0.35 };
-Settings.terrain.light_direction = Settings.terrain[$ "light_direction"] ?? { x: -1, y: 1, z: -1 };
+Settings.terrain.light_primary_angle = Settings.terrain[$ "light_primary_angle"] ?? 225;
+Settings.terrain.light_primary_strength = Settings.terrain[$ "light_primary_strength"] ?? 0.6;
+Settings.terrain.light_secondary_angle = Settings.terrain[$ "light_secondary_angle"] ?? 345;
+Settings.terrain.light_secondary_strength = Settings.terrain[$ "light_secondary_strength"] ?? 0.2;
 Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? false;
 Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? 2048;
 try {
@@ -227,14 +230,7 @@ try {
 } catch (e) {
     Settings.terrain.light_ambient = { r: 0.25, g: 0.25, b: 0.25 };
 }
-try {
-    var test = Settings.terrain.light_direction.x / 1.0;
-    test = Settings.terrain.light_direction.y / 1.0;
-    test = Settings.terrain.light_direction.z / 1.0;
-} catch (e) {
-    Settings.terrain.light_direction = { x: -1, y: 1, z: -1 };
-}
-Settings.terrain.light_direction = new Vector3(Settings.terrain.light_direction.x, Settings.terrain.light_direction.y, Settings.terrain.light_direction.z);
+Settings.terrain.light_direction = new Vector3(0.5, 0, -1);
 // height settings
 Settings.terrain.brush_min = 1.5;
 Settings.terrain.brush_max = 160;

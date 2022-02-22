@@ -20,10 +20,11 @@ function draw_editor_terrain() {
     shader_set(shd_terrain);
     // lighting uniforms
     Settings.terrain.light_direction = Settings.terrain.light_direction.Normalize();
-    var secondary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), 120);
+    var primary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_primary_angle);
+    var secondary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_secondary_angle);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightAmbientColor"), Settings.terrain.light_ambient.r, Settings.terrain.light_ambient.g, Settings.terrain.light_ambient.b);
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirection"), -Settings.terrain.light_direction.x, -Settings.terrain.light_direction.y, -Settings.terrain.light_direction.z, 1);
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirectionSecondary"), -secondary.x, -secondary.y, -secondary.z, 0.25);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirection"), primary.x, primary.y, primary.z, Settings.terrain.light_primary_strength);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirectionSecondary"), secondary.x, secondary.y, secondary.z, Settings.terrain.light_secondary_strength);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightShadows"), Settings.terrain.light_shadows);
     
     shader_set_uniform_f_array(shader_get_uniform(shd_terrain, "u_LightVP"), self.camera_light.GetVPMatrix() ?? matrix_build_identity());
