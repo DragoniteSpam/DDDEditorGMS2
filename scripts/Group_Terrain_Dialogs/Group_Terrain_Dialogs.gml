@@ -2,11 +2,12 @@ function dialog_create_export_heightmap() {
     var dw = 360;
     var dh = 200;
     
-    var dg = new EmuDialog(dw, dh, "Heightmap Settings");
-    dg.x = 920;
-    dg.y = 120;
+    var dialog = new EmuDialog(dw, dh, "Heightmap Settings");
+    dialog.x = 920;
+    dialog.y = 120;
+    dialog.contents_interactive = true;
     
-    dg.AddContent([
+    dialog.AddContent([
         (new EmuButton(32, EMU_AUTO, 280, 32, "Save Heightmap Image", function() {
             var fn = get_save_filename_image("Heightmap");
             if (fn != "") {
@@ -36,6 +37,7 @@ function dialog_terrain_mutate() {
     dialog.x = 920;
     dialog.y = 120;
     dialog.active_shade = 0;
+    dialog.contents_interactive = true;
     
     dialog.AddContent([
         new EmuText(32, 32, 360, 24, "Smoothness:"),
@@ -84,7 +86,10 @@ function dialog_create_terrain_new() {
     var col2_x = spacing + dw / 2;
     
     var dialog = new EmuDialog(dw, dh, "New Terrain");
+    dialog.x = 920;
+    dialog.y = 120;
     dialog.active_shade = 0;
+    dialog.contents_interactive = true;
     
     dialog.AddContent([
         (new EmuInput(
@@ -237,6 +242,11 @@ function dialog_terrain_export() {
     var ew = 256;
     
     var dialog = new EmuDialog(960, 540, "Export Terrain");
+    dialog.x = 560;
+    dialog.y = 120;
+    dialog.active_shade = 0;
+    dialog.contents_interactive = true;
+    
     dialog.AddContent([
         #region column 1
         new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
@@ -429,6 +439,11 @@ function dialog_create_terrain_brush_manager() {
     var col2x = spacing + dw / 2;
     
     var dialog = new EmuDialog(dw, dh, "Terrain brushes");
+    dialog.x = 920;
+    dialog.y = 120;
+    dialog.active_shade = 0;
+    dialog.contents_interactive = true;
+    
     dialog.AddContent([
         #region column 1
         (new EmuList(col1x, EMU_BASE, ew, eh, "Brushes:", eh, 10, function() {
