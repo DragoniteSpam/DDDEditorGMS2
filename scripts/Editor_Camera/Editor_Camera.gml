@@ -37,7 +37,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     
     self.run_enabled = true;
     self.run_speed = 3.2;
-    self.run_fov = 1.1;
+    self.run_fov = 1.2;
     self.run_fov_active = 1;
     self.running = false;
     
@@ -49,7 +49,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         if (EmuOverlay.GetTop() || !ds_list_empty(Stuff.dialogs)) return;
         
         self.running = self.run_enabled && keyboard_check(vk_shift);
-        self.run_fov_active = lerp(self.run_fov_active, self.running ? self.run_fov : 1, 0.01);
+        self.run_fov_active = lerp(self.run_fov_active, self.running ? self.run_fov : 1, 0.05);
         
         self.callback(screen_to_world(window_mouse_get_x(), window_get_height() - window_mouse_get_y(), self.view_mat, self.proj_mat, CW, CH));
         
