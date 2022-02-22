@@ -6,15 +6,9 @@ varying vec3 v_Barycentric;
 varying vec2 v_Texcoord;
 
 uniform vec3 u_LightAmbientColor;
-uniform vec3 u_LightDirection;
+uniform vec4 u_LightDirection;
+uniform vec4 u_LightDirectionSecondary;
 uniform sampler2D s_ShadingGradient;
-
-void CommonLight(inout vec4 baseColor, float NdotL) {
-    vec3 lightColor = u_LightAmbientColor;
-    lightColor += u_LightAmbientColor * NdotL;
-    
-    baseColor.rgb *= clamp(lightColor, vec3(0), vec3(1));
-}
 
 uniform float u_FogStrength;
 uniform float u_FogStart;
@@ -89,8 +83,9 @@ void DrawCursor(inout vec3 base, vec2 position) {
 
 void main() {
     vec3 normal = normalize(cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz)));
-    float NdotL = clamp(dot(normal, -normalize(u_LightDirection)), 0.0, 1.0);
+    float NdotL = clamp(dot(normal, u_LightDirection.xyz) * u_LightDirection.w, 0.0, 1.0);
     NdotL = texture2D(s_ShadingGradient, vec2(NdotL, 0)).r;
+    float NdotLSecondary = clamp(dot(normal, u_LightDirectionSecondary.xyz) * u_LightDirectionSecondary.w, 0.0, 1.0);
     
     if (u_OptViewData == DATA_DIFFUSE) {
         vec2 worldTextureUV = v_WorldPosition.xy / u_TerrainSizeF;
@@ -98,7 +93,9 @@ void main() {
         vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord);
         vec4 color = vec4(texture2D(u_TexColor, worldTextureUV).rgb, 1) * sampled;
         
-        CommonLight(color, NdotL);
+        vec3 accumulatedColor = u_LightAmbientColor * (NdotL + NdotLSecondary);
+        color.rgb *= accumulatedColor;
+        
         CommonFog(color);
         WaterFog(color);
         
