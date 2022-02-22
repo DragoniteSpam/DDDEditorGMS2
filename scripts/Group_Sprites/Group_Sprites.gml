@@ -143,7 +143,7 @@ function sprite_get_cropped_dimensions(sprite, subimage = 0, cutoff = 0) {
     }
     buffer_delete(buffer);
     
-    return new vec2(ww, hh);
+    return new Vector2(ww, hh);
 }
 
 function sprite_remove_transparent_color(sprite, color = 0xff00ff) {

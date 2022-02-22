@@ -49,7 +49,7 @@ self.mouse_interaction = function(mouse_vector) {
     
     if (mouse_vector[vec3.zz] < mouse_vector[5]) {
         var f = abs(mouse_vector[5] / mouse_vector[vec3.zz]);
-        self.cursor_position = new vec2(mouse_vector[3] + mouse_vector[vec3.xx] * f, mouse_vector[4] + mouse_vector[vec3.yy] * f);
+        self.cursor_position = new Vector2(mouse_vector[3] + mouse_vector[vec3.xx] * f, mouse_vector[4] + mouse_vector[vec3.yy] * f);
         
         if (Controller.mouse_left) {
             switch (Settings.terrain.mode) {
@@ -336,14 +336,14 @@ GetTerrainBufferIndex = function(x, y) {
 };
 
 GetTerrainBufferPosition = function(index) {
-    return new vec2(
+    return new Vector2(
         index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE),
         index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE),
     );
 };
 
 GetTerrainBufferPositionWorld = function(index) {
-    return new vec2(
+    return new Vector2(
         (index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
         (index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
     );
