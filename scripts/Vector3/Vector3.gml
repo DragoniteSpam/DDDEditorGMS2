@@ -59,4 +59,9 @@ function Vector3(x, y, z) constructor {
         var mag = direction.Magnitude();
         return direction.Mul(dot / (mag * mag));
     };
+    
+    static Rotate = function(axis, angle) {
+        axis = axis.Normalize();
+        return self.Mul(dcos(angle)).Add(axis.Cross(self).Mul(dsin(angle))).Add(axis.Mul(axis.Cross(self)).Mul(1 - dcos(angle)));
+    }
 }
