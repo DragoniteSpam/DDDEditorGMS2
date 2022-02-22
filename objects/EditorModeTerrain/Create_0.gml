@@ -22,7 +22,8 @@ self.vertex_format = vertex_format_end();
 
 EditModeZ = function(position, dir) {
     var r = Settings.terrain.radius;
-    terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, r, dir * Settings.terrain.rate);
+    var damping = (Settings.terrain.submode == TerrainSubmodes.AVERAGE) ? 0.25 : 1;
+    terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, r, dir * Settings.terrain.rate * damping);
     
     switch (Settings.terrain.submode) {
         case TerrainSubmodes.MOUND: terrainops_deform_mold(); break;
