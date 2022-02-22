@@ -70,7 +70,7 @@ function draw_editor_terrain() {
         var position = self.GetTerrainBufferPositionWorld(i);
         var chunk_distance = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2);
         
-        if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && self.camera.Dot2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2) <= chunk_angle) continue;
+        if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && self.camera.Dot(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2, 0) <= chunk_angle) continue;
         
         var use_lod_zero = chunk_distance <= cutoff;
         
