@@ -42,7 +42,7 @@ EditModeTexture = function(position) {
 EditModeColor = function(position) {
     var csx = surface_get_width(self.color.surface) / self.width;
     var csy = surface_get_height(self.color.surface) / self.height;
-    self.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius, Settings.terrain.paint_color, Settings.terrain.paint_strength);
+    self.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius * max(csx, csy), Settings.terrain.paint_color, Settings.terrain.paint_strength);
 };
 
 self.mouse_interaction = function(mouse_vector) {
