@@ -118,7 +118,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         
         // move the camera
         if (!keyboard_check(vk_control)) {
-            var mspd = 4;
+            var mspd = self.GetCameraSpeed(256);
             var xspeed = 0;
             var yspeed = 0;
             
@@ -249,8 +249,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         }
     };
     
-    static GetCameraSpeed = function() {
-        return max(1, (self.base_speed * (logn(32, max(self.z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / self.accelerate_time * Settings.config.camera_fly_rate, 10)) * (self.running ? self.run_speed : 1);
+    static GetCameraSpeed = function(z = self.z) {
+        return max(1, (self.base_speed * (logn(32, max(z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / self.accelerate_time * Settings.config.camera_fly_rate, 10)) * (self.running ? self.run_speed : 1);
     };
     
     static GetVPMatrix = function() {
