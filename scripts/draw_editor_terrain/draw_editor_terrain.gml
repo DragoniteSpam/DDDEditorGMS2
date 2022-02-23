@@ -20,8 +20,8 @@ function draw_editor_terrain() {
     shader_set(shd_terrain);
     // lighting uniforms
     Settings.terrain.light_direction = Settings.terrain.light_direction.Normalize();
-    var primary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_primary_angle);
-    var secondary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_secondary_angle);
+    var primary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_primary_angle).Mul(-1);
+    var secondary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_secondary_angle).Mul(-1);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightAmbientColor"),
         ((Settings.terrain.light_ambient_colour >> 00) & 0xff) / 0xff,
         ((Settings.terrain.light_ambient_colour >> 08) & 0xff) / 0xff,

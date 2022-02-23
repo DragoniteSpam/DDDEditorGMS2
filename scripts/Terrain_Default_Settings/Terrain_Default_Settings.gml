@@ -45,7 +45,7 @@
 #macro TERRAIN_DEF_LIGHT_SECONDARY_STRENGTH         0.2
 #macro TERRAIN_DEF_LIGHT_SHADOWS                    false
 #macro TERRAIN_DEF_LIGHT_SHADOWS_QUALITY            2048
-#macro TERRAIN_DEF_LIGHT_DIRECTION                  (new Vector3(0.5, 0, -1))
+#macro TERRAIN_DEF_LIGHT_DIRECTION                  (new Vector3(0.5, 0, -0.5))
 
 #macro TERRAIN_DEF_MODE                             TerrainModes.Z
 
