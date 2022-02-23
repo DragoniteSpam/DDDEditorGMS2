@@ -7,6 +7,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     self.help_text = help_text;
     self.character_limit = clamp(character_limit, 1, 1000);  // keyboard_string maxes out at 1024 characters but I like to cut it off before then to be safe
     
+    self.color_text = EMU_COLOR_TEXT;
     self.color_help_text = EMU_COLOR_HELP_TEXT;
     self.color_warn = EMU_COLOR_INPUT_WARN;
     self.color_reject = EMU_COLOR_INPUT_REJECT;
@@ -71,7 +72,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         var y1 = y + base_y;
         var x2 = x1 + width;
         var y2 = y1 + height;
-        var c = color;
+        var c = self.color_text;
 
         var vx1 = x1 + _value_x1;
         var vy1 = y1 + _value_y1;

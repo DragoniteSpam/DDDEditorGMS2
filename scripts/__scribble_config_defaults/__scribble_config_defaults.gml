@@ -1,7 +1,7 @@
 // Default font is set by scribble_font_set_default()
 
 // !
-#macro SCRIBBLE_DEFAULT_COLOR               c_black  //Default vertex colour when drawing text models. This can be overwritten by the .starting_format() text element method
+#macro SCRIBBLE_DEFAULT_COLOR               c_white  //Default vertex colour when drawing text models. This can be overwritten by the .starting_format() text element method
 #macro SCRIBBLE_DEFAULT_HALIGN              fa_left  //Default horizontal alignment for text. This can be changed using the .align() text element method
 #macro SCRIBBLE_DEFAULT_VALIGN              fa_top   //Default vertical alignment for text. This can be changed using the .align() text element method
 #macro SCRIBBLE_DEFAULT_SPRITE_SPEED        0.1      //The default animation speed for sprites inserted into text

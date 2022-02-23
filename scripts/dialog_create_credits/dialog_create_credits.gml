@@ -8,7 +8,7 @@ function dialog_create_credits() {
     var dialog = new EmuDialog(960, 480, "Credits");
     
     dialog.AddContent([
-        new EmuText(cx, EMU_AUTO, cw, 40, "[FDefault20][c_blue]DDD Game Editor"),
+        new EmuText(cx, EMU_AUTO, cw, 40, "[FDefault20][c_aqua]DDD Game Editor"),
         
         #region me
         new EmuText(cx, EMU_AUTO, cw, ch, "Author: @DragoniteSpam"),
@@ -27,19 +27,19 @@ function dialog_create_credits() {
         #endregion
         
         #region extensions
-        new EmuText(cx, EMU_AUTO, cw, ch, "[c_blue]Some GameMaker extensions were used"),
+        new EmuText(cx, EMU_AUTO, cw, ch, "[c_aqua]Some GameMaker extensions were used"),
         new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
             url_open("https://github.com/JujuAdams/scribble");
         }),
-        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[rainbow][wave]Scribble,[] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)"),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[rainbow]Scribble,[/rainbow] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)"),
         new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
             url_open("https://github.com/JujuAdams/carton");
         }),
-        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_blue]Carton[] by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)"),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_aqua]Carton[] by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)"),
         new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
             url_open("https://github.com/GameMakerDiscord/Xpanda/");
         }),
-        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_blue]Xpanda,[] shader management by kraifpatrik"),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_aqua]Xpanda,[] shader management by kraifpatrik"),
         #endregion
     ]).AddDefaultCloseButton();
     

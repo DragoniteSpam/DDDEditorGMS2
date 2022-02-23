@@ -249,7 +249,7 @@ function dialog_terrain_export() {
     
     dialog.AddContent([
         #region column 1
-        new EmuText(32, EMU_AUTO, 256, 32, "[c_blue]General export settings"),
+        new EmuText(32, EMU_AUTO, 256, 32, "[c_aqua]General export settings"),
         (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (Settings.terrain.export_lod_levels > 0 ? string(Settings.terrain.export_lod_levels) : "none")))
             .SetID("LABEL"),
         (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 0, 10, true, Settings.terrain.export_lod_levels, function() {
@@ -347,8 +347,8 @@ function dialog_terrain_export() {
             Settings.terrain.export_chunk_size = 256;
         }))
             .SetTooltip("Preset chunk size of 128"),
-        new EmuText(352, EMU_AUTO, 256, 48, "[c_blue]Each chunk and each LOD level will be saved as separate files."),
-        new EmuText(352, EMU_AUTO, 256, 48, is_large_terrain ? "[c_blue]Terrains larger than 1k² must be chunked." : ""),
+        new EmuText(352, EMU_AUTO, 256, 48, "[c_aqua]Each chunk and each LOD level will be saved as separate files."),
+        new EmuText(352, EMU_AUTO, 256, 48, is_large_terrain ? "[c_aqua]Terrains larger than 1k² must be chunked." : ""),
         #endregion
         #region column 3
         (new EmuButton(672, 16, 256, 32, "Add to Project", function() {
@@ -378,14 +378,14 @@ function dialog_terrain_export() {
             Stuff.AddStatusMessage("Adding terrain to the project took " + debug_timer_finish());
         }))
             .SetInteractive(!TERRAIN_MODE),
-        new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]OBJ export settings"),
+        new EmuText(672, EMU_AUTO, 256, 32, "[c_aqua]OBJ export settings"),
         (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Use Y-up?", Settings.terrain.export_swap_zup, function() {
             Settings.terrain.export_swap_zup = self.value;
         })),
         (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Settings.terrain.export_swap_uvs, function() {
             Settings.terrain.export_swap_uvs = self.value;
         })),
-        new EmuText(672, EMU_AUTO, 256, 32, "[c_blue]Vertex buffer export settings"),
+        new EmuText(672, EMU_AUTO, 256, 32, "[c_aqua]Vertex buffer export settings"),
         (new EmuButton(672, EMU_AUTO, 256, 32, "Vertex format", function() {
             emu_dialog_vertex_format(Settings.terrain.output_vertex_format, function(value) { Settings.terrain.output_vertex_format = value; });
         })),

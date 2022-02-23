@@ -108,7 +108,7 @@ function dialog_create_mesh_collision_settings(root, selection) {
             }
         })).SetRootVariableName("shape_name"),
         // column 2
-        new EmuText(c2x, 32, 256, 32, "[c_blue]Shape controls"),
+        new EmuText(c2x, 32, 256, 32, "[c_aqua]Shape controls"),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Translation"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].position.x = real(self.value);

@@ -238,9 +238,9 @@ function ui_init_mesh(mode) {
         element.tooltip = @"Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.
         
     You may convert to several different types of 3D model files.
-    - [c_blue]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
-    - [c_blue]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
-    - [c_blue]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)";
+    - [c_aqua]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
+    - [c_aqua]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
+    - [c_aqua]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
@@ -254,7 +254,7 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_text(c2x, yy, "[c_blue]Editing", ew, eh, fa_left, ew, id);
+        element = create_text(c2x, yy, "[c_aqua]Editing", ew, eh, fa_left, ew, id);
         ds_list_add(contents, element);
         yy += element.height + spacing;
         

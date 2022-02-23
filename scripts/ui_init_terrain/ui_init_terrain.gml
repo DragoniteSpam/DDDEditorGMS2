@@ -10,7 +10,7 @@ function ui_init_terrain(mode) {
     container.AddContent([
         (new EmuTabGroup(0, 32, hud_width, hud_height - 32, 1, 32)).AddTabs(0, [
             (new EmuTab("General")).AddContent([
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_blue]General Settings"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_aqua]General Settings"),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Width"))
                     .SetTextUpdate(function() { return "Width: " + string(Stuff.terrain.width); })
                     .SetID("LABEL_WIDTH"),
@@ -71,7 +71,7 @@ function ui_init_terrain(mode) {
                         }))
                             .AddOptions(["Diffuse", "Position", "Normal", "Heightmap", "Barycentric"])
                             .SetTooltip("Not going to lie, I find world-space normals to be weirdly pretty."),
-                        new EmuText(col2x, EMU_AUTO, col_width, 32, "[c_blue]Fog settings"),
+                        new EmuText(col2x, EMU_AUTO, col_width, 32, "[c_aqua]Fog settings"),
                         (new EmuCheckbox(col2x, EMU_AUTO, col_width, 32, "Draw fog?", Settings.terrain.fog_enabled, function() {
                             Settings.terrain.fog_enabled = self.value;
                         }))
@@ -100,7 +100,7 @@ function ui_init_terrain(mode) {
                 new EmuInput(col1x, EMU_AUTO, col_width, 32, "RNG seed:", "", "", 100, E_InputTypes.STRING, function() {
                     macaw_set_seed(self.value);
                 }),
-                (new EmuText(col1x, EMU_AUTO, col_width * 2, 512, "[c_blue]Stats[]"))
+                (new EmuText(col1x, EMU_AUTO, col_width * 2, 512, "[c_aqua]Stats[]"))
                     .SetTextUpdate(function() {
                         static area_baseball_diamond = 0.00075 * MILLION;
                         static area_vatican_city = 0.44 * MILLION;
@@ -117,7 +117,7 @@ function ui_init_terrain(mode) {
                         
                         var area = Stuff.terrain.width * Stuff.terrain.height;
                         
-                        var output = "[c_blue]Stats[]\n" +
+                        var output = "[c_aqua]Stats[]\n" +
                             "Chunks:\n" +
                             "    Full: " + string(Stuff.terrain.stats.chunks.full) + "\n" +
                             "    Reduced: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
@@ -130,7 +130,7 @@ function ui_init_terrain(mode) {
                             "    " + string(area / area_oblivion) + "x The Elder Scrolls IV: Oblivion (4 km²)\n" +
                             "    " + string(area / area_dublin_airport) + "x Dublin International Airport (10.84 km²)\n" +
                             "    " + string(area / area_skyrim) + "x Skyrim (39 km²)\n\n" +
-                            "[c_blue]System info[]\n" +
+                            "[c_aqua]System info[]\n" +
                             "CPU model: " + cpu_info + "\n" +
                             "    Logical cores: " + cpu_cores + "\n" +
                             "    Architecture: " + cpu_architecture + "\n" +
@@ -142,7 +142,7 @@ function ui_init_terrain(mode) {
                     })
                         .SetAlignment(fa_left, fa_top),
                 #region i/o stuff
-                new EmuText(col2x, EMU_BASE, col_width, 32, "[c_blue]Saving and Loading"),
+                new EmuText(col2x, EMU_BASE, col_width, 32, "[c_aqua]Saving and Loading"),
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "New Terrain", function() {
                     momu_terrain_new();
                 }),

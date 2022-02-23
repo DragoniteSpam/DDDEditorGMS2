@@ -8,7 +8,7 @@ function emu_dialog_vertex_format(value, callback) {
     dialog.value = value;
     dialog.cb = callback;
     dialog.AddContent([
-        new EmuText(c1x, 32, 256, 32, "[c_blue]Standards attributes"),
+        new EmuText(c1x, 32, 256, 32, "[c_aqua]Standards attributes"),
         (new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Position", !!(value & (1 << VertexFormatData.POSITION_3D)), function() {
             var flag = 1 << VertexFormatData.POSITION_3D;
             self.root.value &= ~flag;
@@ -52,7 +52,7 @@ function emu_dialog_vertex_format(value, callback) {
             self.root.cb(self.root.value);
         }),
         
-        new EmuText(c2x, 32, 256, 32, "[c_blue]Nonstandard attributes"),
+        new EmuText(c2x, 32, 256, 32, "[c_aqua]Nonstandard attributes"),
         new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal", !!(value & (1 << VertexFormatData.SMALL_NORMAL)), function() {
             var flag = 1 << VertexFormatData.SMALL_NORMAL;
             self.root.value &= ~flag;
