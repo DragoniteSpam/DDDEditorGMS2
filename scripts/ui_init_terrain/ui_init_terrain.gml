@@ -317,6 +317,7 @@ function ui_init_terrain(mode) {
                     mx -= view_get_xport(view_current);
                     my -= view_get_yport(view_current);
                     
+                    if (!ds_list_empty(EmuOverlay._contents)) return;
                     if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
                     
                     var bs = Settings.terrain.tile_brush_size;
