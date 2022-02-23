@@ -124,7 +124,7 @@ update = function() {
         }
     }
     
-    if (Stuff.menu.active_element) return;
+    if (Stuff.menu.active_element || !ds_list_empty(EmuOverlay._contents)) return;
     
     if (mouse_within_view(view_3d)) {
         if (Settings.terrain.orthographic) {
