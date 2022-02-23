@@ -144,10 +144,14 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
                 self.scale = min(10, self.scale * 1.05);
             }
             
-            self.x += xspeed;
-            self.y += yspeed;
-            self.xto += xspeed;
-            self.yto += yspeed;
+            var dist = point_distance(0, 0, xspeed, yspeed);
+            
+            if (dist > 0) {
+                self.x += xspeed / dist * mspd;
+                self.y += yspeed / dist * mspd;
+                self.xto += xspeed / dist * mspd;
+                self.yto += yspeed / dist * mspd;
+            }
         }
     };
     
