@@ -402,7 +402,7 @@ self.RegenerateAllTerrainBuffers();
 color = (new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale))
     .SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
     .SetShader(shd_terrain_paint);
-texture = (new Phoenix(self.width, self.height, c_black))
+texture = (new Phoenix(self.width, self.height, false, c_black))
     .SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
     .SetShader(shd_terrain_paint_texture)
     .SetBlendEnable(false);
