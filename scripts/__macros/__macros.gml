@@ -117,13 +117,6 @@
 #macro CONTROL_3D_LOOK_DOWN                 Controller.press_middle
 #macro CONTROL_3D_LOOK_UP                   Controller.release_middle
 
-#macro DEFAULT_TERRAIN_HEIGHT               256
-#macro DEFAULT_TERRAIN_WIDTH                256
-#macro MAX_TERRAIN_HEIGHT                   5400                                // there's a hard limit on 16384 for these since the texture painting surface cant
-#macro MAX_TERRAIN_WIDTH                    5400                                // be larger than that, but in reality you'll run into problems long before that
-#macro MIN_TERRAIN_HEIGHT                   16                                  // (a 16384*16384 terrain would consume 19 GB of RAM... for the base vertex buffer alone)
-#macro MIN_TERRAIN_WIDTH                    16                                  // anyway gamemaker has a hard limit of 2^31 bytes in a data buffer for now anyway
-
 #macro view_fullscreen                      0
 #macro view_3d                              1
 #macro view_ribbon                          2
