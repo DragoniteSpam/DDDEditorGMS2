@@ -69,7 +69,13 @@ function draw_editor_terrain() {
     if (Settings.terrain.orthographic) {
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
-        var use_lod_zero = self.camera.scale <= normalize(cutoff, 1.5, 2.5, 640, 2800);
+        var use_lod_zero = self.camera.scale <= normalize(
+            cutoff,
+            Settings.terrain.view_distance_ortho_min,
+            Settings.terrain.view_distance_ortho_max,
+            Settings.terrain.view_distance_perspective_min,
+            Settings.terrain.view_distance_perspective_max
+        );
         
         var bounds_x1 = round((self.camera.x - vw * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE) - 1;
         var bounds_x2 = round((self.camera.x + vw * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE);

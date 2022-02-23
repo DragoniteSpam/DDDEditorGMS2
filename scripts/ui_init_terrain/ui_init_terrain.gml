@@ -60,7 +60,7 @@ function ui_init_terrain(mode) {
                         }))
                             .SetTooltip("Toggles the the skybox. In the future I might add the ability to import your own."),
                         new EmuText(col1x, EMU_AUTO, col_width, 32, "View distance:"),
-                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 640, 2800, true, Settings.terrain.view_distance, function() {
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.view_distance_perspective_min, Settings.terrain.view_distance_perspective_max, true, Settings.terrain.view_distance, function() {
                             Settings.terrain.view_distance = self.value;
                         }))
                             .SetTooltip("The distance at which the terrain will switch to a lower level of detail. This can have a dramatic impact on performance."),

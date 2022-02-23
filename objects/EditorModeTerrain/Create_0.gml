@@ -216,6 +216,11 @@ Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
 Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
 Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 8000;
 Settings.terrain.gradient_image = Settings.terrain[$ "gradient_image"] ?? 0;
+
+Settings.terrain.view_distance_ortho_min = Settings.terrain[$ "view_distance_ortho_min"] ?? 1.5;
+Settings.terrain.view_distance_ortho_max = Settings.terrain[$ "view_distance_ortho_max"] ?? 2.5;
+Settings.terrain.view_distance_perspective_min = Settings.terrain[$ "view_distance_perspective_min"] ?? 640;
+Settings.terrain.view_distance_perspective_max = Settings.terrain[$ "view_distance_perspective_max"] ?? 2800;
 // light settings
 Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.35, g: 0.35, b: 0.35 };
 Settings.terrain.light_primary_angle = Settings.terrain[$ "light_primary_angle"] ?? 225;
