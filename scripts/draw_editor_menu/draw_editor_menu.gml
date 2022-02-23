@@ -34,16 +34,16 @@ function draw_editor_menu(camera_controls = false) {
     
     if (DEBUG) {
         draw_set_halign(fa_left);
-        draw_rectangle_colour(0, 0, room_width, yy, false, c_white, c_white, c_white, c_white);
+        draw_rectangle_colour(0, 0, room_width, yy, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
         var index = 0;
-        draw_text_colour(128 * index++ + 16, yy / 2, "FPS: " + string(fps), c_black, c_black, c_black, c_black, 1);
-        draw_text_colour(128 * index++ + 16, yy / 2, "CPU FPS: " + string(floor(fps_real_current)), c_black, c_black, c_black, c_black, 1);
+        draw_text_colour(128 * index++ + 16, yy / 2, "FPS: " + string(fps), EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, 1);
+        draw_text_colour(128 * index++ + 16, yy / 2, "CPU FPS: " + string(floor(fps_real_current)), EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, 1);
         draw_text_colour(
             128 * index++ + 16, yy / 2,
             "Version: " + GM_version + ";   " +
             "Build date: " + date_datetime_string(GM_build_date) + ";   " +
             "GameMaker runtime: " + GM_runtime_version,
-            c_black, c_black, c_black, c_black, 1
+            EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, 1
         );
     }
 }

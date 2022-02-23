@@ -1,7 +1,5 @@
 function menu_render_main(menu, xx, yy) {
-    draw_set_color(c_white);
-    draw_rectangle(0, 0, xx + room_width, yy + menu.element_height, false);
-    draw_set_color(c_black);
+    draw_rectangle_colour(0, 0, xx + room_width, yy + menu.element_height, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
     draw_set_font(FDefault);
     draw_set_valign(fa_middle);
     
@@ -18,7 +16,7 @@ function menu_render_main(menu, xx, yy) {
         }
     }
     
-    draw_line_colour(0, yy + menu.element_height, xx + room_width, yy + menu.element_height, c_black, c_black);
+    draw_line_colour(0, yy + menu.element_height, xx + room_width, yy + menu.element_height, EMU_COLOR_DEFAULT, EMU_COLOR_DEFAULT);
     
     var element = Stuff.menu.extra_element;
     if (element) {

@@ -9,7 +9,7 @@ function ui_render_main(ui) {
     camera_set_proj_mat(camera, matrix_build_projection_ortho(ui_width, ui_height, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 
-    draw_clear(c_white);
+    draw_clear(EMU_COLOR_BACK);
     draw_set_color(c_black);
     draw_set_font(FDefault);
     draw_set_valign(fa_middle);

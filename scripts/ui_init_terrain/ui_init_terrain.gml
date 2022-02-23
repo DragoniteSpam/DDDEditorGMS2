@@ -162,7 +162,7 @@ function ui_init_terrain(mode) {
             ]),
             (new EmuTab("Lighting")).AddContent([
                 (new EmuRenderSurface(col1x, EMU_AUTO, col_width, 32, function() {
-                    draw_clear(c_white);
+                    draw_clear(EMU_COLOR_BACK);
                     draw_sprite_stretched(Stuff.terrain.gradient_images[Settings.terrain.gradient_image], 0, 0, 0, self.width, self.height);
                     draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
                 }, emu_null, emu_null, emu_null)),
