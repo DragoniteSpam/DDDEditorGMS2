@@ -15,7 +15,7 @@ function menu_render(menu, x1, y1) {
     if (!menu.invisible) {
         // click on the header
         if (mouse_within_rectangle(x1, y1, x2, y2)) {
-            draw_rectangle_colour(x1, y1, x2, y2, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
+            draw_rectangle_colour(x1, y1, x2, y2, EMU_COLOR_HOVER, EMU_COLOR_HOVER, EMU_COLOR_HOVER, EMU_COLOR_HOVER, false);
             if (!dialog_exists() && Controller.press_left) {
                 Controller.press_left = false;
                 menu_activate(menu);

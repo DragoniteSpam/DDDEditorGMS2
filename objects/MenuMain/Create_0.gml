@@ -5,7 +5,7 @@ root = noone;
 active_element = noone;
 extra_element = noone;
 
-element_height = 16;
+element_height = 20;
 element_width = 96;
 
 mouse_over = noone;

@@ -27,7 +27,7 @@ function dialog_create_credits() {
         #endregion
         
         #region extensions
-        new EmuText(cx, EMU_AUTO, cw, ch, "[c_aqua]Some GameMaker extensions were used"),
+        new EmuText(cx, EMU_AUTO, cw, ch, "[c_aqua]Some GameMaker extensions were used:"),
         new EmuButton(cx, EMU_AUTO, 216, 32, "Github", function() {
             url_open("https://github.com/JujuAdams/scribble");
         }),
