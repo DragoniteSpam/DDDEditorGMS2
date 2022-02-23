@@ -10,8 +10,8 @@ function mouse_within_rectangle_adjusted(x1, y1, x2, y2) {
     return mouse_within_rectangle(x1 - xoff, y1 - yoff, x2 - xoff, y2 - yoff);
 }
 
-function mouse_within_rectangle_determine(x1, y1, x2, y2, adjust) {
-    return adjust ? mouse_within_rectangle_adjusted(x1, y1, x2, y2) : mouse_within_rectangle_view(x1, y1, x2, y2);
+function mouse_within_rectangle_determine(x1, y1, x2, y2, adjusted) {
+    return adjusted ? mouse_within_rectangle_adjusted(x1, y1, x2, y2) : mouse_within_rectangle_view(x1, y1, x2, y2);
 }
 
 function mouse_within_rectangle_view(x1, y1, x2, y2) {

@@ -69,7 +69,7 @@ function draw_editor_terrain() {
     if (Settings.terrain.orthographic) {
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
-        var use_lod_zero = self.camera.scale <= normalize(
+        var use_lod_zero = self.camera.scale <= adjust_range(
             cutoff,
             Settings.terrain.view_distance_ortho_min,
             Settings.terrain.view_distance_ortho_max,

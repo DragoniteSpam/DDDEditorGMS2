@@ -311,7 +311,7 @@ function DataAnimationLayer(animation, source) constructor {
         var value_next = (kf_next ? kf_next.Get(param) : (self.animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.GetBaseValue(param) : 0);
         var moment_previous = kf_previous ? kf_previous.moment : 0;
         var moment_next = kf_next ? kf_next.moment : self.animation.moments;
-        var f = normalize(moment, moment_previous, moment_next);
+        var f = adjust_range(moment, moment_previous, moment_next);
         
         if (kf_current && kf_current.HasParameterTween(param)) return value_now;
         
