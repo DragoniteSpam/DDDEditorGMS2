@@ -598,6 +598,7 @@
     {"id":{"name":"uivc_animation_keyframe_function","path":"scripts/uivc_animation_keyframe_function/uivc_animation_keyframe_function.yy",},"order":16,},
     {"id":{"name":"uivc_animation_keyframe_audio","path":"scripts/uivc_animation_keyframe_audio/uivc_animation_keyframe_audio.yy",},"order":18,},
     {"id":{"name":"spr_emu_mask_bar_v","path":"sprites/spr_emu_mask_bar_v/spr_emu_mask_bar_v.yy",},"order":12,},
+    {"id":{"name":"Terrain_Default_Settings","path":"scripts/Terrain_Default_Settings/Terrain_Default_Settings.yy",},"order":9,},
     {"id":{"name":"uivc_mesh_collision_cell_x","path":"scripts/uivc_mesh_collision_cell_x/uivc_mesh_collision_cell_x.yy",},"order":0,},
     {"id":{"name":"uivc_mesh_collision_cell_y","path":"scripts/uivc_mesh_collision_cell_y/uivc_mesh_collision_cell_y.yy",},"order":1,},
     {"id":{"name":"uivc_mesh_collision_cell_z","path":"scripts/uivc_mesh_collision_cell_z/uivc_mesh_collision_cell_z.yy",},"order":2,},

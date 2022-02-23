@@ -118,7 +118,6 @@
 #macro CONTROL_3D_LOOK_UP                   Controller.release_middle
 
 #macro DEFAULT_TERRAIN_HEIGHT               256
-#macro DEFAULT_TERRAIN_HEIGHTMAP_SCALE      256
 #macro DEFAULT_TERRAIN_WIDTH                256
 #macro MAX_TERRAIN_HEIGHT                   5400                                // there's a hard limit on 16384 for these since the texture painting surface cant
 #macro MAX_TERRAIN_WIDTH                    5400                                // be larger than that, but in reality you'll run into problems long before that

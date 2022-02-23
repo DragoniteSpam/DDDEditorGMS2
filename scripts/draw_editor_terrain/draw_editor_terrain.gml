@@ -22,7 +22,11 @@ function draw_editor_terrain() {
     Settings.terrain.light_direction = Settings.terrain.light_direction.Normalize();
     var primary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_primary_angle);
     var secondary = Settings.terrain.light_direction.Rotate(new Vector3(0, 0, 1), Settings.terrain.light_secondary_angle);
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightAmbientColor"), Settings.terrain.light_ambient.r, Settings.terrain.light_ambient.g, Settings.terrain.light_ambient.b);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightAmbientColor"),
+        ((Settings.terrain.light_ambient_colour >> 00) & 0xff) / 0xff,
+        ((Settings.terrain.light_ambient_colour >> 08) & 0xff) / 0xff,
+        ((Settings.terrain.light_ambient_colour >> 16) & 0xff) / 0xff
+    );
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirection"), primary.x, primary.y, primary.z, Settings.terrain.light_primary_strength);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightDirectionSecondary"), secondary.x, secondary.y, secondary.z, Settings.terrain.light_secondary_strength);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_LightShadows"), Settings.terrain.light_shadows);
@@ -36,7 +40,11 @@ function draw_editor_terrain() {
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogStrength"), Settings.terrain.fog_enabled * !Settings.terrain.orthographic ? 1 : 0);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogStart"), Settings.terrain.fog_start);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogEnd"), Settings.terrain.fog_end);
-    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogColor"), (Settings.terrain.fog_color & 0x0000ff) / 0xff, ((Settings.terrain.fog_color & 0x00ff00) >> 8) / 0xff, ((Settings.terrain.fog_color & 0xff0000) >> 16) / 0xff);
+    shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_FogColor"),
+        ((Settings.terrain.fog_color>> 00) & 0xff) / 0xff,
+        ((Settings.terrain.fog_color>> 08) & 0xff) / 0xff,
+        ((Settings.terrain.fog_color>> 16) & 0xff) / 0xff
+    );
     // wireframe uniforms
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireAlpha"), Settings.terrain.wireframe_alpha);
     shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireColor"), 1, 1, 1);

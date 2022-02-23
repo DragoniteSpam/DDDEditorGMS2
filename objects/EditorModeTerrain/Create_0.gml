@@ -182,91 +182,84 @@ array_push(self.brush_sprites,
 );
 
 // general editing settings
-Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? 8;
+Settings.terrain.color_scale = Settings.terrain[$ "color_scale"] ?? TERRAIN_DEF_COLOR_SCALE;
 // import and export settings
-Settings.terrain.gen_noise_scale = Settings.terrain[$ "gen_noise_scale"] ?? 0.5;
-Settings.terrain.gen_noise_smoothness = Settings.terrain[$ "gen_noise_smoothness"] ?? 0.5;
-Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? 0.5;
-Settings.terrain.save_scale = Settings.terrain[$ "save_scale"] ?? 1;
-Settings.terrain.export_all = Settings.terrain[$ "export_all"] ?? false;
-Settings.terrain.export_swap_uvs = Settings.terrain[$ "export_swap_uvs"] ?? false;
-Settings.terrain.export_swap_zup = Settings.terrain[$ "export_swap_zup"] ?? false;
-Settings.terrain.export_centered = Settings.terrain[$ "export_centered"] ?? false;
-Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? 64;
-Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? false;
-Settings.terrain.export_smooth_threshold = Settings.terrain[$ "export_smooth_threshold"] ?? 60;
-Settings.terrain.export_lod_levels = Settings.terrain[$ "export_lod_levels"] ?? 2;
-Settings.terrain.export_lod_reduction = Settings.terrain[$ "export_lod_reduction"] ?? 4;
-Settings.terrain.output_vertex_format = Settings.terrain[$ "output_vertex_format"] ?? DEFAULT_VERTEX_FORMAT;
+Settings.terrain.gen_noise_scale = Settings.terrain[$ "gen_noise_scale"] ?? TERRAIN_DEF_GEN_NOISE_SCALE;
+Settings.terrain.gen_noise_smoothness = Settings.terrain[$ "gen_noise_smoothness"] ?? TERRAIN_DEF_GEN_NOISE_SMOOTHNESS;
+Settings.terrain.heightmap_scale = Settings.terrain[$ "heightmap_scale"] ?? TERRAIN_DEF_HEIGHTMAP_SCALE;
+Settings.terrain.save_scale = Settings.terrain[$ "save_scale"] ?? TERRAIN_DEF_EXPORT_SCALE;
+Settings.terrain.export_all = Settings.terrain[$ "export_all"] ?? TERRAIN_DEF_EXPORT_ALL;
+Settings.terrain.export_swap_uvs = Settings.terrain[$ "export_swap_uvs"] ?? TERRAIN_DEF_EXPORT_SWAP_UVS;
+Settings.terrain.export_swap_zup = Settings.terrain[$ "export_swap_zup"] ?? TERRAIN_DEF_EXPORT_SWAP_ZUP;
+Settings.terrain.export_centered = Settings.terrain[$ "export_centered"] ?? TERRAIN_DEF_EXPORT_CENTERED;
+Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? TERRAIN_DEF_EXPORT_CHUNK_SIZE;
+Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? TERRAIN_DEF_EXPORT_SMOOTH;
+Settings.terrain.export_smooth_threshold = Settings.terrain[$ "export_smooth_threshold"] ?? TERRAIN_DEF_EXPORT_SMOOTH_THRESHOLD;
+Settings.terrain.export_lod_levels = Settings.terrain[$ "export_lod_levels"] ?? TERRAIN_DEF_EXPORT_LOD_LEVELS;
+Settings.terrain.export_lod_reduction = Settings.terrain[$ "export_lod_reduction"] ?? TERRAIN_DEF_EXPORT_LOD_REDUCTION;
+Settings.terrain.output_vertex_format = Settings.terrain[$ "output_vertex_format"] ?? TERRAIN_DEF_EXPORT_VERTEX_FORMAT;
 // viewer settings
-Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? true;
-Settings.terrain.view_water_min_alpha = Settings.terrain[$ "view_water_min_alpha"] ?? 0.5;
-Settings.terrain.view_water_max_alpha = Settings.terrain[$ "view_water_max_alpha"] ?? 0.9;
-Settings.terrain.water_level = Settings.terrain[$ "water_level"] ?? -0.2;
-Settings.terrain.view_distance = Settings.terrain[$ "view_distance"] ?? 1200;
-Settings.terrain.wireframe_alpha = Settings.terrain[$ "wireframe_alpha"] ?? 0.5;
-Settings.terrain.cursor_alpha = Settings.terrain[$ "cursor_alpha"] ?? 0.5;
-Settings.terrain.view_skybox = Settings.terrain[$ "view_skybox"] ?? true;
-Settings.terrain.view_axes = Settings.terrain[$ "view_axes"] ?? true;
-Settings.terrain.view_data = Settings.terrain[$ "view_data"] ?? TerrainViewData.DIFFUSE;
-Settings.terrain.orthographic = Settings.terrain[$ "orthographic"] ?? false;
-Settings.terrain.light_enabled = Settings.terrain[$ "light_enabled"] ?? true;
-Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? true;
-Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? c_white;
-Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? 1000;
-Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? 8000;
-Settings.terrain.gradient_image = Settings.terrain[$ "gradient_image"] ?? 0;
+Settings.terrain.view_water = Settings.terrain[$ "view_water"] ?? TERRAIN_DEF_VIEW_WATER;
+Settings.terrain.view_water_min_alpha = Settings.terrain[$ "view_water_min_alpha"] ?? TERRAIN_DEF_WATER_MIN_ALPHA;
+Settings.terrain.view_water_max_alpha = Settings.terrain[$ "view_water_max_alpha"] ?? TERRAIN_DEF_WATER_MAX_ALPHA;
+Settings.terrain.water_level = Settings.terrain[$ "water_level"] ?? TERRAIN_DEF_WATER_LEVEL;
+Settings.terrain.view_distance = Settings.terrain[$ "view_distance"] ?? TERRAIN_DEF_VIEW_DISTANCE;
+Settings.terrain.wireframe_alpha = Settings.terrain[$ "wireframe_alpha"] ?? TERRAIN_DEF_WIREFRAME_ALPHA;
+Settings.terrain.cursor_alpha = Settings.terrain[$ "cursor_alpha"] ?? TERRAIN_DEF_CURSOR_ALPHA;
+Settings.terrain.view_skybox = Settings.terrain[$ "view_skybox"] ?? TERRAIN_DEF_VIEW_SKYBOX;
+Settings.terrain.view_axes = Settings.terrain[$ "view_axes"] ?? TERRAIN_DEF_VIEW_AXES;
+Settings.terrain.view_data = Settings.terrain[$ "view_data"] ?? TERRAIN_DEF_VIEW_DATA;
+Settings.terrain.orthographic = Settings.terrain[$ "orthographic"] ?? TERRAIN_DEF_ORTHOGRAPHIC;
+Settings.terrain.light_enabled = Settings.terrain[$ "light_enabled"] ?? TERRAIN_DEF_LIGHT_ENABLED;
+Settings.terrain.fog_enabled = Settings.terrain[$ "fog_enabled"] ?? TERRAIN_DEF_FOG_ENABLED;
+Settings.terrain.fog_color = Settings.terrain[$ "fog_color"] ?? TERRAIN_DEF_FOG_COLOR;
+Settings.terrain.fog_start = Settings.terrain[$ "fog_start"] ?? TERRAIN_DEF_FOG_START;
+Settings.terrain.fog_end = Settings.terrain[$ "fog_end"] ?? TERRAIN_DEF_FOG_END;
+Settings.terrain.gradient_image = Settings.terrain[$ "gradient_image"] ?? TERRAIN_DEF_GRADIENT;
 
-Settings.terrain.view_distance_ortho_min = Settings.terrain[$ "view_distance_ortho_min"] ?? 1.5;
-Settings.terrain.view_distance_ortho_max = Settings.terrain[$ "view_distance_ortho_max"] ?? 2.5;
-Settings.terrain.view_distance_perspective_min = Settings.terrain[$ "view_distance_perspective_min"] ?? 640;
-Settings.terrain.view_distance_perspective_max = Settings.terrain[$ "view_distance_perspective_max"] ?? 2800;
+Settings.terrain.view_distance_ortho_min = Settings.terrain[$ "view_distance_ortho_min"] ?? TERRAIN_DEF_VIEW_DISTANCE_ORTHO_MIN;
+Settings.terrain.view_distance_ortho_max = Settings.terrain[$ "view_distance_ortho_max"] ?? TERRAIN_DEF_VIEW_DISTANCE_ORTHO_MAX;
+Settings.terrain.view_distance_perspective_min = Settings.terrain[$ "view_distance_perspective_min"] ?? TERRAIN_DEF_VIEW_DISTANCE_PERSPECTIVE_MIN;
+Settings.terrain.view_distance_perspective_max = Settings.terrain[$ "view_distance_perspective_max"] ?? TERRAIN_DEF_VIEW_DISTANCE_PERSPECTIVE_MAX;
 // light settings
-Settings.terrain.light_ambient = Settings.terrain[$ "light_ambient"] ?? { r: 0.35, g: 0.35, b: 0.35 };
-Settings.terrain.light_primary_angle = Settings.terrain[$ "light_primary_angle"] ?? 225;
-Settings.terrain.light_primary_strength = Settings.terrain[$ "light_primary_strength"] ?? 0.6;
-Settings.terrain.light_secondary_angle = Settings.terrain[$ "light_secondary_angle"] ?? 345;
-Settings.terrain.light_secondary_strength = Settings.terrain[$ "light_secondary_strength"] ?? 0.2;
-Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? false;
-Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? 2048;
-try {
-    var test = Settings.terrain.light_ambient.r / 1.0;
-    test = Settings.terrain.light_ambient.g / 1.0;
-    test = Settings.terrain.light_ambient.b / 1.0;
-} catch (e) {
-    Settings.terrain.light_ambient = { r: 0.25, g: 0.25, b: 0.25 };
-}
-Settings.terrain.light_direction = new Vector3(0.5, 0, -1);
+Settings.terrain.light_ambient_colour = Settings.terrain[$ "light_ambient_colour"] ?? TERRAIN_DEF_LIGHT_AMBIENT_COLOUR;
+Settings.terrain.light_primary_angle = Settings.terrain[$ "light_primary_angle"] ?? TERRAIN_DEF_LIGHT_PRIMARY_ANGLE;
+Settings.terrain.light_primary_strength = Settings.terrain[$ "light_primary_strength"] ?? TERRAIN_DEF_LIGHT_PRIMARY_STRENGTH;
+Settings.terrain.light_secondary_angle = Settings.terrain[$ "light_secondary_angle"] ?? TERRAIN_DEF_LIGHT_SECONDARY_ANGLE;
+Settings.terrain.light_secondary_strength = Settings.terrain[$ "light_secondary_strength"] ?? TERRAIN_DEF_LIGHT_SECONDARY_STRENGTH;
+Settings.terrain.light_shadows = Settings.terrain[$ "light_shadows"] ?? TERRAIN_DEF_LIGHT_SHADOWS;
+Settings.terrain.light_shadows_quality = Settings.terrain[$ "light_shadows_quality"] ?? TERRAIN_DEF_LIGHT_SHADOWS_QUALITY;
+Settings.terrain.light_direction = TERRAIN_DEF_LIGHT_DIRECTION;
 // height settings
-Settings.terrain.brush_min = 1.5;
-Settings.terrain.brush_max = 160;
-Settings.terrain.rate_min = 0.05;
-Settings.terrain.rate_max = 2.5;
-Settings.terrain.rate = Settings.terrain[$ "rate"] ?? 0.5;
-Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? 1, 0, array_length(self.brush_sprites) - 1);
-Settings.terrain.radius = Settings.terrain[$ "radius"] ?? 12;
-Settings.terrain.mode = TerrainModes.Z;
-Settings.terrain.submode = TerrainSubmodes.MOUND;
-Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? 1;
+Settings.terrain.mode = TERRAIN_DEF_MODE;
+Settings.terrain.brush_min = TERRAIN_DEF_HEIGHT_BRUSH_MIN;
+Settings.terrain.brush_max = TERRAIN_DEF_HEIGHT_BRUSH_MAX;
+Settings.terrain.rate_min = TERRAIN_DEF_HEIGHT_RATE_MIN;
+Settings.terrain.rate_max = TERRAIN_DEF_HEIGHT_RATE_MAX;
+Settings.terrain.rate = Settings.terrain[$ "rate"] ?? TERRAIN_DEF_HEIGHT_RATE;
+Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? TERRAIN_DEF_HEIGHT_BRUSH_INDEX, 0, array_length(self.brush_sprites) - 1);
+Settings.terrain.radius = Settings.terrain[$ "radius"] ?? TERRAIN_DEF_HEIGHT_RADIUS;
+Settings.terrain.submode = TERRAIN_DEF_HEIGHT_SUBMODE;
+Settings.terrain.global_scale = Settings.terrain[$ "global_scale"] ?? TERRAIN_DEF_HEIGHT_GLOBAL_SCALE;
 // texture settings
-Settings.terrain.tile_brush_min = 1.5;
-Settings.terrain.tile_brush_max = 250;
-Settings.terrain.tile_brush_size_min = 4;
-Settings.terrain.tile_brush_size_max = 256;
-Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? 4;
-Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? 1, 0, array_length(self.brush_sprites) - 1);
-Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? 0;
-Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? 0;
-Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? 32;
+Settings.terrain.tile_brush_min = TERRAIN_DEF_TEX_BRUSH_MIN;
+Settings.terrain.tile_brush_max = TERRAIN_DEF_TEX_BRUSH_MAX;
+Settings.terrain.tile_brush_size_min = TERRAIN_DEF_TEX_BRUSH_SIZE_MIN;
+Settings.terrain.tile_brush_size_max = TERRAIN_DEF_TEX_BRUSH_SIZE_MAX;
+Settings.terrain.tile_brush_radius = Settings.terrain[$ "tile_brush_radius"] ?? TERRAIN_DEF_TEX_BRUSH_RADIUS;
+Settings.terrain.tile_brush_index = clamp(Settings.terrain[$ "tile_brush_index"] ?? TERRAIN_DEF_TEX_BRUSH_INDEX, 0, array_length(self.brush_sprites) - 1);
+Settings.terrain.tile_brush_x = Settings.terrain[$ "tile_brush_x"] ?? TERRAIN_DEF_TEX_BRUSH_X;
+Settings.terrain.tile_brush_y = Settings.terrain[$ "tile_brush_y"] ?? TERRAIN_DEF_TEX_BRUSH_Y;
+Settings.terrain.tile_brush_size = Settings.terrain[$ "tile_brush_size"] ?? TERRAIN_DEF_TEX_BRUSH_SIZE;
 // paint settings
-Settings.terrain.paint_brush_min = 1.5;
-Settings.terrain.paint_brush_max = 250;
-Settings.terrain.paint_strength_min = 0.025;
-Settings.terrain.paint_strength_max = 1;
-Settings.terrain.paint_brush_radius = Settings.terrain[$ "paint_brush_radius"] ?? 4;
-Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index"] ?? 7, 0, array_length(self.brush_sprites) - 1);
-Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? 0xffffffff;
-Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? 0.05;
+Settings.terrain.paint_brush_min = TERRAIN_DEF_PAINT_BRUSH_MIN;
+Settings.terrain.paint_brush_max = TERRAIN_DEF_PAINT_BRUSH_MAX;
+Settings.terrain.paint_strength_min = TERRAIN_DEF_PAINT_STRENGTH_MIN;
+Settings.terrain.paint_strength_max = TERRAIN_DEF_PAINT_STRENGTH_MAX;
+Settings.terrain.paint_brush_radius = Settings.terrain[$ "paint_brush_radius"] ?? TERRAIN_DEF_PAINT_BRUSH_RADIUS;
+Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index"] ?? TERRAIN_DEF_PAINT_BRUSH_INDEX, 0, array_length(self.brush_sprites) - 1);
+Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? TERRAIN_DEF_PAINT_COLOR;
+Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? TERRAIN_DEF_PAINT_STREINGTH;
 #endregion
 
 self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
