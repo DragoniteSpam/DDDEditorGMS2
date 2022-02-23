@@ -164,12 +164,37 @@ function ui_init_terrain(mode) {
                 (new EmuRenderSurface(col1x, EMU_AUTO, col_width, 32, function() {
                     draw_clear(c_white);
                     draw_sprite_stretched(Stuff.terrain.gradient_images[Settings.terrain.gradient_image], 0, 0, 0, self.width, self.height);
+                    draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
                 }, emu_null, emu_null, emu_null)),
                 (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Shading gradient:", Settings.terrain.gradient_image, function() {
                     Settings.terrain.gradient_image = self.value;
                 }))
                     .AddOptions(["Smooth", "Four color", "Eight color"])
                     .SetTooltip("The shading gradient. Useful for toon shading."),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Primary light angle: " + string(Settings.terrain.light_primary_angle)))
+                    .SetID("PRIMARY_LIGHT_ANGLE"),
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 360, true, Settings.terrain.light_primary_angle, function() {
+                    Settings.terrain.light_primary_angle = self.value;
+                    self.GetSibling("PRIMARY_LIGHT_ANGLE").text = "Primary light angle: " + string(self.value);
+                }),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Primary strength: " + string(Settings.terrain.light_primary_strength * 100) + "%"))
+                    .SetID("PRIMARY_LIGHT_STR"),
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.light_primary_strength, function() {
+                    Settings.terrain.light_primary_strength = self.value;
+                    self.GetSibling("PRIMARY_LIGHT_STR").text = "Primary strength: " + string(self.value);
+                }),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Secondary light angle: " + string(Settings.terrain.light_secondary_angle)))
+                    .SetID("SECONDARY_LIGHT_ANGLE"),
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 360, true, Settings.terrain.light_secondary_angle, function() {
+                    Settings.terrain.light_secondary_angle = self.value;
+                    self.GetSibling("SECONDARY_LIGHT_ANGLE").text = "Secondary light angle: " + string(self.value);
+                }),
+                (new EmuText(col1x, EMU_AUTO, col_width, 32, "Secondary strength: " + string(Settings.terrain.light_secondary_strength * 100) + "%"))
+                    .SetID("SECONDARY_LIGHT_STR"),
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.light_secondary_strength, function() {
+                    Settings.terrain.light_secondary_strength = self.value;
+                    self.GetSibling("SECONDARY_LIGHT_STR").text = "Secondary strength: " + string(self.value);
+                }),
             ]),
             (new EmuTab("Deform")).AddContent([
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Reset Height", function() {
