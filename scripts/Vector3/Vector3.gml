@@ -62,6 +62,6 @@ function Vector3(x, y, z) constructor {
     
     static Rotate = function(axis, angle) {
         axis = axis.Normalize();
-        return self.Mul(dcos(angle)).Add(axis.Cross(self).Mul(dsin(angle))).Add(axis.Mul(axis.Cross(self)).Mul(1 - dcos(angle))).Normalize();
+        return self.Mul(dcos(angle)).Add(axis.Cross(self).Mul(dsin(angle))).Add(axis.Mul(axis.Dot(self)).Mul(1 - dcos(angle))).Normalize();
     }
 }
