@@ -67,12 +67,14 @@ function TERRAINOPS_BUILD_VBUFF(out) {
 function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale, sprite, format = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     static output = buffer_create(1024, buffer_fixed, 1);
+    
+    var w = Stuff.terrain.width;
+    var h = Stuff.terrain.height;
+    if (chunk_size == 0) chunk_size = min(1024, max(w, h));
     buffer_resize(output, max(buffer_get_size(output), 1024 + 144 * 6 * chunk_size * chunk_size));
     buffer_poke(output, 0, buffer_u32, 0);
     buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
     
-    var w = Stuff.terrain.width;
-    var h = Stuff.terrain.height;
     var fn = filename_change_ext(filename, "");
     var ext = filename_ext(filename);
     var texture_buffer = Stuff.terrain.texture.GetBuffer();
