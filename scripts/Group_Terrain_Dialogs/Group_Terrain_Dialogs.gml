@@ -242,7 +242,7 @@ function dialog_terrain_export() {
     var ew = 256;
     
     var dialog = new EmuDialog(960, 540, "Export Terrain");
-    dialog.x = 560;
+    dialog.x = 400;
     dialog.y = 120;
     dialog.active_shade = 0;
     dialog.contents_interactive = true;
