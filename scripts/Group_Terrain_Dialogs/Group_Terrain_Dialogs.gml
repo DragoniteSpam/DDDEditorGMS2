@@ -61,7 +61,9 @@ function dialog_terrain_mutate() {
         (new EmuButtonImage(352, 32, 256, 256, -1, 0, c_white, 1, true, emu_null))
             .SetID("SPRITE_PREVIEW")
             .SetImageAlignment(fa_left, fa_top)
-            .SetCheckerboard(true),
+            .SetCheckerboard(true)
+            .SetInteractive(false)
+            .SetDisabledColor(c_white),
     ]).AddDefaultCloseButton("Okay", function() {
         debug_timer_start();
         
@@ -559,14 +561,14 @@ function dialog_create_terrain_brush_manager() {
             
             return string_copy(filename_change_ext(filename_name(filename), ""), 1, 32);
         }))
-            .SetInteractive(false)
             .SetID("LOAD"),
         (new EmuButtonImage(col2x, EMU_AUTO, ew, ew, -1, TERRAIN_GEN_SPRITE_INDEX_BRUSH, c_white, 1, true, emu_null))
             .SetID("PREVIEW")
             .SetImageAlignment(fa_left, fa_top)
             .SetAllowShrink(true)
             .SetCheckerboard(true)
-            .SetInteractive(false),
+            .SetInteractive(false)
+            .SetDisabledColor(c_white),
         (new EmuText(col2x, EMU_AUTO, ew, eh, ""))
             .SetID("DEF_NOTICE"),
         #endregion

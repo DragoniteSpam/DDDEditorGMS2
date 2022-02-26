@@ -25,6 +25,11 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
     self._surface = noone;
     self._index = index;
     
+    static SetDisabledColor = function(color) {
+        self.color_disabled = color;
+        return self;
+    };
+    
     static SetAlignment = function(h, v) {
         self.alignment = h;
         self.valignment = v;
