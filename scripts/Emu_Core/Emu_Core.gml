@@ -43,6 +43,16 @@ function EmuCore(x, y, w, h) constructor {
     self._element_spacing_x = 32;
     self._ref_name = "";
     
+    static SetDefaultSpacingX = function(spacing) {
+        self._element_spacing_x = spacing;
+        return self;
+    };
+    
+    static SetDefaultSpacingY = function(spacing) {
+        self._element_spacing_y = spacing;
+        return self;
+    };
+    
     static SetID = function(identifier) {
         identifier = string(identifier);
         if (self.root) {
@@ -328,18 +338,22 @@ function EmuCore(x, y, w, h) constructor {
 function EmuCallback(x, y, w, h, value, callback) : EmuCore(x, y, w, h) constructor {
     static SetCallback = function(callback) {
         self.callback = method(self, callback);
+        return self;
     }
     
     static SetCallbackMiddle = function(callback) {
         self.callback_middle = method(self, callback);
+        return self;
     }
     
     static SetCallbackRight = function(callback) {
         self.callback_right = method(self, callback);
+        return self;
     }
     
     static SetCallbackDouble = function(callback) {
         self.callback_double = method(self, callback);
+        return self;
     }
     
     static SetValue = function(value) {

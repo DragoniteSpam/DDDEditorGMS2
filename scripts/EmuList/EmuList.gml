@@ -57,10 +57,12 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         allow_multi_select = _multi_select;
         auto_multi_select = _auto;
         select_toggle = _toggle;
+        return self;
     }
     
     SetVacantText = function(_text) {
         text_vacant = _text;
+        return self;
     }
     
     AddEntries = function(elements) {
@@ -107,6 +109,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     ClearSelection = function() {
         _selected_entries = { };
         callback();
+        return self;
     }
     
     Select = function(_list_index, _set_index = false) {
