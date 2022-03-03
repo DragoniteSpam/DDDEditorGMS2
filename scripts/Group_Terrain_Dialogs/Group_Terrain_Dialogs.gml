@@ -64,7 +64,7 @@ function dialog_terrain_mutate() {
             .SetCheckerboard(true)
             .SetInteractive(false)
             .SetDisabledColor(c_white),
-    ]).AddDefaultCloseButton("Okay", function() {
+    ]).AddDefaultConfirmCancelButtons("Mutate", function() {
         debug_timer_start();
         
         var amplitude = Stuff.terrain.GetGenerationAmplitude(1);
@@ -72,6 +72,8 @@ function dialog_terrain_mutate() {
         self.root.Dispose();
         
         Stuff.AddStatusMessage("Mutating terrain took " + debug_timer_finish());
+    }, "Close", function() {
+        self.root.Dispose();
     });
 }
 
