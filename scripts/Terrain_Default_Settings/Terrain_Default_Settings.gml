@@ -79,7 +79,7 @@
 #macro TERRAIN_DEF_PAINT_BRUSH_MIN                  1.5
 #macro TERRAIN_DEF_PAINT_BRUSH_MAX                  250
 #macro TERRAIN_DEF_PAINT_STRENGTH_MIN               0.025
-#macro TERRAIN_DEF_PAINT_STRENGTH_MAX               1
+#macro TERRAIN_DEF_PAINT_STRENGTH_MAX               0.15
 #macro TERRAIN_DEF_PAINT_BRUSH_RADIUS               4
 #macro TERRAIN_DEF_PAINT_BRUSH_INDEX                7
 #macro TERRAIN_DEF_PAINT_COLOR                      0xffffffff
