@@ -15,7 +15,6 @@ function dialog_create_export_heightmap() {
                 Stuff.terrain.ExportHeightmap(fn);
                 Stuff.AddStatusMessage("Exporting terrain heightmap took " + debug_timer_finish());
             }
-            self.root.Dispose();
         }))
             .SetTooltip("Save a grayscale image where the brightness of pixels corresponds to the height of the terrain.")
             .SetID("BUFFER"),
