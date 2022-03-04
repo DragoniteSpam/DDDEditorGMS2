@@ -795,7 +795,6 @@
     {"id":{"name":"ui_list_deselect","path":"scripts/ui_list_deselect/ui_list_deselect.yy",},"order":2,},
     {"id":{"name":"ui_list_select","path":"scripts/ui_list_select/ui_list_select.yy",},"order":3,},
     {"id":{"name":"ui_list_is_selected","path":"scripts/ui_list_is_selected/ui_list_is_selected.yy",},"order":4,},
-    {"id":{"name":"shd_terrain_wire","path":"shaders/shd_terrain_wire/shd_terrain_wire.yy",},"order":1,},
     {"id":{"name":"ui_list_selection","path":"scripts/ui_list_selection/ui_list_selection.yy",},"order":5,},
     {"id":{"name":"scribble_font_bake_shader","path":"scripts/scribble_font_bake_shader/scribble_font_bake_shader.yy",},"order":3,},
     {"id":{"name":"ui_init_game_data_refresh","path":"scripts/ui_init_game_data_refresh/ui_init_game_data_refresh.yy",},"order":0,},

@@ -45,6 +45,8 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStrength"), 0);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), CAMERA_ZFAR * 2);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
+    
+    shader_set_uniform_f(shader_get_uniform(shd_ddd, "u_Wireframe"), mode.draw_wireframes);
     #endregion
     
     // so that gmedit stops yelling at me
@@ -68,14 +70,6 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                     var reflect_vbuffer = mesh_data.submeshes[sm_index].reflect_vbuffer;
                     if (mode.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, this_tex);
                     if (mode.draw_reflections && mode.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
-                    if (mode.draw_wireframes) {
-                        shader_set(shd_terrain_wire);
-                        vertex_submit(vbuffer, pr_linelist, -1);
-                        if (mode.draw_reflections && reflect_vbuffer) {
-                            vertex_submit(reflect_vbuffer, pr_linelist, -1);
-                        }
-                        shader_reset();
-                    }
                     
                     if (mode.draw_collision) {
                         shader_set(shd_wireframe);
@@ -99,7 +93,6 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                         }
                         
                         matrix_set(matrix_world, matrix_build_identity());
-                        shader_set(shd_ddd);
                     }
                 }
                 break;
