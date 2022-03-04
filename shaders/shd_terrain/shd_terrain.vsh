@@ -6,6 +6,7 @@ varying vec4 v_WorldPosition;
 varying vec3 v_Barycentric;
 varying vec2 v_Texcoord;
 
+uniform float u_TerrainScale;
 uniform vec2 u_TerrainSizeV;
 uniform vec2 u_TextureTileSize;
 
@@ -16,6 +17,7 @@ varying vec2 v_ShadowTexcoord;
 
 void main() {
     v_WorldPosition = vec4(floor(in_Position.xy), in_Position.z, 1);
+    v_WorldPosition.z *= u_TerrainScale;
     v_FragDistance = length((gm_Matrices[MATRIX_WORLD_VIEW] * v_WorldPosition).xyz);
     
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * v_WorldPosition;
