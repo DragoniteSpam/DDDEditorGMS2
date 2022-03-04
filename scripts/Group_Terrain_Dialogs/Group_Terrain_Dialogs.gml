@@ -303,7 +303,7 @@ function dialog_terrain_export() {
         }))
             .SetInteractive(false)
             .SetTooltip("The angle tolerance of smoothed normals. A higher value means more smoothing. I recommend somethingn between 45 and 75."),
-        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export all faces?", Settings.terrain.export_all, function() {
+        (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Export underwater faces?", Settings.terrain.export_all, function() {
             Settings.terrain.export_all = self.value;
         }))
             .SetTooltip("You can choose to remove triangles where all three vertices are below z = 0."),
