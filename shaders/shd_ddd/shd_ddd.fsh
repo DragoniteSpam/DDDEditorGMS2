@@ -112,21 +112,20 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 }
 
 void main() {
-    if (u_Wireframe == 0.0) {
-        vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
-        vec4 color = v_vColour * baseColor;
-        float sourceAlpha = color.a;
-        
-        CommonLight(color);
-        CommonFog(color);
-        
-        gl_FragColor = vec4(color.rgb, sourceAlpha);
-        if (gl_FragColor.a < ALPHA_REF) discard;
-    } else if (u_Wireframe == 1.0) {
-        gl_FragColor = mix(vec4(1), vec4(0), wireEdgeFactor(v_vBarycentric, u_WireThickness));
-        gl_FragColor.a = ceil(gl_FragColor.a);
-        gl_FragColor.rgb = vec3(gl_FragColor.a);
-        if (gl_FragColor.a < ALPHA_REF) discard;
-        gl_FragColor.a = WIRE_ALPHA;
+    vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
+    vec4 color = v_vColour * baseColor;
+    float sourceAlpha = color.a;
+    
+    CommonLight(color);
+    CommonFog(color);
+    
+    gl_FragColor = vec4(color.rgb, sourceAlpha);
+    
+    if (u_Wireframe == 1.0) {
+        float wire_value = 1.0 - wireEdgeFactor(v_vBarycentric, u_WireThickness);
+        gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(1), wire_value);
+        gl_FragColor.a = mix(gl_FragColor.a, 1.0, wire_value * 2.0);
     }
+    
+    if (gl_FragColor.a < ALPHA_REF) discard;
 }

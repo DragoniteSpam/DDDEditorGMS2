@@ -46,7 +46,12 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), CAMERA_ZFAR * 2);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
     
-    shader_set_uniform_f(shader_get_uniform(shd_ddd, "u_Wireframe"), mode.draw_wireframes);
+    if (mode.draw_wireframes) {
+        wireframe_enable(2);
+    } else {
+        wireframe_disable();
+    }
+    
     #endregion
     
     // so that gmedit stops yelling at me
@@ -72,10 +77,11 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                     if (mode.draw_reflections && mode.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
                     
                     if (mode.draw_collision) {
-                        shader_set(shd_wireframe);
                         for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
+                            shader_set(shd_wireframe);
                             var shape = mesh_data.collision_shapes[i];
                             switch (shape.type) {
+                                
                                 case MeshCollisionShapes.BOX:
                                     matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
                                     vertex_submit(Stuff.graphics.wire_box, pr_linelist, tex_none);
@@ -90,9 +96,10 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                                     vertex_submit(Stuff.graphics.wire_sphere, pr_linelist, tex_none);
                                     break;
                             }
-                        }
                         
-                        matrix_set(matrix_world, matrix_build_identity());
+                            matrix_set(matrix_world, matrix_build_identity());
+                            shader_set(shd_ddd);
+                        }
                     }
                 }
                 break;
