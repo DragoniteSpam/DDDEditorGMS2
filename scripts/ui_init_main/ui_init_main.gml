@@ -429,7 +429,40 @@ function ui_init_main(mode) {
         yy += element.GetHeight() + spacing;
         
         element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, function(button) {
-            dialog_create_new_map(noone);
+            var dialog = new EmuDialog(640, 480, "New Map");
+            
+            var col1x = 32;
+            var col2x = dialog.width / 2 + 32;
+            var element_width = 256;
+            var element_height = 32;
+            
+            dialog.AddContent([
+                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Name:", "Map " + string(array_length(Game.maps) + 1), "The name of the map", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() { }))
+                    .SetID("NAME"),
+                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Width (X):", "160", "The width of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                    .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                    .SetID("X"),
+                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Height (Y):", "160", "The height of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                    .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                    .SetID("Y"),
+                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Depth (Z):", "8", "The depth of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                    .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                    .SetID("Z"),
+                (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Aligned to grid?", true, function() { }))
+                    .SetID("GRID")
+                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Chunk size:", string(Game.meta.grid.chunk_size), "The size of each chunk of the map; chunks outside of the camera's view will not be updated or rendered (although their contents will continue to exist).", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                    .SetRealNumberBounds(6, MAP_AXIS_LIMIT)
+                    .SetID("CHUNK"),
+            ]).AddDefaultConfirmCancelButtons("Create", function() {
+                // automatically pushed onto the list
+                var map = new DataMap(self.GetSibling("NAME").value, "");
+                array_push(Game.maps, map);
+                map.SetSize(real(self.GetSibling("X").value), real(self.GetSibling("Y").value), real(self.GetSibling("Z").value));
+                map.on_grid = self.GetSibling("GRID").value;
+                map.light_ambient_colour = Game.meta.lighting.ambient;
+                map.chunk_size = real(self.GetSibling("CHUNK").value);
+                self.root.Dispose();
+            }, "Cancel", emu_dialog_close_auto);
         }, t_maps);
         element.tooltip = "Add a map. You can have up to " + string(0xffff) + " maps in the game. I seriously doubt anyone will need anywhere near that many.";
         ds_list_add(t_maps.contents, element);
