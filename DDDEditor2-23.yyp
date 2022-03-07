@@ -324,8 +324,6 @@
     {"id":{"name":"dialog_map_data_type_disable","path":"scripts/dialog_map_data_type_disable/dialog_map_data_type_disable.yy",},"order":3,},
     {"id":{"name":"dialog_entity_data_enable_by_type","path":"scripts/dialog_entity_data_enable_by_type/dialog_entity_data_enable_by_type.yy",},"order":4,},
     {"id":{"name":"dialog_map_data_enable_by_type","path":"scripts/dialog_map_data_enable_by_type/dialog_map_data_enable_by_type.yy",},"order":5,},
-    {"id":{"name":"dialog_create_add_custom_node","path":"scripts/dialog_create_add_custom_node/dialog_create_add_custom_node.yy",},"order":0,},
-    {"id":{"name":"dialog_create_add_prefab_node","path":"scripts/dialog_create_add_prefab_node/dialog_create_add_prefab_node.yy",},"order":1,},
     {"id":{"name":"carton_count","path":"scripts/carton_count/carton_count.yy",},"order":2,},
     {"id":{"name":"dialog_create_data_data_select","path":"scripts/dialog_create_data_data_select/dialog_create_data_data_select.yy",},"order":2,},
     {"id":{"name":"dialog_create_data_instance_property_list","path":"scripts/dialog_create_data_instance_property_list/dialog_create_data_instance_property_list.yy",},"order":3,},
