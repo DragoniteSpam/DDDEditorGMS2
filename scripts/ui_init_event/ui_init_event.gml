@@ -69,7 +69,7 @@ function ui_init_event(mode) {
         ])
             .SetID("EVENTS"),
         (new EmuTab("Nodes")).AddContent([
-            (new EmuList(col1x, EMU_AUTO, col_width, col_height, "Event nodes:", col_height, 17, function() {
+            (new EmuList(col1x, EMU_AUTO, col_width, col_height, "Event nodes:", col_height, 20, function() {
                 if (self.GetSelection() + 1) {
                     event_view_node(Stuff.event.active.nodes[self.GetSelection()]);
                 }
@@ -101,14 +101,6 @@ function ui_init_event(mode) {
                 event_create_node(Stuff.event.active, EventNodeTypes.TEXT);
             }))
                 .SetTooltip("Add a text node."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Add Custom Node", function() {
-                dialog_create_add_custom_node(noone);
-            }))
-                .SetTooltip("Add a custom node."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Add Prefab Node", function() {
-                dialog_create_add_prefab_node(noone);
-            }))
-                .SetTooltip("Add a prefab node."),
         ])
             .SetID("NODES"),
     ]);
@@ -437,11 +429,58 @@ function ui_init_event(mode) {
             }))
                 .SetTooltip("Advanced audio controls (using the FMOD audio interface)."),
             (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Custom", function() {
-                dialog_create_add_custom_node(noone);
+                var dialog = new EmuDialog(400, 640, "Add Custom Event Node");
+                
+                dialog.AddContent([
+                    (new EmuList(32, EMU_AUTO, 336, 32, "Available nodes:", 32, 16, function() {
+                        
+                    }))
+                        .SetCallbackDouble(function() {
+                            var selection = self.GetSelection();
+                            if (selection + 1) {
+                                event_create_node(Stuff.event.active, EventNodeTypes.CUSTOM, undefined, undefined, Game.events.custom[selection].GUID);
+                                self.root.Dispose();
+                            }
+                        })
+                        .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                        .SetList(Game.events.custom)
+                        .SetID("LIST")
+                ]).AddDefaultConfirmCancelButtons("Add", function() {
+                    self.GetSibling("LIST").callback_double();
+                    self.root.Dispose();
+                }, "Cancel", emu_dialog_close_auto);
             }))
-                .SetTooltip("Insert a custom-defined event node."),
+                .SetTooltip("Insert a custom event node."),
             (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Prefab", function() {
-                dialog_create_add_prefab_node(noone);
+                var dialog = new EmuDialog(400, 640, "Add Prefab Node");
+                
+                dialog.AddContent([
+                    (new EmuList(32, EMU_AUTO, 336, 32, "Available prefabs:", 32, 16, function() {
+                        
+                    }))
+                        .SetCallbackDouble(function() {
+                            var selection = self.GetSelection();
+                            
+                            if (selection + 1) {
+                                var prefab = Game.events.prefabs[selection];
+                                var instantiated = event_create_node(Stuff.event.active, prefab.type, undefined, undefined, prefab.custom_guid);
+                                // when the node is named normally the $number is appended before the event is added to the
+                                // list; in this case it's already in the list and you're renaming it, so the number you want
+                                // is length minus one
+                                instantiated.Rename(prefab.name + "$" + string(array_length(Stuff.event.active.nodes) - 1));
+                                instantiated.prefab_guid = prefab.GUID;
+                                instantiated.data = array_clone(prefab.data);
+                                instantiated.custom_data = json_parse(json_stringify(prefab.custom_data));
+                                self.root.Dispose();
+                            }
+                        })
+                        .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                        .SetList(Game.events.prefabs)
+                        .SetID("LIST")
+                ]).AddDefaultConfirmCancelButtons("Add", function() {
+                    self.GetSibling("LIST").callback_double();
+                    self.root.Dispose();
+                }, "Cancel", emu_dialog_close_auto);
             }))
                 .SetTooltip("Insert a prefab event node."),
         ])
