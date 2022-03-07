@@ -1102,7 +1102,7 @@
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"readme.md","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.200.0.480",
+    "IDEVersion": "2022.300.0.484",
   },
   "resourceVersion": "1.5",
   "name": "DDDEditor2-23",
