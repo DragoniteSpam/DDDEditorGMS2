@@ -67,6 +67,20 @@ function EmuCore(x, y, w, h) constructor {
         return self;
     };
     
+    static SearchID = function(identifier, recursive = true) {
+        for (var i = 0, n = ds_list_size(self._contents); i < n; i++) {
+            var element = self._contents[| i];
+            if (element.identifier == identifier) {
+                return element;
+            }
+            if (recursive) {
+                var recursive_search_result = element.SearchID(identifier, recursive);
+                if (recursive_search_result) return recursive_search_result;
+            }
+        }
+        return undefined;
+    };
+    
     static SetAlignment = function(h, v) {
         self.alignment = h;
         self.valignment = v;
