@@ -1,216 +1,119 @@
 function ui_init_main(mode) {
+    var hud_width = view_get_wport(view_hud);
+    var hud_height = window_get_height();
+    var col1x = 32;
+    var col2x = hud_width / 2;
+    var element_width = hud_width / 2 - 64;
+    var element_height = 32;
+    
+    var container = new EmuCore(0, 0, hud_width, hud_height);
+    var tab_group = new EmuTabGroup(0, EMU_AUTO, hud_width, hud_height, 3, element_height);
+    
+    #region general
+    tab_group.AddTabs(0, [
+        (new EmuTab("General")).AddContent([
+            (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Selection mode:", Settings.selection.mode, function() {
+                Settings.selection.mode = self.value;
+            }))
+                .AddOptions(["Single", "Rectangle", "Circle"])
+                .SetID("SELECTION MODE"),
+            (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Additive selection?", Settings.selection.addition, function() {
+                Settings.selection.addition = self.value;
+            }))
+                .SetID("SELECTION ADDITIVE"),
+            (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Fill type:", Settings.selection.fill_type, function() {
+                Settings.selection.fill_type = self.value;
+            }))
+                .AddOptions(["Tile", "Animated tile", "Mesh", "Pawn", "Effect", "Mesh autotile", "Zone"])
+                .SetID("SELECTION FILL"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Fill selection...", function() {
+                sa_fill();
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete selection...", function() {
+                sa_delete();
+            })),
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Selection mask:"),
+            (new EmuBitfield(col1x, EMU_AUTO, element_width, element_height, Settings.selection.mask, function() {
+                Settings.selection.mask = self.value;
+            }))
+                .AddOptions([
+                    "Tile", "Mesh", "Pawn", "Effect",
+                    new EmuBitfieldOption("All", 0xf, function() {
+                        self.root.value = self.value;
+                    }, function() { return self.root.value & self.value; }),
+                    new EmuBitfieldOption("None", 0x0, function() {
+                        self.root.value = self.value;
+                    }, function() { return self.root.value == self.value; }),
+                ])
+                .SetOrientation(E_BitfieldOrientations.VERTICAL)
+                .SetFixedSpacing(24)
+                .SetID("SELECTION MASK"),
+            (new EmuCheckbox(col2x, EMU_BASE, element_width, element_height, "3D View", Settings.view.threed, function() {
+                Settings.view.threed = self.value;
+            }))
+                .SetTooltip("View the map in 2D, or in 3D."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Wireframes", Settings.view.wireframe, function() {
+                Settings.view.wireframe = self.value;
+            }))
+                .SetTooltip("Whether or not you want to view the wireframes to go with visual data."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Grid and Markers", Settings.view.grid, function() {
+                Settings.view.grid = self.value;
+            }))
+                .SetTooltip("Whether or not you want to view the cell grid and grid axes."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Texture", Settings.view.texture, function() {
+                Settings.view.texture = self.value;
+            }))
+                .SetTooltip("Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Entities", Settings.view.entities, function() {
+                Settings.view.entities = self.value;
+            }))
+                .SetTooltip("Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Backfaces", Settings.view.backface, function() {
+                Settings.view.backface = self.value;
+            }))
+                .SetTooltip("Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Zones", Settings.view.zones, function() {
+                Settings.view.zones = self.value;
+            }))
+                .SetTooltip("Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Lighting", Settings.view.lighting, function() {
+                Settings.view.lighting = self.value;
+            }))
+                .SetTooltip("See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Gizmos", Settings.view.gizmos, function() {
+                Settings.view.gizmos = self.value;
+            }))
+                .SetTooltip("The helpful frames you see around light sources and other effects and that sort of thing."),
+        ])
+            .SetID("GENERAL"),
+        (new EmuTab(""))
+    ]);
+    #endregion
+    
+    #region inspector
+    tab_group.AddTabs(1, [
+        
+    ]);
+    #endregion
+    
+    #region world
+    tab_group.AddTabs(2, [
+        
+    ]);
+    #endregion
+    
+    tab_group.RequestActivateTab(tab_group.GetTabByID("GENERAL"));
+    
+    container.AddContent(tab_group);
+    
+    return container;
+    
+        
     with (instance_create_depth(0, 0, 0, UIMain)) {
-        
-        #region setup
-        // it would be best if you don't ask to access these later but if you need to these are just
-        // object variables so you can look them up
-        t_general = create_tab("General", 0, id);
-        t_stats = create_tab("Stats", 0, id);
-        t_maps = create_tab("Maps", 0, id);
-        
-        t_p_tile_editor = create_tab("Tile Ed.", 1, id);
-        t_p_tile_animation_editor = create_tab("Tile Anim. Ed.", 1, id);
-        t_p_mesh_editor = create_tab("Mesh Ed.", 1, id);
-        t_p_other_editor = create_tab("Other Ed.", 1, id);
-        
-        t_p_entity = create_tab("Entity", 2, id);
-        t_p_tile = create_tab("Tile", 2, id);
-        t_p_mesh = create_tab("Mesh", 2, id);
-        t_p_pawn = create_tab("Pawn", 2, id);
-        t_p_effect = create_tab("Effect", 2, id);
-        t_p_other = create_tab("Other", 2, id);
-        
-        // the game will crash if you create a tab row with zero width.
-        var tr_general = ds_list_create();
-        ds_list_add(tr_general, t_general, t_stats, t_maps);
-        var tr_editor = ds_list_create();
-        ds_list_add(tr_editor, t_p_tile_editor, t_p_tile_animation_editor, t_p_mesh_editor, t_p_other_editor);
-        var tr_world = ds_list_create();
-        ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_pawn, t_p_effect, t_p_other);
-        
-        ds_list_add(tabs, tr_general, tr_editor, tr_world);
-        
-        active_tab = t_general;
-        #endregion
-        
-        // don't try to make three columns. the math has been hard-coded
-        // for two. everything will go very badly if you try three or more.
-        var element;
-        var spacing = 16;
-        var legal_x = 32;
-        var legal_y = home_row_y + 32;
-        var legal_width = self.GetLegalWidth();
-        var col_width = legal_width / 2 - spacing * 1.5;
-        var col1_x = legal_x + spacing;
-        var col2_x = legal_x + col_width + spacing * 2;
-        
-        var vx1 = col_width / 2;
-        var vy1 = 0;
-        var vx2 = col_width;
-        var vy2 = vy1 + 24;
-        
-        var button_width = 128;
-        
-        #region tab: general
-        var yy = legal_y + spacing;
-        
-        element = create_radio_array(col1_x, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Settings.selection.mode, t_general);
-        create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_checkbox(col1_x, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Settings.selection.addition, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Settings.selection.fill_type, t_general);
-        create_radio_array_options(element, ["Tile", "Animated Tile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(col1_x, yy, "Fill Selection (Space)", col_width, element_height, fa_center, uimu_selection_fill, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Delete Selection (Delete)", col_width, element_height, fa_center, uimu_selection_delete, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        var s = 16;
-        
-        element = (new EmuBitfield(col1_x, yy, col_width, element_height, Settings.selection.mask, function() {
-            Settings.selection.mask = self.value;
-        }))
-        .SetOrientation(E_BitfieldOrientations.VERTICAL)
-        .SetFixedSpacing(element_height)
-        .AddOptions(["Tile", "Mesh", "Pawn", "Effect", "All", "None"]);
-        
-        element._contents[| 0].SetEval(function() {
-            return Settings.selection.mask & 0x02;
-        });
-        element._contents[| 0].SetCallback(function() {
-            Settings.selection.mask ^= 0x02;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 1].SetEval(function() {
-            return Settings.selection.mask & 0x08;
-        });
-        element._contents[| 1].SetCallback(function() {
-            Settings.selection.mask ^= 0x08;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 2].SetEval(function() {
-            return Settings.selection.mask & 0x10;
-        });
-        element._contents[| 2].SetCallback(function() {
-            Settings.selection.mask ^= 0x10;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 3].SetEval(function() {
-            return Settings.selection.mask & 0x20;
-        });
-        element._contents[| 3].SetCallback(function() {
-            Settings.selection.mask ^= 0x20;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 4].SetEval(function() {
-            return Settings.selection.mask == 0xffffffff;
-        });
-        element._contents[| 4].SetCallback(function() {
-            Settings.selection.mask = 0xffffffff;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 5].SetEval(function() {
-            return Settings.selection.mask == 0;
-        });
-        element._contents[| 5].SetCallback(function() {
-            Settings.selection.mask = 0;
-            self.root.value = Settings.selection.mask;
-        });
-        
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
         // second column
         
         yy = legal_y + spacing;
 
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "3D View", Settings.view.threed, function() {
-            Settings.view.threed = self.value;
-        });
-        element.tooltip = "View the map in 2D, or in 3D.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Wireframes", Settings.view.wireframe, function() {
-            Settings.view.wireframe = self.value;
-        });
-        element.tooltip = "Whether or not you want to view the wireframes to go with visual data.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Grid and Markers", Settings.view.grid, function() {
-            Settings.view.grid = self.value;
-        });
-        element.tooltip = "Whether or not you want to view the cell grid and grid axes.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Texture", Settings.view.texture, function() {
-            Settings.view.texture = self.value;
-        });
-        element.tooltip = "Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Entities", Settings.view.entities, function() {
-            Settings.view.entities = self.value;
-        });
-        element.tooltip = "Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Backfaces", Settings.view.backface, function() {
-            Settings.view.backface = self.value;
-        });
-        element.tooltip = "Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Zones", Settings.view.zones, function() {
-            Settings.view.zones = self.value;
-        });
-        element.tooltip = "Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Lighting", Settings.view.lighting, function() {
-            Settings.view.lighting = self.value;
-        });
-        element.tooltip = "See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Gizmos", Settings.view.gizmos, function() {
-            Settings.view.gizmos = self.value;
-        });
-        element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
-        t_general.AddContent(element);
-        
         yy += element.GetHeight() + spacing;
         #endregion
         
