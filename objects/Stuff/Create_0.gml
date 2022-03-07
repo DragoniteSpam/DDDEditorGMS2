@@ -56,6 +56,7 @@ files_dropped = [];
 #region user settings
 save_name = "game";
 
+all_projects = { projects: [] };
 try {
     all_projects = json_parse(file_get_contents("projects.json"));
 } catch (e) {
@@ -294,5 +295,5 @@ switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
 }
 
 if (PROJECT_MENU_ENABLED) {
-    dialog_create_project_list(noone);
+    dialog_create_project_list();
 }

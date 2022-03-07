@@ -1,90 +1,18 @@
-function dialog_create_project_list(root) {
-    var dw = 640;
-    var dh = 512;
+function dialog_create_project_list() {
+    var dialog = new EmuDialog(640, 512, "Projects");
+    dialog.flags |= DialogFlags.NO_CLOSE_BUTTON;
+    dialog.contents_interactive = true;
     
-    var dg = dialog_create(dw, dh, "Open Project", dialog_default, dialog_destroy, root);
-    dg.flags |= DialogFlags.NO_CLOSE_BUTTON;
-    
-    var columns = 2;
-    var spacing = 16;
-    var ew = dw / columns - spacing * 2;
-    var eh = 24;
-    
-    var c2 = dw / columns;
-    
-    var vx1 = 0;
-    var vy1 = 0;
-    var vx2 = ew;
-    var vy2 = eh;
-    
-    var b_width = 128;
-    var b_height = 32;
-    
-    var yy = 64;
-    var yy_base = yy;
-    var project_list = Stuff.all_projects.projects;
-    
-    var f_project_load = function(button) {
-        var selected_project = ui_list_selection(button.root.el_list);
-        if (selected_project + 1) {
-            var project = Stuff.all_projects.projects[selected_project];
-            if (project.failed) {
-                emu_dialog_notice("Unable to load the project: " + project.name);
-            }
-            dialog_destroy();
-            project_load(project.id);
-        }
-    };
-    
-    var el_list = create_list(16, yy, "Recent Projects", "<no projects>", ew, eh, 10, function(list) {
-        var selection = ui_list_selection(list);
-        if (selection + 1) {
-            var project = Stuff.all_projects.projects[selection];
-            if (project.failed) {
-                list.root.el_summary_name.text = "Name: " + project.name;
-                list.root.el_summary_summary.text = "Summary: [c_red]failed to load";
-                list.root.el_summary_author.text = "Author:";
-                list.root.el_summary_timestamp_date.text = "Date Modified:";
-                list.root.el_summary_timestamp_time.text = "Time Modified:";
-            } else {
-                if (project.legacy) {
-                    list.root.el_summary_name.text = "Name: " + project.name;
-                    list.root.el_summary_summary.text = "Summary: (legacy)";
-                    list.root.el_summary_author.text = "Author: (legacy)";
-                    list.root.el_summary_timestamp_date.text = "Date Modified: (legacy)";
-                    list.root.el_summary_timestamp_time.text = "Time Modified: (legacy)";
-                } else {
-                    list.root.el_summary_name.text = "Name: " + project.name;
-                    list.root.el_summary_summary.text = "Summary: " + project.summary;
-                    list.root.el_summary_author.text = "Author: " + project.author;
-                    list.root.el_summary_timestamp_date.text = "Date Modified: " + project.timestamp_major;
-                    list.root.el_summary_timestamp_time.text = "Time Modified: " + project.timestamp_minor;
-                }
-            }
-        } else {
-            list.root.el_summary_name.text = "";
-            list.root.el_summary_summary.text = "";
-            list.root.el_summary_author.text = "";
-            list.root.el_summary_timestamp_date.text = "";
-            list.root.el_summary_timestamp_time.text = "";
-        }
-    }, false, dg);
-    for (var i = 0, n = array_length(project_list); i < n; i++) {
-        if (is_string(project_list[i])) {
-            project_list[@ i] = { name: project_list[i], legacy: true, id: "", source: "", };
-        }
-        ds_list_add(el_list.entries, project_list[i].name);
-    }
-    el_list.tooltip = "Here's a list of projects you've worked on recently.";
-    el_list.entries_are = ListEntries.STRINGS;
-    el_list.ondoubleclick = f_project_load;
-    dg.el_list = el_list;
+    var col1x = 32;
+    var col2x = dialog.width / 2 + 32;
+    var element_width = 256;
+    var element_height = 32;
     
     #region metadata
-    var n_projects = array_length(project_list);
+    var n_projects = array_length(Stuff.all_projects.projects);
     
-    for (var i = 0; i < n_projects; i++) {
-        var project = project_list[i];
+    for (var i = 0, n = array_length(Stuff.all_projects.projects); i < n; i++) {
+        var project = Stuff.all_projects.projects[i];
         try {
             project.failed = false;
             if (!project.legacy) {
@@ -96,87 +24,94 @@ function dialog_create_project_list(root) {
                 project.timestamp_minor = string(yaml.date.hour) + ":" + string_pad(yaml.date.minute, "0", 2) + ":" + string_pad(yaml.date.second, "0", 2);
             }
         } catch (e) {
+            project.name = "(" + project.name + ")";
             project.failed = true;
-            el_list.entries[| i] = "(" + el_list.entries[| i] + ")";
         }
     }
     #endregion
     
-    yy += el_list.GetHeight() + spacing;
-    
-    var el_load = create_button(16, yy, "Load", ew, eh, fa_center, f_project_load, dg);
-    el_load.tooltip = "Alternatively, double-click on the entry in the list.";
-    yy += el_load.height + spacing;
-    var el_remove = create_button(16, yy, "Delete", ew, eh, fa_center, function(button) {
-        var selected_project = ui_list_selection(button.root.el_list);
-        if (selected_project + 1) {
-            var project = Stuff.all_projects.projects[selected_project];
-            var dialog = emu_dialog_confirm(button, "Do you want to remove " + project.name + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
-                var project = Stuff.all_projects.projects[self.root.project];
-                array_delete(Stuff.all_projects.projects, self.root.project, 1);
-                ui_list_deselect(self.root.root.root.el_list);
-                ds_list_delete(self.root.root.root.el_list.entries, self.root.project);
-                directory_destroy(PATH_PROJECTS + project.name);
-                buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
-                self.root.Dispose();
-            });
-            dialog.project = selected_project;
-        }
-    }, dg);
-    el_remove.tooltip = "Deletes the project from this list. If you still have it saved on your computer it will not be deleted, but you will need to use Open Other if you want to edit it again.";
-    yy += el_remove.height + spacing;
-    var el_other = create_button(16, yy, "Open Other", ew, eh, fa_center, function(button) {
-        emu_dialog_notice("I'm not sure what I want to do with this - I'll probably add a Compress Project Archive option at some point");
-    }, dg);
-    el_other.tooltip = "Open a .dddd game data file somehwere on your computer. The original will not be modified until you save over it; a copy will be saved to the editor's local storage.";
-    yy += el_other.height + spacing;
-    
-    yy = yy_base;
-    
-    var el_summary = create_text(c2 + 16, yy, "Summary", ew, eh, fa_left, ew, dg);
-    el_summary.color = c_blue;
-    yy += el_summary.height + spacing;
-    
-    var el_summary_name = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
-    dg.el_summary_name = el_summary_name;
-    yy += el_summary_name.height + spacing;
-    
-    var el_summary_timestamp_date = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
-    dg.el_summary_timestamp_date = el_summary_timestamp_date;
-    yy += el_summary_timestamp_date.height + spacing;
-    
-    var el_summary_timestamp_time = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
-    dg.el_summary_timestamp_time = el_summary_timestamp_time;
-    yy += el_summary_timestamp_time.height + spacing;
-    
-    var el_summary_author = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
-    dg.el_summary_author = el_summary_author;
-    yy += el_summary_author.height + spacing;
-    
-    var el_summary_summary = create_text(c2 + 16, yy - 8, "", ew, eh, fa_left, ew, dg);
-    el_summary_summary.valignment = fa_top;
-    dg.el_summary_summary = el_summary_summary;
-    yy += el_summary_summary.height + spacing;
-    
-    var el_new = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, function(button) {
-        dialog_destroy();
-        Game.meta.start.map = Stuff.map.active_map.GUID;
-    }, dg);
-    el_new.tooltip = "New maps will be created with a default white directional light with a vector of (-1, -1, -1).";
-    
-    ds_list_add(dg.contents,
-        el_list,
-        el_load,
-        el_remove,
-        el_other,
-        el_summary,
-        el_summary_name,
-        el_summary_summary,
-        el_summary_author,
-        el_summary_timestamp_date,
-        el_summary_timestamp_time,
-        el_new
-    );
-    
-    return dg;
+    dialog.AddContent([
+        (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Projects", element_height, 10, function() {
+            if (!self.GetSibling("PROJECT NAME")) return;
+            var selection = self.GetSelection();
+            
+            if (selection + 1) {
+                var project = Stuff.all_projects.projects[selection];
+                if (project.failed) {
+                    self.GetSibling("PROJECT NAME").text = "Name: " + project.name;
+                    self.GetSibling("PROJECT SUMMARY").text = "Summary: [c_red]failed to load";
+                    self.GetSibling("PROJECT AUTHOR").text = "Author:";
+                    self.GetSibling("PROJECT DATE").text = "Date Modified:";
+                    self.GetSibling("PROJECT TIME").text = "Time Modified:";
+                } else {
+                    if (project.legacy) {
+                        self.GetSibling("PROJECT NAME").text = "Name: " + project.name;
+                        self.GetSibling("PROJECT SUMMARY").text = "Summary: (legacy)";
+                        self.GetSibling("PROJECT AUTHOR").text = "Author: (legacy)";
+                        self.GetSibling("PROJECT DATE").text = "Date Modified: (legacy)";
+                        self.GetSibling("PROJECT TIME").text = "Time Modified: (legacy)";
+                    } else {
+                        self.GetSibling("PROJECT NAME").text = "Name: " + project.name;
+                        self.GetSibling("PROJECT SUMMARY").text = "Summary: " + project.summary;
+                        self.GetSibling("PROJECT AUTHOR").text = "Author: " + project.author;
+                        self.GetSibling("PROJECT DATE").text = "Date Modified: " + project.timestamp_major;
+                        self.GetSibling("PROJECT TIME").text = "Time Modified: " + project.timestamp_minor;
+                    }
+                }
+            } else {
+                self.GetSibling("PROJECT NAME").text = "";
+                self.GetSibling("PROJECT SUMMARY").text = "";
+                self.GetSibling("PROJECT AUTHOR").text = "";
+                self.GetSibling("PROJECT DATE").text = "";
+                self.GetSibling("PROJECT TIME").text = "";
+            }
+        }))
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetList(Stuff.all_projects.projects)
+            .SetCallbackDouble(function() {
+                var selection = self.GetSelection();
+                if (selection + 1) {
+                    var project = Stuff.all_projects.projects[selection];
+                    if (project.failed) {
+                        emu_dialog_notice("Unable to load the project: " + project.name);
+                    }
+                    project_load(project.id);
+                    self.root.Dispose();
+                }
+            })
+            .SetID("LIST"),
+        (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete Project", function() {
+            var selected_project = self.GetSibling("LIST").GetSelection();
+            if (selected_project + 1) {
+                var project = Stuff.all_projects.projects[selected_project];
+                var dialog = emu_dialog_confirm(self, "Do you want to remove " + project.name + "?", function() {
+                    var project = Stuff.all_projects.projects[self.root.project];
+                    array_delete(Stuff.all_projects.projects, self.root.project, 1);
+                    self.root.root.GetSibling("LIST").ClearSelection();
+                    directory_destroy(PATH_PROJECTS + project.name);
+                    buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
+                    self.root.Dispose();
+                });
+                dialog.project = selected_project;
+            }
+        })),
+        (new EmuText(col2x, EMU_BASE, element_width, element_height, ""))
+            .SetAlignment(fa_left, fa_top)
+            .SetID("PROJECT NAME"),
+        (new EmuText(col2x, EMU_AUTO, element_width, element_height, ""))
+            .SetAlignment(fa_left, fa_top)
+            .SetID("PROJECT AUTHOR"),
+        (new EmuText(col2x, EMU_AUTO, element_width, element_height, ""))
+            .SetAlignment(fa_left, fa_top)
+            .SetID("PROJECT DATE"),
+        (new EmuText(col2x, EMU_AUTO, element_width, element_height, ""))
+            .SetAlignment(fa_left, fa_top)
+            .SetID("PROJECT TIME"),
+        (new EmuText(col2x, EMU_AUTO, element_width, element_height * 10, ""))
+            .SetAlignment(fa_left, fa_top)
+            .SetID("PROJECT SUMMARY"),
+    ])
+        .AddDefaultConfirmCancelButtons("Open", function() {
+            self.GetSibling("LIST").callback_double();
+        }, "Create New", emu_dialog_close_auto);
 }
