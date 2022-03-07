@@ -7,11 +7,12 @@ function ui_init_main(mode) {
     var element_height = 32;
     
     var container = new EmuCore(0, 0, hud_width, hud_height);
-    var tab_group = new EmuTabGroup(0, EMU_AUTO, hud_width, hud_height, 3, element_height);
+    var tab_group = new EmuTabGroup(0, EMU_AUTO, hud_width, hud_height, 3, element_height - 4);
     
     #region general
     tab_group.AddTabs(0, [
         (new EmuTab("General")).AddContent([
+            #region column 1
             (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Selection mode:", Settings.selection.mode, function() {
                 Settings.selection.mode = self.value;
             }))
@@ -32,7 +33,7 @@ function ui_init_main(mode) {
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete selection...", function() {
                 sa_delete();
             })),
-            new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Selection mask:"),
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "Selection mask:"),
             (new EmuBitfield(col1x, EMU_AUTO, element_width, element_height, Settings.selection.mask, function() {
                 Settings.selection.mask = self.value;
             }))
@@ -48,7 +49,10 @@ function ui_init_main(mode) {
                 .SetOrientation(E_BitfieldOrientations.VERTICAL)
                 .SetFixedSpacing(24)
                 .SetID("SELECTION MASK"),
-            (new EmuCheckbox(col2x, EMU_BASE, element_width, element_height, "3D View", Settings.view.threed, function() {
+            #endregion
+            #region column 2
+            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Viewer settings:"),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "3D View", Settings.view.threed, function() {
                 Settings.view.threed = self.value;
             }))
                 .SetTooltip("View the map in 2D, or in 3D."),
@@ -84,6 +88,7 @@ function ui_init_main(mode) {
                 Settings.view.gizmos = self.value;
             }))
                 .SetTooltip("The helpful frames you see around light sources and other effects and that sort of thing."),
+            #endregion
         ])
             .SetID("GENERAL"),
         (new EmuTab(""))
