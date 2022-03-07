@@ -16,6 +16,16 @@ function EmuTabGroup(x, y, w, h, rows, row_height) : EmuCore(x, y, w, h) constru
     
     self._override_root_check = true;
     
+    static GetTabByID = function(id) {
+        for (var i = 0, n = ds_list_size(self._contents); i < n; i++) {
+            var group = self._contents[| i];
+            for (var j = 0, n2 = ds_list_size(group._contents); j < n2; j++) {
+                if (group._contents[| j].identifier == id) return group._contents[| j];
+            }
+        }
+        return undefined;
+    };
+    
     AddTabs = function(row, tabs) {
         processAdvancement();
         
@@ -37,7 +47,10 @@ function EmuTabGroup(x, y, w, h, rows, row_height) : EmuCore(x, y, w, h) constru
                 RequestActivateTab(_tab);
             }
         }
-        arrangeRow(row);
+        
+        self.arrangeRow(row);
+        self.setPendingIDs();
+        
         return self;
     }
     
