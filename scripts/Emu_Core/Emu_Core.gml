@@ -11,6 +11,8 @@ function EmuCore(x, y, w, h) constructor {
     /// @ignore
     self.identifier = "";
     /// @ignore
+    self.identifier_pending = false;
+    /// @ignore
     self.child_ids = { };
     
     self.enabled = true;
@@ -62,6 +64,8 @@ function EmuCore(x, y, w, h) constructor {
             if (identifier != "") {
                 self.root.child_ids[$ identifier] = self;
             }
+        } else {
+            self.identifier_pending = true;
         }
         self.identifier = identifier;
         return self;
@@ -79,6 +83,18 @@ function EmuCore(x, y, w, h) constructor {
             }
         }
         return undefined;
+    };
+    
+    /// @ignore
+    static setPendingIDs = function() {
+        for (var i = 0, n = ds_list_size(self._contents); i < n; i++) {
+            var element = self._contents[| i];
+            if (element.identifier_pending) {
+                element.SetID(element.identifier);
+                element.setPendingIDs();
+                element.identifier_pending = false;
+            }
+        }
     };
     
     static SetAlignment = function(h, v) {
@@ -142,6 +158,7 @@ function EmuCore(x, y, w, h) constructor {
                 self.child_ids[$ thing.identifier] = thing;
             }
         }
+        self.setPendingIDs();
         return self;
     };
     
