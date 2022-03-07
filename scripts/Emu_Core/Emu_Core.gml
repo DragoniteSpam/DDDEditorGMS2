@@ -139,6 +139,13 @@ function EmuCore(x, y, w, h) constructor {
                 } else {
                     thing.y = self._element_spacing_y;
                 }
+            } else if (thing.y == EMU_AUTO_NO_SPACING) {
+                var top = self.GetTop();
+                if (top) {
+                    thing.y = top.y + top.GetHeight();
+                } else {
+                    thing.y = self._element_spacing_y;
+                }
             } else if (thing.y == EMU_INLINE) {
                 var top = self.GetTop();
                 if (top) {

@@ -279,167 +279,168 @@ function ui_init_event(mode) {
         ])
             .SetID("CUSTOM"),
         (new EmuTab("Actions A")).AddContent([
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Entrypoint", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]General"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Entrypoint", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.ENTRYPOINT);
             }))
                 .SetTooltip("A cutscene entrypoint. Entrypoints are for marking the beginning of cutscene sequences."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Message", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Message", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.TEXT);
             }))
                 .SetTooltip("Display text to the user. You may wish to format the text using Scribble."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Show Choices", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Show Choices", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SHOW_CHOICES);
             }))
                 .SetTooltip("Show a list of choices. The player may select one, or optionally cancel. Each choice may have its own outbound node"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Input Text", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Input Text", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.INPUT_TEXT);
             }))
                 .SetTooltip("Prompt the player to enter text via the keyboard."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Show Scrolling Text", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Show Scrolling Text", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SHOW_SCROLLING_TEXT);
             }))
                 .SetTooltip("Show a text crawl. I don't expect anyone to use this, but I wanted to include it anyway because it's part of the RPG Maker event library."),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Data"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Control Switches", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Data"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Switches", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_VARIABLES);
             }))
                 .SetTooltip("Set the value of one of the game's global variables. Useful if you need a quick-and-easy way to control game data."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Control Switches", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Switches", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SWITCHES);
             }))
                 .SetTooltip("Set the value of one of the game's global boolean variables. Useful if you need a quick-and-easy way to enable or disable things."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Control Self Variable", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Self Variable", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SELF_VARIABLES);
             }))
                 .SetTooltip("Set the value of an entity's instance boolean variables."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Control Self Switch", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Self Switch", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SELF_SWITCHES);
             }))
                 .SetTooltip("Set the value of an entity's instance variables."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Control Timer", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Timer", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_TIME);
             }))
                 .SetTooltip("Control a timer. The timer may count down until zero, or count up like a stopwatch."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Deactivate Event Page", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Deactivate Event Page", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.DEACTIVATE_EVENT);
             }))
                 .SetTooltip("Disable the calling event page (if the cutscene sequence was initiated by one) so that it will no longer activate."),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Flow Control"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Conditional Branch", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Flow Control"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Conditional Branch", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CONDITIONAL);
             }))
                 .SetTooltip("Continue to a different outbound node based on some criteria."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Comment", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Comment", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.COMMENT);
             }))
                 .SetTooltip("Show a comment on the event graph. Comments have no affect on game logic and are only there for the developer's benefit."),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Timing"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Wait", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Timing"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Wait", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.WAIT);
             }))
                 .SetTooltip("Wait for a specified amount of time, and then continue."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Schedule Event", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Schedule Event", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SCHEDULE_EVENT);
             }))
                 .SetTooltip("Schedule another event to happen after a certain amount of time. (The current event will not be interrupted.)"),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Movement"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Transfer Player", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Movement"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Transfer Player", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.TRANSFER_PLAYER);
             }))
                 .SetTooltip("Move the player to another location on the map (or on a different map)."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Set Entity Location", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Entity Location", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_LOCATION);
             }))
                 .SetTooltip("Move an entity who isn't the player to another location on the map."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Scroll Map", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Scroll Map", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SCROLL_MAP);
             }))
                 .SetTooltip("Move the game camera to focus on another area of the map."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Set Movement Route", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Movement Route", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SET_MOVEMENT_ROUTE);
             }))
                 .SetTooltip("Define a movement sequence for the player or another entity on the map."),
         ])
             .SetID("ACTIONS A"),
         (new EmuTab("Actions B")).AddContent([
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Entity"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Set Entity Sprite", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Entity"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Entity Sprite", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_SPRITE);
             }))
                 .SetTooltip("Change a Pawn entity's sprite."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Set Entity Mesh", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Entity Mesh", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_MESH);
             }))
                 .SetTooltip("Change a Mesh entity's mesh."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Set Mesh Animation Data", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Mesh Animation Data", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SET_MESH_ANIMATION);
             }))
                 .SetTooltip("Change a Mesh entity's animation data."),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Screen"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Tint Screen", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Screen"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Tint Screen", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.TINT_SCREEN);
             }))
                 .SetTooltip("Change the tinting applied to the screen."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Shake Screen", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Shake Screen", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SHAKE_SCREEN);
             }))
                 .SetTooltip("Cause the game camera to shake."),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Audio"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Play BGM", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Audio"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Play BGM", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.PLAY_BGM);
             }))
                 .SetTooltip("Set a piece of background music to play. Music already playing will be suspended."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Fade/Stop BGM", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Fade/Stop BGM", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.FADE_BGM);
             }))
                 .SetTooltip("Set a piece of background music to change its volume over time, and/or stop."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Resume Automatic BGM", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Resume Automatic BGM", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.RESUME_BGM);
             }))
                 .SetTooltip("Resume the suspended background music. Other music will be stopped."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Play Effect", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Play Effect", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.PLAY_SE);
             }))
                 .SetTooltip("Play a sound effect."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Stop All Effects", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Stop All Effects", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.STOP_SE);
             }))
                 .SetTooltip("Cancel all currently playing sound effects."),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Scene and Map"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Return to Title Screen", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Scene and Map"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Return to Title Screen", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.RETURN_TO_TITLE);
             }))
                 .SetTooltip("Exit the game to the title screen."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Change Map Display Name", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Display Name", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_DISPLAY_NAME);
             }))
                 .SetTooltip("Change the name of the map, as visible to the player. (This will not affect the map's internal name.)"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Change Map Tileset", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Tileset", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_TILESET);
             }))
                 .SetTooltip("Change the tileset used by the map. This may cause a temporary hiccup if large images need to be loaded or unloaded from memory."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Change Map Battle Scene", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Battle Scene", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_BATTLE_SCENE);
             }))
                 .SetTooltip("Change the battle scene associated with the map."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Change Map Skybox", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Skybox", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_SKYBOX);
             }))
                 .SetTooltip("Change the skybox used by the map."),
-            new EmuText(col1x, EMU_AUTO, col_width, col_height, "[c_aqua]Advanced"),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Script", function() {
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Advanced"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Script", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.SCRIPT);
             }))
                 .SetTooltip("Invoke a piece of custom code. Errors in the code code may cause unpredictable behavior, or crash the game; use carefully."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Audio Controls", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Audio Controls", function() {
                 event_create_node(Stuff.event.active, EventNodeTypes.AUDIO_CONTORLS);
             }))
                 .SetTooltip("Advanced audio controls (using the FMOD audio interface)."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Custom", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Custom", function() {
                 dialog_create_add_custom_node(noone);
             }))
                 .SetTooltip("Insert a custom-defined event node."),
-            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Prefab", function() {
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Prefab", function() {
                 dialog_create_add_prefab_node(noone);
             }))
                 .SetTooltip("Insert a prefab event node."),
