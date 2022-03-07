@@ -277,7 +277,7 @@ Game = new (function() constructor {
         ]);
         /* */ self.default_event_nodes[EventNodeTypes.CHANGE_MAP_TILESET] = new EventNodePeristent("NotYetImplemented", []);
         /* */ self.default_event_nodes[EventNodeTypes.CHANGE_MAP_BATTLE_SCENE] = new EventNodePeristent("NotYetImplemented", []);
-        /* */ self.default_event_nodes[EventNodeTypes.CHANGE_MAP_PARALLAX] = new EventNodePeristent("NotYetImplemented", []);
+        /* */ self.default_event_nodes[EventNodeTypes.CHANGE_MAP_SKYBOX] = new EventNodePeristent("NotYetImplemented", []);
         self.default_event_nodes[EventNodeTypes.SCRIPT] = new EventNodePeristent("Script", [
             new EventNodeProperty("Code", DataTypes.CODE, 0, 1, true, "")
         ]);
@@ -311,7 +311,7 @@ Game = new (function() constructor {
             TRANSFER_PLAYER, SET_ENTITY_LOCATION, SCROLL_MAP, SET_MOVEMENT_ROUTE,
             TINT_SCREEN, FLASH_SCREEN, SHAKE_SCREEN,
             PLAY_BGM, FADE_BGM, RESUME_BGM, PLAY_SE, STOP_SE,
-            RETURN_TO_TITLE, CHANGE_MAP_DISPLAY_NAME, CHANGE_MAP_TILESET, CHANGE_MAP_BATTLE_SCENE, CHANGE_MAP_PARALLAX,
+            RETURN_TO_TITLE, CHANGE_MAP_DISPLAY_NAME, CHANGE_MAP_TILESET, CHANGE_MAP_BATTLE_SCENE, CHANGE_MAP_SKYBOX,
             SCRIPT, AUDIO_CONTORLS, DEACTIVATE_EVENT, SET_MESH_ANIMATION, SCHEDULE_EVENT, ADVANCED3, ADVANCED4, ADVANCED5, ADVANCED6, ADVANCED7,
             // i forgot to put this one with the other text nodes
             SHOW_CHOICES, SET_ENTITY_SPRITE, SET_ENTITY_MESH,
