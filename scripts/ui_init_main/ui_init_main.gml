@@ -41,7 +41,7 @@ function ui_init_main(mode) {
                     "Tile", "Mesh", "Pawn", "Effect",
                     new EmuBitfieldOption("All", 0xf, function() {
                         self.root.value = self.value;
-                    }, function() { return self.root.value & self.value; }),
+                    }, function() { return self.root.value == self.value; }),
                     new EmuBitfieldOption("None", 0x0, function() {
                         self.root.value = self.value;
                     }, function() { return self.root.value == self.value; }),
