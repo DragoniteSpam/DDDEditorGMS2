@@ -91,7 +91,86 @@ function ui_init_main(mode) {
             #endregion
         ])
             .SetID("GENERAL"),
-        (new EmuTab(""))
+        (new EmuTab("Stats")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "All Entities:", element_height, 22, function() {
+                selection_clear();
+                
+                Settings.selection.mask = 0;
+                self.ForEachSelection(function(entity) {
+                    Settings.selection.mask |= entity.etype_flags;
+                    var selection = new SelectionSingle(entity.xx, entity.yy, entity.zz);
+                });
+                
+                sa_process_selection();
+            }))
+                .SetUpdate(function() {
+                    self.list = Stuff.map.active_map.contents.all_entities;
+                })
+                .SetVacantText("no entities in this map")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetID("ALL ENTITIES"),
+            (new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Entity Stats")),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Entities:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Entities:  " + string(ds_list_size(Stuff.map.active_map.contents.all_entities));
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Static:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Static:  N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Solid:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Solid:  N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Tiles:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Tiles:  N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Autotiles:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Autotiles:  N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Meshes:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Meshes:  N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Pawns:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Pawns:  N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Effects:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    return "    Effects:  N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Vertex Data")),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Triangles:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
+                    return "    Triangles:  " + string(size / VERTEX_SIZE / 3);
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Vertices:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
+                    return "    Vertices:  " + string(size / VERTEX_SIZE);
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Storage:"))
+                .SetDefaultSpacingY(8)
+                .SetTextUpdate(function() {
+                    var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
+                    return "    Storage:  " + ((size < 1024) ? (string(size) + " bytes") : (string(size >> 10) + " kilobytes"));
+                }),
+        ])
+            .SetID("STATS")
     ]);
     #endregion
     
@@ -115,169 +194,6 @@ function ui_init_main(mode) {
     
         
     with (instance_create_depth(0, 0, 0, UIMain)) {
-        // second column
-        
-        yy = legal_y + spacing;
-
-        yy += element.GetHeight() + spacing;
-        #endregion
-        
-        #region tab: stats
-        yy = legal_y + spacing;
-        
-        // if you really want the color-coded entities, maybe make the entry color feature a script instead 
-        // of just a list of colors - later, though
-        element_all_entities = create_list(col1_x, yy, "All Entities", "<No entities>", col_width, element_height, 28, uivc_list_all_entities, true, t_stats, noone);
-        element_all_entities.render = ui_render_list_all_entities;
-        element_all_entities.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_stats.contents, element_all_entities);
-        
-        // second column
-        
-        yy = legal_y + spacing;
-        
-        element = create_text(col2_x, yy, "Entity Stats", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        var stat_x = col2_x + col_width * 3 / 4;
-        
-        element = create_text(col2_x, yy, "Total Entities:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(ds_list_size(Stuff.map.active_map.contents.all_entities));
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "     Static:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population_static);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Solid:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "     Tiles:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Autotiles:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE_ANIMATED]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Meshes:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_MESH]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Pawns:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_PAWN]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Effects:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_EFFECT]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Frozen terrain data:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing / 2;
-        
-        element = create_text(col2_x, yy, "     - triangles", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE / 3) : "-") + " triangles)";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     - vertices", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE) : "-") + " vertices)";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    " + ((size > 1) ? string_comma(ceil(size >> 10)) : "-") + " kb";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    (" + ((size > 1) ? string(size) : "-") + " bytes)";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing / 2;
-        #endregion
-        
         #region tab: map
         yy = legal_y + spacing;
         
