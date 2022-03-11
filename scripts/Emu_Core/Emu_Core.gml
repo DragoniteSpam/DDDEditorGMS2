@@ -22,6 +22,8 @@ function EmuCore(x, y, w, h) constructor {
     self.tooltip = "";               // not used by all element types
     self.color = EMU_COLOR_DEFAULT;
     
+    self.update_script = function() { };
+    
     self.active_element = noone;
     
     self.text = "core";
@@ -44,6 +46,11 @@ function EmuCore(x, y, w, h) constructor {
     self._element_spacing_y = 16;
     self._element_spacing_x = 32;
     self._ref_name = "";
+    
+    static SetUpdate = function(f) {
+        self.update_script = method(self, f);
+        return self;
+    };
     
     static SetDefaultSpacingX = function(spacing) {
         self._element_spacing_x = spacing;

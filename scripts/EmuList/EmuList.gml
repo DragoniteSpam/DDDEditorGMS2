@@ -142,6 +142,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     }
     
     Render = function(base_x, base_y) {
+    	self.update_script();
         processAdvancement();
         
         var x1 = x + base_x;
