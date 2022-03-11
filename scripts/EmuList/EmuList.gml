@@ -72,6 +72,11 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         return self;
     }
     
+    static SetListColors = function(f) {
+    	self.getListColors = method(self, f);
+    	return self;
+    }
+    
     AddEntries = function(elements) {
         if (!_own_entries) {
             throw new EmuException("Trying to add to a list owned by someone else", "Please do not add to a list using an external list for its _entries.");
