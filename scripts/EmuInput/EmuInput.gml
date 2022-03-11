@@ -1,7 +1,7 @@
 // Emu (c) 2020 @dragonitespam
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Emu/wiki
 function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, callback) : EmuCallback(x, y, w, h, value, callback) constructor {
-    enum E_InputTypes { STRING, INT, REAL, HEX };
+    enum E_InputTypes { STRING, INT, REAL, HEX, LETTERSDIGITS };
     
     self.text = text;
     self.help_text = help_text;
@@ -43,7 +43,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         return self;
     }
     
-    SetInputBoxPosition = function(vx1, vy1, vx2, vy2) {
+    SetInputBoxPosition = function(vx1 = self._value_x1, vy1 = self._value_y1, vx2 = self._value_x2, vy2 = self._value_y2) {
         self._value_x1 = vx1;
         self._value_y1 = vy1;
         self._value_x2 = vx2;
@@ -269,6 +269,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
 	                return false;
 	            }
 	            return true;
+            case E_InputTypes.LETTERSDIGITS:
+	            return string_lettersdigits(text) == text;
         }
         return true;
     }
@@ -276,6 +278,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     CastInput = function(text) {
         switch (self._value_type) {
             case E_InputTypes.STRING: return text;
+            case E_InputTypes.LETTERSDIGITS: return text;
             case E_InputTypes.INT: return real(text);
             case E_InputTypes.REAL: return real(text);
             case E_InputTypes.HEX: return emu_hex(text);
