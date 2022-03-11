@@ -1,8 +1,5 @@
-function dialog_create_settings_map(dialog) {
-    // no need to check that it exists because the button will be disabled if it doesn't
-    var selection = ui_list_selection(dialog.root.el_map_list);
-    var index = (selection + 1) ? selection : 0;
-    var map = Game.maps[index];
+function dialog_create_settings_map() {
+    var map = Stuff.map.active_map;
     var map_contents = map.contents;
     
     var dw = 960;
@@ -11,7 +8,7 @@ function dialog_create_settings_map(dialog) {
     var dg = dialog_create(dw, dh, "More Map Settings", undefined, function(dialog) {
         if (dialog.map == Stuff.map.active_map && dialog.original_water_level != dialog.map.water_level) batch_again();
         dialog_destroy();
-    }, dialog, function(dialog) {
+    }, undefined, function(dialog) {
         if (dialog.map == Stuff.map.active_map && dialog.original_water_level != dialog.map.water_level) batch_again();
         dialog_destroy();
     });

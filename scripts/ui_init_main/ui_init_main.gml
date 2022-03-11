@@ -9,6 +9,19 @@ function ui_init_main(mode) {
     var container = new EmuCore(0, 0, hud_width, hud_height);
     var tab_group = new EmuTabGroup(0, EMU_AUTO, hud_width, hud_height, 3, element_height - 4);
     
+    var f_map_open = function() {
+        var index = self.GetSibling("MAP LIST").GetSelection();
+        if (index < 0) return;
+        var map = Game.maps[index];
+        if (map == Stuff.map.active_map) return;
+        
+        emu_dialog_confirm(undefined, "Would you like to load the map " + map.name + "? Any unsaved changes will be lost!", function() {
+            selection_clear();
+            self.root.map.Load();
+            self.root.Dispose();
+        }).map = map;
+    };
+    
     #region general
     tab_group.AddTabs(0, [
         (new EmuTab("General")).AddContent([
@@ -92,6 +105,7 @@ function ui_init_main(mode) {
         ])
             .SetID("GENERAL"),
         (new EmuTab("Stats")).AddContent([
+            #region column 1
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "All Entities:", element_height, 22, function() {
                 selection_clear();
                 
@@ -109,6 +123,8 @@ function ui_init_main(mode) {
                 .SetVacantText("no entities in this map")
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetID("ALL ENTITIES"),
+            #endregion
+            #region column 2
             (new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Entity Stats")),
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Entities:"))
                 .SetDefaultSpacingY(8)
@@ -167,8 +183,173 @@ function ui_init_main(mode) {
                 .SetTextUpdate(function() {
                     return "    Triangles:  " + string(Stuff.map.active_map.contents.stats.GetVertexByteCount());
                 }),
+            #endregion
         ])
-            .SetID("STATS")
+            .SetID("STATS"),
+        (new EmuTab("Map")).AddContent([
+            #region column 1
+            (new EmuList(col1x, EMU_BASE, element_width, element_height, "Maps:", element_height, 15, function() {
+            }))
+                .SetVacantText("no maps (how?!)")
+                .SetTooltip("This is a list of all the maps currently in the game")
+                .SetList(Game.maps)
+                .SetListColors(function(index) {
+                    return (Game.meta.start.map == list.entries[index].GUID) ? c_aqua : EMU_COLOR_LIST_TEXT;
+                })
+                .SetCallbackDouble(f_map_open)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetID("MAP LIST"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "New Map", function() {
+                var dialog = new EmuDialog(640, 480, "New Map");
+                
+                var col1x = 32;
+                var col2x = dialog.width / 2 + 32;
+                var element_width = 256;
+                var element_height = 32;
+                
+                dialog.AddContent([
+                    (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Name:", "Map " + string(array_length(Game.maps) + 1), "The name of the map", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() { }))
+                        .SetID("NAME"),
+                    (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Width (X):", "160", "The width of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                        .SetID("X"),
+                    (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Height (Y):", "160", "The height of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                        .SetID("Y"),
+                    (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Depth (Z):", "8", "The depth of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                        .SetID("Z"),
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Aligned to grid?", true, function() { }))
+                        .SetID("GRID")
+                    (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Chunk size:", string(Game.meta.grid.chunk_size), "The size of each chunk of the map; chunks outside of the camera's view will not be updated or rendered (although their contents will continue to exist).", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(6, MAP_AXIS_LIMIT)
+                        .SetID("CHUNK"),
+                ]).AddDefaultConfirmCancelButtons("Create", function() {
+                    // automatically pushed onto the list
+                    var map = new DataMap(self.GetSibling("NAME").value, "");
+                    array_push(Game.maps, map);
+                    map.SetSize(real(self.GetSibling("X").value), real(self.GetSibling("Y").value), real(self.GetSibling("Z").value));
+                    map.on_grid = self.GetSibling("GRID").value;
+                    map.light_ambient_colour = Game.meta.lighting.ambient;
+                    map.chunk_size = real(self.GetSibling("CHUNK").value);
+                    self.root.Dispose();
+                }, "Cancel", emu_dialog_close_auto);
+            }))
+                .SetTooltip("Add a map"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete Map", function() {
+                var index = self.GetSibling("MAP LIST").GetSelection();
+                if (index < 0) return;
+                
+                var map = Game.maps[index];
+                if (map == Stuff.map.active_map) {
+                    emu_dialog_notice("Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.");
+                } else {
+                    map.Destroy();
+                    ui_list_deselect(button.root.el_map_list);
+                    ui_list_select(button.root.el_map_list, array_search(Game.maps, Stuff.map.active_map));
+                }
+            }))
+                .SetTooltip("Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; once you delete a map, you're not getting it back."),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Open Map", f_map_open))
+                .SetTooltip("Open the currently selected map for editing. Alternatively, you can double-click on a list entry to open it."),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Make Starting Map", function() {
+                var index = self.GetSibling("MAP LIST").GetSelection();
+                if (index < 0) return;
+                Game.meta.start.map = Game.maps[index].GUID;
+            }))
+                .SetTooltip("Designate the currently selected map as the first one entered when the game starts. (What this means to your game is up to you.)"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Import Tiled", function() {
+                import_map_tiled();
+            }))
+                .SetTooltip("Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities."),
+            #endregion
+            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]This Map"),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Name"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", "map name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                Stuff.map.active_map.name = self.value;
+            }))
+                .SetTooltip("The name of the map, as it appears to the player.")
+                .SetID("MAP DATA NAME")
+                .SetInputBoxPosition(0, 0),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Internal name"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", "map internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+                internal_name_set(Stuff.map.active_map, self.value);
+            }))
+                .SetTooltip("The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.")
+                .SetID("MAP DATA INTERNAL NAME")
+                .SetInputBoxPosition(0, 0),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Summary"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", "map summary", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                Stuff.map.active_map.summary = self.value;
+            }))
+                .SetTooltip("A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.")
+                .SetID("MAP DATA SUMMARY")
+                .SetInputBoxPosition(0, 0),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Width (X):", "64", "map width", 10, E_InputTypes.INT, emu_null))
+                .SetTooltip("The width of the map, in tiles.")
+                .SetID("MAP DATA SIZE X")
+                .SetRealNumberBounds(1, MAP_AXIS_LIMIT),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Width (Y):", "64", "map height", 10, E_InputTypes.INT, emu_null))
+                .SetTooltip("The height of the map, in tiles.")
+                .SetID("MAP DATA SIZE Y")
+                .SetRealNumberBounds(1, MAP_AXIS_LIMIT),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Width (Z):", "8", "map depth", 10, E_InputTypes.INT, emu_null))
+                .SetTooltip("The depth of the map, in tiles.")
+                .SetID("MAP DATA SIZE Z")
+                .SetRealNumberBounds(1, MAP_AXIS_LIMIT),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Resize...", function() {
+                var xnew = real(self.GetNeighbor("MAP DATA SIZE X"));
+                var ynew = real(self.GetNeighbor("MAP DATA SIZE Y"));
+                var znew = real(self.GetNeighbor("MAP DATA SIZE Z"));
+                var map = Stuff.map.active_map;
+                if (xnew == map.xx && ynew == map.yy && znew == map.zz) return;
+                if (xnew * ynew * znew >= MAP_VOLUME_LIMIT) {
+                    emu_dialog_notice("maps aren't allowed to be larger than " + string(MAP_VOLUME_LIMIT) + " in total volume");
+                }
+                
+                var clear = true;
+                for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
+                    var entity = map.contents.all_entities[| i];
+                    clear &= (entity.xx >= xnew) || (entity.yy >= ynew) || (entity.zz >= znew);
+                }
+                
+                if (clear) {
+                    map.SetSize(xnew, ynew, znew);
+                } else {
+                    var dialog = emu_dialog_confirm(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", function() {
+                        self.root.map.SetSize(self.root.xx, self.root.yy, self.root.zz);
+                        self.root.Dispose();
+                    });
+                    dialog.map = map;
+                    dialog.xx = xnew;
+                    dialog.yy = ynew;
+                    dialog.zz = znew;
+                }
+            }))
+                .SetTooltip("Shrinking a map may result in entities being deleted."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Generic Data", function() {
+                dialog_create_map_generic_data();
+            }))
+                .SetTooltip("You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Advanced", function() {
+                dialog_create_settings_map();
+            }))
+                .SetTooltip("I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Freeze Selected Objects", function() {
+                emu_dialog_notice("This has not yet been implemented!");
+            }))
+                .SetTooltip("Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Clear Frozen Data", function() {
+                emu_dialog_confirm(button, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
+                    Stuff.map.active_map.contents.ClearFrozenData();
+                    self.root.Dispose();
+                });
+            }))
+                .SetTooltip("Clear the frozen vertex buffer data. There is no way to get it back. Use with caution."),
+            #region column 2
+            #endregion
+        ])
+            .SetID("MAP")
     ]);
     #endregion
     
@@ -192,277 +373,6 @@ function ui_init_main(mode) {
     
         
     with (instance_create_depth(0, 0, 0, UIMain)) {
-        #region tab: map
-        yy = legal_y + spacing;
-        
-        var f_map_open = function(element) {
-            var list = element.root.el_map_list;
-            var index = ui_list_selection(list);
-            var map = Game.maps[index];
-            if (map != Stuff.map.active_map) {
-                emu_dialog_confirm(undefined, "Would you like to load the map " + map.name + "? Any unsaved changes will be lost!", function() {
-                    selection_clear();
-                    self.root.map.Load();
-                    self.root.Dispose();
-                }).map = map;
-            }
-        };
-        
-        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, function(list) {
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                var what = list.entries[selection];
-                list.root.el_name.interactive = true;
-                ui_input_set_value(list.root.el_name, what.name);
-                list.root.el_internal_name.interactive = true;
-                ui_input_set_value(list.root.el_internal_name, what.internal_name);
-                list.root.el_summary.interactive = true;
-                ui_input_set_value(list.root.el_summary, what.summary);
-                // resizing a map checks if any entities will be deleted and warns you if any
-                // will; maps that are not loaded do not have a list of their entities on hand,
-                // and trying to check this is not worth the trouble
-                list.root.el_dim_x.interactive = (what == Stuff.map.active_map);
-                ui_input_set_value(list.root.el_dim_x, string(what.xx));
-                list.root.el_dim_y.interactive = (what == Stuff.map.active_map);
-                ui_input_set_value(list.root.el_dim_y, string(what.yy));
-                list.root.el_dim_z.interactive = (what == Stuff.map.active_map);
-                ui_input_set_value(list.root.el_dim_z, string(what.zz));
-                list.root.el_other.interactive = true;
-            } else {
-                list.root.el_name.interactive = false;
-                list.root.el_internal_name.interactive = false;
-                list.root.el_summary.interactive = false;
-                list.root.el_dim_x.interactive = false;
-                list.root.el_dim_y.interactive = false;
-                list.root.el_dim_z.interactive = false;
-                list.root.el_other.interactive = false;
-            }
-        }, false, t_maps, Game.maps);
-        element.tooltip = "This is a list of all the maps currently in the game.";
-        element.render_colors = method(element, function(list, index) {
-            return (Game.meta.start.map == list.entries[index].GUID) ? c_blue : c_black;
-        });
-        element.colorize = true;
-        element.ondoubleclick = method(element, f_map_open);
-        element.entries_are = ListEntries.INSTANCES;
-        t_maps.el_map_list = element;
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, function(button) {
-            var dialog = new EmuDialog(640, 480, "New Map");
-            
-            var col1x = 32;
-            var col2x = dialog.width / 2 + 32;
-            var element_width = 256;
-            var element_height = 32;
-            
-            dialog.AddContent([
-                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Name:", "Map " + string(array_length(Game.maps) + 1), "The name of the map", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() { }))
-                    .SetID("NAME"),
-                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Width (X):", "160", "The width of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
-                    .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
-                    .SetID("X"),
-                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Height (Y):", "160", "The height of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
-                    .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
-                    .SetID("Y"),
-                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "    Depth (Z):", "8", "The depth of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
-                    .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
-                    .SetID("Z"),
-                (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Aligned to grid?", true, function() { }))
-                    .SetID("GRID")
-                (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Chunk size:", string(Game.meta.grid.chunk_size), "The size of each chunk of the map; chunks outside of the camera's view will not be updated or rendered (although their contents will continue to exist).", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
-                    .SetRealNumberBounds(6, MAP_AXIS_LIMIT)
-                    .SetID("CHUNK"),
-            ]).AddDefaultConfirmCancelButtons("Create", function() {
-                // automatically pushed onto the list
-                var map = new DataMap(self.GetSibling("NAME").value, "");
-                array_push(Game.maps, map);
-                map.SetSize(real(self.GetSibling("X").value), real(self.GetSibling("Y").value), real(self.GetSibling("Z").value));
-                map.on_grid = self.GetSibling("GRID").value;
-                map.light_ambient_colour = Game.meta.lighting.ambient;
-                map.chunk_size = real(self.GetSibling("CHUNK").value);
-                self.root.Dispose();
-            }, "Cancel", emu_dialog_close_auto);
-        }, t_maps);
-        element.tooltip = "Add a map. You can have up to " + string(0xffff) + " maps in the game. I seriously doubt anyone will need anywhere near that many.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Delete Map", col_width, element_height, fa_center, function(button) {
-            var list = button.root.el_map_list;
-            var index = ui_list_selection(list);
-            var map = Game.maps[index];
-            if (map == Stuff.map.active_map) {
-                emu_dialog_notice("Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.");
-            } else {
-                map.Destroy();
-                ui_list_deselect(button.root.el_map_list);
-                ui_list_select(button.root.el_map_list, array_search(Game.maps, Stuff.map.active_map));
-            }
-        }, t_maps);
-        element.tooltip = "Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, f_map_open, t_maps);
-        element.tooltip = "Open the currently selected map for editing. Double-clicking it in the list will have the same effect.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, function(button) {
-            var list = button.root.el_map_list;
-            var index = ui_list_selection(list);
-            Game.meta.start.map = list.entries[index].GUID;
-        }, t_maps);
-        element.tooltip = "Designate the currently selected map as the first one entered when the game starts. What this means to your game is up to you.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Import Tiled", col_width, element_height, fa_center, function(button) {
-            import_map_tiled(true);
-        }, t_maps);
-        element.tooltip = "Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy = legal_y + spacing;
-        
-        element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var selection = ui_list_selection(input.root.el_map_list);
-            if (selection + 1) {
-                Game.maps[selection].name = input.value;
-            }
-        }, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The name of the map, as it appears to the player.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_name = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Internal name:", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var selection = ui_list_selection(input.root.el_map_list);
-            if (selection + 1) {
-                internal_name_set(Game.maps[selection], input.value);
-            }
-        }, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_internal_name = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Summary:", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var selection = ui_list_selection(input.root.el_map_list);
-            if (selection + 1) {
-                Game.maps[selection].summary = input.value;
-            }
-        }, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
-        element.tooltip = "A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_summary = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Dimensions", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "64", "width", validate_int_map_size_x, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The width of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
-        element.require_enter = true;
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_dim_x = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "64", "height", validate_int_map_size_y, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The height of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
-        element.require_enter = true;
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_dim_y = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "8", "depth", validate_int_map_size_z, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The depth of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
-        element.require_enter = true;
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_dim_z = element;
-        
-        yy += element.height + spacing * 3;
-        
-        element = create_text(col2_x, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing * 3;
-        
-        element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, dialog_create_map_generic_data, t_maps);
-        element.tooltip = "You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_other = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy,  "Advanced", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
-        element.tooltip = "I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_other = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, function() {
-            emu_dialog_notice("This has not yet been implemented!");
-        }, t_maps);
-        element.tooltip = "Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution.";
-        element.inheritRender = element.render;
-        element.render = function(button, x, y) {
-            var selection = ui_list_selection(button.root.el_map_list);
-            button.interactive = (selection + 1 && Game.maps[selection] == Stuff.map.active_map);
-            button.inheritRender(button, x, y);
-        };
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Clear Frozen Data", col_width, element_height, fa_center, function(button) {
-            emu_dialog_confirm(button, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
-                Stuff.map.active_map.contents.ClearFrozenData();
-                self.root.Dispose();
-            });
-        }, t_maps);
-        element.inheritRender = element.render;
-        element.render = function(button, x, y) {
-            var selection = ui_list_selection(button.root.el_map_list);
-            button.interactive = (selection + 1 && Game.maps[selection] == Stuff.map.active_map);
-            button.inheritRender(button, x, y);
-        };
-        element.tooltip = "Clear the frozen vertex buffer data. There is no way to get it back. Use with caution.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
-        
         #region tab: entity
         yy = legal_y + spacing;
         

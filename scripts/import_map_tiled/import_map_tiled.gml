@@ -1,4 +1,4 @@
-function import_map_tiled(ask_clear) {
+function import_map_tiled(ask_clear = true) {
     if (ask_clear) {
         emu_dialog_confirm(undefined, "Do you want to import a Tiled map? If there is any frozen terrain data, it will be removed.", function() {
             var map = Stuff.map.active_map;

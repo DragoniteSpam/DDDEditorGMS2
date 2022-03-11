@@ -1,10 +1,10 @@
-function dialog_create_map_generic_data(root) {
+function dialog_create_map_generic_data() {
     var map = Stuff.map.active_map;
     
     var dw = 640;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Generic Data", dialog_default, dialog_destroy, root);
+    var dg = dialog_create(dw, dh, "Generic Data", dialog_default, dialog_destroy);
     
     var columns = 2;
     var spacing = 16;
