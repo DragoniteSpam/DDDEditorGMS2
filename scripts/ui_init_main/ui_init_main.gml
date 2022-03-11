@@ -263,6 +263,7 @@ function ui_init_main(mode) {
             }))
                 .SetTooltip("Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities."),
             #endregion
+            #region column 2
             new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]This Map"),
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "Name"),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", "map name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
@@ -346,7 +347,6 @@ function ui_init_main(mode) {
                 });
             }))
                 .SetTooltip("Clear the frozen vertex buffer data. There is no way to get it back. Use with caution."),
-            #region column 2
             #endregion
         ])
             .SetID("MAP")
@@ -355,7 +355,169 @@ function ui_init_main(mode) {
     
     #region inspector
     tab_group.AddTabs(1, [
-        
+        (new EmuTab("Entity")).AddContent([
+            #region column 1
+            new EmuText(col1x, EMU_BASE, element_width, element_height, "[c_aqua]Entity Properties"),
+            (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Name:", "", "entity name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.name = data.value;
+                }, { value: self.value });
+            }))
+                .SetTooltip("It can be helpful for the entity names to be unique, although they don't have to be.")
+                .SetID("ENTITY NAME")
+                .SetInputBoxPosition(0, 0),
+            (new EmuText(col1x, EMU_AUTO, element_width, element_height, "Type: N/A"))
+                .SetID("ENTITY TYPE"),
+            (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Static?", false, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.SetStatic(data.value);
+                }, { value: self.value });
+            })),
+            
+            #endregion
+            #region column 2
+            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Transform"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Position X:", "0", "cell", 10, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.translateable) {
+                        Stuff.map.active_map.Move(entity, data.value, entity.yy, entity.zz);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRequireConfirm(true)
+                .SetID("ENTITY POSITION X"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "cell", 10, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.translateable) {
+                        Stuff.map.active_map.Move(entity, entity.xx, data.value, entity.zz);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRequireConfirm(true)
+                .SetID("ENTITY POSITION Y"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "cell", 10, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.translateable) {
+                        Stuff.map.active_map.Move(entity, entity.xx, entity.yy, data.value);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRequireConfirm(true)
+                .SetID("ENTITY POSITION Z"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Offset X:", "0", "cell", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_xx = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0, 1)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY OFFSET X"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "cell", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_yy = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0, 1)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY OFFSET Y"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "cell", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_zz = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0, 1)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY OFFSET Z"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Rotation X:", "0", "degrees", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.rotateable) {
+                        entity.rot_xx = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0, 360)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION X"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "degrees", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_yy = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0, 360)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION Y"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "degrees", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_zz = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0, 360)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION Z"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Scale X:", "1", "x", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.scalable) {
+                        entity.scale_xx = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0.01, 100)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION X"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "1", "x", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.scalable) {
+                        entity.scale_yy = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0.01, 100)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION Y"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "1", "x", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.scalable) {
+                        entity.scale_zz = real(input.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: string(self.value) });
+            }))
+                .SetRealNumberBounds(0.01, 100)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION Z"),
+            #endregion
+        ])
+            .SetID("ENTITY"),
+        (new EmuTab("Mesh")).AddContent([
+        ])
+            .SetID("ENTITY MESH"),
+        (new EmuTab("Pawn")).AddContent([
+        ])
+            .SetID("ENTITY PAWN"),
+        (new EmuTab("Effect")).AddContent([
+        ])
+            .SetID("ENTITY EFFECT"),
+        (new EmuTab("Other")).AddContent([
+        ])
+            .SetID("ENTITY OTHER"),
     ]);
     #endregion
     
@@ -375,36 +537,6 @@ function ui_init_main(mode) {
     with (instance_create_depth(0, 0, 0, UIMain)) {
         #region tab: entity
         yy = legal_y + spacing;
-        
-        draw_set_font(FDefault);
-        var max_characters = 32;
-        vx2 = vx1 + 288;
-        
-        element_entity_name = create_input(col1_x, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "Helpful if unique", validate_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_name);
-        element_entity_name.interactive = false;
-        
-        vx2 = col_width;
-        yy += element_entity_name.height + spacing;
-        
-        element = create_text(col1_x, yy, "Basic Properties", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element_entity_type = create_text(col1_x, yy, "Type:", col_width, element_height, fa_left, col_width, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_type);
-        
-        yy += element_entity_type.height + spacing;
-        
-        element_entity_static = create_checkbox(col1_x, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_static);
-        element_entity_static.interactive = false;
-        
-        yy += element_entity_static.height + spacing;
-        
-        var n = 6;
         
         element_entity_events = create_list(col1_x, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
         element_entity_events.colorize = false;
@@ -500,103 +632,6 @@ function ui_init_main(mode) {
         
         // second column
         
-        yy = legal_y + spacing + element_entity_name.height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Position", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_pos_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_pos_x, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_pos_x);
-        element_entity_pos_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_pos_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_pos_y, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_pos_y);
-        element_entity_pos_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_pos_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_pos_z, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_pos_z);
-        element_entity_pos_z.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Position Offset", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_offset_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_off_x, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_offset_x);
-        element_entity_offset_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_offset_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_off_y, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_offset_y);
-        element_entity_offset_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_offset_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_off_z, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_offset_z);
-        element_entity_offset_z.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Rotation", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_rot_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_rotate_x, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_rot_x);
-        element_entity_rot_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_rot_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_rotate_y, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_rot_y);
-        element_entity_rot_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_rot_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_rotate_z, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_rot_z);
-        element_entity_rot_z.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Scale", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_scale_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_scale_x, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_scale_x);
-        element_entity_scale_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_scale_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_scale_y, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_scale_y);
-        element_entity_scale_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_scale_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_scale_z, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_scale_z);
-        element_entity_scale_z.interactive = false;
-        
-        yy += element_height + spacing;
         #endregion
         
         #region tab: entity: mesh
