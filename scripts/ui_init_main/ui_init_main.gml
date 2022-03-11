@@ -113,7 +113,7 @@ function ui_init_main(mode) {
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Entities:"))
                 .SetDefaultSpacingY(8)
                 .SetTextUpdate(function() {
-                    return "    Entities:  " + string(ds_list_size(Stuff.map.active_map.contents.all_entities));
+                    return "    Entities:  " + string(Stuff.map.active_map.contents.stats.GetEntityCount());
                 }),
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Static:"))
                 .SetDefaultSpacingY(8)
@@ -151,23 +151,21 @@ function ui_init_main(mode) {
                     return "    Effects:  N/A";
                 }),
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Vertex Data")),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Triangles:"))
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Storage:"))
                 .SetDefaultSpacingY(8)
                 .SetTextUpdate(function() {
-                    var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-                    return "    Triangles:  " + string(size / VERTEX_SIZE / 3);
+                    var size = Stuff.map.active_map.contents.stats.GetVertexByteCount();
+                    return "    Triangles:  " + ((size < 1024) ? (string(size) + " bytes") : (string(size >> 10) + " kilobytes"));
                 }),
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Vertices:"))
                 .SetDefaultSpacingY(8)
                 .SetTextUpdate(function() {
-                    var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-                    return "    Vertices:  " + string(size / VERTEX_SIZE);
+                    return "    Vertices:  " + string(Stuff.map.active_map.contents.stats.GetVertexCount());
                 }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Storage:"))
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Triangles:"))
                 .SetDefaultSpacingY(8)
                 .SetTextUpdate(function() {
-                    var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-                    return "    Storage:  " + ((size < 1024) ? (string(size) + " bytes") : (string(size >> 10) + " kilobytes"));
+                    return "    Triangles:  " + string(Stuff.map.active_map.contents.stats.GetVertexByteCount());
                 }),
         ])
             .SetID("STATS")

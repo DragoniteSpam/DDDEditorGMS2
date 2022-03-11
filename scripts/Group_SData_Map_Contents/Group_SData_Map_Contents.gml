@@ -21,8 +21,29 @@ function MapContents(parent) constructor {
     self.water = undefined;
     self.water_data = undefined;
     
-    self.population = [0, 0, 0, 0, 0, 0, 0];
-    self.population_static = 0;
+    self.stats = new (function(parent) constructor {
+        self.parent = parent;
+        
+        self.GetEntityCount = function() {
+            return ds_list_size(self.parent.all_entities);
+        };
+        
+        self.GetZoneCount = function() {
+            return array_length(self.parent.all_zones);
+        };
+        
+        self.GetVertexByteCount = function() {
+            return self.parent.frozen_data ? buffer_get_size(self.parent.frozen_data) : 0;
+        };
+        
+        self.GetVertexCount = function() {
+            return self.GetVertexByteCount() / VERTEX_SIZE;
+        };
+        
+        self.GetVertexTriangleCount = function() {
+            return self.GetVertexByteCount() / VERTEX_SIZE / 3;
+        };
+    })(self);
     
     static ClearFrozenData = function() {
         if (self.frozen) vertex_delete_buffer(self.frozen);
