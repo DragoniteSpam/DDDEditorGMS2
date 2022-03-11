@@ -33,6 +33,13 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     self._entries = ds_list_create();
 	self._dragging = false;
 	
+	static ForEachSelection = function(f) {
+		var each = variable_struct_get_names(self._selected_entries);
+		for (var i = 0, n = array_length(each); i < n; i++) {
+			f(self._selected_entries[$ each[i]]);
+		}
+	};
+	
 	static SetAllowDeselect = function(allow) {
 		self.allow_deselect = allow;
 		return self;
