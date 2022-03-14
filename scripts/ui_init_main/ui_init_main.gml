@@ -22,6 +22,12 @@ function ui_init_main(mode) {
         }).map = map;
     };
     
+    var f_event_page_open = function() {
+        if (self.GetSibling("ENTITY EVENT PAGES").GetSelection() + 1) {
+            dialog_create_entity_event_page(noone);
+        }
+    };
+    
     #region general
     tab_group.AddTabs(0, [
         (new EmuTab("General")).AddContent([
@@ -373,7 +379,82 @@ function ui_init_main(mode) {
                     entity.SetStatic(data.value);
                 }, { value: self.value });
             })),
-            
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Events"),
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Event Pages", element_height, 4, emu_null))
+                .SetVacantText("no events")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetCallbackDouble(f_event_page_open)
+                .SetID("ENTITY EVENT PAGES"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Add", function() {
+                var list = Stuff.map.selected_entities;
+                if (ds_list_size(list) != 1) return;
+                array_push(list[| 0].object_events, new InstantiatedEvent("Event Page " + string(array_length(list[| 0].object_events))));
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete", function() {
+                var list = Stuff.map.selected_entities;
+                if (ds_list_size(list) != 1) return;
+                
+                var index = self.GetSibling("ENTITY EVENT PAGES").GetSelection();
+                if (index + 1) {
+                    var dialog = emu_dialog_confirm(self, "Are you sure you want to delete the event page \"" + list[| 0].object_events[index].name + "?\"", function() {
+                        array_delete(self.root.entity.object_events, self.root.index, 1);
+                        self.root.list.Deselect();
+                        self.root.Dispose();
+                    });
+                    dialog.entity = list[| 0];
+                    dialog.index = index;
+                    dialog.list = self.GetSibling("ENTITY EVENT PAGES");
+                }
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Edit", f_event_page_open)),
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Stuff"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Generic Data", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                dialog_create_entity_generic_data();
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Autonomous Movement", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                dialog_create_entity_autonomous_movement();
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Options", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                
+                var col1x = 32;
+                var col2x = hud_width / 2;
+                var element_width = hud_width / 2 - 64;
+                var element_height = 32;
+                
+                var dialog = new EmuDialog(320, 480, "Entity Options");
+                dialog.AddContent([
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Direction Fix", false, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.direction_fix = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetID("ENTITY OPTION DIRECTION FIX"),
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Always Update", false, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.always_update = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetID("ENTITY OPTION ALWAYS UPDATE"),
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Preserve", false, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.preserve_on_save = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetTooltip("Whether or not the state of the entity is saved when the map is exited, the game is closed, etc.")
+                        .SetID("ENTITY OPTION PRESERVE"),
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Cast Reflection", false, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.reflect = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetTooltip("Whether or not the entity should show a reflection in water.")
+                        .SetID("ENTITY OPTION REFLECT"),
+                ])
+                    .AddDefaultCloseButton();
+            })),
             #endregion
             #region column 2
             new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Transform"),
