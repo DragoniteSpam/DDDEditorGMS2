@@ -69,6 +69,7 @@ selected_zone = noone;
 selection_fill_mesh = -1;       // list index
 selection_fill_tile_x = 4;
 selection_fill_tile_y = 0;
+selection_fill_tile_size = 32;  // make this a setting or something later
 edit_z = 0;
 
 enum SelectionModes {

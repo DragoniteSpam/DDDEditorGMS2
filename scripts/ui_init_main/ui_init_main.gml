@@ -748,13 +748,14 @@ function ui_init_main(mode) {
                 .SetList(Game.graphics.tilesets)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS),
             (new EmuRenderSurface(col1x, EMU_AUTO, hud_width - 64, hud_width - 64, function(mx, my) {
+                var image = (Stuff.map.active_map.tileset != NULL) ? guid_get(Stuff.map.active_map.tileset).picture : Game.graphics.tilesets[0].picture;
                 mx -= view_get_xport(view_current);
                 my -= view_get_yport(view_current);
                 
                 self.drawCheckerbox(0, 0, self.width, self.height);
-                draw_sprite(Stuff.terrain.texture_image, 0, self.offset_x, self.offset_y);
+                draw_sprite(image, 0, self.offset_x, self.offset_y);
                 
-                var bs = Settings.terrain.tile_brush_size;
+                var bs = Stuff.map.selection_fill_tile_size;
                 draw_set_alpha(min(bs / 8, 1));
                 for (var i = self.offset_x % bs; i < self.width; i += bs) {
                     draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
@@ -764,26 +765,27 @@ function ui_init_main(mode) {
                 }
                 draw_set_alpha(1);
                 
-                var tx = Settings.terrain.tile_brush_x + self.offset_x;
-                var ty = Settings.terrain.tile_brush_y + self.offset_y;
-                draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Settings.terrain.tile_brush_size, Settings.terrain.tile_brush_size);
+                var tx = Stuff.map.selection_fill_tile_x + self.offset_x;
+                var ty = Stuff.map.selection_fill_tile_y + self.offset_y;
+                draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Stuff.map.selection_fill_tile_size, Stuff.map.selection_fill_tile_size);
                 draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
                 
                 if (mouse_check_button(mb_middle)) {
                     draw_sprite(spr_scroll, 0, mx, my);
                 }
             }, function(mx, my) {
+                var image = (Stuff.map.active_map.tileset != NULL) ? guid_get(Stuff.map.active_map.tileset).picture : Game.graphics.tilesets[0].picture;
                 mx -= view_get_xport(view_current);
                 my -= view_get_yport(view_current);
                 
                 if (!ds_list_empty(EmuOverlay._contents)) return;
                 if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
                 
-                var bs = Settings.terrain.tile_brush_size;
+                var bs = Stuff.map.selection_fill_tile_size;
                 var tx = bs * ((mx - self.offset_x) div bs);
                 var ty = bs * ((my - self.offset_y) div bs);
-                tx = clamp(tx, 0, sprite_get_width(Stuff.terrain.texture_image) - bs);
-                ty = clamp(ty, 0, sprite_get_height(Stuff.terrain.texture_image) - bs);
+                tx = clamp(tx, 0, sprite_get_width(image) - bs);
+                ty = clamp(ty, 0, sprite_get_height(image) - bs);
                 if (mouse_check_button(mb_left)) {
                     Stuff.map.selection_fill_tile_x = tx;
                     Stuff.map.selection_fill_tile_y = ty;
@@ -792,8 +794,8 @@ function ui_init_main(mode) {
                     self.mx = mx;
                     self.my = my;
                 } else if (mouse_check_button(mb_middle)) {
-                    self.offset_x = clamp(self.offset_x + (mx - self.mx), min(0, self.width - sprite_get_width(Stuff.terrain.texture_image)), 0);
-                    self.offset_y = clamp(self.offset_y + (my - self.my), min(0, self.height - sprite_get_height(Stuff.terrain.texture_image)), 0);
+                    self.offset_x = clamp(self.offset_x + (mx - self.mx), min(0, self.width - sprite_get_width(image)), 0);
+                    self.offset_y = clamp(self.offset_y + (my - self.my), min(0, self.height - sprite_get_height(image)), 0);
                     self.mx = mx;
                     self.my = my;
                 }
