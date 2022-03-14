@@ -588,6 +588,78 @@ function ui_init_main(mode) {
         ])
             .SetID("ENTITY"),
         (new EmuTab("Mesh")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes", element_height, 14, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                var closure = { value: Game.meshes[index] , changed: false, };
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_MESH) return;
+                    closure.changed |= entity.mesh.GUID != data.value;
+                    entity.SetMesh(mesh, changed ? mesh.first_proto_guid : entity.mesh_submesh);
+                }, closure);
+                
+                if (closure.changed)
+                    batch_again();
+                
+                var submesh_list = self.GetSibling("ENTITY MESH SUBMESH");
+                submesh_list.Deselect();
+                submesh_list.SetList(mesh.submeshes);
+                submesh_list.Select(proto_guid_get(mesh, mesh.first_proto_guid), true);
+            }))
+                .SetVacantText("no meshes")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetList(Game.meshes)
+                .SetID("ENTITY MESH MESH"),
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Submeshes", element_height, 7, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                var submesh = guid_get(entities[| 0].mesh).submeshes[index].proto_guid;
+                var closure = { value: submesh, changed: false };
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_MESH) return;
+                    closure.changed |= entity.mesh_submesh != data.value;
+                    entity.mesh_submesh = data.value;
+                }, closure);
+                
+                if (closure.changed)
+                    batch_again();
+            }))
+                .SetVacantText("no meshes")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetList(Game.meshes)
+                .SetID("ENTITY MESH SUBMESH"),
+            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Animation"),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animated", false, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_MESH) return;
+                    entity.animated = data.value;
+                }, { value: self.value });
+            }))
+                .SetID("ENTITY MESH ANIMATED"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Anim. Speed:", "0", "frames per second", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_MESH) return;
+                    entity.animation_speed = data.value;
+                }, { value: real(self.value) });
+            }))
+                .SetID("ENTITY MESH ANIMATION SPEED")
+                .SetTooltip("The number of complete animation frames per second. (Animations will not be previewed in the editor.)"),
+            (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "End action:", 0, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_MESH) return;
+                    entity.animation_end_action = data.value;
+                }, { value: self.value });
+            }))
+                .AddOptions(["Stop", "Loop", "Reverse"])
+                .SetID("ENTITY MESH ANIMATION END ACTION")
+                .SetTooltip("What EMU_AUTO do at the end of an animation cycle."),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Stuff"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Mesh Autotile Data", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                dialog_create_entity_mesh_autotile_properties();
+            })),
         ])
             .SetID("ENTITY MESH"),
         (new EmuTab("Pawn")).AddContent([
@@ -616,195 +688,6 @@ function ui_init_main(mode) {
     
         
     with (instance_create_depth(0, 0, 0, UIMain)) {
-        #region tab: entity
-        yy = legal_y + spacing;
-        
-        element_entity_events = create_list(col1_x, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
-        element_entity_events.colorize = false;
-        element_entity_events.render = ui_render_list_entity_events;
-        element_entity_events.entries_are = ListEntries.INSTANCES;
-        element_entity_events.ondoubleclick = omu_entity_event_page;
-        ds_list_add(t_p_entity.contents, element_entity_events);
-        element_entity_events.interactive = false;
-        
-        yy += element_entity_events.GetHeight() + spacing;
-        
-        element_entity_event_edit = create_button(col1_x, yy, "Edit Event Page", col_width, element_height, fa_center, omu_entity_event_page, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_event_edit);
-        element_entity_event_edit.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element_entity_event_add = create_button(col1_x, yy, "Add Event Page", col_width, element_height, fa_center, omu_entity_add_event, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_event_add);
-        element_entity_event_add.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element_entity_event_remove = create_button(col1_x, yy, "Delete Event Page", col_width, element_height, fa_center, omu_entity_remove_event, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_event_remove);
-        element_entity_event_remove.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col1_x, yy, "Options", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element_entity_option_direction_fix = create_checkbox(col1_x, yy, "Direction Fix", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].direction_fix = checkbox.value;
-            }
-        }, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_direction_fix);
-        element_entity_option_direction_fix.interactive = false;
-        
-        yy += element_entity_option_direction_fix.height;
-        
-        element_entity_option_always_update = create_checkbox(col1_x, yy, "Always Update?", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].always_update = checkbox.value;
-            }
-        }, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_always_update);
-        element_entity_option_always_update.interactive = false;
-        
-        yy += element_entity_option_always_update.height;
-        
-        element_entity_option_preserve = create_checkbox(col1_x, yy, "Preserve?", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].preserve_on_save = checkbox.value;
-            }
-        }, false, t_p_entity);
-        element_entity_option_preserve.tooltip = "Whether or not the state of the entity is saved when the map is exited, the game is closed, etc.";
-        ds_list_add(t_p_entity.contents, element_entity_option_preserve);
-        element_entity_option_preserve.interactive = false;
-        
-        yy += element_entity_option_preserve.height;
-        
-        element_entity_option_reflect = create_checkbox(col1_x, yy, "Cast Reflection?", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].reflect = checkbox.value;
-            }
-        }, false, t_p_entity);
-        element_entity_option_reflect.tooltip = "Whether or not the entity should show a reflection in water.";
-        ds_list_add(t_p_entity.contents, element_entity_option_reflect);
-        element_entity_option_reflect.interactive = false;
-        
-        yy += element_entity_option_reflect.height + spacing;
-        
-        element_entity_generic = create_button(col1_x, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_generic);
-        element_entity_generic.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element_entity_option_autonomous_movement = create_button(col1_x, yy, "Autonomous Movement", col_width, element_height, fa_center, omu_entity_autonomous_movement, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_autonomous_movement);
-        element_entity_option_autonomous_movement.interactive = false;
-        
-        yy += element_entity_option_autonomous_movement.height + spacing;
-        
-        // second column
-        
-        #endregion
-        
-        #region tab: entity: mesh
-        yy = legal_y + spacing;
-        
-        element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, function(list) {
-            var mesh = Game.meshes[ui_list_selection(list)];
-            // this assumes that every selected entity is already an instance of Mesh
-            var entities = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(entities); i++) {
-                // if the mesh changes, you should probably also reset the proto guid
-                var changed = guid_get(entities[| i].mesh) != mesh;
-                entities[| i].SetMesh(mesh, changed ? mesh.first_proto_guid : entities[| i].mesh_submesh);
-            }
-            batch_again(undefined);
-            Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
-            ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
-            ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh, mesh.first_proto_guid), true);
-        }, false, t_p_mesh, Game.meshes);
-        element_entity_mesh_list.allow_deselect = false;
-        element_entity_mesh_list.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
-        element_entity_mesh_list.interactive = false;
-        
-        yy += element_entity_mesh_list.GetHeight() + spacing;
-        
-        element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<choose a single mesh>", col_width, element_height, 10, function(list) {
-            var entities = Stuff.map.selected_entities;
-            var mesh_data = guid_get(entities[| 0].mesh);
-            var submesh = mesh_data.submeshes[ui_list_selection(list)].proto_guid;
-            for (var i = 0; i < ds_list_size(entities); i++) {
-                entities[| i].mesh_submesh = submesh;
-            }
-            batch_again(undefined);
-        }, false, t_p_mesh, noone);
-        element_entity_mesh_submesh.allow_deselect = false;
-        element_entity_mesh_submesh.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_submesh);
-        element_entity_mesh_submesh.interactive = false;
-        
-        yy += element_entity_mesh_submesh.GetHeight() + spacing;
-        
-        yy = legal_y + spacing;
-            
-        element_entity_mesh_autotile_data = create_button(col2_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, function(button) {
-            dialog_create_entity_mesh_autotile_properties(button);
-        }, t_p_mesh);
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
-        element_entity_mesh_autotile_data.interactive = false;
-        
-        yy += element_entity_mesh_autotile_data.height + spacing;
-        
-        element_entity_mesh_animated = create_checkbox(col2_x, yy, "Animated", col_width, element_height, function(checkbox) {
-            // this assumes that every selected entity is already an instance of Mesh
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].animated = checkbox.value;
-            }
-        }, false, t_p_mesh);
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
-        element_entity_mesh_animated.interactive = false;
-        
-        yy += element_entity_mesh_animated.height + spacing;
-        
-        element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, function(input) {
-            // this assumes that every selected entity is already an instance of Mesh
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].animation_speed = real(input.value);
-            }
-        }, 1, "-60 to 60", validate_int, -60, 60, 3, vx1, vy1, vx2, vy2, t_p_mesh);
-        element_entity_mesh_animation_speed.tooltip = "The number of complete animation frames per second. (Animations will not be previewed in the editor.)";
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_speed);
-        element_entity_mesh_animation_speed.interactive = false;
-        
-        yy += element_entity_mesh_animation_speed.height + spacing;
-        
-        element_entity_mesh_animation_end_action = create_radio_array(col2_x, yy, "End Action:", col_width, element_height, function(radio) {
-            // this assumes that every selected entity is already an instance of Mesh
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].animation_end_action = radio.value;
-            }
-        }, 0, t_p_mesh);
-        create_radio_array_options(element_entity_mesh_animation_end_action, ["Stop", "Loop", "Reverse"]);
-        element_entity_mesh_animation_end_action.tooltip = "The number of complete animation cycles per second";
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_end_action);
-        element_entity_mesh_animation_end_action.interactive = false;
-        
-        yy += element_entity_mesh_animation_end_action.GetHeight() + spacing;
-        #endregion
-        
         #region tab: entity: pawn
         yy = legal_y + spacing;
         

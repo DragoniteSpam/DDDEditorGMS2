@@ -1,8 +1,8 @@
-function dialog_create_entity_mesh_autotile_properties(root) {
+function dialog_create_entity_mesh_autotile_properties() {
     var dw = 320;
     var dh = 400;
     
-    var dg = dialog_create(dw, dh, "Mesh Autotile properties", dialog_default, dialog_destroy, root);
+    var dg = dialog_create(dw, dh, "Mesh Autotile properties", dialog_default, dialog_destroy, undefined);
     dg.list = ds_list_to_array(Stuff.map.selected_entities);
     
     var spacing = 16;
