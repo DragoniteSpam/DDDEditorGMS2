@@ -739,6 +739,70 @@ function ui_init_main(mode) {
         ])
             .SetID("PLACEMENT MESHES"),
         (new EmuTab("Tiles")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Primary map tileset:", element_height, 8, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                Stuff.map.active_map.tileset = Game.graphics.tilesets[index].GUID;
+            }))
+                .SetList(Game.graphics.tilesets)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+            (new EmuRenderSurface(col1x, EMU_AUTO, hud_width - 64, hud_width - 64, function(mx, my) {
+                mx -= view_get_xport(view_current);
+                my -= view_get_yport(view_current);
+                
+                self.drawCheckerbox(0, 0, self.width, self.height);
+                draw_sprite(Stuff.terrain.texture_image, 0, self.offset_x, self.offset_y);
+                
+                var bs = Settings.terrain.tile_brush_size;
+                draw_set_alpha(min(bs / 8, 1));
+                for (var i = self.offset_x % bs; i < self.width; i += bs) {
+                    draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
+                }
+                for (var i = self.offset_y % bs; i < self.height; i += bs) {
+                    draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
+                }
+                draw_set_alpha(1);
+                
+                var tx = Settings.terrain.tile_brush_x + self.offset_x;
+                var ty = Settings.terrain.tile_brush_y + self.offset_y;
+                draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Settings.terrain.tile_brush_size, Settings.terrain.tile_brush_size);
+                draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
+                
+                if (mouse_check_button(mb_middle)) {
+                    draw_sprite(spr_scroll, 0, mx, my);
+                }
+            }, function(mx, my) {
+                mx -= view_get_xport(view_current);
+                my -= view_get_yport(view_current);
+                
+                if (!ds_list_empty(EmuOverlay._contents)) return;
+                if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
+                
+                var bs = Settings.terrain.tile_brush_size;
+                var tx = bs * ((mx - self.offset_x) div bs);
+                var ty = bs * ((my - self.offset_y) div bs);
+                tx = clamp(tx, 0, sprite_get_width(Stuff.terrain.texture_image) - bs);
+                ty = clamp(ty, 0, sprite_get_height(Stuff.terrain.texture_image) - bs);
+                if (mouse_check_button(mb_left)) {
+                    Stuff.map.selection_fill_tile_x = tx;
+                    Stuff.map.selection_fill_tile_y = ty;
+                }
+                if (mouse_check_button_pressed(mb_middle)) {
+                    self.mx = mx;
+                    self.my = my;
+                } else if (mouse_check_button(mb_middle)) {
+                    self.offset_x = clamp(self.offset_x + (mx - self.mx), min(0, self.width - sprite_get_width(Stuff.terrain.texture_image)), 0);
+                    self.offset_y = clamp(self.offset_y + (my - self.my), min(0, self.height - sprite_get_height(Stuff.terrain.texture_image)), 0);
+                    self.mx = mx;
+                    self.my = my;
+                }
+            }, function() {
+                self.mx = -1;
+                self.my = -1;
+                self.offset_x = 0;
+                self.offset_y = 0;
+            }, null))
         ])
             .SetID("PLACEMENT TILES"),
         (new EmuTab("Tile Animation")).AddContent([
@@ -774,68 +838,6 @@ function ui_init_main(mode) {
     
         
     with (instance_create_depth(0, 0, 0, UIMain)) {
-        #region tab: general: tiles
-        
-        yy = legal_y + spacing;
-        
-        element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, function(button) {
-            var dg = dialog_create_manager_graphic_tileset(button);
-            dg.el_confirm.onmouseup = function(button) {
-                var selection = ui_list_selection(button.root.el_list);
-                if(selection + 1) {
-                    Stuff.map.active_map.tileset = Game.graphics.tilesets[selection].GUID;
-                }
-                dmu_dialog_commit(button);
-            };
-        }, t_p_tile_editor);
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        element = create_button(col1_x + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, function(button) {
-            var fn = get_open_filename_image();
-            if (file_exists(fn)) {
-                var picture = sprite_add(fn, 0, false, false, 0, 0);
-                var ts = get_active_tileset();
-                sprite_delete(ts.picture);
-                ts.picture = picture;
-            }
-        }, t_p_tile_editor);
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        element = create_button(col1_x + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, function(button) {
-            var fn = get_save_filename_image("output.png");
-            if (fn != "") {
-                sprite_save(get_active_tileset().picture, 0, fn);
-            }
-        }, t_p_tile_editor);
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_tile_selector(col1_x, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, function(selector, tx, ty) {
-            Stuff.map.selection_fill_tile_x = tx;
-            Stuff.map.selection_fill_tile_y = ty;
-            selector.tile_x = tx;
-            selector.tile_y = ty;
-        }, function(selector, tx, ty) {
-            var ts = get_active_tileset();
-        }, t_p_tile_editor);
-        element.tile_x = mode.selection_fill_tile_x;
-        element.tile_y = mode.selection_fill_tile_y;
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        yy += element.height + spacing;
-        var yy_aftergrid = yy;
-        
-        element = create_text(col1_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
-        element.render = method(element, function(text, x, y) {
-            text.text = "Tile Properties: " + string(Stuff.map.selection_fill_tile_x) + ", " + string(Stuff.map.selection_fill_tile_y);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
-        
         #region tab: general: meshes
         yy = legal_y + spacing;
         
