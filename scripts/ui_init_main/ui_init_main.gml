@@ -704,24 +704,30 @@ function ui_init_main(mode) {
         (new EmuTab("Effect")).AddContent([
             new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Effect Components"),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Light", function() {
-                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 dialog_create_entity_effect_com_lighting();
             })),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Particle", function() {
-                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 // later
             })),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Audio", function() {
-                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 // later
             })),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Markers", function() {
-                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 dialog_create_entity_effect_com_markers();
             })),
         ])
             .SetID("ENTITY EFFECT"),
         (new EmuTab("Other")).AddContent([
+            new EmuText(col1x, EMU_AUTO, hud_width, element_height, "[c_aqua]This doesn't really fit anywhere else"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Zone data", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                // this behavior will be dependent on the selected zone type
+            }))
+                .SetTooltip("If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here."),
         ])
             .SetID("ENTITY OTHER"),
     ]);
@@ -741,23 +747,6 @@ function ui_init_main(mode) {
     
         
     with (instance_create_depth(0, 0, 0, UIMain)) {
-        #region tab: entity: other
-        yy = legal_y + spacing;
-        
-        element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other);
-        ds_list_add(t_p_other.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other);
-        element.tooltip = "If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.";
-        element.interactive = false;
-        ds_list_add(t_p_other.contents, element);
-        t_p_other.el_zone_data = element;
-        
-        yy += element.height + spacing;
-        #endregion
-        
         #region tab: general: tiles
         
         yy = legal_y + spacing;
