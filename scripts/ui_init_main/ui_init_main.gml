@@ -588,7 +588,7 @@ function ui_init_main(mode) {
         ])
             .SetID("ENTITY"),
         (new EmuTab("Mesh")).AddContent([
-            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes", element_height, 14, function() {
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes", element_height, 22, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
                 
@@ -611,7 +611,7 @@ function ui_init_main(mode) {
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetList(Game.meshes)
                 .SetID("ENTITY MESH MESH"),
-            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Submeshes", element_height, 7, function() {
+            (new EmuList(col2x, EMU_BASE, element_width, element_height, "Submeshes", element_height, 8, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
                 
@@ -630,7 +630,7 @@ function ui_init_main(mode) {
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetList(Game.meshes)
                 .SetID("ENTITY MESH SUBMESH"),
-            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Animation"),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Animation"),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animated", false, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.etype != ETypes.ENTITY_MESH) return;
@@ -654,7 +654,7 @@ function ui_init_main(mode) {
             }))
                 .AddOptions(["Stop", "Loop", "Reverse"])
                 .SetID("ENTITY MESH ANIMATION END ACTION")
-                .SetTooltip("What EMU_AUTO do at the end of an animation cycle."),
+                .SetTooltip("What do at the end of an animation cycle."),
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Stuff"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Mesh Autotile Data", function() {
                 if (ds_list_size(Stuff.map.selected_entities) != 1) return;
@@ -663,6 +663,42 @@ function ui_init_main(mode) {
         ])
             .SetID("ENTITY MESH"),
         (new EmuTab("Pawn")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Overworld Sprite", element_height, 22, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_PAWN) return;
+                    entity.overworld_sprite = data.value;
+                }, { value: Game.graphics.overworlds[index].GUID });
+            }))
+                .SetList(Game.graphics.overworlds)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetID("ENTITY PAWN SPRITE"),
+            (new EmuInput(col2x, EMU_BASE, element_width, element_height, "Frame", "0", "of animation", 4, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_PAWN) return;
+                    entity.frame = real(data.value);
+                }, { value: real(self.value) });
+            }))
+                .SetID("ENTITY PAWN FRAME")
+                .SetTooltip("The frame of the pawn's animation to show."),
+            (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "Direction:", 0, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_PAWN) return;
+                    entity.map_direction = data.value;
+                }, { value: self.value });
+            }))
+                .AddOptions(["Down", "Left", "Right", "Up"])
+                .SetID("ENTITY PAWN DIRECTION")
+                .SetTooltip("The direction you want this pawn to face on the map."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animating", false, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.etype != ETypes.ENTITY_PAWN) return;
+                    entity.is_animating = data.value;
+                }, { value: self.value });
+            }))
+                .SetID("ENTITY PAWN ANIMATING"),
         ])
             .SetID("ENTITY PAWN"),
         (new EmuTab("Effect")).AddContent([
@@ -690,57 +726,6 @@ function ui_init_main(mode) {
     with (instance_create_depth(0, 0, 0, UIMain)) {
         #region tab: entity: pawn
         yy = legal_y + spacing;
-        
-        element_entity_pawn_frame = create_input(col1_x, yy, "Frame:", col_width, element_height, function(input) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var list = Stuff.map.selected_entities;
-            var conversion = real(thing.value);
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].frame = conversion;
-            }
-        }, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
-        
-        yy += element_entity_pawn_frame.height + spacing;
-        
-        element_entity_pawn_direction = create_radio_array(col1_x, yy, "Direction", col_width, element_height, function(radio) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].map_direction = radio.value;
-            }
-        }, 0, t_p_pawn);
-        create_radio_array_options(element_entity_pawn_direction, ["Down", "Left", "Right", "Up"]);
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_direction);
-        
-        yy += element_entity_pawn_direction.GetHeight() + spacing;
-        
-        element_entity_pawn_animating = create_checkbox(col1_x, yy, "Animating", col_width, element_height, function(checkbox) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].is_animating = checkbox.value;
-            }
-        }, false, t_p_pawn);
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_animating);
-        
-        yy += element_entity_pawn_animating.height + spacing;
-        
-        element_entity_pawn_sprite = create_list(col1_x, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, function(list) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var entities = Stuff.map.selected_entities;
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                for (var i = 0; i < ds_list_size(entities); i++) {
-                    entities[| i].overworld_sprite = Game.graphics.overworlds[selection].GUID;
-                }
-            }
-        }, false, t_p_pawn, Game.graphics.overworlds);
-        element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
-        
-        yy += element_entity_pawn_sprite.GetHeight() + spacing;
-        #endregion
         
         #region tab: entity: effect
         yy = legal_y + spacing;
