@@ -735,7 +735,31 @@ function ui_init_main(mode) {
     
     #region world
     tab_group.AddTabs(2, [
-        
+        (new EmuTab("Meshes")).AddContent([
+        ])
+            .SetID("PLACEMENT MESHES"),
+        (new EmuTab("Tiles")).AddContent([
+        ])
+            .SetID("PLACEMENT TILES"),
+        (new EmuTab("Tile Animation")).AddContent([
+        ])
+            .SetID("PLACEMENT TILE ANIMATION"),
+        (new EmuTab("Other")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Zone type:", element_height, 8, function() {
+                Settings.selection.zone_type = self.GetSelection();
+            }))
+                .SetList(["Camera Zone", "Light Zone", "Flag Zone"]),
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Mesh autotile type:", element_height, 8, function() {
+                var selection = self.GetSelection();
+                if (selection + 1) {
+                    Settings.selection.mesh_autotile_type =Game.mesh_autotiles[selection].GUID;
+                } else {
+                    Settings.selection.mesh_autotile_type = NULL;
+                }
+            }))
+                .SetList(Game.mesh_autotiles),
+        ])
+            .SetID("PLACEMENT OTHER"),
     ]);
     #endregion
     
@@ -1100,43 +1124,5 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         #endregion
-        
-        #region tab: general: other
-        yy = legal_y + spacing;
-        
-        element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, function(list) {
-            Settings.selection.zone_type = ui_list_selection(list);
-        }, false, t_p_other_editor);
-        element.colorize = false;
-        element.allow_deselect = false;
-        ui_list_select(element, Settings.selection.zone_type);
-        create_list_entries(element, ["Camera Zone"], ["Light Zone"], ["Flag Zone"]);
-        ds_list_add(t_p_other_editor.contents, element);
-        t_p_other_editor.el_zone_type = element;
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", col_width, element_height, 8, function(list) {
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                Settings.selection.mesh_autotile_type = list.entries[selection].GUID;
-            } else {
-                Settings.selection.mesh_autotile_type = NULL;
-            }
-        }, false, t_p_other_editor, Game.mesh_autotiles);
-        element.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_other_editor.contents, element);
-        t_p_other_editor.el_mesh_autotile_type = element;
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_checkbox(col1_x, yy, "Click to Drag", col_width, element_height, null, false, t_p_other_editor);
-        // if this is ever implemented properly, reactivate this
-        element.interactive = false;
-        t_p_other_editor.el_click_to_drag = element;
-        ds_list_add(t_p_other_editor.contents, element);
-        #endregion
-        
-        return id;
     }
 }
