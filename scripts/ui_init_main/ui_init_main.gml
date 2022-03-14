@@ -742,6 +742,9 @@ function ui_init_main(mode) {
         ])
             .SetID("PLACEMENT TILES"),
         (new EmuTab("Tile Animation")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Animated tiles:", element_height, 22, function() {
+                // i'm sure i'll figure out what goes here eventually
+            })),
         ])
             .SetID("PLACEMENT TILE ANIMATION"),
         (new EmuTab("Other")).AddContent([
@@ -1099,28 +1102,6 @@ function ui_init_main(mode) {
             }
         }, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
-    
-        #region tab: general: tile animation
-        yy = legal_y + spacing;
-        
-        element = create_list(col1_x, yy, "Animated Tiles: ", "<something is wrong>", col_width, element_height, 28, null, false, t_p_tile_animation_editor);
-        element.entries_are = ListEntries.GUIDS;
-        element.numbered = true;
-        ds_list_add(t_p_tile_animation_editor.contents, element);
-        
-        t_p_tile_animation_editor.element_list = element;
-        
-        element = create_text(col2_x, yy, "Animated Tile Properties", col_width, element_height, fa_left, col_width, t_p_tile_animation_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_tile_animation_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_image_button(col2_x, yy, "Select", noone, col_width, element_height, fa_center, null, t_p_tile_animation_editor);
-        ds_list_add(t_p_tile_animation_editor.contents, element);
         
         yy += element.height + spacing;
         #endregion
