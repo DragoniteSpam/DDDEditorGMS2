@@ -1,4 +1,4 @@
-function dialog_create_entity_effect_com_lighting(root) {
+function dialog_create_entity_effect_com_lighting() {
     var list = Stuff.map.selected_entities;
     var single = (ds_list_size(list) == 1);
     var first = list[| 0];
@@ -10,7 +10,7 @@ function dialog_create_entity_effect_com_lighting(root) {
     var dw = 400;
     var dh = 576;
     
-    var dg = dialog_create(dw, dh, "Effect Component: Lighting", dialog_default, dialog_destroy, root);
+    var dg = dialog_create(dw, dh, "Effect Component: Lighting", dialog_default, dialog_destroy, undefined);
     
     var spacing = 16;
     var columns = 1;

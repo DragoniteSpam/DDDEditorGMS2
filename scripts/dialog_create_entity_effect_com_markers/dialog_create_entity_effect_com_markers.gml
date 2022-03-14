@@ -1,4 +1,4 @@
-function dialog_create_entity_effect_com_markers(root) {
+function dialog_create_entity_effect_com_markers() {
     var list = Stuff.map.selected_entities;
     var single = (ds_list_size(list) == 1);
     var first = list[| 0];
@@ -7,7 +7,7 @@ function dialog_create_entity_effect_com_markers(root) {
     var dw = 320;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Effect Component: Marker", dialog_default, dialog_destroy, root);
+    var dg = dialog_create(dw, dh, "Effect Component: Marker", dialog_default, dialog_destroy, undefined);
     
     var spacing = 16;
     var columns = 1;
