@@ -247,14 +247,12 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         	case E_InputTypes.STRING:
         		return true;
         	case E_InputTypes.INT:
-	        	if (string_count(".", text) > 0) return false;
-	        	if (string_count("e", text) > 0) return false;
 	            try {
 	                real(text);
 	            } catch (e) {
 	                return false;
 	            }
-	            return true;
+	            return int64(text) == real(text);
         	case E_InputTypes.REAL:
 	            try {
 	                real(text);
