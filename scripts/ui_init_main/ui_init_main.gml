@@ -1,9 +1,9 @@
 function ui_init_main(mode) {
     var hud_width = view_get_wport(view_hud);
     var hud_height = window_get_height();
-    var col1x = 32;
-    var col2x = hud_width / 2;
-    var element_width = hud_width / 2 - 64;
+    var col1x = 16;
+    var col2x = hud_width / 2 + 16;
+    var element_width = hud_width / 2 - 32;
     var element_height = 32;
     
     var container = new EmuCore(0, 0, hud_width, hud_height);
@@ -736,6 +736,160 @@ function ui_init_main(mode) {
     #region world
     tab_group.AddTabs(2, [
         (new EmuTab("Meshes")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 20, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                Stuff.map.selection_fill_mesh = index;
+                var data = Game.meshes[Stuff.map.selection_fill_mesh];
+                /*
+                var thing = Stuff.map.ui.t_p_mesh_editor;
+                ui_input_set_value(thing.mesh_name, data.name);
+                ui_input_set_value(thing.mesh_name_internal, data.internal_name);
+            
+                ui_input_set_value(thing.xmin, string(data.xmin));
+                ui_input_set_value(thing.xmax, string(data.xmax));
+                ui_input_set_value(thing.ymin, string(data.ymin));
+                ui_input_set_value(thing.ymax, string(data.ymax));
+                ui_input_set_value(thing.zmin, string(data.zmin));
+                ui_input_set_value(thing.zmax, string(data.zmax));
+                */
+            }))
+                .SetList(Game.meshes)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetUpdate(function() {
+                    self.text = "Meshes: " + string(array_length(Game.meshes));
+                })
+                .SetListColors(function(index) {
+                    var mesh = Game.meshes[index];
+                    for (var i = 0; i < array_length(mesh.submeshes); i++) {
+                        if (!mesh.submeshes[i].buffer) return c_red;
+                    }
+                    switch (mesh.type) {
+                        case MeshTypes.RAW: return c_black;
+                        case MeshTypes.SMF: return c_blue;
+                    }
+                    return c_black;
+                })
+                .SetCallbackDouble(function() {
+                    var index = self.GetSelection();
+                    if(index == -1) return;
+                    dialog_create_mesh_advanced(Game.meshes[index]);
+                })
+                .SetTooltip("All meshes available. Legend:\n - RED meshes have one or more submeshes with no vertex buffer associated with it\n - BLUE meshes are SMF meshes, and may have special animations or materials\n - Meshes marked with \"p\" represent particles\n - Meshes marked with \"r\" have one or more reflection meshes associated with them")
+                .SetID("MESH LIST"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Go to Mesh manager", function() {
+                momu_meshes();
+            }))
+                .SetTooltip("Go to the Mesh management window."),
+            (new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Basic mesh properties")),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Name:")),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", string(VISIBLE_NAME_LENGTH) + " chars", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                Game.meshes[index].name = self.value;
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH NAME"),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Internal name:")),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", string(INTERNAL_NAME_LENGTH) + " chars", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                internal_name_set(Game.meshes[index], self.value);
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH INTERNAL NAME"),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Bounds:")),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "x1:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.xmin;
+                mesh.xmin = real(self.value);
+                if (old_value != mesh.xmin) {
+                    data_mesh_recalculate_bounds(mesh);
+                }
+            }))
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS XMIN"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "x2:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.xmax;
+                mesh.xmax = real(self.value);
+                if (old_value != mesh.xmax) {
+                    data_mesh_recalculate_bounds(mesh);
+                }
+            }))
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS XMAX"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "y1:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.ymin;
+                mesh.ymin = real(self.value);
+                if (old_value != mesh.ymin) {
+                    data_mesh_recalculate_bounds(mesh);
+                }
+            }))
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS YMIN"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "y2:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.ymax;
+                mesh.ymax = real(self.value);
+                if (old_value != mesh.ymax) {
+                    data_mesh_recalculate_bounds(mesh);
+                }
+            }))
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS YMAX"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "z1:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.zmin;
+                mesh.zmin = real(self.value);
+                if (old_value != mesh.zmin) {
+                    data_mesh_recalculate_bounds(mesh);
+                }
+            }))
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS ZMIN"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "z2:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.zmax;
+                mesh.zmax = real(self.value);
+                if (old_value != mesh.zmax) {
+                    data_mesh_recalculate_bounds(mesh);
+                }
+            }))
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS ZMAX"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Flag Data", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                dialog_create_mesh_collision_data(Game.meshes[index]);
+            }))
+                .SetTooltip("Go to the Mesh management window."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Advanced", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                dialog_create_mesh_advanced(Game.meshes[index]);
+            }))
+                .SetTooltip("Go to the Mesh management window."),
         ])
             .SetID("PLACEMENT MESHES"),
         (new EmuTab("Tiles")).AddContent([
@@ -837,277 +991,4 @@ function ui_init_main(mode) {
     container.AddContent(tab_group);
     
     return container;
-    
-        
-    with (instance_create_depth(0, 0, 0, UIMain)) {
-        #region tab: general: meshes
-        yy = legal_y + spacing;
-        
-        // this is an object variable
-        element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, function(list) {
-            Stuff.map.selection_fill_mesh = ui_list_selection(list);
-            uivc_select_mesh_refresh(Stuff.map.selection_fill_mesh);
-        }, false, t_p_mesh_editor, Game.meshes);
-        element_mesh_list.entries_are = ListEntries.SCRIPT;
-        element_mesh_list.colorize = true;
-        element_mesh_list.render = method(element_mesh_list, function(list, x, y) {
-            var oldtext = list.text;
-            list.text = list.text + string(array_length(list.entries));
-            ui_render_list(list, x, y);
-            list.text = oldtext;
-        });
-        element_mesh_list.render_colors = method(element_mesh_list, function(list, index) {
-            var mesh = list.entries[index];
-            for (var i = 0; i < array_length(mesh.submeshes); i++) {
-                if (!mesh.submeshes[i].buffer) return c_red;
-            }
-            switch (mesh.type) {
-                case MeshTypes.RAW: return c_black;
-                case MeshTypes.SMF: return c_blue;
-            }
-            return c_black;
-        });
-        element_mesh_list.ondoubleclick = method(element_mesh_list, function(list) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) dialog_create_mesh_advanced(undefined, data);
-        });
-        element_mesh_list.evaluate_text = method(element_mesh_list, function(list, index) {
-            var mesh = list.entries[index];
-            var prefix = "";
-            if (mesh.flags & MeshFlags.PARTICLE) {
-                prefix += "p";
-            }
-            if (mesh.flags & MeshFlags.SILHOUETTE) {
-                prefix += "s";
-            }
-            for (var i = 0; i < array_length(mesh.submeshes); i++) {
-                if (mesh.submeshes[i].reflect_buffer) {
-                    prefix += "r";
-                    break;
-                }
-            }
-            if (string_length(prefix) > 0) {
-                prefix = "(" + prefix + ")";
-            }
-            return prefix + mesh.name;
-        });
-        element_mesh_list.tooltip = "All meshes available. Legend:\n - RED meshes have one or more submeshes with no vertex buffer associated with it\n - BLUE meshes are SMF meshes, and may have special animations or materials\n - Meshes marked with \"p\" represent particles\n - Meshes marked with \"r\" have one or more reflection meshes associated with them";
-        ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
-        
-        yy += element_mesh_list.GetHeight() + spacing;
-        
-        element = create_button(col1_x, yy, "Import", col_width, element_height, fa_center, function(button) {
-            var fn = get_open_filename_mesh();
-            if (file_exists(fn)) {
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, undefined); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                }
-            }
-        }, t_p_mesh_editor);
-        element.file_dropper_action = function(element, files) {
-            var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".smf", ".dae"]);
-            for (var i = 0; i < array_length(filtered_list); i++) {
-                var fn = filtered_list[i];
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, true); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, true); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                }
-            }
-        };
-        element.tooltip = "Imports a 3D model. The texture coordinates will automatically be scaled on importing; to override this, press the Control key.";
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) data.Destroy();
-            batch_again();
-        }, t_p_mesh_editor);
-        element.color = c_red;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy = legal_y + spacing;
-        
-        element = create_text(col2_x, yy, "Mesh Properties", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                data.name = input.value;
-            }
-        }, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        t_p_mesh_editor.mesh_name = element;
-        
-        yy += t_p_mesh_editor.mesh_name.height + spacing;
-        
-        element = create_text(col2_x, yy, "Internal Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                internal_name_set(data, input.value);
-            }
-        }, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        t_p_mesh_editor.mesh_name_internal = element;
-        
-        yy += t_p_mesh_editor.mesh_name_internal.height + spacing;
-        
-        s = 10;
-        
-        var bounds_x = col2_x;
-        var bounds_x_2 = bounds_x + col_width / 2;
-        
-        element = create_text(bounds_x, yy, "Bounds", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.xmin;
-                data.xmin = real(input.value);
-                if (old_value != data.xmin) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.xmin = element;
-        
-        element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.xmax;
-                data.xmax = real(input.value);
-                if (old_value != data.xmax) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.xmax = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.ymin;
-                data.ymin = real(input.value);
-                if (old_value != data.ymin) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.ymin = element;
-        
-        element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.ymax;
-                data.ymax = real(input.value);
-                if (old_value != data.ymax) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.ymax = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.zmin;
-                data.zmin = real(input.value);
-                if (old_value != data.zmin) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.zmin = element;
-        
-        element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.zmax;
-                data.zmax = real(input.value);
-                if (old_value != data.zmax) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.zmax = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Flag Data", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                dialog_create_mesh_collision_data(noone, data);
-            }
-        }, t_p_tile_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) dialog_create_mesh_advanced(undefined, data);
-        }, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "General Mesh Things", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var fn = get_save_filename_mesh("");
-                if (string_length(fn) > 0) {
-                    switch (filename_ext(fn)) {
-                        case ".obj": export_obj(fn, data); break;
-                        case ".d3d": case ".gmmod": export_d3d(fn, data); break;
-                    }
-                }
-            }
-        }, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
-    }
 }

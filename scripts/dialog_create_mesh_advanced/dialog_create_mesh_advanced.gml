@@ -1,8 +1,8 @@
-function dialog_create_mesh_advanced(root, mesh) {
+function dialog_create_mesh_advanced(mesh) {
     var dw = 1280;
     var dh = 560;
     
-    var dg = dialog_create(dw, dh, "Advanced Mesh Options: " + mesh.name, dialog_default, dialog_destroy, root);
+    var dg = dialog_create(dw, dh, "Advanced Mesh Options: " + mesh.name, dialog_default, dialog_destroy, undefined);
     dg.mesh = mesh;
     dg.type = 0;
     

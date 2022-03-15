@@ -1,4 +1,4 @@
-function dialog_create_mesh_collision_data(root, mesh) {
+function dialog_create_mesh_collision_data(mesh) {
     var valid = true;
     var ww = mesh.xmax - mesh.xmin;
     var hh = mesh.ymax - mesh.ymin;
@@ -12,7 +12,7 @@ function dialog_create_mesh_collision_data(root, mesh) {
     var dw = 1440;
     var dh = 800;
     
-    var dg = dialog_create(dw, dh, "Mesh flag data: " + mesh.name, dialog_default, dialog_destroy, root);
+    var dg = dialog_create(dw, dh, "Mesh flag data: " + mesh.name, dialog_default, dialog_destroy, undefined);
     dg.mesh = mesh;
     dg.xx = 0;
     dg.yy = 0;
