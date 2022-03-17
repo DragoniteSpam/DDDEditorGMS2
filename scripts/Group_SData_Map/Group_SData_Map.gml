@@ -76,7 +76,7 @@ function DataMap(source, directory) : SData(source) constructor {
                 ds_list_add(list, entity);
             }
         } else {
-            safa_delete(entity);
+            selection_delete(entity);
         }
     };
     
@@ -122,7 +122,7 @@ function DataMap(source, directory) : SData(source) constructor {
             for (var i = 0; i < ds_list_size(self.contents.all_entities); i++) {
                 var thing = self.contents.all_entities[| i];
                 if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
-                    safa_delete(thing);
+                    selection_delete(thing);
                 }
             }
             
@@ -136,9 +136,9 @@ function DataMap(source, directory) : SData(source) constructor {
             Game.meta.start.z = min(Game.meta.start.z, z - 1);
         }
         
-        Stuff.map.ui.element_entity_pos_x.value_upper = x - 1;
-        Stuff.map.ui.element_entity_pos_y.value_upper = y - 1;
-        Stuff.map.ui.element_entity_pos_z.value_upper = z - 1;
+        Stuff.map.ui.SearchID("ENTITY POSITION X").SetRealNumberBounds(0, x - 1);
+        Stuff.map.ui.SearchID("ENTITY POSITION Y").SetRealNumberBounds(0, y - 1);
+        Stuff.map.ui.SearchID("ENTITY POSITION Z").SetRealNumberBounds(0, z - 1);
     };
     
     static Move = function(entity, x, y, z, mark_changed = true) {

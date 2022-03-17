@@ -11,3 +11,28 @@ function map_foreach_selected(f, data) {
         f(list[| i], data);
     }
 }
+
+function map_selection_like_type(list, type_flag) {
+    if (ds_list_size(list) == 0) return false;
+    for (var i = 0, n = ds_list_size(list); i < n; i++) {
+        if (list[| i].etype & type_flag == 0) return false;
+    }
+    return true;
+}
+
+// Loops through all selected entities; if all entities (of the specified type)
+// shae the specified property, return a struct containing the property;
+// otherwise, return undefined
+function map_selection_like_property(list, property, type_flag = ETypeFlags.ENTITY) {
+    var first_value = undefined;
+    for (var i = 0, n = ds_list_size(list); i < n; i++) {
+        if (list[| i].etype & type_flag == 0) continue;
+        if (first_value == undefined) {
+            first_value = list[| i][$ property];
+        } else {
+            if (first_value != list[| i][$ property]) return undefined;
+        }
+    }
+    if (!first_value) return undefined;
+    return { value: first_value };
+}

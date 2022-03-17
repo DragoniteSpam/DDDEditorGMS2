@@ -47,8 +47,15 @@ function EmuCore(x, y, w, h) constructor {
     self._element_spacing_x = 32;
     self._ref_name = "";
     
+    self.refresh_script = function(data) { };
+    
     static SetUpdate = function(f) {
         self.update_script = method(self, f);
+        return self;
+    };
+    
+    static SetRefresh = function(f) {
+        self.refresh_script = method(self, f);
         return self;
     };
     
@@ -131,6 +138,13 @@ function EmuCore(x, y, w, h) constructor {
             self.root[$ self._ref_name] = self;
         }
         return self;
+    };
+    
+    static Refresh = function(data) {
+        self.refresh_script(data);
+        for (var i = 0, n = ds_list_size(self._contents); i < n; i++) {
+            self._contents[| i].Refresh(data);
+        }
     };
     
     static AddContent = function(elements) {

@@ -371,20 +371,54 @@ function ui_init_main(mode) {
             }))
                 .SetTooltip("It can be helpful for the entity names to be unique, although they don't have to be.")
                 .SetID("ENTITY NAME")
-                .SetInputBoxPosition(0, 0),
+                .SetInputBoxPosition(0, 0)
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "name") ? selected[| 0].name : "*");
+                    }
+                }),
             (new EmuText(col1x, EMU_AUTO, element_width, element_height, "Type: N/A"))
-                .SetID("ENTITY TYPE"),
+                .SetID("ENTITY TYPE")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetValue("Type: N/A");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue("Type: " + (map_selection_like_property(selected, "etype") ? global.etype_meta[selected[| 0].etype].name : "(multiple)"));
+                    }
+                }),
             (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Static?", false, function() {
                 map_foreach_selected(function(entity, data) {
                     entity.SetStatic(data.value);
                 }, { value: self.value });
-            })),
+            }))
+                .SetID("ENTITY STATIC")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "is_static") ? selected[| 0].is_static : 2);
+                    }
+                }),
             new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Events"),
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Event Pages", element_height, 4, emu_null))
                 .SetVacantText("no events")
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetCallbackDouble(f_event_page_open)
-                .SetID("ENTITY EVENT PAGES"),
+                .SetID("ENTITY EVENT PAGES")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) != 1) {
+                        self.SetInteractive(false);
+                        self.SetList([]);
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(selected[| 0].object_events);
+                    }
+                }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Add", function() {
                 var list = Stuff.map.selected_entities;
                 if (ds_list_size(list) != 1) return;
@@ -411,41 +445,53 @@ function ui_init_main(mode) {
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Generic Data", function() {
                 if (ds_list_size(Stuff.map.selected_entities) != 1) return;
                 dialog_create_entity_generic_data();
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(ds_list_size(selected) == 1);
+                }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Autonomous Movement", function() {
                 if (ds_list_size(Stuff.map.selected_entities) != 1) return;
                 dialog_create_entity_autonomous_movement();
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(ds_list_size(selected) == 1);
+                }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Options", function() {
-                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                var selection = Stuff.map.selected_entities;
                 
                 var col1x = 32;
                 var col2x = hud_width / 2;
                 var element_width = hud_width / 2 - 64;
                 var element_height = 32;
                 
+                
+                var df_state = map_selection_like_property(selection, "direction_fix") ? selection[| 0].direction_fix : 2;
+                var au_state = map_selection_like_property(selection, "always_update") ? selection[| 0].always_update : 2;
+                var preserve_state = map_selection_like_property(selection, "preserve_on_save") ? selection[| 0].preserve_on_save : 2;
+                var reflect_state = map_selection_like_property(selection, "reflect") ? selection[| 0].reflect : 2;
+                
                 var dialog = new EmuDialog(320, 480, "Entity Options");
                 dialog.AddContent([
-                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Direction Fix", false, function() {
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Direction Fix", df_state, function() {
                         map_foreach_selected(function(entity, data) {
                             entity.direction_fix = data.value;
                         }, { value: self.value });
                     }))
                         .SetID("ENTITY OPTION DIRECTION FIX"),
-                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Always Update", false, function() {
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Always Update", au_state, function() {
                         map_foreach_selected(function(entity, data) {
                             entity.always_update = data.value;
                         }, { value: self.value });
                     }))
                         .SetID("ENTITY OPTION ALWAYS UPDATE"),
-                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Preserve", false, function() {
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Preserve", preserve_state, function() {
                         map_foreach_selected(function(entity, data) {
                             entity.preserve_on_save = data.value;
                         }, { value: self.value });
                     }))
                         .SetTooltip("Whether or not the state of the entity is saved when the map is exited, the game is closed, etc.")
                         .SetID("ENTITY OPTION PRESERVE"),
-                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Cast Reflection", false, function() {
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Cast Reflection", reflect_state, function() {
                         map_foreach_selected(function(entity, data) {
                             entity.reflect = data.value;
                         }, { value: self.value });
@@ -454,7 +500,10 @@ function ui_init_main(mode) {
                         .SetID("ENTITY OPTION REFLECT"),
                 ])
                     .AddDefaultCloseButton();
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(ds_list_size(selected) >= 1);
+                }),
             #endregion
             #region column 2
             new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Transform"),
@@ -466,7 +515,16 @@ function ui_init_main(mode) {
                 }, { value: string(self.value) });
             }))
                 .SetRequireConfirm(true)
-                .SetID("ENTITY POSITION X"),
+                .SetID("ENTITY POSITION X")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "xx") ? selected[| 0].xx : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "cell", 10, E_InputTypes.INT, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.translateable) {
@@ -475,7 +533,16 @@ function ui_init_main(mode) {
                 }, { value: string(self.value) });
             }))
                 .SetRequireConfirm(true)
-                .SetID("ENTITY POSITION Y"),
+                .SetID("ENTITY POSITION Y")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "yy") ? selected[| 0].yy : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "cell", 10, E_InputTypes.INT, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.translateable) {
@@ -484,110 +551,201 @@ function ui_init_main(mode) {
                 }, { value: string(self.value) });
             }))
                 .SetRequireConfirm(true)
-                .SetID("ENTITY POSITION Z"),
+                .SetID("ENTITY POSITION Z")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "zz") ? selected[| 0].zz : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Offset X:", "0", "cell", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.offsettable) {
-                        entity.off_xx = real(input.value);
+                        entity.off_xx = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0, 1)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY OFFSET X"),
+                .SetID("ENTITY OFFSET X")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "off_xx") ? selected[| 0].off_xx : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "cell", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.offsettable) {
-                        entity.off_yy = real(input.value);
+                        entity.off_yy = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0, 1)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY OFFSET Y"),
+                .SetID("ENTITY OFFSET Y")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "off_yy") ? selected[| 0].off_yy : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "cell", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.offsettable) {
-                        entity.off_zz = real(input.value);
+                        entity.off_zz = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0, 1)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY OFFSET Z"),
+                .SetID("ENTITY OFFSET Z")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "off_zz") ? selected[| 0].off_zz : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Rotation X:", "0", "degrees", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.rotateable) {
-                        entity.rot_xx = real(input.value);
+                        entity.rot_xx = real(self.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0, 360)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY ROTATION X"),
+                .SetID("ENTITY ROTATION X")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "rot_xx") ? selected[| 0].rot_xx : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "degrees", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.offsettable) {
-                        entity.off_yy = real(input.value);
+                        entity.off_yy = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0, 360)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY ROTATION Y"),
+                .SetID("ENTITY ROTATION Y")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "rot_yy") ? selected[| 0].rot_yy : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "degrees", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.offsettable) {
-                        entity.off_zz = real(input.value);
+                        entity.off_zz = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0, 360)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY ROTATION Z"),
+                .SetID("ENTITY ROTATION Z")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "rot_zz") ? selected[| 0].rot_zz : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Scale X:", "1", "x", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.scalable) {
-                        entity.scale_xx = real(input.value);
+                        entity.scale_xx = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0.01, 100)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY ROTATION X"),
+                .SetID("ENTITY SCALE X")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "scale_xx") ? selected[| 0].scale_xx : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "1", "x", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.scalable) {
-                        entity.scale_yy = real(input.value);
+                        entity.scale_yy = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0.01, 100)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY ROTATION Y"),
+                .SetID("ENTITY SCALE Y")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "scale_yy") ? selected[| 0].scale_yy : "");
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "1", "x", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.scalable) {
-                        entity.scale_zz = real(input.value);
+                        entity.scale_zz = real(data.value);
                         editor_map_mark_changed(entity);
                     }
                 }, { value: string(self.value) });
             }))
                 .SetRealNumberBounds(0.01, 100)
                 .SetRequireConfirm(true)
-                .SetID("ENTITY ROTATION Z"),
+                .SetID("ENTITY SCALE Z")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(selected, "scale_zz") ? selected[| 0].scale_zz : "");
+                    }
+                }),
             #endregion
         ])
             .SetID("ENTITY"),
         (new EmuTab("Mesh")).AddContent([
+            #region column 1
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes", element_height, 22, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
@@ -610,7 +768,26 @@ function ui_init_main(mode) {
                 .SetVacantText("no meshes")
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetList(Game.meshes)
-                .SetID("ENTITY MESH MESH"),
+                .SetID("ENTITY MESH MESH")
+                .SetRefresh(function(selected) {
+                    self.Deselect();
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                    } else if (ds_list_size(selected) == 1) {
+                        self.SetInteractive(true);
+                        for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
+                            if (selected[| 0].etype_flags & ETypeFlags.ENTITY_MESH_AUTO && selected[| 0].mesh == Game.meshes[i]) {
+                                self.Select(i);
+                                break;
+                            }
+                        }
+                    } else {
+                        self.SetInteractive(true);
+                        // checking this gets expensive in O(n^2) time so we're not going to do it
+                    }
+                }),
+            #endregion
+            #region column 2
             (new EmuList(col2x, EMU_BASE, element_width, element_height, "Submeshes", element_height, 8, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
@@ -629,7 +806,30 @@ function ui_init_main(mode) {
                 .SetVacantText("no meshes")
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetList(Game.meshes)
-                .SetID("ENTITY MESH SUBMESH"),
+                .SetID("ENTITY MESH SUBMESH")
+                .SetRefresh(function(selected) {
+                    self.Deselect();
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                    } else if (ds_list_size(selected) == 1) {
+                        self.SetInteractive(true);
+                        for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
+                            if (selected[| 0].etype_flags & ETypeFlags.ENTITY_MESH_AUTO && selected[| 0].mesh == Game.meshes[i]) {
+                                self.SetList(selected[| 0].mesh.submeshes);
+                                for (var j = 0, n2 = array_length(selected[| 0].mesh.submeshes); j < n2; j++) {
+                                    if (selected[| 0].mesh_submesh == selected[| 0].mesh.submeshes[j].proto_guid) {
+                                        self.Select(j);
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    } else {
+                        self.SetInteractive(true);
+                        // just like the last one
+                    }
+                }),
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Animation"),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animated", false, function() {
                 map_foreach_selected(function(entity, data) {
@@ -637,7 +837,17 @@ function ui_init_main(mode) {
                     entity.animated = data.value;
                 }, { value: self.value });
             }))
-                .SetID("ENTITY MESH ANIMATED"),
+                .SetID("ENTITY MESH ANIMATED")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(0);
+                    } else {
+                        var common = map_selection_like_property(selected, "animated", ETypeFlags.ENTITY_MESH);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Anim. Speed:", "0", "frames per second", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.etype != ETypes.ENTITY_MESH) return;
@@ -645,7 +855,17 @@ function ui_init_main(mode) {
                 }, { value: real(self.value) });
             }))
                 .SetID("ENTITY MESH ANIMATION SPEED")
-                .SetTooltip("The number of complete animation frames per second. (Animations will not be previewed in the editor.)"),
+                .SetTooltip("The number of complete animation frames per second. (Animations will not be previewed in the editor.)")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        var common = map_selection_like_property(selected, "animation_speed", ETypeFlags.ENTITY_MESH);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
             (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "End action:", 0, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.etype != ETypes.ENTITY_MESH) return;
@@ -654,12 +874,26 @@ function ui_init_main(mode) {
             }))
                 .AddOptions(["Stop", "Loop", "Reverse"])
                 .SetID("ENTITY MESH ANIMATION END ACTION")
-                .SetTooltip("What do at the end of an animation cycle."),
+                .SetTooltip("What do at the end of an animation cycle.")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(-1);
+                    } else {
+                        var common = map_selection_like_property(selected, "animation_end_action", ETypeFlags.ENTITY_MESH);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Stuff"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Mesh Autotile Data", function() {
                 if (ds_list_size(Stuff.map.selected_entities) != 1) return;
                 dialog_create_entity_mesh_autotile_properties();
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(map_selection_like_type(selected, ETypeFlags.ENTITY_MESH_AUTO));
+                }),
+            #endregion
         ])
             .SetID("ENTITY MESH"),
         (new EmuTab("Pawn")).AddContent([
@@ -674,7 +908,17 @@ function ui_init_main(mode) {
             }))
                 .SetList(Game.graphics.overworlds)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-                .SetID("ENTITY PAWN SPRITE"),
+                .SetID("ENTITY PAWN SPRITE")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.Deselect();
+                    } else {
+                        var common = map_selection_like_property(selected, "overworld_sprite", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        if (common) self.Select(common.value, true);
+                    }
+                }),
             (new EmuInput(col2x, EMU_BASE, element_width, element_height, "Frame", "0", "of animation", 4, E_InputTypes.INT, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.etype != ETypes.ENTITY_PAWN) return;
@@ -682,7 +926,17 @@ function ui_init_main(mode) {
                 }, { value: real(self.value) });
             }))
                 .SetID("ENTITY PAWN FRAME")
-                .SetTooltip("The frame of the pawn's animation to show."),
+                .SetTooltip("The frame of the pawn's animation to show.")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        var common = map_selection_like_property(selected, "frame", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
             (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "Direction:", 0, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.etype != ETypes.ENTITY_PAWN) return;
@@ -691,34 +945,62 @@ function ui_init_main(mode) {
             }))
                 .AddOptions(["Down", "Left", "Right", "Up"])
                 .SetID("ENTITY PAWN DIRECTION")
-                .SetTooltip("The direction you want this pawn to face on the map."),
+                .SetTooltip("The direction you want this pawn to face on the map.")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(-1);
+                    } else {
+                        var common = map_selection_like_property(selected, "map_direction", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animating", false, function() {
                 map_foreach_selected(function(entity, data) {
                     if (entity.etype != ETypes.ENTITY_PAWN) return;
                     entity.is_animating = data.value;
                 }, { value: self.value });
             }))
-                .SetID("ENTITY PAWN ANIMATING"),
+                .SetID("ENTITY PAWN ANIMATING")
+                .SetRefresh(function(selected) {
+                    if (ds_list_size(selected) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(false);
+                    } else {
+                        var common = map_selection_like_property(selected, "is_animating", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
         ])
             .SetID("ENTITY PAWN"),
         (new EmuTab("Effect")).AddContent([
             new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Effect Components"),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Light", function() {
-                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 dialog_create_entity_effect_com_lighting();
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(map_selection_like_type(selected, ETypeFlags.ENTITY_EFFECT));
+                }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Particle", function() {
-                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 // later
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(map_selection_like_type(selected, ETypeFlags.ENTITY_EFFECT));
+                }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Audio", function() {
-                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 // later
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(map_selection_like_type(selected, ETypeFlags.ENTITY_EFFECT));
+                }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Markers", function() {
-                if (ds_list_size(Stuff.map.selected_entities) == 0) return;
                 dialog_create_entity_effect_com_markers();
-            })),
+            }))
+                .SetRefresh(function(selected) {
+                    self.SetInteractive(map_selection_like_type(selected, ETypeFlags.ENTITY_EFFECT));
+                }),
         ])
             .SetID("ENTITY EFFECT"),
         (new EmuTab("Other")).AddContent([

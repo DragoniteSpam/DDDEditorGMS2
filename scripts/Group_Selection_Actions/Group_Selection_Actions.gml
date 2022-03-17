@@ -22,6 +22,13 @@ function selection_count() {
     }
 }
 
+function selection_delete(entity) {
+    if (entity.modification == Modifications.NONE) {
+        entity.modification = Modifications.REMOVE;
+        ds_list_add(Stuff.map.changes, entity);
+    }
+}
+
 function selected(entity, mask = Settings.selection.mask) {
     // all Entities will mask against ETypeFlags.ENTITY (0x1);
     // if you want a helpful selection determination, ignore those cases
@@ -34,6 +41,16 @@ function selected(entity, mask = Settings.selection.mask) {
     }
     
     return false;
+}
+
+function sa_process_selection() {
+    var list = selection_all();
+    var map = Stuff.map.active_map;
+    
+    ds_list_destroy(Stuff.map.selected_entities);
+    Stuff.map.selected_entities = list;
+    
+    Stuff.map.ui.Refresh(list);
 }
 
 function selected_affected_terrain() {
