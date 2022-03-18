@@ -484,7 +484,7 @@ function dialog_create_terrain_brush_manager() {
                 builtin: false,
             };
             array_insert(Stuff.terrain.brush_sprites, selection, data);
-            self.GetSibling("BRUSH_LIST").ClearSelection();
+            self.GetSibling("BRUSH_LIST").Deselect();
             // this activates the Load button
             self.GetSibling("BRUSH_LIST").Select(selection);
             data.name = self.GetSibling("LOAD").callback();
@@ -500,7 +500,7 @@ function dialog_create_terrain_brush_manager() {
             if (data.builtin) return;
             if (sprite_exists(data.sprite)) sprite_delete(data.sprite);
             array_delete(Stuff.terrain.brush_sprites, selection, 1);
-            self.GetSibling("BRUSH_LIST").ClearSelection();
+            self.GetSibling("BRUSH_LIST").Deselect();
             // also delete the brush from the generation sprites list
             for (var i = 0, n = array_length(Stuff.terrain.gen_sprites); i < n; i++) {
                 if (Stuff.terrain.gen_sprites[i].sprite == data.sprite) {

@@ -126,7 +126,7 @@ function ui_init_main(mode) {
                 sa_process_selection();
             }))
                 .SetUpdate(function() {
-                    self.list = Stuff.map.active_map.contents.all_entities;
+                    self.SetList(Stuff.map.active_map.contents.all_entities);
                 })
                 .SetVacantText("no entities in this map")
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)

@@ -51,7 +51,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         }
         _entries = _list;
         _own_entries = false;
-        ClearSelection();
+        Deselect();
         return self;
     }
     
@@ -135,8 +135,12 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         return self;
     }
     
-    Deselect = function(_list_index) {
-        variable_struct_remove(_selected_entries, _list_index);
+    Deselect = function(_list_index = undefined) {
+    	if (_list_index == undefined) {
+    		self._selected_entries = { };
+    	} else {
+    		variable_struct_remove(self._selected_entries, _list_index);
+    	}
         callback();
         return self;
     }
@@ -221,7 +225,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 
                 switch (entries_are) {
                     case E_ListEntryTypes.STRINGS: index_text += string(is_array(_entries) ? _entries[current_index] : _entries[| current_index]); break;
-                    case E_ListEntryTypes.STRUCTS: index_text += (is_array(_entries) ? _entries[current_index] : _entries[| current_index]).name; break;
+                    case E_ListEntryTypes.STRUCTS: index_text += (is_array(_entries) ? _entries[current_index].name : _entries[| current_index].name); break;
                     case E_ListEntryTypes.SCRIPTS: index_text = index_text + string((is_array(_entries) ? _entries[current_index] : _entries[| current_index])(current_index)); break;
                 }
                 
@@ -259,7 +263,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 // deselect the list if that's what yo uwould expect to happen
                 if (!auto_multi_select) {
                     if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift) && !select_toggle) || !allow_multi_select) {
-                        ClearSelection();
+                        Deselect();
                     }
                 }
                 // toggle selection over a range
@@ -286,7 +290,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             } else if (getMouseRightReleased(lx1, ly1, lx2, ly2)) {
                 Activate();
                 if (allow_deselect) {
-                    ClearSelection();
+                    Deselect();
                 }
             }
             
