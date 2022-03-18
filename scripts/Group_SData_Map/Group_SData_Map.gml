@@ -497,6 +497,20 @@ function DataMap(source, directory) : SData(source) constructor {
         array_delete(Game.maps, array_search(Game.maps, self), 1);
     };
     
+    #region Editor stuff
+    static DrawWater = function(set_lights = true) {
+        if (!self.draw_water) return;
+        if (!self.contents.water) return;
+        
+        if (Settings.view.wireframe) wireframe_enable();
+        
+        matrix_set(matrix_world, matrix_build_identity());
+        var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+        vertex_submit(self.contents.water, pr_trianglelist, tex);
+        wireframe_disable();
+    };
+    #endregion
+    
     if (is_struct(source)) {
         self.SetSize(source.xx, source.yy, source.zz);
         self.tiled_map_id = source.tiled_map_id;
