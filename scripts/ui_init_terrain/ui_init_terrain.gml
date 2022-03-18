@@ -1,6 +1,8 @@
 function ui_init_terrain(mode) {
-    var hud_width = camera_get_view_width(view_get_camera(view_hud));
-    var hud_height = window_get_height();
+    var hud_start_x = 1080;
+    var hud_start_y = 0;
+    var hud_width = room_width - hud_start_x;
+    var hud_height = room_height;
     var col1x = 32;
     var col2x = 272;
     var col_width = 216;
@@ -8,7 +10,17 @@ function ui_init_terrain(mode) {
     var container = new EmuCore(0, 0, hud_width, hud_height);
     
     container.AddContent([
-        (new EmuTabGroup(0, 32, hud_width, hud_height - 32, 1, 32)).AddTabs(0, [
+        (new EmuRenderSurface(0, 0, CW, CH, function() {
+            Stuff.terrain.DrawTerrain();
+        }, function() {
+            control_map();
+        }, function() {
+            // create
+        }, function() {
+            // destroy
+        }))
+            .SetID("TERRAIN VIEWPORT"),
+        (new EmuTabGroup(hud_start_x, EMU_BASE, hud_width, hud_height - 32, 1, 32)).AddTabs(0, [
             (new EmuTab("General")).AddContent([
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "[c_aqua]General Settings"),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Width"))

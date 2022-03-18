@@ -94,7 +94,6 @@
     {"id":{"name":"scribble_font_add","path":"scripts/scribble_font_add/scribble_font_add.yy",},"order":0,},
     {"id":{"name":"Group_Terrain_Dialogs","path":"scripts/Group_Terrain_Dialogs/Group_Terrain_Dialogs.yy",},"order":3,},
     {"id":{"name":"draw_editor_spart","path":"scripts/draw_editor_spart/draw_editor_spart.yy",},"order":1,},
-    {"id":{"name":"draw_editor_terrain","path":"scripts/draw_editor_terrain/draw_editor_terrain.yy",},"order":3,},
     {"id":{"name":"draw_animator","path":"scripts/draw_animator/draw_animator.yy",},"order":4,},
     {"id":{"name":"draw_editor_fullscreen","path":"scripts/draw_editor_fullscreen/draw_editor_fullscreen.yy",},"order":5,},
     {"id":{"name":"draw_editor_animation","path":"scripts/draw_editor_animation/draw_editor_animation.yy",},"order":6,},
