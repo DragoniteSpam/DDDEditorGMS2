@@ -1,63 +1,15 @@
-/// @param EditorModeMap
-function control_map(mode) {
+function control_map() {
+    var mode = Stuff.map;
     var map = mode.active_map;
     var map_contents = map.contents;
     var input_control = keyboard_check(vk_control);
-    var camera = view_get_camera(view_3d);
     
-    if (Stuff.menu.active_element) return;
-    
-    #region mouse picking
-    var rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto;
-    var xx, yy, zz, xadjust, yadjust, zadjust;
-    if (Settings.view.threed) {
-        var mouse_vector = screen_to_world(window_mouse_get_x(), window_mouse_get_y(),
-            matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup),
-            matrix_build_projection_perspective_fov(mode.fov, CW / CH, 1, 1000),
-            CW, CH
-        );
-        
-        // end point of the mouse vector
-        xx = mouse_vector.direction.x * MILLION;
-        yy = mouse_vector.direction.y * MILLION;
-        zz = mouse_vector.direction.z * MILLION;
-        
-        // raycast coordinates
-        rc_xfrom = mode.x;
-        rc_yfrom = mode.y;
-        rc_zfrom = mode.z;
-        rc_xto = mode.x + xx;
-        rc_yto = mode.y + yy;
-        rc_zto = mode.z + zz;
-        
-        // you only need this in 2D
-        xadjust = 0;
-        yadjust = 0;
-        zadjust = 0;
-    } else {
-        var cwidth = camera_get_view_width(camera);
-        var cheight = camera_get_view_height(camera);
-        
-        // mouse vector (in 2D you always go straight down)
-        xx = 0;
-        yy = 0;
-        zz = -1;
-        
-        // raycast coordinates
-        rc_xfrom = mode.x + ((mouse_x_view - cwidth / 2) / view_get_wport(view_3d)) * cwidth;
-        rc_yfrom = mode.y + ((mouse_y_view - cheight / 2) / view_get_hport(view_3d)) * cheight;
-        rc_zfrom = MILLION;
-        rc_xto = rc_xfrom;
-        rc_yto = rc_yfrom;
-        rc_zto = -1;
-        
-        // offset from the center of the screen
-        xadjust = rc_xfrom - mode.x;
-        yadjust = rc_yfrom - mode.y;
-        zadjust = -MILLION;
-    }
+    if (Stuff.menu.active_element || !ds_list_empty(EmuOverlay._contents)) return;
     
     var instance_under_cursor = undefined;
+    /*
+    #region mouse picking
+    
     /// @todo implement raycast into the world, maybe
     #endregion
     
@@ -67,8 +19,9 @@ function control_map(mode) {
     var floor_cx = -1;
     var floor_cy = -1;
     var floor_cz = -1;
-    
+    */
     if (!mode.mouse_over_ui) {
+        /*
         // in case you want to kick out of the interaction processing
         var process_main = true;
         
@@ -200,10 +153,10 @@ function control_map(mode) {
             }
         }
         #endregion
-        
+        */
         #region camera movement
         if (CONTROL_3D_LOOK || !input_control) {
-            var mspd = get_camera_speed(Settings.view.threed ? mode.z : 100);
+            var mspd = get_camera_speed(Settings.view.threed ? mode.camera.z : 100);
             var xspeed = 0;
             var yspeed = 0;
             var zspeed = 0;
@@ -211,76 +164,13 @@ function control_map(mode) {
             var yup = 0;
             var zup = 0;
             
-            if (Settings.view.threed) {
-                if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-                    xspeed = xspeed + dcos(mode.direction) * mspd;
-                    yspeed = yspeed - dsin(mode.direction) * mspd;
-                    zspeed = zspeed - dsin(mode.pitch) * mspd;
-                }
-                if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-                    xspeed = xspeed - dcos(mode.direction) * mspd;
-                    yspeed = yspeed + dsin(mode.direction) * mspd;
-                    zspeed = zspeed + dsin(mode.pitch) * mspd;
-                }
-                if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-                    xspeed = xspeed - dsin(mode.direction) * mspd;
-                    yspeed = yspeed - dcos(mode.direction) * mspd;
-                }
-                if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-                    xspeed = xspeed + dsin(mode.direction) * mspd;
-                    yspeed = yspeed + dcos(mode.direction) * mspd;
-                }
-                if (CONTROL_3D_LOOK) {
-                    var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) div 2;
-                    var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) div 2;
-                    var dx = (mouse_x - camera_cx) / 16;
-                    var dy = (mouse_y - camera_cy) / 16;
-                    mode.direction = (360 + mode.direction - dx) % 360;
-                    mode.pitch = clamp(mode.pitch + dy, -89, 89);
-                    window_mouse_set(camera_cx, camera_cy);
-                    mode.xto = mode.x + dcos(mode.direction) * dcos(mode.pitch);
-                    mode.yto = mode.y - dsin(mode.direction) * dcos(mode.pitch);
-                    mode.zto = mode.z - dsin(mode.pitch);
-                }
-                
-                xup = 0;
-                yup = 0;
-                zup = 1;
-            } else {
-                xup = 0;
-                yup = -1;
-                zup = 0;
-                
-                if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-                    yspeed = yspeed - mspd;
-                }
-                if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-                    yspeed = yspeed + mspd;
-                }
-                if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-                    xspeed = xspeed - mspd;
-                }
-                if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-                    xspeed = xspeed + mspd;
-                }
-                if (CONTROL_3D_LOOK) {
-                    var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) div 2;
-                    var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) div 2;
-                    xspeed = (mouse_x - camera_cx);
-                    yspeed = (mouse_y - camera_cy);
-                    window_mouse_set(camera_cx, camera_cy);
+            if (mouse_within_view(view_3d)) {
+                if (Settings.view.threed) {
+                    mode.camera.Update();
+                } else {
+                    mode.camera.UpdateOrtho();
                 }
             }
-            
-            mode.x += xspeed;
-            mode.y += yspeed;
-            mode.z += zspeed;
-            mode.xto += xspeed;
-            mode.yto += yspeed;
-            mode.zto += zspeed;
-            mode.xup = xup;
-            mode.yup = yup;
-            mode.zup = zup;
         }
         #endregion
     }

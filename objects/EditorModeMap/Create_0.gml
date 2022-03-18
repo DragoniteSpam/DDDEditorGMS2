@@ -1,62 +1,36 @@
 event_inherited();
 
-def_x = 256;
-def_y = 256;
-def_z = 128;
-def_xto = 0;
-def_yto = 0;
-def_zto = 0;
-def_xup = 0;
-def_yup = 0;
-def_zup = 1;
-def_fov = 60;
+self.camera = new Camera(256, 256, 128, 256, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+    
+});
+self.base_speed = 20;
+self.camera.Load(setting_get("map", "camera", undefined));
+self.camera.SetViewportAspect(function() {
+    return Stuff.map.ui.SearchID("3D VIEWPORT").width;
+}, function() {
+    return Stuff.map.ui.SearchID("3D VIEWPORT").height;
+});
 
-if (Settings.map[$ "x"] == undefined)                   Settings.map.x = def_x;
-if (Settings.map[$ "y"] == undefined)                   Settings.map.y = def_y;
-if (Settings.map[$ "z"] == undefined)                   Settings.map.z = def_z;
-if (Settings.map[$ "xto"] == undefined)                 Settings.map.xto = def_xto;
-if (Settings.map[$ "yto"] == undefined)                 Settings.map.yto = def_yto;
-if (Settings.map[$ "zto"] == undefined)                 Settings.map.zto = def_zto;
-if (Settings.map[$ "xup"] == undefined)                 Settings.map.xup = def_xup;
-if (Settings.map[$ "yup"] == undefined)                 Settings.map.yup = def_yup;
-if (Settings.map[$ "zup"] == undefined)                 Settings.map.zup = def_zup;
-if (Settings.map[$ "fov"] == undefined)                 Settings.map.fov = def_fov;
+update = function() {
+    /*if (!Stuff.mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
+        var map = mode.active_map;
+        var map_contents = map.contents;
+        control_map(mode);
+    }*/
+};
 
-x = Settings.map.x;
-y = Settings.map.y;
-z = Settings.map.z;
-xto = Settings.map.xto;
-yto = Settings.map.yto;
-zto = Settings.map.zto;
-xup = Settings.map.xup;
-yup = Settings.map.yup;
-zup = Settings.map.zup;
-fov = Settings.map.fov;
-
-pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
-direction = point_direction(x, y, xto, yto);
-
-update = editor_update_map;
 render = function() {
-    switch (view_current) {
-        case view_3d: draw_clear(Settings.config.color_world); draw_editor_3d(); break;
-        case view_ribbon: draw_editor_menu(true); break;
-        case view_hud: draw_editor_hud(); break;
-    }
+    draw_clear(EMU_COLOR_BACK);
+    self.ui.Render(0, 0);
+    draw_editor_menu(true);
 };
+
 cleanup = editor_cleanup_map;
+
 save = function() {
-    Settings.map.x = self.x;
-    Settings.map.y = self.y;
-    Settings.map.z = self.z;
-    Settings.map.xto = self.xto;
-    Settings.map.yto = self.yto;
-    Settings.map.zto = self.zto;
-    Settings.map.xup = self.xup;
-    Settings.map.yup = self.yup;
-    Settings.map.zup = self.zup;
-    Settings.map.fov = self.fov;
+    Settings.map.camera = self.camera.Save();
 };
+
 changes = ds_list_create();
 
 under_cursor = noone;

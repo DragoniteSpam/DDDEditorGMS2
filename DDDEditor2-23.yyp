@@ -218,7 +218,6 @@
     {"id":{"name":"snap_from_messagepack","path":"scripts/snap_from_messagepack/snap_from_messagepack.yy",},"order":0,},
     {"id":{"name":"__scribble_font_add_all_from_project","path":"scripts/__scribble_font_add_all_from_project/__scribble_font_add_all_from_project.yy",},"order":5,},
     {"id":{"name":"editor_cleanup_map","path":"scripts/editor_cleanup_map/editor_cleanup_map.yy",},"order":12,},
-    {"id":{"name":"editor_update_map","path":"scripts/editor_update_map/editor_update_map.yy",},"order":14,},
     {"id":{"name":"scribble_font_add_msdf","path":"scripts/scribble_font_add_msdf/scribble_font_add_msdf.yy",},"order":3,},
     {"id":{"name":"scribble_msdf_thickness_offset","path":"scripts/scribble_msdf_thickness_offset/scribble_msdf_thickness_offset.yy",},"order":7,},
     {"id":{"name":"snap_from_ini_file","path":"scripts/snap_from_ini_file/snap_from_ini_file.yy",},"order":0,},

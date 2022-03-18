@@ -1,4 +1,5 @@
 function draw_editor_3d() {
+    var mode = Stuff.map;
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
     
@@ -6,30 +7,18 @@ function draw_editor_3d() {
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     
     var camera = view_get_camera(view_current);
-    var z2d = 1600;
     
-    if (Settings.view.threed) {
-        var vw = view_get_wport(view_current);
-        var vh = view_get_hport(view_current);
-        camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
-        camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
-        camera_apply(camera);
+    mode.camera.SetProjection();
+    //if (Settings.terrain.view_skybox) {
+        //mode.camera.DrawSkybox();
+    //} else {
+        draw_clear(Settings.config.color_world);
+    //}
+    
+    if (Settings.terrain.orthographic) {
+        mode.camera.SetProjectionOrtho();
     } else {
-        var cwidth = camera_get_view_width(camera);
-        var cheight = camera_get_view_height(camera);
-        camera_set_view_mat(camera, matrix_build_lookat(x, y, z2d,  x, y, -16000, 0, 1, 0));
-        camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
-        camera_apply(camera);
-    }
-    
-    // skyboxes go first
-    var skybox = guid_get(map.skybox);
-    if (skybox && !map.indoors) {
-        gpu_set_zwriteenable(false);
-        gpu_set_ztestenable(false);
-        transform_set(x, y, Settings.view.threed ? z : z2d, 0, 0, 0, 1, 1, 1);
-        vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(skybox.picture, 0));
-        matrix_set(matrix_world, matrix_build_identity());
+        mode.camera.SetProjection();
     }
     
     gpu_set_zwriteenable(true);
@@ -88,8 +77,8 @@ function draw_editor_3d() {
         // batchable entities don't make use of move routes, so don't bother
     }
     
-    // the water effect uses a different shader
-    graphics_draw_water();
+    // the water effect may use a different shader
+    map.DrawWater();
     
     // reset the lighting shader after the water has been drawn
     graphics_set_lighting(shd_ddd);

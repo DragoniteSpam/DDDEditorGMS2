@@ -1,8 +1,10 @@
 function ui_init_main(mode) {
-    var hud_width = view_get_wport(view_hud);
-    var hud_height = window_get_height();
-    var col1x = 16;
-    var col2x = hud_width / 2 + 16;
+    var hud_start_x = 1080;
+    var hud_start_y = 0;
+    var hud_width = room_width - hud_start_x;
+    var hud_height = room_height;
+    var col1x = hud_start_x + 16;
+    var col2x = hud_start_y + hud_width / 2 + 16;
     var element_width = hud_width / 2 - 32;
     var element_height = 32;
     
@@ -1270,7 +1272,19 @@ function ui_init_main(mode) {
     
     tab_group.RequestActivateTab(tab_group.GetTabByID("GENERAL"));
     
-    container.AddContent(tab_group);
+    container.AddContent([
+        (new EmuRenderSurface(0, 0, CW, CH, function() {
+            draw_editor_3d();
+        }, function() {
+            control_map();
+        }, function() {
+            // create
+        }, function() {
+            // destroy
+        }))
+            .SetID("3D VIEWPORT"),
+        tab_group
+    ]);
     
     return container;
 }

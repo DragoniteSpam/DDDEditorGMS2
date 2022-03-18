@@ -20,8 +20,6 @@ function draw_editor_spart() {
     camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
     
-    graphics_draw_water();
-    
     if (Settings.view.grid) {
         shader_set(shd_wireframe);
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
