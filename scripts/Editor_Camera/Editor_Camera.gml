@@ -44,6 +44,19 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.view_mat = undefined;
     self.proj_mat = undefined;
     
+    self.get_width = function() {
+        return view_get_wport(view_current);
+    };
+    
+    self.get_height = function() {
+        return view_get_hport(view_current);
+    };
+    
+    static SetViewportAspect = function(width_function, height_function) {
+        self.get_width = method(self, width_function);
+        self.get_height = method(self, height_function);
+    };
+    
     static Update = function() {
         if (self.view_mat == undefined || self.proj_mat == undefined) return;
         if (EmuOverlay.GetTop() || !ds_list_empty(Stuff.dialogs)) return;
@@ -156,11 +169,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static SetProjection = function() {
-        var vw = view_get_wport(view_current);
-        var vh = view_get_hport(view_current);
-        
         self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
-        self.proj_mat = matrix_build_projection_perspective_fov(-self.fov * self.run_fov_active, -vw / vh, self.znear, self.zfar);
+        self.proj_mat = matrix_build_projection_perspective_fov(-self.fov * self.run_fov_active, -self.get_width() / self.get_height(), self.znear, self.zfar);
         
         camera_set_view_mat(self.camera, self.view_mat);
         camera_set_proj_mat(self.camera, self.proj_mat);
@@ -168,11 +178,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static SetProjectionOrtho = function() {
-        var vw = view_get_wport(view_current);
-        var vh = view_get_hport(view_current);
-        
         self.view_mat = matrix_build_lookat(self.x, self.y, self.zfar - 256, self.x, self.y, 0, 0, 1, 0);
-        self.proj_mat = matrix_build_projection_ortho(-vw * self.scale, vh * self.scale, self.znear, self.zfar);
+        self.proj_mat = matrix_build_projection_ortho(-self.get_width() * self.scale, self.get_height() * self.scale, self.znear, self.zfar);
         
         camera_set_view_mat(self.camera, self.view_mat);
         camera_set_proj_mat(self.camera, self.proj_mat);
