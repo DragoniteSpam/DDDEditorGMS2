@@ -187,18 +187,20 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static DrawSkybox = function() {
+        draw_clear_alpha(c_black, 1);
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
-        transform_set(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1);
+        matrix_set(matrix_world, matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1));
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
     };
     
     static DrawSkyboxOrtho = function() {
+        draw_clear_alpha(c_black, 1);
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
-        transform_set(self.x, self.y, self.zfar - 256, 0, 0, 0, 1, 1, 1);
+        matrix_set(matrix_world, matrix_build(self.x, self.y, self.zfar - 256, 0, 0, 0, 1, 1, 1));
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
