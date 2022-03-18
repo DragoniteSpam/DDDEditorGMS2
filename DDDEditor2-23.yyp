@@ -90,7 +90,6 @@
     {"id":{"name":"render_mesh_raw","path":"scripts/render_mesh_raw/render_mesh_raw.yy",},"order":9,},
     {"id":{"name":"render_mesh_missing","path":"scripts/render_mesh_missing/render_mesh_missing.yy",},"order":10,},
     {"id":{"name":"render_mesh_autotile","path":"scripts/render_mesh_autotile/render_mesh_autotile.yy",},"order":11,},
-    {"id":{"name":"draw_editor_3d","path":"scripts/draw_editor_3d/draw_editor_3d.yy",},"order":0,},
     {"id":{"name":"scribble_font_add","path":"scripts/scribble_font_add/scribble_font_add.yy",},"order":0,},
     {"id":{"name":"Group_Terrain_Dialogs","path":"scripts/Group_Terrain_Dialogs/Group_Terrain_Dialogs.yy",},"order":3,},
     {"id":{"name":"draw_editor_spart","path":"scripts/draw_editor_spart/draw_editor_spart.yy",},"order":1,},

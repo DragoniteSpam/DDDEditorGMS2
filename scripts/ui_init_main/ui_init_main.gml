@@ -1274,7 +1274,7 @@ function ui_init_main(mode) {
     
     container.AddContent([
         (new EmuRenderSurface(0, 0, CW, CH, function() {
-            draw_editor_3d();
+            Stuff.map.DrawEditor();
         }, function() {
             control_map();
         }, function() {
