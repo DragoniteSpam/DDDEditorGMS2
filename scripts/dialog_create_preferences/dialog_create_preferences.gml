@@ -4,7 +4,7 @@ function dialog_create_preferences() {
     var ew = 292;
     var eh = 32;
     
-    var dialog = new EmuDialog(720, 600, "Preferences");
+    var dialog = new EmuDialog(720, 640, "Preferences");
     
     dialog.AddContent([
         (new EmuInput(c1x, EMU_AUTO, ew, eh, "Bezier precision:", Settings.config.bezier_precision, "0...16", 2, E_InputTypes.INT, function() {
@@ -14,6 +14,10 @@ function dialog_create_preferences() {
             .SetTooltip("Higher-precision bezier curves look better, but take more computing power to draw. Lowering this will not fix performance issues, but it may help."),
        (new EmuCheckbox(c1x, EMU_AUTO, ew, eh, "Show Tooltips", Settings.config.tooltip, function() {
             Settings.config.tooltip = self.value;
+        }))
+            .SetTooltip("These thingies."),
+       (new EmuCheckbox(c1x, EMU_AUTO, ew, eh, "Show Debug Ribbon", Settings.config.show_debug_ribbon, function() {
+            Settings.config.show_debug_ribbon = self.value;
         }))
             .SetTooltip("These thingies."),
         (new EmuInput(c1x, EMU_AUTO, ew, eh, "NPC speed:", Settings.config.npc_animate_rate, "0...12", 2, E_InputTypes.INT, function() {
