@@ -1,8 +1,4 @@
 function draw_editor_menu(camera_controls = false) {
-    // if you're using this in debug mode the overlay is going to be
-    // shown and that's going to block out the first part of the menu
-    var yy = DEBUG ? 24 : 0;
-    
     var camera = view_get_camera(view_current);
     camera_set_view_mat(camera, matrix_build_lookat(room_width / 2, room_height / 2, -CAMERA_ZFAR / 2,  room_width / 2, room_height / 2, 0, 0, 1, 0));
     camera_set_proj_mat(camera, matrix_build_projection_ortho(room_width, room_height, CAMERA_ZNEAR, CAMERA_ZFAR));
@@ -13,9 +9,9 @@ function draw_editor_menu(camera_controls = false) {
     gpu_set_cullmode(cull_noculling);
     
     if (is_struct(Stuff.menu)) {
-        Stuff.menu.Render(0, yy);
+        Stuff.menu.Render(0, 0);
     } else {
-        Stuff.menu.render(Stuff.menu, 0, yy);
+        Stuff.menu.render(Stuff.menu, 0, 0);
     }
     
     static fps_real_history = ds_list_create();
@@ -32,14 +28,14 @@ function draw_editor_menu(camera_controls = false) {
         ds_list_clear(fps_real_history);
     }
     
-    if (DEBUG) {
+    if (DEBUG && false) {
         draw_set_halign(fa_left);
-        draw_rectangle_colour(0, 0, room_width, yy, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
+        draw_rectangle_colour(0, 0, room_width, 0, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
         var index = 0;
-        draw_text_colour(128 * index++ + 16, yy / 2, "FPS: " + string(fps), EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, 1);
-        draw_text_colour(128 * index++ + 16, yy / 2, "CPU FPS: " + string(floor(fps_real_current)), EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, 1);
+        draw_text_colour(128 * index++ + 16, 0 / 2, "FPS: " + string(fps), EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, 1);
+        draw_text_colour(128 * index++ + 16, 0 / 2, "CPU FPS: " + string(floor(fps_real_current)), EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, EMU_COLOR_TEXT, 1);
         draw_text_colour(
-            128 * index++ + 16, yy / 2,
+            128 * index++ + 16, 0 / 2,
             "Version: " + GM_version + ";   " +
             "Build date: " + date_datetime_string(GM_build_date) + ";   " +
             "GameMaker runtime: " + GM_runtime_version,

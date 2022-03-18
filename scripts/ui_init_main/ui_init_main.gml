@@ -3,13 +3,13 @@ function ui_init_main(mode) {
     var hud_start_y = 0;
     var hud_width = room_width - hud_start_x;
     var hud_height = room_height;
-    var col1x = hud_start_x + 16;
-    var col2x = hud_start_y + hud_width / 2 + 16;
+    var col1x = 16;
+    var col2x = hud_width / 2 + 16;
     var element_width = hud_width / 2 - 32;
     var element_height = 32;
     
     var container = new EmuCore(0, 0, hud_width, hud_height);
-    var tab_group = new EmuTabGroup(0, EMU_AUTO, hud_width, hud_height, 3, element_height - 4);
+    var tab_group = new EmuTabGroup(hud_start_x, EMU_BASE, hud_width, hud_height, 3, element_height - 4);
     
     var f_map_open = function() {
         var index = self.GetSibling("MAP LIST").GetSelection();
