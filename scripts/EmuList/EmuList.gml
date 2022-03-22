@@ -1,7 +1,7 @@
 // Emu (c) 2020 @dragonitespam
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Emu/wiki
 function EmuList(x, y, w, h, text, element_height, content_slots, callback) : EmuCallback(x, y, w, h, 0, callback) constructor {
-    enum E_ListEntryTypes { STRINGS, STRUCTS, SCRIPTS };
+    enum E_ListEntryTypes { STRINGS, STRUCTS, SCRIPTS, OTHER };
     self.text = text;
     self.element_height = element_height;
     self.slots = content_slots;
@@ -18,6 +18,9 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     self.entries_are = E_ListEntryTypes.STRINGS;
     self.numbered = false;
     self.text_vacant = "(empty list)";
+    self.text_evaluation = function(index) {
+    	return string(index);
+    };
     
     self.sprite_help = spr_emu_help;
     self.sprite_arrows = spr_emu_scroll_arrow;
@@ -55,8 +58,9 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         return self;
     }
     
-    SetEntryTypes = function(_type) {
-        entries_are = _type;
+    SetEntryTypes = function(_type, text_eval_function = function(index) { return (is_array(self._entries) ? self._entries[index] : self._entries[| index]); }) {
+        self.entries_are = _type;
+        self.text_evaluation = method(self, text_eval_function);
         return self;
     }
     
@@ -75,7 +79,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     static SetListColors = function(f) {
     	self.getListColors = method(self, f);
     	return self;
-    }
+    };
     
     AddEntries = function(elements) {
         if (!_own_entries) {
@@ -226,7 +230,8 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 switch (entries_are) {
                     case E_ListEntryTypes.STRINGS: index_text += string(is_array(_entries) ? _entries[current_index] : _entries[| current_index]); break;
                     case E_ListEntryTypes.STRUCTS: index_text += (is_array(_entries) ? _entries[current_index].name : _entries[| current_index].name); break;
-                    case E_ListEntryTypes.SCRIPTS: index_text = index_text + string((is_array(_entries) ? _entries[current_index] : _entries[| current_index])(current_index)); break;
+                    case E_ListEntryTypes.SCRIPTS: index_text += string((is_array(_entries) ? _entries[current_index] : _entries[| current_index])(current_index)); break;
+                    case E_ListEntryTypes.OTHER: index_text += string(self.text_evaluation(current_index)); break;
                 }
                 
                 scribble(index_text)
