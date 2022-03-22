@@ -234,8 +234,9 @@ function ui_init_mesh(mode) {
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? Game.meshes[indices[0]] : " the selected meshes") + "?", function() {
                     var indices = self.root.indices;
+                    meshops_transform_set_inputs(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale);
                     for (var i = 0, n = array_length(indices); i < n; i++) {
-                        // transform
+                        Game.meshes[real(indices[i])].ApplyTransform();
                     }
                     batch_again();
                     self.root.Dispose();

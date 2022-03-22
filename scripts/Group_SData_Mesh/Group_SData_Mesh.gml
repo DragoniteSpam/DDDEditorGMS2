@@ -153,11 +153,11 @@ function DataMesh(source) : SData(source) constructor {
         });
     };
     
-    static ActionScale = function(scale) {
+    static ActionTransform = function() {
         if (self.type == MeshTypes.SMF) return;
-        self.foreachSubmeshBufferParam(function(buffer, scale) {
-            meshops_transform_scale(buffer_get_address(buffer), buffer_get_size(buffer), scale);
-        }, scale);
+        self.foreachSubmeshBufferParam(function(buffer, data) {
+            meshops_transform(buffer_get_address(buffer), buffer_get_size(buffer));
+        }, { });
     };
     
     static ActionMirrorX = function() {
