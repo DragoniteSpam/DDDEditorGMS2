@@ -1,18 +1,11 @@
 function ui_render_surface_render_mesh_ed(mx, my) {
     draw_clear(c_black);
     
-    draw_text_colour(32, 32, "WIP", c_white, c_white, c_white, c_white, 1);
-    return;
-    
-    var mode = Stuff.mesh_ed;
-    var mesh_list = surface.root.mesh_list;
-    var sw = surface_get_width(surface.surface);
-    var sh = surface_get_height(surface.surface);
-    
+    var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
     
     var cam = camera_get_active();
-    camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
-    camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -sw / sh, CAMERA_ZNEAR, CAMERA_ZFAR));
+    camera_set_view_mat(cam, matrix_build_lookat(100, 100, 100, 0, 0, 0, 0, 0, 1));
+    camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-60, -1, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(cam);
     
     gpu_set_ztestenable(true);
@@ -62,17 +55,17 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     // so that gmedit stops yelling at me
     var tex_none = -1;
     
-    gpu_set_cullmode(Stuff.mesh_ed.draw_back_faces ? cull_noculling : cull_counterclockwise);
+    gpu_set_cullmode(Settings.mesh.draw_back_faces ? cull_noculling : cull_counterclockwise);
     matrix_set(matrix_world, matrix_build(
         Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z,
         Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z,
         Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z, 
     ));
-    var n = 0;
+    var rendered_count = 0;
     var limit = 10;
     var def_tex = sprite_get_texture(get_active_tileset().picture, 0);
-    for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
-        var mesh_data = Game.meshes[index];
+    for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+        var mesh_data = Game.meshes[real(indices[index])];
         switch (mesh_data.type) {
             case MeshTypes.RAW:
                 var this_tex = -1;
@@ -113,7 +106,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                 }
                 break;
         }
-        if (++n > limit) break;
+        if (++rendered_count > limit) break;
     }
     
     matrix_set(matrix_world, matrix_build_identity());
@@ -121,7 +114,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);
     gpu_set_cullmode(cull_noculling);
-    
+    return;
     #region draw the overlay
     var cwidth = camera_get_view_width(cam);
     var cheight = camera_get_view_height(cam);

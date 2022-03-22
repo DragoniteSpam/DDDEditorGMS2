@@ -432,8 +432,8 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_reflections = self.value;
                     }))
                         .SetTooltip("If you have a reflection mesh set up, you may draw it, as well."),
-                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_axes, function() {
-                        Settings.mesh.draw_axes = self.value;
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
+                        Settings.mesh.draw_collision = self.value;
                     }))
                         .SetTooltip("Whether or not to show collision shapes associated with meshes."),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw 3D axes?", Settings.mesh.draw_axes, function() {
