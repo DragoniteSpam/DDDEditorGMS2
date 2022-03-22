@@ -1,90 +1,349 @@
 function ui_init_mesh(mode) {
-    with (instance_create_depth(0, 0, 0, UIThing)) {
-        var columns = 4;
-        var spacing = 16;
-        
-        var cw = (room_width - columns * 32) / columns;
-        var ew = cw - spacing * 2;
-        var ew0 = cw + spacing * 2;
-        var eh = 24;
-        
-        var c1x = cw * 0 + spacing;
-        // the first column is a bit wider
-        var c2x = cw * 1.00 + spacing + spacing * 4;
-        var c3x = cw * 2.00 + spacing + spacing * 4;
-        var c4x = cw * 2.75 + spacing + spacing * 4;
-        var c5x = cw * 3.50 + spacing + spacing * 4;
-        
-        var vx1 = ew / 2;
-        var vy1 = 0;
-        var vx2 = ew;
-        var vy2 = eh;
-        
-        var b_width = 128;
-        var b_height = 32;
-        
-        var yy_header = 64;
-        var yy = 64 + eh;
-        var yy_base = yy;
-        
-        var this_column = 0;
-        var xx = this_column * cw + spacing;
-        
-        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 22, function(list) {
-            var selection = list.selected_entries;
-            if (ds_map_size(selection) == 0) {
-                ui_input_set_value(list.root.mesh_name, "");
-            } else if (ds_map_size(selection) == 1) {
-                ui_input_set_value(list.root.mesh_name, Game.meshes[ds_map_find_first(selection)].name);
-            } else {
-                ui_input_set_value(list.root.mesh_name, "(multiple)");
-            }
-        }, true, id, Game.meshes);
-        element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
-        element.render_colors = function(list, index) {
-            return (Game.meshes[index].type == MeshTypes.SMF) ? c_red : c_black;
-        };
-        element.onmiddleclick = function(list) {
-            array_sort_name(Game.meshes);
-        }
-        element.evaluate_text = function(list, index) {
-            var mesh = list.entries[index];
-            var prefix = "", suffix = "";
-            if (mesh.flags & MeshFlags.PARTICLE) {
-                prefix = "(p)" + prefix;
-            }
-            if (array_length(mesh.submeshes) == 1) {
-                var buffer = mesh.submeshes[0].buffer;
-                var reflect_buffer = mesh.submeshes[0].reflect_buffer;
-                var buffer_size = (buffer ? buffer_get_size(buffer) : 0) / VERTEX_SIZE / 3;
-                var reflect_buffer_size = (reflect_buffer ? buffer_get_size(reflect_buffer) : 0) / VERTEX_SIZE / 3;
-                if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
-                    suffix = " (" + string(buffer_size) + " triangles)";
+    var hud_width = room_width / 4;
+    var hud_height = room_height;
+    var col1x = 16;
+    var col2x = hud_width + 16;
+    var element_width = hud_width - 32;
+    var element_height = 32;
+    
+    var container = new EmuCore(0, 16, hud_width, hud_height);
+    
+    container.AddContent([
+        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, 25, function() {
+            self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
+        }))
+            .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
+            .SetListColors(function(index) {
+                return (Game.meshes[index].type == MeshTypes.SMF) ? c_orange : EMU_COLOR_TEXT;
+            })
+            .SetCallbackMiddle(function() {
+                array_sort_name(Game.meshes);
+            })
+            .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                var mesh = Game.meshes[index];
+                var prefix = "", suffix = "";
+                if (mesh.flags & MeshFlags.PARTICLE) {
+                    prefix = "(p)" + prefix;
+                }
+                if (array_length(mesh.submeshes) == 1) {
+                    var buffer = mesh.submeshes[0].buffer;
+                    var reflect_buffer = mesh.submeshes[0].reflect_buffer;
+                    var buffer_size = (buffer ? buffer_get_size(buffer) : 0) / VERTEX_SIZE / 3;
+                    var reflect_buffer_size = (reflect_buffer ? buffer_get_size(reflect_buffer) : 0) / VERTEX_SIZE / 3;
+                    if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
+                        suffix = " (" + string(buffer_size) + " triangles)";
+                    } else {
+                        suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
+                    }
                 } else {
-                    suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
+                    suffix = " (" + string(array_length(mesh.submeshes)) + " submeshes)";
                 }
-            } else {
-                suffix = " (" + string(array_length(mesh.submeshes)) + " submeshes)";
-            }
-            return prefix + mesh.name + suffix;
-        };
-        element.entries_are = ListEntries.SCRIPT;
-        mesh_list = element;
-        ds_list_add(contents, element);
-        yy += element.GetHeight() + spacing;
+                return prefix + mesh.name + suffix;
+            })
+            .SetRefresh(function(data) {
+                self.SetList(Game.meshes);
+            })
+            .SetID("MESH LIST"),
+        (new EmuCore(0, 0, hud_width, hud_height)).AddContent([
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Name:", "", "name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive((data != undefined) && (array_length(data) == 1));
+                })
+                .SetID("MESH NAME"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
+                var fn = get_open_filename_mesh();
+                if (file_exists(fn)) {
+                    switch (filename_ext(fn)) {
+                        case ".obj": import_obj(fn); break;
+                        case ".d3d": case ".gmmod": import_d3d(fn); break;
+                        case ".smf": break;
+                        case ".dae": import_dae(fn); break;
+                    }
+                }
+            }))
+                .SetRefresh(function(data) {
+                    // this button is always active
+                })
+                .SetTooltip("Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.")
+                .SetID("ADD MESH"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Delete Mesh", function() {
+                Game.meshes[self.GetSibling("MESH LIST").GetSelection()].Destroy();
+                self.GetSibling("MESH LIST").Deselect();
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive((data != undefined) && (array_length(data) == 1));
+                })
+                .SetID("DELETE MESH"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Combine Submeshes", function() {
+                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
+                    var mesh = self.root.mesh;
+                    var old_submesh_list = mesh.submeshes;
+                    mesh.submeshes = [];
+                    mesh.proto_guids = { };
+                    var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
+                    
+                    for (var i = 0, n = array_length(old_submesh_list); i < n; i++) {
+                        combine_submesh.AddBufferData(old_submesh_list[i].buffer);
+                        old_submesh_list[i].Destroy();
+                    }
+                    
+                    combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
+                    combine_submesh.owner = mesh;
+                    array_push(mesh.submeshes, combine_submesh);
+                    mesh.first_proto_guid = combine_submesh.proto_guid;
+                    
+                    batch_again();
+                    self.root.Dispose();
+                });
+                
+                dg.mesh = mesh;
+            }))
+                .SetRefresh(function(data) {
+                    if ((data != undefined) && (array_length(data) == 1)) {
+                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
+                    } else {
+                        self.SetInteractive(false);
+                    }
+                })
+                .SetTooltip("Combine the submeshes of the selected 3D meshes.")
+                .SetID("COMBINE SUBMESHES"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Separate Submeshes", function() {
+                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
+                    var mesh = self.root.mesh;
+                    
+                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
+                        var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
+                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
+                        new_mesh.CopyPropertiesFrom(mesh);
+                        array_push(Game.meshes, new_mesh);
+                    }
+                    
+                    self.root.Dispose();
+                });
+                
+                dg.mesh = mesh;
+            }))
+                .SetRefresh(function(data) {
+                    if ((data != undefined) && (array_length(data) == 1)) {
+                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
+                    } else {
+                        self.SetInteractive(false);
+                    }
+                })
+                .SetTooltip("Separate the selected 3D meshes into individual models.")
+                .SetID("SEPARATE SUBMESHES"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Export", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                // to do once the rest of the editor works
+                /*
+                var export_count = ds_map_size(selection);
+                if (export_count == 0) return;
+                
+                var fn;
+                if (export_count == 1) {
+                    var mesh = Game.meshes[ds_map_find_first(selection)];
+                    fn = get_save_filename_mesh(mesh.name);
+                } else {
+                    fn = get_save_filename_mesh("save everything here");
+                }
+                
+                if (fn == "") return;
+                var folder = filename_path(fn);
+                
+                for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                    var mesh = Game.meshes[index];
+                    var name = (export_count == 1) ? fn : (folder + mesh.name + filename_ext(fn));
+                    switch (mesh.type) {
+                        case MeshTypes.RAW:
+                            switch (filename_ext(fn)) {
+                                case ".obj": export_obj(name, mesh); break;
+                                case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
+                                case ".vbuff": export_vb(name, mesh, Stuff.mesh_ed.vertex_format); break;
+                            }
+                            break;
+                        case MeshTypes.SMF:
+                            break;
+                    }
+                }
+                
+                dg.indices = indices;
+                */
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive((data != undefined) && (array_length(data) == 1));
+                })
+                .SetTooltip(@"Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.
         
-        element = create_button(c1x, yy, "Add Mesh", ew0, eh, fa_center, function(button) {
-            var fn = get_open_filename_mesh();
-            if (file_exists(fn)) {
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, undefined); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
+    You may convert to several different types of 3D model files.
+    - [c_aqua]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
+    - [c_aqua]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
+    - [c_aqua]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)")
+                .SetID("EXPORT"),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformations"),
+(new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", "", "x", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetID("MESH POSITION X"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH POSITION Y"),
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH POSITION Z"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", "", "x", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetID("MESH ROTATE X"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH ROTATE Y"),
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH ROTATE Z"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", "", "x", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetID("MESH SCALE X"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH SCALE Y"),
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
+                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+            }))
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH SCALE Z"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Bake Transformation", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? Game.meshes[indices[0]] : " the selected meshes") + "?", function() {
+                    var indices = self.root.indices;
+                    for (var i = 0, n = array_length(indices); i < n; i++) {
+                        // transform
+                    }
+                    batch_again();
+                    self.root.Dispose();
+                });
+                
+                dg.indices = indices;
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Apply the preview transformation to the selected meshes. Useful for converting between different world spaces.")
+                .SetID("BAKE TRANSFORMATION"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Reset Transformation", function() {
+                // reset the values
+            }))
+                .SetTooltip("Reset the transform used in the preview.")
+                .SetID("RESET TRANSFORMATION"),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Operations"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Rotate Up Axis", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    Game.meshes[real(indices[i])].ActionRotateUpAxis();
                 }
-            }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/")
+                .SetID("ROTATE UP AXIS"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 3, element_height, "Mirror X", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    Game.meshes[real(indices[i])].ActionMirrorX();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Mirror the selected meshes over the X axis. Triangle vertex order will not be changed.")
+                .SetID("MIRROR X"),
+            (new EmuButton(col2x + element_width / 3, EMU_INLINE, element_width / 3, element_height, "Mirror Y", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    Game.meshes[real(indices[i])].ActionMirrorY();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Mirror the selected meshes over the Y axis. Triangle vertex order will not be changed.")
+                .SetID("MIRROR Y"),
+            (new EmuButton(col2x + element_width * 2 / 3, EMU_INLINE, element_width / 3, element_height, "Mirror Z", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    Game.meshes[real(indices[i])].ActionMirrorZ();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Mirror the selected meshes over the Z axis. Triangle vertex order will not be changed.")
+                .SetID("MIRROR Z"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Flip Texture Horizontally", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    Game.meshes[real(indices[i])].ActionFlipTexU();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("I don't actually know why you would need to do this, but...")
+                .SetID("MIRROR TEX U"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Flip Texture Vertically", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    Game.meshes[real(indices[i])].ActionFlipTexV();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.")
+                .SetID("MIRROR TEX V"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "More...", function() {
+                dialog_create_mesh_other_settings(self, self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Other misc operations you amy want to do on a mesh.")
+                .SetID("OTHER TOOLS"),
+        ])
+            .SetID("INFO")
+    ]);
+    
+    return container;
+    
+    with (instance_create_depth(0, 0, 0, UIThing)) {
+        element = create_button(c1x, yy, "Add Mesh", ew0, eh, fa_center, function(button) {
         }, id);
-        element.tooltip = "Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.";
+        element.tooltip = "";
         element.file_dropper_action = function(thing, files) {
             var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
             for (var i = 0; i < array_length(filtered_list); i++) {
@@ -100,152 +359,7 @@ function ui_init_mesh(mode) {
         };
         ds_list_add(contents, element);
         yy += element.height + spacing;
-        
-        element = create_input(c1x, yy, "Name:", ew0, eh, function(input) {
-            var selection = input.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].name = input.value;
-            }
-        }, "", "name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, ew0, vy2, id);
-        element.tooltip = "The name of the selected mesh(es).";
-        mesh_name = element;
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c1x, yy, "Remove Mesh", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            // because when you delete stuff from the mesh list, the indices may
-            // change, and if the indices change while you're in the middle of
-            // deleting from it, things will get ugly
-            var to_delete = [];
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                array_push(to_delete, Game.meshes[index]);
-            }
-            
-            for (var i = 0; i < array_length(to_delete); i++) {
-                to_delete[i].Destroy();
-            }
-            
-            ui_list_deselect(list);
-            batch_again();
-        }, id);
-        element.tooltip = "Remove the selected 3D meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c1x, yy, "Combine Submeshes", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            var valid_count = 0;
-            var first_mesh = undefined;
-            
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                if (!first_mesh) first_mesh = Game.meshes[index];
-                if (array_length(Game.meshes[index].submeshes) > 1) {
-                    valid_count++;
-                }
-            }
-            
-            if (valid_count == 0) return;
-            
-            var dg = emu_dialog_confirm(button.root, "Would you like to combine the submeshes in " + ((valid_count == 1) ? first_mesh.name : (string(valid_count) + " meshes")) + "?", function() {
-                var selection = self.root.selection;
-                for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                    var mesh = Game.meshes[index];
-                    if (array_length(mesh.submeshes) > 1) {
-                        var old_submesh_list = mesh.submeshes;
-                        mesh.submeshes = [];
-                        mesh.proto_guids = { };
-                        var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
-                        
-                        for (var i = 0, n = array_length(old_submesh_list); i < n; i++) {
-                            combine_submesh.AddBufferData(old_submesh_list[i].buffer);
-                            old_submesh_list[i].Destroy();
-                        }
-                        
-                        combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
-                        combine_submesh.owner = mesh;
-                        array_push(mesh.submeshes, combine_submesh);
-                        mesh.first_proto_guid = combine_submesh.proto_guid;
-                    }
-                }
-                
-                batch_again();
-                self.root.Dispose();
-            });
-            
-            dg.selection = selection;
-        }, id);
-        element.tooltip = "Combine the submeshes of the selected 3D meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c1x, yy, "Separate Submeshes", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                if (array_length(mesh.submeshes) > 1) {
-                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
-                        var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
-                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
-                        new_mesh.CopyPropertiesFrom(mesh);
-                        array_push(Game.meshes, new_mesh);
-                    }
-                }
-            }
-        }, id);
-        element.tooltip = "Separate the selected 3D meshes into individual models.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c1x, yy, "Export Selected", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            
-            var export_count = ds_map_size(selection);
-            if (export_count == 0) return;
-            
-            var fn;
-            if (export_count == 1) {
-                var mesh = Game.meshes[ds_map_find_first(selection)];
-                fn = get_save_filename_mesh(mesh.name);
-            } else {
-                fn = get_save_filename_mesh("save everything here");
-            }
-            
-            if (fn == "") return;
-            var folder = filename_path(fn);
-            
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                var name = (export_count == 1) ? fn : (folder + mesh.name + filename_ext(fn));
-                switch (mesh.type) {
-                    case MeshTypes.RAW:
-                        switch (filename_ext(fn)) {
-                            case ".obj": export_obj(name, mesh); break;
-                            case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
-                            case ".vbuff": export_vb(name, mesh, Stuff.mesh_ed.vertex_format); break;
-                        }
-                        break;
-                    case MeshTypes.SMF:
-                        break;
-                }
-            }
-        }, id);
-        element.tooltip = @"Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.
-        
-    You may convert to several different types of 3D model files.
-    - [c_aqua]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
-    - [c_aqua]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
-    - [c_aqua]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base;
-        
+        /*
         element = create_button(c2x, yy, "Exported Vertex Format", ew, eh, fa_center, function(button) {
             emu_dialog_vertex_format(Stuff.mesh_ed.vertex_format, function(value) {
                 Stuff.mesh_ed.vertex_format = value;
@@ -253,11 +367,11 @@ function ui_init_mesh(mode) {
         }, id);
         ds_list_add(contents, element);
         yy += element.height + spacing;
-        
+        */
         element = create_text(c2x, yy, "[c_aqua]Editing", ew, eh, fa_left, ew, id);
         ds_list_add(contents, element);
         yy += element.height + spacing;
-        
+        /*
         element = create_input(c2x, yy, "Scale:", ew, eh, function(input) {
             Stuff.mesh_ed.draw_scale = real(input.value);
         }, mode.draw_scale, "float", validate_double, 0.01, 100, 5, vx1, vy1, vx2, vy2, id);
@@ -299,10 +413,11 @@ function ui_init_mesh(mode) {
             ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
             batch_again();
         }, id);
-        element.tooltip = "Apply the preview scale to the selected meshes. Useful for converting between different scale systems (1 unit = 1 meter vs 32 units = 1 meter, etc).";
+        element.tooltip = "";
         ds_list_add(contents, element);
         yy += element.height + spacing;
-        
+        */
+        /*
         element = create_button(c2x, yy, "Reset Transform", ew, eh, fa_center, function(button) {
             Stuff.mesh_ed.draw_scale = 1;
             ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
@@ -313,77 +428,10 @@ function ui_init_mesh(mode) {
             Stuff.mesh_ed.draw_rot_z = 0;
             ui_input_set_value(button.root.mesh_rot_z, string(Stuff.mesh_ed.draw_rot_z));
         }, id);
-        element.tooltip = "Reset the transform used in the preview.";
+        element.tooltip = "";
         ds_list_add(contents, element);
         yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionRotateUpAxis();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionMirrorX();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Mirror the selected meshes over the X axis. Triangle vertex order will not be changed.";
-        ds_list_add(contents, element);
-        element = create_button(c2x + ew / 3, yy, "Mirror Y Axis", ew / 3, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionMirrorY();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Mirror the selected meshes over the Y axis. Triangle vertex order will not be changed.";
-        ds_list_add(contents, element);
-        element = create_button(c2x + 2 * ew / 3, yy, "Mirror Z Axis", ew / 3, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionMirrorZ();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Mirror the selected meshes over the Z axis. Triangle vertex order will not be changed.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Flip Texture U", ew / 2, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionFlipTexU();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "I don't actually know why you would need to do this, but it's here.";
-        ds_list_add(contents, element);
-        element = create_button(c2x + ew / 2, yy, "Flip Texture V", ew / 2, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionFlipTexV();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Other tools...", ew, eh, fa_center, function(button) {
-            if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
-            dialog_create_mesh_other_settings(button, button.root.mesh_list.selected_entries);
-        }, id);
-        element.tooltip = "Other misc operations you amy want to do on a mesh.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
+        */
         
         yy = yy_base;
         
