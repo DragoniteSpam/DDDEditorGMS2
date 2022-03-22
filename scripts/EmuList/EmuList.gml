@@ -120,7 +120,24 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     GetSelection = function() {
         if (variable_struct_names_count(_selected_entries) == 0) return -1;
         return _selected_entries[$ "first"];
-    }
+    };
+    
+    static GetAllSelectedIndices = function() {
+    	var names = variable_struct_get_names(self._selected_entries);
+    	var n = array_length(names);
+    	if (self._selected_entries[$ "first"] != undefined) n--;
+    	if (self._selected_entries[$ "last"] != undefined) n--;
+    	
+    	var results = array_create(n);
+    	var index = 0;
+    	for (var i = array_length(names) - 1; i >= 0; i--) {
+    		if (names[i] == "first") continue;
+    		if (names[i] == "last") continue;
+    		results[index++] = names[i];
+    	}
+    	
+    	return results;
+    };
     
     ClearSelection = function() {
         _selected_entries = { };
