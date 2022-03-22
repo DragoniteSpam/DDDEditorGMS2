@@ -18,6 +18,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.zfar = zfar;
     self.callback = method(self, callback);
     
+    self.center = { x: window_get_width() / 2, y: window_get_height() / 2 };
+    
     self.x = x;
     self.y = y;
     self.z = z;
@@ -55,6 +57,11 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     static SetViewportAspect = function(width_function, height_function) {
         self.get_width = method(self, width_function);
         self.get_height = method(self, height_function);
+    };
+    
+    static SetCenter = function(cx, cy) {
+        self.center.x = cx;
+        self.center.y = cy;
     };
     
     static Update = function() {
@@ -95,15 +102,11 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         }
         
         if (CONTROL_3D_LOOK_DOWN) {
-            var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) div 2;
-            var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) div 2;
-            window_mouse_set(camera_cx, camera_cy);
+            window_mouse_set(self.center.x, self.center.y);
         } else if (CONTROL_3D_LOOK) {
-            var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) div 2;
-            var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) div 2;
-            window_mouse_set(camera_cx, camera_cy);
-            var dx = (mouse_x - camera_cx) / 16;
-            var dy = (mouse_y - camera_cy) / 16;
+            window_mouse_set(self.center.x, self.center.y);
+            var dx = (mouse_x - self.center.x) / 16;
+            var dy = (mouse_y - self.center.y) / 16;
             self.direction = (360 + self.direction - dx) % 360;
             self.pitch = clamp(self.pitch + dy, -89, 89);
             self.xto = self.x + dcos(self.direction) * dcos(self.pitch);

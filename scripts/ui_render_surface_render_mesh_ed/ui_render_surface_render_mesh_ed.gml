@@ -3,10 +3,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
     
-    var cam = camera_get_active();
-    camera_set_view_mat(cam, matrix_build_lookat(100, 100, 100, 0, 0, 0, 0, 0, 1));
-    camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-60, -1, CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(cam);
+    Stuff.mesh_ed.camera.SetProjection();
     
     gpu_set_ztestenable(true);
     gpu_set_zwriteenable(true);

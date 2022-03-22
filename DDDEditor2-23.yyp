@@ -735,7 +735,6 @@
     {"id":{"name":"SpriteAtlas","path":"extensions/SpriteAtlas/SpriteAtlas.yy",},"order":4,},
     {"id":{"name":"ui_render_surface_render_animation_frame","path":"scripts/ui_render_surface_render_animation_frame/ui_render_surface_render_animation_frame.yy",},"order":5,},
     {"id":{"name":"scribble_super_glyph_copy_all","path":"scripts/scribble_super_glyph_copy_all/scribble_super_glyph_copy_all.yy",},"order":3,},
-    {"id":{"name":"ui_render_surface_control_mesh_ed","path":"scripts/ui_render_surface_control_mesh_ed/ui_render_surface_control_mesh_ed.yy",},"order":7,},
     {"id":{"name":"Group_UI_Map_Zone_Common","path":"scripts/Group_UI_Map_Zone_Common/Group_UI_Map_Zone_Common.yy",},"order":37,},
     {"id":{"name":"Group_Math","path":"scripts/Group_Math/Group_Math.yy",},"order":15,},
     {"id":{"name":"ui_activate","path":"scripts/ui_activate/ui_activate.yy",},"order":8,},

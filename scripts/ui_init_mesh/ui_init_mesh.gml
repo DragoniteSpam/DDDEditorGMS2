@@ -388,7 +388,13 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Other misc operations you amy want to do on a mesh.")
                 .SetID("OTHER TOOLS"),
-            new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, emu_null, emu_null),
+            (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function() {
+                var input_control = keyboard_check(vk_control);
+                if (CONTROL_3D_LOOK || !input_control) {
+                    Stuff.mesh_ed.camera.Update();
+                }
+            }, emu_null, emu_null))
+                .SetID("3D VIEW"),
             // this one is for the masks and overlays
             //new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, emu_null, emu_null),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {

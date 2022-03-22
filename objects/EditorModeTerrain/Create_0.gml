@@ -262,7 +262,7 @@ Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? TERRAI
 self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
     Stuff.terrain.mouse_interaction(mouse_vector);
 });
-self.base_speed = 20;
+self.camera.base_speed = 20;
 self.camera.Load(setting_get("terrain", "camera", undefined));
 self.camera.SetViewportAspect(function() {
     return Stuff.terrain.ui.SearchID("TERRAIN VIEWPORT").width;
