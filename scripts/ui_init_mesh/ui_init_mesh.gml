@@ -1,8 +1,10 @@
 function ui_init_mesh(mode) {
     var hud_width = room_width / 4;
     var hud_height = room_height;
-    var col1x = 16;
-    var col2x = hud_width + 16;
+    var col1x = hud_width * 0 + 16;
+    var col2x = hud_width * 1 + 16;
+    var col3x = hud_width * 2 + 16;
+    var col4x = hud_width * 3 + 16;
     var element_width = hud_width - 32;
     var element_height = 32;
     
@@ -228,44 +230,44 @@ function ui_init_mesh(mode) {
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformation"),
             #region basic transformation
             (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", "", "x", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_position.x = real(self.value);
+                Settings.mesh.draw_position.x = real(self.value);
             }))
                 .SetID("MESH POSITION X"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_position.y = real(self.value);
+                Settings.mesh.draw_position.y = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Y"),
             (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_position.z = real(self.value);
+                Settings.mesh.draw_position.z = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Z"),
             (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", "", "x", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_rotation.x = real(self.value);
+                Settings.mesh.draw_rotation.x = real(self.value);
             }))
                 .SetID("MESH ROTATE X"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_rotation.y = real(self.value);
+                Settings.mesh.draw_rotation.y = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Y"),
             (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_rotation.z = real(self.value);
+                Settings.mesh.draw_rotation.z = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Z"),
             (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", "", "x", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_scale.x = real(self.value);
+                Settings.mesh.draw_scale.x = real(self.value);
             }))
                 .SetID("MESH SCALE X"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_scale.y = real(self.value);
+                Settings.mesh.draw_scale.y = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Y"),
             (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
-                Stuff.mesh_ed.draw_scale.z = real(self.value);
+                Settings.mesh.draw_scale.z = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Z"),
@@ -370,6 +372,14 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.")
                 .SetID("MIRROR TEX V"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Materials", function() {
+                dialog_create_mesh_material_settings(self, self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Set some material properties used by the selected meshes. Right now I've only implemented the base (diffuse) texture but I'd like to get around to the rest later.")
+                .SetID("MATERIALS"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "More...", function() {
                 dialog_create_mesh_other_settings(self, self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
             }))
@@ -378,6 +388,69 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Other misc operations you amy want to do on a mesh.")
                 .SetID("OTHER TOOLS"),
+            new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, emu_null, emu_null),
+            // this one is for the masks and overlays
+            //new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, emu_null, emu_null),
+            (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
+                var dialog = new EmuDialog(640, 600, "Mesh viewer settings");
+                dialog.active_shade = 0;
+                dialog.x = 920;
+                dialog.y = 120;
+                
+                var col1x = 32;
+                var col2x = 336;
+                var col_width = 288;
+                
+                dialog.AddContent([
+                    #region column 1
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw filled meshes?", Settings.mesh.draw_meshes, function() {
+                        Settings.mesh.draw_meshes = self.value;
+                    }))
+                        .SetTooltip("Draw the filled part of the 3D meshes."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw textures?", Settings.mesh.draw_textures, function() {
+                        Settings.mesh.draw_textures = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the meshes in the preview window using a texture."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw vertex colors?", Settings.mesh.draw_vertex_colors, function() {
+                        Settings.mesh.draw_vertex_colors = self.value;
+                        show_message("not yet implemented");
+                    }))
+                        .SetTooltip("Whether or not to colorize the verties of meshes."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframes?", Settings.mesh.draw_wireframes, function() {
+                        Settings.mesh.draw_wireframes = self.value;
+                    }))
+                        .SetTooltip("Draw a wireframe over the 3D mesh. Turn this off if it gets annoying."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw lighting?", Settings.mesh.draw_lighting, function() {
+                        Settings.mesh.draw_lighting = self.value;
+                    }))
+                        .SetTooltip("Whether or not to lighting should be enabled."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw backfaces?", Settings.mesh.draw_back_faces, function() {
+                        Settings.mesh.draw_back_faces = self.value;
+                    }))
+                        .SetTooltip("For backface culling."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw reflections?", Settings.mesh.draw_reflections, function() {
+                        Settings.mesh.draw_reflections = self.value;
+                    }))
+                        .SetTooltip("If you have a reflection mesh set up, you may draw it, as well."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_axes, function() {
+                        Settings.mesh.draw_axes = self.value;
+                    }))
+                        .SetTooltip("Whether or not to show collision shapes associated with meshes."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw 3D axes?", Settings.mesh.draw_axes, function() {
+                        Settings.mesh.draw_axes = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the red, green, and blue axes in the 3D view."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw grid?", Settings.mesh.draw_grid, function() {
+                        Settings.mesh.draw_grid = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane."),
+                    #endregion
+                    #region column 2
+                    #endregion
+                ]).AddDefaultCloseButton();
+            }))
+                .SetTooltip("Some options relating to the 3D view above.")
+                .SetID("VIEWER SETTINGS"),
             #endregion
         ])
             .SetID("INFO")
@@ -413,149 +486,5 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         */
-        element = create_text(c2x, yy, "[c_aqua]Editing", ew, eh, fa_left, ew, id);
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base;
-        
-        element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
-        ds_list_add(contents, element);
-        
-        element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, function(surface, x1, y1, x2, y2) {
-            var mode = Stuff.mesh_ed;
-            if (!mode.draw_collision) return;
-            
-            surface.mask_surface = surface_rebuild(surface.mask_surface, surface.width, surface.height);
-            surface_set_target(surface.mask_surface);
-            draw_clear_alpha(c_black, 0);
-            
-            var cam = camera_get_active();
-            camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
-            camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -surface.width / surface.height, CAMERA_ZNEAR, CAMERA_ZFAR));
-            camera_apply(cam);
-            
-            shader_set(shd_solid_color);
-            shader_set_uniform_f(shader_get_uniform(shd_solid_color, "col"), 1, 1, 1, 0.1);
-            
-            var mesh_list = surface.root.mesh_list;
-            var n = 0;
-            var limit = 10;
-            var tex_none = -1;
-            for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
-                var mesh_data = Game.meshes[index];
-                
-                for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
-                    var shape = mesh_data.collision_shapes[i];
-                    switch (shape.type) {
-                        case MeshCollisionShapes.BOX:
-                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
-                            vertex_submit(Stuff.graphics.centered_cube, pr_trianglelist, tex_none);
-                            break;
-                        case MeshCollisionShapes.CAPSULE:
-                            // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
-                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
-                            vertex_submit(Stuff.graphics.centered_capsule, pr_trianglelist, tex_none);
-                            break;
-                        case MeshCollisionShapes.SPHERE:
-                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
-                            vertex_submit(Stuff.graphics.centered_sphere, pr_trianglelist, tex_none);
-                            break;
-                    }
-                }
-                
-                if (++n > limit) break;
-            }
-            
-            surface_reset_target();
-            matrix_set(matrix_world, matrix_build_identity());
-            shader_set(shd_outline);
-            shader_set_uniform_f(shader_get_uniform(shd_outline, "outline_color"), colour_get_red(c_lime) / 0xff, colour_get_green(c_lime) / 0xff, colour_get_blue(c_lime) / 0xff);
-            draw_clear_alpha(c_black, 0);
-            draw_surface(surface.mask_surface, 0, 0);
-            shader_reset();
-        }, function() { }, c_black, id);
-        element.mask_surface = surface_create(element.width, element.height);
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        var yy_base_rs = yy;
-        #region options
-        element = create_checkbox(c3x, yy, "Draw filled meshes?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_meshes = checkbox.value;
-        }, mode.draw_meshes, id);
-        element.tooltip = "Draw the filled part of the 3D meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c3x, yy, "Draw wireframes?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_wireframes = checkbox.value;
-        }, mode.draw_wireframes, id);
-        element.tooltip = "Draw a wireframe over the 3D mesh. Turn this off if it gets annoying.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c3x, yy, "Draw reflections?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_reflections = checkbox.value;
-        }, mode.draw_wireframes, id);
-        element.tooltip = "If you have a reflection mesh set up, you may draw it, as well.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c3x, yy, "Object Materials...", ew, eh, fa_center, function(button) {
-            if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
-            dialog_create_mesh_material_settings(button, button.root.mesh_list.selected_entries);
-        }, id);
-        element.tooltip = "Set the textures used by the selected meshes. Only the base texture is available for now; I may implement the others later.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base_rs;
-        
-        element = create_checkbox(c4x, yy, "Show Textures?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_textures = checkbox.value;
-        }, mode.draw_textures, id);
-        element.tooltip = "Whether or not to draw the meshes in the preview window using a texture.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c4x, yy, "Show Lighting?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_lighting = checkbox.value;
-        }, mode.draw_lighting, id);
-        element.tooltip = "Whether or not to lighting should be enabled.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c4x, yy, "Show Back Faces?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_back_faces = checkbox.value;
-        }, mode.draw_back_faces, id);
-        element.tooltip = "For backface culling.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base_rs;
-        
-        element = create_checkbox(c5x, yy, "Show Grid?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_grid = checkbox.value;
-        }, mode.draw_grid, id);
-        element.tooltip = "Whether or not to draw the tile grid on the Z = 0 plane.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c5x, yy, "Show Axes?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_axes = checkbox.value;
-        }, mode.draw_axes, id);
-        element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c5x, yy, "Show collision?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_collision = checkbox.value;
-        }, mode.draw_collision, id);
-        element.tooltip = "Whether or not to show collision shapes associated with meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        #endregion
-        return id;
     }
 }

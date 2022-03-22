@@ -1,9 +1,14 @@
-function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
+function ui_render_surface_render_mesh_ed(mx, my) {
+    draw_clear(c_black);
+    
+    draw_text_colour(32, 32, "WIP", c_white, c_white, c_white, c_white, 1);
+    return;
+    
     var mode = Stuff.mesh_ed;
     var mesh_list = surface.root.mesh_list;
     var sw = surface_get_width(surface.surface);
     var sh = surface_get_height(surface.surface);
-    draw_clear(c_black);
+    
     
     var cam = camera_get_active();
     camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
@@ -15,19 +20,19 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     
     matrix_set(matrix_world, matrix_build_identity());
     shader_set(shd_wireframe);
-    if (mode.draw_grid) vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
+    if (Settings.mesh.draw_grid) vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
     shader_set(shd_basic_colors);
-    if (mode.draw_axes) vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
+    if (Settings.mesh.draw_axes) vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
     
     shader_set(shd_ddd);
     
     #region light stuff
     var light_data = array_create(MAX_LIGHTS * 12);
     array_clear(light_data, 0);
-    var ambient = mode.draw_lighting ? c_gray : c_white;
+    var ambient = Settings.mesh.draw_lighting ? c_gray : c_white;
     
-    light_data[0] = dcos(mode.draw_light_direction);
-    light_data[1] = -dsin(mode.draw_light_direction);
+    light_data[0] = dcos(Settings.mesh.draw_light_direction);
+    light_data[1] = -dsin(Settings.mesh.draw_light_direction);
     light_data[2] = -1;  // this feels upside-down
     light_data[3] = LightTypes.DIRECTIONAL;
     light_data[8] = 1;
@@ -46,7 +51,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), CAMERA_ZFAR * 2);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
     
-    if (mode.draw_wireframes) {
+    if (Settings.mesh.draw_wireframes) {
         wireframe_enable(2);
     } else {
         wireframe_disable();
@@ -59,9 +64,9 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     
     gpu_set_cullmode(Stuff.mesh_ed.draw_back_faces ? cull_noculling : cull_counterclockwise);
     matrix_set(matrix_world, matrix_build(
-        mode.draw_position.x, mode.draw_position.y, mode.draw_position.z,
-        mode.draw_rotation.x, mode.draw_rotation.y, mode.draw_rotation.z,
-        mode.draw_scale.x, mode.draw_scale.y, mode.draw_scale.z, 
+        Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z,
+        Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z,
+        Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z, 
     ));
     var n = 0;
     var limit = 10;
@@ -71,16 +76,16 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
         switch (mesh_data.type) {
             case MeshTypes.RAW:
                 var this_tex = -1;
-                if (mesh_data.tex_base != NULL && mode.draw_textures) {
+                if (mesh_data.tex_base != NULL && Settings.mesh.draw_textures) {
                     this_tex = guid_get(mesh_data.tex_base) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_tex;
                 }
                 for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
                     var vbuffer = mesh_data.submeshes[sm_index].vbuffer;
                     var reflect_vbuffer = mesh_data.submeshes[sm_index].reflect_vbuffer;
-                    if (mode.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, this_tex);
-                    if (mode.draw_reflections && mode.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
+                    if (Settings.mesh.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, this_tex);
+                    if (Settings.mesh.draw_reflections && Settings.mesh.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
                     
-                    if (mode.draw_collision) {
+                    if (Settings.mesh.draw_collision) {
                         for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
                             shader_set(shd_wireframe);
                             var shape = mesh_data.collision_shapes[i];

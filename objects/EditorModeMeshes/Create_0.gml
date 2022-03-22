@@ -16,38 +16,13 @@ save = function() {
     Settings.mesh.yto = yto;
     Settings.mesh.zto = zto;
     Settings.mesh.fov = fov;
-    
-    Settings.mesh.draw_mesh = draw_meshes;
-    Settings.mesh.draw_wire = draw_wireframes;
-    Settings.mesh.draw_tex = draw_textures;
-    Settings.mesh.draw_light = draw_lighting;
-    Settings.mesh.draw_axes = draw_axes;
-    Settings.mesh.draw_grid = draw_grid;
-    Settings.mesh.draw_back_faces = draw_back_faces;
-    Settings.mesh.draw_reflections = draw_reflections;
-    Settings.mesh.draw_collision = draw_collision;
 };
-
-draw_meshes = setting_get("mesh", "draw_mesh", true);
-draw_wireframes = setting_get("mesh", "draw_wire", true);
-draw_textures = setting_get("mesh", "draw_tex", true);
-draw_lighting = setting_get("mesh", "draw_light", false);
-draw_back_faces = setting_get("mesh", "backfaces", false);
-draw_reflections = setting_get("mesh", "reflections", false);
-draw_collision = setting_get("mesh", "draw_collision", false);
-draw_position = { x: 0, y: 0, z: 0 };
-draw_rotation = { x: 0, y: 0, z: 0 };
-draw_scale = { x: 1, y: 1, z: 1 };
 
 ResetTransform = function() {
-    self.draw_position = { x: 0, y: 0, z: 0 };
-    self.draw_rotation = { x: 0, y: 0, z: 0 };
-    self.draw_scale = { x: 1, y: 1, z: 1 };
+    Settings.mesh.draw_position = { x: 0, y: 0, z: 0 };
+    Settings.mesh.draw_rotation = { x: 0, y: 0, z: 0 };
+    Settings.mesh.draw_scale = { x: 1, y: 1, z: 1 };
 };
-
-draw_axes = setting_get("mesh", "draw_axes", true);
-draw_light_direction = 180;
-draw_grid = setting_get("mesh", "draw_grid", true);
 
 def_x = 256;
 def_y = 256;
