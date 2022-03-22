@@ -58,7 +58,11 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     var tex_none = -1;
     
     gpu_set_cullmode(Stuff.mesh_ed.draw_back_faces ? cull_noculling : cull_counterclockwise);
-    transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
+    matrix_set(matrix_world, matrix_build(
+        mode.draw_position.x, mode.draw_position.y, mode.draw_position.z,
+        mode.draw_rotation.x, mode.draw_rotation.y, mode.draw_rotation.z,
+        mode.draw_scale.x, mode.draw_scale.y, mode.draw_scale.z, 
+    ));
     var n = 0;
     var limit = 10;
     var def_tex = sprite_get_texture(get_active_tileset().picture, 0);

@@ -35,10 +35,15 @@ draw_lighting = setting_get("mesh", "draw_light", false);
 draw_back_faces = setting_get("mesh", "backfaces", false);
 draw_reflections = setting_get("mesh", "reflections", false);
 draw_collision = setting_get("mesh", "draw_collision", false);
-draw_scale = 1;
-draw_rot_x = 0;
-draw_rot_y = 0;
-draw_rot_z = 0;
+draw_position = { x: 0, y: 0, z: 0 };
+draw_rotation = { x: 0, y: 0, z: 0 };
+draw_scale = { x: 1, y: 1, z: 1 };
+
+ResetTransform = function() {
+    self.draw_position = { x: 0, y: 0, z: 0 };
+    self.draw_rotation = { x: 0, y: 0, z: 0 };
+    self.draw_scale = { x: 1, y: 1, z: 1 };
+};
 
 draw_axes = setting_get("mesh", "draw_axes", true);
 draw_light_direction = 180;

@@ -13,6 +13,7 @@ function ui_init_mesh(mode) {
             self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
         }))
             .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
+            .SetMultiSelect(true)
             .SetListColors(function(index) {
                 return (Game.meshes[index].type == MeshTypes.SMF) ? c_orange : EMU_COLOR_TEXT;
             })
@@ -45,11 +46,17 @@ function ui_init_mesh(mode) {
             })
             .SetID("MESH LIST"),
         (new EmuCore(0, 0, hud_width, hud_height)).AddContent([
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Essentials"),
+            #region essentials
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Name:", "", "name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
-                Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    Game.meshes[real(indices[i])].name = self.value;
+                }
+                batch_again();
             }))
                 .SetRefresh(function(data) {
-                    self.SetInteractive((data != undefined) && (array_length(data) == 1));
+                    self.SetInteractive(data != undefined);
                 })
                 .SetID("MESH NAME"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
@@ -63,83 +70,45 @@ function ui_init_mesh(mode) {
                     }
                 }
             }))
-                .SetRefresh(function(data) {
-                    // this button is always active
-                })
                 .SetTooltip("Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.")
                 .SetID("ADD MESH"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Delete Mesh", function() {
-                Game.meshes[self.GetSibling("MESH LIST").GetSelection()].Destroy();
-                self.GetSibling("MESH LIST").Deselect();
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to delete " + (array_length(indices) == 1 ? Game.meshes[indices[0]] : " the selected meshes") + "?", function() {
+                    var indices = self.root.indices;
+                    
+                    for (var i = 0, n = array_length(indices); i < n; i++) {
+                        indices[i] = real(indices[i]);
+                    }
+                    
+                    array_sort(indices, false);
+                    
+                    for (var i = 0, n = array_length(indices); i < n; i++) {
+                        Game.meshes[real(indices[i])].Destroy();
+                    }
+                    batch_again();
+                    Stuff.mesh_ed.ResetTransform();
+                    self.root.Dispose();
+                });
+                
+                dg.indices = indices;
+                
+                self.root.GetSibling("MESH LIST").Deselect();
                 batch_again();
             }))
                 .SetRefresh(function(data) {
-                    self.SetInteractive((data != undefined) && (array_length(data) == 1));
+                    self.SetInteractive(data != undefined);
+                    if (data != undefined) {
+                        if (array_length(data) == 1) {
+                            self.text = "Delete Mesh";
+                        } else {
+                            self.text = "Delete Meshes";
+                        }
+                    }
                 })
                 .SetID("DELETE MESH"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Combine Submeshes", function() {
-                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
-                
-                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
-                    var mesh = self.root.mesh;
-                    var old_submesh_list = mesh.submeshes;
-                    mesh.submeshes = [];
-                    mesh.proto_guids = { };
-                    var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
-                    
-                    for (var i = 0, n = array_length(old_submesh_list); i < n; i++) {
-                        combine_submesh.AddBufferData(old_submesh_list[i].buffer);
-                        old_submesh_list[i].Destroy();
-                    }
-                    
-                    combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
-                    combine_submesh.owner = mesh;
-                    array_push(mesh.submeshes, combine_submesh);
-                    mesh.first_proto_guid = combine_submesh.proto_guid;
-                    
-                    batch_again();
-                    self.root.Dispose();
-                });
-                
-                dg.mesh = mesh;
-            }))
-                .SetRefresh(function(data) {
-                    if ((data != undefined) && (array_length(data) == 1)) {
-                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
-                    } else {
-                        self.SetInteractive(false);
-                    }
-                })
-                .SetTooltip("Combine the submeshes of the selected 3D meshes.")
-                .SetID("COMBINE SUBMESHES"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Separate Submeshes", function() {
-                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
-                
-                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
-                    var mesh = self.root.mesh;
-                    
-                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
-                        var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
-                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
-                        new_mesh.CopyPropertiesFrom(mesh);
-                        array_push(Game.meshes, new_mesh);
-                    }
-                    
-                    self.root.Dispose();
-                });
-                
-                dg.mesh = mesh;
-            }))
-                .SetRefresh(function(data) {
-                    if ((data != undefined) && (array_length(data) == 1)) {
-                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
-                    } else {
-                        self.SetInteractive(false);
-                    }
-                })
-                .SetTooltip("Separate the selected 3D meshes into individual models.")
-                .SetID("SEPARATE SUBMESHES"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Export", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Export Mesh", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 // to do once the rest of the editor works
                 /*
@@ -178,6 +147,13 @@ function ui_init_mesh(mode) {
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive((data != undefined) && (array_length(data) == 1));
+                    if (data != undefined) {
+                        if (array_length(data) == 1) {
+                            self.text = "Export Mesh";
+                        } else {
+                            self.text = "Export Meshes";
+                        }
+                    }
                 })
                 .SetTooltip(@"Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.
         
@@ -185,51 +161,115 @@ function ui_init_mesh(mode) {
     - [c_aqua]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
     - [c_aqua]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
     - [c_aqua]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)")
-                .SetID("EXPORT"),
-            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformations"),
-(new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", "", "x", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                .SetID("EXPORT MESH"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Combine Submeshes", function() {
+                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
+                    var mesh = self.root.mesh;
+                    var old_submesh_list = mesh.submeshes;
+                    mesh.submeshes = [];
+                    mesh.proto_guids = { };
+                    var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
+                    
+                    for (var i = 0, n = array_length(old_submesh_list); i < n; i++) {
+                        combine_submesh.AddBufferData(old_submesh_list[i].buffer);
+                        old_submesh_list[i].Destroy();
+                    }
+                    
+                    combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
+                    combine_submesh.owner = mesh;
+                    array_push(mesh.submeshes, combine_submesh);
+                    mesh.first_proto_guid = combine_submesh.proto_guid;
+                    
+                    batch_again();
+                    self.root.Dispose();
+                });
+                
+                dg.mesh = mesh;
+            }))
+                .SetRefresh(function(data) {
+                    if ((data != undefined) && (array_length(data) == 1)) {
+                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
+                    } else {
+                        self.SetInteractive(false);
+                    }
+                })
+                .SetTooltip("Combine the submeshes of the selected 3D meshes.")
+                .SetID("COMBINE SUBMESHES"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Separate Submeshes", function() {
+                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
+                    var mesh = self.root.mesh;
+                    
+                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
+                        var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
+                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
+                        new_mesh.CopyPropertiesFrom(mesh);
+                        array_push(Game.meshes, new_mesh);
+                    }
+                    
+                    self.root.Dispose();
+                });
+                
+                dg.mesh = mesh;
+            }))
+                .SetRefresh(function(data) {
+                    if ((data != undefined) && (array_length(data) == 1)) {
+                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
+                    } else {
+                        self.SetInteractive(false);
+                    }
+                })
+                .SetTooltip("Separate the selected 3D meshes into individual models.")
+                .SetID("SEPARATE SUBMESHES"),
+            #endregion
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformation"),
+            #region basic transformation
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", "", "x", 10, E_InputTypes.REAL, function() {
+                Stuff.mesh_ed.draw_position.x = real(self.value);
             }))
                 .SetID("MESH POSITION X"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_position.y = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Y"),
             (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_position.z = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Z"),
             (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", "", "x", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_rotation.x = real(self.value);
             }))
                 .SetID("MESH ROTATE X"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_rotation.y = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Y"),
             (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_rotation.z = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Z"),
             (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", "", "x", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_scale.x = real(self.value);
             }))
                 .SetID("MESH SCALE X"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_scale.y = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Y"),
             (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
-                //Game.meshes[self.GetSibling("MESH LIST").GetSelection()].name = self.value;
+                Stuff.mesh_ed.draw_scale.z = real(self.value);
             }))
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Z"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Bake Transformation", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Bake Transformation", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? Game.meshes[indices[0]] : " the selected meshes") + "?", function() {
@@ -239,6 +279,7 @@ function ui_init_mesh(mode) {
                         Game.meshes[real(indices[i])].ApplyTransform();
                     }
                     batch_again();
+                    Stuff.mesh_ed.ResetTransform();
                     self.root.Dispose();
                 });
                 
@@ -249,12 +290,14 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Apply the preview transformation to the selected meshes. Useful for converting between different world spaces.")
                 .SetID("BAKE TRANSFORMATION"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Reset Transformation", function() {
-                // reset the values
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Reset Transformation", function() {
+                Stuff.mesh_ed.ResetTransform();
             }))
                 .SetTooltip("Reset the transform used in the preview.")
                 .SetID("RESET TRANSFORMATION"),
+            #endregion
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Operations"),
+            #region other operations
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Rotate Up Axis", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
@@ -335,6 +378,7 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Other misc operations you amy want to do on a mesh.")
                 .SetID("OTHER TOOLS"),
+            #endregion
         ])
             .SetID("INFO")
     ]);
@@ -372,67 +416,6 @@ function ui_init_mesh(mode) {
         element = create_text(c2x, yy, "[c_aqua]Editing", ew, eh, fa_left, ew, id);
         ds_list_add(contents, element);
         yy += element.height + spacing;
-        /*
-        element = create_input(c2x, yy, "Scale:", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_scale = real(input.value);
-        }, mode.draw_scale, "float", validate_double, 0.01, 100, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Set the scale used by the preview on the right. If you want to apply the scale to the selected meshes permanently, click the button below.";
-        ds_list_add(contents, element);
-        mesh_scale = element;
-        yy += element.height + spacing;
-        
-        element = create_input(c2x, yy, "Rotation (X):", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_rot_x = real(input.value);
-        }, mode.draw_rot_x, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Rotate the model(s) drawn in the preview window around the X axis.";
-        ds_list_add(contents, element);
-        mesh_rot_x = element;
-        yy += element.height + spacing;
-        
-        element = create_input(c2x, yy, "Rotation (Y):", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_rot_y = real(input.value);
-        }, mode.draw_rot_y, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Rotate the model(s) drawn in the preview window around the Y axis.";
-        ds_list_add(contents, element);
-        mesh_rot_y = element;
-        yy += element.height + spacing;
-        
-        element = create_input(c2x, yy, "Rotation (Z):", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_rot_z = real(input.value);
-        }, mode.draw_rot_z, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Rotate the model(s) drawn in the preview window around the Z axis.";
-        ds_list_add(contents, element);
-        mesh_rot_z = element;
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Apply Scale", ew, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionScale(Stuff.mesh_ed.draw_scale);
-            }
-            Stuff.mesh_ed.draw_scale = 1;
-            ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
-            batch_again();
-        }, id);
-        element.tooltip = "";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        */
-        /*
-        element = create_button(c2x, yy, "Reset Transform", ew, eh, fa_center, function(button) {
-            Stuff.mesh_ed.draw_scale = 1;
-            ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
-            Stuff.mesh_ed.draw_rot_x = 0;
-            ui_input_set_value(button.root.mesh_rot_x, string(Stuff.mesh_ed.draw_rot_x));
-            Stuff.mesh_ed.draw_rot_y = 0;
-            ui_input_set_value(button.root.mesh_rot_y, string(Stuff.mesh_ed.draw_rot_y));
-            Stuff.mesh_ed.draw_rot_z = 0;
-            ui_input_set_value(button.root.mesh_rot_z, string(Stuff.mesh_ed.draw_rot_z));
-        }, id);
-        element.tooltip = "";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        */
         
         yy = yy_base;
         
