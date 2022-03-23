@@ -21,39 +21,14 @@
         {"externalName":"meshops_init","kind":1,"help":"meshops_init(vertex_size)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
           ],"resourceVersion":"1.0","name":"meshops_init","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_position_set","kind":1,"help":"meshops_transform_position_set(x, y, z)","hidden":false,"returnType":2,"argCount":0,"args":[
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_transform_position_set","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_position","kind":1,"help":"meshops_transform_position(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_transform_position","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"meshops_transform_center","kind":1,"help":"meshops_transform_center(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
           ],"resourceVersion":"1.0","name":"meshops_transform_center","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_rotate_x","kind":1,"help":"meshops_transform_rotate_x(data, len, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_transform","kind":1,"help":"meshops_transform(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_transform_rotate_x","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_rotate_y","kind":1,"help":"meshops_transform_rotate_z(data, length, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_transform_rotate_y","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_rotate_z","kind":1,"help":"meshops_transform_rotate_z(data, length, angle)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_transform_rotate_z","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_scale","kind":1,"help":"meshops_transform_scale(data, length, scale)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_transform_scale","tags":[],"resourceType":"GMExtensionFunction",},
+          ],"resourceVersion":"1.0","name":"meshops_transform","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"meshops_mirror_axis_x","kind":1,"help":"meshops_mirror_axis_x(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
@@ -152,16 +127,22 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"__meshops_chunk","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_transform_set_inputs","kind":1,"help":"__meshops_transform_set_inputs(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__meshops_transform_set_inputs","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_transform_position_set","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_transform_position","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_transform_center","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_transform_rotate_x","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_transform_rotate_y","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_transform_rotate_z","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_transform_scale","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_rotate_up","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_mirror_axis_x","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_mirror_axis_y","path":"extensions/MeshOps/MeshOps.yy",},
@@ -182,6 +163,7 @@
         {"name":"__meshops_chunk_settings","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_chunk_analyze","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_chunk","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_transform_set_inputs","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
