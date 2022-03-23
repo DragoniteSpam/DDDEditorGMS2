@@ -187,7 +187,12 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         if (GetInteractive()) {
             if (isActiveElement()) {
                 var v0 = _working_value;
-                _working_value = string_copy(keyboard_string, 1, min(string_length(keyboard_string), character_limit));
+                _working_value = keyboard_string;
+                
+                if (string_length(_working_value) > character_limit) {
+                	_working_value = string_copy(_working_value, 1, character_limit);
+                	keyboard_string = _working_value;
+                }
                 
 				// press escape to clear input
 				if (keyboard_check_pressed(vk_escape)) {
@@ -199,7 +204,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
 				// add newline on pressing enter, if allowed
                 if (_multi_line && !_require_enter && keyboard_check_pressed(vk_enter)) {
                     _working_value += "\n";
-                    keyboard_string = keyboard_string + "\n";
+                    keyboard_string += "\n";
                 }
 				
                 if (ValidateInput(_working_value)) {
@@ -207,7 +212,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                     if (execute_value_change) {
                         var cast_value = CastInput(_working_value);
                         if (is_real(cast_value)) {
-                            execute_value_change = execute_value_change && (clamp(cast_value, _value_lower, _value_upper) == cast_value);
+                            execute_value_change &= (clamp(cast_value, _value_lower, _value_upper) == cast_value);
                         }
 						
                         if (execute_value_change) {
@@ -215,11 +220,11 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                             callback();
                         }
                     }
-                }
-                
-				keyboard_string = string_copy(_working_value, 1, min(string_length(_working_value), character_limit));
-                value = keyboard_string;
+                } else if (_working_value == "") {
+                	value = _working_value;
+                } 
             }
+            
             // activation
             if (getMouseHover(vx1, vy1, vx2, vy2)) {
                 if (getMouseReleased(vx1, vy1, vx2, vy2)) {
