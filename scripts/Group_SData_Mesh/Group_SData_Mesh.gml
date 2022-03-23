@@ -427,15 +427,15 @@ function DataMesh(source) : SData(source) constructor {
 // json-serializing code go go with it when you save
 function MeshCollisionShape() constructor {
     self.name = "shape";
-    self.position = { x: 0, y: 0, z: 0 };
+    self.position = new Vector3(0, 0, 0);
     self.asset_flags = 0xffffffff;
     self.type = -1;
 }
 
 function MeshCollisionShapeBox() : MeshCollisionShape() constructor {
     self.name = "Box";
-    self.rotation = { x: 0, y: 0, z: 0 };
-    self.scale = { x: 1, y: 1, z: 1 };
+    self.rotation = new Vector3(0, 0, 0);
+    self.scale = new Vector3(1, 1, 1);
     self.type = MeshCollisionShapes.BOX;
 }
 
@@ -447,7 +447,7 @@ function MeshCollisionShapeSphere() : MeshCollisionShape() constructor {
 
 function MeshCollisionShapeCapsule() : MeshCollisionShape() constructor {
     self.name = "Capsule";
-    self.rotation = { x: 0, y: 0, z: 0 };
+    self.rotation = new Vector3(0, 0, 0);
     self.radius = 1;
     self.length = 4;
     self.type = MeshCollisionShapes.CAPSULE;

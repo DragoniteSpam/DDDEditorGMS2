@@ -186,7 +186,7 @@ function vertex_buffer_as_chunks(buffer, chunk_size, max_x, max_y) {
         var bi3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 48, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 52, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 56, buffer_f32) };
         var ba3 = { x: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 60, buffer_f32), y: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 64, buffer_f32), z: buffer_peek(buffer, i + 2 * VERTEX_SIZE + 68, buffer_f32) };
         
-        var chunk_id = { x: min(max_x, p1.x div chunk_size), y: min(max_y, p1.y div chunk_size) };
+        var chunk_id = new Vector2(min(max_x, p1.x div chunk_size), min(max_y, p1.y div chunk_size));
         var chunk_data = record[$ json_stringify(chunk_id)];
         
         if (!chunk_data) {

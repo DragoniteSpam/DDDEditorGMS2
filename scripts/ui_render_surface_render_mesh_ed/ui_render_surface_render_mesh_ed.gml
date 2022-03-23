@@ -41,11 +41,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), CAMERA_ZFAR * 2);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
     
-    if (Settings.mesh.draw_wireframes) {
-        wireframe_enable(2);
-    } else {
-        wireframe_disable();
-    }
+    wireframe_enable(Settings.mesh.wireframe_alpha);
     
     #endregion
     

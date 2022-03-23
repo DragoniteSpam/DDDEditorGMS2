@@ -229,56 +229,87 @@ function ui_init_mesh(mode) {
             #endregion
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformation"),
             #region basic transformation
-            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", "", "x", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", "0", "x", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_position.x = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("0");
+                })
                 .SetID("MESH POSITION X"),
-            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "0", "", "y", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_position.y = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("0");
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Y"),
-            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "0", "", "z", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_position.z = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("0");
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Z"),
-            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", "", "x", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", "0", "x", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_rotation.x = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("0");
+                })
                 .SetID("MESH ROTATE X"),
-            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "0", "", "y", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_rotation.y = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("0");
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Y"),
-            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "0", "", "z", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_rotation.z = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("0");
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Z"),
-            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", "", "x", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", "1", "x", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_scale.x = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("1");
+                })
                 .SetID("MESH SCALE X"),
-            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "", "", "y", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "1", "", "y", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_scale.y = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("1");
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Y"),
-            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "", "", "z", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "1", "", "z", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_scale.z = real(self.value);
             }))
+                .SetRefresh(function(data) {
+                    self.SetValue("1");
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Z"),
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Bake Transformation", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
-                var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? Game.meshes[indices[0]] : " the selected meshes") + "?", function() {
+                var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? Game.meshes[indices[0]].name : " the selected meshes") + "?", function() {
                     var indices = self.root.indices;
-                    meshops_transform_set_inputs(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale);
+                    __meshops_transform_set_inputs(
+                        Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z,
+                        Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z,
+                        Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z
+                    );
                     for (var i = 0, n = array_length(indices); i < n; i++) {
-                        Game.meshes[real(indices[i])].ApplyTransform();
+                        Game.meshes[real(indices[i])].ActionTransform();
                     }
                     batch_again();
                     Stuff.mesh_ed.ResetTransform();
@@ -388,6 +419,8 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Other misc operations you amy want to do on a mesh.")
                 .SetID("OTHER TOOLS"),
+            #endregion
+            #region viewer
             (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function() {
                 var input_control = keyboard_check(vk_control);
                 if (CONTROL_3D_LOOK || !input_control) {
@@ -400,7 +433,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
                 var dialog = new EmuDialog(640, 600, "Mesh viewer settings");
                 dialog.active_shade = 0;
-                dialog.x = 920;
+                dialog.x = 320;
                 dialog.y = 120;
                 
                 var col1x = 32;
@@ -422,8 +455,9 @@ function ui_init_mesh(mode) {
                         show_message("not yet implemented");
                     }))
                         .SetTooltip("Whether or not to colorize the verties of meshes."),
-                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw wireframes?", Settings.mesh.draw_wireframes, function() {
-                        Settings.mesh.draw_wireframes = self.value;
+                    new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
+                    (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.mesh.wireframe_alpha, function() {
+                        Settings.mesh.wireframe_alpha = self.value;
                     }))
                         .SetTooltip("Draw a wireframe over the 3D mesh. Turn this off if it gets annoying."),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw lighting?", Settings.mesh.draw_lighting, function() {

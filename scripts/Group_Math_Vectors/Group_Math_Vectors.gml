@@ -62,7 +62,7 @@ function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
     };
     
     static GetAbsDimensions = function() {
-        return { x: abs(self.x2 - self.x1), y: abs(self.y2 - self.y1), z: abs(self.z2 - self.z1) };
+        return new Vector3(abs(self.x2 - self.x1), abs(self.y2 - self.y1), abs(self.z2 - self.z1));
     };
     
     static GetContainedChunks = function(sizex, sizey = sizex) {

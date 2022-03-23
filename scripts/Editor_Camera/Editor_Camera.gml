@@ -18,7 +18,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.zfar = zfar;
     self.callback = method(self, callback);
     
-    self.center = { x: window_get_width() / 2, y: window_get_height() / 2 };
+    self.center = new Vector2(window_get_width() / 2, window_get_height() / 2);
     
     self.x = x;
     self.y = y;

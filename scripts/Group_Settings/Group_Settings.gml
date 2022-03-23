@@ -93,11 +93,10 @@ Settings.view[$ "lighting"] ??=                                                 
 Settings.view[$ "gizmos"] ??=                                                   true;
 Settings.view[$ "threed"] ??=                                                   true;
 
-Settings.mesh[$ "draw_position"] ??=                                            { x: 0, y: 0, z: 0 };
-Settings.mesh[$ "draw_rotation"] ??=                                            { x: 0, y: 0, z: 0 };
-Settings.mesh[$ "draw_scale"] ??=                                               { x: 1, y: 1, z: 1 };
+Settings.mesh[$ "draw_position"] ??=                                            new Vector3(0, 0, 0);
+Settings.mesh[$ "draw_rotation"] ??=                                            new Vector3(0, 0, 0);
+Settings.mesh[$ "draw_scale"] ??=                                               new Vector3(1, 1, 1);
 Settings.mesh[$ "draw_meshes"] ??=                                              true;
-Settings.mesh[$ "draw_wireframes"] ??=                                          true;
 Settings.mesh[$ "draw_textures"] ??=                                            true;
 Settings.mesh[$ "draw_vertex_colors"] ??=                                       true;
 Settings.mesh[$ "draw_lighting"] ??=                                            false;
@@ -107,6 +106,7 @@ Settings.mesh[$ "draw_collision"] ??=                                           
 Settings.mesh[$ "draw_axes"] ??=                                                true;
 Settings.mesh[$ "draw_light_direction"] ??=                                     180;
 Settings.mesh[$ "draw_grid"] ??=                                                true;
+Settings.mesh[$ "wireframe_alpha"] ??=                                          1;
 Settings.mesh[$ "reflect_settings"] ??=                                         MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;
 Settings.mesh[$ "reflect_color"] ??=                                            0x7fff6600;
 

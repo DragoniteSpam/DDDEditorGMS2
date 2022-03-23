@@ -28,9 +28,9 @@ save = function() {
 };
 
 ResetTransform = function() {
-    Settings.mesh.draw_position = { x: 0, y: 0, z: 0 };
-    Settings.mesh.draw_rotation = { x: 0, y: 0, z: 0 };
-    Settings.mesh.draw_scale = { x: 1, y: 1, z: 1 };
+    Settings.mesh.draw_position = new Vector3(0, 0, 0);
+    Settings.mesh.draw_rotation = new Vector3(0, 0, 0);
+    Settings.mesh.draw_scale = new Vector3(1, 1, 1);
 };
 
 ResetCamera = function() {
