@@ -7,7 +7,7 @@ function editor_mode_meshes() {
 
     view_set_visible(view_fullscreen, true);
     view_set_visible(view_3d, false);
-    view_set_visible(view_ribbon, true);
+    view_set_visible(view_ribbon, false);
     view_set_visible(view_hud, false);
 
     var camera = view_get_camera(view_fullscreen);
