@@ -127,7 +127,7 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"__meshops_chunk","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_set_inputs","kind":1,"help":"__meshops_transform_set_inputs(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_transform_set_matrix","kind":1,"help":"__meshops_transform_set_matrix(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
             2,
             2,
@@ -137,7 +137,7 @@
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"__meshops_transform_set_inputs","tags":[],"resourceType":"GMExtensionFunction",},
+          ],"resourceVersion":"1.0","name":"__meshops_transform_set_matrix","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -163,7 +163,7 @@
         {"name":"__meshops_chunk_settings","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_chunk_analyze","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_chunk","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"__meshops_transform_set_inputs","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_transform_set_matrix","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
