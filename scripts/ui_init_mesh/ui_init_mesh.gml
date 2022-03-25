@@ -59,6 +59,7 @@ function ui_init_mesh(mode) {
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined);
+                    self.SetValue((data != undefined && array_length(data) == 1) ? Game.meshes[data[0]].name : "");
                 })
                 .SetID("MESH NAME"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
@@ -229,72 +230,72 @@ function ui_init_mesh(mode) {
             #endregion
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformation"),
             #region basic transformation
-            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", "0", "x", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", string(Settings.mesh.draw_position.x), "x", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_position.x = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("0");
+                    self.SetValue(string(Settings.mesh.draw_position.x));
                 })
                 .SetID("MESH POSITION X"),
-            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "0", "", "y", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_position.y), "", "y", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_position.y = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("0");
+                    self.SetValue(string(Settings.mesh.draw_position.y));
                 })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Y"),
-            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "0", "", "z", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_position.z), "", "z", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_position.z = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("0");
+                    self.SetValue(string(Settings.mesh.draw_position.z));
                 })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Z"),
-            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", "0", "x", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", string(Settings.mesh.draw_rotation.x), "x", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_rotation.x = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("0");
+                    self.SetValue(string(Settings.mesh.draw_rotation.x));
                 })
                 .SetID("MESH ROTATE X"),
-            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "0", "", "y", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_rotation.y), "", "y", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_rotation.y = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("0");
+                    self.SetValue(string(Settings.mesh.draw_rotation.y));
                 })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Y"),
-            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "0", "", "z", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_rotation.z), "", "z", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_rotation.z = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("0");
+                    self.SetValue(string(Settings.mesh.draw_rotation.z));
                 })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH ROTATE Z"),
-            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", "1", "x", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", string(Settings.mesh.draw_scale.x), "x", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_scale.x = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("1");
+                    self.SetValue(string(Settings.mesh.draw_scale.x));
                 })
                 .SetID("MESH SCALE X"),
-            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, "1", "", "y", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_scale.y), "", "y", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_scale.y = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("1");
+                    self.SetValue(string(Settings.mesh.draw_scale.y));
                 })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Y"),
-            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, "1", "", "z", 10, E_InputTypes.REAL, function() {
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_scale.z), "", "z", 10, E_InputTypes.REAL, function() {
                 Settings.mesh.draw_scale.z = real(self.value);
             }))
                 .SetRefresh(function(data) {
-                    self.SetValue("1");
+                    self.SetValue(string(Settings.mesh.draw_scale.z));
                 })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH SCALE Z"),

@@ -31,6 +31,15 @@ ResetTransform = function() {
     Settings.mesh.draw_position = new Vector3(0, 0, 0);
     Settings.mesh.draw_rotation = new Vector3(0, 0, 0);
     Settings.mesh.draw_scale = new Vector3(1, 1, 1);
+    self.ui.SearchID("MESH POSITION X").Refresh();
+    self.ui.SearchID("MESH POSITION Y").Refresh();
+    self.ui.SearchID("MESH POSITION Z").Refresh();
+    self.ui.SearchID("MESH ROTATE X").Refresh();
+    self.ui.SearchID("MESH ROTATE Y").Refresh();
+    self.ui.SearchID("MESH ROTATE Z").Refresh();
+    self.ui.SearchID("MESH SCALE X").Refresh();
+    self.ui.SearchID("MESH SCALE Y").Refresh();
+    self.ui.SearchID("MESH SCALE Z").Refresh();
 };
 
 ResetCamera = function() {
