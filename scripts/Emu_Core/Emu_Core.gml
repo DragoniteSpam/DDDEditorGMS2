@@ -145,6 +145,7 @@ function EmuCore(x, y, w, h) constructor {
         for (var i = 0, n = ds_list_size(self._contents); i < n; i++) {
             self._contents[| i].Refresh(data);
         }
+        return self;
     };
     
     static AddContent = function(elements) {
