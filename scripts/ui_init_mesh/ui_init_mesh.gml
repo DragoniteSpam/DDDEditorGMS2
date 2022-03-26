@@ -304,7 +304,7 @@ function ui_init_mesh(mode) {
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? Game.meshes[indices[0]].name : " the selected meshes") + "?", function() {
                     var indices = self.root.indices;
-                    __meshops_transform_set_inputs(
+                    __meshops_transform_set_matrix(
                         Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z,
                         Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z,
                         Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z

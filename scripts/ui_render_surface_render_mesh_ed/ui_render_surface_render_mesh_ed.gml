@@ -49,11 +49,11 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     var tex_none = -1;
     
     gpu_set_cullmode(Settings.mesh.draw_back_faces ? cull_noculling : cull_counterclockwise);
-    matrix_set(matrix_world, matrix_build(
-        Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z,
-        Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z,
-        Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z, 
-    ));
+    var mat_translate = matrix_build(Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z, 0, 0, 0, 1, 1, 1);
+    var mat_rotate = matrix_build(0, 0, 0, Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z, 1, 1, 1);
+    var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z,);
+    matrix_set(matrix_world, matrix_multiply(matrix_multiply(mat_scale, mat_rotate), mat_translate));
+    
     var rendered_count = 0;
     var limit = 10;
     var def_tex = sprite_get_texture(get_active_tileset().picture, 0);
