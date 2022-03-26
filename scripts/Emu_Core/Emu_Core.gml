@@ -220,13 +220,13 @@ function EmuCore(x, y, w, h) constructor {
     
     static SetNext = function(_element) {
         self._next = _element;
-        if (self._next) self._next._previous = self;
+        if (is_struct(self._next)) self._next._previous = self;
         return self;
     }
     
     static SetPrevious = function(_element) {
         self._previous = _element;
-        if (self._previous) self._previous._next = self;
+        if (is_struct(self._previous)) self._previous._next = self;
         return self;
     }
     
@@ -263,13 +263,19 @@ function EmuCore(x, y, w, h) constructor {
     static processAdvancement = function() {
         if (!self.isActiveElement()) return false;
         if (!self._override_tab && keyboard_check_pressed(vk_tab)) {
-            if (keyboard_check(vk_shift) && self._previous) {
-                self._previous.Activate();
+            if (keyboard_check(vk_shift) && self._previous != undefined) {
+                if (is_struct(self._previous))
+                    self._previous.Activate();
+                else if (self.GetSibling(self._previous))
+                    self.GetSibling(self._previous).Activate();
                 keyboard_clear(vk_tab);
                 return true;
             }
-            if (self._next) {
-                self._next.Activate();
+            if (self._next != undefined) {
+                if (is_struct(self._next))
+                    self._next.Activate();
+                else if (self.GetSibling(self._next))
+                    self.GetSibling(self._next).Activate();
                 keyboard_clear(vk_tab);
                 return true;
             }
