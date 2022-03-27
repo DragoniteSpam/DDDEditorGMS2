@@ -1,3 +1,10 @@
+function editor_map_mark_changed(entity) {
+    if (entity.modification == Modifications.NONE) {
+        entity.modification = Modifications.UPDATE;
+        ds_list_add(Stuff.map.changes, entity);
+    }
+}
+
 function editor_cleanup_map(mode) {
     var base_map = Stuff.map.active_map;
     var map = base_map.contents;

@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "modes",
-    "path": "folders/Scripts/modes.yy",
+    "name": "Modes",
+    "path": "folders/Editor/Modes.yy",
   },
   "resourceVersion": "1.0",
-  "name": "editor_cleanup_map",
+  "name": "Group_Editor_Map",
   "tags": [],
   "resourceType": "GMScript",
 }
