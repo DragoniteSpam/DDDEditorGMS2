@@ -126,7 +126,7 @@
     {"id":{"name":"__dotdae_trace","path":"scripts/__dotdae_trace/__dotdae_trace.yy",},"order":6,},
     {"id":{"name":"TerrainOps","path":"extensions/TerrainOps/TerrainOps.yy",},"order":6,},
     {"id":{"name":"Group_Map_Help","path":"scripts/Group_Map_Help/Group_Map_Help.yy",},"order":2,},
-    {"id":{"name":"control_global","path":"scripts/control_global/control_global.yy",},"order":7,},
+    {"id":{"name":"Group_Control_Misc","path":"scripts/Group_Control_Misc/Group_Control_Misc.yy",},"order":7,},
     {"id":{"name":"__scribble_class_font","path":"scripts/__scribble_class_font/__scribble_class_font.yy",},"order":2,},
     {"id":{"name":"dotdae_image_add","path":"scripts/dotdae_image_add/dotdae_image_add.yy",},"order":4,},
     {"id":{"name":"Group_Event_Prefab","path":"scripts/Group_Event_Prefab/Group_Event_Prefab.yy",},"order":6,},

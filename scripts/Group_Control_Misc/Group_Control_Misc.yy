@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Control.yy",
   },
   "resourceVersion": "1.0",
-  "name": "control_global",
+  "name": "Group_Control_Misc",
   "tags": [],
   "resourceType": "GMScript",
 }
