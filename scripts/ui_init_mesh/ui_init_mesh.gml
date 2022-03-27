@@ -11,8 +11,18 @@ function ui_init_mesh(mode) {
     var container = new EmuCore(0, 16, hud_width, hud_height);
     
     container.AddContent([
-        new EmuFileDropperListener(function(elements) {
-            
+        new EmuFileDropperListener(function(files) {
+            var filtered_list = self.Filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
+            for (var i = 0; i < array_length(filtered_list); i++) {
+                var fn = filtered_list[i];
+                switch (filename_ext(fn)) {
+                    case ".obj": import_obj(fn, true); break;
+                    case ".d3d": case ".gmmod": import_d3d(fn, true); break;
+                    case ".smf": break;
+                    case ".dae": import_dae(fn); break;
+                    case ".png": case ".bmp": case ".jpg": case ".jpeg": import_texture(fn); break;
+                }
+            }
         }),
         (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, 25, function() {
             self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
@@ -511,25 +521,6 @@ function ui_init_mesh(mode) {
     
     return container.Refresh();
     
-    with (instance_create_depth(0, 0, 0, UIThing)) {
-        element = create_button(c1x, yy, "Add Mesh", ew0, eh, fa_center, function(button) {
-        }, id);
-        element.tooltip = "";
-        element.file_dropper_action = function(thing, files) {
-            var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
-            for (var i = 0; i < array_length(filtered_list); i++) {
-                var fn = filtered_list[i];
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, true); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, true); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                    case ".png": case ".bmp": case ".jpg": case ".jpeg": import_texture(fn); break;
-                }
-            }
-        };
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
         /*
         element = create_button(c2x, yy, "Exported Vertex Format", ew, eh, fa_center, function(button) {
             emu_dialog_vertex_format(Stuff.mesh_ed.vertex_format, function(value) {
@@ -539,5 +530,4 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         */
-    }
 }

@@ -732,9 +732,9 @@ function import_texture(fn) {
         dialog_create_manager_graphic_tileset(undefined).flags |= DialogFlags.IS_GENERIC_WARNING;
     }
     
-    ui_list_deselect(top.el_list);
-    ui_list_select(top.el_list, array_length(Game.graphics.tilesets) - 1);
-    top.el_list.onvaluechange(top.el_list);
+    //ui_list_deselect(top.el_list);
+    //ui_list_select(top.el_list, array_length(Game.graphics.tilesets) - 1);
+    //top.el_list.onvaluechange(top.el_list);
     
     return ts;
 }
