@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "actions",
-    "path": "folders/Scripts/Selection/actions.yy",
+    "name": "Selection",
+    "path": "folders/Scripts/Selection.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sa_fill",
+  "name": "Group_Selection_Information",
   "tags": [],
   "resourceType": "GMScript",
 }
