@@ -3,7 +3,7 @@ function render_tile(tile) {
     var yy = tile.yy * TILE_HEIGHT;
     var zz = tile.zz * TILE_DEPTH;
     
-    var ts = ACTIVE_TILESET();
+    var ts = MAP_ACTIVE_TILESET;
     
     if (Settings.view.entities) {
         var tex = sprite_get_texture(Settings.view.texture ? ts.picture : b_tileset_textureless, 0);

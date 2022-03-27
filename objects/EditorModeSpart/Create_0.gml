@@ -1,5 +1,7 @@
 event_inherited();
 
+ui = ui_init_spart(id);
+
 self.camera = new Camera(0, 0, 100, 100, 100, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
     
 });
@@ -23,5 +25,4 @@ save = function() {
     Settings.spart.camera = self.camera.Save();
 };
 
-ui = ui_init_spart(id);
 mode_id = ModeIDs.SPART;

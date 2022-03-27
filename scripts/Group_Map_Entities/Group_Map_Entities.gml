@@ -478,7 +478,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
-        var def_texture = Settings.view.texture ? sprite_get_texture(ACTIVE_TILESET().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+        var def_texture = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
         return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
     };
     

@@ -109,7 +109,7 @@
     {"id":{"name":"tileset_create","path":"scripts/tileset_create/tileset_create.yy",},"order":1,},
     {"id":{"name":"dialog_create_mesh_other_settings","path":"scripts/dialog_create_mesh_other_settings/dialog_create_mesh_other_settings.yy",},"order":41,},
     {"id":{"name":"__carton_config","path":"scripts/__carton_config/__carton_config.yy",},"order":0,},
-    {"id":{"name":"import_map_tiled","path":"scripts/import_map_tiled/import_map_tiled.yy",},"order":3,},
+    {"id":{"name":"import_map_tiled","path":"scripts/import_map_tiled/import_map_tiled.yy",},"order":4,},
     {"id":{"name":"import_map_tiled_layer_folder","path":"scripts/import_map_tiled_layer_folder/import_map_tiled_layer_folder.yy",},"order":0,},
     {"id":{"name":"scribble_flush_everything","path":"scripts/scribble_flush_everything/scribble_flush_everything.yy",},"order":5,},
     {"id":{"name":"scribble_font_bake_outline","path":"scripts/scribble_font_bake_outline/scribble_font_bake_outline.yy",},"order":4,},

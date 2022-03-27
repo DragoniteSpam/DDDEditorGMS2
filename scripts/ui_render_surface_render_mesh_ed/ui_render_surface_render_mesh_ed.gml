@@ -56,7 +56,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     var rendered_count = 0;
     var limit = 10;
-    var def_tex = sprite_get_texture(ACTIVE_TILESET().picture, 0);
+    var def_tex = sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0);
     for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
         var mesh_data = Game.meshes[real(indices[index])];
         switch (mesh_data.type) {
