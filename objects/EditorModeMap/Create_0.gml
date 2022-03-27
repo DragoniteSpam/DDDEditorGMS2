@@ -90,7 +90,7 @@ DrawEditor = function() {
     graphics_set_lighting(shd_ddd);
     
     // this will need to be dynamic at some point
-    var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+    var tex = Settings.view.texture ? sprite_get_texture(ACTIVE_TILESET().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
     
     #region entities
     if (Settings.view.entities) {
