@@ -1,3 +1,9 @@
+function graphics_add_gizmo(mesh, matrix, use_gizmo) {
+    if (!use_gizmo || Settings.view.gizmos) {
+        ds_queue_enqueue(Stuff.unlit_meshes, [mesh, matrix]);
+    }
+}
+
 function graphics_set_lighting(shader) {
     // this will need to be modified if / when it gets added to the terrain editor
     var map = Stuff.map.active_map;

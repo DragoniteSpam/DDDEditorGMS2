@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Graphics.yy",
   },
   "resourceVersion": "1.0",
-  "name": "graphics_add_gizmo",
+  "name": "Group_Graphics_3D",
   "tags": [],
   "resourceType": "GMScript",
 }
