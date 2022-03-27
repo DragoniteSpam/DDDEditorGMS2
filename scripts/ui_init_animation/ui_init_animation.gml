@@ -3,6 +3,7 @@ function ui_init_animation(mode) {
     var hud_height = window_get_height();
     var col1x = 32;
     var col2x = 288;
+    var col3x = 544;
     var col_width = 240;
     var col_height = 32;
     
@@ -289,6 +290,12 @@ function ui_init_animation(mode) {
                 })),
             ]),
         #endregion
+        (new EmuRenderSurface(col3x, EMU_AUTO, col_width, col_height, function(mx, my) {
+            draw_clear(c_black);
+        }, function(mx, my) {
+            
+        }))
+            .SetID("3D VIEW")
     ]);
     
     return container;
