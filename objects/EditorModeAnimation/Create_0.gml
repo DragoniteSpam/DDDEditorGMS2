@@ -15,7 +15,12 @@ self.camera.SetViewportAspect(function() {
     return Stuff.mesh_ed.ui.SearchID("3D VIEW").height;
 });
 
-update = editor_update_animation;
+update = function() {
+    if (!Stuff.mouse_3d_lock && !dialog_exists()) {
+        self.camera.Update();
+    }
+};
+
 render = function() {
     gpu_set_cullmode(cull_noculling);
     draw_editor_animation();
