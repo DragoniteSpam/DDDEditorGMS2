@@ -6,6 +6,7 @@ render = function() {
     gpu_set_cullmode(cull_noculling);
     draw_editor_menu();
     draw_editor_fullscreen();
+    draw_editor_menu();
 };
 
 ui = ui_init_mesh(id);
