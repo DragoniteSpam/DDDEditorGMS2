@@ -14,7 +14,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
     self._value_x2 = self.width;
     self._value_y2 = self.height;
     
-    self.color_back = EMU_COLOR_BACK;
+    self.color_back = function() { return EMU_COLOR_BACK; };
     
     SetAlphaUsed = function(_alpha_used) {
         _allow_alpha = _alpha_used;
@@ -53,10 +53,10 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
             .wrap(self.width, self.height)
             .draw(tx, ty);
         
-        draw_sprite_stretched_ext(sprite_nineslice, 1, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, color_back, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 1, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, self.color_back(), 1);
         drawCheckerbox(vx1 + 2, vy1 + 2, (vx2 - vx1) - 4, (vy2 - vy1) - 4);
         draw_sprite_stretched_ext(sprite_nineslice, 1, vx1 + 2, vy1 + 2, vx2 - vx1 - 2, vy2 - vy1 - 2, value, _allow_alpha ? (((value & 0xff000000) >> 24) / 0xff) : 1);
-        draw_sprite_stretched_ext(sprite_nineslice, 0, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, color, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 0, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, self.color(), 1);
         
         if (GetInteractive()) {
             if (getMouseHover(vx1, vy1, vx2, vy2)) {
@@ -143,6 +143,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             var x2 = x1 + width;
                             var y2 = y1 + height;
                             var buckets = all_colors ? 255 : 8;
+                            var cc = self.color();
                             
                             var color_initial = value;
                             var alpha_initial = alpha;
@@ -206,7 +207,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             shader_set_uniform_f(shader_get_uniform(shd_emu_color_buckets, "buckets"), buckets);
                             draw_rectangle_colour(vx1, vy1, vx2, vy2, c1, c2, c3, c4, false);
                             shader_reset();
-                            draw_rectangle_colour(vx1, vy1, vx2, vy2, color, color, color, color, true);
+                            draw_rectangle_colour(vx1, vy1, vx2, vy2, cc, cc, cc, cc, true);
 
                             gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color);
                             var chx = vx1 + axis_w * w;
@@ -260,7 +261,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             draw_set_alpha(alpha);
                             draw_rectangle_colour(vx1, vy1, vx2, vy2, value, value, value, value, false);
                             draw_set_alpha(1);
-                            draw_rectangle_colour(vx1, vy1, vx2, vy2, color, color, color, color, true);
+                            draw_rectangle_colour(vx1, vy1, vx2, vy2, cc, cc, cc, cc, true);
                             #endregion
                             
                             #region alpha

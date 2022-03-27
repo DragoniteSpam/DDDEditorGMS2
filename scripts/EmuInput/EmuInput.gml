@@ -7,14 +7,14 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     self.help_text = help_text;
     self.character_limit = clamp(character_limit, 1, 1000);  // keyboard_string maxes out at 1024 characters but I like to cut it off before then to be safe
     
-    self.color_text = EMU_COLOR_TEXT;
-    self.color_help_text = EMU_COLOR_HELP_TEXT;
-    self.color_warn = EMU_COLOR_INPUT_WARN;
-    self.color_reject = EMU_COLOR_INPUT_REJECT;
-    self.color_back = EMU_COLOR_BACK;
-    self.color_disabled = EMU_COLOR_DISABLED;
-    self.color_selected = EMU_COLOR_SELECTED;
-    self.input_font = EMU_FONT_DEFAULT;
+    self.color_text = function() { return EMU_COLOR_TEXT };
+    self.color_help_text = function() { return EMU_COLOR_HELP_TEXT; }
+    self.color_warn = function() { return EMU_COLOR_INPUT_WARN; }
+    self.color_reject = function() { return EMU_COLOR_INPUT_REJECT; }
+    self.color_back = function() { return EMU_COLOR_BACK; }
+    self.color_disabled = function() { return EMU_COLOR_DISABLED; }
+    self.color_selected = function() { return EMU_COLOR_SELECTED; }
+    self.input_font = function() { return EMU_FONT_DEFAULT; }
     
     self.sprite_ring = spr_emu_ring;
     self.sprite_enter = spr_emu_enter;
@@ -72,7 +72,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         var y1 = y + base_y;
         var x2 = x1 + width;
         var y2 = y1 + height;
-        var c = self.color_text;
+        var c = self.color_text();
 
         var vx1 = x1 + _value_x1;
         var vy1 = y1 + _value_y1;
@@ -97,10 +97,10 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         if (ValidateInput(_working_value)) {
             var cast_value = CastInput(_working_value);
             if (is_real(cast_value) && clamp(cast_value, _value_lower, _value_upper) != cast_value) {
-                c = color_warn;
+                c = self.color_warn();
             }
         } else {
-            c = color_reject;
+            c = self.color_reject();
         }
         #endregion
         
@@ -119,7 +119,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
 
         surface_set_target(_surface);
         surface_set_target(_surface);
-        draw_clear(GetInteractive() ? color_back : color_disabled);
+        draw_clear(GetInteractive() ? self.color_back (): self.color_disabled());
         surface_reset_target();
         
         var display_text = _working_value + (isActiveElement() && (floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
@@ -145,7 +145,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 var steps = 32;
                 draw_sprite(sprite_ring, 0, remaining_x, remaining_y);
                 draw_primitive_begin_texture(pr_trianglefan, sprite_get_texture(sprite_ring, 0));
-                draw_vertex_texture_colour(remaining_x, remaining_y, 0.5, 0.5, color_selected, 1);
+                var csel = self.color_selected();
+                draw_vertex_texture_colour(remaining_x, remaining_y, 0.5, 0.5, csel, 1);
                 for (var i = 0; i <= steps * f; i++) {
                     var angle = 360 / steps * i - 90;
                     draw_vertex_texture_colour(
@@ -153,7 +154,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                         clamp(remaining_y + r * dsin(angle), remaining_y - r, remaining_y + r),
                         clamp(0.5 + 0.5 * dcos(angle), 0, 1),
                         clamp(0.5 + 0.5 * dsin(angle), 0, 1),
-                    color_selected, 1);
+                    csel, 1);
                 }
                 draw_primitive_end();
             }
@@ -161,21 +162,22 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
             
             draw_set_halign(fa_left);
             draw_set_valign(fa_top);
-            draw_set_font(input_font);
+            draw_set_font(self.input_font());
             var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
             var vty = vy1 + offset;
             draw_text_ext_colour(vtx - vx1, min(vty - vy1, hh - spacing - sh), display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
         } else {
             draw_set_halign(fa_left);
             draw_set_valign(fa_middle);
-            draw_set_font(input_font);
+            draw_set_font(self.input_font());
             var sw_begin = min(vtx - vx1, ww - offset - sw);
             draw_text_colour(sw_begin, vty - vy1, display_text, c, c, c, c, 1);
             sw_end = sw_begin + sw + 4;
         }
         
         if (string_length(value) == 0) {
-            draw_text_colour(vtx - vx1, vty - vy1, string(help_text), color_help_text, color_help_text, color_help_text, color_help_text, 1);
+            var tc = self.color_help_text();
+            draw_text_colour(vtx - vx1, vty - vy1, string(help_text), tc, tc, tc, tc, 1);
         }
 
         if (_require_enter) {
@@ -239,7 +241,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         #endregion
         
         draw_surface(_surface, vx1, vy1);
-        draw_rectangle_colour(vx1, vy1, vx2, vy2, color, color, color, color, true);
+        var c = self.color();
+        draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c, c, true);
     }
     
     static Activate = function() {

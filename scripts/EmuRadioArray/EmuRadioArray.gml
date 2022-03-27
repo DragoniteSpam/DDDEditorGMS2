@@ -63,8 +63,8 @@ function EmuRadioArray(x, y, w, h, text, value, callback) : EmuCallback(x, y, w,
         self.text = text;
         self.value = value;
         
-        self.color_active = EMU_COLOR_RADIO_ACTIVE;
-        self.color_back = EMU_COLOR_BACK;
+        self.color_active = function() { return EMU_COLOR_RADIO_ACTIVE; };
+        self.color_back = function() { return EMU_COLOR_BACK; };
         
         self.sprite_radio = spr_emu_radio;
         
@@ -88,11 +88,11 @@ function EmuRadioArray(x, y, w, h, text, value, callback) : EmuCallback(x, y, w,
                 root.callback();
             }
             
-            draw_sprite_ext(sprite_radio, 2, tx + offset, ty, 1, 1, 0, color_back, 1);
-            draw_sprite_ext(sprite_radio, 1, tx + offset, ty, 1, 1, 0, color, 1);
-            draw_sprite_ext(sprite_radio, 0, tx + offset, ty, 1, 1, 0, color, 1);
+            draw_sprite_ext(sprite_radio, 2, tx + offset, ty, 1, 1, 0, self.color_back(), 1);
+            draw_sprite_ext(sprite_radio, 1, tx + offset, ty, 1, 1, 0, self.color(), 1);
+            draw_sprite_ext(sprite_radio, 0, tx + offset, ty, 1, 1, 0, self.color(), 1);
             if (value == root.value) {
-                draw_sprite_ext(sprite_radio, 3, tx + offset, ty, 1, 1, 0, color_active, GetInteractive());
+                draw_sprite_ext(sprite_radio, 3, tx + offset, ty, 1, 1, 0, self.color_active(), GetInteractive());
             }
             
             scribble(self.text)

@@ -62,7 +62,7 @@ function dialog_terrain_mutate() {
             .SetImageAlignment(fa_left, fa_top)
             .SetCheckerboard(true)
             .SetInteractive(false)
-            .SetDisabledColor(c_white),
+            .SetDisabledColor(function() { return c_white; }),
     ]).AddDefaultConfirmCancelButtons("Mutate", function() {
         debug_timer_start();
         
@@ -569,7 +569,7 @@ function dialog_create_terrain_brush_manager() {
             .SetAllowShrink(true)
             .SetCheckerboard(true)
             .SetInteractive(false)
-            .SetDisabledColor(c_white),
+            .SetDisabledColor(function() { return c_white; }),
         (new EmuText(col2x, EMU_AUTO, ew, eh, ""))
             .SetID("DEF_NOTICE"),
         #endregion

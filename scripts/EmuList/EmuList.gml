@@ -6,10 +6,10 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     self.element_height = element_height;
     self.slots = content_slots;
     
-    self.color_back = EMU_COLOR_BACK;
-    self.color_hover = EMU_COLOR_HOVER;
-    self.color_disabled = EMU_COLOR_DISABLED;
-    self.color_selected = EMU_COLOR_SELECTED;
+    self.color_back = function() { return EMU_COLOR_BACK; };
+    self.color_hover = function() { return EMU_COLOR_HOVER; };
+    self.color_disabled = function() { return EMU_COLOR_DISABLED; };
+    self.color_selected = function() { return EMU_COLOR_SELECTED; };
     
     self.auto_multi_select = false;
     self.allow_multi_select = false;
@@ -179,6 +179,11 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         var hh = y3 - y2;
         var tx = getTextX(x1);
         var ty = getTextY(y1);
+        var cc = self.color();
+        var csel = self.color_selected();
+        var cback = self.color_back();
+        var chover = self.color_hover();
+        var cdis = self.color_disabled();
         
         #region list header
         var txoffset = 0;
@@ -190,13 +195,13 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             txoffset = spr_width;
             
             if (getMouseHover(tx - spr_xoffset, ty - spr_yoffset, tx - spr_xoffset + spr_width, ty - spr_yoffset + spr_height)) {
-                draw_sprite_ext(sprite_help, 2, tx, ty, 1, 1, 0, color_hover, 1);
+                draw_sprite_ext(sprite_help, 2, tx, ty, 1, 1, 0, chover, 1);
                 ShowTooltip();
             } else {
-                draw_sprite_ext(sprite_help, 2, tx, ty, 1, 1, 0, color_back, 1);
+                draw_sprite_ext(sprite_help, 2, tx, ty, 1, 1, 0, cback, 1);
             }
-            draw_sprite_ext(sprite_help, 1, tx, ty, 1, 1, 0, color, 1);
-            draw_sprite_ext(sprite_help, 0, tx, ty, 1, 1, 0, color, 1);
+            draw_sprite_ext(sprite_help, 1, tx, ty, 1, 1, 0, cc, 1);
+            draw_sprite_ext(sprite_help, 0, tx, ty, 1, 1, 0, cc, 1);
         }
         
         scribble(self.text)
@@ -215,13 +220,13 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         }
         
         surface_set_target(_surface);
-        draw_clear_alpha(GetInteractive() ? color_back : color_disabled, 1);
+        draw_clear_alpha(GetInteractive() ? cback : cdis, 1);
         
         var n = is_array(_entries) ? array_length(_entries) : (ds_exists(_entries, ds_type_list) ? ds_list_size(_entries) : 0);
         _index = clamp(n - slots, 0, _index);
         
         if (n == 0) {
-            draw_sprite_stretched_ext(sprite_nineslice, 1, 0, 0, x2 - x1, element_height, color_disabled, 1);
+            draw_sprite_stretched_ext(sprite_nineslice, 1, 0, 0, x2 - x1, element_height, cdis, 1);
             ty = mean(y2, y2 + height);
             
             scribble(self.text_vacant)
@@ -237,7 +242,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 
                 if (GetInteractive()) {
                     if (GetSelected(current_index)) {
-                        draw_rectangle_colour(0, ya - y2, x2 - x1, yb - y2, color_selected, color_selected, color_selected, color_selected, false);
+                        draw_rectangle_colour(0, ya - y2, x2 - x1, yb - y2, csel, csel, csel, csel, false);
                     }
                 }
                 
@@ -259,7 +264,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             }
         }
         
-        draw_rectangle_colour(1, 1, ww - 2, hh - 2, color, color, color, color, true);
+        draw_rectangle_colour(1, 1, ww - 2, hh - 2, cc, cc, cc, cc, true);
         surface_reset_target();
         #endregion
         
@@ -349,17 +354,18 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             var srange = smax - smin;
             var sy = smin + srange * _index / noutofrange;
             var active = GetInteractive();
-            draw_rectangle_colour(x2 - sw, y2, x2, y3, color_back, color_back, color_back, color_back, false);
-            draw_line_colour(x2 - sw, y2 + sw, x2, y2 + sw, color, color);
-            draw_line_colour(x2 - sw, y3 - sw, x2, y3 - sw, color, color);
-            draw_rectangle_colour(x2 - sw, y2, x2, y3, color, color, color, color, true);
+            var 
+            draw_rectangle_colour(x2 - sw, y2, x2, y3, cback, cback, cback, cback, false);
+            draw_line_colour(x2 - sw, y2 + sw, x2, y2 + sw, cc, cc);
+            draw_line_colour(x2 - sw, y3 - sw, x2, y3 - sw, cc, cc);
+            draw_rectangle_colour(x2 - sw, y2, x2, y3, cc, cc, cc, cc, true);
             
             var sby1 = sy - shalf;
             var sby2 = sy + shalf;
             if (active) {
                 // Hover over the scroll bar: draw the hover color
                 if (getMouseHover(x2 - sw, sby1, x2, sby2) || _dragging) {
-                    draw_rectangle_colour(x2 - sw + 1, sby1 + 1, x2 - 1, sby2 - 1, color_hover, color_hover, color_hover, color_hover, false);
+                    draw_rectangle_colour(x2 - sw + 1, sby1 + 1, x2 - 1, sby2 - 1, chover, chover, chover, chover, false);
                     // Click: begin _dragging the scroll bar
                     if (getMousePressed(x2 - sw, sby1, x2, sby2) && !_dragging) {
                         Activate();
@@ -380,17 +386,17 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 }
             }
             
-            draw_rectangle_colour(x2 - sw, sby1, x2, sby2, color, color, color, color, true);
-            draw_line_colour(x2 - sw * 4 / 5, sy - 4, x2 - sw / 5, sy - 4, color, color);
-            draw_line_colour(x2 - sw * 4 / 5, sy, x2 - sw / 5, sy, color, color);
-            draw_line_colour(x2 - sw * 4 / 5, sy + 4, x2 - sw / 5, sy + 4, color, color);
+            draw_rectangle_colour(x2 - sw, sby1, x2, sby2, cc, cc, cc, cc, true);
+            draw_line_colour(x2 - sw * 4 / 5, sy - 4, x2 - sw / 5, sy - 4, cc, cc);
+            draw_line_colour(x2 - sw * 4 / 5, sy, x2 - sw / 5, sy, cc, cc);
+            draw_line_colour(x2 - sw * 4 / 5, sy + 4, x2 - sw / 5, sy + 4, cc, cc);
             
             if (active) {
                 var inbounds_top = getMouseHover(x2 - sw, y2, x2, y2 + sw);
                 var inbounds_bottom = getMouseHover(x2 - sw, y3 - sw, x2, y3);
                 // Top button
                 if (inbounds_top) {
-                    draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw - 1, color_hover, color_hover, color_hover, color_hover, false);
+                    draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw - 1, chover, chover, chover, chover, false);
                     if (getMousePressed(x2 - sw, y2, x2, y2 + sw)) {
                         Activate();
                         move_direction = -1;
@@ -401,7 +407,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                     }
                 // Bottom button
                 } else if (inbounds_bottom) {
-                    draw_rectangle_colour(x2 - sw + 1, y3 - sw + 1, x2 - 1, y3 - 1, color_hover, color_hover, color_hover, color_hover, false);
+                    draw_rectangle_colour(x2 - sw + 1, y3 - sw + 1, x2 - 1, y3 - 1, chover, chover, chover, chover, false);
                     // On click, scroll once
                     if (getMousePressed(x2 - sw, y3 - sw, x2, y3)) {
                         Activate();
@@ -415,8 +421,8 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 }
             }
             
-            draw_sprite_ext(sprite_arrows, 0, x2 - sw, y2, 1, 1, 0, color, 1);
-            draw_sprite_ext(sprite_arrows, 1, x2 - sw, y3 - sw, 1, 1, 0, color, 1);
+            draw_sprite_ext(sprite_arrows, 0, x2 - sw, y2, 1, 1, 0, cc, 1);
+            draw_sprite_ext(sprite_arrows, 1, x2 - sw, y3 - sw, 1, 1, 0, cc, 1);
             
             _index = clamp(_index + move_direction, 0, max(0, n - slots));
         }

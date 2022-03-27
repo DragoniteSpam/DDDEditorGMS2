@@ -276,7 +276,7 @@ function ui_init_terrain(mode) {
                     .SetImageAlignment(fa_left, fa_top)
                     .SetAllowShrink(true)
                     .SetInteractive(false)
-                    .SetDisabledColor(c_white)
+                    .SetDisabledColor(function() { return c_white; })
                     .SetCheckerboard(true),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.Z;
@@ -506,7 +506,7 @@ function ui_init_terrain(mode) {
                     .SetImageAlignment(fa_left, fa_top)
                     .SetAllowShrink(true)
                     .SetInteractive(false)
-                    .SetDisabledColor(c_white)
+                    .SetDisabledColor(function() { return c_white; })
                     .SetCheckerboard(true),
             ]).SetOnClick(function() {
                 Settings.terrain.mode = TerrainModes.COLOR;
