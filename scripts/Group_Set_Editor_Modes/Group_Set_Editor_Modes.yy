@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "editor",
-    "path": "folders/Scripts/editor.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "editor_mode_3d",
+  "name": "Group_Set_Editor_Modes",
   "tags": [],
   "resourceType": "GMScript",
 }
