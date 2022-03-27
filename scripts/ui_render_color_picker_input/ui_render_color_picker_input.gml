@@ -50,7 +50,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
     var active = picker.interactive && dialog_is_active(picker.root);
     
     if (active) {
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds) {
             if (Controller.release_left) {
                 ui_activate(picker);
@@ -141,7 +141,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
     }
     
     if (active) {
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds && Controller.press_left) {
             picker.selecting_color = true;
         }
@@ -198,7 +198,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
     var h = vy2 - vy1;
     
     if (active) {
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds && Controller.press_left) {
             picker.selecting_axis = true;
         }
@@ -250,7 +250,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
         var h = vy2 - vy1;
         
         if (active) {
-            var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+            var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
             if (inbounds && Controller.press_left) {
                 picker.selecting_alpha = true;
             }

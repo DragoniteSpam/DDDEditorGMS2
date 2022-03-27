@@ -164,12 +164,10 @@ function control_map() {
             var yup = 0;
             var zup = 0;
             
-            if (mouse_within_view(view_3d)) {
-                if (Settings.view.threed) {
-                    mode.camera.Update();
-                } else {
-                    mode.camera.UpdateOrtho();
-                }
+            if (Settings.view.threed) {
+                mode.camera.Update();
+            } else {
+                mode.camera.UpdateOrtho();
             }
         }
         #endregion

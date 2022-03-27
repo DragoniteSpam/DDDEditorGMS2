@@ -1,5 +1,5 @@
 function ui_init_animation(mode) {
-    var hud_width = camera_get_view_width(view_get_camera(view_hud));
+    var hud_width = window_get_width();
     var hud_height = window_get_height();
     var col1x = 32;
     var col2x = 288;
@@ -303,7 +303,7 @@ function ui_init_animation(mode) {
             var y2 = y1 + timeline.height;
             var y3 = y2 + timeline.slots * timeline.height;
             
-            var inbounds = mouse_within_rectangle_determine(x1, y2, x2, y3, timeline.adjust_view);
+            var inbounds = mouse_within_rectangle(x1, y2, x2, y3);
             
             if (keyboard_check_pressed(vk_delete)) {
                 var timeline_layer = animation.GetLayer(timeline.selected_layer);

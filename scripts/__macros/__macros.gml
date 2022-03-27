@@ -79,10 +79,6 @@
 #macro MAP_VOLUME_LIMIT                     0x40000
 #macro MAX_SELECTION_COUNT                  32
 #macro MAX_LIGHTS                           7                                   // one is reserved for the point / spot light around the player
-#macro mouse_x_view                         (mouse_x - view_get_xport(view_current))
-#macro mouse_y_view                         (mouse_y - view_get_yport(view_current))
-#macro mouse_x_view_previous                (Controller.mouse_x_previous - view_get_xport(view_current))
-#macro mouse_y_view_previous                (Controller.mouse_y_previous - view_get_yport(view_current))
 #macro NULL                                 ""
 #macro PATH_AUTOTILE                        "autotile/"
 #macro PATH_GRAPHICS                        "data/graphics/"                    // local storage - no leading punctuation - used for opening files
@@ -116,18 +112,6 @@
 #macro CONTROL_3D_LOOK                      Controller.mouse_middle
 #macro CONTROL_3D_LOOK_DOWN                 Controller.press_middle
 #macro CONTROL_3D_LOOK_UP                   Controller.release_middle
-
-#macro view_fullscreen                      0
-#macro view_3d                              1
-#macro view_ribbon                          2
-#macro view_hud                             3
-#macro view_4                               4
-#macro view_5                               5
-#macro view_6                               6
-#macro view_overlay                         7
-
-#macro view_hud_width_3d                    520
-#macro view_hud_width_event                 320
 
 #macro c_ev_basic                           0x99ff00
 #macro c_ev_comment                         0xd8bfd8

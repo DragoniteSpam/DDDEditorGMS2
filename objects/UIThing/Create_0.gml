@@ -24,7 +24,7 @@ contents_interactive = true;
 // want to ignore this one
 is_aux = false;
 
-// if this is set to true the mouse click check will use mouse_within_rectangle_adjusted
+// if this is set to true the mouse click check will use mouse_within_rectangle
 // instead of mouse_within_rectangle_view
 adjust_view = false;
 

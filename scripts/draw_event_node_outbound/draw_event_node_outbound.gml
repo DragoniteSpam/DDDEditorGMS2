@@ -16,7 +16,7 @@ function draw_event_node_outbound() {
     var tolerance = 12;
 
     if (!dialog_exists()) {
-        if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+        if (mouse_within_rectangle(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
             var custom = guid_get(node.custom_guid);
             if (custom) {
                 var str = custom.outbound[index];

@@ -8,7 +8,7 @@ function draw_event_node_prefabinate(xx, yy, node) {
     
     if (!dialog_exists()) {
         var tolerance = 12;
-        if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+        if (mouse_within_rectangle(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
             if (prefab) {
                 index = 1;
                 if (Controller.release_left) {
@@ -27,7 +27,7 @@ function draw_event_node_prefabinate(xx, yy, node) {
                 draw_tooltip(xx, yy + 16, "Save Prefab");
             }
         } else {
-            if (mouse_within_rectangle_adjusted(xx - offset - tolerance, yy - tolerance, xx - offset + tolerance, yy + tolerance)) {
+            if (mouse_within_rectangle(xx - offset - tolerance, yy - tolerance, xx - offset + tolerance, yy + tolerance)) {
                 if (prefab) {
                     index2 = 1;
                     if (Controller.release_left) {

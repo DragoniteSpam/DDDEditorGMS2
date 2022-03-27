@@ -1,9 +1,4 @@
 function draw_editor_menu(camera_controls = false) {
-    var camera = view_get_camera(view_current);
-    camera_set_view_mat(camera, matrix_build_lookat(room_width / 2, room_height / 2, -CAMERA_ZFAR / 2,  room_width / 2, room_height / 2, 0, 0, 1, 0));
-    camera_set_proj_mat(camera, matrix_build_projection_ortho(room_width, room_height, CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(camera);
-    
     if (camera_controls) draw_camera_controls_overlay();
     
     gpu_set_cullmode(cull_noculling);

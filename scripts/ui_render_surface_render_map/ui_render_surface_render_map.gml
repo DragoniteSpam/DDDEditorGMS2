@@ -2,9 +2,6 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     var map = Stuff.event.map;
     var map_contents = map.contents;
     
-    var camera = view_get_camera(view_current);
-    var active_view_mat = camera_get_view_mat(camera);
-    var active_proj_mat = camera_get_proj_mat(camera);
     draw_clear(Settings.config.color_world);
     
     gpu_set_zwriteenable(true);
@@ -14,18 +11,9 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     draw_set_color(c_white);
     
     if (Settings.view.threed) {
-        var vw = x2 - x1;
-        var vh = y2 - y1;
-        camera_set_view_mat(camera, matrix_build_lookat(Stuff.event.x, Stuff.event.y, Stuff.event.z, Stuff.event.xto,
-            Stuff.event.yto, Stuff.event.zto, Stuff.event.xup, Stuff.event.yup, Stuff.event.zup));
-        camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-Stuff.event.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
-        camera_apply(camera);
+        self.camera.SetProjection();
     } else {
-        var cwidth = camera_get_view_width(camera);
-        var cheight = camera_get_view_height(camera);
-        camera_set_view_mat(camera, matrix_build_lookat(Stuff.event.x, Stuff.event.y, 16000,  Stuff.event.x, Stuff.event.y, -16000, 0, 1, 0));
-        camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
-        camera_apply(camera);
+        self.camera.SetProjectionOrtho();
     }
     
     shader_set(shd_ddd);
@@ -55,9 +43,6 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     
     matrix_set(matrix_world, matrix_build_identity());
     
-    camera_set_view_mat(camera, active_view_mat);
-    camera_set_proj_mat(camera, active_proj_mat);
-    camera_apply(camera);
     gpu_set_cullmode(cull_noculling);
     shader_reset();
 }

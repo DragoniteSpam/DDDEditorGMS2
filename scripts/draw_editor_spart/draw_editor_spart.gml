@@ -13,12 +13,7 @@ function draw_editor_spart() {
     
     draw_set_color(c_white);
     
-    var camera = view_get_camera(view_current);
-    var vw = view_get_wport(view_current);
-    var vh = view_get_hport(view_current);
-    camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(camera);
+    self.camera.SetProjection();
     
     if (Settings.view.grid) {
         shader_set(shd_wireframe);

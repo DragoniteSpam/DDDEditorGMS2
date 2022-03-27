@@ -21,7 +21,7 @@ function ui_render_image_button(button, xx, yy) {
     
     var color = c_white;
     if (button.interactive && dialog_is_active(button.root)) {
-        var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, button.adjust_view);
+        var inbounds = mouse_within_rectangle(x1, y1, x2, y2);
         if (inbounds) {
             draw_rectangle_colour(0, 0, x2 - x1, y2 - y1, c_ui, c_ui, c_ui, c_ui, false);
             color = merge_color(c_white, c_ui, 0.5);

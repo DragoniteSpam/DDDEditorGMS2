@@ -34,7 +34,7 @@ function ui_render_radio_option_text(option, xx, yy) {
     // option.root is the radio array object that contains the element.
     // option.root.root is the panel that it lives on.
     if (enabled && dialog_is_active(option.root.root)) {
-        var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, option.adjust_view);
+        var inbounds = mouse_within_rectangle(x1, y1, x2, y2);
         if (inbounds) {
             if (Controller.release_left) {
                 option.root.value = option.value;

@@ -23,7 +23,7 @@ function draw_event_ghost(argument0, argument1, argument2, argument3, argument4,
     draw_roundrect(x1, y1, x2, y2, true);
 
     c = colour_mute(c);
-    if (mouse_within_rectangle_adjusted(x1, y1, x2, y2)) {
+    if (mouse_within_rectangle(x1, y1, x2, y2)) {
         draw_roundrect_colour(x1 + padding, y1 + padding, x2 - padding, y2 - padding, c, c, false);
         if (!dialog_exists()) {
             if (Controller.release_left) {

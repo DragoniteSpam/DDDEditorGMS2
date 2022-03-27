@@ -126,14 +126,12 @@ update = function() {
     
     if (Stuff.menu.active_element || !ds_list_empty(EmuOverlay._contents)) return;
     
-    if (mouse_within_view(view_3d)) {
-        if (Settings.terrain.orthographic) {
-            self.camera.UpdateOrtho();
-        } else {
-            self.camera.Update();
-        }
-        self.camera_light.Update();
+    if (Settings.terrain.orthographic) {
+        self.camera.UpdateOrtho();
+    } else {
+        self.camera.Update();
     }
+    self.camera_light.Update();
 };
 
 render = function() {
@@ -669,8 +667,8 @@ DrawTerrain = function() {
     var cutoff = Settings.terrain.view_distance;
     
     if (Settings.terrain.orthographic) {
-        var vw = view_get_wport(view_current);
-        var vh = view_get_hport(view_current);
+        var vw = window_get_width();
+        var vh = window_get_height();
         var use_lod_zero = self.camera.scale <= adjust_range(
             cutoff,
             Settings.terrain.view_distance_ortho_min,

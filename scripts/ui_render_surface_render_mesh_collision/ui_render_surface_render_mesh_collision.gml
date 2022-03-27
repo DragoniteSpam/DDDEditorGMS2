@@ -1,22 +1,14 @@
 function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     var mesh = surface.root.mesh;
-    
-    var original_state = gpu_get_state();
-    var camera = view_get_camera(view_current);
-    var active_view_mat = camera_get_view_mat(camera);
-    var active_proj_mat = camera_get_proj_mat(camera);
     draw_clear(c_black);
     
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     
-    var s = 256;
-    var fov = 45;   // meh
-    camera = view_get_camera(view_current);
-    camera_set_view_mat(camera, matrix_build_lookat(0, s, s / 2, 0, 0, 0, 0, 0, 1));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -(x2 - x1) / (y2 - y1), CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(camera);
+    var original_state = gpu_get_state();
+    
+    Stuff.mesh_ed.camera.SetProjection();
     
     // draw the grid (any other reference points)
     shader_set(shd_wireframe);

@@ -1,9 +1,9 @@
 function draw_camera_controls_overlay() {
     var iconx = 32;
-    var icony = view_get_yport(view_current) + view_get_hport(view_current) - 32;
+    var icony = window_get_height() - 32;
     var iconlength = 16;
     
-    var inbounds = mouse_within_rectangle_view(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength);
+    var inbounds = mouse_within_rectangle(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength);
     var c = inbounds ? c_ui_select : c_white;
     draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength, c, c, false);
     draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength, c_black, c_black, true);

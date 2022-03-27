@@ -28,7 +28,7 @@ function menu_render_main(menu, xx, yy) {
     }
     
     if (!dialog_exists()) {
-        if (mouse_within_rectangle_view(0, 0, xx + room_width, yy + menu.element_height)) {
+        if (mouse_within_rectangle(0, 0, xx + room_width, yy + menu.element_height)) {
             if (!menu.mouse_over && (Controller.press_left || Controller.press_right)) {
                 menu_activate(noone);
             }

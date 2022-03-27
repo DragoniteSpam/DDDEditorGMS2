@@ -1187,8 +1187,6 @@ function ui_init_main(mode) {
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS),
             (new EmuRenderSurface(col1x, EMU_AUTO, hud_width - 64, hud_width - 64, function(mx, my) {
                 var image = (Stuff.map.active_map.tileset != NULL) ? guid_get(Stuff.map.active_map.tileset).picture : Game.graphics.tilesets[0].picture;
-                mx -= view_get_xport(view_current);
-                my -= view_get_yport(view_current);
                 
                 self.drawCheckerbox(0, 0, self.width, self.height);
                 draw_sprite(image, 0, self.offset_x, self.offset_y);
@@ -1213,8 +1211,6 @@ function ui_init_main(mode) {
                 }
             }, function(mx, my) {
                 var image = (Stuff.map.active_map.tileset != NULL) ? guid_get(Stuff.map.active_map.tileset).picture : Game.graphics.tilesets[0].picture;
-                mx -= view_get_xport(view_current);
-                my -= view_get_yport(view_current);
                 
                 if (!ds_list_empty(EmuOverlay._contents)) return;
                 if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;

@@ -131,7 +131,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     var icony = sh - 32;
     var iconlength = 16;
     
-    var inbounds = mouse_within_rectangle_view(iconx - iconlength + x1, icony - iconlength + y1, iconx + iconlength + x1, icony + iconlength + y1);
+    var inbounds = mouse_within_rectangle(iconx - iconlength + x1, icony - iconlength + y1, iconx + iconlength + x1, icony + iconlength + y1);
     var c = inbounds ? c_ui_select : c_white;
     draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength, c, c, false);
     draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength, c_black, c_black, true);

@@ -13,7 +13,7 @@ function ui_render_checkbox(checkbox, xx, yy) {
     draw_text(tx + 32, ty, string(checkbox.text));
     
     var s2 = 8;
-    var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, checkbox.adjust_view);
+    var inbounds = mouse_within_rectangle(x1, y1, x2, y2);
     
     if (!checkbox.interactive) {
         draw_rectangle_colour(tx + 16 - s2, ty - s2, tx + 16 + s2, ty + s2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);

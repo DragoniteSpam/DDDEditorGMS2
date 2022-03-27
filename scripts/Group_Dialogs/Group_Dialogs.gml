@@ -62,13 +62,13 @@ function dialog_default(dialog) {
     // move the box first
     if (active) {
         cbi = 0;
-        if (mouse_within_rectangle_determine(x1, y1, x2, y1 + header_height, true)) {
+        if (mouse_within_rectangle(x1, y1, x2, y1 + header_height)) {
             // close box
             var cbx1 = cbx - cbs;
             var cby1 = cby - cbs;
             var cbx2 = cbx + cbs;
             var cby2 = cby + cbs;
-            if (mouse_within_rectangle_determine(cbx1, cby1, cbx2, cby2, true)) {
+            if (mouse_within_rectangle(cbx1, cby1, cbx2, cby2)) {
                 cbi = 1;
                 if (!(dialog.flags & DialogFlags.NO_CLOSE_BUTTON) && Controller.release_left) {
                     kill = true;

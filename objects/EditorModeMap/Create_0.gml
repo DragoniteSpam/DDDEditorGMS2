@@ -67,8 +67,6 @@ DrawEditor = function() {
     draw_set_color(c_white);
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     
-    var camera = view_get_camera(view_current);
-    
     self.camera.SetProjection();
     //if (Settings.terrain.view_skybox) {
         //self.camera.DrawSkybox();
@@ -220,8 +218,8 @@ DrawEditor = function() {
     }
     
     // buttons
-    var overlap_plus = mouse_within_rectangle_view(32 - bw / 2, 64 - bh / 2, 32 + bw / 2, 64 + bh / 2);
-    var overlap_minus = mouse_within_rectangle_view(32 - bw / 2, 64 + height - bh / 2, 32 + bw / 2, 64 + height + bh / 2);
+    var overlap_plus = mouse_within_rectangle(32 - bw / 2, 64 - bh / 2, 32 + bw / 2, 64 + bh / 2);
+    var overlap_minus = mouse_within_rectangle(32 - bw / 2, 64 + height - bh / 2, 32 + bw / 2, 64 + height + bh / 2);
     draw_sprite_ext(spr_plus_minus_button, 0, 32, 64, 1, 1, 0, overlap_plus ? c_ui_select : c_white, 1);
     draw_sprite_ext(spr_plus_minus_button, 1, 32, height + 64, 1, 1, 0, overlap_minus ? c_ui_select : c_white, 1);
     
@@ -231,12 +229,12 @@ DrawEditor = function() {
     var slider_y = 64 + height - bh - self.edit_z * interval;
     var slw = sprite_get_width(spr_drag_handle_vertical);
     var slh = sprite_get_height(spr_drag_handle_vertical);
-    var overlap_slider = mouse_within_rectangle_view(32 - slw / 2, slider_y - slh / 2, 32 + slw / 2, slider_y + slh / 2);
+    var overlap_slider = mouse_within_rectangle(32 - slw / 2, slider_y - slh / 2, 32 + slw / 2, slider_y + slh / 2);
     draw_sprite_ext(spr_drag_handle_vertical, 0, 32, slider_y, 1, 1, 0, overlap_slider ? c_ui_select : c_white, 1);
     
     // interactions
     if (ds_list_empty(Stuff.dialogs)) {
-        var overlap_interval = mouse_within_rectangle_view(32 - slw / 2, 64, 32 + slw / 2, 64 + height);
+        var overlap_interval = mouse_within_rectangle(32 - slw / 2, 64, 32 + slw / 2, 64 + height);
         
         if (overlap_plus) {
             if (mouse_check_button_pressed(mb_left)) {
@@ -250,7 +248,7 @@ DrawEditor = function() {
             mouse_over_ui = true;
         } else if (overlap_interval) {
             if (mouse_check_button(mb_left)) {
-                var f = clamp((yy_end - mouse_y_view) / (yy_end - yy_start), 0, 1);
+                var f = clamp((yy_end - mouse_y) / (yy_end - yy_start), 0, 1);
                 self.edit_z = round(f * (self.active_map.zz - 1));
             }
             mouse_over_ui = true;

@@ -1,11 +1,11 @@
 function ui_init_event(mode) {
-    var hud_width = view_hud_width_event;
+    var hud_width = 320;
     var hud_height = window_get_height();
     var col1x = 16;
     var col_width = hud_width - 32;
     var col_height = 32;
     
-    var container = new EmuCore(0, 0, hud_width, hud_height);
+    var container = new EmuCore(window_get_width() - hud_width, 0, hud_width, hud_height);
     var tab_group = new EmuTabGroup(0, EMU_AUTO, hud_width, hud_height, 2, col_height);
     
     tab_group.AddTabs(0, [

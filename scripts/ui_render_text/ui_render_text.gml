@@ -20,7 +20,7 @@ function ui_render_text(argument0, argument1, argument2) {
         .wrap(text.width, text.height)
         .draw(tx, ty);
 
-    if (mouse_within_rectangle_determine(x1, y1, x2, y2, text.adjust_view)) {
+    if (mouse_within_rectangle(x1, y1, x2, y2)) {
         Stuff.element_tooltip = text;
     }
 

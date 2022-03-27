@@ -1,12 +1,12 @@
 function EditorModeText() : EditorMode_Struct() constructor {
     Update = function() { };
+    
     Render = function() {
         gpu_set_cullmode(cull_noculling);
-        switch (view_current) {
-            case view_fullscreen: draw_editor_fullscreen(); break;
-            case view_ribbon: draw_editor_menu(false); break;
-        }
+        draw_editor_fullscreen();
+        draw_editor_menu(false);
     };
+    
     Save = function() { };
     
     ui = ui_init_text();

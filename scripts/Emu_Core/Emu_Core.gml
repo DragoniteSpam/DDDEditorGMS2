@@ -354,7 +354,7 @@ function EmuCore(x, y, w, h) constructor {
     };
     
     static getMouseHover = function(x1, y1, x2, y2) {
-        return self.GetInteractive() && point_in_rectangle(window_mouse_get_x() - view_get_xport(view_current), window_mouse_get_y() - view_get_yport(view_current), x1, y1, x2 - 1, y2 - 1);
+        return self.GetInteractive() && point_in_rectangle(window_mouse_get_x(), window_mouse_get_y(), x1, y1, x2 - 1, y2 - 1);
     }
     
     static getMousePressed = function(x1, y1, x2, y2) {

@@ -47,11 +47,11 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.proj_mat = undefined;
     
     self.get_width = function() {
-        return view_get_wport(view_current);
+        return window_get_width();
     };
     
     self.get_height = function() {
-        return view_get_hport(view_current);
+        return window_get_height();
     };
     
     static SetViewportAspect = function(width_function, height_function) {

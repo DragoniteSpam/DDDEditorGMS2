@@ -36,7 +36,7 @@ function ui_render_tab(argument0, argument1, argument2) {
     draw_text(tx, ty, string(tab.text));
 
     if (tab.interactive && dialog_is_active(tab.root)) {
-        var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, tab.adjust_view);
+        var inbounds = mouse_within_rectangle(x1, y1, x2, y2);
         if (inbounds) {
             if (Controller.release_left) {
                 ui_activate(tab);

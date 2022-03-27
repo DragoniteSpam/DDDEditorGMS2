@@ -22,7 +22,7 @@ function ui_render_list(list, xx, yy) {
         var spr_width = sprite_get_width(spr_help);
         var spr_height = sprite_get_height(spr_help);
         txoffset = spr_width;
-        var inbounds = mouse_within_rectangle_determine(tx - spr_xoffset, ty - spr_yoffset, tx - spr_xoffset + spr_width, ty - spr_yoffset + spr_height, list.adjust_view);
+        var inbounds = mouse_within_rectangle(tx - spr_xoffset, ty - spr_yoffset, tx - spr_xoffset + spr_width, ty - spr_yoffset + spr_height);
         draw_sprite(spr_help, inbounds ? 1 : 0, tx, ty);
         if (inbounds) {
             Stuff.element_tooltip = list;
@@ -127,7 +127,7 @@ function ui_render_list(list, xx, yy) {
     var move_direction = 0;
     
     if (list.interactive && (is_array(list.entries) || ds_exists(list.entries, ds_type_list)) && active && (n > 0)) {
-        var inbounds = mouse_within_rectangle_determine(x1, y2, x2 - offset, y3, list.adjust_view);
+        var inbounds = mouse_within_rectangle(x1, y2, x2 - offset, y3);
         if (inbounds) {
             if (Controller.mouse_middle) {
                 list.onmiddleclick(list);
@@ -221,7 +221,7 @@ function ui_render_list(list, xx, yy) {
         var sby1 = sy - shalf;
         var sby2 = sy + shalf;
         if (list.interactive && active) {
-            var inbounds = mouse_within_rectangle_determine(x2 - sw, sby1, x2, sby2, list.adjust_view);
+            var inbounds = mouse_within_rectangle(x2 - sw, sby1, x2, sby2);
             if (inbounds) {
                 draw_rectangle_colour(x2 - sw + 1, sby1 + 1, x2 - 1, sby2 - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
@@ -245,8 +245,8 @@ function ui_render_list(list, xx, yy) {
         draw_line_colour(x2 - sw * 4 / 5, sy + 4, x2 - sw / 5, sy + 4, c_gray, c_gray);
         
         if (active) {
-            var inbounds_top = mouse_within_rectangle_determine(x2 - sw, y2, x2, y2 + sw, list.adjust_view);
-            var inbounds_bottom = mouse_within_rectangle_determine(x2 - sw, y3 - sw, x2, y3, list.adjust_view);
+            var inbounds_top = mouse_within_rectangle(x2 - sw, y2, x2, y2 + sw);
+            var inbounds_bottom = mouse_within_rectangle(x2 - sw, y3 - sw, x2, y3);
             if (inbounds_top) {
                 draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
