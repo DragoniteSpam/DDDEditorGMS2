@@ -71,54 +71,62 @@ enum ATMask {
     SOUTHEAST   = 0x0080,
 }
 
-global.at_map = { };
-global.at_map[$ 2] = 1;
-global.at_map[$ 8] = 2;
-global.at_map[$ 10] = 3;
-global.at_map[$ 11] = 4;
-global.at_map[$ 16] = 5;
-global.at_map[$ 18] = 6;
-global.at_map[$ 22] = 7;
-global.at_map[$ 24] = 8;
-global.at_map[$ 26] = 9;
-global.at_map[$ 27] = 10;
-global.at_map[$ 30] = 11;
-global.at_map[$ 31] = 12;
-global.at_map[$ 64] = 13;
-global.at_map[$ 66] = 14;
-global.at_map[$ 72] = 15;
-global.at_map[$ 74] = 16;
-global.at_map[$ 75] = 17;
-global.at_map[$ 80] = 18;
-global.at_map[$ 82] = 19;
-global.at_map[$ 86] = 20;
-global.at_map[$ 88] = 21;
-global.at_map[$ 90] = 22;
-global.at_map[$ 91] = 23;
-global.at_map[$ 94] = 24;
-global.at_map[$ 95] = 25;
-global.at_map[$ 104] = 26;
-global.at_map[$ 106] = 27;
-global.at_map[$ 107] = 28;
-global.at_map[$ 120] = 29;
-global.at_map[$ 122] = 30;
-global.at_map[$ 123] = 31;
-global.at_map[$ 126] = 32;
-global.at_map[$ 127] = 33;
-global.at_map[$ 208] = 34;
-global.at_map[$ 210] = 35;
-global.at_map[$ 214] = 36;
-global.at_map[$ 216] = 37;
-global.at_map[$ 218] = 38;
-global.at_map[$ 219] = 39;
-global.at_map[$ 222] = 40;
-global.at_map[$ 223] = 41;
-global.at_map[$ 248] = 42;
-global.at_map[$ 250] = 43;
-global.at_map[$ 251] = 44;
-global.at_map[$ 254] = 45;
-global.at_map[$ 255] = 46;
-global.at_map[$ 0] = 47;
+function get_index_from_autotile_mask(mask) {
+    static at_map = undefined;
+    
+    if (!at_map) {
+        at_map = { };
+        at_map[$ "2"] = 1;
+        at_map[$ "8"] = 2;
+        at_map[$ "10"] = 3;
+        at_map[$ "11"] = 4;
+        at_map[$ "16"] = 5;
+        at_map[$ "18"] = 6;
+        at_map[$ "22"] = 7;
+        at_map[$ "24"] = 8;
+        at_map[$ "26"] = 9;
+        at_map[$ "27"] = 10;
+        at_map[$ "30"] = 11;
+        at_map[$ "31"] = 12;
+        at_map[$ "64"] = 13;
+        at_map[$ "66"] = 14;
+        at_map[$ "72"] = 15;
+        at_map[$ "74"] = 16;
+        at_map[$ "75"] = 17;
+        at_map[$ "80"] = 18;
+        at_map[$ "82"] = 19;
+        at_map[$ "86"] = 20;
+        at_map[$ "88"] = 21;
+        at_map[$ "90"] = 22;
+        at_map[$ "91"] = 23;
+        at_map[$ "94"] = 24;
+        at_map[$ "95"] = 25;
+        at_map[$ "104"] = 26;
+        at_map[$ "106"] = 27;
+        at_map[$ "107"] = 28;
+        at_map[$ "120"] = 29;
+        at_map[$ "122"] = 30;
+        at_map[$ "123"] = 31;
+        at_map[$ "126"] = 32;
+        at_map[$ "127"] = 33;
+        at_map[$ "208"] = 34;
+        at_map[$ "210"] = 35;
+        at_map[$ "214"] = 36;
+        at_map[$ "216"] = 37;
+        at_map[$ "218"] = 38;
+        at_map[$ "219"] = 39;
+        at_map[$ "222"] = 40;
+        at_map[$ "223"] = 41;
+        at_map[$ "248"] = 42;
+        at_map[$ "250"] = 43;
+        at_map[$ "251"] = 44;
+        at_map[$ "254"] = 45;
+        at_map[$ "255"] = 46;
+        at_map[$ "0"] = 47;
+    }
+    
+    return at_map[$ string(mask)];
+}
 
 enum LightTypes {
     NONE,

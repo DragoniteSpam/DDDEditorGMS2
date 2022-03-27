@@ -538,7 +538,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     self.autotile_id = Settings.selection.mesh_autotile_type;                   // autotile asset
     
     static AutotileUniqueIdentifier = function() {
-        return self.autotile_id + ":" + string(global.at_map[$ self.terrain_id]) + ":" + string(self.terrain_type);
+        return self.autotile_id + ":" + string(get_index_from_autotile_mask(self.terrain_id)) + ":" + string(self.terrain_type);
     };
     
     // editor properties
