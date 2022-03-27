@@ -24,10 +24,47 @@ function dialog_create_preferences() {
             Settings.config.npc_animate_rate = real(self.value);
         }))
             .SetTooltip("The speed at which NPC (Pawn) entities will animate."),
-        (new EmuColorPicker(c1x, EMU_AUTO, ew, eh, "UI Color:", Settings.config.color, function() {
-            Settings.config.color = self.value;
+        (new EmuColorPicker(c1x, EMU_AUTO, ew, eh, "UI Color:", Settings.colors.primary, function() {
+            Settings.colors.primary = self.value;
         }))
             .SetTooltip("The default color of the UI. I like green but you can make it something else if you don't like green."),
+        /*(new EmuRadioArray(c1x, EMU_AUTO, ew, eh, "Color mode:", Settings.config.color_mode, function() {
+            Settings.config.color_mode = self.value;
+            switch (self.value) {
+                case 0:
+                    Settings.colors.back = COLOR_MODE_DARK_BACK;
+                    Settings.colors.def = COLOR_MODE_DARK_DEFAULT;
+                    Settings.colors.text = COLOR_MODE_DARK_TEXT;
+                    Settings.colors.disabled = COLOR_MODE_DARK_DISABLED;
+                    Settings.colors.help_text = COLOR_MODE_DARK_HELP_TEXT;
+                    Settings.colors.hover = COLOR_MODE_DARK_HOVER;
+                    Settings.colors.input_reject = COLOR_MODE_DARK_INPUT_REJECT;
+                    Settings.colors.input_warn = COLOR_MODE_DARK_INPUT_WARN;
+                    Settings.colors.list_text = COLOR_MODE_DARK_LIST_TEXT;
+                    Settings.colors.progress_bar = COLOR_MODE_DARK_PROGRESS_BAR;
+                    Settings.colors.radio_active = COLOR_MODE_DARK_RADIO_ACTIVE;
+                    Settings.colors.sel = COLOR_MODE_DARK_SELECTED;
+                    global.__scribble_ecache_dict = { };
+                    break;
+                case 1:
+                    Settings.colors.back = COLOR_MODE_LIGHT_BACK;
+                    Settings.colors.def = COLOR_MODE_LIGHT_DEFAULT;
+                    Settings.colors.text = COLOR_MODE_LIGHT_TEXT;
+                    Settings.colors.disabled = COLOR_MODE_LIGHT_DISABLED;
+                    Settings.colors.help_text = COLOR_MODE_LIGHT_HELP_TEXT;
+                    Settings.colors.hover = COLOR_MODE_LIGHT_HOVER;
+                    Settings.colors.input_reject = COLOR_MODE_LIGHT_INPUT_REJECT;
+                    Settings.colors.input_warn = COLOR_MODE_LIGHT_INPUT_WARN;
+                    Settings.colors.list_text = COLOR_MODE_LIGHT_LIST_TEXT;
+                    Settings.colors.progress_bar = COLOR_MODE_LIGHT_PROGRESS_BAR;
+                    Settings.colors.radio_active = COLOR_MODE_LIGHT_RADIO_ACTIVE;
+                    Settings.colors.sel = COLOR_MODE_LIGHT_SELECTED;
+                    global.__scribble_ecache_dict = { };
+                    break;
+            }
+        }))
+            .AddOptions(["Dark", "Light"])
+            .SetTooltip("Dark mode or light mode."),*/
         (new EmuColorPicker(c1x, EMU_AUTO, ew, eh, "World Color:", Settings.config.color_world, function() {
             Settings.config.color_world = self.value;
         }))

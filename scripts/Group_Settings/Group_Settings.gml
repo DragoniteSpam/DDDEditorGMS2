@@ -47,11 +47,13 @@ try {
         view: { },
         mesh: { },
         spart: { },
+        colors: { },
         hide_warnings: { },
     };
 }
 
-Settings.config[$ "color"] ??=                                                  c_green;
+Settings[$ "config"] ??=                                                        { };
+Settings.config[$ "color_mode"] ??=                                             0;
 Settings.config[$ "focus_alpha"] ??=                                            0;
 Settings.config[$ "bezier_precision"] ??=                                       6;
 Settings.config[$ "npc_animate_rate"] ??=                                       4;
@@ -66,6 +68,7 @@ Settings.config[$ "mode"] ??=                                                   
 Settings.config[$ "remove_covered_mesh_at"] ??=                                 false;
 Settings.config[$ "show_debug_ribbon"] ??=                                      true;
 
+Settings[$ "location"] ??=                                                        { };
 Settings.location[$ "ddd"] ??=                                                  "";
 Settings.location[$ "mesh"] ??=                                                 "";
 Settings.location[$ "terrain"] ??=                                              "";
@@ -76,6 +79,7 @@ Settings.location[$ "text"] ??=                                                 
 Settings.location[$ "tiled"] ??=                                                "";
 Settings.location[$ "project"] ??=                                              "";
 
+Settings[$ "selection"] ??=                                                        { };
 Settings.selection[$ "mode"] ??=                                                SelectionModes.RECTANGLE;
 Settings.selection[$ "addition"] ??=                                            false;
 Settings.selection[$ "fill_type"] ??=                                           FillTypes.TILE;
@@ -83,6 +87,7 @@ Settings.selection[$ "zone_type"] ??=                                           
 Settings.selection[$ "mask"] ??=                                                ETypeFlags.ENTITY_ANY;
 Settings.selection.mesh_autotile_type =                                         NULL;               // this will technically be saved, but ignored on load
 
+Settings[$ "view"] ??=                                                        { };
 Settings.view[$ "wireframe"] ??=                                                false;
 Settings.view[$ "grid"] ??=                                                     true;
 Settings.view[$ "backface"] ??=                                                 false;
@@ -93,6 +98,7 @@ Settings.view[$ "lighting"] ??=                                                 
 Settings.view[$ "gizmos"] ??=                                                   true;
 Settings.view[$ "threed"] ??=                                                   true;
 
+Settings[$ "mesh"] ??=                                                        { };
 Settings.mesh[$ "draw_position"] ??=                                            new Vector3(0, 0, 0);
 Settings.mesh[$ "draw_rotation"] ??=                                            new Vector3(0, 0, 0);
 Settings.mesh[$ "draw_scale"] ??=                                               new Vector3(1, 1, 1);
@@ -109,6 +115,47 @@ Settings.mesh[$ "draw_grid"] ??=                                                
 Settings.mesh[$ "wireframe_alpha"] ??=                                          1;
 Settings.mesh[$ "reflect_settings"] ??=                                         MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;
 Settings.mesh[$ "reflect_color"] ??=                                            0x7fff6600;
+
+#macro COLOR_MODE_DARK_BACK                                                     0x1f1f1f
+#macro COLOR_MODE_DARK_DEFAULT                                                  0x5f5f5f
+#macro COLOR_MODE_DARK_TEXT                                                     0xffffff
+#macro COLOR_MODE_DARK_DISABLED                                                 0x4f4f4f
+#macro COLOR_MODE_DARK_HELP_TEXT                                                0x606060
+#macro COLOR_MODE_DARK_HOVER                                                    0x4f4f4f
+#macro COLOR_MODE_DARK_INPUT_REJECT                                             0x2f2fff
+#macro COLOR_MODE_DARK_INPUT_WARN                                               0x3399ff
+#macro COLOR_MODE_DARK_LIST_TEXT                                                0xffffff
+#macro COLOR_MODE_DARK_PROGRESS_BAR                                             0xff9900
+#macro COLOR_MODE_DARK_RADIO_ACTIVE                                             0x009900
+#macro COLOR_MODE_DARK_SELECTED                                                 0x4f4f4f
+
+#macro COLOR_MODE_LIGHT_BACK                                                    0xffffff
+#macro COLOR_MODE_LIGHT_DEFAULT                                                 0x000000
+#macro COLOR_MODE_LIGHT_TEXT                                                    0xe0e0e0
+#macro COLOR_MODE_LIGHT_DISABLED                                                0x404040
+#macro COLOR_MODE_LIGHT_HELP_TEXT                                               0xffe5ce
+#macro COLOR_MODE_LIGHT_HOVER                                                   0x0000ff
+#macro COLOR_MODE_LIGHT_INPUT_REJECT                                            0x3399ff
+#macro COLOR_MODE_LIGHT_INPUT_WARN                                              0x000000
+#macro COLOR_MODE_LIGHT_LIST_TEXT                                               0xff9900
+#macro COLOR_MODE_LIGHT_PROGRESS_BAR                                            0x009900
+#macro COLOR_MODE_LIGHT_RADIO_ACTIVE                                            0xffb8ac
+#macro COLOR_MODE_LIGHT_SELECTED                                                0x339900
+
+Settings[$ "colors"] ??=                                                        { };
+Settings.colors[$ "primary"] ??=                                                c_green;
+Settings.colors[$ "back"] ??=                                                   (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_BACK : COLOR_MODE_LIGHT_BACK;
+Settings.colors[$ "def"] ??=                                                    (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_DEFAULT : COLOR_MODE_LIGHT_DEFAULT;
+Settings.colors[$ "text"] ??=                                                   (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_TEXT : COLOR_MODE_LIGHT_TEXT;
+Settings.colors[$ "disabled"] ??=                                               (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_DISABLED : COLOR_MODE_LIGHT_DISABLED;
+Settings.colors[$ "help_text"] ??=                                              (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_HELP_TEXT : COLOR_MODE_LIGHT_HELP_TEXT;
+Settings.colors[$ "hover"] ??=                                                  (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_HOVER : COLOR_MODE_LIGHT_HOVER;
+Settings.colors[$ "input_reject"] ??=                                           (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_INPUT_REJECT : COLOR_MODE_LIGHT_INPUT_REJECT;
+Settings.colors[$ "input_warn"] ??=                                             (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_INPUT_WARN : COLOR_MODE_LIGHT_INPUT_WARN;
+Settings.colors[$ "list_text"] ??=                                              (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_LIST_TEXT : COLOR_MODE_LIGHT_LIST_TEXT;
+Settings.colors[$ "progress_bar"] ??=                                           (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_PROGRESS_BAR : COLOR_MODE_LIGHT_PROGRESS_BAR;
+Settings.colors[$ "radio_active"] ??=                                           (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_RADIO_ACTIVE : COLOR_MODE_LIGHT_RADIO_ACTIVE;
+Settings.colors[$ "sel"] ??=                                                    (Settings.config.color_mode == 0) ? COLOR_MODE_DARK_SELECTED : COLOR_MODE_LIGHT_SELECTED;
 
 #macro warn_untranslated_strings                                                "EXPORT-UNTRANSLATED"
 #macro warn_untranslated_strings_as_is                                          1

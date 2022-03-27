@@ -120,7 +120,7 @@ function dialog_default(dialog) {
     draw_rectangle_colour(x1, y1, x2, y2, c_white, c_white, c_white, c_white, false);
     draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
     
-    var hc = active ? Settings.config.color : merge_colour(Settings.config.color, c_white, 0.75);
+    var hc = active ? Settings.colors.primary : merge_colour(Settings.colors.primary, c_white, 0.75);
     
     draw_rectangle_colour(x1, y1, x2, y1 + header_height, hc, hc, hc, hc, false);
     draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_black);
