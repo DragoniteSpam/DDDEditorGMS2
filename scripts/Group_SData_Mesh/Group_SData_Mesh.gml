@@ -130,7 +130,7 @@ function DataMesh(source) : SData(source) constructor {
         self.ymax = round(self.ymax / TILE_HEIGHT);
         self.zmax = round(self.zmax / TILE_DEPTH);
         
-        data_mesh_recalculate_bounds(self);
+        self.RecalculateBounds();
     };
     
     static GenerateReflections = function() {
@@ -394,6 +394,27 @@ function DataMesh(source) : SData(source) constructor {
         }
         
         array_delete(Game.meshes, array_search(Game.meshes, self), 1);
+    };
+    
+    static RecalculateBounds = function() {
+        var xx = self.xmax - self.xmin;
+        var yy = self.ymax - self.ymin;
+        var zz = self.zmax - self.zmin;
+        array_resize(self.asset_flags, xx);
+        for (var i = 0; i < xx; i++) {
+            if (!is_array(self.asset_flags[i])) {
+                self.asset_flags[@ i] = array_create(yy);
+            } else {
+                array_resize(self.asset_flags[@ i], yy);
+            }
+            for (var j = 0; j < yy; j++) {
+                if (!is_array(self.asset_flags[i][j])) {
+                    self.asset_flags[@ i][@ j] = array_create(zz);
+                } else {
+                    array_resize(self.asset_flags[@ i][@ j], zz);
+                }
+            }
+        }
     };
     
     /// @ignore

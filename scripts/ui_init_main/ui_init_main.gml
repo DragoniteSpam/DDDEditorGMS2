@@ -1092,7 +1092,7 @@ function ui_init_main(mode) {
                 var old_value = mesh.xmin;
                 mesh.xmin = real(self.value);
                 if (old_value != mesh.xmin) {
-                    data_mesh_recalculate_bounds(mesh);
+                    mesh.RecalculateBounds();
                 }
             }))
                 .SetRealNumberBounds(-100, 100)
@@ -1105,7 +1105,7 @@ function ui_init_main(mode) {
                 var old_value = mesh.xmax;
                 mesh.xmax = real(self.value);
                 if (old_value != mesh.xmax) {
-                    data_mesh_recalculate_bounds(mesh);
+                    mesh.RecalculateBounds();
                 }
             }))
                 .SetRealNumberBounds(-100, 100)
@@ -1118,7 +1118,7 @@ function ui_init_main(mode) {
                 var old_value = mesh.ymin;
                 mesh.ymin = real(self.value);
                 if (old_value != mesh.ymin) {
-                    data_mesh_recalculate_bounds(mesh);
+                    mesh.RecalculateBounds();
                 }
             }))
                 .SetRealNumberBounds(-100, 100)
@@ -1131,7 +1131,7 @@ function ui_init_main(mode) {
                 var old_value = mesh.ymax;
                 mesh.ymax = real(self.value);
                 if (old_value != mesh.ymax) {
-                    data_mesh_recalculate_bounds(mesh);
+                    mesh.RecalculateBounds();
                 }
             }))
                 .SetRealNumberBounds(-100, 100)
@@ -1144,7 +1144,7 @@ function ui_init_main(mode) {
                 var old_value = mesh.zmin;
                 mesh.zmin = real(self.value);
                 if (old_value != mesh.zmin) {
-                    data_mesh_recalculate_bounds(mesh);
+                    mesh.RecalculateBounds();
                 }
             }))
                 .SetRealNumberBounds(-100, 100)
@@ -1157,7 +1157,7 @@ function ui_init_main(mode) {
                 var old_value = mesh.zmax;
                 mesh.zmax = real(self.value);
                 if (old_value != mesh.zmax) {
-                    data_mesh_recalculate_bounds(mesh);
+                    mesh.RecalculateBounds();
                 }
             }))
                 .SetRealNumberBounds(-100, 100)

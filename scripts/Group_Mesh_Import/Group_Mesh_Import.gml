@@ -141,7 +141,7 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
         if (!existing) array_push(Game.meshes, mesh);
         
         if (!existing) {
-            data_mesh_recalculate_bounds(mesh);
+            mesh.RecalculateBounds();
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
         
@@ -688,7 +688,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         if (!existing) array_push(Game.meshes, mesh);
         
         if (!existing) {
-            data_mesh_recalculate_bounds(mesh);
+            mesh.RecalculateBounds();
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
         
