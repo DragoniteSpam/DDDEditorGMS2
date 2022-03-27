@@ -11,6 +11,9 @@ function ui_init_mesh(mode) {
     var container = new EmuCore(0, 16, hud_width, hud_height);
     
     container.AddContent([
+        new EmuFileDropperListener(function(elements) {
+            
+        }),
         (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, 25, function() {
             self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
         }))

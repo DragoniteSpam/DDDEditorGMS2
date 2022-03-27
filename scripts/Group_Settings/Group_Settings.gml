@@ -68,7 +68,7 @@ Settings.config[$ "mode"] ??=                                                   
 Settings.config[$ "remove_covered_mesh_at"] ??=                                 false;
 Settings.config[$ "show_debug_ribbon"] ??=                                      true;
 
-Settings[$ "location"] ??=                                                        { };
+Settings[$ "location"] ??=                                                      { };
 Settings.location[$ "ddd"] ??=                                                  "";
 Settings.location[$ "mesh"] ??=                                                 "";
 Settings.location[$ "terrain"] ??=                                              "";
@@ -79,7 +79,7 @@ Settings.location[$ "text"] ??=                                                 
 Settings.location[$ "tiled"] ??=                                                "";
 Settings.location[$ "project"] ??=                                              "";
 
-Settings[$ "selection"] ??=                                                        { };
+Settings[$ "selection"] ??=                                                     { };
 Settings.selection[$ "mode"] ??=                                                SelectionModes.RECTANGLE;
 Settings.selection[$ "addition"] ??=                                            false;
 Settings.selection[$ "fill_type"] ??=                                           FillTypes.TILE;
@@ -87,7 +87,7 @@ Settings.selection[$ "zone_type"] ??=                                           
 Settings.selection[$ "mask"] ??=                                                ETypeFlags.ENTITY_ANY;
 Settings.selection.mesh_autotile_type =                                         NULL;               // this will technically be saved, but ignored on load
 
-Settings[$ "view"] ??=                                                        { };
+Settings[$ "view"] ??=                                                          { };
 Settings.view[$ "wireframe"] ??=                                                false;
 Settings.view[$ "grid"] ??=                                                     true;
 Settings.view[$ "backface"] ??=                                                 false;
@@ -98,7 +98,7 @@ Settings.view[$ "lighting"] ??=                                                 
 Settings.view[$ "gizmos"] ??=                                                   true;
 Settings.view[$ "threed"] ??=                                                   true;
 
-Settings[$ "mesh"] ??=                                                        { };
+Settings[$ "mesh"] ??=                                                          { };
 Settings.mesh[$ "draw_position"] ??=                                            new Vector3(0, 0, 0);
 Settings.mesh[$ "draw_rotation"] ??=                                            new Vector3(0, 0, 0);
 Settings.mesh[$ "draw_scale"] ??=                                               new Vector3(1, 1, 1);
