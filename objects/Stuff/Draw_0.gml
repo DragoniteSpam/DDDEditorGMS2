@@ -4,6 +4,8 @@ if (is_struct(mode)) {
     mode.render(mode);
 }
 
+self.base_camera.SetProjectionOrtho();
+
 // these shouldn't be attached to any one view or anything
 // would put this in the draw gui event except i dont know what would
 // happen to the cursor on that layer and i dont feel like finding out

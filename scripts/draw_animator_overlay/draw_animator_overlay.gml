@@ -3,6 +3,8 @@ function draw_animator_overlay() {
     var h = window_get_height();
     var lw = 4;
     
+    Stuff.base_camera.SetProjectionOrtho();
+    
     gpu_set_cullmode(cull_noculling);
     draw_set_alpha(0.75);
     draw_set_color(c_black);

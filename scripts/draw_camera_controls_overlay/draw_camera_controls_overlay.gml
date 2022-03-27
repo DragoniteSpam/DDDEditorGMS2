@@ -3,6 +3,8 @@ function draw_camera_controls_overlay() {
     var icony = window_get_height() - 32;
     var iconlength = 16;
     
+    Stuff.base_camera.SetProjectionOrtho();
+    
     var inbounds = mouse_within_rectangle(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength);
     var c = inbounds ? c_ui_select : c_white;
     draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength, c, c, false);

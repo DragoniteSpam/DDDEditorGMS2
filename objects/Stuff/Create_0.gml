@@ -282,6 +282,11 @@ AddStatusMessage = function(text) {
 }
 #endregion
 
+// this is used mostly for the screen-space UI drawing
+base_camera = new Camera(window_get_width() / 2, window_get_height() / 2, 100, window_get_width() / 2, window_get_height() / 2, 100, 0, -1, 0, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+    
+});
+
 // default editor mode
 switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
     case ModeIDs.MAP: editor_mode_3d(); break;
