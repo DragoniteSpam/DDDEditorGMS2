@@ -6,6 +6,8 @@ event_inherited();
 
 debug_timer_start();
 
+Stuff.terrain = self;
+
 self.stats = {
     chunks: {
         full: 0,
@@ -13,8 +15,6 @@ self.stats = {
     },
     triangles: 0,
 };
-
-Stuff.terrain = self;
 
 vertex_format_begin();
 vertex_format_add_position_3d();
@@ -126,11 +126,7 @@ update = function() {
     
     if (Stuff.menu.active_element || !ds_list_empty(EmuOverlay._contents)) return;
     
-    if (Settings.terrain.orthographic) {
-        self.camera.UpdateOrtho();
-    } else {
-        self.camera.Update();
-    }
+    // the regular camera is updated in the render surface's update method
     self.camera_light.Update();
 };
 
@@ -256,41 +252,6 @@ Settings.terrain.paint_brush_index = clamp(Settings.terrain[$ "paint_brush_index
 Settings.terrain.paint_color = Settings.terrain[$ "paint_color"] ?? TERRAIN_DEF_PAINT_COLOR;
 Settings.terrain.paint_strength = Settings.terrain[$ "paint_strength"] ?? TERRAIN_DEF_PAINT_STREINGTH;
 #endregion
-
-self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
-    Stuff.terrain.mouse_interaction(mouse_vector);
-});
-self.camera.base_speed = 20;
-self.camera.Load(setting_get("terrain", "camera", undefined));
-self.camera.SetViewportAspect(function() {
-    return Stuff.terrain.ui.SearchID("TERRAIN VIEWPORT").width;
-}, function() {
-    return Stuff.terrain.ui.SearchID("TERRAIN VIEWPORT").height;
-});
-
-self.camera_light = new Camera(500, -500, 564, 0, 0, 64, 0, 0, 1, 60, CAMERA_ZNEAR, 2500, null);
-self.camera_light.Load(setting_get("terrain", "camera_light", undefined));
-self.camera_light.Update = method(self.camera_light, function() {
-    var main_camera = Stuff.terrain.camera;
-    var dist = 500;
-    self.x = main_camera.x - dist * Settings.terrain.light_direction.x;
-    self.y = main_camera.y - dist * Settings.terrain.light_direction.y;
-    self.z = main_camera.z - dist * Settings.terrain.light_direction.z;
-    self.xto = self.x + Settings.terrain.light_direction.x;
-    self.yto = self.y + Settings.terrain.light_direction.y;
-    self.zto = self.z + Settings.terrain.light_direction.z;
-});
-self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
-    self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
-    self.proj_mat = matrix_build_projection_ortho(Settings.terrain.light_shadows_quality / 2, -Settings.terrain.light_shadows_quality / 2, self.znear, self.zfar);
-    
-    camera_set_view_mat(self.camera, self.view_mat);
-    camera_set_proj_mat(self.camera, self.proj_mat);
-    camera_apply(self.camera);
-});
-
-Settings.terrain.camera = self.camera.Save();
-Settings.terrain.camera_light = self.camera_light.Save();
 
 texture_image = file_exists(FILE_TERRAIN_TEXTURE) ? sprite_add(FILE_TERRAIN_TEXTURE, 0, false, false, 0, 0) : sprite_add(PATH_GRAPHICS + DEFAULT_TILESET, 0, false, false, 0, 0);
 gradient_images = [
@@ -842,6 +803,45 @@ ExportHeightmapData = function(filename) {
 };
 #endregion
 
+
+ui = ui_init_terrain(id);
+
+self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+    Stuff.terrain.mouse_interaction(mouse_vector);
+});
+self.camera.base_speed = 20;
+self.camera.Load(setting_get("terrain", "camera", undefined));
+self.camera.SetViewportAspect(function() {
+    return Stuff.terrain.ui.SearchID("TERRAIN VIEWPORT").width;
+}, function() {
+    return Stuff.terrain.ui.SearchID("TERRAIN VIEWPORT").height;
+});
+self.camera.SetCenter(self.ui.SearchID("TERRAIN VIEWPORT").width / 2, self.ui.SearchID("TERRAIN VIEWPORT").height / 2);
+
+self.camera_light = new Camera(500, -500, 564, 0, 0, 64, 0, 0, 1, 60, CAMERA_ZNEAR, 2500, null);
+self.camera_light.Load(setting_get("terrain", "camera_light", undefined));
+self.camera_light.Update = method(self.camera_light, function() {
+    var main_camera = Stuff.terrain.camera;
+    var dist = 500;
+    self.x = main_camera.x - dist * Settings.terrain.light_direction.x;
+    self.y = main_camera.y - dist * Settings.terrain.light_direction.y;
+    self.z = main_camera.z - dist * Settings.terrain.light_direction.z;
+    self.xto = self.x + Settings.terrain.light_direction.x;
+    self.yto = self.y + Settings.terrain.light_direction.y;
+    self.zto = self.z + Settings.terrain.light_direction.z;
+});
+self.camera_light.SetProjectionOrtho = method(self.camera_light, function() {
+    self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
+    self.proj_mat = matrix_build_projection_ortho(Settings.terrain.light_shadows_quality / 2, -Settings.terrain.light_shadows_quality / 2, self.znear, self.zfar);
+    
+    camera_set_view_mat(self.camera, self.view_mat);
+    camera_set_proj_mat(self.camera, self.proj_mat);
+    camera_apply(self.camera);
+});
+
+Settings.terrain.camera = self.camera.Save();
+Settings.terrain.camera_light = self.camera_light.Save();
+
 wtf("Terrain initialization took " + debug_timer_finish());
 
 enum TerrainModes {
@@ -858,5 +858,4 @@ enum TerrainSubmodes {
     COLOR,
 }
 
-ui = ui_init_terrain(id);
 mode_id = ModeIDs.TERRAIN;

@@ -10,10 +10,16 @@ function ui_init_terrain(mode) {
     var container = new EmuCore(0, 0, hud_width, hud_height);
     
     container.AddContent([
-        (new EmuRenderSurface(0, 0, CW, CH, function() {
+        (new EmuRenderSurface(0, 0, CW, CH, function(mx, my) {
             Stuff.terrain.DrawTerrain();
-        }, function() {
-            control_map();
+        }, function(mx, my) {
+            //control_map();
+            if (mx < 0 || my < 0 || mx >= self.width || my >= self.height) return;
+            if (Settings.terrain.orthographic) {
+                Stuff.terrain.camera.UpdateOrtho();
+            } else {
+                Stuff.terrain.camera.Update();
+            }
         }, function() {
             // create
         }, function() {
