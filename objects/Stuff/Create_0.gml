@@ -85,7 +85,7 @@ graphics = new EditorGraphics();
 graphics.Init();
 // various types of editors
 map = instance_create_depth(0, 0, 0, EditorModeMap);
-data = instance_create_depth(0, 0, 0, EditorModeData);
+data = new EditorModeData();
 event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = new EditorModeAnimation();
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);

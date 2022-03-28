@@ -1,5 +1,4 @@
-function EditorModeMesh() : EditorMode_Struct() constructor {
-    self.Update = null;
+function EditorModeMesh() : EditorMode_Struct() constructor {    self.Update = null;
     
     self.Render = function() {
         gpu_set_cullmode(cull_noculling);
@@ -122,7 +121,7 @@ function EditorModeAnimation() : EditorMode_Struct() constructor {
     self.mode_id = ModeIDs.ANIMATION;
 }
 
-function EditorModeSpart() constructor {
+function EditorModeSpart() : EditorMode_Struct() constructor {
     self.ui = ui_init_spart();
     
     self.camera = new Camera(0, 0, 100, 100, 100, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
@@ -149,6 +148,21 @@ function EditorModeSpart() constructor {
     };
 
     self.mode_id = ModeIDs.SPART;
+}
+
+function EditorModeData() : EditorMode_Struct() constructor {
+    self.Render = function() {
+        gpu_set_cullmode(cull_noculling);
+        draw_editor_fullscreen();
+        draw_editor_menu();
+    };
+
+    self.Save = function() {
+        
+    };
+
+    self.ui = undefined;
+    self.mode_id = ModeIDs.DATA;
 }
 
 function EditorMode_Struct() constructor {
