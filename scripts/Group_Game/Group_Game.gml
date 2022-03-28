@@ -228,13 +228,13 @@ Game = new (function() constructor {
             new EventNodeProperty("Seconds", DataTypes.FLOAT, 0, 1, false, 1)
         ]);
         self.default_event_nodes[EventNodeTypes.TRANSFER_PLAYER] = new EventNodePeristent("TransferPlayer", [
-            new EventNodeProperty("Map", DataTypes.MAP, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_name),
-            new EventNodeProperty("X", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data),
-            new EventNodeProperty("Y", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data),
-            new EventNodeProperty("A", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data),
-            new EventNodeProperty("Direction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_direction_name),
-            new EventNodeProperty("FadeColor", DataTypes.COLOR, 0, 1, false, c_black, omu_event_attain_map_data),
-            new EventNodeProperty("FadeTime", DataTypes.FLOAT, 0, 1, false, 1, omu_event_attain_map_data),
+            new EventNodeProperty("Map", DataTypes.MAP, 0, 1, false, 0, function() { show_message("wip"); }, event_prefab_render_map_name),
+            new EventNodeProperty("X", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
+            new EventNodeProperty("Y", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
+            new EventNodeProperty("A", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
+            new EventNodeProperty("Direction", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }, event_prefab_render_map_direction_name),
+            new EventNodeProperty("FadeColor", DataTypes.COLOR, 0, 1, false, c_black, function() { show_message("wip"); }),
+            new EventNodeProperty("FadeTime", DataTypes.FLOAT, 0, 1, false, 1, function() { show_message("wip"); }),
         ]);
         /* */ self.default_event_nodes[EventNodeTypes.SET_ENTITY_LOCATION] = new EventNodePeristent("NotYetImplemented", []);
         /* */ self.default_event_nodes[EventNodeTypes.SCROLL_MAP] = new EventNodePeristent("NotYetImplemented", []);
