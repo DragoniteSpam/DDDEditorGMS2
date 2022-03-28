@@ -126,7 +126,6 @@
     {"id":{"name":"Group_Control_Misc","path":"scripts/Group_Control_Misc/Group_Control_Misc.yy",},"order":7,},
     {"id":{"name":"__scribble_class_font","path":"scripts/__scribble_class_font/__scribble_class_font.yy",},"order":2,},
     {"id":{"name":"dotdae_image_add","path":"scripts/dotdae_image_add/dotdae_image_add.yy",},"order":4,},
-    {"id":{"name":"Group_Event_Prefab","path":"scripts/Group_Event_Prefab/Group_Event_Prefab.yy",},"order":6,},
     {"id":{"name":"spr_emu_checkbox","path":"sprites/spr_emu_checkbox/spr_emu_checkbox.yy",},"order":4,},
     {"id":{"name":"Group_Easing","path":"scripts/Group_Easing/Group_Easing.yy",},"order":4,},
     {"id":{"name":"dotdae_model_load","path":"scripts/dotdae_model_load/dotdae_model_load.yy",},"order":8,},

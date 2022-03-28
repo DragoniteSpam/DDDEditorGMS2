@@ -176,8 +176,23 @@ Game = new (function() constructor {
         #region event nodes
         self.default_event_nodes[EventNodeTypes.INPUT_TEXT] = new EventNodePeristent("InputText", [
             new EventNodeProperty("Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""),
-            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_input_type_data, event_prefab_render_input_variable_name),
-            new EventNodeProperty("Kind", DataTypes.INT, 0, 1, false, 0, omu_event_attain_input_type_data, event_prefab_render_input_type_name),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_input_type_data, function(event, index) {
+                var raw = event.custom_data[1][0];
+                if (!is_clamped(raw, 0, array_length(Game.vars.variables)))
+                    return "n/a";
+                return Game.vars.variables[raw].name;
+            }),
+            new EventNodeProperty("Kind", DataTypes.INT, 0, 1, false, 0, omu_event_attain_input_type_data, function(event, index) {
+                switch (event.custom_data[2][0]) {
+                    case 0: return "Text";
+                    case 1: return "Text (Scribble safe)";
+                    case 2: return "Integer";
+                    case 3: return "Unsigned Integer";
+                    case 4: return "Floating Point";
+                }
+                
+                return "?";
+            }),
             new EventNodeProperty("Char Limit", DataTypes.INT, 0, 1, false, 16, omu_event_attain_input_type_data)
         ]);
         self.default_event_nodes[EventNodeTypes.SHOW_SCROLLING_TEXT] = new EventNodePeristent("TextCrawl", [
@@ -189,22 +204,36 @@ Game = new (function() constructor {
             new EventNodeProperty("ID", DataTypes.INT, 0, 16, false, 0),
         ], ["Option 1", "Option 2"]);
         self.default_event_nodes[EventNodeTypes.CONTROL_SWITCHES] = new EventNodePeristent("ControlGlobalSwitch", [
-            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, function(event, index) {
+                var raw = event.custom_data[0][0];
+                if (!is_clamped(raw, 0, array_length(Game.vars.switches)))
+                    return "n/a";
+                return Game.vars.switches[raw].name;
+            }),
             new EventNodeProperty("State", DataTypes.BOOL, 0, 1, false, false)
         ]);
         self.default_event_nodes[EventNodeTypes.CONTROL_VARIABLES] = new EventNodePeristent("ControlGlobalVariable", [
-            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, function(event, index) {
+                var raw = event.custom_data[0][0];
+                if (!is_clamped(raw, 0, array_length(Game.vars.variables)))
+                    return "n/a";
+                return Game.vars.variables[raw].name;
+            }),
             new EventNodeProperty("Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_variable_data),
             new EventNodeProperty("Relative?", DataTypes.BOOL, 0, 1, false, false)
         ]);
         self.default_event_nodes[EventNodeTypes.CONTROL_SELF_SWITCHES] = new EventNodePeristent("ControlSelfSwitch", [
             new EventNodeProperty("Entity", DataTypes.ENTITY),
-            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, function(event, index) {
+                return chr(ord("A") + event.custom_data[1][0]);
+            }),
             new EventNodeProperty("State", DataTypes.BOOL, 0, 1, false, false)
         ]);
         self.default_event_nodes[EventNodeTypes.CONTROL_SELF_VARIABLES] = new EventNodePeristent("ControlSelfVariable", [
             new EventNodeProperty("Entity", DataTypes.ENTITY),
-            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name),
+            new EventNodeProperty("Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, function(event, index) {
+                return chr(ord("A") + event.custom_data[1][0]);
+            }),
             new EventNodeProperty("Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data),
             new EventNodeProperty("Relative?", DataTypes.BOOL, 0, 1, false, false)
         ]);
@@ -228,11 +257,23 @@ Game = new (function() constructor {
             new EventNodeProperty("Seconds", DataTypes.FLOAT, 0, 1, false, 1)
         ]);
         self.default_event_nodes[EventNodeTypes.TRANSFER_PLAYER] = new EventNodePeristent("TransferPlayer", [
-            new EventNodeProperty("Map", DataTypes.MAP, 0, 1, false, 0, function() { show_message("wip"); }, event_prefab_render_map_name),
+            new EventNodeProperty("Map", DataTypes.MAP, 0, 1, false, 0, function() { show_message("wip"); }, function(event, index) {
+                var map = guid_get(event.custom_data[0][0]);
+                return map ? map.name : "<no map>";
+            }),
             new EventNodeProperty("X", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
             new EventNodeProperty("Y", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
             new EventNodeProperty("A", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
-            new EventNodeProperty("Direction", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }, event_prefab_render_map_direction_name),
+            new EventNodeProperty("Direction", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }, function(event, index) {
+                var raw = event.custom_data[4][0];
+                
+                switch (raw) {
+                    case 0: return "Down";
+                    case 1: return "Left";
+                    case 2: return "Right";
+                    case 3: return "Up";
+                }
+            }),
             new EventNodeProperty("FadeColor", DataTypes.COLOR, 0, 1, false, c_black, function() { show_message("wip"); }),
             new EventNodeProperty("FadeTime", DataTypes.FLOAT, 0, 1, false, 1, function() { show_message("wip"); }),
         ]);
@@ -295,7 +336,9 @@ Game = new (function() constructor {
         self.default_event_nodes[EventNodeTypes.SET_MESH_ANIMATION] = new EventNodePeristent("SetEntityMeshAnimation", [
             new EventNodeProperty("Entity", DataTypes.ENTITY),
             new EventNodeProperty("Speed", DataTypes.FLOAT, 0, 1, false, 30),
-            new EventNodeProperty("EndAction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_mesh_anim_end_action, event_prefab_render_mesh_animation_end_action),
+            new EventNodeProperty("EndAction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_mesh_anim_end_action, function(event, index) {
+                return global.animation_end_action_names[event.custom_data[2][0]];
+            }),
         ]);
         self.default_event_nodes[EventNodeTypes.SCHEDULE_EVENT] = new EventNodePeristent("ScheduleEvent", [
             new EventNodeProperty("Entity", DataTypes.ENTITY),
