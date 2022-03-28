@@ -122,6 +122,35 @@ function EditorModeAnimation() : EditorMode_Struct() constructor {
     self.mode_id = ModeIDs.ANIMATION;
 }
 
+function EditorModeSpart() constructor {
+    self.ui = ui_init_spart();
+    
+    self.camera = new Camera(0, 0, 100, 100, 100, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+    
+    });
+    var threed_surface = self.ui.SearchID("3D VIEW");
+    self.camera.SetCenter(threed_surface.x + threed_surface.width / 2, threed_surface.y + threed_surface.height / 2);
+    self.camera.base_speed = 20;
+    self.camera.Load(setting_get("mesh", "camera", undefined));
+    self.camera.SetViewportAspect(function() {
+        return Stuff.mesh_ed.ui.SearchID("3D VIEW").width;
+    }, function() {
+        return Stuff.mesh_ed.ui.SearchID("3D VIEW").height;
+    });
+    
+    self.Render = function() {
+        draw_editor_spart();
+        draw_editor_menu(true);
+        draw_editor_hud();
+    };
+    
+    self.Save = function() {
+        Settings.spart.camera = self.camera.Save();
+    };
+
+    self.mode_id = ModeIDs.SPART;
+}
+
 function EditorMode_Struct() constructor {
     self.Update = function() { };
     self.Render = function() { };

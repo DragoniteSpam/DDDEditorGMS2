@@ -90,7 +90,7 @@ event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = new EditorModeAnimation();
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 mesh_ed = new EditorModeMesh();
-spart = instance_create_depth(0, 0, 0, EditorModeSpart);
+spart = new EditorModeSpart();
 text = new EditorModeText();
 menu = RIBBON_MENU();
 
