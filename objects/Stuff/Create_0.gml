@@ -87,7 +87,7 @@ graphics.Init();
 map = instance_create_depth(0, 0, 0, EditorModeMap);
 data = instance_create_depth(0, 0, 0, EditorModeData);
 event = instance_create_depth(0, 0, 0, EditorModeEvent);
-animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
+animation = new EditorModeAnimation();
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 mesh_ed = new EditorModeMesh();
 spart = instance_create_depth(0, 0, 0, EditorModeSpart);

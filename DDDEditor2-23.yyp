@@ -814,7 +814,6 @@
     {"id":{"name":"spr_terrain_texture_selection","path":"sprites/spr_terrain_texture_selection/spr_terrain_texture_selection.yy",},"order":5,},
     {"id":{"name":"EditorModeData","path":"objects/EditorModeData/EditorModeData.yy",},"order":8,},
     {"id":{"name":"EditorModeMap","path":"objects/EditorModeMap/EditorModeMap.yy",},"order":9,},
-    {"id":{"name":"EditorModeAnimation","path":"objects/EditorModeAnimation/EditorModeAnimation.yy",},"order":10,},
     {"id":{"name":"editor","path":"rooms/editor/editor.yy",},"order":63,},
     {"id":{"name":"scribble_font_set_style_family","path":"scripts/scribble_font_set_style_family/scribble_font_set_style_family.yy",},"order":11,},
     {"id":{"name":"notes","path":"notes/notes/notes.yy",},"order":0,},
