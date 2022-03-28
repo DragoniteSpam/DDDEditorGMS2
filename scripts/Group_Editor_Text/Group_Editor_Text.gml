@@ -1,4 +1,5 @@
-function EditorModeMesh() : EditorMode_Struct() constructor {    self.Update = null;
+function EditorModeMesh() : EditorMode_Struct() constructor {
+    self.Update = null;
     
     self.Render = function() {
         gpu_set_cullmode(cull_noculling);
@@ -165,6 +166,40 @@ function EditorModeData() : EditorMode_Struct() constructor {
     self.mode_id = ModeIDs.DATA;
 }
 
+function EditorModeEvent() : EditorMode_Struct() constructor {
+    self.def_x = 0;
+    self.def_y = 100;
+    
+    Settings.event[$ "x"] ??= self.def_x;
+    Settings.event[$ "y"] ??= self.def_y;
+    
+    self.x = Settings.event.x;
+    self.y = Settings.event.y;
+    
+    self.Render = function() {
+        gpu_set_cullmode(cull_noculling);
+        draw_editor_event();
+        draw_editor_menu();
+        draw_editor_hud();
+    };
+    
+    self.Save = function() {
+        Settings.event.x = self.x;
+        Settings.event.y = self.y;
+    };
+    
+    self.canvas_active_node = noone;
+    self.canvas_active_node_index = 0;
+    self.request_cancel_active_node = false;
+    
+    self.active = new DataEvent("DefaultEvent");
+    array_push(Game.events.events, self.active);
+    self.node_info = noone;
+    
+    self.ui = ui_init_event(id);
+    self.mode_id = ModeIDs.EVENT;
+}
+
 function EditorMode_Struct() constructor {
     self.Update = function() { };
     self.Render = function() { };
@@ -176,3 +211,4 @@ function EditorMode_Struct() constructor {
     
     ds_list_add(Stuff.all_modes, self);
 }
+

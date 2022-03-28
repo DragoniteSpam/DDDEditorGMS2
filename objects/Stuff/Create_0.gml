@@ -86,7 +86,7 @@ graphics.Init();
 // various types of editors
 map = instance_create_depth(0, 0, 0, EditorModeMap);
 data = new EditorModeData();
-event = instance_create_depth(0, 0, 0, EditorModeEvent);
+event = new EditorModeEvent();
 animation = new EditorModeAnimation();
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 mesh_ed = new EditorModeMesh();

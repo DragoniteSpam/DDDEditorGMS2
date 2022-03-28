@@ -809,7 +809,6 @@
     {"id":{"name":"Controller","path":"objects/Controller/Controller.yy",},"order":5,},
     {"id":{"name":"EditorMode","path":"objects/EditorMode/EditorMode.yy",},"order":0,},
     {"id":{"name":"EditorModeTerrain","path":"objects/EditorModeTerrain/EditorModeTerrain.yy",},"order":1,},
-    {"id":{"name":"EditorModeEvent","path":"objects/EditorModeEvent/EditorModeEvent.yy",},"order":7,},
     {"id":{"name":"spr_terrain_texture_selection","path":"sprites/spr_terrain_texture_selection/spr_terrain_texture_selection.yy",},"order":5,},
     {"id":{"name":"EditorModeMap","path":"objects/EditorModeMap/EditorModeMap.yy",},"order":9,},
     {"id":{"name":"editor","path":"rooms/editor/editor.yy",},"order":63,},
