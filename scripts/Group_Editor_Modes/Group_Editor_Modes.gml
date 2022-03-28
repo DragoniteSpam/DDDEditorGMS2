@@ -167,6 +167,9 @@ function EditorModeData() : EditorMode_Struct() constructor {
 }
 
 function EditorModeEvent() : EditorMode_Struct() constructor {
+    self.ui = ui_init_event(self);
+    self.mode_id = ModeIDs.EVENT;
+    
     self.def_x = 0;
     self.def_y = 100;
     
@@ -195,9 +198,6 @@ function EditorModeEvent() : EditorMode_Struct() constructor {
     self.active = new DataEvent("DefaultEvent");
     array_push(Game.events.events, self.active);
     self.node_info = noone;
-    
-    self.ui = ui_init_event(id);
-    self.mode_id = ModeIDs.EVENT;
 }
 
 function EditorMode_Struct() constructor {
