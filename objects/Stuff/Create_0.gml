@@ -94,8 +94,6 @@ spart = new EditorModeSpart();
 text = new EditorModeText();
 menu = RIBBON_MENU();
 
-instance_deactivate_object(EditorMode);
-
 self.graphics.RecreateGrids();
 instance_deactivate_object(UIThing);
 #endregion

@@ -2,7 +2,7 @@
 #macro TERRAIN_GEN_SPRITE_INDEX_BRUSH                                           1
 #macro TERRAIN_GEN_SPRITE_INDEX_TEXTURE                                         2
 
-function EditorModeTerrain() : EditorMode_Struct() constructor {
+function EditorModeTerrain() : EditorModeBase() constructor {
     debug_timer_start();
     
     Stuff.terrain = self;

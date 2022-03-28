@@ -1,4 +1,4 @@
-function EditorModeMap() : EditorMode_Struct() constructor {    self.ui = ui_init_main(self);
+function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_main(self);
     self.mode_id = ModeIDs.MAP;
     
     self.camera = new Camera(256, 256, 128, 256, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {

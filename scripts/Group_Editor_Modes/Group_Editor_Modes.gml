@@ -1,4 +1,4 @@
-function EditorModeMesh() : EditorMode_Struct() constructor {
+function EditorModeMesh() : EditorModeBase() constructor {
     self.Update = null;
     
     self.Render = function() {
@@ -69,7 +69,7 @@ function EditorModeMesh() : EditorMode_Struct() constructor {
     }
 }
 
-function EditorModeText() : EditorMode_Struct() constructor {
+function EditorModeText() : EditorModeBase() constructor {
     self.Update = function() { };
     
     self.Render = function() {
@@ -85,7 +85,7 @@ function EditorModeText() : EditorMode_Struct() constructor {
     self.mode_id = ModeIDs.TEXT;
 }
 
-function EditorModeAnimation() : EditorMode_Struct() constructor {
+function EditorModeAnimation() : EditorModeBase() constructor {
     self.ui = ui_init_animation(self);
     
     self.camera = new Camera(0, 0, 100, 100, 100, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
@@ -122,7 +122,7 @@ function EditorModeAnimation() : EditorMode_Struct() constructor {
     self.mode_id = ModeIDs.ANIMATION;
 }
 
-function EditorModeSpart() : EditorMode_Struct() constructor {
+function EditorModeSpart() : EditorModeBase() constructor {
     self.ui = ui_init_spart();
     
     self.camera = new Camera(0, 0, 100, 100, 100, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
@@ -151,7 +151,7 @@ function EditorModeSpart() : EditorMode_Struct() constructor {
     self.mode_id = ModeIDs.SPART;
 }
 
-function EditorModeData() : EditorMode_Struct() constructor {
+function EditorModeData() : EditorModeBase() constructor {
     self.Render = function() {
         gpu_set_cullmode(cull_noculling);
         draw_editor_fullscreen();
@@ -166,7 +166,7 @@ function EditorModeData() : EditorMode_Struct() constructor {
     self.mode_id = ModeIDs.DATA;
 }
 
-function EditorModeEvent() : EditorMode_Struct() constructor {
+function EditorModeEvent() : EditorModeBase() constructor {
     self.ui = ui_init_event(self);
     self.mode_id = ModeIDs.EVENT;
     
@@ -200,7 +200,7 @@ function EditorModeEvent() : EditorMode_Struct() constructor {
     self.node_info = noone;
 }
 
-function EditorMode_Struct() constructor {
+function EditorModeBase() constructor {
     self.Update = function() { };
     self.Render = function() { };
     self.Cleanup = function() { };
