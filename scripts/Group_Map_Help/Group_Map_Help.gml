@@ -27,11 +27,8 @@ function map_selection_like_property(list, property, type_flag = ETypeFlags.ENTI
     var first_value = undefined;
     for (var i = 0, n = ds_list_size(list); i < n; i++) {
         if (list[| i].etype & type_flag == 0) continue;
-        if (first_value == undefined) {
-            first_value = list[| i][$ property];
-        } else {
-            if (first_value != list[| i][$ property]) return undefined;
-        }
+        first_value ??= list[| i][$ property];
+        if (first_value != list[| i][$ property]) return undefined;
     }
     if (!first_value) return undefined;
     return { value: first_value };
