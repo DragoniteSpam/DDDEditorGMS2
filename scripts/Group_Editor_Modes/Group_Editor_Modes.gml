@@ -195,9 +195,8 @@ function EditorModeEvent() : EditorModeBase() constructor {
     self.canvas_active_node_index = 0;
     self.request_cancel_active_node = false;
     
-    self.active = new DataEvent("DefaultEvent");
-    array_push(Game.events.events, self.active);
-    self.node_info = noone;
+    self.active = undefined;
+    self.node_info = undefined;
 }
 
 function EditorModeBase() constructor {

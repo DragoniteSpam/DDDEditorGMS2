@@ -515,7 +515,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Time"), frac(current_time / 16000));
         shader_set_uniform_f(shader_get_uniform(shd_terrain_water, "u_Displacement"), 0.1);
         gpu_set_texfilter(false);
-        matrix_set(matrix_world, matrix_build(self.x, self.y, water_level, 0, 0, 0, 5, 5, 5));
+        matrix_set(matrix_world, matrix_build(0, 0, water_level, 0, 0, 0, 5, 5, 5));
         vertex_submit(self.water, pr_trianglelist, sprite_get_texture(spr_terrain_water, 0));
         shader_reset();
     };
@@ -802,7 +802,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     #endregion
     
-    self.ui = ui_init_terrain(id);
+    self.ui = ui_init_terrain(self);
     
     self.camera = new Camera(0, 0, 64, 64, 64, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
         Stuff.terrain.mouse_interaction(mouse_vector);

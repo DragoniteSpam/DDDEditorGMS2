@@ -172,6 +172,7 @@ Game = new (function() constructor {
     self.default_event_nodes = array_create(EventNodeTypes._COUNT);
     
     static InitializeDefaultObjects = function() {
+        array_push(self.events.events, new DataEvent("Default Event"));
         #region event nodes
         self.default_event_nodes[EventNodeTypes.INPUT_TEXT] = new EventNodePeristent("InputText", [
             new EventNodeProperty("Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""),
