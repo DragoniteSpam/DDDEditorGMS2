@@ -6,7 +6,7 @@
     "path": "folders/Editor/Modes.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Group_Editor_Map",
+  "name": "Group_Editor_Modes",
   "tags": [],
   "resourceType": "GMScript",
 }

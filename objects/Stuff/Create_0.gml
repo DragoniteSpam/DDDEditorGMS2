@@ -84,7 +84,7 @@ all_modes = ds_list_create();
 graphics = new EditorGraphics();
 graphics.Init();
 // various types of editors
-map = instance_create_depth(0, 0, 0, EditorModeMap);
+map = new EditorModeMap();
 data = new EditorModeData();
 event = new EditorModeEvent();
 animation = new EditorModeAnimation();
