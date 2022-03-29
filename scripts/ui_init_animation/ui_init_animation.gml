@@ -299,7 +299,7 @@ function ui_init_animation(mode) {
     ]);
     
     return container;
-
+/*
     // this one's not tabbed, it's just a bunch of elements floating in space
     with (instance_create_depth(0, 0, 0, UIThing)) {
         el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, function(timeline, x, y) {
@@ -531,6 +531,5 @@ function ui_init_animation(mode) {
     
         return id;
     }
-
-
+    */
 }
