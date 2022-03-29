@@ -100,7 +100,6 @@
     {"id":{"name":"draw_editor_hud","path":"scripts/draw_editor_hud/draw_editor_hud.yy",},"order":9,},
     {"id":{"name":"draw_editor_menu","path":"scripts/draw_editor_menu/draw_editor_menu.yy",},"order":10,},
     {"id":{"name":"dotdae_model_draw_texture","path":"scripts/dotdae_model_draw_texture/dotdae_model_draw_texture.yy",},"order":7,},
-    {"id":{"name":"draw_camera_controls_overlay","path":"scripts/draw_camera_controls_overlay/draw_camera_controls_overlay.yy",},"order":12,},
     {"id":{"name":"__scribble_config_colours","path":"scripts/__scribble_config_colours/__scribble_config_colours.yy",},"order":1,},
     {"id":{"name":"FDefault20","path":"fonts/FDefault20/FDefault20.yy",},"order":4,},
     {"id":{"name":"Group_Graphics_3D","path":"scripts/Group_Graphics_3D/Group_Graphics_3D.yy",},"order":4,},
