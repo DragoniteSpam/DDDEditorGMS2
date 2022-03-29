@@ -490,6 +490,7 @@
     {"id":{"name":"uivc_radio_data_type_ext","path":"scripts/uivc_radio_data_type_ext/uivc_radio_data_type_ext.yy",},"order":32,},
     {"id":{"name":"uivc_radio_entity_data_type_ext","path":"scripts/uivc_radio_entity_data_type_ext/uivc_radio_entity_data_type_ext.yy",},"order":33,},
     {"id":{"name":"uivc_input_constant_type_ext","path":"scripts/uivc_input_constant_type_ext/uivc_input_constant_type_ext.yy",},"order":35,},
+    {"id":{"name":"Editor_UI","path":"scripts/Editor_UI/Editor_UI.yy",},"order":3,},
     {"id":{"name":"uivc_input_event_node_custom_data_ext","path":"scripts/uivc_input_event_node_custom_data_ext/uivc_input_event_node_custom_data_ext.yy",},"order":36,},
     {"id":{"name":"uivc_input_entity_data_string","path":"scripts/uivc_input_entity_data_string/uivc_input_entity_data_string.yy",},"order":42,},
     {"id":{"name":"scribble_font_force_bilinear_filtering","path":"scripts/scribble_font_force_bilinear_filtering/scribble_font_force_bilinear_filtering.yy",},"order":5,},

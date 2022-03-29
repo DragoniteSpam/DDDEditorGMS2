@@ -123,18 +123,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     // this is like draw_camera_controls_overlay but different enough that i
     // don't want to generic-ize it
-    var iconx = 16;
-    var icony = self.height - 48;
-    var iconlength = 32;
-    
-    var inbounds = mouse_within_rectangle(iconx + self.x, icony + self.y + 16, iconx + iconlength + self.x, icony + iconlength + self.y + 16);
-    var c = inbounds ? c_ui_select : c_white;
-    draw_roundrect_colour(iconx, icony, iconx + iconlength, icony + iconlength, c, c, false);
-    draw_roundrect_colour(iconx, icony, iconx + iconlength, icony + iconlength, c_black, c_black, true);
-    draw_sprite(spr_camera_icons, 2, iconx, icony);
-    
-    if ((inbounds && Controller.release_left) || keyboard_check(vk_f1)) {
+    editor_gui_button(spr_camera_icons, 2, 16, self.height - 48, self.x, self.y, function() {
         Stuff.mesh_ed.camera.Reset();
-    }
+    });
     #endregion
 }
