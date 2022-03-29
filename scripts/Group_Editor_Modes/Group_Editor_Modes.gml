@@ -137,6 +137,7 @@ function EditorModeSpart() : EditorModeBase() constructor {
     }, function() {
         return Stuff.mesh_ed.ui.SearchID("3D VIEW").height;
     });
+    self.camera.SetSprite(Stuff.graphics.skybox_base, Stuff.graphics.skybox_base);
     
     self.Render = function() {
         draw_editor_spart();
@@ -210,4 +211,5 @@ function EditorModeBase() constructor {
     
     ds_list_add(Stuff.all_modes, self);
 }
+
 

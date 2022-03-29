@@ -46,6 +46,9 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.view_mat = undefined;
     self.proj_mat = undefined;
     
+    self.skybox = -1;
+    self.skybox_mesh = -1;
+    
     self.get_width = function() {
         return window_get_width();
     };
@@ -62,6 +65,12 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     static SetCenter = function(cx, cy) {
         self.center.x = cx;
         self.center.y = cy;
+    };
+    
+    static SetSkybox = function(sprite, vertex_buffer) {
+        self.skybox = sprite;
+        self.skybox_mesh = vertex_buffer;
+        return sprite;
     };
     
     static Update = function() {
@@ -189,22 +198,35 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         camera_apply(self.camera);
     };
     
+    static SetProjectionGUI = function() {
+        var view_mat = matrix_build_lookat(self.center.x, self.center.y, 1, self.center.x, self.center.y, 0, 0, -1, 0);
+        var proj_mat = matrix_build_projection_ortho(self.center.x, self.center.y, 1, 10);
+        
+        camera_set_view_mat(self.camera, view_mat);
+        camera_set_proj_mat(self.camera, proj_mat);
+        camera_apply(self.camera);
+    };
+    
     static DrawSkybox = function() {
+        if (!sprite_exists(self.skybox)) return;
+        if (self.skybox_buffer = -1) return;
         draw_clear_alpha(c_black, 1);
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
         matrix_set(matrix_world, matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1));
-        vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
+        vertex_submit(self.skybox_buffer, pr_trianglelist, sprite_get_texture(self.skybox, 0));
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
     };
     
     static DrawSkyboxOrtho = function() {
+        if (!sprite_exists(self.skybox)) return;
+        if (self.skybox_buffer = -1) return;
         draw_clear_alpha(c_black, 1);
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
         matrix_set(matrix_world, matrix_build(self.x, self.y, self.zfar - 256, 0, 0, 0, 1, 1, 1));
-        vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
+        vertex_submit(self.skybox_buffer, pr_trianglelist, sprite_get_texture(self.skybox, 0));
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
     };

@@ -815,6 +815,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         return Stuff.terrain.ui.SearchID("TERRAIN VIEWPORT").height;
     });
     self.camera.SetCenter(self.ui.SearchID("TERRAIN VIEWPORT").width / 2, self.ui.SearchID("TERRAIN VIEWPORT").height / 2);
+    self.camera.SetSprite(Stuff.graphics.skybox_base, Stuff.graphics.skybox_base);
     
     self.camera_light = new Camera(500, -500, 564, 0, 0, 64, 0, 0, 1, 60, CAMERA_ZNEAR, 2500, null);
     self.camera_light.Load(setting_get("terrain", "camera_light", undefined));
@@ -858,3 +859,4 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     self.mode_id = ModeIDs.TERRAIN;
 }
+

@@ -13,7 +13,6 @@ function ui_init_terrain(mode) {
         (new EmuRenderSurface(0, 0, CW, CH, function(mx, my) {
             Stuff.terrain.DrawTerrain();
         }, function(mx, my) {
-            //control_map();
             if (mx < 0 || my < 0 || mx >= self.width || my >= self.height) return;
             if (Settings.terrain.orthographic) {
                 Stuff.terrain.camera.UpdateOrtho();
