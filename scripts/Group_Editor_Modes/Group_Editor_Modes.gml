@@ -2,8 +2,9 @@ function EditorModeMesh() : EditorModeBase() constructor {
     self.Update = null;
     
     self.Render = function() {
-        gpu_set_cullmode(cull_noculling);
-        draw_editor_fullscreen();
+        draw_clear(EMU_COLOR_BACK);
+        Stuff.base_camera.SetProjectionGUI();
+        self.ui.Render();
         draw_editor_menu();
     };
     
@@ -72,8 +73,9 @@ function EditorModeText() : EditorModeBase() constructor {
     self.Update = function() { };
     
     self.Render = function() {
-        gpu_set_cullmode(cull_noculling);
-        draw_editor_fullscreen();
+        draw_clear(EMU_COLOR_BACK);
+        Stuff.base_camera.SetProjectionGUI();
+        self.ui.Render();
         draw_editor_menu();
     };
     
@@ -139,8 +141,10 @@ function EditorModeSpart() : EditorModeBase() constructor {
     self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.default_skybox);
     
     self.Render = function() {
+        draw_clear(EMU_COLOR_BACK);
         draw_editor_spart();
-        draw_editor_hud();
+        Stuff.base_camera.SetProjectionGUI();
+        self.ui.Render();
         draw_editor_menu();
     };
     
@@ -153,8 +157,9 @@ function EditorModeSpart() : EditorModeBase() constructor {
 
 function EditorModeData() : EditorModeBase() constructor {
     self.Render = function() {
-        gpu_set_cullmode(cull_noculling);
-        draw_editor_fullscreen();
+        draw_clear(EMU_COLOR_BACK);
+        Stuff.base_camera.SetProjectionGUI();
+        self.ui.Render();
         draw_editor_menu();
     };
 
@@ -180,9 +185,10 @@ function EditorModeEvent() : EditorModeBase() constructor {
     self.y = Settings.event.y;
     
     self.Render = function() {
-        gpu_set_cullmode(cull_noculling);
+        draw_clear(EMU_COLOR_BACK);
+        Stuff.base_camera.SetProjectionGUI();
         draw_editor_event();
-        draw_editor_hud();
+        self.ui.Render();
         draw_editor_menu();
     };
     
@@ -210,6 +216,10 @@ function EditorModeBase() constructor {
     
     ds_list_add(Stuff.all_modes, self);
 }
+
+
+
+
 
 
 
