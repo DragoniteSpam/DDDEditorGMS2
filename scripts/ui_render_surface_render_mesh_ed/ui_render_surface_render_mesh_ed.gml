@@ -121,9 +121,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         .wrap(-1, -1)
         .draw(20, 40);
     
-    // this is like draw_camera_controls_overlay but different enough that i
-    // don't want to generic-ize it
-    editor_gui_button(spr_camera_icons, 2, 16, self.height - 48, self.x, self.y, function() {
+    // i legitimately dont know why the vertical offset here needs to be 32 and not self.y
+    editor_gui_button(spr_camera_icons, 2, 16, self.height - 48, self.x, 32, null, function() {
         Stuff.mesh_ed.camera.Reset();
     });
     #endregion

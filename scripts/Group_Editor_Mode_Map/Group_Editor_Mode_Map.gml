@@ -43,6 +43,7 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
     self.selection_fill_tile_y = 0;
     self.selection_fill_tile_size = 32;  // make this a setting or something later
     self.edit_z = 0;
+    self.mouse_over_ui = false;
     
     enum SelectionModes {
         SINGLE,
@@ -190,16 +191,8 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
         }
         #endregion
         
-        matrix_set(matrix_world, matrix_build_identity());
-        shader_reset();
-        
-        #region overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
-        gpu_set_ztestenable(false);
-        var cwidth = camera_get_view_width(camera);
-        var cheight = camera_get_view_height(camera);
-        camera_set_view_mat(camera, matrix_build_lookat(cwidth / 2, cheight / 2, 16000,  cwidth / 2, cheight / 2, -16000, 0, 1, 0));
-        camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
-        camera_apply(camera);
+        #region overlay stuff
+        self.camera.SetProjectionGUI();
         
         #region height controls
         // base bar
@@ -220,10 +213,20 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
         }
         
         // buttons
-        var overlap_plus = mouse_within_rectangle(32 - bw / 2, 64 - bh / 2, 32 + bw / 2, 64 + bh / 2);
-        var overlap_minus = mouse_within_rectangle(32 - bw / 2, 64 + height - bh / 2, 32 + bw / 2, 64 + height + bh / 2);
-        draw_sprite_ext(spr_plus_minus_button, 0, 32, 64, 1, 1, 0, overlap_plus ? c_ui_select : c_white, 1);
-        draw_sprite_ext(spr_plus_minus_button, 1, 32, height + 64, 1, 1, 0, overlap_minus ? c_ui_select : c_white, 1);
+        editor_gui_button(spr_camera_icons, 2, 16, window_get_height() - 48, 0, 0, null, function() {
+            self.camera.Reset();
+        });
+        
+        editor_gui_button(spr_plus_minus_button, 3, 16, 32, 0, 0, function() {
+            self.mouse_over_ui = true;
+        }, function() {
+            self.edit_z = min(++self.edit_z, self.active_map.zz - 1);
+        });
+        editor_gui_button(spr_plus_minus_button, 0, 16, 64 + height, 0, 0, function() {
+            self.mouse_over_ui = true;
+        }, function() {
+            self.edit_z = max(--self.edit_z, 0);
+        });
         
         // slider
         var slider_length = height - bh * 2;
@@ -238,17 +241,7 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
         if (ds_list_empty(Stuff.dialogs)) {
             var overlap_interval = mouse_within_rectangle(32 - slw / 2, 64, 32 + slw / 2, 64 + height);
             
-            if (overlap_plus) {
-                if (mouse_check_button_pressed(mb_left)) {
-                    self.edit_z = min(++self.edit_z, self.active_map.zz - 1);
-                }
-                mouse_over_ui = true;
-            } else if (overlap_minus) {
-                if (mouse_check_button_pressed(mb_left)) {
-                    self.edit_z = max(--self.edit_z, 0);
-                }
-                mouse_over_ui = true;
-            } else if (overlap_interval) {
+            if (overlap_interval) {
                 if (mouse_check_button(mb_left)) {
                     var f = clamp((yy_end - mouse_y) / (yy_end - yy_start), 0, 1);
                     self.edit_z = round(f * (self.active_map.zz - 1));
@@ -258,7 +251,7 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
         }
         #endregion
         
-        #region icons
+        #region icons from world space
         while (!ds_queue_empty(Stuff.screen_icons)) {
             var data = ds_queue_dequeue(Stuff.screen_icons);
             var sprite = data[0];
@@ -266,9 +259,6 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
             draw_sprite(sprite, 0, position.x, position.y);
         }
         #endregion
-        #endregion
     };
-    
-    self.mouse_over_ui = false;
 }
 
