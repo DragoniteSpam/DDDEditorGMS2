@@ -3,7 +3,6 @@ function EditorModeMesh() : EditorModeBase() constructor {
     
     self.Render = function() {
         gpu_set_cullmode(cull_noculling);
-        draw_editor_menu();
         draw_editor_fullscreen();
         draw_editor_menu();
     };
@@ -75,7 +74,7 @@ function EditorModeText() : EditorModeBase() constructor {
     self.Render = function() {
         gpu_set_cullmode(cull_noculling);
         draw_editor_fullscreen();
-        draw_editor_menu(false);
+        draw_editor_menu();
     };
     
     self.Save = function() { };
@@ -141,8 +140,8 @@ function EditorModeSpart() : EditorModeBase() constructor {
     
     self.Render = function() {
         draw_editor_spart();
-        draw_editor_menu(true);
         draw_editor_hud();
+        draw_editor_menu();
     };
     
     self.Save = function() {
@@ -183,8 +182,8 @@ function EditorModeEvent() : EditorModeBase() constructor {
     self.Render = function() {
         gpu_set_cullmode(cull_noculling);
         draw_editor_event();
-        draw_editor_menu();
         draw_editor_hud();
+        draw_editor_menu();
     };
     
     self.Save = function() {

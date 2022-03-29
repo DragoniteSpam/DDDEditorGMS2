@@ -1,8 +1,4 @@
-function draw_editor_menu(camera_controls = false) {
-    if (camera_controls) draw_camera_controls_overlay();
-    
-    gpu_set_cullmode(cull_noculling);
-    
+function draw_editor_menu() {
     if (is_struct(Stuff.menu)) {
         Stuff.menu.Render(0, 0);
     } else {

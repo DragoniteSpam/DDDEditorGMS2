@@ -20,7 +20,7 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
         self.ui.Render(0, 0);
-        draw_editor_menu(true);
+        draw_editor_menu();
     };
     
     self.Cleanup = editor_cleanup_map;
