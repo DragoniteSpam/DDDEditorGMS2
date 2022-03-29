@@ -11,7 +11,7 @@ function EditorModeMesh() : EditorModeBase() constructor {
     self.ui = ui_init_mesh(self);
     
     var threed_surface = self.ui.SearchID("3D VIEW");
-    self.camera = new Camera(0, 0, 100, 100, 100, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, emu_null);
+    self.camera = new Camera(150, 150, 150, 0, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, emu_null);
     self.camera.SetCenter(threed_surface.x + threed_surface.width / 2, threed_surface.y + threed_surface.height / 2);
     self.camera.base_speed = 20;
     self.camera.Load(setting_get("mesh", "camera", undefined));
@@ -211,5 +211,3 @@ function EditorModeBase() constructor {
     
     ds_list_add(Stuff.all_modes, self);
 }
-
-
