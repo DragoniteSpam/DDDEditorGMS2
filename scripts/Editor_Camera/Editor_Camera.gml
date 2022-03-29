@@ -205,6 +205,12 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         camera_set_view_mat(self.camera, view_mat);
         camera_set_proj_mat(self.camera, proj_mat);
         camera_apply(self.camera);
+        
+        gpu_set_ztestenable(false);
+        gpu_set_zwriteenable(false);
+        gpu_set_cullmode(cull_noculling);
+        matrix_set(matrix_world, matrix_build_identity());
+        shader_reset();
     };
     
     static DrawSkybox = function() {

@@ -40,10 +40,9 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStrength"), 0);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), CAMERA_ZFAR * 2);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
+    #endregion
     
     wireframe_enable(Settings.mesh.wireframe_alpha);
-    
-    #endregion
     
     // so that gmedit stops yelling at me
     var tex_none = -1;
@@ -101,12 +100,6 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         }
         if (++rendered_count > limit) break;
     }
-    
-    matrix_set(matrix_world, matrix_build_identity());
-    shader_reset();
-    gpu_set_ztestenable(false);
-    gpu_set_zwriteenable(false);
-    gpu_set_cullmode(cull_noculling);
     
     #region draw the overlay
     Stuff.mesh_ed.camera.SetProjectionGUI();

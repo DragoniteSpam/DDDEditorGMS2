@@ -1278,7 +1278,7 @@ function ui_init_main(mode) {
         }, function() {
             // destroy
         }))
-            .SetID("3D VIEWPORT"),
+            .SetID("3D VIEW"),
         tab_group
     ]);
     

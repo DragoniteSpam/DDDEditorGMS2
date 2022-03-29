@@ -1,15 +1,19 @@
-function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_main(self);
+function EditorModeMap() : EditorModeBase() constructor {
+    self.ui = ui_init_main(self);
     self.mode_id = ModeIDs.MAP;
     
     self.camera = new Camera(256, 256, 128, 256, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
     
     });
     self.base_speed = 20;
+    var threed_surface = self.ui.SearchID("3D VIEW");
     self.camera.Load(setting_get("map", "camera", undefined));
+    self.camera = new Camera(250, 250, 250, 0, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, emu_null);
+    self.camera.SetCenter(threed_surface.x + threed_surface.width / 2, threed_surface.y + threed_surface.height / 2);
     self.camera.SetViewportAspect(function() {
-        return Stuff.map.ui.SearchID("3D VIEWPORT").width;
+        return Stuff.map.ui.SearchID("3D VIEW").width;
     }, function() {
-        return Stuff.map.ui.SearchID("3D VIEWPORT").height;
+        return Stuff.map.ui.SearchID("3D VIEW").height;
     });
     self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.skybox_base);
     
@@ -261,4 +265,5 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
         #endregion
     };
 }
+
 
