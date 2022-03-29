@@ -142,7 +142,6 @@ function EditorModeSpart() : EditorModeBase() constructor {
     
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
-        draw_editor_spart();
         Stuff.base_camera.SetProjectionGUI();
         self.ui.Render();
         editor_gui_post();
@@ -150,6 +149,19 @@ function EditorModeSpart() : EditorModeBase() constructor {
     
     self.Save = function() {
         Settings.spart.camera = self.camera.Save();
+    };
+    
+    self.DrawSpart = function() {
+        gpu_set_zwriteenable(true);
+        gpu_set_ztestenable(true);
+        gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
+        
+        draw_clear(EMU_COLOR_BACK);
+        self.camera.SetProjection();
+        
+        // draw the grid here
+        
+        // draw the spart editor here
     };
 
     self.mode_id = ModeIDs.SPART;

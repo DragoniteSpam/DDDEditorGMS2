@@ -12,7 +12,7 @@ function ui_init_spart() {
     
     container.AddContent([
         (new EmuRenderSurface(0, 0, 1080, hud_height, function(mx, my) {
-            draw_clear(c_black);
+            Stuff.spart.DrawSpart();
         }, function(mx, my) {
             
         }))
