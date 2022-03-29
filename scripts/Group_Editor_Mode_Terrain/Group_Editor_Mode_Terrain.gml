@@ -695,9 +695,12 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         
         self.DrawWater();
         
-        shader_reset();
+        // overlay stuff
+        self.camera.SetProjectionGUI();
         
-        matrix_set(matrix_world, matrix_build_identity());
+        editor_gui_button(spr_camera_icons, 2, 16, window_get_height() - 48, 0, 0, null, function() {
+            self.camera.Reset();
+        });
     };
     #endregion
     
@@ -859,5 +862,6 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     self.mode_id = ModeIDs.TERRAIN;
 }
+
 
 
