@@ -199,8 +199,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     };
     
     static SetProjectionGUI = function() {
-        var view_mat = matrix_build_lookat(self.center.x, self.center.y, 1, self.center.x, self.center.y, 0, 0, -1, 0);
-        var proj_mat = matrix_build_projection_ortho(self.center.x, self.center.y, 1, 10);
+        var view_mat = matrix_build_lookat(self.get_width() / 2, self.get_height() / 2, 1, self.get_width() / 2, self.get_height() / 2, -1, 0, -1, 0);
+        var proj_mat = matrix_build_projection_ortho(self.get_width(), -self.get_height(), 1, 10);
         
         camera_set_view_mat(self.camera, view_mat);
         camera_set_proj_mat(self.camera, proj_mat);
