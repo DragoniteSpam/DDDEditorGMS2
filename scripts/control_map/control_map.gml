@@ -156,7 +156,7 @@ function control_map() {
         */
         #region camera movement
         if (CONTROL_3D_LOOK || !input_control) {
-            var mspd = get_camera_speed(Settings.view.threed ? mode.camera.z : 100);
+            var mspd = mode.camera.GetCameraSpeed(Settings.view.threed ? mode.camera.z : 100);
             var xspeed = 0;
             var yspeed = 0;
             var zspeed = 0;
