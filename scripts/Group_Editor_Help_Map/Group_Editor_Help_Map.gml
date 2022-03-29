@@ -5,15 +5,15 @@ function editor_map_mark_changed(entity) {
     }
 }
 
-function editor_cleanup_map(mode) {
+function editor_cleanup_map() {
     var base_map = Stuff.map.active_map;
     var map = base_map.contents;
     var modifications = [];
     
     // let's try to keep the Modifications list separate because batching / rebatching
     // behaves differently depending on how many things are in it
-    for (var i = 0; i < ds_list_size(mode.changes); i++) {
-        var thing = mode.changes[| i];
+    for (var i = 0; i < ds_list_size(self.changes); i++) {
+        var thing = self.changes[| i];
         switch (thing.modification) {
             // we'd still like to know what the modification status on an entity is for
             // when we re-batch everything
@@ -26,7 +26,7 @@ function editor_cleanup_map(mode) {
         }
     }
     
-    ds_list_clear(mode.changes);
+    ds_list_clear(self.changes);
     
     if (!array_empty(modifications)) {
         var rebatch_all_threshold = 25;
