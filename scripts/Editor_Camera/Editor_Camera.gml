@@ -67,7 +67,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         self.center.y = cy;
     };
     
-    static SetSkybox = function(sprite, vertex_buffer) {
+    static SetSkybox = function(vertex_buffer, sprite) {
         self.skybox = sprite;
         self.skybox_mesh = vertex_buffer;
         return sprite;

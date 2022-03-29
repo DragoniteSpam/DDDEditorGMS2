@@ -15,7 +15,7 @@ function EditorModeMap() : EditorModeBase() constructor {
     }, function() {
         return Stuff.map.ui.SearchID("3D VIEW").height;
     });
-    self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.skybox_base);
+    self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.default_skybox);
     
     self.Update = function() {
     
