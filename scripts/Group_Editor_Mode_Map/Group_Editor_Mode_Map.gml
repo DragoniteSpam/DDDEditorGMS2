@@ -11,7 +11,7 @@ function EditorModeMap() : EditorModeBase() constructor {    self.ui = ui_init_m
     }, function() {
         return Stuff.map.ui.SearchID("3D VIEWPORT").height;
     });
-    self.camera.SetSprite(Stuff.graphics.skybox_base, Stuff.graphics.skybox_base);
+    self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.skybox_base);
     
     self.Update = function() {
     
