@@ -209,12 +209,12 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     
     static DrawSkybox = function() {
         if (!sprite_exists(self.skybox)) return;
-        if (self.skybox_buffer = -1) return;
+        if (self.skybox_mesh = -1) return;
         draw_clear_alpha(c_black, 1);
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
         matrix_set(matrix_world, matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1));
-        vertex_submit(self.skybox_buffer, pr_trianglelist, sprite_get_texture(self.skybox, 0));
+        vertex_submit(self.skybox_mesh, pr_trianglelist, sprite_get_texture(self.skybox, 0));
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
     };
