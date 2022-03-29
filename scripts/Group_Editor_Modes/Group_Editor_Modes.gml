@@ -5,7 +5,7 @@ function EditorModeMesh() : EditorModeBase() constructor {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
         self.ui.Render();
-        draw_editor_menu();
+        editor_gui_post();
     };
     
     self.ui = ui_init_mesh(self);
@@ -76,7 +76,7 @@ function EditorModeText() : EditorModeBase() constructor {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
         self.ui.Render();
-        draw_editor_menu();
+        editor_gui_post();
     };
     
     self.Save = function() { };
@@ -113,7 +113,7 @@ function EditorModeAnimation() : EditorModeBase() constructor {
         draw_editor_animation();
         draw_animator();
         draw_animator_overlay();
-        draw_editor_menu();
+        editor_gui_post();
     };
     
     self.Save = function() {
@@ -145,7 +145,7 @@ function EditorModeSpart() : EditorModeBase() constructor {
         draw_editor_spart();
         Stuff.base_camera.SetProjectionGUI();
         self.ui.Render();
-        draw_editor_menu();
+        editor_gui_post();
     };
     
     self.Save = function() {
@@ -160,7 +160,7 @@ function EditorModeData() : EditorModeBase() constructor {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
         self.ui.Render();
-        draw_editor_menu();
+        editor_gui_post();
     };
 
     self.Save = function() {
@@ -189,7 +189,7 @@ function EditorModeEvent() : EditorModeBase() constructor {
         Stuff.base_camera.SetProjectionGUI();
         draw_editor_event();
         self.ui.Render();
-        draw_editor_menu();
+        editor_gui_post();
     };
     
     self.Save = function() {

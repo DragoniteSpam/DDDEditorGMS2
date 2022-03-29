@@ -132,7 +132,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
         self.ui.Render(0, 0);
-        draw_editor_menu();
+        editor_gui_post();
     };
     
     self.Save = function() {

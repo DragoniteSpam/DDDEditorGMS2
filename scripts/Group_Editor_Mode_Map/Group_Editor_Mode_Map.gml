@@ -25,7 +25,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
         self.ui.Render(0, 0);
-        draw_editor_menu();
+        editor_gui_post();
     };
     
     self.Cleanup = editor_cleanup_map;
