@@ -134,62 +134,26 @@ function ui_init_main(mode) {
             #endregion
             #region column 2
             (new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Entity Stats")),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Entities:"))
-                .SetDefaultSpacingY(8)
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height * 5, "    Entities:"))
                 .SetTextUpdate(function() {
-                    return "    Entities:  " + string(Stuff.map.active_map.contents.stats.GetEntityCount());
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Static:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Static:  N/A";
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Solid:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Solid:  N/A";
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Tiles:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Tiles:  N/A";
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Autotiles:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Autotiles:  N/A";
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Meshes:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Meshes:  N/A";
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Pawns:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Pawns:  N/A";
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Effects:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Effects:  N/A";
+                    var stats = Stuff.map.active_map.contents.stats;
+                    return "    Entities:  " + string(stats.GetEntityCount()) + "\n" +
+                        "    Static: N/A" + "\n" +
+                        "    Solid: N/A" + "\n" +
+                        "    Tiles: N/A" + "\n" +
+                        "    Autotiles: N/A" + "\n" +
+                        "    Meshes: N/A" + "\n" +
+                        "    Pawns: N/A" + "\n" +
+                        "    Effects: N/A";
                 }),
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Vertex Data")),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Storage:"))
-                .SetDefaultSpacingY(8)
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height * 2, "    Storage:\n    Vertices:\n    Triangles:"))
                 .SetTextUpdate(function() {
-                    var size = Stuff.map.active_map.contents.stats.GetVertexByteCount();
-                    return "    Triangles:  " + ((size < 1024) ? (string(size) + " bytes") : (string(size >> 10) + " kilobytes"));
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Vertices:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Vertices:  " + string(Stuff.map.active_map.contents.stats.GetVertexCount());
-                }),
-            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "    Triangles:"))
-                .SetDefaultSpacingY(8)
-                .SetTextUpdate(function() {
-                    return "    Triangles:  " + string(Stuff.map.active_map.contents.stats.GetVertexByteCount());
+                    var stats = Stuff.map.active_map.contents.stats;
+                    var size = stats.GetVertexByteCount();
+                    return "    Storage: " + ((size < 1024) ? (string_comma(size) + " bytes") : (string_comma(size >> 10) + " kilobytes")) + "\n" +
+                        "    Vertices: " + string_comma(string(stats.GetVertexCount())) + "\n" +
+                        "    Triangles: " + string_comma(stats.GetVertexTriangleCount());
                 }),
             #endregion
         ])
