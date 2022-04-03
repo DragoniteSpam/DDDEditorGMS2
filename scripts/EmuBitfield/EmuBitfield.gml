@@ -133,6 +133,10 @@ function EmuBitfieldOption(text, value, callback, eval) : EmuCallback(0, 0, 0, 0
 }
 
 // You may find yourself using these particularly often
+function emu_bitfield_option_toggle_callback() {
+    self.root.value ^= ~self.value;
+}
+
 function emu_bitfield_option_exact_callback() {
     root.value = value;
 }
