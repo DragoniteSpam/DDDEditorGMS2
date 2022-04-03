@@ -5,11 +5,7 @@ function EditorModeMap() : EditorModeBase() constructor {
     var threed_surface = self.ui.SearchID("3D VIEW");
     self.camera = new Camera(256, 256, 128, 256, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
         var mode = Stuff.map;
-        var map = mode.active_map;
-        var map_contents = map.contents;
         var input_control = keyboard_check(vk_control);
-        
-        if (Stuff.menu.active_element || !ds_list_empty(EmuOverlay._contents)) return;
         
         var instance_under_cursor = undefined;
         
