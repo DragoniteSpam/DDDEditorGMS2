@@ -59,13 +59,15 @@ function ui_init_main(mode) {
                 Settings.selection.mask = self.value;
             }))
                 .AddOptions([
-                    "Tile", "Mesh", "Pawn", "Effect",
-                    new EmuBitfieldOption("All", 0xf, function() {
-                        self.root.value = self.value;
-                    }, function() { return self.root.value == self.value; }),
-                    new EmuBitfieldOption("None", 0x0, function() {
-                        self.root.value = self.value;
-                    }, function() { return self.root.value == self.value; }),
+                    new EmuBitfieldOption("Tile", ETypeFlags.ENTITY_TILE_ANIMATED & ~ETypeFlags.ENTITY, emu_bitfield_option_toggle_callback, function() { return self.root.value & self.value; }),
+                    new EmuBitfieldOption("Mesh", ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY, emu_bitfield_option_toggle_callback, function() { return self.root.value & self.value; }),
+                    new EmuBitfieldOption("Pawn", ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY, emu_bitfield_option_toggle_callback, function() { return self.root.value & self.value; }),
+                    new EmuBitfieldOption("Effect", ETypeFlags.ENTITY_EFFECT & ~ETypeFlags.ENTITY, emu_bitfield_option_toggle_callback, function() { return self.root.value & self.value; }),
+                    new EmuBitfieldOption("All", ETypeFlags.ENTITY_ANY, emu_bitfield_option_exact_callback, function() {
+                        static any_mask = (ETypeFlags.ENTITY_TILE_ANIMATED | ETypeFlags.ENTITY_MESH | ETypeFlags.ENTITY_PAWN | ETypeFlags.ENTITY_EFFECT) & ~ETypeFlags.ENTITY;
+                        return self.root.value == any_mask;
+                    }),
+                    new EmuBitfieldOption("None", 0x0, emu_bitfield_option_exact_callback, function() { return self.root.value == self.value; }),
                 ])
                 .SetOrientation(E_BitfieldOrientations.VERTICAL)
                 .SetFixedSpacing(24)
