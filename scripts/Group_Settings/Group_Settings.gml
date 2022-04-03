@@ -80,7 +80,7 @@ Settings.location[$ "tiled"] ??=                                                
 Settings.location[$ "project"] ??=                                              "";
 
 Settings[$ "selection"] ??=                                                     { };
-Settings.selection[$ "mode"] ??=                                                SelectionModes.RECTANGLE;
+Settings.selection[$ "mode"] ??=                                                MapSelectionModes.RECTANGLE;
 Settings.selection[$ "addition"] ??=                                            false;
 Settings.selection[$ "fill_type"] ??=                                           FillTypes.TILE;
 Settings.selection[$ "zone_type"] ??=                                           MapZoneTypes.CAMERA;

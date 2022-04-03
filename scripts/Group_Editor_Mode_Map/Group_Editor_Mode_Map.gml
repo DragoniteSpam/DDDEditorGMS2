@@ -33,9 +33,8 @@ function EditorModeMap() : EditorModeBase() constructor {
                         }
                         var stype = SelectionRectangle;
                         switch (Settings.selection.mode) {
-                            case SelectionModes.SINGLE: stype = SelectionSingle; break;
-                            case SelectionModes.RECTANGLE: stype = SelectionRectangle; break;
-                            case SelectionModes.CIRCLE: stype = SelectionCircle; break;
+                            case MapSelectionModes.SINGLE: stype = SelectionSingle; break;
+                            case MapSelectionModes.RECTANGLE: stype = SelectionRectangle; break;
                         }
                         
                         var button = mode.ui.SearchID("ZONE DATA");
@@ -148,10 +147,9 @@ function EditorModeMap() : EditorModeBase() constructor {
     self.edit_z = 0;
     self.mouse_over_ui = false;
     
-    enum SelectionModes {
+    enum MapSelectionModes {
         SINGLE,
         RECTANGLE,
-        CIRCLE
     }
     
     enum FillTypes {

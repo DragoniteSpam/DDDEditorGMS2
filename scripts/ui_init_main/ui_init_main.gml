@@ -37,7 +37,7 @@ function ui_init_main(mode) {
             (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Selection mode:", Settings.selection.mode, function() {
                 Settings.selection.mode = self.value;
             }))
-                .AddOptions(["Single", "Rectangle", "Circle"])
+                .AddOptions(["Single", "Rectangle"])
                 .SetID("SELECTION MODE"),
             (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Additive selection?", Settings.selection.addition, function() {
                 Settings.selection.addition = self.value;
