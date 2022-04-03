@@ -8,8 +8,11 @@ function EditorModeMap() : EditorModeBase() constructor {
         var threed_surface = mode.ui.SearchID("3D VIEW");
         var input_control = keyboard_check(vk_control);
         
-        var instance_under_cursor = undefined;
+        if (Controller.press_left) {
+            menu_close_all();
+        }
         
+        var instance_under_cursor = undefined;
         var mouse_position = new Vector2(window_mouse_get_x() - threed_surface.x, window_mouse_get_y() - threed_surface.y);
         
         if (!mode.mouse_over_ui) {
