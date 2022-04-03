@@ -975,7 +975,8 @@ function ui_init_main(mode) {
                 if (ds_list_size(Stuff.map.selected_entities) != 1) return;
                 // this behavior will be dependent on the selected zone type
             }))
-                .SetTooltip("If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here."),
+                .SetTooltip("If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.")
+                .SetID("ZONE DATA"),
         ])
             .SetID("ENTITY OTHER"),
     ]);
@@ -1236,7 +1237,7 @@ function ui_init_main(mode) {
         (new EmuRenderSurface(0, 0, CW, CH, function() {
             Stuff.map.DrawEditor();
         }, function() {
-            control_map();
+            Stuff.map.camera.Update();
         }, function() {
             // create
         }, function() {
