@@ -5,9 +5,12 @@ function EditorModeMap() : EditorModeBase() constructor {
     var threed_surface = self.ui.SearchID("3D VIEW");
     self.camera = new Camera(256, 256, 128, 256, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
         var mode = Stuff.map;
+        var threed_surface = mode.ui.SearchID("3D VIEW");
         var input_control = keyboard_check(vk_control);
         
         var instance_under_cursor = undefined;
+        
+        var mouse_position = new Vector2(window_mouse_get_x() - threed_surface.x, window_mouse_get_y() - threed_surface.y);
         
         if (!mode.mouse_over_ui) {
             #region process the stuff you clicked on
@@ -26,65 +29,67 @@ function EditorModeMap() : EditorModeBase() constructor {
                 var floor_cy = clamp(floor_y div TILE_HEIGHT, -1, mode.active_map.yy - 1);
                 var floor_cz = clamp(floor_z div TILE_DEPTH, -1, mode.active_map.zz - 1);
                 
-                if (Controller.press_left) {
-                    if (array_length(mode.selection) < MAX_SELECTION_COUNT) {
-                        if (!keyboard_check(Controller.input_selection_add) && !Settings.selection.addition) {
-                            selection_clear();
-                        }
-                        var stype = SelectionRectangle;
-                        switch (Settings.selection.mode) {
-                            case MapSelectionModes.SINGLE: stype = SelectionSingle; break;
-                            case MapSelectionModes.RECTANGLE: stype = SelectionRectangle; break;
-                        }
+                if (mouse_position.x > 0 && mouse_position.y && mouse_position.x < threed_surface.width - 1 && mouse_position.y < threed_surface.height - 1) {
+                    if (Controller.press_left) {
+                        if (array_length(mode.selection) < MAX_SELECTION_COUNT) {
+                            if (!keyboard_check(Controller.input_selection_add) && !Settings.selection.addition) {
+                                selection_clear();
+                            }
+                            var stype = SelectionRectangle;
+                            switch (Settings.selection.mode) {
+                                case MapSelectionModes.SINGLE: stype = SelectionSingle; break;
+                                case MapSelectionModes.RECTANGLE: stype = SelectionRectangle; break;
+                            }
                         
-                        var button = mode.ui.SearchID("ZONE DATA");
-                        button.text = "Zone Data";
-                        button.SetInteractive(false);
-                        mode.selected_zone = undefined;
+                            var button = mode.ui.SearchID("ZONE DATA");
+                            button.text = "Zone Data";
+                            button.SetInteractive(false);
+                            mode.selected_zone = undefined;
                         
-                        if (instance_under_cursor && instance_under_cursor.ztype != undefined) {
-                            button.interactive = true;
-                            button.onmouseup = instance_under_cursor.EditScript;
-                            button.text = "Data: " + instance_under_cursor.name;
-                            mode.selected_zone = instance_under_cursor;
-                        } else {
-                            var tz = instance_under_cursor ? max(instance_under_cursor.zz, mode.edit_z) : mode.edit_z;
-                            mode.last_selection = new stype(max(0, floor_cx), max(0, floor_cy), tz);
+                            if (instance_under_cursor && instance_under_cursor.ztype != undefined) {
+                                button.interactive = true;
+                                button.onmouseup = instance_under_cursor.EditScript;
+                                button.text = "Data: " + instance_under_cursor.name;
+                                mode.selected_zone = instance_under_cursor;
+                            } else {
+                                var tz = instance_under_cursor ? max(instance_under_cursor.zz, mode.edit_z) : mode.edit_z;
+                                mode.last_selection = new stype(max(0, floor_cx), max(0, floor_cy), tz);
+                            }
                         }
                     }
-                }
                 
-                if (Controller.mouse_left) {
-                    if (mode.last_selection) {
-                        mode.last_selection.onmousedrag(floor_cx + 1, floor_cy + 1);
-                    }
-                }
-                
-                if (Controller.release_left) {
-                    // selections of zero area are just deleted outright
-                    if (mode.last_selection) {
-                        if (mode.last_selection.area() == 0) {
-                            array_pop(mode.selection);
-                            mode.last_selection = undefined;
+                    if (Controller.mouse_left) {
+                        if (mode.last_selection) {
+                            mode.last_selection.onmousedrag(floor_cx + 1, floor_cy + 1);
                         }
-                        sa_process_selection();
                     }
-                }
                 
-                if (Controller.press_right) {
-                    Controller.press_right = false;
-                    // if there is no selection, select the single square under the
-                    // cursor. Otherwise you might want to do operations on large
-                    // swaths of entities, so don't clear it or anythign like that.
-                    
-                    if (selection_empty()) {
-                        mode.last_selection = new SelectionSingle(floor_cx, floor_cy, instance_under_cursor ? instance_under_cursor.zz : 0);
+                    if (Controller.release_left) {
+                        // selections of zero area are just deleted outright
+                        if (mode.last_selection) {
+                            if (mode.last_selection.area() == 0) {
+                                array_pop(mode.selection);
+                                mode.last_selection = undefined;
+                            }
+                            sa_process_selection();
+                        }
                     }
+                
+                    if (Controller.press_right) {
+                        Controller.press_right = false;
+                        // if there is no selection, select the single square under the
+                        // cursor. Otherwise you might want to do operations on large
+                        // swaths of entities, so don't clear it or anythign like that.
                     
-                    var menu = Stuff.menu.menu_right_click;
-                    menu_activate_extra(menu);
-                    menu.x = mouse_x;
-                    menu.y = mouse_y;
+                        if (selection_empty()) {
+                            mode.last_selection = new SelectionSingle(floor_cx, floor_cy, instance_under_cursor ? instance_under_cursor.zz : 0);
+                        }
+                    
+                        var menu = Stuff.menu.menu_right_click;
+                        menu_activate_extra(menu);
+                        menu.x = mouse_x;
+                        menu.y = mouse_y;
+                    }
                 }
             }
             #endregion
