@@ -7,21 +7,21 @@ function momu_exit() {
 }
 
 function momu_preferences() {
-    menu_activate(noone);
+    menu_close_all();
     dialog_create_preferences();
 }
 
 function momu_save_data() {
-    menu_activate(noone);
+    menu_close_all();
     project_save();
 }
 
 function momu_export_data() {
-    menu_activate(noone);
+    menu_close_all();
     project_export();
 }
 
 function momu_settings_data() {
-    menu_activate(noone);
+    menu_close_all();
     dialog_create_settings_data(noone);
 }

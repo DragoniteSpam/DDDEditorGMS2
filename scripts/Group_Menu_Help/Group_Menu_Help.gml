@@ -1,4 +1,4 @@
 function momu_credits() {
-    menu_activate(noone);
+    menu_close_all();
     dialog_create_credits();
 }

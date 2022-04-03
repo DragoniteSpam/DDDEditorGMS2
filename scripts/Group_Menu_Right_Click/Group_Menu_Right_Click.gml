@@ -1,5 +1,5 @@
 function momu_set_starting_position_down() {
-    menu_activate(noone);
+    menu_close_all();
     if (array_length(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[0];
         if (selection.area() == 1) {
@@ -13,7 +13,7 @@ function momu_set_starting_position_down() {
 }
 
 function momu_set_starting_position_up() {
-    menu_activate(noone);
+    menu_close_all();
     // this list being referenced is the selection of the UIList, because
     // it turns out i didn't name that variable very well. it's not the
     // selection in map mode, even though it kinda looks like it.
@@ -30,7 +30,7 @@ function momu_set_starting_position_up() {
 }
 
 function momu_set_starting_position_left() {
-    menu_activate(noone);
+    menu_close_all();
     if (array_length(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[0];
         if (selection.area() == 1) {
@@ -44,7 +44,7 @@ function momu_set_starting_position_left() {
 }
 
 function momu_set_starting_position_right() {
-    menu_activate(noone);
+    menu_close_all();
     if (array_length(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[0];
         if (selection.area() == 1) {
