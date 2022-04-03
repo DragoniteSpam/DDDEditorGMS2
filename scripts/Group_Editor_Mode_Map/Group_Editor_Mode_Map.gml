@@ -4,11 +4,113 @@ function EditorModeMap() : EditorModeBase() constructor {
     
     var threed_surface = self.ui.SearchID("3D VIEW");
     self.camera = new Camera(256, 256, 128, 256, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+        var mode = Stuff.map;
+        var map = mode.active_map;
+        var map_contents = map.contents;
+        var input_control = keyboard_check(vk_control);
+        
+        if (Stuff.menu.active_element || !ds_list_empty(EmuOverlay._contents)) return;
+        
+        var instance_under_cursor = undefined;
+        
+        if (!mode.mouse_over_ui) {
+            #region process the stuff you clicked on
+            if (mouse_vector.direction.z < 0) {
+                var f = abs((self.z - (mode.edit_z * TILE_DEPTH)) / mouse_vector.direction.z);
+                
+                var floor_x = self.x + mouse_vector.direction.x * f;
+                var floor_y = self.y + mouse_vector.direction.y * f;
+                var floor_z = mode.edit_z * TILE_DEPTH;
+                
+                // the bounds on this are weird - in some places the cell needs to be
+                // rounded up and in others it needs to be rounded down, so the minimum
+                // allowed "cell" is (-1, -1) - be sure to max() this later if it
+                // would cause issues
+                var floor_cx = clamp(floor_x div TILE_WIDTH, -1, mode.active_map.xx - 1);
+                var floor_cy = clamp(floor_y div TILE_HEIGHT, -1, mode.active_map.yy - 1);
+                var floor_cz = clamp(floor_z div TILE_DEPTH, -1, mode.active_map.zz - 1);
+                
+                if (Controller.press_left) {
+                    if (array_length(mode.selection) < MAX_SELECTION_COUNT) {
+                        if (!keyboard_check(Controller.input_selection_add) && !Settings.selection.addition) {
+                            selection_clear();
+                        }
+                        var stype = SelectionRectangle;
+                        switch (Settings.selection.mode) {
+                            case SelectionModes.SINGLE: stype = SelectionSingle; break;
+                            case SelectionModes.RECTANGLE: stype = SelectionRectangle; break;
+                            case SelectionModes.CIRCLE: stype = SelectionCircle; break;
+                        }
+                        
+                        var button = mode.ui.SearchID("ZONE DATA");
+                        button.text = "Zone Data";
+                        button.SetInteractive(false);
+                        mode.selected_zone = undefined;
+                        
+                        if (instance_under_cursor && instance_under_cursor.ztype != undefined) {
+                            button.interactive = true;
+                            button.onmouseup = instance_under_cursor.EditScript;
+                            button.text = "Data: " + instance_under_cursor.name;
+                            mode.selected_zone = instance_under_cursor;
+                        } else {
+                            var tz = instance_under_cursor ? max(instance_under_cursor.zz, mode.edit_z) : mode.edit_z;
+                            mode.last_selection = new stype(max(0, floor_cx), max(0, floor_cy), tz);
+                        }
+                    }
+                }
+                
+                if (Controller.mouse_left) {
+                    if (mode.last_selection) {
+                        mode.last_selection.onmousedrag(floor_cx + 1, floor_cy + 1);
+                    }
+                }
+                
+                if (Controller.release_left) {
+                    // selections of zero area are just deleted outright
+                    if (mode.last_selection) {
+                        if (mode.last_selection.area() == 0) {
+                            array_pop(mode.selection);
+                            mode.last_selection = undefined;
+                        }
+                        sa_process_selection();
+                    }
+                }
+                
+                if (Controller.press_right) {
+                    Controller.press_right = false;
+                    // if there is no selection, select the single square under the
+                    // cursor. Otherwise you might want to do operations on large
+                    // swaths of entities, so don't clear it or anythign like that.
+                    
+                    if (selection_empty()) {
+                        mode.last_selection = new SelectionSingle(floor_cx, floor_cy, instance_under_cursor ? instance_under_cursor.zz : 0);
+                    }
+                    
+                    var menu = Stuff.menu.menu_right_click;
+                    menu_activate_extra(menu);
+                    menu.x = mouse_x;
+                    menu.y = mouse_y;
+                }
+            }
+            #endregion
+        
+            #region main map editing actions
+            if (!input_control) {
+                if (keyboard_check_pressed(vk_space)) {
+                    sa_fill();
+                }
+                if (keyboard_check_pressed(vk_delete)) {
+                    sa_delete();
+                }
+            }
+            #endregion
+        }
     
+        mode.mouse_over_ui = false;
+        if (instance_under_cursor) mode.under_cursor = instance_under_cursor;
     });
     self.base_speed = 20;
     self.camera.Load(setting_get("map", "camera", undefined));
-    self.camera = new Camera(250, 250, 250, 0, 0, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, emu_null);
     self.camera.SetCenter(threed_surface.x + threed_surface.width / 2, threed_surface.y + threed_surface.height / 2);
     self.camera.SetViewportAspect(function() {
         return Stuff.map.ui.SearchID("3D VIEW").width;
