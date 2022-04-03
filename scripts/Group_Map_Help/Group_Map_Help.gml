@@ -26,10 +26,10 @@ function map_selection_like_type(list, type_flag) {
 function map_selection_like_property(list, property, type_flag = ETypeFlags.ENTITY) {
     var first_value = undefined;
     for (var i = 0, n = ds_list_size(list); i < n; i++) {
-        if (list[| i].etype & type_flag == 0) continue;
+        if (list[| i].etype_flags & type_flag == 0) continue;
         first_value ??= list[| i][$ property];
         if (first_value != list[| i][$ property]) return undefined;
     }
-    if (!first_value) return undefined;
+    if (first_value == undefined) return undefined;
     return { value: first_value };
 }
