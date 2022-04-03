@@ -59,10 +59,10 @@ function ui_init_main(mode) {
                 Settings.selection.mask = self.value;
             }))
                 .AddOptions([
-                    new EmuBitfieldOption("Tile", ETypeFlags.ENTITY_TILE_ANIMATED & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, function() { return self.root.value & self.value; }),
-                    new EmuBitfieldOption("Mesh", ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, function() { return self.root.value & self.value; }),
-                    new EmuBitfieldOption("Pawn", ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, function() { return self.root.value & self.value; }),
-                    new EmuBitfieldOption("Effect", ETypeFlags.ENTITY_EFFECT & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, function() { return self.root.value & self.value; }),
+                    new EmuBitfieldOption("Tile", ETypeFlags.ENTITY_TILE_ANIMATED & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
+                    new EmuBitfieldOption("Mesh", ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
+                    new EmuBitfieldOption("Pawn", ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
+                    new EmuBitfieldOption("Effect", ETypeFlags.ENTITY_EFFECT & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
                     new EmuBitfieldOption("All", (ETypeFlags.ENTITY_TILE_ANIMATED | ETypeFlags.ENTITY_MESH | ETypeFlags.ENTITY_PAWN | ETypeFlags.ENTITY_EFFECT) & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
                     new EmuBitfieldOption("None", 0x0, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
                 ])
@@ -779,7 +779,7 @@ function ui_init_main(mode) {
                     } else if (ds_list_size(sel) == 1) {
                         self.SetInteractive(true);
                         for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
-                            if (sel[| 0].etype_flags & ETypeFlags.ENTITY_MESH_AUTO && sel[| 0].mesh == Game.meshes[i]) {
+                            if (((sel[| 0].etype_flags & ETypeFlags.ENTITY_MESH_AUTO) == 0) && (sel[| 0].mesh == Game.meshes[i])) {
                                 self.SetList(sel[| 0].mesh.submeshes);
                                 for (var j = 0, n2 = array_length(sel[| 0].mesh.submeshes); j < n2; j++) {
                                     if (sel[| 0].mesh_submesh == sel[| 0].mesh.submeshes[j].proto_guid) {
