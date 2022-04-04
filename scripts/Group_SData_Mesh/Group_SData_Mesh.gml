@@ -114,7 +114,7 @@ function DataMesh(source) : SData(source) constructor {
         
         for (var i = 0; i < array_length(self.submeshes); i++) {
             if (!self.submeshes[i].buffer) continue;
-            var sub_bounds = meshops_get_bounds(self.submeshes.buffer);
+            var sub_bounds = meshops_get_bounds(self.submeshes[i].buffer);
             self.xmin = min(self.xmin, sub_bounds.x1);
             self.ymin = min(self.ymin, sub_bounds.y1);
             self.zmin = min(self.zmin, sub_bounds.y1);
