@@ -31,8 +31,9 @@ function selection_delete(entity) {
 
 function selected(entity, mask = Settings.selection.mask) {
     // all Entities will mask against ETypeFlags.ENTITY (0x1);
-    // if you want a helpful selection determination, ignore those cases
-    if (entity.etype_flags & mask > ETypeFlags.ENTITY) {
+    // if you want a helpful selection determination, remove that
+    // flag from the mask.
+    if (entity.etype_flags & mask) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {
             if (Stuff.map.selection[i].selected_determination(entity)) {
                 return true;
@@ -198,12 +199,12 @@ function selected_border(entity, mask = Settings.selection.mask) {
 }
 
 function selection_all() {
-    // this is O(n). will not scale as well as i'd like. Use with caution.
+    // this is O(n*m). will not scale as well as i'd like. Use with caution.
     // in the future it may be useful to turn this into some sort of spatial
     // hierarchy of sorts.
     
     var list = ds_list_create();
-    for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
+    for (var i = 0, n = ds_list_size(Stuff.map.active_map.contents.all_entities); i < n; i++) {
         var thing = Stuff.map.active_map.contents.all_entities[| i];
         if (selected(thing)) {
             ds_list_add(list, thing);
