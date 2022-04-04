@@ -317,4 +317,12 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     static Dot2D = function(x, y) {
         return dot_product_normalized(self.xto - self.x, self.yto - self.y, x - self.x, y - self.y);
     };
+    
+    static GetScreenSpace = function(x, y, z) {
+        return world_to_screen(x, y, z, self.view_mat, self.proj_mat, self.get_width(), self.get_height());
+    };
+    
+    static GetWorldSpace = function(x, y) {
+        return screen_to_world(x, y, self.view_mat, self.proj_mat, self.get_width(), self.get_height());
+    };
 }
