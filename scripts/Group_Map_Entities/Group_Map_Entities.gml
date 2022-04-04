@@ -349,8 +349,6 @@ function EntityEffect(source) : Entity(source) constructor {
         return self.CreateJSONEffect();
     };
     
-    self.axis_over = CollisionSpecialValues.NONE;
-    
     static DestroyEffect = function() {
         var map = Stuff.map.active_map;
         var map_contents = map.contents;
