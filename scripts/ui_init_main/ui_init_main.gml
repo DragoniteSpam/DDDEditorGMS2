@@ -968,18 +968,14 @@ function ui_init_main(mode) {
                 if (index == -1) return;
                 
                 var data = Game.meshes[index];
-                /*
-                var thing = Stuff.map.ui.t_p_mesh_editor;
-                ui_input_set_value(thing.mesh_name, data.name);
-                ui_input_set_value(thing.mesh_name_internal, data.internal_name);
-            
-                ui_input_set_value(thing.xmin, string(data.xmin));
-                ui_input_set_value(thing.xmax, string(data.xmax));
-                ui_input_set_value(thing.ymin, string(data.ymin));
-                ui_input_set_value(thing.ymax, string(data.ymax));
-                ui_input_set_value(thing.zmin, string(data.zmin));
-                ui_input_set_value(thing.zmax, string(data.zmax));
-                */
+                self.GetSibling("MESH NAME").SetValue(data.name);
+                self.GetSibling("MESH INTERNAL NAME").SetValue(data.internal_name);
+                self.GetSibling("MESH BOUNDS XMIN").SetValue(data.xmin);
+                self.GetSibling("MESH BOUNDS YMIN").SetValue(data.ymin);
+                self.GetSibling("MESH BOUNDS ZMIN").SetValue(data.zmin);
+                self.GetSibling("MESH BOUNDS XMAX").SetValue(data.xmax);
+                self.GetSibling("MESH BOUNDS YMAX").SetValue(data.ymax);
+                self.GetSibling("MESH BOUNDS ZMAX").SetValue(data.zmax);
             }))
                 .SetList(Game.meshes)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
