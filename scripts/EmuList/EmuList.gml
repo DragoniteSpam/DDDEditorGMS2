@@ -37,9 +37,11 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
 	self._dragging = false;
 	
 	static ForEachSelection = function(f) {
-		var each = variable_struct_get_names(self._selected_entries);
-		for (var i = 0, n = array_length(each); i < n; i++) {
-			f(self._selected_entries[$ each[i]]);
+		var names = variable_struct_get_names(self._selected_entries);
+		for (var i = 0, n = array_length(names); i < n; i++) {
+    		if (names[i] == "first") continue;
+    		if (names[i] == "last") continue;
+			f(real(names[i]));
 		}
 	};
 	
