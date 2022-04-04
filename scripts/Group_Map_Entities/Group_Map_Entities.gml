@@ -311,8 +311,7 @@ function EntityEffect(source) : Entity(source) constructor {
         var world_y = (self.yy + self.off_yy) * TILE_HEIGHT;
         var world_z = (self.zz + self.off_zz) * TILE_DEPTH;
     
-        var position = world_to_screen(world_x, world_y, world_z, camera_get_view_mat(camera), camera_get_proj_mat(camera), camera_get_view_width(camera), camera_get_view_height(camera));
-    
+        var position = mode.camera.GetScreenSpace(world_x, world_y, world_z);
         var dist = mode.camera.DistanceTo(world_x, world_y, world_z);
         var f = min(dist / 160, 2.5);
         var transform = matrix_build(world_x, world_y, world_z, 0, 0, 0, f, f, f);
