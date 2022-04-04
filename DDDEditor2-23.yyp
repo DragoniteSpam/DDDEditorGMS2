@@ -414,7 +414,6 @@
     {"id":{"name":"uivc_entity_event_trigger","path":"scripts/uivc_entity_event_trigger/uivc_entity_event_trigger.yy",},"order":15,},
     {"id":{"name":"uivc_entity_auto_move","path":"scripts/uivc_entity_auto_move/uivc_entity_auto_move.yy",},"order":16,},
     {"id":{"name":"uivc_entity_auto_speed","path":"scripts/uivc_entity_auto_speed/uivc_entity_auto_speed.yy",},"order":17,},
-    {"id":{"name":"uivc_entity_effect_com_lighting_type","path":"scripts/uivc_entity_effect_com_lighting_type/uivc_entity_effect_com_lighting_type.yy",},"order":23,},
     {"id":{"name":"uivc_entity_auto_frequency","path":"scripts/uivc_entity_auto_frequency/uivc_entity_auto_frequency.yy",},"order":19,},
     {"id":{"name":"__scribble_system_glyph_data","path":"scripts/__scribble_system_glyph_data/__scribble_system_glyph_data.yy",},"order":11,},
     {"id":{"name":"EmuProgressBar","path":"scripts/EmuProgressBar/EmuProgressBar.yy",},"order":10,},
