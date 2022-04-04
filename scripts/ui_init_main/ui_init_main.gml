@@ -329,7 +329,7 @@ function ui_init_main(mode) {
         (new EmuTab("Entity")).AddContent([
             #region column 1
             new EmuText(col1x, EMU_BASE, element_width, element_height, "[c_aqua]Entity Properties"),
-            (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "Name:", "", "entity name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+            (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "", "", "entity name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
                 map_foreach_selected(function(entity, data) {
                     entity.name = data.value;
                 }, { value: self.value });
@@ -715,11 +715,12 @@ function ui_init_main(mode) {
                 var index = self.GetSelection();
                 if (index == -1) return;
                 
-                var closure = { value: Game.meshes[index] , changed: false, };
-                map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_MESH) return;
-                    closure.changed |= entity.mesh.GUID != data.value;
-                    entity.SetMesh(mesh, changed ? mesh.first_proto_guid : entity.mesh_submesh);
+                var mesh = Game.meshes[index];
+                var closure = { value: mesh, changed: false, };
+                map_foreach_selected(function(entity, closure) {
+                    if (entity.etype_flags != ETypes.ENTITY_MESH) return;
+                    closure.changed |= entity.mesh.GUID != closure.value;
+                    entity.SetMesh(closure.value, closure.changed ? closure.value.first_proto_guid : entity.mesh_submesh);
                 }, closure);
                 
                 if (closure.changed)
@@ -738,31 +739,27 @@ function ui_init_main(mode) {
                     self.Deselect();
                     if (ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
-                    } else if (ds_list_size(sel) == 1) {
-                        self.SetInteractive(true);
-                        for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
-                            if (((sel[| 0].etype_flags & ETypeFlags.ENTITY_MESH_AUTO) == 0) && (sel[| 0].mesh == Game.meshes[i])) {
-                                self.Select(i);
-                                break;
-                            }
-                        }
                     } else {
                         self.SetInteractive(true);
-                        // checking this gets expensive in O(n^2) time so we're not going to do it
+                        var common = map_selection_like_property(sel, "mesh", ETypeFlags.ENTITY_MESH);
+                        if (common) self.Select(array_search(Game.meshes, guid_get(common.value)), true);
                     }
                 }),
             #endregion
             #region column 2
             (new EmuList(col2x, EMU_BASE, element_width, element_height, "Submeshes", element_height, 8, function() {
+                if (!self.GetSibling("ENTITY MESH MESH")) return;
+                var mesh_index = self.GetSibling("ENTITY MESH MESH").GetSelection();
+                if (mesh_index == -1) return;
                 var index = self.GetSelection();
                 if (index == -1) return;
                 
-                var submesh = guid_get(entities[| 0].mesh).submeshes[index].proto_guid;
+                var submesh = Game.meshes[mesh_index].submeshes[index].proto_guid;
                 var closure = { value: submesh, changed: false };
-                map_foreach_selected(function(entity, data) {
+                map_foreach_selected(function(entity, closure) {
                     if (entity.etype != ETypes.ENTITY_MESH) return;
-                    closure.changed |= entity.mesh_submesh != data.value;
-                    entity.mesh_submesh = data.value;
+                    closure.changed |= entity.mesh_submesh != closure.value;
+                    entity.mesh_submesh = closure.value;
                 }, closure);
                 
                 if (closure.changed)
@@ -776,23 +773,14 @@ function ui_init_main(mode) {
                     self.Deselect();
                     if (ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
-                    } else if (ds_list_size(sel) == 1) {
-                        self.SetInteractive(true);
-                        for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
-                            if (((sel[| 0].etype_flags & ETypeFlags.ENTITY_MESH_AUTO) == 0) && (sel[| 0].mesh == Game.meshes[i])) {
-                                self.SetList(sel[| 0].mesh.submeshes);
-                                for (var j = 0, n2 = array_length(sel[| 0].mesh.submeshes); j < n2; j++) {
-                                    if (sel[| 0].mesh_submesh == sel[| 0].mesh.submeshes[j].proto_guid) {
-                                        self.Select(j);
-                                        break;
-                                    }
-                                }
-                                break;
-                            }
-                        }
                     } else {
                         self.SetInteractive(true);
-                        // just like the last one
+                        var common = map_selection_like_property(sel, "mesh", ETypeFlags.ENTITY_MESH);
+                        if (!common) return;
+                        
+                        var mesh = guid_get(common.value);
+                        common = map_selection_like_property(sel, "mesh_submesh", ETypeFlags.ENTITY_MESH);
+                        if (common) self.Select(proto_guid_get(mesh, common.value), true);
                     }
                 }),
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Animation"),
@@ -875,13 +863,13 @@ function ui_init_main(mode) {
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetID("ENTITY PAWN SPRITE")
                 .SetRefresh(function(sel) {
+                    self.Deselect();
                     if (ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
-                        self.Deselect();
                     } else {
                         var common = map_selection_like_property(sel, "overworld_sprite", ETypeFlags.ENTITY_PAWN);
                         self.SetInteractive(true);
-                        if (common) self.Select(common.value, true);
+                        if (common) self.Select(array_search(Game.graphics.overworlds, guid_get(common.value)), true);
                     }
                 }),
             (new EmuInput(col2x, EMU_BASE, element_width, element_height, "Frame", "0", "of animation", 4, E_InputTypes.INT, function() {
