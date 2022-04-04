@@ -17,7 +17,7 @@ enum ETypeFlags {
     ENTITY_MESH             = 0x008 | ETypeFlags.ENTITY,
     ENTITY_PAWN             = 0x010 | ETypeFlags.ENTITY,
     ENTITY_EFFECT           = 0x020 | ETypeFlags.ENTITY,
-    ENTITY_MESH_AUTO        = 0x040 | ETypeFlags.ENTITY_MESH,
+    ENTITY_MESH_AUTO        = 0x040,
     // every mask
     ENTITY_ANY              = 0xffffffff,
 }
