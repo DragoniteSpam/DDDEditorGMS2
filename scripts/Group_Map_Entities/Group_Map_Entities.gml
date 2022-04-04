@@ -301,7 +301,40 @@ function EntityEffect(source) : Entity(source) constructor {
     // editor properties
     self.slot = MapCellContents.EFFECT;
     self.batchable = false;
-    static render = render_effect;
+    
+    static render = function() {
+        var mode = Stuff.map;
+        var camera = camera_get_active();
+        var com_offset = 18;
+    
+        var world_x = (self.xx + self.off_xx) * TILE_WIDTH;
+        var world_y = (self.yy + self.off_yy) * TILE_HEIGHT;
+        var world_z = (self.zz + self.off_zz) * TILE_DEPTH;
+    
+        var position = world_to_screen(world_x, world_y, world_z, camera_get_view_mat(camera), camera_get_proj_mat(camera), camera_get_view_width(camera), camera_get_view_height(camera));
+    
+        var dist = mode.camera.DistanceTo(world_x, world_y, world_z);
+        var f = min(dist / 160, 2.5);
+        var transform = matrix_build(world_x, world_y, world_z, 0, 0, 0, f, f, f);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_x, transform, false);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_y, transform, false);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_z, transform, false);
+    
+        render_effect_add_sprite(spr_star, position, new Vector2(0, 0));
+    
+        if (self.com_light) {
+            render_effect_add_sprite(self.com_light.sprite, position, new Vector2(-com_offset, com_offset));
+            self.com_light.Render();
+        }
+        if (self.com_particle) {
+            render_effect_add_sprite(self.com_particle.sprite, position, new Vector2(0, com_offset));
+            self.com_particle.Render();
+        }
+        if (self.com_audio) {
+            render_effect_add_sprite(self.com_audio.sprite, position, new Vector2(com_offset, com_offset));
+            self.com_audio.Render();
+        }
+    };
     
     // components
     self.com_light = undefined;

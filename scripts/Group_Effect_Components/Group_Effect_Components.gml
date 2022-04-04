@@ -29,7 +29,18 @@ function Component(parent, source = undefined) constructor {
 }
 
 function ComponentPointLight(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = render_effect_light_point;
+    self.Render = function() {
+        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+            var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
+            var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
+            var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
+            graphics_add_gizmo(Stuff.graphics.axes_rotation, matrix_build(
+                world_x, world_y, world_z, 0, 0, 0,
+                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16,
+            ), true);
+        }
+    };
+    
     self.sprite = spr_light_point;
     self.type = LightTypes.POINT;
     self.label_colour = c_blue;
@@ -64,7 +75,18 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
 }
 
 function ComponentSpotLight(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = render_effect_light_spot;
+    self.Render = function() {
+        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+            var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
+            var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
+            var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
+            graphics_add_gizmo(Stuff.graphics.axes_rotation, matrix_build(
+                world_x, world_y, world_z, 0, 0, 0,
+                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16,
+            ), true);
+        }
+    };
+    
     self.sprite = spr_light_point;
     self.type = LightTypes.SPOT;
     self.label_colour = c_orange;
@@ -119,7 +141,17 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
 }
 
 function ComponentDirectionalLight(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = render_effect_light_direction;
+    self.Render = function() {
+        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+            var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
+            var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
+            var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
+            graphics_add_gizmo(Stuff.graphics.axes_rotation, matrix_build(
+                world_x, world_y, world_z, 0, 0, 0, 4, 4, 4
+            ), true);
+        }
+    };
+    
     self.sprite = spr_light_direction;
     self.type = LightTypes.DIRECTIONAL;
     self.label_colour = c_green;
@@ -162,7 +194,7 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
 }
 
 function ComponentParticle(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = null;
+    self.Render = null;
     self.sprite = spr_light_direction;
     
     // specific

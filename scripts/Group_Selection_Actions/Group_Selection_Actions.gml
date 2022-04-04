@@ -24,8 +24,7 @@ function sa_fill() {
         },
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.EFFECT]) {
-                var effect = new EntityEffect("Effect");
-                Stuff.map.active_map.Add(effect, x, y, z);
+                Stuff.map.active_map.Add(new EntityEffect("Effect"), x, y, z);
             }
         },
         function(x, y, z) {
