@@ -172,6 +172,7 @@
     {"id":{"name":"shd_outline","path":"shaders/shd_outline/shd_outline.yy",},"order":6,},
     {"id":{"name":"dialog_create_entity_effect_com_markers","path":"scripts/dialog_create_entity_effect_com_markers/dialog_create_entity_effect_com_markers.yy",},"order":1,},
     {"id":{"name":"Group_Intersection","path":"scripts/Group_Intersection/Group_Intersection.yy",},"order":17,},
+    {"id":{"name":"Group_Emu_Shortcut_Misc","path":"scripts/Group_Emu_Shortcut_Misc/Group_Emu_Shortcut_Misc.yy",},"order":1,},
     {"id":{"name":"spart_debug_vbuffers","path":"scripts/spart_debug_vbuffers/spart_debug_vbuffers.yy",},"order":0,},
     {"id":{"name":"sprite_atlas_pack","path":"scripts/sprite_atlas_pack/sprite_atlas_pack.yy",},"order":1,},
     {"id":{"name":"Group_SData_Image","path":"scripts/Group_SData_Image/Group_SData_Image.yy",},"order":4,},

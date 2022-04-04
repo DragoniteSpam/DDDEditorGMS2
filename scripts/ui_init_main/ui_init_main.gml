@@ -733,6 +733,7 @@ function ui_init_main(mode) {
                 .SetVacantText("no meshes")
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetList(Game.meshes)
+                .SetListColors(emu_color_meshes)
                 .SetID("ENTITY MESH MESH")
                 .SetRefresh(function(sel) {
                     self.Deselect();
@@ -765,7 +766,6 @@ function ui_init_main(mode) {
             }))
                 .SetVacantText("no meshes")
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-                .SetList(Game.meshes)
                 .SetID("ENTITY MESH SUBMESH")
                 .SetRefresh(function(sel) {
                     self.Deselect();
@@ -986,17 +986,7 @@ function ui_init_main(mode) {
                 .SetUpdate(function() {
                     self.text = "Meshes: " + string(array_length(Game.meshes));
                 })
-                .SetListColors(function(index) {
-                    var mesh = Game.meshes[index];
-                    for (var i = 0; i < array_length(mesh.submeshes); i++) {
-                        if (!mesh.submeshes[i].buffer) return c_red;
-                    }
-                    switch (mesh.type) {
-                        case MeshTypes.RAW: return c_black;
-                        case MeshTypes.SMF: return c_blue;
-                    }
-                    return c_black;
-                })
+                .SetListColors(emu_color_meshes)
                 .SetCallbackDouble(function() {
                     var index = self.GetSelection();
                     if(index == -1) return;

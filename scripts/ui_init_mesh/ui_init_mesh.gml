@@ -59,6 +59,7 @@ function ui_init_mesh(mode) {
             .SetRefresh(function(data) {
                 self.SetList(Game.meshes);
             })
+            .SetListColors(emu_color_meshes)
             .SetID("MESH LIST"),
         (new EmuCore(0, 0, hud_width, hud_height)).AddContent([
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Essentials"),
