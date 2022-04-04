@@ -718,7 +718,7 @@ function ui_init_main(mode) {
                 var mesh = Game.meshes[index];
                 var closure = { value: mesh, changed: false, };
                 map_foreach_selected(function(entity, closure) {
-                    closure.changed |= entity.mesh.GUID != closure.value;
+                    closure.changed |= entity.mesh != closure.value;
                     entity.SetMesh(closure.value, closure.changed ? closure.value.first_proto_guid : entity.mesh_submesh);
                 }, closure, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
                 
