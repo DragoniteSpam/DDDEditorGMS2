@@ -1,5 +1,4 @@
-function sa_fill() {
-    static fill_types = [
+function sa_fill() {    static fill_types = [
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.TILE]) {
                 Stuff.map.active_map.Add(new EntityTile("Tile", Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y), x, y, z);
@@ -14,7 +13,9 @@ function sa_fill() {
         },
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.MESH]) {
-                Stuff.map.active_map.Add(new EntityMesh("Mesh", Game.meshes[Stuff.map.selection_fill_mesh]), x, y, z);
+                var index = Stuff.map.ui.SearchID("MESH LIST").GetSelection();
+                if (index < 0) return;
+                Stuff.map.active_map.Add(new EntityMesh("Mesh", Game.meshes[index]), x, y, z);
             }
         },
         function(x, y, z) {

@@ -967,8 +967,7 @@ function ui_init_main(mode) {
                 var index = self.GetSelection();
                 if (index == -1) return;
                 
-                Stuff.map.selection_fill_mesh = index;
-                var data = Game.meshes[Stuff.map.selection_fill_mesh];
+                var data = Game.meshes[index];
                 /*
                 var thing = Stuff.map.ui.t_p_mesh_editor;
                 ui_input_set_value(thing.mesh_name, data.name);

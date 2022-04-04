@@ -148,7 +148,6 @@ function EditorModeMap() : EditorModeBase() constructor {
     self.last_selection = undefined;
     self.selected_zone = noone;
 
-    self.selection_fill_mesh = -1;       // list index
     self.selection_fill_tile_x = 4;
     self.selection_fill_tile_y = 0;
     self.selection_fill_tile_size = 32;  // make this a setting or something later
