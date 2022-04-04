@@ -14,7 +14,7 @@ function sa_fill() {    static fill_types = [
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.MESH]) {
                 var index = Stuff.map.ui.SearchID("MESH LIST").GetSelection();
-                if (index < 0) return;
+                if (index == -1) return;
                 Stuff.map.active_map.Add(new EntityMesh("Mesh", Game.meshes[index]), x, y, z);
             }
         },

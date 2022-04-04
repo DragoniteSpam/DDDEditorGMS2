@@ -117,7 +117,8 @@ function ui_init_main(mode) {
                 selection_clear();
                 
                 Settings.selection.mask = 0;
-                self.ForEachSelection(function(entity) {
+                self.ForEachSelection(function(index) {
+                    var entity = Stuff.map.active_map.contents.all_entities[| index];
                     Settings.selection.mask |= entity.etype_flags;
                     var selection = new SelectionSingle(entity.xx, entity.yy, entity.zz);
                 });
@@ -966,16 +967,7 @@ function ui_init_main(mode) {
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 20, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
-                
-                var data = Game.meshes[index];
-                self.GetSibling("MESH NAME").SetValue(data.name);
-                self.GetSibling("MESH INTERNAL NAME").SetValue(data.internal_name);
-                self.GetSibling("MESH BOUNDS XMIN").SetValue(data.xmin);
-                self.GetSibling("MESH BOUNDS YMIN").SetValue(data.ymin);
-                self.GetSibling("MESH BOUNDS ZMIN").SetValue(data.zmin);
-                self.GetSibling("MESH BOUNDS XMAX").SetValue(data.xmax);
-                self.GetSibling("MESH BOUNDS YMAX").SetValue(data.ymax);
-                self.GetSibling("MESH BOUNDS ZMAX").SetValue(data.zmax);
+                self.root.Refresh();
             }))
                 .SetList(Game.meshes)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
@@ -1001,6 +993,11 @@ function ui_init_main(mode) {
                 if (index == -1) return;
                 Game.meshes[index].name = self.value;
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].name);
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH NAME"),
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Internal name:")),
@@ -1009,6 +1006,11 @@ function ui_init_main(mode) {
                 if (index == -1) return;
                 internal_name_set(Game.meshes[index], self.value);
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].internal_name);
+                })
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH INTERNAL NAME"),
             (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Bounds:")),
@@ -1023,6 +1025,11 @@ function ui_init_main(mode) {
                     mesh.RecalculateBounds();
                 }
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].xmin);
+                })
                 .SetRealNumberBounds(-100, 100)
                 .SetID("MESH BOUNDS XMIN"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "x2:", "", "", 4, E_InputTypes.INT, function() {
@@ -1036,6 +1043,11 @@ function ui_init_main(mode) {
                     mesh.RecalculateBounds();
                 }
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].xmax);
+                })
                 .SetRealNumberBounds(-100, 100)
                 .SetID("MESH BOUNDS XMAX"),
             (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "y1:", "", "", 4, E_InputTypes.INT, function() {
@@ -1049,6 +1061,11 @@ function ui_init_main(mode) {
                     mesh.RecalculateBounds();
                 }
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].ymin);
+                })
                 .SetRealNumberBounds(-100, 100)
                 .SetID("MESH BOUNDS YMIN"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "y2:", "", "", 4, E_InputTypes.INT, function() {
@@ -1062,6 +1079,11 @@ function ui_init_main(mode) {
                     mesh.RecalculateBounds();
                 }
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].ymax);
+                })
                 .SetRealNumberBounds(-100, 100)
                 .SetID("MESH BOUNDS YMAX"),
             (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "z1:", "", "", 4, E_InputTypes.INT, function() {
@@ -1075,6 +1097,11 @@ function ui_init_main(mode) {
                     mesh.RecalculateBounds();
                 }
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].zmin);
+                })
                 .SetRealNumberBounds(-100, 100)
                 .SetID("MESH BOUNDS ZMIN"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "z2:", "", "", 4, E_InputTypes.INT, function() {
@@ -1088,8 +1115,21 @@ function ui_init_main(mode) {
                     mesh.RecalculateBounds();
                 }
             }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].zmax);
+                })
                 .SetRealNumberBounds(-100, 100)
                 .SetID("MESH BOUNDS ZMAX"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Auto Calculate Bounds", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                Game.meshes[index].AutoCalculateBounds();
+                self.root.Refresh();
+            }))
+                .SetTooltip("Automatically calculate the bounds of a mesh. Rounds to the nearest 32, eg [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].")
+                .SetID("AUTO CALCULATE BOUNDS"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Flag Data", function() {
                 var index = self.GetSibling("MESH LIST").GetSelection();
                 if(index == -1) return;
