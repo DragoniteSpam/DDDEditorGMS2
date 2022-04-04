@@ -718,10 +718,9 @@ function ui_init_main(mode) {
                 var mesh = Game.meshes[index];
                 var closure = { value: mesh, changed: false, };
                 map_foreach_selected(function(entity, closure) {
-                    if (entity.etype_flags != ETypes.ENTITY_MESH) return;
                     closure.changed |= entity.mesh.GUID != closure.value;
                     entity.SetMesh(closure.value, closure.changed ? closure.value.first_proto_guid : entity.mesh_submesh);
-                }, closure);
+                }, closure, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
                 
                 if (closure.changed)
                     batch_again();
@@ -757,10 +756,9 @@ function ui_init_main(mode) {
                 var submesh = Game.meshes[mesh_index].submeshes[index].proto_guid;
                 var closure = { value: submesh, changed: false };
                 map_foreach_selected(function(entity, closure) {
-                    if (entity.etype != ETypes.ENTITY_MESH) return;
                     closure.changed |= entity.mesh_submesh != closure.value;
                     entity.mesh_submesh = closure.value;
-                }, closure);
+                }, closure, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
                 
                 if (closure.changed)
                     batch_again();
@@ -786,9 +784,8 @@ function ui_init_main(mode) {
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Animation"),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animated", false, function() {
                 map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_MESH) return;
                     entity.animated = data.value;
-                }, { value: self.value });
+                }, { value: self.value }, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
             }))
                 .SetID("ENTITY MESH ANIMATED")
                 .SetRefresh(function(sel) {
@@ -803,9 +800,8 @@ function ui_init_main(mode) {
                 }),
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Anim. Speed:", "0", "frames per second", 4, E_InputTypes.REAL, function() {
                 map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_MESH) return;
                     entity.animation_speed = data.value;
-                }, { value: real(self.value) });
+                }, { value: real(self.value) }, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
             }))
                 .SetID("ENTITY MESH ANIMATION SPEED")
                 .SetTooltip("The number of complete animation frames per second. (Animations will not be previewed in the editor.)")
@@ -821,9 +817,8 @@ function ui_init_main(mode) {
                 }),
             (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "End action:", 0, function() {
                 map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_MESH) return;
                     entity.animation_end_action = data.value;
-                }, { value: self.value });
+                }, { value: self.value }, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
             }))
                 .AddOptions(["Stop", "Loop", "Reverse"])
                 .SetID("ENTITY MESH ANIMATION END ACTION")
@@ -855,9 +850,8 @@ function ui_init_main(mode) {
                 if (index == -1) return;
                 
                 map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_PAWN) return;
                     entity.overworld_sprite = data.value;
-                }, { value: Game.graphics.overworlds[index].GUID });
+                }, { value: Game.graphics.overworlds[index].GUID }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
             }))
                 .SetList(Game.graphics.overworlds)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
@@ -874,9 +868,8 @@ function ui_init_main(mode) {
                 }),
             (new EmuInput(col2x, EMU_BASE, element_width, element_height, "Frame", "0", "of animation", 4, E_InputTypes.INT, function() {
                 map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_PAWN) return;
                     entity.frame = real(data.value);
-                }, { value: real(self.value) });
+                }, { value: real(self.value) }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
             }))
                 .SetID("ENTITY PAWN FRAME")
                 .SetTooltip("The frame of the pawn's animation to show.")
@@ -892,9 +885,8 @@ function ui_init_main(mode) {
                 }),
             (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "Direction:", 0, function() {
                 map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_PAWN) return;
                     entity.map_direction = data.value;
-                }, { value: self.value });
+                }, { value: self.value }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
             }))
                 .AddOptions(["Down", "Left", "Right", "Up"])
                 .SetID("ENTITY PAWN DIRECTION")
@@ -911,9 +903,8 @@ function ui_init_main(mode) {
                 }),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animating", false, function() {
                 map_foreach_selected(function(entity, data) {
-                    if (entity.etype != ETypes.ENTITY_PAWN) return;
                     entity.is_animating = data.value;
-                }, { value: self.value });
+                }, { value: self.value }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
             }))
                 .SetID("ENTITY PAWN ANIMATING")
                 .SetRefresh(function(sel) {

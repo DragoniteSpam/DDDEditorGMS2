@@ -5,9 +5,13 @@
 // carry out the operation. For example, if you wanted to rename every selected
 // entity, you would call map_foreach_selected with { name: "whatever" } in the
 // data parameter.
-function map_foreach_selected(f, data) {
+// 
+// type_flag is the mask determining what type of entity you may act upon,
+// defaulting to any entity.
+function map_foreach_selected(f, data, type_flag = ETypeFlags.ENTITY) {
     var list = Stuff.map.selected_entities;
     for (var i = 0, n = ds_list_size(list); i < n; i++) {
+        if ((list[| i].etype_flags & type_flag) == 0) continue;
         f(list[| i], data);
     }
 }
