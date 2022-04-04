@@ -154,8 +154,9 @@ function EmuCore(x, y, w, h) constructor {
         }
         for (var i = 0; i < array_length(elements); i++) {
             var thing = elements[i];
+            var top = self.GetTop();
+            // calculate the vertical position first
             if (thing.y == EMU_AUTO) {
-                var top = self.GetTop();
                 if (top) {
                     thing.y = top.y + top.GetHeight() + self._element_spacing_y;
                 } else {
@@ -173,11 +174,24 @@ function EmuCore(x, y, w, h) constructor {
                 if (top) {
                     thing.y = top.y;
                 } else {
-                    thing.y = self._element_spacing_x;
+                    thing.y = self._element_spacing_y;
                 }
             } else if (thing.y == EMU_BASE) {
                 thing.y = self._element_spacing_y;
             }
+            // and then the horizontal position second
+            if (thing.x == EMU_AUTO) {
+                if (top) {
+                    if (thing.y + thing.y + self._element_spacing_y > self.height) {
+                        thing.x = top.x + top.width + self._element_spacing_x;
+                    } else {
+                        thing.x = self._element_spacing_x;
+                    }
+                } else {
+                    thing.x = self._element_spacing_x;
+                }
+            }
+            // and then the other stuff
             ds_list_add(self._contents, thing);
             thing.root = self;
             if (thing._ref_name != "") {
