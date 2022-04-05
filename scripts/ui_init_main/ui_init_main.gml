@@ -964,7 +964,7 @@ function ui_init_main(mode) {
     #region world
     tab_group.AddTabs(2, [
         (new EmuTab("Meshes")).AddContent([
-            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 20, function() {
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 21, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
                 self.root.Refresh();
@@ -978,7 +978,7 @@ function ui_init_main(mode) {
                 .SetCallbackDouble(function() {
                     var index = self.GetSelection();
                     if(index == -1) return;
-                    dialog_create_mesh_advanced(Game.meshes[index]);
+                    dialog_create_mesh_submesh(Game.meshes[index]);
                 })
                 .SetTooltip("All meshes available. Legend:\n - RED meshes have one or more submeshes with no vertex buffer associated with it\n - BLUE meshes are SMF meshes, and may have special animations or materials\n - Meshes marked with \"p\" represent particles\n - Meshes marked with \"r\" have one or more reflection meshes associated with them")
                 .SetID("MESH LIST"),
@@ -1136,12 +1136,18 @@ function ui_init_main(mode) {
                 dialog_create_mesh_collision_data(Game.meshes[index]);
             }))
                 .SetTooltip("Go to the Mesh management window."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Submeshes", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                dialog_create_mesh_submesh(Game.meshes[index]);
+            }))
+                .SetTooltip("View and manage mesh submeshes."),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Advanced", function() {
                 var index = self.GetSibling("MESH LIST").GetSelection();
                 if(index == -1) return;
-                dialog_create_mesh_advanced(Game.meshes[index]);
+                dialog_create_mesh_other_settings(self.GetSibling("MESH LIST").GetAllSelectedIndices());
             }))
-                .SetTooltip("Go to the Mesh management window."),
+                .SetTooltip("General Mesh properties."),
         ])
             .SetID("PLACEMENT MESHES"),
         (new EmuTab("Tiles")).AddContent([

@@ -435,8 +435,16 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Set some material properties used by the selected meshes. Right now I've only implemented the base (diffuse) texture but I'd like to get around to the rest later.")
                 .SetID("MATERIALS"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Submeshes", function() {
+                dialog_create_mesh_submesh(Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()]);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data)  == 1);
+                })
+                .SetTooltip("View and manage mesh submeshes.")
+                .SetID("SUBMESHES"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "More...", function() {
-                dialog_create_mesh_other_settings(self, self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
+                dialog_create_mesh_other_settings(self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined && array_length(data) > 0);

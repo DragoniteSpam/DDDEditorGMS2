@@ -1,6 +1,5 @@
-function dialog_create_mesh_normal_settings(root, selection) {
+function dialog_create_mesh_normal_settings(selection) {
     var dialog = new EmuDialog(320, 240, "Normals");
-    dialog.root = root;
     dialog.selection = selection;
     
     return dialog.AddContent([

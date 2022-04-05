@@ -1,10 +1,10 @@
-function dialog_create_mesh_other_settings(root, selection) {    var dialog = new EmuDialog(320, 400, "Other mesh options");
-    dialog.root = root;
+function dialog_create_mesh_other_settings(selection) {
+    var dialog = new EmuDialog(320, 400, "Other mesh options");
     dialog.selection = selection;
     
     return dialog.AddContent([
         (new EmuButton(32, EMU_AUTO, 256, 32, "Normals", function() {
-            dialog_create_mesh_normal_settings(self, self.root.selection);
+            dialog_create_mesh_normal_settings(self.root.selection);
         }))
             .SetTooltip("Adjust the vertex normals of the selected meshes."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
@@ -16,7 +16,7 @@ function dialog_create_mesh_other_settings(root, selection) {    var dialog = ne
         (new EmuButton(32, EMU_AUTO, 256, 32, "Center", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[real(selection[i])].PositionAtCenter();
+                Game.meshes[selection[i]].PositionAtCenter();
             }
             batch_again();
         }))
@@ -24,7 +24,7 @@ function dialog_create_mesh_other_settings(root, selection) {    var dialog = ne
         (new EmuButton(32, EMU_AUTO, 256, 32, "Invert Transparency", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[real(selection[i])].ActionInvertAlpha();
+                Game.meshes[selection[i]].ActionInvertAlpha();
             }
             batch_again();
         }))
@@ -32,7 +32,7 @@ function dialog_create_mesh_other_settings(root, selection) {    var dialog = ne
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Transparency", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[real(selection[i])].ActionResetAlpha();
+                Game.meshes[selection[i]].ActionResetAlpha();
             }
             batch_again();
         }))
@@ -40,7 +40,7 @@ function dialog_create_mesh_other_settings(root, selection) {    var dialog = ne
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Vertex Color", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[real(selection[i])].ActionResetColour();
+                Game.meshes[selection[i]].ActionResetColour();
             }
             batch_again();
         }))

@@ -1,4 +1,4 @@
-function dialog_create_mesh_advanced(mesh) {
+function dialog_create_mesh_submesh(mesh) {
     var dw = 960;
     var dh = 640;
     
