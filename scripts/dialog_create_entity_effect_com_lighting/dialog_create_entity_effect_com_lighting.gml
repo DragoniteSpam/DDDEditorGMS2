@@ -8,7 +8,7 @@ function dialog_create_entity_effect_com_lighting() {
     var com_spot = (com_light && com_light.type == LightTypes.SPOT) ? com_light : undefined;
     
     var element_width = 400 - 64;
-    var element_height = 24;
+    var element_height = 32;
     
     var dialog = new EmuDialog(400, 576, "Effect Component: Lighting");
     dialog.first = first;
@@ -93,29 +93,33 @@ function dialog_create_entity_effect_com_lighting() {
             .SetID("SCRIPT"),
         #endregion
         #region directional lights
-        (new EmuInput(32, EMU_AUTO, element_width, element_height, "dx:", com_dir ? com_dir.light_dx: "", "X direction", 4, E_InputTypes.REAL, function() {
+        new EmuText(32, EMU_AUTO, element_width, element_height, "Direction:"),
+        (new EmuInput(32 + element_width * 3 / 6, EMU_INLINE, element_width / 6, element_height, "", com_dir ? com_dir.light_dx: "", "X", 4, E_InputTypes.REAL, function() {
             map_foreach_selected(function(entity, dx) {
                 entity.com_light.light_dx = dx;
             }, real(self.value));
         }))
+            .SetInputBoxPosition(0, 0)
             .SetRealNumberBounds(-1, 1)
             .SetInteractive(!!com_dir)
             .SetTooltip("The X component of the light direction vector. If the total magnitude of the vector is zero, it will be set to (0, 0, -1) instead.")
             .SetID("DX"),
-        (new EmuInput(32, EMU_AUTO, element_width, element_height, "dy:", com_dir ? com_dir.light_dy: "", "Y direction", 4, E_InputTypes.REAL, function() {
+        (new EmuInput(32 + element_width * 4 / 6, EMU_INLINE, element_width / 6, element_height, "", com_dir ? com_dir.light_dy: "", "Y direction", 4, E_InputTypes.REAL, function() {
             map_foreach_selected(function(entity, dy) {
                 entity.com_light.light_dz = dy;
             }, real(self.value));
         }))
+            .SetInputBoxPosition(0, 0)
             .SetRealNumberBounds(-1, 1)
             .SetInteractive(!!com_dir)
             .SetTooltip("The Y component of the light direction vector. If the total magnitude of the vector is zero, it will be set to (0, 0, -1) instead.")
             .SetID("DY"),
-        (new EmuInput(32, EMU_AUTO, element_width, element_height, "dz:", com_dir ? com_dir.light_dz: "", "Z direction", 4, E_InputTypes.REAL, function() {
+        (new EmuInput(32 + element_width * 5 / 6, EMU_INLINE, element_width / 6, element_height, "", com_dir ? com_dir.light_dz: "", "Z direction", 4, E_InputTypes.REAL, function() {
             map_foreach_selected(function(entity, dz) {
                 entity.com_light.light_dz = dz;
             }, real(self.value));
         }))
+            .SetInputBoxPosition(0, 0)
             .SetRealNumberBounds(-1, 1)
             .SetInteractive(!!com_dir)
             .SetTooltip("The Z component of the light direction vector. If the total magnitude of the vector is zero, it will be set to (0, 0, -1) instead.")
