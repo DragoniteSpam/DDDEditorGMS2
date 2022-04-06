@@ -166,7 +166,7 @@ function ui_init_main(mode) {
                 .SetTooltip("This is a list of all the maps currently in the game")
                 .SetList(Game.maps)
                 .SetListColors(function(index) {
-                    return (Game.meta.start.map == list.entries[index].GUID) ? c_aqua : EMU_COLOR_LIST_TEXT;
+                    return (Game.meta.start.map == Game.maps[index].GUID) ? c_aqua : EMU_COLOR_LIST_TEXT;
                 })
                 .SetCallbackDouble(f_map_open)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
