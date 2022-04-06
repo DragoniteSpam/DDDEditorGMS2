@@ -9,3 +9,7 @@ function emu_color_meshes(index) {
     }
     return EMU_COLOR_TEXT;
 }
+
+function emu_color_maps(index) {
+    return (Game.meta.start.map == Game.maps[index].GUID) ? c_aqua : EMU_COLOR_LIST_TEXT;
+}
