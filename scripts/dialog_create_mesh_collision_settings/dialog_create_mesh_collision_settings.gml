@@ -1,6 +1,4 @@
-function dialog_create_mesh_collision_settings(root, selection) {
-    root.Dispose();
-    
+function dialog_create_mesh_collision_settings(mesh) {
     var dw = 640;
     var dh = 736;
     
@@ -8,10 +6,11 @@ function dialog_create_mesh_collision_settings(root, selection) {
     var c2x = 352;
     
     var dialog = new EmuDialog(dw, dh, "Collision Shapes");
+    dialog.mesh = mesh;
     
     return dialog.AddContent([
         // column 1
-        (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 10, function() {
+        (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 8, function() {
             var selection = self.GetSelection();
             if (selection + 1) {
                 var shape = self.root.mesh.collision_shapes[selection];
@@ -27,6 +26,7 @@ function dialog_create_mesh_collision_settings(root, selection) {
                 self.GetSibling("SCALE Z").SetInteractive(false);
                 self.GetSibling("RADIUS").SetInteractive(false);
                 self.GetSibling("LENGTH").SetInteractive(false);
+                
                 switch (shape.type) {
                     case MeshCollisionShapes.BOX:
                         self.GetSibling("TRANS X"). SetInteractive(true);
@@ -81,36 +81,36 @@ function dialog_create_mesh_collision_settings(root, selection) {
                 }
             }
         }))
-            .SetList(Game.meshes[selection].collision_shapes)
+            .SetList(mesh.collision_shapes)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetID("LIST"),
-        (new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Sphere", function() {
+        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Sphere", function() {
             self.root.mesh.AddCollisionShape(MeshCollisionShapeSphere);
         }))
             .SetID("ADD SPHERE"),
-        (new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Box", function() {
+        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Box", function() {
             self.root.mesh.AddCollisionShape(MeshCollisionShapeBox);
         })).SetID("add_box"),
-        (new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Capsule", function() {
+        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Capsule", function() {
             self.root.mesh.AddCollisionShape(MeshCollisionShapeCapsule);
         })).SetID("add_capsule"),
-        (new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Trimesh (from mesh)", function() {
+        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Trimesh (from mesh)", function() {
             //var trimesh = self.root.mesh.AddCollisionShape(MeshCollisionShapeTrimesh);
         }))
             .SetID("ADD TIRMESH"),
-        (new EmuButton(c1x, EMU_AUTO, 256, 24, "Add Trimesh (from file)", function() {
+        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Trimesh (from file)", function() {
             //var trimesh = self.root.mesh.AddCollisionShape(MeshCollisionShapeTrimesh);
         }))
             .SetID("ADD TRIMESH FROM FILE"),
-        (new EmuButton(c1x, EMU_AUTO, 256, 24, "Delete Shape", function() {
-            var selection = self.root.el_list.GetSelection();
+        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Delete Shape", function() {
+            var selection = self.GetSibling("LIST").GetSelection();
             if (selection + 1) {
                 self.root.mesh.DeleteCollisionShape(selection);
             }
         }))
             .SetID("DELETE SHAPE"),
-        (new EmuInput(c1x, EMU_AUTO, 256, 24, "Shape name:", "", "name", 32, E_InputTypes.STRING, function() {
-            var selection = self.root.el_list.GetSelection();
+        (new EmuInput(c1x, EMU_AUTO, 256, 32, "Shape name:", "", "name", 32, E_InputTypes.STRING, function() {
+            var selection = self.GetSibling("LIST").GetSelection();
             if (selection + 1) {
                 self.root.mesh.RenameCollisionShape(selection, self.value);
             }
@@ -120,70 +120,70 @@ function dialog_create_mesh_collision_settings(root, selection) {
         new EmuText(c2x, 32, 256, 32, "[c_aqua]Shape controls"),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Translation"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].position.x = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].position.x = real(self.value);
         }))
             .SetRealNumberBounds(-10000, 10000)
             .SetID("TRANS X")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].position.y = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].position.y = real(self.value);
         }))
             .SetRealNumberBounds(-10000, 10000)
             .SetID("TRANS Y")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].position.z = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].position.z = real(self.value);
         }))
             .SetRealNumberBounds(-10000, 10000)
             .SetID("TRANS Z")
             .SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Rotation"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].rotation.x = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].rotation.x = real(self.value);
         }))
             .SetRealNumberBounds(0, 360)
             .SetID("ROT X")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].rotation.y = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].rotation.y = real(self.value);
         }))
             .SetRealNumberBounds(0, 360)
             .SetID("ROT Y")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].rotation.z = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].rotation.z = real(self.value);
         }))
             .SetRealNumberBounds(0, 360)
             .SetID("ROT Z")
             .SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Scale"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].scale.x = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].scale.x = real(self.value);
         }))
             .SetRealNumberBounds(0.001, 100)
             .SetID("SCALE X")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].scale.y = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].scale.y = real(self.value);
         }))
             .SetRealNumberBounds(0.001, 100)
             .SetID("SCALE Y")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].scale.z = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].scale.z = real(self.value);
         }))
             .SetRealNumberBounds(0.001, 100)
             .SetID("SCALE Z")
             .SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Other"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "Radius:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].radius = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].radius = real(self.value);
         }))
             .SetRealNumberBounds(0.001, 9999)
             .SetID("RADIUS")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "Length:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.root.el_list.GetSelection()].length = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].length = real(self.value);
         }))
             .SetRealNumberBounds(0.001, 9999)
             .SetID("LENGTH")

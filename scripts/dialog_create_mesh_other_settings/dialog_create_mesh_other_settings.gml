@@ -9,7 +9,7 @@ function dialog_create_mesh_other_settings(selection) {
             .SetTooltip("Adjust the vertex normals of the selected meshes."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
             if (array_length(self.root.selection) != 1) return;
-            dialog_create_mesh_collision_settings(self.root, self.root.selection[0]);
+            dialog_create_mesh_collision_settings(Game.meshes[self.root.selection[0]]);
         }))
             .SetTooltip("Collision shape data to go with this mesh.")
             .SetInteractive(array_length(selection) == 1),
