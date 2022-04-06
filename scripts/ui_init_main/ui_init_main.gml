@@ -421,20 +421,21 @@ function ui_init_main(mode) {
                     self.SetInteractive(ds_list_size(sel) == 1);
                 }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Options", function() {
-                var selection = Stuff.map.selected_entities;
-                
-                var col1x = 32;
-                var col2x = hud_width / 2;
-                var element_width = hud_width / 2 - 64;
-                var element_height = 32;
-                
-                
-                var df_state = map_selection_like_property(selection, "direction_fix") ? selection[| 0].direction_fix : 2;
-                var au_state = map_selection_like_property(selection, "always_update") ? selection[| 0].always_update : 2;
-                var preserve_state = map_selection_like_property(selection, "preserve_on_save") ? selection[| 0].preserve_on_save : 2;
-                var reflect_state = map_selection_like_property(selection, "reflect") ? selection[| 0].reflect : 2;
+                var selection = selection_all();
                 
                 var dialog = new EmuDialog(320, 480, "Entity Options");
+                
+                var col1x = 32;
+                var col2x = dialog.width / 2;
+                var element_width = dialog.height / 2 - 64;
+                var element_height = 32;
+                
+                // i have no idea why gamemaker doesnt like this all of the sudden
+                var df_state = map_selection_like_property(selection, "direction_fix") ? ds_list_find_value(selection, 0).direction_fix : 2;
+                var au_state = map_selection_like_property(selection, "always_update") ? ds_list_find_value(selection, 0).always_update : 2;
+                var preserve_state = map_selection_like_property(selection, "preserve_on_save") ? ds_list_find_value(selection, 0).preserve_on_save : 2;
+                var reflect_state = map_selection_like_property(selection, "reflect") ? ds_list_find_value(selection, 0).reflect : 2;
+                
                 dialog.AddContent([
                     (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Direction Fix", df_state, function() {
                         map_foreach_selected(function(entity, data) {
