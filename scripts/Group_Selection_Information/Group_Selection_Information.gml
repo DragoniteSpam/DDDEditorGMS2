@@ -214,26 +214,6 @@ function selection_all() {
     return list;
 }
 
-function selection_all_type(list) {
-    // returns the ETypeFlag of the entity, if they're all of the same type;
-    // otherwise it returns ETypeFlags.ENTITY_ANY
-    var common_ancestor = ETypeFlags.ENTITY_ANY;
-    
-    for (var i = 0; i < ds_list_size(list); i++) {
-        // if latest common ancestor is undefined, define it
-        common_ancestor &= list[| i].etype_flags;
-        if (common_ancestor == ETypeFlags.ENTITY) {
-            return global.etype_meta[ETypes.ENTITY];
-        }
-    }
-    
-    for (var i = 0; i < array_length(global.etype_meta); i++) {
-        if (global.etype_meta[i].mask == common_ancestor) return global.etype_meta[i];
-    }
-    
-    return global.etype_meta[ETypes.ENTITY];
-}
-
 function selection_clear() {
     array_resize(Stuff.map.selection, 0);
     Stuff.map.last_selection = undefined;
