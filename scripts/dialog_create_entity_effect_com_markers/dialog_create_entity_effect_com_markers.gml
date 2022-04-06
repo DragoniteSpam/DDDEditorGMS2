@@ -4,46 +4,24 @@ function dialog_create_entity_effect_com_markers() {
     var first = list[| 0];
     var marker = single ? first.com_marker : -1;
     
-    var dw = 320;
-    var dh = 640;
+    var element_width = 400 - 64;
+    var element_height = 32;
     
-    var dg = dialog_create(dw, dh, "Effect Component: Marker", dialog_default, dialog_destroy, undefined);
+    var dialog = new EmuDialog(400, 576, "Effect Component: Marker");
+    dialog.first = first;
     
-    var spacing = 16;
-    var columns = 1;
-    var ew = dw / columns - spacing * 2;
-    var eh = 24;
-    
-    var col1_x = spacing;
-    
-    var vx1 = dw / (columns * 2) - 32;
-    var vy1 = 0;
-    var vx2 = vx1 + dw / (columns * 2);
-    var vy2 = eh;
-    
-    var yy = 64;
-    var yy_base = yy;
-    
-    var el_type = create_list(col1_x, yy, "Marker type:", "No marker types defined", ew, eh, 20, function(list) {
-        var selection = ui_list_selection(list);
-        var entities = Stuff.map.selected_entities;
-        for (var i = 0; i < ds_list_size(entities); i++) {
-            var effect = entities[| i];
-            effect.com_marker = selection;
-        }
-    }, false, dg, Game.vars.effect_markers);
-    ui_list_select(el_type, marker);
-    
-    yy += el_type.GetHeight() + spacing;
-    
-    var b_width = 128;
-    var b_height = 32;
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-    
-    ds_list_add(dg.contents,
-        el_type,
-        el_confirm
-    );
-    
-    return dg;
+    return dialog.AddContent([
+        (new EmuList(32, EMU_AUTO, element_width, element_height, "Type", element_height, 14, function() {
+            var selection = self.GetSelection();
+            if (selection == -1) return;
+            
+            map_foreach_selected(function(entity, selection) {
+                entity.com_marker = selection;
+            }, selection);
+        }))
+            .SetVacantText("No marker types defined")
+            .SetID("LIST")
+            .Select(marker)
+    ])
+        .AddDefaultCloseButton();
 }
