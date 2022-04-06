@@ -132,14 +132,6 @@ function EmuCore(x, y, w, h) constructor {
         return self.root.GetChild(identifier);
     };
     
-    static SetRootVariableName = function(name) {
-        self._ref_name = "el_" + name;
-        if (self.root) {
-            self.root[$ self._ref_name] = self;
-        }
-        return self;
-    };
-    
     static Refresh = function(data) {
         self.refresh_script(data);
         for (var i = 0, n = ds_list_size(self._contents); i < n; i++) {
