@@ -17,13 +17,7 @@ function ui_init_game_data(mode) {
                 momu_data_types();
             } else {
                 var selection = self.GetSelection();
-                if (selection + 1) {
-                    if (Game.data[selection].GUID != Stuff.data.active_type_guid) {
-                        Stuff.data.active_type_guid = Game.data[selection].GUID;
-                        ui_init_game_data_activate();
-                    } // else if the type is the same, don't update
-                } else {
-                    Stuff.data.active_type_guid = NULL;
+                if (selection == -1 || Game.data[selection] != Stuff.data.GetActiveType()) {
                     ui_init_game_data_activate();
                 }
             }
@@ -37,7 +31,7 @@ function ui_init_game_data(mode) {
             .SetID("LIST"),
         (new EmuText(col2, EMU_BASE, element_width, element_height, "[c_aqua]Data instances"))
             .SetUpdate(function() {
-                var type = guid_get(Stuff.data.active_type_guid);
+                var type = Stuff.data.GetActiveType();
                 self.text = "[c_aqua]" + (type ? type.name : "No data selected...");
             }),
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", element_height, 16, function() {
@@ -56,7 +50,7 @@ function ui_init_game_data(mode) {
             .SetCallbackMiddle(dialog_create_data_instance_alphabetize) // this can be done inline pretty easily now with a yes/no prompt
             .SetID("INSTANCES"),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Up", function() {
-            var data = guid_get(Stuff.data.active_type_guid);
+            var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
             var instance = data.instances[selection];
@@ -70,7 +64,7 @@ function ui_init_game_data(mode) {
             }
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Down", function() {
-            var data = guid_get(Stuff.data.active_type_guid);
+            var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
             var instance = data.instances[selection];
@@ -88,7 +82,7 @@ function ui_init_game_data(mode) {
             uimu_data_add_data();
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Instance", function() {
-            var data = guid_get(Stuff.data.active_type_guid);
+            var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
             var instance = data.instances[selection];
@@ -99,7 +93,7 @@ function ui_init_game_data(mode) {
             ui_init_game_data_refresh();
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Duplicate Instance", function() {
-            var data = guid_get(Stuff.data.active_type_guid);
+            var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
             var instance = data.instances[selection];
@@ -123,8 +117,6 @@ function ui_init_game_data(mode) {
         (new EmuCore(col3, EMU_AUTO, element_width, element_height))
             .SetID("PROPERTIES")
     ]);
-    
-    // most likely we can replace active_type_guid with a getter method belonging to EditorModeData, ideally which returns a reference to the struct and not just the GUID
     
     return container;
 }
