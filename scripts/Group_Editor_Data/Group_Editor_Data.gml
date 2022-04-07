@@ -66,6 +66,7 @@ function EditorModeData() : EditorModeBase() constructor {
                 for (var i = 0; i < array_length(data.properties); i++) {
                     var property = data.properties[i];
                     var element = undefined;
+                    var element_header = undefined;
                     if (property.max_size == 1) {
                         switch (property.type) {
                             case DataTypes.INT:             // input
@@ -129,6 +130,12 @@ function EditorModeData() : EditorModeBase() constructor {
                             case DataTypes.COLOR:       // checkbox
                                 element = new EmuColorPicker(spacing, EMU_AUTO, element_width, element_height, property.name, c_white, function() {
                                     // formerly uivc_data_set_property_color
+                                });
+                                break;
+                            case DataTypes.EVENT:      // list
+                                element_header = new EmuText(spacing, EMU_AUTO, element_width, element_height, property.name);
+                                element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, "Select Event...", function() {
+                                    // formerly dialog_create_data_get_event
                                 });
                                 break;
                         }
@@ -229,14 +236,6 @@ function EditorModeData() : EditorModeBase() constructor {
                             element.key = i;
                             element.entries_are = ListEntries.INSTANCES;
                             var hh = element.GetHeight();
-                            break;
-                        case DataTypes.EVENT:           // list
-                            element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);
-                            element = create_button(0, yy + vy1, "Select Event", ew, eh, fa_center, dialog_create_data_get_event, noone);
-                            element.event_guid = noone;
-                            element.instance = noone;
-                            element.key = i;
-                            var hh = vy2;
                             break;
                     }
                 } else {
