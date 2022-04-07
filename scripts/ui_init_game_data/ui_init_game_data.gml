@@ -12,7 +12,7 @@ function ui_init_game_data(mode) {
     var container = new EmuCore(0, 16, hud_width, hud_height);
     
     container.AddContent([
-        (new EmuList(col1, EMU_BASE, element_width, element_height, "All game data types:", "click to define...", 20, function() {
+        (new EmuList(col1, EMU_BASE, element_width, element_height, "All game data types:", element_height, 25, function() {
             if (array_empty(Game.data)) {
                 momu_data_types();
             } else {
@@ -28,8 +28,10 @@ function ui_init_game_data(mode) {
                 }
             }
         }))
+            .SetList(Game.data)
+            .SetVacantText("click to define...")
             .SetListColors(function(index) {
-                return (Game.data[index].type == DataTypes.ENUM) ? c_blue : c_black;
+                return (Game.data[index].type == DataTypes.ENUM) ? c_aqua : EMU_COLOR_TEXT;
             })
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetID("LIST"),
@@ -38,15 +40,16 @@ function ui_init_game_data(mode) {
                 var type = guid_get(Stuff.data.active_type_guid);
                 self.text = "[c_aqua]" + (type ? type.name : "No data selected...");
             }),
-        (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", "no instances", 16, function() {
-            ui_init_game_data_refresh();
+        (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", element_height, 16, function() {
+            //ui_init_game_data_refresh();
         }))
+            .SetVacantText("no instances")
             .SetListColors(function(index) {
-            var inst = self._entries[index];
-            if (string_copy(inst.name, 1, 1) == "+") return c_purple;
-            if (string_copy(inst.name, 1, 3) == "---") return c_blue;
-            return c_black;
-        })
+                var inst = Stuff.data.GetActiveType().instances[index];
+                if (string_copy(inst.name, 1, 1) == "+") return c_yellow;
+                if (string_copy(inst.name, 1, 3) == "---") return c_aqua;
+                return c_white;
+            })
         // what was ui_render_list_data_instances used for in the past?
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetNumbered(true)
@@ -109,7 +112,7 @@ function ui_init_game_data(mode) {
             // this can be inlined and probably should be updated for emu
             omu_data_previous();
         })),
-        (new EmuText(col3 + 1 * element_width / 3, EMU_BASE, element_width, element_height, "[c_aqua]Page X/Y"))
+        (new EmuText(col3 + 1 * element_width / 6 + 8, EMU_BASE, element_width, element_height, "[c_aqua]Page X/Y"))
             .SetRefresh(function() {
             }),
         (new EmuButton(col3 + 2 * element_width / 3, EMU_BASE, element_width / 6, element_height, ">", function() {

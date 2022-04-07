@@ -27,10 +27,12 @@ function EditorModeData() : EditorModeBase() constructor {
         self.ui = ui_init_game_data(self);
     
         if (array_length(Game.data) > 0) {
-            ui_list_select(self.ui.el_master, 0);
+            //ui_list_select(self.ui.el_master, 0);
         }
     
-        ui_init_game_data_activate();
+        //ui_init_game_data_activate();
+        
+        self.ui.Refresh();
     };
     
     self.Render = function() {
