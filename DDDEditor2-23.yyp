@@ -83,6 +83,7 @@
     {"id":{"name":"render_mesh_missing","path":"scripts/render_mesh_missing/render_mesh_missing.yy",},"order":10,},
     {"id":{"name":"render_mesh_autotile","path":"scripts/render_mesh_autotile/render_mesh_autotile.yy",},"order":11,},
     {"id":{"name":"scribble_font_add","path":"scripts/scribble_font_add/scribble_font_add.yy",},"order":0,},
+    {"id":{"name":"Group_Editor_Data","path":"scripts/Group_Editor_Data/Group_Editor_Data.yy",},"order":5,},
     {"id":{"name":"Group_Terrain_Dialogs","path":"scripts/Group_Terrain_Dialogs/Group_Terrain_Dialogs.yy",},"order":3,},
     {"id":{"name":"draw_animator","path":"scripts/draw_animator/draw_animator.yy",},"order":4,},
     {"id":{"name":"draw_editor_animation","path":"scripts/draw_editor_animation/draw_editor_animation.yy",},"order":6,},
