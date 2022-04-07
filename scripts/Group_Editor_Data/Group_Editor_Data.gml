@@ -63,36 +63,40 @@ function EditorModeData() : EditorModeBase() constructor {
                 }))
                     .SetID("NAME"),
                 
+                for (var i = 0; i < array_length(data.properties); i++) {
+                    var property = data.properties[i];
+                    var element = undefined;
+                    if (property.max_size == 1) {
+                        switch (property.type) {
+                            case DataTypes.INT:             // input
+                            case DataTypes.FLOAT:
+                            case DataTypes.STRING:
+                                // assume the type is string because that's the most general
+                                var char_limit = property.char_limit;
+                                var type = E_InputTypes.STRING;
+                                var help = string(property.char_limit) + " characters";
+                                if (property.type == DataTypes.INT) {
+                                    char_limit = max(number_max_digits(property.range_min), number_max_digits(property.range_max));
+                                    if (property.range_min < 0 || property.range_max < 0) {
+                                        char_limit++;
+                                    }
+                                    type = E_InputTypes.INT;
+                                    help = string(property.range_min) + " - " + string(property.range_max);
+                                } else if (property.type == DataTypes.INT) {
+                                    char_limit = 10;
+                                    type = E_InputTypes.STRING;
+                                    help = string(property.range_min) + " - " + string(property.range_max);
+                                }
+                                element = new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
+                                    
+                                });
+                        }
+                        element.key = i;
+                    } else {
+                    }
+                }
             ]);
             
-            
-            for (var i = 0; i < array_length(data.properties); i++) {
-                var property = data.properties[i];
-                if (property.max_size == 1) {
-                    switch (property.type) {
-                        case DataTypes.INT:            // input
-                            var char_limit = max(number_max_digits(property.range_min), number_max_digits(property.range_max));
-                            if (property.range_min < 0 || property.range_max < 0) {
-                                char_limit++;
-                            }
-                            element = create_input(0, yy, property.name, ew, eh, uivc_data_set_property_input, property.default_int, string(property.range_min) + " - " + string(property.range_max), validate_int,
-                                property.range_min, property.range_max, char_limit, vx1n, vy1n, vx2n, vy2n, noone);
-                            element.key = i;
-                            var hh = element.height;
-                            break;
-                        case DataTypes.FLOAT:          // input
-                            element = create_input(0, yy, property.name, ew, eh, uivc_data_set_property_input, property.default_real, string(property.range_min) + " - " + string(property.range_max), validate_double,
-                                property.range_min, property.range_max, 10 /* hard-coded, please do not touch */, vx1n, vy1n, vx2n, vy2n, noone);
-                            element.key = i;
-                            var hh = element.height;
-                            break;
-                        case DataTypes.STRING:         // input
-                            element = create_input(0, yy, property.name, ew, eh * 2, uivc_data_set_property_input, "", "string", validate_string,
-                                0, 1, property.char_limit, vx1, vy1, vx2, vy2, noone);
-                            element.valignment = fa_top;
-                            element.key = i;
-                            var hh = element.height + eh / 2;
-                            break;
                         case DataTypes.ASSET_FLAG:     // button which leads to a dialog with a list of flags
                             element = create_button(0, yy, property.name, ew, eh, fa_center, function(button) {
                                 var data = guid_get(Stuff.data.ui.active_type_guid);
