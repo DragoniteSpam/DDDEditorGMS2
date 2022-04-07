@@ -1,4 +1,18 @@
 function EditorModeData() : EditorModeBase() constructor {
+    self.GetActiveType = function() {
+        var selection = self.ui.SearchID("LIST").GetSelection();
+        if (selection == -1) return undefined;
+        return Game.data[selection];
+    };
+    
+    self.GetActiveInstance = function() {
+        var type = self.GetActiveType();
+        if (!type) return undefined;
+        var selection = self.ui.SearchID("LIST").GetSelection();
+        if (selection == -1) return undefined;
+        return type.instances[selection];
+    };
+    
     self.SetMode = function() {
         editor_set_mode(self, ModeIDs.DATA);
         
