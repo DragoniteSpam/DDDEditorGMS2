@@ -116,6 +116,21 @@ function EditorModeData() : EditorModeBase() constructor {
                                         .SetVacantText("<missing data type>");
                                 }
                                 break;
+                            case DataTypes.BOOL:        // checkbox
+                                element = new EmuCheckbox(spacing, EMU_AUTO, element_width, element_height, property.name, false, function() {
+                                    // formerly uivc_data_set_property_boolean
+                                });
+                                break;
+                            case DataTypes.CODE:        // checkbox
+                                element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
+                                    emu_dialog_notice("re-implement some kind of code editor some time if you really want this to be a thing");
+                                });
+                                break;
+                            case DataTypes.COLOR:       // checkbox
+                                element = new EmuColorPicker(spacing, EMU_AUTO, element_width, element_height, property.name, c_white, function() {
+                                    // formerly uivc_data_set_property_color
+                                });
+                                break;
                         }
                         element.key = i;
                     } else {
@@ -124,24 +139,6 @@ function EditorModeData() : EditorModeBase() constructor {
             ]);
             
             
-                        case DataTypes.BOOL:           // checkbox
-                            element = create_checkbox(0, yy, property.name, ew, eh, uivc_data_set_property_boolean, false, noone);
-                            element.key = i;
-                            var hh = element.height;
-                            break;
-                        case DataTypes.CODE:
-                            element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);
-                            element = create_button(0, yy, property.name, ew, eh, fa_middle, function() {
-                                emu_dialog_notice("re-implement some kind of code editor some time maybe");
-                            }, noone);
-                            element.key = i;
-                            var hh = vy2;
-                            break;
-                        case DataTypes.COLOR:
-                            element = create_color_picker(0, yy, property.name, ew, eh, uivc_data_set_property_color, c_white, vx1n, vy1n, vx2n, vy2n, noone);
-                            element.key = i;
-                            var hh = element.height;
-                            break;
                         case DataTypes.MESH:           // list
                             element = create_list(0, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.meshes);
                             element.key = i;
