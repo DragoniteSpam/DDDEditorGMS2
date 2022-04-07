@@ -17,8 +17,11 @@ function ui_init_game_data(mode) {
                 momu_data_types();
             } else {
                 var selection = self.GetSelection();
-                if (selection == -1 || Game.data[selection] != Stuff.data.GetActiveType()) {
-                    ui_init_game_data_activate();
+                if (selection == -1) {
+                    Stuff.data.ui.SearchID("PROPERTIES").destroyContent();
+                    Stuff.data.ui.Refresh();
+                } else if (Game.data[selection] != Stuff.data.GetActiveType()) {
+                    Stuff.data.Activate(Game.data[selection]);
                 }
             }
         }))
@@ -37,6 +40,7 @@ function ui_init_game_data(mode) {
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", element_height, 16, function() {
             //ui_init_game_data_refresh();
         }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
             .SetVacantText("no instances")
             .SetListColors(function(index) {
                 var inst = Stuff.data.GetActiveType().instances[index];
@@ -49,7 +53,7 @@ function ui_init_game_data(mode) {
             .SetNumbered(true)
             .SetCallbackMiddle(dialog_create_data_instance_alphabetize) // this can be done inline pretty easily now with a yes/no prompt
             .SetID("INSTANCES"),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Up", function() {
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Up", function() {
             var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
@@ -62,8 +66,9 @@ function ui_init_game_data(mode) {
                 self.GetSibling("INSTANCES").Deselect();
                 self.GetSibling("INSTANCES").Select(selection - 1);
             }
-        }),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Down", function() {
+        }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Down", function() {
             var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
@@ -76,12 +81,14 @@ function ui_init_game_data(mode) {
                 self.GetSibling("INSTANCES").Deselect();
                 self.GetSibling("INSTANCES").Select(selection + 1);
             }
-        }),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Instance", function() {
+        }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Instance", function() {
             // this can be inlined, and also needs to be updated for Emu
             uimu_data_add_data();
-        }),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Instance", function() {
+        }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Instance", function() {
             var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
@@ -91,8 +98,9 @@ function ui_init_game_data(mode) {
             data.RemoveInstance(instance);
             instance.Destroy();
             ui_init_game_data_refresh();
-        }),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Duplicate Instance", function() {
+        }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Duplicate Instance", function() {
             var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection == -1) return;
@@ -101,20 +109,23 @@ function ui_init_game_data(mode) {
             if (instance) {
                 data.AddInstance(instance.Clone(), selection + 1);
             }
-        }),
+        }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
         (new EmuButton(col3 + 0 * element_width / 3, EMU_BASE, element_width / 6, element_height, "<", function() {
             // this can be inlined and probably should be updated for emu
             omu_data_previous();
-        })),
+        }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
         (new EmuText(col3 + 1 * element_width / 6 + 8, EMU_BASE, element_width, element_height, "[c_aqua]Page X/Y"))
             .SetRefresh(function() {
             }),
         (new EmuButton(col3 + 2 * element_width / 3, EMU_BASE, element_width / 6, element_height, ">", function() {
             // this can be inlined and probably should be updated for emu
             omu_data_next();
-        })),
+        }))
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
         // we used to use ui_render_columns for this but i think we can get around that with containers now
-        (new EmuCore(col3, EMU_AUTO, element_width, element_height))
+        (new EmuCore(col3, EMU_AUTO, hud_width * 3 / 5, hud_height - 32))
             .SetID("PROPERTIES")
     ]);
     

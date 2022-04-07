@@ -14,7 +14,7 @@ function internal_name_get(name) {
         return Identifiers.internal[$ name];
     }
     
-    return noone;
+    return undefined;
 }
 
 function internal_name_remove(name) {

@@ -703,7 +703,6 @@
     {"id":{"name":"ui_list_selection","path":"scripts/ui_list_selection/ui_list_selection.yy",},"order":5,},
     {"id":{"name":"scribble_font_bake_shader","path":"scripts/scribble_font_bake_shader/scribble_font_bake_shader.yy",},"order":3,},
     {"id":{"name":"ui_init_game_data_refresh","path":"scripts/ui_init_game_data_refresh/ui_init_game_data_refresh.yy",},"order":0,},
-    {"id":{"name":"ui_init_game_data_activate","path":"scripts/ui_init_game_data_activate/ui_init_game_data_activate.yy",},"order":1,},
     {"id":{"name":"ui_input_set_value","path":"scripts/ui_input_set_value/ui_input_set_value.yy",},"order":16,},
     {"id":{"name":"scribble_typewriter_add_character_delay","path":"scripts/scribble_typewriter_add_character_delay/scribble_typewriter_add_character_delay.yy",},"order":6,},
     {"id":{"name":"spr_emu_checkbox_border","path":"sprites/spr_emu_checkbox_border/spr_emu_checkbox_border.yy",},"order":5,},
