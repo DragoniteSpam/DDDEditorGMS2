@@ -50,6 +50,11 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
 		return self;
 	};
     
+    self.SetNumbered = function(numbered) {
+        self.numbered = numbered;
+        return self;
+    };
+    
     SetList = function(_list) {
         if (_own_entries) {
             ds_list_destroy(_entries);
