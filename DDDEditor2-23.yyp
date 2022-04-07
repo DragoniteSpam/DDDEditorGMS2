@@ -160,7 +160,6 @@
     {"id":{"name":"Group_Refid","path":"scripts/Group_Refid/Group_Refid.yy",},"order":3,},
     {"id":{"name":"Group_Dialogs","path":"scripts/Group_Dialogs/Group_Dialogs.yy",},"order":3,},
     {"id":{"name":"DDD_ENUMS","path":"scripts/DDD_ENUMS/DDD_ENUMS.yy",},"order":8,},
-    {"id":{"name":"Group_Set_Editor_Modes","path":"scripts/Group_Set_Editor_Modes/Group_Set_Editor_Modes.yy",},"order":12,},
     {"id":{"name":"shd_terrain_paint","path":"shaders/shd_terrain_paint/shd_terrain_paint.yy",},"order":8,},
     {"id":{"name":"spr_gradient","path":"sprites/spr_gradient/spr_gradient.yy",},"order":1,},
     {"id":{"name":"__scribble_gen_2_parser","path":"scripts/__scribble_gen_2_parser/__scribble_gen_2_parser.yy",},"order":2,},

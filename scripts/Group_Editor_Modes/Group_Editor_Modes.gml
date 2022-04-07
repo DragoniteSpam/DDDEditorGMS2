@@ -1,6 +1,10 @@
 function EditorModeMesh() : EditorModeBase() constructor {
     self.Update = null;
     
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.MESH);
+    };
+    
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
@@ -72,6 +76,10 @@ function EditorModeMesh() : EditorModeBase() constructor {
 function EditorModeText() : EditorModeBase() constructor {
     self.Update = function() { };
     
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.TEXT);
+    };
+    
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
@@ -101,6 +109,10 @@ function EditorModeAnimation() : EditorModeBase() constructor {
     }, function() {
         return Stuff.mesh_ed.ui.SearchID("3D VIEW").height;
     });
+    
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.ANIMATION);
+    };
     
     self.Update = function() {
         if (!Stuff.mouse_3d_lock && !dialog_exists()) {
@@ -140,6 +152,10 @@ function EditorModeSpart() : EditorModeBase() constructor {
     });
     self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.default_skybox);
     
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.SPART);
+    };
+    
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
@@ -168,6 +184,26 @@ function EditorModeSpart() : EditorModeBase() constructor {
 }
 
 function EditorModeData() : EditorModeBase() constructor {
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.DATA);
+        
+        // creating and destroying the data editor UI is probably the easiest
+        // way to do this; this may need to get stuffed off into its own script
+        // later
+        if (self.ui) {
+            instance_activate_object(self.ui);
+            instance_destroy(self.ui);
+        }
+    
+        self.ui = ui_init_game_data(self);
+    
+        if (array_length(Game.data) > 0) {
+            ui_list_select(self.ui.el_master, 0);
+        }
+    
+        ui_init_game_data_activate();
+    };
+    
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
@@ -196,6 +232,10 @@ function EditorModeEvent() : EditorModeBase() constructor {
     self.x = Settings.event.x;
     self.y = Settings.event.y;
     
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.EVENT);
+    };
+    
     self.Render = function() {
         draw_clear(EMU_COLOR_BACK);
         Stuff.base_camera.SetProjectionGUI();
@@ -222,6 +262,9 @@ function EditorModeBase() constructor {
     self.Render = function() { };
     self.Cleanup = function() { };
     self.Save = function() { };
+    self.SetMode = function() {
+        show_message("implementation required");
+    };
     
     self.ui = undefined;
     self.mode_id = ModeIDs.MAP;
@@ -229,9 +272,9 @@ function EditorModeBase() constructor {
     ds_list_add(Stuff.all_modes, self);
 }
 
-
-
-
-
-
-
+function editor_set_mode(mode_structure, mode_id) {
+    Stuff.mode = mode_structure;
+    if (!EDITOR_FORCE_SINGLE_MODE) {
+        Settings.config.mode = mode_id;
+    }
+}

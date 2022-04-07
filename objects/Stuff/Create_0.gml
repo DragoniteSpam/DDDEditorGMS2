@@ -287,14 +287,14 @@ base_camera = new Camera(window_get_width() / 2, window_get_height() / 2, 100, w
 
 // default editor mode
 switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
-    case ModeIDs.MAP: editor_mode_3d(); break;
-    case ModeIDs.EVENT: editor_mode_event(); break;
-    case ModeIDs.DATA: editor_mode_data(); break;
-    case ModeIDs.ANIMATION: editor_mode_animation(); break;
-    case ModeIDs.TERRAIN: editor_mode_heightmap(); break;
-    case ModeIDs.SPART: editor_mode_spart(); break;
-    case ModeIDs.MESH: editor_mode_meshes(); break;
-    case ModeIDs.TEXT: editor_mode_text(); break;
+    case ModeIDs.MAP: Stuff.event.SetMode(); break;
+    case ModeIDs.EVENT: Stuff.event.SetMode(); break;
+    case ModeIDs.DATA: Stuff.event.SetMode(); break;
+    case ModeIDs.ANIMATION: Stuff.event.SetMode(); break;
+    case ModeIDs.TERRAIN: Stuff.event.SetMode(); break;
+    case ModeIDs.SPART: Stuff.event.SetMode(); break;
+    case ModeIDs.MESH: Stuff.event.SetMode(); break;
+    case ModeIDs.TEXT: Stuff.event.SetMode(); break;
 }
 
 if (PROJECT_MENU_ENABLED) {

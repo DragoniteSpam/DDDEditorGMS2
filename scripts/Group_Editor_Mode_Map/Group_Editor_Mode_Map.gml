@@ -122,6 +122,10 @@ function EditorModeMap() : EditorModeBase() constructor {
     });
     self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.default_skybox);
     
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.MAP);
+    };
+    
     self.Update = function() {
     
     };

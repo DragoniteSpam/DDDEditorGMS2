@@ -93,6 +93,10 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         }
     }
     
+    self.SetMode = function() {
+        editor_set_mode(self, ModeIDs.TERRAIN);
+    };
+    
     self.Update = function() {
         self.texture.Validate();
         self.color.Validate();

@@ -1,11 +1,10 @@
 function momu_editor_animation() {
-    editor_mode_animation();
+    Stuff.animation.SetMode();
     menu_close_all();
 }
 
 function momu_data_types() {
-    editor_mode_3d();
-    menu_close_all();
+    momu_editor_3d();
     var dialog = dialog_create_data_types(noone);
     emu_dialog_notice("There is no Undo button. Modifying game data is a permanent action, and deleted types or properties will be lost forever!");
 }
@@ -26,36 +25,36 @@ function momu_reload_audio() {
 }
 
 function momu_editor_3d() {
-    editor_mode_3d();
+    Stuff.map.SetMode();
     menu_close_all();
 }
 
 function momu_editor_data() {
-    editor_mode_data();
+    Stuff.data.SetMode();
     menu_close_all();
 }
 
 function momu_editor_event() {
-    editor_mode_event();
+    Stuff.event.SetMode();
     menu_close_all();
 }
 
 function momu_editor_heightmap() {
-    editor_mode_heightmap();
+    Stuff.terrain.SetMode();
     menu_close_all();
 }
 
 function momu_editor_text() {
-    editor_mode_text();
+    Stuff.text.SetMode();
     menu_close_all();
 }
 
 function momu_editor_spart() {
-    editor_mode_spart();
+    Stuff.spart.SetMode();
     menu_close_all();
 }
 
 function momu_meshes() {
-    editor_mode_meshes();
+    Stuff.meshes.SetMode();
     menu_close_all();
 }

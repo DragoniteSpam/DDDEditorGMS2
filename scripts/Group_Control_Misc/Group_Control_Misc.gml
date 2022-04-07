@@ -38,24 +38,24 @@ function control_global() {
     }
     
     if (keyboard_check_pressed(vk_f5)) {
-        editor_mode_meshes();
+        Stuff.mesh.SetMode();
     }
     if (keyboard_check_pressed(vk_f6)) {
-        editor_mode_3d();
+        Stuff.map.SetMode();
     }
     if (keyboard_check_pressed(vk_f7)) {
-        editor_mode_event();
+        Stuff.event.SetMode();
     }
     if (keyboard_check_pressed(vk_f8)) {
-        editor_mode_data();
+        Stuff.data.SetMode();
     }
     if (keyboard_check_pressed(vk_f9)) {
-        editor_mode_animation();
+        Stuff.animation.SetMode();
     }
     if (keyboard_check_pressed(vk_f10)) {
-        editor_mode_heightmap();
+        Stuff.terrain.SetMode();
     }
     if (keyboard_check_pressed(vk_f11)) {
-        editor_mode_text();
+        Stuff.text.SetMode();
     }
 }
