@@ -52,32 +52,19 @@ function EditorModeData() : EditorModeBase() constructor {
             container.AddContent(column);
             
             column.AddContent([
+                (new EmuInput(spacing, EMU_BASE, element_width, element_height, "Name:", "", "Instance name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                    Stuff.data.GetActiveInstance().name = self.value;
+                }))
+                    .SetID("NAME"),
+                (new EmuInput(spacing, EMU_AUTO, element_width, element_height, "Internal name:", "", "Instance internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+                    if (!internal_name_get(self.value)) {
+                        internal_name_set(Stuff.data.GetActiveInstance(), self.value);
+                    }
+                }))
+                    .SetID("NAME"),
+                
             ]);
             
-            
-            var element = create_input(0, yy, "Name:", ew, eh * 2, uivc_data_set_name, "", "Instance name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
-            element.valignment = fa_top;
-            yy += element.height + spacing;
-            
-            ds_list_add(col_data.contents, element);
-            Stuff.data.ui.el_inst_name = element;
-            
-            element = create_input(0, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
-            element.valignment = fa_top;
-            element.render = function(text, x, y) {
-                var data = guid_get(Stuff.data.ui.active_type_guid);
-                var selection = ui_list_selection(Stuff.data.ui.el_instances);
-                var original_color = text.color;
-                if (selection + 1) {
-                    var exists = internal_name_get(text.value);
-                    if (exists && exists != data.instances[selection]) text.color = c_red;
-                }
-                ui_render_input(text, x, y);
-                text.color = original_color;
-            };
-            yy += element.height + spacing + eh / 2;
-            Stuff.data.ui.el_inst_internal_name = element;
-            ds_list_add(col_data.contents, element);
             
             for (var i = 0; i < array_length(data.properties); i++) {
                 var property = data.properties[i];
