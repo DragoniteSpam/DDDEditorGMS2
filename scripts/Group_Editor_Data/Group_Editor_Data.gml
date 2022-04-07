@@ -90,6 +90,32 @@ function EditorModeData() : EditorModeBase() constructor {
                                 element = new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
                                     
                                 });
+                                break;
+                            case DataTypes.ASSET_FLAG:      // button which leads to a dialog with a list of flags
+                                element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
+                                    // needs to be Emu'd
+                                    dialog_create_game_data_asset_flags(button, button.key);
+                                });
+                                break;
+                            case DataTypes.ENUM:            // list
+                            case DataTypes.DATA:            // list
+                                var datadata = guid_get(property.type_guid);
+                                if (datadata) {
+                                    // callback used to be uivc_data_set_property_list
+                                    element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
+                                    }))
+                                        .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                                        .SetVacantText("<no values for " + datadata.name + ">");
+                                    if (datadata.type == DataTypes.DATA) {
+                                        element.SetList(datadata.instances);
+                                    } else if (datadata.type == DataTypes.ENUM) {
+                                        element.SetList(datadata.properties);
+                                    }
+                                } else {
+                                    element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, emu_null))
+                                        .SetVacantText("<missing data type>");
+                                }
+                                break;
                         }
                         element.key = i;
                     } else {
@@ -97,38 +123,7 @@ function EditorModeData() : EditorModeBase() constructor {
                 }
             ]);
             
-                        case DataTypes.ASSET_FLAG:     // button which leads to a dialog with a list of flags
-                            element = create_button(0, yy, property.name, ew, eh, fa_center, function(button) {
-                                var data = guid_get(Stuff.data.ui.active_type_guid);
-                                var instance_selection = ui_list_selection(Stuff.data.ui.el_instances);
-                                if (instance_selection + 1) {
-                                    dialog_create_game_data_asset_flags(button, button.key);
-                                }
-                            }, noone);
-                            element.key = i;
-                            var hh = element.height;
-                            break;
-                        case DataTypes.ENUM:           // list
-                        case DataTypes.DATA:           // list
-                            var datadata = guid_get(property.type_guid);
-                            if (datadata) {
-                                element = create_list(0, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
-                                if (datadata.type == DataTypes.DATA) {
-                                    for (var j = 0; j < array_length(datadata.instances); j++) {
-                                        create_list_entries(element, datadata.instances[j]);
-                                    }
-                                } else {
-                                    for (var j = 0; j < array_length(datadata.properties); j++) {
-                                        create_list_entries(element, datadata.properties[j]);
-                                    }
-                                }
-                            } else {
-                                element = create_list(0, yy, "<missing data type>", "<n/a>", ew, eh, 8, null, false, noone);
-                            }
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
+            
                         case DataTypes.BOOL:           // checkbox
                             element = create_checkbox(0, yy, property.name, ew, eh, uivc_data_set_property_boolean, false, noone);
                             element.key = i;
