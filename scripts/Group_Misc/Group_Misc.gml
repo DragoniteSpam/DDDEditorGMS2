@@ -8,26 +8,26 @@ function not_yet_implemented() {
     // only the first will be created
     var top = ds_list_top(Stuff.dialogs);
     if (!(top && (top.flags & DialogFlags.IS_EXCEPTION))) {
-        var dialog = emu_dialog_notice("Stack trace requested, probably in lieu of a NotImplementedException. (If you're an end user and seeing this, most of the time this means the developer meant to add a feature and probably forgot.)\n\n", 640, 400);
+        var dialog = new EmuDialog(320, 240, "whoops");
+        dialog.flags = DialogFlags.IS_EXCEPTION;
         
-        dialog.flags |= DialogFlags.IS_EXCEPTION;
-        dialog.el_text.x = 32;
-        dialog.el_text.y = 32;
-        dialog.el_text.alignment = fa_left;
-        dialog.el_text.valignment = fa_top;
+        var text = new EmuText(32, EMU_AUTO, 320 - 64, "Stack trace requested, probably in lieu of a NotImplementedException. (If you're an end user and seeing this, most of the time this means the developer meant to add a feature and probably forgot.)\n\n");
+        dialog.AddContent([text]).AddDefaultCloseButton();
         
         var callstack = debug_get_callstack();
         var max_lines = 9;
         // index 0 is this script, and you don't need it
         for (var i = 1; i < min(max_lines, array_length(callstack) - 2); i++) {
-            dialog.el_text.text = dialog.el_text.text + string(callstack[i]) + "\n";
+            text.text += string(callstack[i]) + "\n";
         }
         var difference = array_length(callstack) - max_lines - 1;
         if (difference) {
-            dialog.el_text.text = dialog.el_text.text + "    (" + string(difference) + " more)";
+            text.text += "    (" + string(difference) + " more)";
         }
         
-        wtf(string_replace_all(dialog.el_text.text, "\n", " "));
+        wtf(string_replace_all(text.text, "\n", " "));
+        
+        return dialog;
     }
 }
 
