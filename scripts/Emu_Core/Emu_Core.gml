@@ -241,7 +241,7 @@ function EmuCore(x, y, w, h) constructor {
         if (!is_array(elements)) {
             elements = [elements];
         }
-        for (var i = 0; i < array_length(elements); i++) {
+        for (var i = ds_list_size(elements) - 1; i >= 0; i--) {
             var thing = elements[i];
             ds_list_delete(self._contents, ds_list_find_index(self._contents, thing));
             if (self.child_ids[$ thing.identifier] == thing) {
