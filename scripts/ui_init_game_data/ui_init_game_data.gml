@@ -13,6 +13,8 @@ function ui_init_game_data(mode) {
     
     container.AddContent([
         (new EmuList(col1, EMU_BASE, element_width, element_height, "All game data types:", element_height, 25, function() {
+            if (self.GetSelection() == -1) return;
+            
             if (array_empty(Game.data)) {
                 momu_data_types();
             } else {
@@ -29,6 +31,9 @@ function ui_init_game_data(mode) {
             .SetVacantText("click to define...")
             .SetListColors(function(index) {
                 return (Game.data[index].type == DataTypes.ENUM) ? c_aqua : EMU_COLOR_TEXT;
+            })
+            .SetRefresh(function() {
+                self.SetList(Game.data);
             })
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetID("LIST"),

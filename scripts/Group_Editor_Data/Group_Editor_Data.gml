@@ -16,16 +16,6 @@ function EditorModeData() : EditorModeBase() constructor {
     self.SetMode = function() {
         editor_set_mode(self, ModeIDs.DATA);
         
-        // creating and destroying the data editor UI is probably the easiest
-        // way to do this; this may need to get stuffed off into its own script
-        // later
-        if (self.ui) {
-            instance_activate_object(self.ui);
-            instance_destroy(self.ui);
-        }
-    
-        self.ui = ui_init_game_data(self);
-    
         if (array_length(Game.data) > 0) {
             //ui_list_select(self.ui.el_master, 0);
         }
@@ -223,6 +213,6 @@ function EditorModeData() : EditorModeBase() constructor {
     };
     
     self.active_type_guid = NULL;
-    self.ui = undefined;
+    self.ui = ui_init_game_data(self);
     self.mode_id = ModeIDs.DATA;
 }

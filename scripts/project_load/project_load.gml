@@ -11,7 +11,7 @@ function project_load(id) {
             array_push(Game.data, new DataClass(data[i]));
         }
         
-        if (Stuff.data.ui) Stuff.data.ui.el_master.entries = Game.data;
+        Stuff.data.ui.Refresh();
     };
     
     static project_load_global = function(filename) {
