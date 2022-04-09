@@ -45,10 +45,11 @@ function EditorModeData() : EditorModeBase() constructor {
             
             var col_width = (room_width / columns);
             var col_height = room_height - 32;
+            var col_index = 0;
             var element_width = col_width - spacing * 2;
             var element_height = 32;
             
-            var column = new EmuCore(0, 0, col_width, col_height);
+            var column = new EmuCore(col_width * col_index++, 0, col_width, col_height);
             container.AddContent(column);
             
             column.AddContent([
@@ -62,224 +63,152 @@ function EditorModeData() : EditorModeBase() constructor {
                     }
                 }))
                     .SetID("NAME"),
-                
-                for (var i = 0; i < array_length(data.properties); i++) {
-                    var property = data.properties[i];
-                    var element = undefined;
-                    var element_header = undefined;
-                    if (property.max_size == 1) {
-                        switch (property.type) {
-                            case DataTypes.INT:             // input
-                            case DataTypes.FLOAT:
-                            case DataTypes.STRING:
-                                // assume the type is string because that's the most general
-                                var char_limit = property.char_limit;
-                                var type = E_InputTypes.STRING;
-                                var help = string(property.char_limit) + " characters";
-                                if (property.type == DataTypes.INT) {
-                                    char_limit = max(number_max_digits(property.range_min), number_max_digits(property.range_max));
-                                    if (property.range_min < 0 || property.range_max < 0) {
-                                        char_limit++;
-                                    }
-                                    type = E_InputTypes.INT;
-                                    help = string(property.range_min) + " - " + string(property.range_max);
-                                } else if (property.type == DataTypes.INT) {
-                                    char_limit = 10;
-                                    type = E_InputTypes.STRING;
-                                    help = string(property.range_min) + " - " + string(property.range_max);
-                                }
-                                element = new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
-                                    
-                                });
-                                break;
-                            case DataTypes.ASSET_FLAG:      // button which leads to a dialog with a list of flags
-                                element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
-                                    // needs to be Emu'd
-                                    dialog_create_game_data_asset_flags(button, button.key);
-                                });
-                                break;
-                            case DataTypes.ENUM:            // list
-                            case DataTypes.DATA:            // list
-                                var datadata = guid_get(property.type_guid);
-                                if (datadata) {
-                                    // callback used to be uivc_data_set_property_list
-                                    element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
-                                    }))
-                                        .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-                                        .SetVacantText("<no values for " + datadata.name + ">");
-                                    if (datadata.type == DataTypes.DATA) {
-                                        element.SetList(datadata.instances);
-                                    } else if (datadata.type == DataTypes.ENUM) {
-                                        element.SetList(datadata.properties);
-                                    }
-                                } else {
-                                    element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, emu_null))
-                                        .SetVacantText("<missing data type>");
-                                }
-                                break;
-                            case DataTypes.BOOL:        // checkbox
-                                element = new EmuCheckbox(spacing, EMU_AUTO, element_width, element_height, property.name, false, function() {
-                                    // formerly uivc_data_set_property_boolean
-                                });
-                                break;
-                            case DataTypes.CODE:        // checkbox
-                                element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
-                                    emu_dialog_notice("re-implement some kind of code editor some time if you really want this to be a thing");
-                                });
-                                break;
-                            case DataTypes.COLOR:       // checkbox
-                                element = new EmuColorPicker(spacing, EMU_AUTO, element_width, element_height, property.name, c_white, function() {
-                                    // formerly uivc_data_set_property_color
-                                });
-                                break;
-                            case DataTypes.EVENT:      // list
-                                element_header = new EmuText(spacing, EMU_AUTO, element_width, element_height, property.name);
-                                element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, "Select Event...", function() {
-                                    // formerly dialog_create_data_get_event
-                                });
-                                break;
-                        }
-                        element.key = i;
-                    } else {
-                    }
-                }
             ]);
-            
-            
-                        case DataTypes.MESH:           // list
-                            element = create_list(0, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.meshes);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
+                
+            for (var i = 0; i < array_length(data.properties); i++) {
+                var property = data.properties[i];
+                var element = undefined;
+                var element_header = undefined;
+                if (property.max_size == 1) {
+                    switch (property.type) {
+                        case DataTypes.INT:             // input
+                        case DataTypes.FLOAT:
+                        case DataTypes.STRING:
+                            // assume the type is string because that's the most general
+                            var char_limit = property.char_limit;
+                            var type = E_InputTypes.STRING;
+                            var help = string(property.char_limit) + " characters";
+                            if (property.type == DataTypes.INT) {
+                                char_limit = max(number_max_digits(property.range_min), number_max_digits(property.range_max));
+                                if (property.range_min < 0 || property.range_max < 0) {
+                                    char_limit++;
+                                }
+                                type = E_InputTypes.INT;
+                                help = string(property.range_min) + " - " + string(property.range_max);
+                            } else if (property.type == DataTypes.INT) {
+                                char_limit = 10;
+                                type = E_InputTypes.STRING;
+                                help = string(property.range_min) + " - " + string(property.range_max);
+                            }
+                            element = new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
+                                    
+                            });
                             break;
-                        case DataTypes.MESH_AUTOTILE:   // list
-                            element = create_list(0, yy, property.name, "<no Mesh Autotiles>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.mesh_autotiles);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
+                        case DataTypes.ASSET_FLAG:      // button which leads to a dialog with a list of flags
+                            element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
+                                // needs to be Emu'd
+                                dialog_create_game_data_asset_flags(button, button.key);
+                            });
+                            break;
+                        case DataTypes.ENUM:            // list
+                        case DataTypes.DATA:            // list
+                            var datadata = guid_get(property.type_guid);
+                            if (datadata) {
+                                // callback used to be uivc_data_set_property_list
+                                element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
+                                }))
+                                    .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                                    .SetVacantText("<no values for " + datadata.name + ">");
+                                if (datadata.type == DataTypes.DATA) {
+                                    element.SetList(datadata.instances);
+                                } else if (datadata.type == DataTypes.ENUM) {
+                                    element.SetList(datadata.properties);
+                                }
+                            } else {
+                                element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, emu_null))
+                                    .SetVacantText("<missing data type>");
+                            }
+                            break;
+                        case DataTypes.BOOL:        // checkbox
+                            element = new EmuCheckbox(spacing, EMU_AUTO, element_width, element_height, property.name, false, function() {
+                                // formerly uivc_data_set_property_boolean
+                            });
+                            break;
+                        case DataTypes.CODE:        // checkbox
+                            element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
+                                emu_dialog_notice("re-implement some kind of code editor some time if you really want this to be a thing");
+                            });
+                            break;
+                        case DataTypes.COLOR:       // checkbox
+                            element = new EmuColorPicker(spacing, EMU_AUTO, element_width, element_height, property.name, c_white, function() {
+                                // formerly uivc_data_set_property_color
+                            });
+                            break;
+                        case DataTypes.EVENT:      // list
+                            element_header = new EmuText(spacing, EMU_AUTO, element_width, element_height, property.name);
+                            element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, "Select Event...", function() {
+                                // formerly dialog_create_data_get_event
+                            });
                             break;
                         case DataTypes.TILE:
-                            not_yet_implemented();
+                        case DataTypes.ENTITY:
+                            element = new EmuText(spacing, EMU_AUTO, element_width, element_height, "Not implemented/not available");
                             break;
-                        case DataTypes.IMG_TEXTURE:           // list
-                            element = create_list(0, yy, property.name, "<no Tilesets>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.tilesets);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.IMG_BATTLER:           // list
-                            element = create_list(0, yy, property.name, "<no Battler sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.battlers);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.IMG_OVERWORLD:       // list
-                            element = create_list(0, yy, property.name, "<no Overworld sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.overworlds);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.IMG_PARTICLE:           // list
-                            element = create_list(0, yy, property.name, "<no Particle sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.particles);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.IMG_UI:           // list
-                            element = create_list(0, yy, property.name, "<no UI images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.ui);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.IMG_ETC:           // list
-                            element = create_list(0, yy, property.name, "<no Misc images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.etc);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.IMG_SKYBOX:       // list
-                            element = create_list(0, yy, property.name, "<no Skybox images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.skybox);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.IMG_TILE_ANIMATION:// list
-                            element = create_list(0, yy, property.name, "<no Tile Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.tile_animations);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.AUDIO_BGM:           // list
-                            element = create_list(0, yy, property.name, "<no BGM>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.audio.bgm);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.AUDIO_SE:           // list
-                            element = create_list(0, yy, property.name, "<no SE>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.audio.se);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.ANIMATION:          // list
-                            element = create_list(0, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.animations);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
-                            break;
-                        case DataTypes.ENTITY:          // list
-                            element = create_text(0, yy, property.name + " - invalid data type", ew, eh, fa_left, ew, noone);
-                            var hh = element.height;
-                            break;
-                        case DataTypes.MAP:             // list
-                            element = create_list(0, yy, property.name, "<no Maps - how?>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.maps);
-                            element.key = i;
-                            element.entries_are = ListEntries.INSTANCES;
-                            var hh = element.GetHeight();
+                        default:
+                            var vacant_text, list;
+                            switch (property.type) {
+                                case DataTypes.MESH: vacant_text = "meshes"; list = Game.meshes; break;
+                                case DataTypes.MESH_AUTOTILE: vacant_text = "mesh autotiles"; list = Game.mesh_autotile; break;
+                                case DataTypes.IMG_BATTLER: vacant_text = "battler graphics"; list = Game.graphics.battlers; break;
+                                case DataTypes.IMG_ETC: vacant_text = "misc graphics"; list = Game.graphics.etc; break;
+                                case DataTypes.IMG_OVERWORLD: vacant_text = "overworld graphics"; list = Game.graphics.overworlds; break;
+                                case DataTypes.IMG_PARTICLE: vacant_text = "particle graphics"; list = Game.graphics.particles; break;
+                                case DataTypes.IMG_SKYBOX: vacant_text = "skybox graphics"; list = Game.graphics.skybox; break;
+                                case DataTypes.IMG_TEXTURE: vacant_text = "texture/tileset graphics"; list = Game.graphics.tilesets; break;
+                                case DataTypes.IMG_TILE_ANIMATION: vacant_text = "tile animations"; list = Game.graphics.tile_animations; break;
+                                case DataTypes.IMG_UI: vacant_text = "UI graphics"; list = Game.graphics.ui; break;
+                                case DataTypes.AUDIO_BGM: vacant_text = "background music"; list = Game.audio.bgm; break;
+                                case DataTypes.AUDIO_SE: vacant_text = "sound effects"; list = Game.audio.se; break;
+                                case DataTypes.ANIMATION: vacant_text = "animations"; list = Game.animations; break;
+                                case DataTypes.MAP: vacant_text = "maps"; list = Game.maps; break;
+                            }
+                            element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
+                                // formerly uivc_data_set_property_built_in_data
+                            }))
+                                .SetList(list)
+                                .SetVacantText("<no " + vacant_text + ">");
                             break;
                     }
-                } else {
-                    element = create_button(0, yy, property.name + " (List)", ew, eh, fa_middle, dialog_create_data_instance_property_list, noone);
                     element.key = i;
-                    var hh = element.height;
+                } else {
+                    element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name + "...", emu_null);
+                    element.key = i;
                 }
                 
-                    // this is where everything gets shifted to the next column, if needed
-                    if (yy + hh > room_height - 96) {
-                        var n = ds_list_size(container.contents);
-                        col_data = instance_create_depth((n /* + 2 */) * cw + spacing * 4, 0, 0, UIThing);
-                        if (n > 2) {
-                            col_data.enabled = false;
-                        }
-                        ds_list_add(container.contents, col_data);
-                    
-                        if (element_header) {
-                            var difference = element.y - element_header.y;
-                            element_header.y = yy_base;
-                            element.y = element_header.y + difference;
-                        } else {
-                            element.y = yy_base;
-                        }
-                    
-                        yy = yy_base;
-                    }
+                if (element_header) column.AddContent([element_header]);
+                column.AddContent([element]);
                 
-                    yy += hh + spacing;
-                
+                if (element.y + element.height > column.height) {
+                    column.RemoveContent(element);
+                    if (element_header) column.RemoveContent(element);
+                    
+                    var column = new EmuCore(col_width * col_index++, 0, col_width, col_height);
+                    container.AddContent(column);
+                    
                     if (element_header) {
-                        element_header.is_aux = true;
-                        ds_list_add(col_data.contents, element_header);
-                        element_header = noone;
+                        element_header.y = EMU_BASE;
+                        column.AddContent([element_header]);
                     }
-                    ds_list_add(col_data.contents, element);
+                    element.y = EMU_AUTO;
+                    column.AddContent([element]);
                 }
+            }
             
-                var pages = ds_list_size(container.contents);
-                Stuff.data.ui.el_pages.text = "Page 1 / " + string(max(1, pages - 2));
-                Stuff.data.ui.el_previous.interactive = pages > 2;
-                Stuff.data.ui.el_next.interactive = pages > 2;
+            
+            if (col_index > 3) {
+                container.GetSibling("PREVIOUS").SetInteractive(true);
+                container.GetSibling("PAGENUM").SetInteractive(true);
+                container.GetSibling("PAGENUM").text = "Page 1/" + string(col_index - 3);
+                container.GetSibling("NEXT").SetInteractive(true);
+            } else {
+                container.GetSibling("PREVIOUS").SetInteractive(false);
+                container.GetSibling("PAGENUM").SetInteractive(false);
+                container.GetSibling("PAGENUM").text = "Page 1/1";
+                container.GetSibling("NEXT").SetInteractive(false);
             }
         }
+        
+        return container;
     };
     
     self.Render = function() {

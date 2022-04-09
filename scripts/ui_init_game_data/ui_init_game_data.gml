@@ -40,7 +40,7 @@ function ui_init_game_data(mode) {
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", element_height, 16, function() {
             //ui_init_game_data_refresh();
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); })
             .SetVacantText("no instances")
             .SetListColors(function(index) {
                 var inst = Stuff.data.GetActiveType().instances[index];
@@ -67,7 +67,7 @@ function ui_init_game_data(mode) {
                 self.GetSibling("INSTANCES").Select(selection - 1);
             }
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Down", function() {
             var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
@@ -82,12 +82,12 @@ function ui_init_game_data(mode) {
                 self.GetSibling("INSTANCES").Select(selection + 1);
             }
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Instance", function() {
             // this can be inlined, and also needs to be updated for Emu
             uimu_data_add_data();
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Instance", function() {
             var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
@@ -99,7 +99,7 @@ function ui_init_game_data(mode) {
             instance.Destroy();
             ui_init_game_data_refresh();
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Duplicate Instance", function() {
             var data = Stuff.data.GetActiveType();
             var selection = self.GetSibling("LIST").GetSelection();
@@ -110,20 +110,23 @@ function ui_init_game_data(mode) {
                 data.AddInstance(instance.Clone(), selection + 1);
             }
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
         (new EmuButton(col3 + 0 * element_width / 3, EMU_BASE, element_width / 6, element_height, "<", function() {
             // this can be inlined and probably should be updated for emu
             omu_data_previous();
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); })
+            .SetID("PREVIOUS"),
         (new EmuText(col3 + 1 * element_width / 6 + 8, EMU_BASE, element_width, element_height, "[c_aqua]Page X/Y"))
             .SetRefresh(function() {
-            }),
+            })
+            .SetID("PAGENUM"),
         (new EmuButton(col3 + 2 * element_width / 3, EMU_BASE, element_width / 6, element_height, ">", function() {
             // this can be inlined and probably should be updated for emu
             omu_data_next();
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),,
+            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); })
+            .SetID("NEXT"),
         // we used to use ui_render_columns for this but i think we can get around that with containers now
         (new EmuCore(col3, EMU_AUTO, hud_width * 3 / 5, hud_height - 32))
             .SetID("PROPERTIES")
