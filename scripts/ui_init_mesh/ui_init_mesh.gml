@@ -92,7 +92,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Delete Mesh", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
-                var dg = emu_dialog_confirm(self.root, "Would you like to delete " + (array_length(indices) == 1 ? Game.meshes[indices[0]] : " the selected meshes") + "?", function() {
+                var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? Game.meshes[indices[0]].name : " the selected meshes") + "?", function() {
                     var indices = self.root.indices;
                     
                     for (var i = 0, n = array_length(indices); i < n; i++) {
@@ -105,14 +105,14 @@ function ui_init_mesh(mode) {
                         Game.meshes[real(indices[i])].Destroy();
                     }
                     batch_again();
-                    Stuff.mesh_ed.ResetTransform();
                     self.root.Dispose();
+                    
+                    Stuff.mesh_ed.ResetTransform();
+                    Stuff.mesh_ed.ui.SearchID("MESH LIST").Deselect();
+                    batch_again();
                 });
                 
                 dg.indices = indices;
-                
-                self.root.GetSibling("MESH LIST").Deselect();
-                batch_again();
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined);
