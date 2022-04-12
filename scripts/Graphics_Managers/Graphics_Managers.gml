@@ -64,13 +64,13 @@ function dialog_create_manager_graphic_ui(dialog) {
 }
 
 function dialog_create_manager_graphics() {
-    var dialog = new EmuDialog(1440, 760, "Graphics");
+    var dialog = new EmuDialog(1280, 760, "Graphics");
     var element_width = 256;
     var element_height = 32;
     
-    var col1 = 16;
-    var col2 = 272;
-    var col3 = 528;
+    var col1 = 32;
+    var col2 = 320;
+    var col3 = 608;
     
     return dialog.AddContent([
         (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
@@ -92,9 +92,90 @@ function dialog_create_manager_graphics() {
             .SetID("TYPE"),
         (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, 14, function() {
         }))
+            .SetListColors(function(index) {
+                return self._entries[index].texture_exclude ? c_gray : EMU_COLOR_TEXT;
+            })
+            .SetNumbered(true)
             .SetList(Game.graphics.tilesets)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetID("LIST"),
+        (new EmuButton(col2, EMU_BASE, element_width, element_height, "Add Image", function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("ADD"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Image", function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("DELETE"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Change Image", function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("CHANGE"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Export Image", function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("EXPORT"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Remove Background Color...", function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("BACKGROUND"),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Name:", "", "image name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("NAME"),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Internal name:", "", "image internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("INTERNAL NAME"),
+        (new EmuText(col2, EMU_AUTO, element_width, element_height, "Dimensions: N/A"))
+            .SetRefresh(function() {
+            }),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "X Frames:", "1", "horizontal frames", 3, E_InputTypes.INT, function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("X FRAMES"),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Y Frames:", "1", "vertical frames", 3, E_InputTypes.INT, function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("Y FRAMES"),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Speed:", "1", "animation speed", 3, E_InputTypes.REAL, function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("SPEED"),
+        (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "Exclude from texture page?", false, function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("EXCLUDE"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Crop", function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("CROP"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Uncrop", function() {
+        }))
+            .SetRefresh(function() {
+            })
+            .SetID("UNCROP"),
+        (new EmuRenderSurface(col3, EMU_BASE, 640, 640, function() {
+                self.drawCheckerbox();
+            }, function(mx, my) {
+                
+            }, function() {
+            }))
+            .SetRefresh(function() {
+            })
+            .SetID("PREVIEW")
     ])
         .AddDefaultCloseButton();
 }

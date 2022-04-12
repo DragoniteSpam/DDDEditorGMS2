@@ -40,7 +40,12 @@ function momu_graphic_tileset() {
 
 function momu_graphic_ui() {
     menu_close_all();
-    dialog_create_manager_graphic_ui(undefined);
+    dialog_create_manager_graphics(undefined);
+}
+
+function momu_graphics_manager() {
+    menu_close_all();
+    dialog_create_manager_graphics(undefined);
 }
 
 function momu_se() {
