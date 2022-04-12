@@ -48,27 +48,24 @@ function EditorModeMesh() : EditorModeBase() constructor {
         self.camera.Reset();
     };
     
-    self.vertex_format = (1 << VertexFormatData.POSITION_3D) |
-        (1 << VertexFormatData.NORMAL) |
-        (1 << VertexFormatData.TEXCOORD) |
-        (1 << VertexFormatData.COLOUR);
+    self.vertex_format = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR;
     
     enum VertexFormatData {
-        POSITION_2D,
-        POSITION_3D,
-        NORMAL,
-        TEXCOORD,
-        COLOUR,
-        TANGENT,
-        BITANGENT,
-        BARYCENTRIC,
+        POSITION_2D                         = 0x0001,
+        POSITION_3D                         = 0x0002,
+        NORMAL                              = 0x0004,
+        TEXCOORD                            = 0x0008,
+        COLOUR                              = 0x0010,
+        TANGENT                             = 0x0020,
+        BITANGENT                           = 0x0040,
+        BARYCENTRIC                         = 0x0080,
         // special things
-        SMALL_NORMAL,                                                               // 4 bytes (nx ny nz 0)
-        SMALL_TANGENT,                                                              // 4 bytes (tx ty tz 0)
-        SMALL_BITANGENT,                                                            // 4 bytes (bx by bz 0)
-        SMALL_TEXCOORD,                                                             // 4 bytes (u v 0 0)
-        SMALL_NORMAL_PLUS_PALETTE,                                                  // 4 bytes (nx ny nz and a byte representing a 256 color palette index)
-        SMALL_BARYCENTIRC,                                                          // 4 bytes (x y z 0)
+        SMALL_NORMAL                        = 0x0100,       // 4 bytes (nx ny nz 0)
+        SMALL_TANGENT                       = 0x0200,       // 4 bytes (tx ty tz 0)
+        SMALL_BITANGENT                     = 0x0400,       // 4 bytes (bx by bz 0)
+        SMALL_TEXCOORD                      = 0x0080,       // 4 bytes (u v 0 0)
+        SMALL_NORMAL_PLUS_PALETTE           = 0x0100,       // 4 bytes (nx ny nz and a byte representing a 256 color palette index)
+        SMALL_BARYCENTIRC                   = 0x0200,       // 4 bytes (x y z 0)
         __COUNT,
     }
 }

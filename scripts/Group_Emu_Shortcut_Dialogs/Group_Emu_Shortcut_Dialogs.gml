@@ -45,84 +45,71 @@ function emu_dialog_vertex_format(value, callback) {
     dialog.cb = callback;
     dialog.AddContent([
         new EmuText(c1x, 32, 256, 32, "[c_aqua]Standards attributes"),
-        (new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Position", !!(value & (1 << VertexFormatData.POSITION_3D)), function() {
-            var flag = 1 << VertexFormatData.POSITION_3D;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        (new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Position", !!(value & VertexFormatData.POSITION_3D), function() {
+            self.root.value &= ~VertexFormatData.POSITION_3D;
+            if (self.value) self.root.value |= VertexFormatData.POSITION_3D;
             self.root.cb(self.root.value);
         })).SetInteractive(false),
-        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Normal", !!(value & (1 << VertexFormatData.NORMAL)), function() {
-            var flag = 1 << VertexFormatData.NORMAL;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Normal", !!(value & VertexFormatData.NORMAL), function() {
+            self.root.value &= ~VertexFormatData.NORMAL;
+            if (self.value) self.root.value |= VertexFormatData.NORMAL;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Texture", !!(value & (1 << VertexFormatData.TEXCOORD)), function() {
-            var flag = 1 << VertexFormatData.TEXCOORD;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Texture", !!(value & VertexFormatData.TEXCOORD), function() {
+            self.root.value &= ~VertexFormatData.TEXCOORD;
+            if (self.value) self.root.value |= VertexFormatData.TEXCOORD;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Color", !!(value & (1 << VertexFormatData.COLOUR)), function() {
-            var flag = 1 << VertexFormatData.COLOUR;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Color", !!(value & VertexFormatData.COLOUR), function() {
+            self.root.value &= ~VertexFormatData.COLOUR;
+            if (self.value) self.root.value |= VertexFormatData.COLOUR;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Tangent", !!(value & (1 << VertexFormatData.TANGENT)), function() {
-            var flag = 1 << VertexFormatData.TANGENT;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Tangent", !!(value & VertexFormatData.TANGENT), function() {
+            self.root.value &= ~VertexFormatData.TANGENT;
+            if (self.value) self.root.value |= VertexFormatData.TANGENT;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Bitangent", !!(value & (1 << VertexFormatData.BITANGENT)), function() {
-            var flag = 1 << VertexFormatData.BITANGENT;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Bitangent", !!(value & VertexFormatData.BITANGENT), function() {
+            self.root.value &= ~VertexFormatData.BITANGENT;
+            if (self.value) self.root.value |= VertexFormatData.BITANGENT;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Barycentric", !!(value & (1 << VertexFormatData.BARYCENTRIC)), function() {
-            var flag = 1 << VertexFormatData.BARYCENTRIC;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Barycentric", !!(value & VertexFormatData.BARYCENTRIC), function() {
+            self.root.value &= ~VertexFormatData.BARYCENTRIC;
+            if (self.value) self.root.value |= VertexFormatData.BARYCENTRIC;
             self.root.cb(self.root.value);
         }),
         
         new EmuText(c2x, 32, 256, 32, "[c_aqua]Nonstandard attributes"),
-        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal", !!(value & (1 << VertexFormatData.SMALL_NORMAL)), function() {
-            var flag = 1 << VertexFormatData.SMALL_NORMAL;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal", !!(value & VertexFormatData.SMALL_NORMAL), function() {
+            self.root.value &= ~VertexFormatData.SMALL_NORMAL;
+            if (self.value) self.root.value |= VertexFormatData.SMALL_NORMAL;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small tangent", !!(value & (1 << VertexFormatData.SMALL_TANGENT)), function() {
-            var flag = 1 << VertexFormatData.SMALL_TANGENT;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small tangent", !!(value & VertexFormatData.SMALL_TANGENT), function() {
+            self.root.value &= ~VertexFormatData.SMALL_TANGENT;
+            if (self.value) self.root.value |= VertexFormatData.SMALL_TANGENT;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small bitangent", !!(value & (1 << VertexFormatData.SMALL_BITANGENT)), function() {
-            var flag = 1 << VertexFormatData.SMALL_BITANGENT;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small bitangent", !!(value & VertexFormatData.SMALL_BITANGENT), function() {
+            self.root.value &= ~VertexFormatData.SMALL_BITANGENT;
+            if (self.value) self.root.value |= VertexFormatData.SMALL_BITANGENT;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small texcoord", !!(value & (1 << VertexFormatData.SMALL_TEXCOORD)), function() {
-            var flag = 1 << VertexFormatData.SMALL_TEXCOORD;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small texcoord", !!(value & VertexFormatData.SMALL_TEXCOORD), function() {
+            self.root.value &= ~VertexFormatData.SMALL_TEXCOORD;
+            if (self.value) self.root.value |= VertexFormatData.SMALL_TEXCOORD;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal plus palette", !!(value & (1 << VertexFormatData.SMALL_NORMAL_PLUS_PALETTE)), function() {
-            var flag = 1 << VertexFormatData.SMALL_NORMAL_PLUS_PALETTE;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal plus palette", !!(value & VertexFormatData.SMALL_NORMAL_PLUS_PALETTE), function() {
+            self.root.value &= ~VertexFormatData.SMALL_NORMAL_PLUS_PALETTE;
+            if (self.value) self.root.value |= VertexFormatData.SMALL_NORMAL_PLUS_PALETTE;
             self.root.cb(self.root.value);
         }),
-        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small barycentric", !!(value & (1 << VertexFormatData.SMALL_BARYCENTIRC)), function() {
-            var flag = 1 << VertexFormatData.SMALL_BARYCENTIRC;
-            self.root.value &= ~flag;
-            if (self.value) self.root.value |= flag;
+        new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small barycentric", !!(value & VertexFormatData.SMALL_BARYCENTIRC), function() {
+            self.root.value &= ~VertexFormatData.SMALL_BARYCENTIRC;
+            if (self.value) self.root.value |= VertexFormatData.SMALL_BARYCENTIRC;
             self.root.cb(self.root.value);
         }),
     ]).AddDefaultCloseButton("Done");
