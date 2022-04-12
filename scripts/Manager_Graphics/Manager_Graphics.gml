@@ -1,17 +1,3 @@
-function dmu_graphic_export_generic(button) {
-    var list = button.root.el_list;
-    var selection = ui_list_selection(list);
-    if (selection + 1) {
-        var what = list.entries[selection];
-        try {
-            var fn = get_save_filename_image(what.name + ".png");
-            sprite_save(what.picture, 0, fn);
-        } catch (e) {
-            wtf("Could not save the image: " + e.message);
-        }
-    }
-}
-
 function dmu_graphic_change_generic(button) {
     var list = button.root.el_list;
     var selection = ui_list_selection(list);
