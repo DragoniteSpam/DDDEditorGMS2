@@ -45,7 +45,7 @@ function momu_graphic_ui() {
 
 function momu_graphics_manager() {
     menu_close_all();
-    dialog_create_manager_graphics(undefined);
+    dialog_create_manager_graphics();
 }
 
 function momu_se() {

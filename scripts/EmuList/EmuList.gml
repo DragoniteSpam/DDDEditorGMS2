@@ -129,6 +129,12 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         return _selected_entries[$ "first"];
     };
     
+    self.GetSelectedItem = function() {
+        var selection = self.GetSelection();
+        if (selection < 0 || selection >= array_length(self._entries)) return undefined;
+        return self._entries[selection];
+    };
+    
     static GetAllSelectedIndices = function() {
     	var names = variable_struct_get_names(self._selected_entries);
     	var n = array_length(names);
