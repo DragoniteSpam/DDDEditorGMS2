@@ -104,10 +104,12 @@ function dialog_create_manager_graphics() {
             .SetTooltip("All of the images of the selected type")
             .SetID("LIST"),
         (new EmuButton(col2, EMU_BASE, element_width, element_height, "Add Image", function() {
+            self.root.Refresh();
         }))
             .SetTooltip("Add an image")
             .SetID("ADD"),
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Delete Image", function() {
+            self.root.Refresh();
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -124,6 +126,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Save the image to a file")
             .SetID("EXPORT"),
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Reload Image", function() {
+            self.root.Refresh();
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -132,6 +135,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Automatically reload the image from its source file (if it exists on the disk)")
             .SetID("RELOAD"),
         (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Change Image", function() {
+            self.root.Refresh();
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -140,6 +144,8 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Replace the image")
             .SetID("CHANGE"),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Remove Background Color...", function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            image.picture = sprite_remove_transparent_color(image.picture);
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -148,6 +154,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Remove the transparent background color from the image, that being defined as the color of the pixel in the bottom-right corner")
             .SetID("BACKGROUND"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Name:", "", "image name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+            self.GetSibling("LIST").GetSelectedItem().name = self.value;
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -158,6 +165,12 @@ function dialog_create_manager_graphics() {
             .SetTooltip("The name of the asset visible in the editor (and/or player)")
             .SetID("NAME"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Internal name:", "", "image internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            var already = internal_name_get(self.value);
+            if (!already || already == image) {
+                internal_name_remove(image.internal_name);
+                internal_name_set(image, self.value);
+            }
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -180,6 +193,16 @@ function dialog_create_manager_graphics() {
                 }
             }),
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Crop", function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            // @todo impelment a cutoff value
+            var dim = sprite_get_cropped_dimensions(image.picture, 0, 127);
+            // @todo implement a value to round to?
+            var round_to = 16;
+            image.width = round_ext(dim.x, round_to);
+            image.height = round_ext(dim.y, round_to);
+            image.picture = sprite_crop(image.picture, 0, 0, image.width, image.height);
+            data_image_npc_frames(image);
+            self.root.Refresh();
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -189,6 +212,11 @@ function dialog_create_manager_graphics() {
             .SetInteractive(false)
             .SetID("CROP"),
         (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Uncrop", function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            image.width = sprite_get_width(image.picture);
+            image.height = sprite_get_height(image.picture);
+            data_image_npc_frames(image);
+            self.root.Refresh();
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -198,6 +226,15 @@ function dialog_create_manager_graphics() {
             .SetInteractive(false)
             .SetID("UNCROP"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "X Frames:", "1", "horizontal frames", 3, E_InputTypes.INT, function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            image.hframes = real(self.value);
+            // regenerate the image
+            sprite_delete(image.picture_with_frames);
+            var temp_name = PATH_TEMP + "particle_strip" + string(image.hframes) + ".png";
+            sprite_save(image.picture, 0, temp_name);
+            image.picture_with_frames = sprite_add(temp_name, image.hframes, false, false, 0, 0);
+            sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
+            data_image_npc_frames(image);
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -208,6 +245,8 @@ function dialog_create_manager_graphics() {
             .SetTooltip("The number of horizontal frames stored in this image")
             .SetID("X FRAMES"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Y Frames:", "1", "vertical frames", 3, E_InputTypes.INT, function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            image.vframes = real(self.value);
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -218,6 +257,9 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Most of the time this is going to be either 1 or 4.")
             .SetID("Y FRAMES"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Speed:", "1", "animation speed", 3, E_InputTypes.REAL, function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            image.aspeed = real(self.value);
+            sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -228,6 +270,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("This should be frames per second, although like everything else this depends largely on how you plan on using it.")
             .SetID("SPEED"),
         (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "Exclude from texture page?", false, function() {
+            self.GetSibling("LIST").GetSelectedItem().texture_exclude = self.value;
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
