@@ -1244,8 +1244,10 @@ function ui_init_main(mode) {
     container.AddContent([
         (new EmuRenderSurface(0, 0, CW, CH, function() {
             Stuff.map.DrawEditor();
-        }, function() {
-            Stuff.map.camera.Update();
+        }, function(mx, my) {
+            if (mx >= 0 && my >= 0 && mx < self.width && my < self.height) {
+                Stuff.map.camera.Update();
+            }
         }, function() {
             // create
         }, function() {
