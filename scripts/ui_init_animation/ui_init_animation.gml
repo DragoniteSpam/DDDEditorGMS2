@@ -64,34 +64,17 @@ function ui_init_animation(mode) {
         var param = element.parameter;
         
         if (keyframe) {
-            var dw = 320;
-            var dh = 720;
+            var dialog = new EmuDialog(320, 720, "Animation Tweening");
+            dialog.keyframe = keyframe;
+            dialog.param = param;
             
-            var dg = dialog_create(dw, dh, "Animation Tweening", undefined, undefined, argument0);
-            
-            var columns = 1;
-            var spacing = 16;
-            var ew = dw / columns - spacing * 2;
-            var eh = 24;
-            
-            var b_width = 128;
-            var b_height = 32;
-            
-            var yy = 64;
-            
-            var el_type = create_radio_array(16, yy, "Type", ew, eh, function(radio) {
-                var keyframe = radio.root.root.root.root.root.el_timeline.selected_keyframe;
-                keyframe.SetParameterTween(radio.root.param, radio.value);
-            }, keyframe.GetParameterTween(param), dg);
-            create_radio_array_options(el_type, global.animation_tween_names);
-            el_type.param = param;
-        
-            var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-    
-            ds_list_add(dg.contents,
-                el_type,
-                el_confirm
-            );
+            return dialog.AddContent([
+                new EmuRadioArray(32, EMU_AUTO, dialog.width - 64, 32, "Type:", keyframe.GetParameterTween(param), function() {
+                    self.root.keyframe.SetParameterTween(self.root.param, self.value);
+                })
+                    .AddOptions(global.animation_tween_names)
+            ])
+                .AddDefaultCloseButton();
         }
     };
     
