@@ -28,27 +28,6 @@ function dmu_graphic_change_generic(button) {
     }
 }
 
-
-function dmu_graphic_delete_generic(button) {
-    var list = button.root.el_list;
-    var selection = ui_list_selection(list);
-    ui_list_deselect(list);
-    if (selection + 1) {
-        var data = list.entries[selection];
-        array_delete(list.entries, array_search(list.entries, data), 1);
-        data.Destroy();
-        ui_list_deselect(list);
-        list.root.el_image.image = -1;
-    }
-}
-
-function dmu_graphic_delete_tileset(button) {
-    if (array_length(Game.graphics.tilesets) == 1) {
-        return emu_dialog_notice("Please don't try to delete the last tileset. That would cause issues.");
-    }
-    dmu_graphic_delete_generic(button);
-}
-
 function dmu_graphic_add_tileset_drag(element, files) {
     var filtered_list = ui_handle_dropped_files_filter(files, [".png", ".bmp", ".jpg", ".jpeg"]);
     for (var i = 0; i < array_length(filtered_list); i++) {
