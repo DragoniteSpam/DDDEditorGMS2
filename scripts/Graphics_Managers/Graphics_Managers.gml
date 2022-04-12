@@ -162,6 +162,8 @@ function dialog_create_manager_graphics() {
             if (file_exists(fn)) {
                 sprite_delete(image.picture);
                 image.picture = sprite_add(fn, 0, false, false, 0, 0);
+                image.width = sprite_get_width(image.picture);
+                image.height = sprite_get_height(image.picture);
                 data_image_force_power_two(image);
                 data_image_npc_frames(image);
             }
