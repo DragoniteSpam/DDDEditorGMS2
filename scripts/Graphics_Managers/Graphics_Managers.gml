@@ -120,6 +120,10 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Add an image")
             .SetID("ADD"),
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Delete Image", function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            self.GetSibling("LIST").Deselect();
+            array_delete(self.root.graphics_list, array_search(self.root.graphics_list, image), 1);
+            image.Destroy();
             self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
