@@ -307,7 +307,7 @@ function EmuCore(x, y, w, h) constructor {
         return self;
     }
     
-    static drawCheckerbox = function(_x, _y, _w, _h, _xscale = 1, _yscale = 1, _color = c_white, _alpha = 1) {
+    static drawCheckerbox = function(_x = 0, _y = 0, _w = self.width - 1, _h = self.height - 1, _xscale = 1, _yscale = 1, _color = c_white, _alpha = 1) {
         var old_repeat = gpu_get_texrepeat();
         gpu_set_texrepeat(true);
         var _s = sprite_get_width(self.sprite_checkers);
