@@ -56,20 +56,6 @@ function dmu_graphic_add_tileset_drag(element, files) {
     }
 }
 
-function dmu_graphic_add_tileset(button) {
-    var fn = get_open_filename_image();
-    if (file_exists(fn)) {
-        tileset_create(fn);
-    }
-}
-
-function dmu_graphic_add_generic(button) {
-    var fn = get_open_filename_image();
-    if (file_exists(fn)) {
-        graphics_add_generic(fn, button.root.graphics_prefix, button.root.el_list.entries, undefined, false);
-    }
-}
-
 function dmu_graphic_add_generic_drag(element, files) {
     var filtered_list = ui_handle_dropped_files_filter(files, [".png", ".bmp", ".jpg", ".jpeg"]);
     for (var i = 0; i < array_length(filtered_list); i++) {
