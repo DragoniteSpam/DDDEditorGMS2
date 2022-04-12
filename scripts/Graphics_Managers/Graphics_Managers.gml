@@ -157,6 +157,14 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Automatically reload the image from its source file (if it exists on the disk)")
             .SetID("RELOAD"),
         (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Change Image", function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            var fn = get_open_filename_image();
+            if (file_exists(fn)) {
+                sprite_delete(image.picture);
+                image.picture = sprite_add(fn, 0, false, false, 0, 0);
+                data_image_force_power_two(image);
+                data_image_npc_frames(image);
+            }
             self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
