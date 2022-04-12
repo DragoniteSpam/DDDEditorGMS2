@@ -1,4 +1,28 @@
 function dialog_create_game_data_asset_flags(root, index) {
+    /*
+    var dialog = new EmuDialog(960, 800, "Asset Flags");
+    dialog.instance = Stuff.data.GetActiveInstance();
+    
+    var columns = 3;
+    var spacing = 16;
+    var element_width = dialog.width / columns - spacing * 2;
+    var element_height = 32;
+    
+    var col1 = dw * 0 / columns + spacing;
+    var col2 = dw * 1 / columns + spacing;
+    var col3 = dw * 2 / columns + spacing;
+    
+    dialog.AddContent([
+        (new EmuText(col1, EMU_AUTO, element_width, element_height, "Numerical value: "))
+            .SetRefresh(function(data) {
+                self.text = "Numerical value: " + string_hex(self.GetSibling("FLAGS").value) + " (" + string(self.GetSibling("FLAGS").value) + ")";
+            })
+            .SetID("TEXT"),
+        (new EmuBitfield(col1, EMU_AUTO, element_width, element_height, "Asset Flags", 
+    ]);
+    
+    return dialog;
+    */
     var dw = 960;
     var dh = 800;
     
