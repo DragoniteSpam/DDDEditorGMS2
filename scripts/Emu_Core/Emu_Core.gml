@@ -405,6 +405,16 @@ function EmuCore(x, y, w, h) constructor {
     static getMouseRightReleased = function(x1, y1, x2, y2) {
         return self.getMouseHover(x1, y1, x2, y2) && mouse_check_button_released(mb_right);
     }
+    
+    self.GetBaseElement = function() {
+        var element = self;
+        while (true) {
+            if (!element.root) return element;
+            element = element.root;
+        }
+        // this will never happen
+        return undefined;
+    };
 }
 
 function EmuCallback(x, y, w, h, value, callback) : EmuCore(x, y, w, h) constructor {
