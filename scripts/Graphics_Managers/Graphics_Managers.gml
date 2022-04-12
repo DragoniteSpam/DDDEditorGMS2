@@ -85,8 +85,7 @@ function dialog_create_manager_graphics() {
                 case 5: self.root.graphics_list = Game.graphics.particles; self.root.graphics_prefix = PREFIX_GRAPHIC_PARTICLE; break;
                 case 6: self.root.graphics_list = Game.graphics.etc; self.root.graphics_prefix = PREFIX_GRAPHIC_ETC; break;
             }
-            self.GetSibling("LIST").Deselect();
-            self.GetSibling("LIST").SetList(self.root.graphics_list);
+            self.GetSibling("LIST").Deselect().SetList(self.root.graphics_list);
             self.root.Refresh({ list: self.root.graphics_list, index: -1 });
         }))
             .AddOptions(["Tilesets", "Overworlds", "Battlers", "UI", "Skyboxes", "Particles", "Misc"])
@@ -114,13 +113,14 @@ function dialog_create_manager_graphics() {
                 } else {
                     graphics_add_generic(fn, self.root.graphics_prefix, self.root.graphics_list, undefined, false);
                 }
+                self.GetSibling("LIST").Deselect().Select(array_length(self.root.graphics_list) - 1);
             }
-            self.root.Refresh();
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetTooltip("Add an image")
             .SetID("ADD"),
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Delete Image", function() {
-            self.root.Refresh();
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -137,7 +137,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Save the image to a file")
             .SetID("EXPORT"),
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Reload Image", function() {
-            self.root.Refresh();
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -146,7 +146,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Automatically reload the image from its source file (if it exists on the disk)")
             .SetID("RELOAD"),
         (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Change Image", function() {
-            self.root.Refresh();
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -213,7 +213,7 @@ function dialog_create_manager_graphics() {
             image.height = round_ext(dim.y, round_to);
             image.picture = sprite_crop(image.picture, 0, 0, image.width, image.height);
             data_image_npc_frames(image);
-            self.root.Refresh();
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -227,7 +227,7 @@ function dialog_create_manager_graphics() {
             image.width = sprite_get_width(image.picture);
             image.height = sprite_get_height(image.picture);
             data_image_npc_frames(image);
-            self.root.Refresh();
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
@@ -292,6 +292,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.")
             .SetID("EXCLUDE"),
         (new EmuRenderSurface(col3, EMU_BASE, 640, 640, function() {
+            draw_clear(EMU_COLOR_BACK);
             var image = self.GetSibling("LIST").GetSelectedItem();
             if (image) {
                 self.drawCheckerbox();
