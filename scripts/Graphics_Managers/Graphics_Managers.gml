@@ -281,10 +281,19 @@ function dialog_create_manager_graphics() {
             .SetTooltip("For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.")
             .SetID("EXCLUDE"),
         (new EmuRenderSurface(col3, EMU_BASE, 640, 640, function() {
-            self.drawCheckerbox();
-            var data = self.GetSibling("LIST").GetSelectedItem();
-            if (data) {
-                draw_sprite(data.picture, 0, 0, 0);
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            if (image) {
+                self.drawCheckerbox();
+                draw_sprite(image.picture, 0, 0, 0);
+                var hspacing = image.width / image.hframes;
+                var vspacing = image.height / image.vframes;
+                for (var i = 0; i < image.hframes; i++) {
+                    draw_line_colour(hspacing * i, 0, hspacing * i, image.height - 1, c_red, c_red);
+                }
+                for (var i = 0; i < image.vframes; i++) {
+                    draw_line_colour(0, vspacing * i, image.width - 1, vspacing * i, c_red, c_red);
+                }
+                draw_rectangle_colour(1, 1, image.width - 1, image.height - 1, c_blue, c_blue, c_blue, c_blue, true);
             }
         }, function(mx, my) {
                 
