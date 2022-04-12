@@ -158,5 +158,5 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
 }
 
 function emu_dialog_close_auto() {
-    root.Dispose();
+    self.root.Dispose();
 }
