@@ -65,6 +65,8 @@ function dialog_create_manager_graphic_ui(dialog) {
 
 function dialog_create_manager_graphics() {
     var dialog = new EmuDialog(1408, 760, "Graphics");
+    dialog.graphics_prefix = PREFIX_GRAPHIC_TILESET;
+    dialog.graphics_list = Game.graphics.tilesets;
     var element_width = 320;
     var element_height = 32;
     
@@ -74,17 +76,18 @@ function dialog_create_manager_graphics() {
     
     return dialog.AddContent([
         (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
-            var list = self.GetSibling("LIST");
-            list.Deselect();
             switch (self.value) {
-                case 0: list.SetList(Game.graphics.tilesets); self.root.Refresh({ list: Game.graphics.tilesets, index: -1 }); break;
-                case 1: list.SetList(Game.graphics.overworlds); self.root.Refresh({ list: Game.graphics.overworlds, index: -1 }); break;
-                case 2: list.SetList(Game.graphics.battlers); self.root.Refresh({ list: Game.graphics.battlers, index: -1 }); break;
-                case 3: list.SetList(Game.graphics.ui); self.root.Refresh({ list: Game.graphics.ui, index: -1 }); break;
-                case 4: list.SetList(Game.graphics.skybox); self.root.Refresh({ list: Game.graphics.skybox, index: -1 }); break;
-                case 5: list.SetList(Game.graphics.particles); self.root.Refresh({ list: Game.graphics.particles, index: -1 }); break;
-                case 6: list.SetList(Game.graphics.etc); self.root.Refresh({ list: Game.graphics.etc, index: -1 }); break;
+                case 0: self.root.graphics_list = Game.graphics.tilesets; self.root.graphics_prefix = PREFIX_GRAPHIC_TILESET; break;
+                case 1: self.root.graphics_list = Game.graphics.overworlds; self.root.graphics_prefix = PREFIX_GRAPHIC_OVERWORLD; break;
+                case 2: self.root.graphics_list = Game.graphics.battlers; self.root.graphics_prefix = PREFIX_GRAPHIC_BATTLER; break;
+                case 3: self.root.graphics_list = Game.graphics.ui; self.root.graphics_prefix = PREFIX_GRAPHIC_UI; break;
+                case 4: self.root.graphics_list = Game.graphics.skybox; self.root.graphics_prefix = PREFIX_GRAPHIC_SKYBOX; break;
+                case 5: self.root.graphics_list = Game.graphics.particles; self.root.graphics_prefix = PREFIX_GRAPHIC_PARTICLE; break;
+                case 6: self.root.graphics_list = Game.graphics.etc; self.root.graphics_prefix = PREFIX_GRAPHIC_ETC; break;
             }
+            self.GetSibling("LIST").Deselect();
+            self.GetSibling("LIST").SetList(self.root.graphics_list);
+            self.root.Refresh({ list: self.root.graphics_list, index: -1 });
         }))
             .AddOptions(["Tilesets", "Overworlds", "Battlers", "UI", "Skyboxes", "Particles", "Misc"])
             .SetColumns(4, 160)
@@ -96,7 +99,7 @@ function dialog_create_manager_graphics() {
             }
         }))
             .SetListColors(function(index) {
-                return self._entries[index].texture_exclude ? c_gray : EMU_COLOR_TEXT;
+                return self.root.graphics_list[index].texture_exclude ? c_gray : EMU_COLOR_TEXT;
             })
             .SetNumbered(true)
             .SetList(Game.graphics.tilesets)
@@ -104,6 +107,14 @@ function dialog_create_manager_graphics() {
             .SetTooltip("All of the images of the selected type")
             .SetID("LIST"),
         (new EmuButton(col2, EMU_BASE, element_width, element_height, "Add Image", function() {
+            var fn = get_open_filename_image();
+            if (file_exists(fn)) {
+                if (self.root.graphics_list == Game.graphics.tilesets) {
+                    tileset_create(fn);
+                } else {
+                    graphics_add_generic(fn, self.root.graphics_prefix, self.root.graphics_list, undefined, false);
+                }
+            }
             self.root.Refresh();
         }))
             .SetTooltip("Add an image")
