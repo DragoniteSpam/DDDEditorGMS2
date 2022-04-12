@@ -62,3 +62,39 @@ function dialog_create_manager_graphic_ui(dialog) {
     );
     return dg;
 }
+
+function dialog_create_manager_graphics() {
+    var dialog = new EmuDialog(1440, 760, "Graphics");
+    var element_width = 256;
+    var element_height = 32;
+    
+    var col1 = 16;
+    var col2 = 272;
+    var col3 = 528;
+    
+    return dialog.AddContent([
+        (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
+            var list = self.GetSibling("LIST");
+            list.Deselect();
+            switch (self.value) {
+                case 0: list.SetList(Game.graphics.tilesets); break;
+                case 1: list.SetList(Game.graphics.overworlds); break;
+                case 2: list.SetList(Game.graphics.battlers); break;
+                case 3: list.SetList(Game.graphics.ui); break;
+                case 4: list.SetList(Game.graphics.skybox); break;
+                case 5: list.SetList(Game.graphics.particles); break;
+                case 6: list.SetList(Game.graphics.etc); break;
+            }
+            self.root.Refresh();
+        }))
+            .AddOptions(["Tilesets", "Overworlds", "Battlers", "UI", "Skyboxes", "Particles", "Misc"])
+            .SetColumns(4, 160)
+            .SetID("TYPE"),
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, 14, function() {
+        }))
+            .SetList(Game.graphics.tilesets)
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetID("LIST"),
+    ])
+        .AddDefaultCloseButton();
+}

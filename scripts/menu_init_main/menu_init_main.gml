@@ -59,25 +59,9 @@ function menu_init_main() {
         #endregion
         
         #region data stuff
-        var md_graphics = create_menu_element("Graphics", momu_expand, menu_data, true);
-            var md_graphic_ts = create_menu_element("Textures and Tilesets", momu_graphic_tileset, md_graphics);
-            var md_graphic_at = create_menu_element("Tile Animation", not_yet_implemented, md_graphics);
-            var md_graphic_battle = create_menu_element("Battler Sprites", momu_graphic_battle, md_graphics);
-            var md_graphic_ow = create_menu_element("Overworld Sprites", momu_graphic_overworld, md_graphics);
-            var md_graphic_part = create_menu_element("Particles", momu_graphic_particle, md_graphics);
-            var md_graphic_ui = create_menu_element("User Interface", momu_graphic_ui, md_graphics);
-            var md_graphic_skybox = create_menu_element("Skyboxes", momu_graphic_skybox, md_graphics);
-            var md_graphic_etc = create_menu_element("Misc", momu_graphic_etc, md_graphics);
-            ds_list_add(md_graphics.contents,
-                md_graphic_ts,
-                md_graphic_at,
-                md_graphic_battle,
-                md_graphic_ow,
-                md_graphic_part,
-                md_graphic_ui,
-                md_graphic_skybox,
-                md_graphic_etc
-            );
+        var md_graphics = create_menu_element("Graphics", momu_graphics_manager, menu_data);
+        /*
+        The state of each of the tabs in the new graphics manager still needs to be set based on these
         md_graphics.interactive = MENU_EDITOR_ENABLED || MENU_EDITOR_PARTICLE_OVERRIDE;
         md_graphic_ts.interactive = MENU_EDITOR_ENABLED;
         md_graphic_at.interactive = MENU_EDITOR_ENABLED;
@@ -87,6 +71,7 @@ function menu_init_main() {
         md_graphic_skybox.interactive = MENU_EDITOR_ENABLED;
         md_graphic_ui.interactive = MENU_EDITOR_ENABLED;
         md_graphic_etc.interactive = MENU_EDITOR_ENABLED;
+        */
         var md_audio = create_menu_element("Audio", momu_expand, menu_data, true);
             var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
             var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
