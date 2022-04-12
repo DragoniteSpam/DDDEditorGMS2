@@ -110,26 +110,12 @@ function dialog_create_mesh_submesh(mesh) {
                 }
                 
                 if (path == "") {
-                    path = "<no path saved>";
-                }
-                
-                if (string_width(path) <= self.width - self.offset) {
-                    self.text = path;
+                    self.text = "<no path saved>";
                 } else {
-                    var prefix = string_copy(path, 1, 10) + "...   ";
-                    var prefix_width = string_width(prefix);
-                    self.text = "";
-                    for (var i = string_length(path); i > 0; i--) {
-                        self.text = string_char_at(path, i) + self.text;
-                        if (string_width(self.text) > (self.width - prefix_width - self.offset)) {
-                            self.text = prefix + self.text;
-                            break;
-                        }
-                    }
+                    self.text = filename_abbreviated(path, self.width - self.offset);
                 }
                 
                 if (!file_exists(self.text)) self.text = "[c_orange]" + self.text;
-                
                 self.SetTooltip(path);
         
             })
