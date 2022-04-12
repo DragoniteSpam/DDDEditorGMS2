@@ -133,6 +133,13 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Delete the image; any references to it elsewhere will become null and you'll probably see a lot of magenta")
             .SetID("DELETE"),
         (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Export Image", function() {
+            try {
+                var image = self.GetSibling("LIST").GetSelectedItem();
+                var fn = get_save_filename_image(image.name + ".png");
+                sprite_save(image.picture, 0, fn);
+            } catch (e) {
+                wtf("Could not save the image: " + e.message);
+            }
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
