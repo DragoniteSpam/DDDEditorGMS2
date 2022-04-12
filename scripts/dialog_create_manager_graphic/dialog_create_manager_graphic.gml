@@ -172,7 +172,6 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
             list.entries[selection].texture_exclude = checkbox.value;
         }
     }, false, dg);
-    el_texture_exclude.tooltip = "For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.";
     el_texture_exclude.enabled = false;
     dg.el_texture_exclude = el_texture_exclude;
     
@@ -185,7 +184,6 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
             sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
         }
     }, "1", "float", validate_double, 0, 60, 4, vx1, vy1, vx2, vy2, dg);
-    el_frame_speed.tooltip = "This should be frames per second, although like everything else this depends largely on how you plan on using it.";
     dg.el_frame_speed = el_frame_speed;
     yy += el_frame_speed.height + spacing;
     
