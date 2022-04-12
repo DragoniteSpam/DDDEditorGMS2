@@ -160,6 +160,7 @@ function dialog_create_manager_graphics() {
             var image = self.GetSibling("LIST").GetSelectedItem();
             var fn = get_open_filename_image();
             if (file_exists(fn)) {
+                image.source_filename = fn;
                 sprite_delete(image.picture);
                 image.picture = sprite_add(fn, 0, false, false, 0, 0);
                 image.width = sprite_get_width(image.picture);
@@ -211,6 +212,16 @@ function dialog_create_manager_graphics() {
             })
             .SetTooltip("The unique internal name that the game can use to identify this asset")
             .SetID("INTERNAL NAME"),
+        new EmuText(col2, EMU_AUTO, element_width, 24, "Source file:"),
+        (new EmuText(col2, EMU_AUTO, element_width, 24, "[c_orange]<no path saved>"))
+            .SetRefresh(function(data) {
+                if (data.index == -1) return;
+                var abb = filename_abbreviated(data.list[data.index].source_filename, self.width - self.offset);
+                if (!file_exists(data.list[data.index].source_filename)) abb = "[c_orange]" + abb;
+                self.SetValue(abb == "" ? "[c_orange]<no path saved>" : abb);
+            })
+            .SetTextUpdate(undefined)
+            .SetID("SOURCE FILE"),
         (new EmuText(col2, EMU_AUTO, element_width, element_height, "Dimensions: N/A"))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
