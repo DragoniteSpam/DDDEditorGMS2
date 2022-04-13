@@ -137,6 +137,33 @@ function dialog_create_manager_audio() {
             .SetTextUpdate(undefined)
             .SetID("SOURCE FILE"),
         #endregion
+        #region Playback
+        (new EmuButton(col2 + 0 * element_width / 4, EMU_AUTO, element_width / 4, element_height, "Play", function() {
+            // todo
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            }),
+        (new EmuButton(col2 + 1 * element_width / 4, EMU_INLINE, element_width / 4, element_height, "Pause", function() {
+            // todo
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            }),
+        (new EmuButton(col2 + 2 * element_width / 4, EMU_INLINE, element_width / 4, element_height, "Resume", function() {
+            // todo
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            }),
+        (new EmuButton(col2 + 3 * element_width / 4, EMU_INLINE, element_width / 4, element_height, "Stop", function() {
+            // todo
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            }),
+        
+        #endregion
     ]).AddDefaultCloseButton();
     
     
