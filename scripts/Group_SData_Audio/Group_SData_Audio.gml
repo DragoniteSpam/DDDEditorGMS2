@@ -1,4 +1,6 @@
 function DataAudio(source) : SData(source) constructor {
+    self.source_filename = "";
+    
     self.sample_rate = 44100;
     self.temp_name = "";
     
@@ -14,27 +16,27 @@ function DataAudio(source) : SData(source) constructor {
         self.loop_mode = source.loop_mode;
     }
     
-    static SetLoop = function(loop_mode = self.loop_mode, start = 0, finish = 1) {
+    self.SetLoop = function(loop_mode = self.loop_mode, start = 0, finish = 1) {
         wtf("to do - audio loop settings");
         self.loop_mode = loop_mode;
     };
     
-    static SetSampleRate = function(rate) {
+    self.SetSampleRate = function(rate) {
         self.sample_rate = rate;
     };
     
-    static GetBuffer = function() {
+    self.GetBuffer = function() {
         if (file_exists(self.temp_name)) return buffer_load(self.temp_name);
         return -1;
     };
     
-    static LoadAsset = function(directory) {
+    self.LoadAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         file_copy(directory + guid, self.temp_name);
     };
     
-    static SaveAsset = function(directory) {
+    self.SaveAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         var fbuffer = self.GetBuffer();
@@ -42,7 +44,7 @@ function DataAudio(source) : SData(source) constructor {
         buffer_delete(fbuffer);
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.sample_rate);
         buffer_write(buffer, buffer_u32, self.loop_start);
@@ -56,7 +58,7 @@ function DataAudio(source) : SData(source) constructor {
         }
     };
     
-    static CreateJSONAudio = function() {
+    self.CreateJSONAudio = function() {
         var json = self.CreateJSONBase();
         json.sample_rate = self.sample_rate;
         json.temp_name = self.temp_name;
@@ -66,7 +68,7 @@ function DataAudio(source) : SData(source) constructor {
         return json;
     };
     
-    static CreateJSON = function() {
+    self.CreateJSON = function() {
         return self.CreateJSONAudio();
     };
 }
