@@ -272,12 +272,6 @@ function dialog_create_manager_graphics() {
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "X Frames:", "1", "horizontal frames", 3, E_InputTypes.INT, function() {
             var image = self.GetSibling("LIST").GetSelectedItem();
             image.hframes = real(self.value);
-            // regenerate the image
-            sprite_delete(image.picture_with_frames);
-            var temp_name = PATH_TEMP + "particle_strip" + string(image.hframes) + ".png";
-            sprite_save(image.picture, 0, temp_name);
-            image.picture_with_frames = sprite_add(temp_name, image.hframes, false, false, 0, 0);
-            sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
             data_image_npc_frames(image);
         }))
             .SetRefresh(function(data) {
@@ -301,9 +295,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Most of the time this is going to be either 1 or 4.")
             .SetID("Y FRAMES"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Speed:", "1", "animation speed", 3, E_InputTypes.REAL, function() {
-            var image = self.GetSibling("LIST").GetSelectedItem();
-            image.aspeed = real(self.value);
-            sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
+            var image = self.GetSibling("LIST").GetSelectedItem().aspeed = real(self.value);
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);

@@ -134,7 +134,6 @@ default_pawn.hframes = 4;
 default_pawn.vframes = 4;
 default_pawn.aframes = 0;
 default_pawn.aspeed = 0;
-default_pawn.picture_with_frames = -1;
 data_image_npc_frames(default_pawn);
 
 tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";

@@ -2,7 +2,6 @@ function DataImage(source) : SData(source) constructor {
     self.texture_exclude = false;
     
     self.picture = -1;
-    self.picture_with_frames = -1;
     self.npc_frames = [];
     
     self.width = -1;
@@ -43,11 +42,6 @@ function DataImage(source) : SData(source) constructor {
         } else {
             self.picture = sprite_duplicate(b_tileset_magenta);
         }
-        if (file_exists(directory + guid + "_strip" + string(self.hframes) + ".png")) {
-            self.picture_with_frames = sprite_add(directory + guid + ".png", -1, false, false, 0, 0);
-        } else {
-            self.picture_with_frames = sprite_duplicate(b_tileset_magenta);
-        }
         data_image_npc_frames(self);
     };
     
@@ -61,7 +55,6 @@ function DataImage(source) : SData(source) constructor {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         if (sprite_exists(self.picture)) sprite_save(self.picture, 0, directory + guid + ".png");
-        if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
     };
     
     self.ExportImage = function(buffer, include_image) {
@@ -94,7 +87,6 @@ function DataImage(source) : SData(source) constructor {
     self.Destroy = function() {
         self.baseDestroy();
         if (self.picture) sprite_delete(self.picture);
-        if (self.picture_with_frames) sprite_delete(self.picture_with_frames);
         
         for (var i = 0; i < array_length(self.npc_frames); i++) {
             vertex_delete_buffer(self.npc_frames[i]);
