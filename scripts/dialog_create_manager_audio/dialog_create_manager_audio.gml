@@ -11,10 +11,11 @@ function dialog_create_manager_audio() {
     
     
     return dialog.AddContent([
+        #region Assets
         (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
             switch (self.value) {
-                case 0: self.root.audio_list = Game.graphics.tilesets; self.root.audio_prefix = PREFIX_AUDIO_BGM; break;
-                case 1: self.root.audio_list = Game.graphics.overworlds; self.root.audio_prefix = PREFIX_AUDIO_SE; break;
+                case 0: self.root.audio_list = Game.audio.bgm; self.root.audio_prefix = PREFIX_AUDIO_BGM; break;
+                case 1: self.root.audio_list = Game.audio.se; self.root.audio_prefix = PREFIX_AUDIO_SE; break;
             }
             self.GetSibling("LIST").Deselect().SetList(self.root.audio_list);
             self.root.Refresh({ list: self.root.audio_list, index: -1 });
@@ -22,7 +23,7 @@ function dialog_create_manager_audio() {
             .AddOptions(["Background Music", "Sound Effects"])
             .SetTooltip("Choose the type of audio")
             .SetID("TYPE"),
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Audio files:", element_height, 14, function() {
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Audio files:", element_height, 16, function() {
             if (self.root) {
                 self.root.Refresh({ list: self._entries, index: self.GetSelection() });
             }
@@ -32,8 +33,72 @@ function dialog_create_manager_audio() {
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("All of the audio files of the selected type")
             .SetID("LIST"),
-        
-    ]);
+        #endregion
+        #region Asset management
+        (new EmuButton(col2, EMU_BASE, element_width, element_height, "Add Audio", function() {
+            var fn = get_open_filename_image();
+            if (file_exists(fn)) {
+                // todo
+                self.GetSibling("LIST").Deselect().Select(array_length(self.root.audio_list) - 1);
+                self.root.Refresh({ list: self.root.audio_list, index: self.GetSibling("LIST").GetSelection() });
+            }
+        }))
+            .SetTooltip("Add an audio file")
+            .SetID("ADD"),
+        (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Delete Audio", function() {
+            var audio = self.GetSibling("LIST").GetSelectedItem();
+            self.GetSibling("LIST").Deselect();
+            array_delete(self.root.audio_list, array_search(self.root.audio_list, audio), 1);
+            audio.Destroy();
+            self.root.Refresh({ list: self.root.audio_list, index: self.GetSibling("LIST").GetSelection() });
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetInteractive(false)
+            .SetTooltip("Delete the audio; any references to it elsewhere will become null")
+            .SetID("DELETE"),
+        (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Export Audio", function() {
+            try {
+                var audio = self.GetSibling("LIST").GetSelectedItem();
+                // todo
+            } catch (e) {
+                wtf("Could not save the audio: " + e.message);
+            }
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetInteractive(false)
+            .SetTooltip("Save the audio to a file")
+            .SetID("EXPORT"),
+        (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Reload Audio", function() {
+            self.GetSibling("LIST").GetSelectedItem().Reload();
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetInteractive(false)
+            .SetTooltip("Automatically reload the audio from its source file (if it exists on the disk)")
+            .SetID("RELOAD"),
+        (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Change Audio", function() {
+            var audio = self.GetSibling("LIST").GetSelectedItem();
+            var fn = get_open_filename_audio();
+            if (file_exists(fn)) {
+                audio.source_filename = fn;
+                // todo
+            }
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetInteractive(false)
+            .SetTooltip("Replace the audio")
+            .SetID("CHANGE"),
+        #endregion
+    ]).AddDefaultCloseButton();
     
     
     
