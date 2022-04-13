@@ -1,6 +1,6 @@
-function momu_bgm() {
+function momu_audio_manager() {
     menu_close_all();
-    dialog_create_manager_audio_bgm(undefined);
+    dialog_create_manager_audio();
 }
 
 function momu_graphic_mesh_autotiles() {
@@ -11,11 +11,6 @@ function momu_graphic_mesh_autotiles() {
 function momu_graphics_manager() {
     menu_close_all();
     dialog_create_manager_graphics();
-}
-
-function momu_se() {
-    menu_close_all();
-    dialog_create_manager_audio_se(undefined);
 }
 
 #region Terrain menu actions

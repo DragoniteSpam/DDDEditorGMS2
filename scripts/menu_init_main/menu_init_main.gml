@@ -72,17 +72,9 @@ function menu_init_main() {
         md_graphic_ui.interactive = MENU_EDITOR_ENABLED;
         md_graphic_etc.interactive = MENU_EDITOR_ENABLED;
         */
-        var md_audio = create_menu_element("Audio", momu_expand, menu_data, true);
-            var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
-            var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
-            ds_list_add(md_audio.contents,
-                md_aud_bgm,
-                md_aud_se
-            );
+        var md_audio = create_menu_element("Audio", momu_audio_manager, menu_data);
         var md_mesh_at = create_menu_element("Mesh Autotiles", momu_graphic_mesh_autotiles, menu_data);
         md_audio.interactive = MENU_EDITOR_ENABLED;
-        md_aud_bgm.interactive = MENU_EDITOR_ENABLED;
-        md_aud_se.interactive = MENU_EDITOR_ENABLED;
         md_mesh_at.interactive = MENU_EDITOR_ENABLED;
         var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
         var md_reload = create_menu_element("Reload Assets...", momu_expand, menu_data, true);

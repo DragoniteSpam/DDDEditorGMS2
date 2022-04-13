@@ -1,4 +1,42 @@
-function dialog_create_manager_audio(dialog, name, prefix, list) {
+function dialog_create_manager_audio() {
+    var dialog = new EmuDialog(768, 760, "Audio");
+    dialog.audio_prefix = PREFIX_AUDIO_BGM;
+    dialog.audio_list = Game.audio.bgm;
+    var element_width = 320;
+    var element_height = 32;
+    
+    var col1 = 32;
+    var col2 = 384;
+    var col3 = 736;
+    
+    
+    return dialog.AddContent([
+        (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
+            switch (self.value) {
+                case 0: self.root.audio_list = Game.graphics.tilesets; self.root.audio_prefix = PREFIX_AUDIO_BGM; break;
+                case 1: self.root.audio_list = Game.graphics.overworlds; self.root.audio_prefix = PREFIX_AUDIO_SE; break;
+            }
+            self.GetSibling("LIST").Deselect().SetList(self.root.audio_list);
+            self.root.Refresh({ list: self.root.audio_list, index: -1 });
+        }))
+            .AddOptions(["Background Music", "Sound Effects"])
+            .SetTooltip("Choose the type of audio")
+            .SetID("TYPE"),
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Audio files:", element_height, 14, function() {
+            if (self.root) {
+                self.root.Refresh({ list: self._entries, index: self.GetSelection() });
+            }
+        }))
+            .SetNumbered(true)
+            .SetList(Game.audio.bgm)
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetTooltip("All of the audio files of the selected type")
+            .SetID("LIST"),
+        
+    ]);
+    
+    
+    
     var dw = 768;
     var dh = 480;
     
