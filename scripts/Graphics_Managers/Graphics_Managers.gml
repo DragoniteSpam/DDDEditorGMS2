@@ -153,8 +153,9 @@ function dialog_create_manager_graphics() {
             .SetRefresh(function(data) {
                 if (data.index == -1) return;
                 var abb = filename_abbreviated(data.list[data.index].source_filename, self.width - self.offset);
+                if (abb == "") abb = "<no path saved>";
                 if (!file_exists(data.list[data.index].source_filename)) abb = "[c_orange]" + abb;
-                self.SetValue(abb == "" ? "[c_orange]<no path saved>" : abb);
+                self.SetValue(abb);
             })
             .SetTextUpdate(undefined)
             .SetID("SOURCE FILE"),
