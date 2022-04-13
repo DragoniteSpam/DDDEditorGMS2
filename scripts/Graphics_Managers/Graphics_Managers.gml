@@ -338,6 +338,7 @@ function dialog_create_manager_graphics() {
         }))
             .SetID("PREVIEW"),
         new EmuFileDropperListener(function(files) {
+            files = self.Filter(files, [".png", ".jpeg", ".jpg", ".jpe", ".bmp"]);
             if (self.root.graphics_list == Game.graphics.tilesets) {
                 for (var i = 0, n = array_length(files); i < n; i++) {
                     tileset_create(files[i]);

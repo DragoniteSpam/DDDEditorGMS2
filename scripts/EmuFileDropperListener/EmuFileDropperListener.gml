@@ -1,7 +1,7 @@
 function EmuFileDropperListener(action) : EmuCore(0, 0, 0, 0) constructor {
     self.action = method(self, action);
     
-    static Filter = function(files, extensions) {
+    self.Filter = function(files, extensions) {
         var filtered_list = [];
         var extension_map = { };
         
@@ -19,7 +19,7 @@ function EmuFileDropperListener(action) : EmuCore(0, 0, 0, 0) constructor {
         return filtered_list;
     };
     
-    static Render = function() {
+    self.Render = function() {
         if (!self.root.isActiveDialog()) return;
         if (array_length(Stuff.files_dropped) > 0) {
             self.action(Stuff.files_dropped);
