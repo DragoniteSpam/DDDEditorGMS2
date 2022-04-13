@@ -35,7 +35,7 @@ function DataImage(source) : SData(source) constructor {
         self.source_filename = source.source_filename;
     }
     
-    static LoadAsset = function(directory) {
+    self.LoadAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         if (file_exists(directory + guid + ".png")) {
@@ -51,14 +51,20 @@ function DataImage(source) : SData(source) constructor {
         data_image_npc_frames(self);
     };
     
-    static SaveAsset = function(directory) {
+    self.Reload = function() {
+        if (!file_exists(self.source_filename)) return;
+        sprite_delete(self.picture);
+        self.picture = sprite_add(self.source_filename, 0, false, false, 0, 0);
+    };
+    
+    self.SaveAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         if (sprite_exists(self.picture)) sprite_save(self.picture, 0, directory + guid + ".png");
         if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
     };
     
-    static ExportImage = function(buffer, include_image) {
+    self.ExportImage = function(buffer, include_image) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.width);
         buffer_write(buffer, buffer_u16, self.height);
@@ -77,7 +83,7 @@ function DataImage(source) : SData(source) constructor {
         buffer_write(buffer, buffer_f32, self.packed.h);
     };
     
-    static Export = function(buffer, include_image = true) {
+    self.Export = function(buffer, include_image = true) {
         self.ExportImage(buffer, include_image);
     };
     

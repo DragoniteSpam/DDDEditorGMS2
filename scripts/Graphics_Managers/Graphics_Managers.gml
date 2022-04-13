@@ -148,6 +148,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Save the image to a file")
             .SetID("EXPORT"),
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Reload Image", function() {
+            self.GetSibling("LIST").GetSelectedItem().Reload();
             self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetRefresh(function(data) {
