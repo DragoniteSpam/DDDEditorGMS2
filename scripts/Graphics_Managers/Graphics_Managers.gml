@@ -114,8 +114,8 @@ function dialog_create_manager_graphics() {
                     graphics_add_generic(fn, self.root.graphics_prefix, self.root.graphics_list, undefined, false);
                 }
                 self.GetSibling("LIST").Deselect().Select(array_length(self.root.graphics_list) - 1);
+                self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
             }
-            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))
             .SetTooltip("Add an image")
             .SetID("ADD"),
@@ -336,7 +336,20 @@ function dialog_create_manager_graphics() {
                 
         }, function() {
         }))
-            .SetID("PREVIEW")
+            .SetID("PREVIEW"),
+        new EmuFileDropperListener(function(files) {
+            if (self.root.graphics_list == Game.graphics.tilesets) {
+                for (var i = 0, n = array_length(files); i < n; i++) {
+                    tileset_create(files[i]);
+                }
+            } else {
+                for (var i = 0, n = array_length(files); i < n; i++) {
+                    graphics_add_generic(files[i], self.root.graphics_prefix, self.root.graphics_list, undefined, false);
+                }
+            }
+            self.GetSibling("LIST").Deselect().Select(array_length(self.root.graphics_list) - 1);
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
+        }),
     ])
         .AddDefaultCloseButton();
 }
