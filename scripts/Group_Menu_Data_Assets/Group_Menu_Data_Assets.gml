@@ -1,46 +1,11 @@
-function momu_graphic_skybox() {
-    menu_close_all();
-    dialog_create_manager_graphic_skybox(undefined);
-}
-
 function momu_bgm() {
     menu_close_all();
     dialog_create_manager_audio_bgm(undefined);
 }
 
-function momu_graphic_battle() {
-    menu_close_all();
-    dialog_create_manager_graphic_battle(undefined);
-}
-
-function momu_graphic_etc() {
-    menu_close_all();
-    dialog_create_manager_graphic_etc(undefined);
-}
-
 function momu_graphic_mesh_autotiles() {
     menu_close_all();
     dialog_create_manager_mesh_autotile(undefined);
-}
-
-function momu_graphic_overworld() {
-    menu_close_all();
-    dialog_create_manager_graphic_overworld(undefined);
-}
-
-function momu_graphic_particle() {
-    menu_close_all();
-    dialog_create_manager_graphic_particle(undefined);
-}
-
-function momu_graphic_tileset() {
-    menu_close_all();
-    dialog_create_manager_graphic_tileset(undefined);
-}
-
-function momu_graphic_ui() {
-    menu_close_all();
-    dialog_create_manager_graphics(undefined);
 }
 
 function momu_graphics_manager() {
