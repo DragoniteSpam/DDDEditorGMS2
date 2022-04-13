@@ -439,7 +439,6 @@
     {"id":{"name":"uivc_list_event_attain_transfer_direction","path":"scripts/uivc_list_event_attain_transfer_direction/uivc_list_event_attain_transfer_direction.yy",},"order":19,},
     {"id":{"name":"uivc_check_event_condition_value","path":"scripts/uivc_check_event_condition_value/uivc_check_event_condition_value.yy",},"order":21,},
     {"id":{"name":"uivc_check_event_condition_comparison","path":"scripts/uivc_check_event_condition_comparison/uivc_check_event_condition_comparison.yy",},"order":22,},
-    {"id":{"name":"Manager_Graphics","path":"scripts/Manager_Graphics/Manager_Graphics.yy",},"order":24,},
     {"id":{"name":"carton_create","path":"scripts/carton_create/carton_create.yy",},"order":3,},
     {"id":{"name":"uivc_event_condition_attain_variable_index","path":"scripts/uivc_event_condition_attain_variable_index/uivc_event_condition_attain_variable_index.yy",},"order":0,},
     {"id":{"name":"uivc_event_condition_attain_switch_index","path":"scripts/uivc_event_condition_attain_switch_index/uivc_event_condition_attain_switch_index.yy",},"order":1,},
