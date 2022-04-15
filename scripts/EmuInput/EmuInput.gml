@@ -33,6 +33,11 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     
     self._surface = surface_create(self._value_x2 - self._value_x1, self._value_y2 - self._value_y1);
     
+    self.SetValidateInput = function(f) {
+        self.ValidateInput = method(self, f);
+        return self;
+    };
+    
     SetMultiLine = function(multi_line) {
         self._multi_line = multi_line;
         return self;
