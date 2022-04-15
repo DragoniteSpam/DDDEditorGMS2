@@ -1,5 +1,5 @@
 function dialog_create_settings_data() {
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 720, "Global Game Settinsg");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 720, "Global Game Settings");
     var element_width = 320;
     var element_height = 32;
     
@@ -170,7 +170,7 @@ function dialog_create_settings_data() {
         #endregion
         new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Other things"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Data and Asset Files", function() {
-            dialog_create_settings_data_asset_files(); /* update this */
+            dialog_create_settings_data_asset_files();
         }))
             .SetTooltip("You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control."),
     ]).AddDefaultCloseButton();
