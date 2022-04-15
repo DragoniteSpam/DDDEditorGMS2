@@ -1,22 +1,26 @@
 function dialog_create_settings_data() {
-    var dialog = new EmuDialog(720, 640, "Global Game Settinsg");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 640, "Global Game Settinsg");
     var element_width = 320;
     var element_height = 32;
     
     var col1 = 32;
-    var col2 = 384;
+    var col2 = 32 + 320 + 32;
+    var col3 = 32 + 320 + 32 + 320 + 32;
     
     return dialog.AddContent([
-        (new EmuInput(col1, EMU_BASE, dialog.width - 64, element_height * 6, "Summary:", Game.meta.project.summary, "Write a short description here", 500, E_InputTypes.STRING, function() {
+        #region Project DNA
+        (new EmuInput(col1, EMU_BASE, dialog.width - 64, element_height * 3, "Summary:", Game.meta.project.summary, "Write a short description here", 500, E_InputTypes.STRING, function() {
             Game.meta.project.summary = self.value;
         }))
             .SetInputBoxPosition(element_width / 2)
             .SetMultiLine(true)
             .SetTooltip("A quick summary of the game that the data files are to be used for; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to)."),
-        (new EmuInput(col1, EMU_AUTO, dialog.width - 64, element_height, "Author:", Game.meta.project.author, "Who is responsible for this?", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+        (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Author:", Game.meta.project.author, "Who is responsible for this?", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
             Game.meta.project.author = self.value;
         }))
             .SetTooltip("The name of the person who made this; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to) and is not a substitute for full game credits."),
+        #endregion
+        #region General
         new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]General Gameplay Settings"),
         (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Snap player to grid", Game.meta.grid.snap, function() {
             Game.meta.grid.snap = self.value;
@@ -26,11 +30,29 @@ function dialog_create_settings_data() {
             dialog_create_settings_data_player_start(); /* update this */
         }))
             .SetTooltip("Set the player's starting position on the map. By default it will be in the bottom-upper-left corner of the default map, but you probably want it to be somewhere with meaning."),
+        (new EmuCheckbox(col3, EMU_INLINE, element_width, element_height, "Export mesh collision shapes", Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES, function() {
+            Game.meta.export.flags &= ~GameExportFlags.COLLISION_SHAPES;
+            if (self.value) {
+                Game.meta.export.flags |= GameExportFlags.COLLISION_SHAPES;
+            }
+        }))
+            .SetTooltip("Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells"),
+        #endregion
+        #region Graphical stuff
         new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Graphical Settings"),
-        (new EmuColorPicker(col1, EMU_AUTO, element_width, element_height, "Default ambient light:", Game.meta.lighting.ambient, function() {
+        (new EmuColorPicker(col1, EMU_AUTO, element_width, element_height, "Default ambient:", Game.meta.lighting.ambient, function() {
             Game.meta.lighting.ambient = self.value;
         }))
             .SetTooltip("The default ambient lighting color. New maps will use this value. Existing maps will not be updated."),
+        (new EmuInput(col2, EMU_INLINE, element_width, element_height, "Chunk size:", Game.meta.grid.chunk_size, "cells", 5, E_InputTypes.INT, function() {
+            Game.meta.grid.chunk_size = self.value;
+        }))
+            .SetRealNumberBounds(8, MAP_AXIS_LIMIT)
+            .SetTooltip("The size of map chunks, in tiles"),
+        (new EmuButton(col3, EMU_INLINE, element_width, element_height, "Exported vertex format", function() {
+            emu_dialog_vertex_format(Game.meta.export.vertex_format, function(value) { Game.meta.export.vertex_format = value; });
+        }))
+            .SetTooltip("The vertex format that exported meshes (mesh data, frozen map data, etc) uses."),
         (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Screen width:", Game.meta.screen.width, "pixels", 4, E_InputTypes.INT, function() {
             Game.meta.screen.width = self.value;
         }))
@@ -40,23 +62,7 @@ function dialog_create_settings_data() {
             Game.meta.screen.height = self.value;
         }))
             .SetInteractive(false),
-        (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Chunk size:", Game.meta.grid.chunk_size, "cells", 5, E_InputTypes.INT, function() {
-            Game.meta.grid.chunk_size = self.value;
-        }))
-            .SetRealNumberBounds(8, MAP_AXIS_LIMIT)
-            .SetTooltip("The size of map chunks, in tiles"),
-        (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Exported vertex format", function() {
-            emu_dialog_vertex_format(Game.meta.export.vertex_format, function(value) { Game.meta.export.vertex_format = value; });
-        }))
-            .SetTooltip("The vertex format that exported meshes (mesh data, frozen map data, etc) uses."),
-        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Export mesh collision shapes", Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES, function() {
-            Game.meta.export.flags &= ~GameExportFlags.COLLISION_SHAPES;
-            if (self.value) {
-                Game.meta.export.flags |= GameExportFlags.COLLISION_SHAPES;
-            }
-        }))
-            .SetTooltip("Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells"),
-        
+        #endregion
     ]).AddDefaultCloseButton();
     
     
