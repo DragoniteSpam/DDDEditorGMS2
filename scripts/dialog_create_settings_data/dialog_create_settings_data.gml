@@ -74,7 +74,27 @@ function dialog_create_settings_data() {
         }))
             .SetTooltip("A list of properties whose value will not change during the game. Examples might include things such as \"walk speed\" or \"experience multiplier.\""),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Event Triggers", function() {
-            dialog_create_settings_data_event_triggers(); /* update this */
+            (new EmuDialog(32 + 320 + 32, 680, "Data Settings: Event Triggers")).AddContent([
+                (new EmuList(32, EMU_AUTO, 320, 32, "Event Triggers", 32, 16, function() {
+                   if (self.root) self.root.Refresh(self.GetSelection());
+                }))
+                    .SetList(Game.vars.triggers)
+                    .SetNumbered(true)
+                    .SetID("LIST")
+                    .SetTooltip("Custom event triggers that entities can respond to events for. These are stored in the form of a 64-bit mask, which means you can use up to 64 of them and they may be toggled on or off independantly of each other."),
+                (new EmuInput(32, EMU_AUTO, 320, 32, "Name:", "", "trigger name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                    Game.vars.triggers[self.GetSibling("LIST").GetSelection()] = self.value;
+                }))
+                    .SetRefresh(function(index) {
+                        if (index == -1) {
+                            self.SetInteractive(false);
+                            return;
+                        }
+                        self.SetInteractive(true);
+                        self.SetValue(Game.vars.triggers[index]);
+                    })
+                    .SetTooltip("The name of the selected event trigger.")
+            ]).AddDefaultCloseButton();
         }))
             .SetTooltip("In addition to the default event triggers (action button, player touch, etc) you may define your own, such as \"on contact with a magic spell\" or something."),
         (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Collision Flags", function() {
@@ -85,7 +105,7 @@ function dialog_create_settings_data() {
                     .SetList(Game.vars.flags)
                     .SetNumbered(true)
                     .SetID("LIST")
-                    .SetTooltip("Any flags you may want to assign to assets such as Meshes or Tiles. These are stored in the form of a 32-bit mask, which means you can use up to 32 of them and they may be toggled on or off independantly of each other."),
+                    .SetTooltip("Any flags you may want to assign to assets such as Meshes or Tiles. These are stored in the form of a 64-bit mask, which means you can use up to 64 of them and they may be toggled on or off independantly of each other."),
                 (new EmuInput(32, EMU_AUTO, 320, 32, "Name:", "", "flag name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
                     Game.vars.flags[self.GetSibling("LIST").GetSelection()] = self.value;
                 }))
@@ -97,7 +117,7 @@ function dialog_create_settings_data() {
                         self.SetInteractive(true);
                         self.SetValue(Game.vars.flags[index]);
                     })
-                    .SetTooltip("The name of the selected collision flag")
+                    .SetTooltip("The name of the selected collision flag.")
             ]).AddDefaultCloseButton();
         }))
             .SetTooltip("Some extra flags you can assign to various game assets. This now includes collision triggers."),
@@ -118,7 +138,7 @@ function dialog_create_settings_data() {
                     list.Select(selection + 1);
                     self.root.Refresh(selection + 1);
                 }))
-                    .SetTooltip("Add an effect marker"),
+                    .SetTooltip("Add an effect marker."),
                 (new EmuButton(32, EMU_AUTO, 320, 32, "Remove Marker", function() {
                     var list = self.GetSibling("LIST");
                     var selection = list.GetSelection();
@@ -131,7 +151,7 @@ function dialog_create_settings_data() {
                     .SetRefresh(function(index) {
                         self.SetInteractive(index >= 0 && index < array_length(Game.vars.effect_markers));
                     })
-                    .SetTooltip("Remove the selected effect marker"),
+                    .SetTooltip("Remove the selected effect marker."),
                 (new EmuInput(32, EMU_AUTO, 320, 32, "Name:", "", "flag name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
                     Game.vars.effect_markers[self.GetSibling("LIST").GetSelection()] = self.value;
                 }))
@@ -143,6 +163,7 @@ function dialog_create_settings_data() {
                         self.SetInteractive(true);
                         self.SetValue(Game.vars.effect_markers[index]);
                     })
+                    .SetTooltip("The name of the selected effect marker.")
             ]).AddDefaultCloseButton();
         }))
             .SetTooltip("Effects can be used to denote misc ambient entities, such as fish in water or that kind of thing."),
