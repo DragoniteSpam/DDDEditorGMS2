@@ -223,6 +223,14 @@ function dialog_create_manager_audio() {
             .SetTooltip("The ending point of the loop of this audio clip")
             .SetID("LOOP END"),
         #endregion
+        (new EmuProgressBar(col2, EMU_AUTO, element_width, element_height, 12, 0, 1, false, 0, emu_null))
+            .SetUpdate(function() {
+                self.value = 0;
+                // to do - playback head position
+            })
+            .SetInteractive(false)
+            .SetTooltip("Audio playback status")
+            .SetID("PLAYBACK BAR")
     ]).AddDefaultCloseButton();
     
     
