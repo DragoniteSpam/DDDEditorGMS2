@@ -16,6 +16,17 @@ function EmuProgressBar(x, y, w, h, thickness, value_min, value_max, draggable, 
     self._integers_only = false;
     self._currently_dragging = false;
     
+    self.update_script = undefined;
+    
+    self.SetUpdate = function(f) {
+        if (f == undefined) {
+            self.update_script = undefined;
+            return self;
+        }
+        self.update_script = method(self, f);
+        return self;
+    };
+    
     static SetValueRange = function(vmin, vmax) {
         self.value_min = min(vmin, vmax);
         self.value_max = max(vmin, vmax);
@@ -33,6 +44,8 @@ function EmuProgressBar(x, y, w, h, thickness, value_min, value_max, draggable, 
     
     Render = function(base_x, base_y) {
         processAdvancement();
+        
+        if (self.update_script) self.update_script();
         
         var x1 = x + base_x;
         var y1 = y + base_y;
