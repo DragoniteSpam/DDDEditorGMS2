@@ -488,7 +488,7 @@ function ui_init_mesh(mode) {
                     }))
                         .SetTooltip("Whether or not to colorize the verties of meshes."),
                     new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
-                    (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.mesh.wireframe_alpha, function() {
+                    (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 1, true, Settings.mesh.wireframe_alpha, function() {
                         Settings.mesh.wireframe_alpha = self.value;
                     }))
                         .SetTooltip("Draw a wireframe over the 3D mesh. Turn this off if it gets annoying."),

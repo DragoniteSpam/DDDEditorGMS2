@@ -55,16 +55,16 @@ function ui_init_terrain(mode) {
                         }))
                             .SetTooltip("Toggles the the water layer under the terrain."),
                         new EmuText(col1x, EMU_AUTO, col_width, 32, "Water level:"),
-                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, -1, 1, true, Settings.terrain.water_level, function() {
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, -1, 1, true, Settings.terrain.water_level, function() {
                             Settings.terrain.water_level = self.value;
                         })),
                         new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
-                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.wireframe_alpha, function() {
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 1, true, Settings.terrain.wireframe_alpha, function() {
                             Settings.terrain.wireframe_alpha = self.value;
                         }))
                             .SetTooltip("Fade out the wireframes a bit if you think they're too disracting."),
                         new EmuText(col1x, EMU_AUTO, col_width, 32, "Cursor alpha:"),
-                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.cursor_alpha, function() {
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 1, true, Settings.terrain.cursor_alpha, function() {
                             Settings.terrain.cursor_alpha = self.value;
                         }))
                             .SetTooltip("Fade out the terrain cursor a bit if you think it's too disracting."),
@@ -77,7 +77,7 @@ function ui_init_terrain(mode) {
                         }))
                             .SetTooltip("Toggles the the skybox. In the future I might add the ability to import your own."),
                         new EmuText(col1x, EMU_AUTO, col_width, 32, "View distance:"),
-                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.view_distance_perspective_min, Settings.terrain.view_distance_perspective_max, true, Settings.terrain.view_distance, function() {
+                        (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.view_distance_perspective_min, Settings.terrain.view_distance_perspective_max, true, Settings.terrain.view_distance, function() {
                             Settings.terrain.view_distance = self.value;
                         }))
                             .SetTooltip("The distance at which the terrain will switch to a lower level of detail. This can have a dramatic impact on performance."),
@@ -190,25 +190,25 @@ function ui_init_terrain(mode) {
                     .SetTooltip("The shading gradient. Useful for toon shading."),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Primary light angle: " + string(floor(Settings.terrain.light_primary_angle)) + "°"))
                     .SetID("PRIMARY_LIGHT_ANGLE"),
-                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 360, true, Settings.terrain.light_primary_angle, function() {
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 360, true, Settings.terrain.light_primary_angle, function() {
                     Settings.terrain.light_primary_angle = self.value;
                     self.GetSibling("PRIMARY_LIGHT_ANGLE").text = "Primary light angle: " + string(floor(self.value)) + "°";
                 }),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Primary strength: " + string(floor(Settings.terrain.light_primary_strength * 100)) + "%"))
                     .SetID("PRIMARY_LIGHT_STR"),
-                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.light_primary_strength, function() {
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 1, true, Settings.terrain.light_primary_strength, function() {
                     Settings.terrain.light_primary_strength = self.value;
                     self.GetSibling("PRIMARY_LIGHT_STR").text = "Primary strength: " + string(floor(self.value * 100)) + "%";
                 }),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Secondary light angle: " + string(floor(Settings.terrain.light_secondary_angle)) + "°"))
                     .SetID("SECONDARY_LIGHT_ANGLE"),
-                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 360, true, Settings.terrain.light_secondary_angle, function() {
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 360, true, Settings.terrain.light_secondary_angle, function() {
                     Settings.terrain.light_secondary_angle = self.value;
                     self.GetSibling("SECONDARY_LIGHT_ANGLE").text = "Secondary light angle: " + string(floor(self.value)) + "°";
                 }),
                 (new EmuText(col1x, EMU_AUTO, col_width, 32, "Secondary strength: " + string(floor(Settings.terrain.light_secondary_strength * 100)) + "%"))
                     .SetID("SECONDARY_LIGHT_STR"),
-                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, 0, 1, true, Settings.terrain.light_secondary_strength, function() {
+                new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 1, true, Settings.terrain.light_secondary_strength, function() {
                     Settings.terrain.light_secondary_strength = self.value;
                     self.GetSibling("SECONDARY_LIGHT_STR").text = "Secondary strength: " + string(floor(self.value)) + "%";
                 }),
@@ -230,7 +230,7 @@ function ui_init_terrain(mode) {
                     .AddOptions(["Raise/Lower", "Average", "Zero"])
                     .SetTooltip("The method which you would like to use to mold the terrain."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.rate_min, Settings.terrain.rate_max, true, Settings.terrain.rate, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.rate_min, Settings.terrain.rate_max, true, Settings.terrain.rate, function() {
                     Settings.terrain.rate = self.value;
                 }))
                     .SetTooltip("A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic."),
@@ -256,7 +256,7 @@ function ui_init_terrain(mode) {
                     dialog.y = 120;
                 })),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.radius, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.radius, function() {
                     Settings.terrain.radius = self.value;
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
@@ -400,7 +400,7 @@ function ui_init_terrain(mode) {
                     .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common.")
                     .SetID("TEXTURE_RESOLUTION"),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
                     Settings.terrain.tile_brush_radius = self.value;
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
@@ -423,7 +423,7 @@ function ui_init_terrain(mode) {
             }),
             (new EmuTab("Painting")).AddContent([
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.paint_strength_min, Settings.terrain.paint_strength_max, true, Settings.terrain.paint_strength, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_strength_min, Settings.terrain.paint_strength_max, true, Settings.terrain.paint_strength, function() {
                     Settings.terrain.paint_strength = self.value;
                 }))
                     .SetTooltip("A lower strength value will cause the color to blend with the existing color, and a greater one will cause it to replace the existing color."),
@@ -440,7 +440,7 @@ function ui_init_terrain(mode) {
                     dialog.y = 120;
                 }),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 8, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, Settings.terrain.paint_brush_radius, function() {
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, Settings.terrain.paint_brush_radius, function() {
                     Settings.terrain.paint_brush_radius = self.value;
                 }))
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),

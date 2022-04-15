@@ -40,13 +40,13 @@ function dialog_terrain_mutate() {
     
     dialog.AddContent([
         new EmuText(32, 32, 360, 24, "Smoothness:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 1, 10, true, 6, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 12, 1, 10, true, 6, emu_null))
             .SetID("SMOOTHNESS"),
         new EmuText(32, EMU_AUTO, 360, 24, "Noise amplitude:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 0, 1, true, 0.25, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 12, 0, 1, true, 0.25, emu_null))
             .SetID("NOISE_STRENGTH"),
         new EmuText(32, EMU_AUTO, 360, 24, "Texture amplitude:"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 8, 0, 1, true, 0.25, emu_null))
+        (new EmuProgressBar(32, EMU_AUTO, 256, 24, 12, 0, 1, true, 0.25, emu_null))
             .SetID("TEXTURE_STRENGTH"),
         (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
             var selection = self.GetSelection();
@@ -177,7 +177,7 @@ function dialog_create_terrain_new() {
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
         new EmuText(col1_x, EMU_AUTO, ew, eh, "Scale:"),
-        (new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.terrain.heightmap_scale, function() {
+        (new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 12, 0, 1, true, Settings.terrain.heightmap_scale, function() {
             Settings.terrain.heightmap_scale = self.value;
         }))
             .SetIntegersOnly(false)
@@ -189,7 +189,7 @@ function dialog_create_terrain_new() {
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
         new EmuText(col2_x, EMU_AUTO, ew, eh, "Scale:"),
-        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.terrain.gen_noise_scale, function() {
+        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 12, 0, 1, true, Settings.terrain.gen_noise_scale, function() {
             Settings.terrain.gen_noise_scale = self.value;
         }))
             .SetIntegersOnly(false)
@@ -197,7 +197,7 @@ function dialog_create_terrain_new() {
             .SetID("SCALE"),
         (new EmuText(col2_x, EMU_AUTO, ew, eh, "Smoothness:"))
             .SetInteractive(false),
-        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 8, 1, 10, true, Settings.terrain.gen_noise_smoothness, function() {
+        (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 12, 1, 10, true, Settings.terrain.gen_noise_smoothness, function() {
             Settings.terrain.gen_noise_smoothness = self.value;
         }))
             .SetIntegersOnly(true)
@@ -255,7 +255,7 @@ function dialog_terrain_export() {
         new EmuText(32, EMU_AUTO, 256, 32, "[c_aqua]General export settings"),
         (new EmuText(32, EMU_AUTO, 256, 32, "Max LOD levels: " + (Settings.terrain.export_lod_levels > 0 ? string(Settings.terrain.export_lod_levels) : "none")))
             .SetID("LABEL"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 0, 10, true, Settings.terrain.export_lod_levels, function() {
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 12, 0, 10, true, Settings.terrain.export_lod_levels, function() {
             self.GetSibling("LABEL").text = "Max LOD levels: " + (self.value > 0 ? string(self.value) : "none");
             Settings.terrain.export_lod_levels = self.value;
         }))
@@ -263,7 +263,7 @@ function dialog_terrain_export() {
             .SetID("LEVELS"),
         (new EmuText(32, EMU_AUTO, 256, 32, "LOD reduction factor: " + string(Settings.terrain.export_lod_reduction)))
             .SetID("LABEL_REDUCTION"),
-        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 8, 1.5, 25, true, Settings.terrain.export_lod_reduction, function() {
+        (new EmuProgressBar(32, EMU_AUTO, 256, 32, 12, 1.5, 25, true, Settings.terrain.export_lod_reduction, function() {
             self.GetSibling("LABEL_REDUCTION").text = "LOD reduction factor: " + string(self.value) + "x";
             Settings.terrain.export_lod_reduction = self.value;
         }))
@@ -318,7 +318,7 @@ function dialog_terrain_export() {
         })),
         (new EmuText(352, EMU_AUTO, 256, 32, "Chunk size: " + ((Settings.terrain.export_chunk_size > 0) ? string(Settings.terrain.export_chunk_size) : "(disabled)")))
             .SetID("LABEL_CHUNKS"),
-        (new EmuProgressBar(352, EMU_AUTO, 256, 32, 8, 0, 10, true, Settings.terrain.export_chunk_size, function() {
+        (new EmuProgressBar(352, EMU_AUTO, 256, 32, 12, 0, 10, true, Settings.terrain.export_chunk_size, function() {
             self.GetSibling("LABEL_CHUNKS").text = "Chunk size: " + ((self.value > 0) ? string(self.value) : "(disabled)");
             Settings.terrain.export_chunk_size = self.value;
         }))

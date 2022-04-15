@@ -70,7 +70,7 @@ function dialog_create_preferences() {
         }))
             .SetTooltip("The default background color of the game world. Using a skybox will (most likely) render this pointless."),
         new EmuText(c1x, EMU_AUTO, ew, eh, "Camera Acceleration:"),
-        (new EmuProgressBar(c1x, EMU_AUTO, ew, eh, 8, 0.5, 4, true, Settings.config.camera_fly_rate, function() {
+        (new EmuProgressBar(c1x, EMU_AUTO, ew, eh, 8, 0.5, 12, true, Settings.config.camera_fly_rate, function() {
             Settings.config.camera_fly_rate = self.value;
         }))
             .SetTooltip("How fast the camera accelerates in editor modes that use it (2D and 3D)."),
@@ -83,7 +83,7 @@ function dialog_create_preferences() {
         }))
             .SetTooltip("Mesh autotiles that are surrounded on all sides, and are surrounded on all sides above, will be automatically deleted."),
         new EmuText(c1x, EMU_AUTO, ew, eh, "Out-of-focus opacity:"),
-        (new EmuProgressBar(c1x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.config.focus_alpha, function() {
+        (new EmuProgressBar(c1x, EMU_AUTO, ew, eh, 12, 0, 1, true, Settings.config.focus_alpha, function() {
             Settings.config.focus_alpha = self.value;
             self.root.active_shade = self.value;
         }))
