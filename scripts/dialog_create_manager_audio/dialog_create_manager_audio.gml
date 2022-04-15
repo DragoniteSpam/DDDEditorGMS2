@@ -162,7 +162,34 @@ function dialog_create_manager_audio() {
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
             }),
-        
+        #endregion
+        #region Sample stuff
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Sample rate:", "", "usually 44100 or 48000", 6, E_InputTypes.INT, function() {
+            self.GetSibling("LIST").GetSelectedItem().SetSampleRate(real(self.value));
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+                if (data.index == -1) return;
+                self.SetValue(data.list[data.index].sample_rate);
+            })
+            .SetRealNumberBounds(22050, 192000)
+            .SetInteractive(false)
+            .SetTooltip("The sample rate of this audio clip")
+            .SetID("SAMPLE RATE"),
+        (new EmuButton(col2 + 0 * element_width / 2, EMU_AUTO, element_width / 2, element_height, "44,100 Hz", function() {
+            self.GetSibling("LIST").GetSelectedItem().SetSampleRate(44100);
+            self.GetSibling("SAMPLE RATE").SetValue(44100);
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            }),
+        (new EmuButton(col2 + 1 * element_width / 2, EMU_INLINE, element_width / 2, element_height, "48,000 Hz", function() {
+            self.GetSibling("LIST").GetSelectedItem().SetSampleRate(48000);
+            self.GetSibling("SAMPLE RATE").SetValue(48000);
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            }),
         #endregion
     ]).AddDefaultCloseButton();
     
