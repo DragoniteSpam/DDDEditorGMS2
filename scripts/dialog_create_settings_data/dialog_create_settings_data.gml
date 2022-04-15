@@ -77,8 +77,8 @@ function dialog_create_settings_data() {
             dialog_create_settings_data_event_triggers(); /* update this */
         }))
             .SetTooltip("In addition to the default event triggers (action button, player touch, etc) you may define your own, such as \"on contact with a magic spell\" or something."),
-        (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Asset Collision Flags", function() {
-            (new EmuDialog(32 + 320 + 32, 680, "Data Settings: Asset Flags")).AddContent([
+        (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Collision Flags", function() {
+            (new EmuDialog(32 + 320 + 32, 680, "Data Settings: Collision Flags")).AddContent([
                 (new EmuList(32, EMU_AUTO, 320, 32, "Asset Flags", 32, 16, function() {
                    if (self.root) self.root.Refresh(self.GetSelection());
                 }))
@@ -97,11 +97,53 @@ function dialog_create_settings_data() {
                         self.SetInteractive(true);
                         self.SetValue(Game.vars.flags[index]);
                     })
+                    .SetTooltip("The name of the selected collision flag")
             ]).AddDefaultCloseButton();
         }))
             .SetTooltip("Some extra flags you can assign to various game assets. This now includes collision triggers."),
         (new EmuButton(col3, EMU_INLINE, element_width, element_height, "Effect Markers", function() {
-            dialog_create_settings_data_effect_marker(); /* update this */
+            (new EmuDialog(32 + 320 + 32, 680, "Data Settings: Mesh Markers")).AddContent([
+                (new EmuList(32, EMU_AUTO, 320, 32, "Mesh Markers", 32, 12, function() {
+                   if (self.root) self.root.Refresh(self.GetSelection());
+                }))
+                    .SetList(Game.vars.effect_markers)
+                    .SetNumbered(true)
+                    .SetID("LIST")
+                    .SetTooltip("Any flags you may want to assign to assets such as Meshes or Tiles. These are stored in the form of a 32-bit mask, which means you can use up to 32 of them and they may be toggled on or off independantly of each other."),
+                (new EmuButton(32, EMU_AUTO, 320, 32, "Add Marker", function() {
+                    var list =self.GetSibling("LIST");
+                    var selection = list.GetSelection();
+                    array_insert(Game.vars.effect_markers, selection + 1, "Effect Marker " + string(array_length(Game.vars.effect_markers)));
+                    list.Deselect();
+                    list.Select(selection + 1);
+                    self.root.Refresh(selection + 1);
+                }))
+                    .SetTooltip("Add an effect marker"),
+                (new EmuButton(32, EMU_AUTO, 320, 32, "Remove Marker", function() {
+                    var list = self.GetSibling("LIST");
+                    var selection = list.GetSelection();
+                    array_delete(Game.vars.effect_markers, selection, 1);
+                    selection = min(selection, array_length(Game.vars.effect_markers) - 1);
+                    list.Deselect();
+                    list.Select(selection);
+                    self.root.Refresh(selection);
+                }))
+                    .SetRefresh(function(index) {
+                        self.SetInteractive(index >= 0 && index < array_length(Game.vars.effect_markers));
+                    })
+                    .SetTooltip("Remove the selected effect marker"),
+                (new EmuInput(32, EMU_AUTO, 320, 32, "Name:", "", "flag name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                    Game.vars.effect_markers[self.GetSibling("LIST").GetSelection()] = self.value;
+                }))
+                    .SetRefresh(function(index) {
+                        if (index < 0 || index >= array_length(Game.vars.effect_markers)) {
+                            self.SetInteractive(false);
+                            return;
+                        }
+                        self.SetInteractive(true);
+                        self.SetValue(Game.vars.effect_markers[index]);
+                    })
+            ]).AddDefaultCloseButton();
         }))
             .SetTooltip("Effects can be used to denote misc ambient entities, such as fish in water or that kind of thing."),
         #endregion
