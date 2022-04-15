@@ -70,7 +70,7 @@ function dialog_create_preferences() {
         }))
             .SetTooltip("The default background color of the game world. Using a skybox will (most likely) render this pointless."),
         new EmuText(c1x, EMU_AUTO, ew, eh, "Camera Acceleration:"),
-        (new EmuProgressBar(c1x, EMU_AUTO, ew, eh, 8, 0.5, 12, true, Settings.config.camera_fly_rate, function() {
+        (new EmuProgressBar(c1x, EMU_AUTO, ew, eh, 12, 0.5, 4, true, Settings.config.camera_fly_rate, function() {
             Settings.config.camera_fly_rate = self.value;
         }))
             .SetTooltip("How fast the camera accelerates in editor modes that use it (2D and 3D)."),

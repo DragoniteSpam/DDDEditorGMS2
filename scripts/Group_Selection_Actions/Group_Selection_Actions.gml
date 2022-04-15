@@ -1,4 +1,5 @@
-function sa_fill() {    static fill_types = [
+function sa_fill() {
+    static fill_types = [
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.TILE]) {
                 Stuff.map.active_map.Add(new EntityTile("Tile", Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y), x, y, z);
