@@ -9,7 +9,6 @@ function dialog_create_manager_audio() {
     var col2 = 384;
     var col3 = 736;
     
-    
     return dialog.AddContent([
         #region Assets
         (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {

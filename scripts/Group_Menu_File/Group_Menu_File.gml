@@ -23,5 +23,5 @@ function momu_export_data() {
 
 function momu_settings_data() {
     menu_close_all();
-    dialog_create_settings_data(noone);
+    dialog_create_settings_data();
 }
