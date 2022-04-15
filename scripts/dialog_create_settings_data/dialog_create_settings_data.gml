@@ -78,7 +78,26 @@ function dialog_create_settings_data() {
         }))
             .SetTooltip("In addition to the default event triggers (action button, player touch, etc) you may define your own, such as \"on contact with a magic spell\" or something."),
         (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Asset Collision Flags", function() {
-            dialog_create_settings_data_asset_flags(); /* update this */
+            (new EmuDialog(32 + 320 + 32, 680, "Data Settings: Asset Flags")).AddContent([
+                (new EmuList(32, EMU_AUTO, 320, 32, "Asset Flags", 32, 16, function() {
+                   if (self.root) self.root.Refresh(self.GetSelection());
+                }))
+                    .SetList(Game.vars.flags)
+                    .SetNumbered(true)
+                    .SetID("LIST")
+                    .SetTooltip("Any flags you may want to assign to assets such as Meshes or Tiles. These are stored in the form of a 32-bit mask, which means you can use up to 32 of them and they may be toggled on or off independantly of each other."),
+                (new EmuInput(32, EMU_AUTO, 320, 32, "Name:", "", "flag name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                    Game.vars.flags[self.GetSibling("LIST").GetSelection()] = self.value;
+                }))
+                    .SetRefresh(function(index) {
+                        if (index == -1) {
+                            self.SetInteractive(false);
+                            return;
+                        }
+                        self.SetInteractive(true);
+                        self.SetValue(Game.vars.flags[index]);
+                    })
+            ]).AddDefaultCloseButton();
         }))
             .SetTooltip("Some extra flags you can assign to various game assets. This now includes collision triggers."),
         (new EmuButton(col3, EMU_INLINE, element_width, element_height, "Effect Markers", function() {
