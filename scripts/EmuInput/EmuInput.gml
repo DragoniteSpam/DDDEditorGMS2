@@ -1,7 +1,7 @@
 // Emu (c) 2020 @dragonitespam
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Emu/wiki
 function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, callback) : EmuCallback(x, y, w, h, value, callback) constructor {
-    enum E_InputTypes { STRING, INT, REAL, HEX, LETTERSDIGITS };
+    enum E_InputTypes { STRING, INT, REAL, HEX, LETTERSDIGITS, LETTERSDIGITSANDUNDERSCORES };
     
     self.text = text;
     self.help_text = help_text;
@@ -72,6 +72,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     
     Render = function(base_x, base_y) {
         processAdvancement();
+        self.update_script();
         
         var x1 = x + base_x;
         var y1 = y + base_y;
@@ -229,7 +230,10 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                     }
                 } else if (_working_value == "") {
                 	value = _working_value;
-                } 
+                    keyboard_string = _working_value;
+                } else {
+                    keyboard_string = self.value;
+                }
             }
             
             // activation
@@ -288,6 +292,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
 	            return true;
             case E_InputTypes.LETTERSDIGITS:
 	            return string_lettersdigits(text) == text;
+            case E_InputTypes.LETTERSDIGITSANDUNDERSCORES:
+	            return string_length(string_lettersdigits(text)) + string_count("_", text) == string_length(text);
         }
         return true;
     }
@@ -296,6 +302,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         switch (self._value_type) {
             case E_InputTypes.STRING: return text;
             case E_InputTypes.LETTERSDIGITS: return text;
+            case E_InputTypes.LETTERSDIGITSANDUNDERSCORES: return text;
             case E_InputTypes.INT: return real(text);
             case E_InputTypes.REAL: return real(text);
             case E_InputTypes.HEX: return emu_hex(text);
