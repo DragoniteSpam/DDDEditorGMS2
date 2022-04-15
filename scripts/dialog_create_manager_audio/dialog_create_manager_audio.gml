@@ -190,6 +190,38 @@ function dialog_create_manager_audio() {
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);
             }),
+        (new EmuText(col2, EMU_AUTO, element_width, 24, "Length: N/A"))
+            .SetRefresh(function(data) {
+                self.text = "Length: [c_orange]To do - get audio length";
+            }),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Loop start:", "", "seconds", 8, E_InputTypes.REAL, function() {
+            var audio = self.GetSibling("LIST").GetSelectedItem();
+            audio.loop_start = real(self.value) * audio.sample_rate;
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive((data.index != -1) && (self.root.audio_list == Game.audio.bgm));
+                if (data.index == -1) return;
+                self.SetValue(data.list[data.index].loop_start / data.list[data.index].sample_rate);
+                self.SetRealNumberBounds(0, 100000);
+                wtf("loop start - set real number bounds 0 through the length of the audio clip (in seconds)");
+            })
+            .SetInteractive(false)
+            .SetTooltip("The starting point of the loop of this audio clip")
+            .SetID("LOOP START"),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Loop end:", "", "seconds", 8, E_InputTypes.REAL, function() {
+            var audio = self.GetSibling("LIST").GetSelectedItem();
+            audio.loop_end = real(self.value) * audio.sample_rate;
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive((data.index != -1) && (self.root.audio_list == Game.audio.bgm));
+                if (data.index == -1) return;
+                self.SetValue(data.list[data.index].loop_end / data.list[data.index].sample_rate);
+                self.SetRealNumberBounds(0, 100000);
+                wtf("loop end - set real number bounds 0 through the length of the audio clip (in seconds)");
+            })
+            .SetInteractive(false)
+            .SetTooltip("The ending point of the loop of this audio clip")
+            .SetID("LOOP END"),
         #endregion
     ]).AddDefaultCloseButton();
     
