@@ -1,5 +1,5 @@
 function dialog_create_settings_data() {
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 640, "Global Game Settinsg");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 720, "Global Game Settinsg");
     var element_width = 320;
     var element_height = 32;
     
@@ -63,6 +63,38 @@ function dialog_create_settings_data() {
         }))
             .SetInteractive(false),
         #endregion
+        #region Variables and stuff
+        new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Variables and stuff"),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Global Variables", function() {
+            dialog_create_settings_data_variables(); /* update this */
+        }))
+            .SetTooltip("A list of built-in variables which you may wish to modify during the game. You may set their default values here."),
+        (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Global Switches", function() {
+            dialog_create_settings_data_switches(); /* update this */
+        }))
+            .SetTooltip("A list of built-in variables which you may wish to modify during the game. You may set their default values here."),
+        (new EmuButton(col3, EMU_INLINE, element_width, element_height, "Global Constants", function() {
+            dialog_create_settings_data_game_constants(); /* update this */
+        }))
+            .SetTooltip("A list of properties whose value will not change during the game. Examples might include things such as \"walk speed\" or \"experience multiplier.\""),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Event Triggers", function() {
+            dialog_create_settings_data_event_triggers(); /* update this */
+        }))
+            .SetTooltip("In addition to the default event triggers (action button, player touch, etc) you may define your own, such as \"on contact with a magic spell\" or something."),
+        (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Asset Collision Flags", function() {
+            dialog_create_settings_data_asset_flags(); /* update this */
+        }))
+            .SetTooltip("Some extra flags you can assign to various game assets. This now includes collision triggers."),
+        (new EmuButton(col3, EMU_INLINE, element_width, element_height, "Effect Markers", function() {
+            dialog_create_settings_data_effect_marker(); /* update this */
+        }))
+            .SetTooltip("Effects can be used to denote misc ambient entities, such as fish in water or that kind of thing."),
+        #endregion
+        new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Other things"),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Data and Asset Files", function() {
+            dialog_create_settings_data_asset_files(); /* update this */
+        }))
+            .SetTooltip("You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control."),
     ]).AddDefaultCloseButton();
     
     
