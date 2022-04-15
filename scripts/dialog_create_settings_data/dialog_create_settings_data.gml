@@ -26,11 +26,7 @@ function dialog_create_settings_data() {
             Game.meta.grid.snap = self.value;
         }))
             .SetTooltip("Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells"),
-        (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Player Start", function() {
-            dialog_create_settings_data_player_start(); /* update this */
-        }))
-            .SetTooltip("Set the player's starting position on the map. By default it will be in the bottom-upper-left corner of the default map, but you probably want it to be somewhere with meaning."),
-        (new EmuCheckbox(col3, EMU_INLINE, element_width, element_height, "Export mesh collision shapes", Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES, function() {
+        (new EmuCheckbox(col2, EMU_INLINE, element_width, element_height, "Export mesh collision shapes", Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES, function() {
             Game.meta.export.flags &= ~GameExportFlags.COLLISION_SHAPES;
             if (self.value) {
                 Game.meta.export.flags |= GameExportFlags.COLLISION_SHAPES;

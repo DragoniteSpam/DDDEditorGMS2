@@ -256,7 +256,6 @@
     {"id":{"name":"scribble_anim_rainbow","path":"scripts/scribble_anim_rainbow/scribble_anim_rainbow.yy",},"order":4,},
     {"id":{"name":"dialog_create_settings_data_variables","path":"scripts/dialog_create_settings_data_variables/dialog_create_settings_data_variables.yy",},"order":9,},
     {"id":{"name":"dialog_create_settings_data_asset_files","path":"scripts/dialog_create_settings_data_asset_files/dialog_create_settings_data_asset_files.yy",},"order":10,},
-    {"id":{"name":"dialog_create_settings_data_player_start","path":"scripts/dialog_create_settings_data_player_start/dialog_create_settings_data_player_start.yy",},"order":11,},
     {"id":{"name":"__scribble_class_element","path":"scripts/__scribble_class_element/__scribble_class_element.yy",},"order":0,},
     {"id":{"name":"Group_Emu_Shortcut_Dialogs","path":"scripts/Group_Emu_Shortcut_Dialogs/Group_Emu_Shortcut_Dialogs.yy",},"order":0,},
     {"id":{"name":"foreach","path":"scripts/foreach/foreach.yy",},"order":9,},
