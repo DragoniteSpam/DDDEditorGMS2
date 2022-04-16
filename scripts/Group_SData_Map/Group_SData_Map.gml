@@ -14,6 +14,7 @@ function DataMap(source, directory) : SData(source) constructor {
     self.yy = 64;
     self.zz = 8;
     self.tileset = NULL;                                                        // GUID
+    self.water_texture = NULL;                                                  // GUID
     self.fog_start = 1024;                                                      // float
     self.fog_end = 3072;                                                        // float
     self.fog_enabled = true;                                                    // bool
@@ -243,6 +244,7 @@ function DataMap(source, directory) : SData(source) constructor {
         buffer_write(buffer, buffer_u64, self.export.size);
         
         buffer_write(buffer, buffer_datatype, self.tileset);
+        buffer_write(buffer, buffer_datatype, self.water);
         buffer_write(buffer, buffer_f32, self.fog_start);
         buffer_write(buffer, buffer_f32, self.fog_end);
         buffer_write(buffer, buffer_u32, self.fog_colour);
@@ -536,17 +538,9 @@ function DataMap(source, directory) : SData(source) constructor {
         self.discovery = source.discovery;
         self.code = source.code;
         self.generic_data = source.generic_data;
-        try {
-            self.chunk_size = source.chunk_size;
-        } catch (e) {
-            try { self.chunk_size = source.map_chunk_size; } catch (e) { }
-        }
-        try {
-            self.grid_flags = source.grid_flags;
-        } catch (e) {
-            // just in case
-            self.SetSize(source.xx, source.yy, source.zz);
-        }
-        try { self.lights = source.lights; } catch (e) { }
+        self.chunk_size = source.chunk_size;
+        self.grid_flags = source.grid_flags;
+        self.lights = source.lights;
+        self.water_texture = source[$ "water_texture"] ?? NULL;
     }
 }
