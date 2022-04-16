@@ -246,7 +246,7 @@ function DataMap(source, directory) : SData(source) constructor {
         buffer_write(buffer, buffer_u64, self.export.size);
         
         buffer_write(buffer, buffer_datatype, self.tileset);
-        buffer_write(buffer, buffer_datatype, self.water);
+        buffer_write(buffer, buffer_datatype, self.water_texture);
         buffer_write(buffer, buffer_f32, self.fog_start);
         buffer_write(buffer, buffer_f32, self.fog_end);
         buffer_write(buffer, buffer_u32, self.fog_colour);
