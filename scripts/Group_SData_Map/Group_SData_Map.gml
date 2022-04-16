@@ -501,6 +501,7 @@ function DataMap(source, directory) : SData(source) constructor {
     static DrawWater = function(set_lights = true) {
         if (!self.draw_water) return;
         if (!self.contents.water) return;
+        if (!Settings.view.water) return;
         
         if (Settings.view.wireframe) wireframe_enable();
         

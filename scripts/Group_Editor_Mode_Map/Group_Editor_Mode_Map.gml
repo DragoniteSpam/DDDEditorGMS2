@@ -208,7 +208,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
         
         #region entities
-        if (Settings.view.entities) {
+        if (Settings.view.frozen) {
             if (map_contents.frozen) {
                 vertex_submit(map_contents.frozen, pr_trianglelist, tex);
             }
@@ -216,15 +216,19 @@ function EditorModeMap() : EditorModeBase() constructor {
                 vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
             }
             
-            if (map_contents.frozen) {
-                wireframe_enable();
-                vertex_submit(map_contents.frozen, pr_trianglelist, tex);
-                if (self.active_map.reflections_enabled && map_contents.reflect_frozen) {
-                    vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
+            if (Settings.view.wireframe) {
+                if (map_contents.frozen) {
+                    wireframe_enable();
+                    vertex_submit(map_contents.frozen, pr_trianglelist, tex);
+                    if (self.active_map.reflections_enabled && map_contents.reflect_frozen) {
+                        vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
+                    }
+                    wireframe_disable();
                 }
-                wireframe_disable();
             }
-            
+        }
+        
+        if (Settings.view.entities) {    
             for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
                 var data = map_contents.batches[i];
                 vertex_submit(data.vertex, pr_trianglelist, tex);

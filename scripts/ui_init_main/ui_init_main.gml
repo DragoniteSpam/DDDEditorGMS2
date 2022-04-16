@@ -92,6 +92,14 @@ function ui_init_main(mode) {
                 Settings.view.entities = self.value;
             }))
                 .SetTooltip("Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Frozen Data", Settings.view.frozen, function() {
+                Settings.view.frozen = self.value;
+            }))
+                .SetTooltip("Whether or not frozen vertex data (static level geometry) should be visible."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Water", Settings.view.water, function() {
+                Settings.view.water = self.value;
+            }))
+                .SetTooltip("Whether or not water should be visible."),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Backfaces", Settings.view.backface, function() {
                 Settings.view.backface = self.value;
             }))
