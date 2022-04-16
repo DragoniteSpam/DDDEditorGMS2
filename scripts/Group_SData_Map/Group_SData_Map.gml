@@ -214,6 +214,8 @@ function DataMap(source, directory) : SData(source) constructor {
         } catch (e) {
             
         }
+        
+        Stuff.map.ui.Refresh();
     };
     
     static SaveUnloaded = function(directory) {

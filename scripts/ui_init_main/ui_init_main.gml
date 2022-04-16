@@ -345,7 +345,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY NAME")
                 .SetInputBoxPosition(0, 0)
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                     } else {
                         self.SetInteractive(true);
@@ -355,7 +355,7 @@ function ui_init_main(mode) {
             (new EmuText(col1x, EMU_AUTO, element_width, element_height, "Type: N/A"))
                 .SetID("ENTITY TYPE")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetValue("Type: N/A");
                     } else {
                         self.SetInteractive(true);
@@ -369,7 +369,7 @@ function ui_init_main(mode) {
             }))
                 .SetID("ENTITY STATIC")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                     } else {
                         self.SetInteractive(true);
@@ -383,7 +383,7 @@ function ui_init_main(mode) {
                 .SetCallbackDouble(f_event_page_open)
                 .SetID("ENTITY EVENT PAGES")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) != 1) {
+                    if (sel == undefined || ds_list_size(sel) != 1) {
                         self.SetInteractive(false);
                         self.SetList([]);
                     } else {
@@ -419,14 +419,14 @@ function ui_init_main(mode) {
                 dialog_create_entity_generic_data();
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(ds_list_size(sel) == 1);
+                    self.SetInteractive(sel != undefined && ds_list_size(sel) == 1);
                 }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Autonomous Movement", function() {
                 if (ds_list_size(Stuff.map.selected_entities) != 1) return;
                 dialog_create_entity_autonomous_movement();
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(ds_list_size(sel) == 1);
+                    self.SetInteractive(sel != undefined && ds_list_size(sel) == 1);
                 }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Options", function() {
                 var selection = selection_all();
@@ -475,7 +475,7 @@ function ui_init_main(mode) {
                     .AddDefaultCloseButton();
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(ds_list_size(sel) >= 1);
+                    self.SetInteractive(sel != undefined && ds_list_size(sel) >= 1);
                 }),
             #endregion
             #region column 2
@@ -490,7 +490,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY POSITION X")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -508,7 +508,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY POSITION Y")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -526,7 +526,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY POSITION Z")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -546,7 +546,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY OFFSET X")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -566,7 +566,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY OFFSET Y")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -586,7 +586,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY OFFSET Z")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -606,7 +606,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY ROTATION X")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -626,7 +626,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY ROTATION Y")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -646,7 +646,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY ROTATION Z")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -666,7 +666,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY SCALE X")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -686,7 +686,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY SCALE Y")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -706,7 +706,7 @@ function ui_init_main(mode) {
                 .SetRequireConfirm(true)
                 .SetID("ENTITY SCALE Z")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -745,7 +745,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY MESH MESH")
                 .SetRefresh(function(sel) {
                     self.Deselect();
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                     } else {
                         self.SetInteractive(true);
@@ -777,7 +777,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY MESH SUBMESH")
                 .SetRefresh(function(sel) {
                     self.Deselect();
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                     } else {
                         self.SetInteractive(true);
@@ -797,7 +797,7 @@ function ui_init_main(mode) {
             }))
                 .SetID("ENTITY MESH ANIMATED")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue(0);
                     } else {
@@ -814,7 +814,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY MESH ANIMATION SPEED")
                 .SetTooltip("The number of complete animation frames per second. (Animations will not be previewed in the editor.)")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -832,7 +832,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY MESH ANIMATION END ACTION")
                 .SetTooltip("What do at the end of an animation cycle.")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue(-1);
                     } else {
@@ -847,7 +847,7 @@ function ui_init_main(mode) {
                 dialog_create_entity_mesh_autotile_properties();
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(map_selection_like_type(sel, ETypeFlags.ENTITY_MESH_AUTO));
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_MESH_AUTO));
                 }),
             #endregion
         ])
@@ -866,7 +866,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY PAWN SPRITE")
                 .SetRefresh(function(sel) {
                     self.Deselect();
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                     } else {
                         var common = map_selection_like_property(sel, "overworld_sprite", ETypeFlags.ENTITY_PAWN);
@@ -882,7 +882,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY PAWN FRAME")
                 .SetTooltip("The frame of the pawn's animation to show.")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue("");
                     } else {
@@ -900,7 +900,7 @@ function ui_init_main(mode) {
                 .SetID("ENTITY PAWN DIRECTION")
                 .SetTooltip("The direction you want this pawn to face on the map.")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue(-1);
                     } else {
@@ -916,7 +916,7 @@ function ui_init_main(mode) {
             }))
                 .SetID("ENTITY PAWN ANIMATING")
                 .SetRefresh(function(sel) {
-                    if (ds_list_size(sel) == 0) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
                         self.SetInteractive(false);
                         self.SetValue(false);
                     } else {
@@ -933,25 +933,25 @@ function ui_init_main(mode) {
                 dialog_create_entity_effect_com_lighting();
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
                 }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Particle", function() {
                 // later
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
                 }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Audio", function() {
                 // later
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
                 }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Markers", function() {
                 dialog_create_entity_effect_com_markers();
             }))
                 .SetRefresh(function(sel) {
-                    self.SetInteractive(map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
                 }),
         ])
             .SetID("ENTITY EFFECT"),
@@ -1161,9 +1161,33 @@ function ui_init_main(mode) {
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Primary map tileset:", element_height, 8, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
-                
                 Stuff.map.active_map.tileset = Game.graphics.tilesets[index].GUID;
             }))
+                .SetRefresh(function() {
+                    if (!Stuff.map.active_map) return;
+                    for (var i = 0, n = array_length(Game.graphics.tilesets); i < n; i++) {
+                        if (Game.graphics.tilesets[i].GUID == Stuff.map.active_map.tileset) {
+                            self.Select(i);
+                            break;
+                        }
+                    }
+                })
+                .SetList(Game.graphics.tilesets)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+            (new EmuList(col2x, EMU_INLINE, element_width, element_height, "Water tileset:", element_height, 8, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                Stuff.map.active_map.water_texture = Game.graphics.tilesets[index].GUID;
+            }))
+                .SetRefresh(function() {
+                    if (!Stuff.map.active_map) return;
+                    for (var i = 0, n = array_length(Game.graphics.tilesets); i < n; i++) {
+                        if (Game.graphics.tilesets[i].GUID == Stuff.map.active_map.water_texture) {
+                            self.Select(i);
+                            break;
+                        }
+                    }
+                })
                 .SetList(Game.graphics.tilesets)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS),
             (new EmuRenderSurface(col1x, EMU_AUTO, hud_width - 64, hud_width - 64, function(mx, my) {

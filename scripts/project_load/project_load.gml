@@ -231,10 +231,9 @@ function project_load(id) {
     try {
         Game.maps[0].Load();
     } catch (e) {
-        show_debug_message("Error loading primary map (is there one?)");
+        show_debug_message("Error loading primary map (is there one?): " + e.message);
     }
     
-    //Stuff.map.ui.Refresh();
     Stuff.mesh_ed.ui.Refresh();
     
     wtf("Loading took " + debug_timer_finish());
