@@ -510,7 +510,7 @@ function DataMap(source, directory) : SData(source) constructor {
         if (Settings.view.wireframe) wireframe_enable();
         
         matrix_set(matrix_world, matrix_build_identity());
-        var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+        var tex = Settings.view.texture ? (self.water_texture == NULL ? -1 : sprite_get_texture(guid_get(self.water_texture).picture, 0)) : -1;
         vertex_submit(self.contents.water, pr_trianglelist, tex);
         wireframe_disable();
     };
