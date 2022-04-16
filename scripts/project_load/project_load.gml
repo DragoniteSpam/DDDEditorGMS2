@@ -234,7 +234,7 @@ function project_load(id) {
         show_debug_message("Error loading primary map (is there one?): " + e.message);
     }
     
-    Stuff.mesh_ed.ui.Refresh();
+    Stuff.mesh.ui.Refresh();
     
     wtf("Loading took " + debug_timer_finish());
 }

@@ -107,8 +107,8 @@ function ui_init_mesh(mode) {
                     batch_again();
                     self.root.Dispose();
                     
-                    Stuff.mesh_ed.ResetTransform();
-                    Stuff.mesh_ed.ui.SearchID("MESH LIST").Deselect();
+                    Stuff.mesh.ResetTransform();
+                    Stuff.mesh.ui.SearchID("MESH LIST").Deselect();
                     batch_again();
                 });
                 
@@ -151,7 +151,7 @@ function ui_init_mesh(mode) {
                             switch (filename_ext(fn)) {
                                 case ".obj": export_obj(name, mesh); break;
                                 case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
-                                case ".vbuff": export_vb(name, mesh, Stuff.mesh_ed.vertex_format); break;
+                                case ".vbuff": export_vb(name, mesh, Stuff.mesh.vertex_format); break;
                             }
                             break;
                         case MeshTypes.SMF:
@@ -336,7 +336,7 @@ function ui_init_mesh(mode) {
                         Game.meshes[real(indices[i])].ActionTransform();
                     }
                     batch_again();
-                    Stuff.mesh_ed.ResetTransform();
+                    Stuff.mesh.ResetTransform();
                     self.root.Dispose();
                 });
                 
@@ -348,7 +348,7 @@ function ui_init_mesh(mode) {
                 .SetTooltip("Apply the preview transformation to the selected meshes. Useful for converting between different world spaces.")
                 .SetID("BAKE TRANSFORMATION"),
             (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Reset Transformation", function() {
-                Stuff.mesh_ed.ResetTransform();
+                Stuff.mesh.ResetTransform();
             }))
                 .SetTooltip("Reset the transform used in the preview.")
                 .SetID("RESET TRANSFORMATION"),
@@ -456,7 +456,7 @@ function ui_init_mesh(mode) {
             (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function() {
                 var input_control = keyboard_check(vk_control);
                 if (CONTROL_3D_LOOK || !input_control) {
-                    Stuff.mesh_ed.camera.Update();
+                    Stuff.mesh.camera.Update();
                 }
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
@@ -532,8 +532,8 @@ function ui_init_mesh(mode) {
     
         /*
         element = create_button(c2x, yy, "Exported Vertex Format", ew, eh, fa_center, function(button) {
-            emu_dialog_vertex_format(Stuff.mesh_ed.vertex_format, function(value) {
-                Stuff.mesh_ed.vertex_format = value;
+            emu_dialog_vertex_format(Stuff.mesh.vertex_format, function(value) {
+                Stuff.mesh.vertex_format = value;
             });
         }, id);
         ds_list_add(contents, element);

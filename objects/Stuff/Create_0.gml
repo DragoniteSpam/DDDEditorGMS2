@@ -89,7 +89,7 @@ data = new EditorModeData();
 event = new EditorModeEvent();
 animation = new EditorModeAnimation();
 terrain = new EditorModeTerrain();
-mesh_ed = new EditorModeMesh();
+mesh = new EditorModeMesh();
 spart = new EditorModeSpart();
 text = new EditorModeText();
 menu = RIBBON_MENU();
@@ -292,7 +292,7 @@ switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
     case ModeIDs.ANIMATION: Stuff.animation.SetMode(); break;
     case ModeIDs.TERRAIN: Stuff.terrain.SetMode(); break;
     case ModeIDs.SPART: Stuff.spart.SetMode(); break;
-    case ModeIDs.MESH: Stuff.mesh_ed.SetMode(); break;
+    case ModeIDs.MESH: Stuff.mesh.SetMode(); break;
     case ModeIDs.TEXT: Stuff.text.SetMode(); break;
 }
 

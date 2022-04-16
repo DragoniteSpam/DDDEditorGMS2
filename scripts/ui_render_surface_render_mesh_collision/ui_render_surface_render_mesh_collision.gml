@@ -8,7 +8,7 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     
     var original_state = gpu_get_state();
     
-    Stuff.mesh_ed.camera.SetProjection();
+    Stuff.mesh.camera.SetProjection();
     
     // draw the grid (any other reference points)
     shader_set(shd_wireframe);

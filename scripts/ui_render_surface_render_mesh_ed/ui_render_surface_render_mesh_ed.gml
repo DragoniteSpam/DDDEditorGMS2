@@ -3,7 +3,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
     
-    Stuff.mesh_ed.camera.SetProjection();
+    Stuff.mesh.camera.SetProjection();
     
     gpu_set_ztestenable(true);
     gpu_set_zwriteenable(true);
@@ -102,7 +102,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     }
     
     #region draw the overlay
-    Stuff.mesh_ed.camera.SetProjectionGUI();
+    Stuff.mesh.camera.SetProjectionGUI();
     
     scribble("[c_white]Use WASD to fly around, and hold the middle mouse button to aim the camera")
         .align(fa_left, fa_top)
@@ -116,7 +116,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     // i legitimately dont know why the vertical offset here needs to be 32 and not self.y
     editor_gui_button(spr_camera_icons, 2, 16, self.height - 48, self.x, 32, null, function() {
-        Stuff.mesh_ed.camera.Reset();
+        Stuff.mesh.camera.Reset();
     });
     #endregion
 }

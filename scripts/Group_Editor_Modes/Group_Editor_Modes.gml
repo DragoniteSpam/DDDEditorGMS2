@@ -20,9 +20,9 @@ function EditorModeMesh() : EditorModeBase() constructor {
     self.camera.base_speed = 20;
     self.camera.Load(setting_get("mesh", "camera", undefined));
     self.camera.SetViewportAspect(function() {
-        return Stuff.mesh_ed.ui.SearchID("3D VIEW").width;
+        return Stuff.mesh.ui.SearchID("3D VIEW").width;
     }, function() {
-        return Stuff.mesh_ed.ui.SearchID("3D VIEW").height;
+        return Stuff.mesh.ui.SearchID("3D VIEW").height;
     });
     
     self.Save = function() {
@@ -102,9 +102,9 @@ function EditorModeAnimation() : EditorModeBase() constructor {
     self.camera.base_speed = 20;
     self.camera.Load(setting_get("mesh", "camera", undefined));
     self.camera.SetViewportAspect(function() {
-        return Stuff.mesh_ed.ui.SearchID("3D VIEW").width;
+        return Stuff.mesh.ui.SearchID("3D VIEW").width;
     }, function() {
-        return Stuff.mesh_ed.ui.SearchID("3D VIEW").height;
+        return Stuff.mesh.ui.SearchID("3D VIEW").height;
     });
     
     self.SetMode = function() {
@@ -143,9 +143,9 @@ function EditorModeSpart() : EditorModeBase() constructor {
     self.camera.base_speed = 20;
     self.camera.Load(setting_get("mesh", "camera", undefined));
     self.camera.SetViewportAspect(function() {
-        return Stuff.mesh_ed.ui.SearchID("3D VIEW").width;
+        return Stuff.mesh.ui.SearchID("3D VIEW").width;
     }, function() {
-        return Stuff.mesh_ed.ui.SearchID("3D VIEW").height;
+        return Stuff.mesh.ui.SearchID("3D VIEW").height;
     });
     self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.default_skybox);
     

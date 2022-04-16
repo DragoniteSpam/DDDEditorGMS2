@@ -55,6 +55,6 @@ function momu_editor_spart() {
 }
 
 function momu_meshes() {
-    Stuff.meshes.SetMode();
+    Stuff.mesh.SetMode();
     menu_close_all();
 }

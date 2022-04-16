@@ -38,7 +38,7 @@ function control_global() {
     }
     
     if (keyboard_check_pressed(vk_f5)) {
-        Stuff.mesh_ed.SetMode();
+        Stuff.mesh.SetMode();
     }
     if (keyboard_check_pressed(vk_f6)) {
         Stuff.map.SetMode();
