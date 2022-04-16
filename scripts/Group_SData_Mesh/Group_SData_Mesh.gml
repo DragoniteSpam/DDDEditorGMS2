@@ -280,7 +280,7 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, self.type);
         buffer_write(buffer, buffer_datatype, self.tex_base);

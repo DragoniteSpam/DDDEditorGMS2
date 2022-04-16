@@ -21,7 +21,7 @@ function DataAnimation(source) : SData(source) constructor {
         self.layers[0].is_actor = true;
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, self.frames_per_second);
         buffer_write(buffer, buffer_u16, self.moments);
@@ -188,7 +188,7 @@ function DataAnimationLayer(animation, source) constructor {
         self.name = source;
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         
         buffer_write(buffer, buffer_field, pack(
@@ -416,7 +416,7 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
         self.tween = source.tween;
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         buffer_write(buffer, buffer_s32, self.relative);
         buffer_write(buffer, buffer_f32, self.x);
         buffer_write(buffer, buffer_f32, self.y);

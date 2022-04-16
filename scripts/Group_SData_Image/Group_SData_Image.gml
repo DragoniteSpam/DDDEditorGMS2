@@ -105,7 +105,7 @@ function DataImageTileset(source = undefined) : DataImage(source) constructor {
         };
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportImage(buffer, true);
         var w = array_length(self.image_flags);
         var h = array_length(self.image_flags[0]);
@@ -118,7 +118,7 @@ function DataImageTileset(source = undefined) : DataImage(source) constructor {
         }
     };
     
-    static Import = function(filename) {
+    self.Import = function(filename) {
         self.name = filename_change_ext(filename_name(filename), "");
         self.source_filename = filename;
         

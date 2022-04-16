@@ -107,7 +107,7 @@ function Entity(source) constructor {
         buffer_write_file(json_stringify(self.CreateJSON()), directory);
     };
     
-    static ExportBase = function(buffer) {
+    self.ExportBase = function(buffer) {
         if (self.is_static) return false;
         
         buffer_write(buffer, buffer_u32, self.etype);
@@ -341,7 +341,7 @@ function EntityEffect(source) : Entity(source) constructor {
     self.com_audio = undefined;
     self.com_marker = -1;
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         if (self.com_light) {
             self.com_light.Export(buffer);
@@ -512,7 +512,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         if (!self.ExportBase(buffer)) return 0;
         buffer_write(buffer, buffer_datatype, self.mesh);
         buffer_write(buffer, buffer_datatype, self.mesh_submesh);
@@ -592,7 +592,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     // these things can't *not* be static
     static SetStatic = function(state) { };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         return 0;
     };
     
@@ -658,7 +658,7 @@ function EntityPawn(source) : Entity(source) constructor {
         matrix_set(matrix_world, matrix_build_identity());
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, self.map_direction);
         buffer_write(buffer, buffer_datatype, self.overworld_sprite);
@@ -743,7 +743,7 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     static batch = batch_tile;
     static render = render_tile;
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         return 0;
     };
     

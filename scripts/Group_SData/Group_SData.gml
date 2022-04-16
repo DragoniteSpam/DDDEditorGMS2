@@ -16,7 +16,7 @@ function SData(source = "data") constructor {
         self.DestroyBase();
     };
     
-    static ExportBase = function(buffer) {
+    self.ExportBase = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_string, self.internal_name);
         buffer_write(buffer, buffer_datatype, self.GUID);

@@ -30,7 +30,7 @@ function MeshSubmesh(source) constructor {
         if (self.reflect_buffer) buffer_save(self.reflect_buffer, directory + proto + ".reflect");
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_datatype, self.proto_guid);
         buffer_write(buffer, buffer_u8, ((!!self.buffer) << 1) | (!!self.reflect_buffer));

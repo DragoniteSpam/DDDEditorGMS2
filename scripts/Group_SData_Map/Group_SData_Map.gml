@@ -235,7 +235,7 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.xx);
         buffer_write(buffer, buffer_u32, self.yy);
@@ -318,7 +318,7 @@ function DataMap(source, directory) : SData(source) constructor {
         return records;
     };
     
-    static ExportMapContents = function(buffer, index) {
+    self.ExportMapContents = function(buffer, index) {
         if (!self.contents) self.Load();
         
         self.export.index = index;

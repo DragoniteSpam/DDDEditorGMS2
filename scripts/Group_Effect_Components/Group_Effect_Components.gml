@@ -22,7 +22,7 @@ function Component(parent, source = undefined) constructor {
         return self.CreateJSONComponent();
     };
     
-    static ExportBase = function(buffer) {
+    self.ExportBase = function(buffer) {
         buffer_write(buffer, buffer_u32, self.type);
         buffer_write(buffer, buffer_string, self.script_call);
     };
@@ -67,7 +67,7 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
         return self.CreateJSONPointLight();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_radius);
@@ -128,7 +128,7 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
         return self.CreateJSONSpotLight();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_radius);
@@ -184,7 +184,7 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
         return self.CreateJSONDirectionalLight();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_dx);
@@ -216,7 +216,7 @@ function ComponentParticle(parent, source = undefined) : Component(parent, sourc
         return self.CreateJSONParticle();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_datatype, self.particle_guid);
     };
@@ -245,7 +245,7 @@ function ComponentAudio(parent, source = undefined) : Component(parent, source) 
         return self.CreateJSONAudio();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_datatype, self.audio_guid);
     };

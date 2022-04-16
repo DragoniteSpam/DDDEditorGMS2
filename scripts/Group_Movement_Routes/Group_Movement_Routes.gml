@@ -8,7 +8,7 @@ function MoveRoute(source) constructor {
     // array of structs
     self.steps = [];
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         buffer_write(buffer, buffer_field, pack(
             self.repeat_action,
             self.skip,

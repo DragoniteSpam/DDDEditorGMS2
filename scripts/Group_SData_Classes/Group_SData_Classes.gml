@@ -11,7 +11,7 @@ function DataClass(source) : SData(source) constructor {
         NO_LOCALIZE_SUMMARY = 0x040000,
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.type);
         buffer_write(buffer, buffer_u32, array_length(self.properties));
@@ -84,7 +84,7 @@ function DataProperty(source, parent) : SData(source) constructor {
     self.default_string = "";
     self.default_code = "";
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         // DON'T call the inherited ExportBase()!
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_datatype, self.GUID);
@@ -127,7 +127,7 @@ function DataInstance(source) : SData(source) constructor {
     self.parent = NULL;
     self.values = [];
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         var class = guid_get(self.parent);
         for (var i = 0; i < array_length(class.properties); i++) {

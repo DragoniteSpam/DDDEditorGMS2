@@ -17,7 +17,7 @@ function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     static EditScript = function(root) { };
     
     // this is the base class, do not instantiate
-    static ExportBase = function(buffer) {
+    self.ExportBase = function(buffer) {
         buffer_write(buffer, buffer_string, self.ztype);
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_f32, self.x1);
@@ -29,7 +29,7 @@ function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
         buffer_write(buffer, buffer_u16, self.zone_priority);
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
     };
     
@@ -113,7 +113,7 @@ function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1,
     self.camera_easing_method = AnimationTweens.LINEAR;
     self.camera_easing_time = 1;
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.camera_distance);
         buffer_write(buffer, buffer_f32, self.camera_angle);
@@ -283,7 +283,7 @@ function MapZoneFlag(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, z
     
     self.zone_flags = 0;
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.zone_flags);
     };
@@ -449,7 +449,7 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
     
     self.lights = array_create(MAX_LIGHTS, NULL);
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, array_length(zone.lights));
         for (var i = 0; i < array_length(zone.lights); i++) {
