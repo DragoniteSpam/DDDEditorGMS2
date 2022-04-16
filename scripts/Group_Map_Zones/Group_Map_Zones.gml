@@ -110,7 +110,7 @@ function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1,
     
     self.camera_distance = 8;
     self.camera_angle = 45;
-    self.camera_easing_method = AnimationTweens.LINEAR;
+    self.camera_easing_method = Easings.LINEAR;
     self.camera_easing_time = 1;
     
     self.Export = function(buffer) {

@@ -1,4 +1,5 @@
 function easing_get(type, t) {
+    if (type == Easings.NONE) return 0;
     var curve = animcurve_get(ac_easings);
     if (is_string(type)) return animcurve_channel_evaluate(curve.channels[animcurve_get_channel_index(curve, type)], t);
     return animcurve_channel_evaluate(curve.channels[type], t);
@@ -19,6 +20,8 @@ enum Easings {
     ELASTIC_I, ELASTIC_O, ELASTIC_IO,
     BOUNCE_I, BOUNCE_O, BOUNCE_IO,
     FAST_TO_SLOW, MID_TO_SLOW,
+    // added these later
+    NONE
 }
 
 // just in case you want to attach strings to them

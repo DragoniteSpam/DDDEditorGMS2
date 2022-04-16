@@ -317,7 +317,7 @@ function DataAnimationLayer(animation, source) constructor {
         
         // only need to check for previous keyframe because if there is no next keyframe, the "next"
         // value will be the same as previous and tweening will just output the same value anyway
-        return ease(value_previous, value_next, f, kf_previous ? kf_previous.GetParameterTween(param) : AnimationTweens.NONE);
+        return ease(value_previous, value_next, f, kf_previous ? kf_previous.GetParameterTween(param) : Easings.NONE);
     };
 }
 
@@ -377,20 +377,20 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
     
     // tweens
     self.tween = {
-        x: AnimationTweens.NONE,
-        y: AnimationTweens.NONE,
-        z: AnimationTweens.NONE,
-        xrot: AnimationTweens.NONE,
-        yrot: AnimationTweens.NONE,
-        zrot: AnimationTweens.NONE,
-        xscale: AnimationTweens.NONE,
-        yscale: AnimationTweens.NONE,
-        zscale: AnimationTweens.NONE,
-        color: AnimationTweens.NONE,
-        alpha: AnimationTweens.NONE,
-        r: AnimationTweens.NONE,
-        g: AnimationTweens.NONE,
-        b: AnimationTweens.NONE,
+        x: Easings.NONE,
+        y: Easings.NONE,
+        z: Easings.NONE,
+        xrot: Easings.NONE,
+        yrot: Easings.NONE,
+        zrot: Easings.NONE,
+        xscale: Easings.NONE,
+        yscale: Easings.NONE,
+        zscale: Easings.NONE,
+        color: Easings.NONE,
+        alpha: Easings.NONE,
+        r: Easings.NONE,
+        g: Easings.NONE,
+        b: Easings.NONE,
     };
     
     if (source) {
@@ -493,7 +493,7 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
     
     static GetParameterTween = function(param) {
         var tween = self.tween[$ property_map[$ param]];
-        return tween != AnimationTweens.NONE && tween != AnimationTweens.IGNORE;
+        return tween != Easings.NONE;
     };
     
     static SetParameterTween = function(param, value) {
@@ -501,7 +501,7 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
     };
     
     static HasParameterTween = function(param) {
-        return self.tween[$ property_map[$ param]] != AnimationTweens.IGNORE;
+        return self.tween[$ property_map[$ param]] != Easings.NONE;
     };
 }
 
