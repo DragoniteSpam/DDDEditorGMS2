@@ -15,6 +15,9 @@ function dialog_create_mesh_collision_settings(mesh) {
             if (selection + 1) {
                 var shape = self.root.mesh.collision_shapes[selection];
                 
+                // we should be doing this with the refresh method but this is older code and it works just as well
+                self.GetSibling("NAME").SetValue(shape.name);
+                
                 self.GetSibling("TRANS X").SetInteractive(false);
                 self.GetSibling("TRANS Y").SetInteractive(false);
                 self.GetSibling("TRANS Z").SetInteractive(false);
@@ -115,7 +118,7 @@ function dialog_create_mesh_collision_settings(mesh) {
                 self.root.mesh.RenameCollisionShape(selection, self.value);
             }
         }))
-            .SetID("SHAPE NAME"),
+            .SetID("NAME"),
         // column 2
         new EmuText(c2x, 32, 256, 32, "[c_aqua]Shape controls"),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Translation"),

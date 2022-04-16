@@ -317,7 +317,7 @@ function DataAnimationLayer(animation, source) constructor {
         
         // only need to check for previous keyframe because if there is no next keyframe, the "next"
         // value will be the same as previous and tweening will just output the same value anyway
-        return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.GetParameterTween(param) : AnimationTweens.NONE);
+        return ease(value_previous, value_next, f, kf_previous ? kf_previous.GetParameterTween(param) : AnimationTweens.NONE);
     };
 }
 

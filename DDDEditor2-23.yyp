@@ -788,7 +788,6 @@
     {"id":{"name":"Group_Event_Management","path":"scripts/Group_Event_Management/Group_Event_Management.yy",},"order":18,},
     {"id":{"name":"EmuFileDropperListener","path":"scripts/EmuFileDropperListener/EmuFileDropperListener.yy",},"order":5,},
     {"id":{"name":"Group_Data_General","path":"scripts/Group_Data_General/Group_Data_General.yy",},"order":11,},
-    {"id":{"name":"Group_Easing_Extra","path":"scripts/Group_Easing_Extra/Group_Easing_Extra.yy",},"order":2,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},
