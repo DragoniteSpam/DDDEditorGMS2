@@ -38,6 +38,16 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         return self;
     };
     
+    self.SetValueType = function(type) {
+        self._value_type = type;
+        return self;
+    };
+    
+    self.SetCharacterLimit = function(limit) {
+        self.character_limit = limit;
+        return self;
+    };
+    
     SetMultiLine = function(multi_line) {
         self._multi_line = multi_line;
         return self;
