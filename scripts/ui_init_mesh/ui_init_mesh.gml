@@ -427,7 +427,7 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.")
                 .SetID("MIRROR TEX V"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Materials", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Materials", function() {
                 dialog_create_mesh_material_settings(self, self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
             }))
                 .SetRefresh(function(data) {
@@ -435,7 +435,7 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Set some material properties used by the selected meshes. Right now I've only implemented the base (diffuse) texture but I'd like to get around to the rest later.")
                 .SetID("MATERIALS"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Submeshes", function() {
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Submeshes", function() {
                 dialog_create_mesh_submesh(Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()]);
             }))
                 .SetRefresh(function(data) {
