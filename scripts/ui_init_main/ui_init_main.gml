@@ -415,8 +415,7 @@ function ui_init_main(mode) {
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Edit", f_event_page_open)),
             new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Stuff"),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Generic Data", function() {
-                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
-                dialog_create_entity_generic_data();
+                emu_dialog_generic_variables(ds_list_find_value(Stuff.map.selected_entities, 0).generic_data);
             }))
                 .SetRefresh(function(sel) {
                     self.SetInteractive(sel != undefined && ds_list_size(sel) == 1);
