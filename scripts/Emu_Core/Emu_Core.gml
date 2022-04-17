@@ -263,7 +263,7 @@ function EmuCore(x, y, w, h) constructor {
     
     static renderContents = function(at_x, at_y) {
         for (var i = 0; i < ds_list_size(self._contents); i++) {
-            if (self._contents[| i]) self._contents[| i].Render(at_x, at_y);
+            if (self._contents[| i] && self._contents[| i].enabled) self._contents[| i].Render(at_x, at_y);
         }
     }
     

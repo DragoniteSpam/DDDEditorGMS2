@@ -11,6 +11,7 @@ function EmuButton(x, y, w, h, text, callback) : EmuCallback(x, y, w, h, 0, call
     
     Render = function(base_x, base_y) {
         processAdvancement();
+        self.update_script();
         
         var x1 = x + base_x;
         var y1 = y + base_y;
