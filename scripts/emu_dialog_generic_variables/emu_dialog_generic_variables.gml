@@ -1,5 +1,6 @@
-function dialog_create_settings_data_game_constants(root) {
+function emu_dialog_generic_variables(list) {
     var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 672, "Data Settings: Game Constants");
+    dialog.list = list;
     var element_width = 320;
     var element_height = 32;
     
@@ -12,46 +13,46 @@ function dialog_create_settings_data_game_constants(root) {
             if (self.root) self.root.Refresh(self.GetSelection());
         }))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-            .SetList(Game.vars.constants)
+            .SetList(list)
             .SetCallbackMiddle(function() {
                 var selection = self.GetSelectedItem();
-                array_sort_name(Game.vars.constants);
+                array_sort_name(self.root.list);
                 if (!selection) return;
-                self.Select(array_search(Game.vars.constants, selection), true);
+                self.Select(array_search(self.root.list, selection), true);
             })
             .SetID("LIST"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Constant", function() {
-            if (array_length(Game.vars.constants) < 0xffff) {
-                array_push(Game.vars.constants, new DataValue("Constant" + string(array_length(Game.vars.constants))));
+            if (array_length(self.root.list) < 0xffff) {
+                array_push(self.root.list, new DataValue("Constant" + string(array_length(self.root.list))));
             }
             self.root.Refresh();
         }))
             .SetInteractive(false)
             .SetRefresh(function(data) {
-                self.SetInteractive(array_length(Game.vars.constants) < 0xffff);
+                self.SetInteractive(array_length(self.root.list) < 0xffff);
             }),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Delete Constant", function() {
-            array_delete(Game.vars.constants, self.GetSibling("LIST").GetSelection(), 1);
+            array_delete(self.root.list, self.GetSibling("LIST").GetSelection(), 1);
             self.root.Refresh();
         }))
             .SetInteractive(false)
             .SetRefresh(function(data) {
-                self.SetInteractive(data != -1 && array_length(Game.vars.constants) > 0);
+                self.SetInteractive(data != -1 && array_length(self.root.list) > 0);
             }),
         (new EmuInput(col2, EMU_BASE, element_width, element_height, "Name:", "", "constant name", VISIBLE_NAME_LENGTH, E_InputTypes.LETTERSDIGITSANDUNDERSCORES, function() {
-            Game.vars.constants[self.GetSibling("LIST").GetSelection()].name = self.value;
+            self.root.list[self.GetSibling("LIST").GetSelection()].name = self.value;
         }))
             .SetInteractive(false)
             .SetRefresh(function(data) {
                 self.SetInteractive(data != -1);
                 if (data == -1) return;
-                self.SetValue(Game.vars.constants[data].name);
+                self.SetValue(self.root.list[data].name);
             }),
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Type:", element_height, 10, function() {
             if (!self.root) return;
             var selection = self.GetSelection();
             if (selection == -1) return;
-            var data = Game.vars.constants[self.GetSibling("LIST").GetSelection()];
+            var data = self.root.list[self.GetSibling("LIST").GetSelection()];
             var original = data.type;
             data.type = self.GetSelection();
             if (original != data.type) {
@@ -65,14 +66,14 @@ function dialog_create_settings_data_game_constants(root) {
                 self.SetInteractive(data != -1);
                 if (data == -1) return;
                 self.Deselect();
-                self.Select(Game.vars.constants[data].type, true);
+                self.Select(self.root.list[data].type, true);
             })
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetAllowDeselect(false)
             .SetList(Stuff.data_type_meta)
             .SetID("TYPE"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Value:", "", "value", 100, E_InputTypes.STRING, function() {
-            var data = Game.vars.constants[self.GetSibling("LIST").GetSelection()];
+            var data = self.root.list[self.GetSibling("LIST").GetSelection()];
             data.value = (data.type == DataTypes.INT || data.type == DataTypes.FLOAT) ? real(self.value) : self.value;
         }))
             .SetInteractive(false)
@@ -81,7 +82,7 @@ function dialog_create_settings_data_game_constants(root) {
                 self.SetInteractive(false);
                 if (data == -1) return;
                 
-                var what = Game.vars.constants[data];
+                var what = self.root.list[data];
                 
                 switch (what.type) {
                     case DataTypes.INT:
@@ -105,33 +106,33 @@ function dialog_create_settings_data_game_constants(root) {
                 }
             }),
         (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "Value:", false, function() {
-            Game.vars.constants[self.GetSibling("LIST").GetSelection()].value = self.value;
+            self.root.list[self.GetSibling("LIST").GetSelection()].value = self.value;
         }))
             .SetInteractive(false)
             .SetRefresh(function(data) {
                 self.SetInteractive(false);
                 if (data == -1) return;
                 
-                if (Game.vars.constants[data].type == DataTypes.BOOL) {
+                if (self.root.list[data].type == DataTypes.BOOL) {
                     self.SetInteractive(true);
-                    self.SetValue(Game.vars.constants[data].value);
+                    self.SetValue(self.root.list[data].value);
                 }
             }),
         (new EmuColorPicker(col2, EMU_AUTO, element_width, element_height, "Color:", 0xff000000, function() {
-            Game.vars.constants[self.GetSibling("LIST").GetSelection()].value = self.value;
+            self.root.list[self.GetSibling("LIST").GetSelection()].value = self.value;
         }))
             .SetInteractive(false)
             .SetAlphaUsed(true)
             .SetRefresh(function(data) {
                 self.SetInteractive(false);
                 if (data == -1) return;
-                if (Game.vars.constants[data].type == DataTypes.COLOR) {
+                if (self.root.list[data].type == DataTypes.COLOR) {
                     self.SetInteractive(true);
-                    self.SetValue(Game.vars.constants[data].value);
+                    self.SetValue(self.root.list[data].value);
                 }
             }),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Event...", function() {
-            var what = Game.vars.constants[self.GetSibling("LIST").GetSelection()];
+            var what = self.root.list[self.GetSibling("LIST").GetSelection()];
             emu_dialog_get_event(guid_get(what.value), function() {
                 var selection = self.GetSibling("ENTRYPOINTS").GetSelectedItem();
                 self.root.data.value = selection ? selection.GUID : NULL;
@@ -151,12 +152,12 @@ function dialog_create_settings_data_game_constants(root) {
                 self.SetInteractive(false);
                 self.text = "Event...";
                 if (data == -1) return;
-                self.SetInteractive(Game.vars.constants[data].type == DataTypes.EVENT);
+                self.SetInteractive(self.root.list[data].type == DataTypes.EVENT);
             }),
         (new EmuList(col3, EMU_BASE, element_width, element_height, "", element_height, 16, function() {
             var selection = self.GetSelection();
             if (selection == -1) return;
-            Game.vars.constants[self.GetSibling("LIST").GetSelection()].value = self.GetSelectedItem().GUID;
+            self.root.list[self.GetSibling("LIST").GetSelection()].value = self.GetSelectedItem().GUID;
         }))
             .SetInteractive(false)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
@@ -165,7 +166,7 @@ function dialog_create_settings_data_game_constants(root) {
                 self.Deselect();
                 self.enabled = false;
                 if (data == -1) return;
-                var what = Game.vars.constants[data];
+                var what = self.root.list[data];
                 var value = guid_get(what.value);
                 self.text = Stuff.data_type_meta[what.type].name + ":";
                 
@@ -261,7 +262,7 @@ function dialog_create_settings_data_game_constants(root) {
             var selection = self.GetSelection();
             if (selection == -1) return;
             var data_index = self.GetSibling("LIST").GetSelection();
-            var data = Game.vars.constants[data_index];
+            var data = self.root.list[data_index];
             var type = Game.data[selection];
             var previous_type = data.type_guid;
             data.type_guid = type.GUID;
@@ -285,7 +286,7 @@ function dialog_create_settings_data_game_constants(root) {
                 self.Deselect();
                 self.enabled = false;
                 if (data == -1) return;
-                var what = Game.vars.constants[data];
+                var what = self.root.list[data];
                 
                 if (what.type == DataTypes.DATA || what.type == DataTypes.ENUM) {
                     self.SetInteractive(true);
@@ -297,7 +298,7 @@ function dialog_create_settings_data_game_constants(root) {
             .SetID("TYPE GUID"),
         (new EmuList(col3, EMU_AUTO, element_width, element_height, "Instance:", element_height, 8, function() {
             if (self.GetSelection() == -1) return;
-            var data = Game.vars.constants[self.GetSibling("LIST").GetSelection()];
+            var data = self.root.list[self.GetSibling("LIST").GetSelection()];
             data.value = self.GetSelectedItem().GUID;
         }))
             .SetEnabled(false)
@@ -308,7 +309,7 @@ function dialog_create_settings_data_game_constants(root) {
                 self.SetEnabled(false);
                 if (data == -1) return;
                 
-                var what = Game.vars.constants[data];
+                var what = self.root.list[data];
                 
                 switch (what.type) {
                     case DataTypes.DATA:

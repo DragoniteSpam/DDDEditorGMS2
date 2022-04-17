@@ -70,7 +70,7 @@ function dialog_create_settings_data() {
         }))
             .SetTooltip("A list of built-in variables which you may wish to modify during the game. You may set their default values here."),
         (new EmuButton(col3, EMU_INLINE, element_width, element_height, "Global Constants", function() {
-            dialog_create_settings_data_game_constants(); /* update this */
+            emu_dialog_generic_variables(Game.vars.constants);
         }))
             .SetTooltip("A list of properties whose value will not change during the game. Examples might include things such as \"walk speed\" or \"experience multiplier.\""),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Event Triggers", function() {

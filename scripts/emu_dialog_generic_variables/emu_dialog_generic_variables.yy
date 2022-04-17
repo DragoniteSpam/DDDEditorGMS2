@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "creation",
-    "path": "folders/Scripts/ui stuff/dialogs/creation.yy",
+    "name": "Emu_Shortcuts",
+    "path": "folders/Emu_Shortcuts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "dialog_create_settings_data_game_constants",
+  "name": "emu_dialog_generic_variables",
   "tags": [],
   "resourceType": "GMScript",
 }
