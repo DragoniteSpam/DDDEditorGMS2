@@ -307,7 +307,7 @@ function ui_init_main(mode) {
             }))
                 .SetTooltip("Shrinking a map may result in entities being deleted."),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Generic Data", function() {
-                dialog_create_map_generic_data();
+                emu_dialog_generic_variables(Stuff.map.active_map.generic_data);
             }))
                 .SetTooltip("You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them."),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Advanced", function() {
