@@ -3,7 +3,7 @@ function menu_render_main(menu, xx, yy) {
     draw_set_font(FDefault);
     draw_set_valign(fa_middle);
     
-    menu.mouse_over = noone;
+    menu.mouse_over = false;
     
     for (var i = 0; i < ds_list_size(menu.contents); i++) {
         var thing = menu.contents[| i];
@@ -27,16 +27,14 @@ function menu_render_main(menu, xx, yy) {
         }
     }
     
-    if (!dialog_exists()) {
-        if (mouse_within_rectangle(0, 0, xx + room_width, yy + menu.element_height)) {
-            if (!menu.mouse_over && (Controller.press_left || Controller.press_right)) {
-                menu_close_all();
-            }
-            Controller.press_left = false;
-            Controller.press_right = false;
-        }
-    }
-    
     // if the cursor is in the menu bar just disable clicking, because it'll be more
     // trouble than it's worth
+    if (mouse_within_rectangle(0, 0, xx + room_width, yy + menu.element_height)) {
+        Controller.press_left = false;
+        Controller.press_right = false;
+    }
+    
+    if (!menu.mouse_over && (Controller.press_left || Controller.press_right)) {
+        menu_close_all();
+    }
 }
