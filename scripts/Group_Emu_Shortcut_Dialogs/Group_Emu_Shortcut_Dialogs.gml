@@ -116,3 +116,48 @@ function emu_dialog_vertex_format(value, callback) {
     
     return dialog;
 }
+
+function emu_dialog_get_event(default_entrypoint, callback, data) {
+    var col1 = 32;
+    var col2 = 32 + 320 + 32;
+            
+    var dialog = (new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Select an event graph...")).AddContent([
+        (new EmuList(col1, EMU_BASE, 320, 32, "Events:", 32, 16, function() {
+            if (self.root) self.root.Refresh(self.GetSelectedItem());
+        }))
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetList(Game.events.events)
+            .Select(array_search(Game.events.events, default_entrypoint ? default_entrypoint.event : undefined))
+            .SetID("LIST")
+            .SetTooltip("Select an event graph."),
+        (new EmuList(col2, EMU_BASE, 320, 32, "Entrypoint:", 32, 16, function() {
+            var selection = self.GetSelectedItem();
+                    
+            // ...
+        }))
+            .SetList(default_entrypoint ? default_entrypoint.event.nodes : [])
+            .Select(default_entrypoint ? array_search(default_entrypoint.event.nodes, default_entrypoint) : -1)
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetRefresh(function(data) {
+                self.Deselect();
+                if (!data) {
+                    self.SetList([]);
+                    return;
+                }
+                var entrypoints = [];
+                for (var i = 0, n = array_length(data.nodes); i < n; i++) {
+                    if (data.nodes[i].type == EventNodeTypes.ENTRYPOINT) {
+                        array_push(entrypoints, data.nodes[i]);
+                    }
+                }
+                self.SetList(entrypoints);
+            })
+            .SetTooltip("Select an entrypoint within the event graph.")
+            .SetID("ENTRYPOINTS"),
+    ]).AddDefaultConfirmCancelButtons("Done", function() {
+        method(self, self.root.cb)();
+        emu_dialog_close_auto();
+    }, "Cancel", emu_dialog_close_auto);
+    dialog.data = data;
+    dialog.cb = callback;
+}
