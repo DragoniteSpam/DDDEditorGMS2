@@ -191,7 +191,7 @@ data_type_meta = [
     
     new data_type_class(05, "Data",             NULL,       buffer_datatype),
     new data_type_class(06, "Code",             "",         buffer_string),
-    new data_type_class(07, "Color",            0x000000,   buffer_u32),
+    new data_type_class(07, "Color",            0xff000000, buffer_u32),
     new data_type_class(08, "Mesh",             NULL,       buffer_datatype),
     new data_type_class(09, "Image: Texture",   NULL,       buffer_datatype),
     
@@ -210,7 +210,7 @@ data_type_meta = [
     new data_type_class(20, "Image: UI",        NULL,       buffer_datatype),
     new data_type_class(21, "Image: Misc",      NULL,       buffer_datatype),
     new data_type_class(22, "Event",            NULL,       buffer_datatype),
-    new data_type_class(23, "Image: SKybox",    NULL,       buffer_datatype),
+    new data_type_class(23, "Image: Skybox",    NULL,       buffer_datatype),
     new data_type_class(24, "Mesh Autotile",    NULL,       buffer_datatype),
     
     new data_type_class(25, "Asset Flag",       0,          buffer_flag),
