@@ -5,13 +5,13 @@ function ui_render_list_move_route_steps(argument0, argument1, argument2) {
 
     var steps = list.root.route.steps;
     var otext = list.text;
-    list.text = list.text + string(ds_list_size(steps));
+    list.text = list.text + string(array_length(steps));
     list.colorize = false;
 
     ds_list_clear(list.entries);
 
-    for (var i = 0; i < ds_list_size(steps); i++) {
-        var data = steps[| i];
+    for (var i = 0; i < array_length(steps); i++) {
+        var data = steps[i];
         switch (data[@ 0]) {
             case MoveRouteActions.MOVE_DOWN: ds_list_add(list.entries, "Move Down: "+string(data[@ 1]) + " steps"); break;
             case MoveRouteActions.MOVE_UP: ds_list_add(list.entries, "Move Up: "+string(data[@ 1]) + " steps"); break;
