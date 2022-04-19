@@ -459,6 +459,7 @@ function DataMap(source, directory) : SData(source) constructor {
         json.tiled_map_id = self.tiled_map_id;
         json.on_grid = self.on_grid;
         json.tileset = self.tileset;
+        json.water_texture = self.water_texture;
         json.fog_start = self.fog_start;
         json.fog_end = self.fog_end;
         json.fog_enabled = self.fog_enabled;
