@@ -60,18 +60,6 @@ function menu_init_main() {
         
         #region data stuff
         var md_graphics = create_menu_element("Graphics", momu_graphics_manager, menu_data);
-        /*
-        The state of each of the tabs in the new graphics manager still needs to be set based on these
-        md_graphics.interactive = MENU_EDITOR_ENABLED || MENU_EDITOR_PARTICLE_OVERRIDE;
-        md_graphic_ts.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_at.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_battle.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_ow.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_part.interactive = MENU_EDITOR_ENABLED || MENU_EDITOR_PARTICLE_OVERRIDE;
-        md_graphic_skybox.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_ui.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_etc.interactive = MENU_EDITOR_ENABLED;
-        */
         var md_audio = create_menu_element("Audio", momu_audio_manager, menu_data);
         var md_mesh_at = create_menu_element("Mesh Autotiles", momu_graphic_mesh_autotiles, menu_data);
         md_audio.interactive = MENU_EDITOR_ENABLED;

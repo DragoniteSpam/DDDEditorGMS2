@@ -127,15 +127,10 @@ function ui_init_mesh(mode) {
                 .SetID("DELETE MESH"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Export Mesh", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
-                // to do once the rest of the editor works
-                /*
-                var export_count = ds_map_size(selection);
-                if (export_count == 0) return;
                 
                 var fn;
-                if (export_count == 1) {
-                    var mesh = Game.meshes[ds_map_find_first(selection)];
-                    fn = get_save_filename_mesh(mesh.name);
+                if (array_length(indices) == 1) {
+                    fn = get_save_filename_mesh(Game.meshes[indices[0]].name);
                 } else {
                     fn = get_save_filename_mesh("save everything here");
                 }
@@ -143,9 +138,9 @@ function ui_init_mesh(mode) {
                 if (fn == "") return;
                 var folder = filename_path(fn);
                 
-                for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                    var mesh = Game.meshes[index];
-                    var name = (export_count == 1) ? fn : (folder + mesh.name + filename_ext(fn));
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    var mesh = Game.meshes[indices[i]];
+                    var name = (array_length(indices) == 1) ? fn : (folder + mesh.name + filename_ext(fn));
                     switch (mesh.type) {
                         case MeshTypes.RAW:
                             switch (filename_ext(fn)) {
@@ -158,18 +153,13 @@ function ui_init_mesh(mode) {
                             break;
                     }
                 }
-                
-                dg.indices = indices;
-                */
             }))
                 .SetRefresh(function(data) {
-                    self.SetInteractive((data != undefined) && (array_length(data) == 1));
-                    if (data != undefined) {
-                        if (array_length(data) == 1) {
-                            self.text = "Export Mesh";
-                        } else {
-                            self.text = "Export Meshes";
-                        }
+                    self.SetInteractive((data != undefined) && (array_length(data) > 0));
+                    if (array_length(data) == 1) {
+                        self.text = "Export Mesh";
+                    } else {
+                        self.text = "Export Meshes";
                     }
                 })
                 .SetTooltip(@"Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.
