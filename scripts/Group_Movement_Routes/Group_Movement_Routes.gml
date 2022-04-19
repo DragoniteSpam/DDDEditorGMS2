@@ -1,6 +1,4 @@
-function MoveRoute(source) constructor {
-    self.name = source;
-    
+function MoveRoute(source) : SData(source) constructor {
     self.repeat_action = false;
     self.skip = true;
     self.wait = true;
@@ -83,7 +81,6 @@ function MoveRoute(source) constructor {
     };
     
     if (is_struct(source)) {
-        self.name = source.name;
         self.repeat_action = source.repeat_action;
         self.skip = source.skip;
         self.wait = source.wait;
