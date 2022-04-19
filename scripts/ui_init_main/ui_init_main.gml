@@ -25,9 +25,9 @@ function ui_init_main(mode) {
     };
     
     var f_event_page_open = function() {
-        if (self.GetSibling("ENTITY EVENT PAGES").GetSelection() + 1) {
-            dialog_create_entity_event_page(noone);
-        }
+        var selection = self.GetSibling("ENTITY EVENT PAGES").GetSelection();
+        if (selection == -1) return;
+        dialog_create_entity_event_page(Stuff.map.selected_entities[| 0].object_events[selection]);
     };
     
     #region general
@@ -388,7 +388,7 @@ function ui_init_main(mode) {
                         self.SetList([]);
                     } else {
                         self.SetInteractive(true);
-                        self.SetValue(sel[| 0].object_events);
+                        self.SetList(sel[| 0].object_events);
                     }
                 }),
             (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Add", function() {

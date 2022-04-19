@@ -144,7 +144,7 @@ function emu_dialog_generic_variables(list) {
                 if (!what) return;
                 if (what.type == DataTypes.EVENT) {
                     var event = guid_get(what.value);
-                    if (event) self.text = event.event.name + "/" + event.name;
+                    if (event) self.text = event.GetShortName();
                 }
             })
             .SetInteractive(false)
