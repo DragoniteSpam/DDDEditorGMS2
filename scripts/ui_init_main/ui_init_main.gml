@@ -319,7 +319,7 @@ function ui_init_main(mode) {
             }))
                 .SetTooltip("Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution."),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Clear Frozen Data", function() {
-                emu_dialog_confirm(button, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
+                emu_dialog_confirm(undefined, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
                     Stuff.map.active_map.contents.ClearFrozenData();
                     self.root.Dispose();
                 });
