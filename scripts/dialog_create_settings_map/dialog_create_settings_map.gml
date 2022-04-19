@@ -1,7 +1,7 @@
 function dialog_create_settings_map() {
     var map = Stuff.map.active_map;
     
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 672, "Advanced Map Settings");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 736, "Advanced Map Settings");
     dialog.map = map;
     dialog.original_water_level = map.water_level;
     var element_width = 320;
@@ -91,13 +91,23 @@ function dialog_create_settings_map() {
             self.root.map.skybox = selection ? selection.GUID : NULL;
         }))
             .SetList(Game.graphics.skybox)
+            .Select(array_search(Game.graphics.tilesets, guid_get(map.skybox)))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("The skybox to be used by the map. Deselect to clear."),
-        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Chunk size:", map.chunk_size, "in cells", 5, E_InputTypes.INT, function() {
+        (new EmuList(col2, EMU_AUTO, element_width, element_height, "Water texture:", element_height, 8, function() {
+            if (!self.root) return;
+            var selection = self.GetSelectedItem();
+            self.root.map.water_texture = selection ? selection.GUID : NULL;
+        }))
+            .SetList(Game.graphics.tilesets)
+            .Select(array_search(Game.graphics.tilesets, guid_get(map.water_texture)))
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetTooltip("The water texture to be used by the map. Deselect to clear."),
+        new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Navigation"),
+        (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Chunk size:", map.chunk_size, "in cells", 5, E_InputTypes.INT, function() {
             self.root.map.chunk_size = string(self.value);
         }))
             .SetTooltip("The size of the chunks maps are broken up into for optimization purposes."),
-        new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Navigation"),
         (new EmuCheckbox(col3, EMU_AUTO, element_width, element_height, "Can fast travel to?", map.fast_travel_to, function() {
             self.root.map.fast_travel_to = self.value;
         }))
