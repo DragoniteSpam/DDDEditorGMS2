@@ -277,9 +277,9 @@ function ui_init_main(mode) {
                 .SetID("MAP DATA SIZE Z")
                 .SetRealNumberBounds(1, MAP_AXIS_LIMIT),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Resize...", function() {
-                var xnew = real(self.GetNeighbor("MAP DATA SIZE X"));
-                var ynew = real(self.GetNeighbor("MAP DATA SIZE Y"));
-                var znew = real(self.GetNeighbor("MAP DATA SIZE Z"));
+                var xnew = real(self.GetSibling("MAP DATA SIZE X"));
+                var ynew = real(self.GetSibling("MAP DATA SIZE Y"));
+                var znew = real(self.GetSibling("MAP DATA SIZE Z"));
                 var map = Stuff.map.active_map;
                 if (xnew == map.xx && ynew == map.yy && znew == map.zz) return;
                 if (xnew * ynew * znew >= MAP_VOLUME_LIMIT) {
