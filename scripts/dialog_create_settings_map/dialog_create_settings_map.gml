@@ -32,7 +32,7 @@ function dialog_create_settings_map() {
             self.root.map.fog_end = real(self.value);
         }))
             .SetRealNumberBounds(1, 0xffff)
-            .SetInteractive(map.fog_end)
+            .SetInteractive(map.fog_enabled)
             .SetID("FOG END")
             .SetTooltip("The distance from the camera at which fog completely obscures objects behind it; this should be in world space units, not tiles (I recomment assuming 32 units = 1 tile)."),
         (new EmuColorPicker(col1 + indent, EMU_AUTO, element_width - indent, element_height, "Fog color:", map.fog_colour, function() {
