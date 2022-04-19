@@ -1045,9 +1045,7 @@ function ui_init_main(mode) {
                 var mesh = Game.meshes[index];
                 var old_value = mesh.xmax;
                 mesh.xmax = real(self.value);
-                if (old_value != mesh.xmax) {
-                    mesh.RecalculateBounds();
-                }
+                if (old_value != mesh.xmax) mesh.RecalculateBounds();
             }))
                 .SetRefresh(function() {
                     var index = self.GetSibling("MESH LIST").GetSelection();
@@ -1063,9 +1061,7 @@ function ui_init_main(mode) {
                 var mesh = Game.meshes[index];
                 var old_value = mesh.ymin;
                 mesh.ymin = real(self.value);
-                if (old_value != mesh.ymin) {
-                    mesh.RecalculateBounds();
-                }
+                if (old_value != mesh.ymin) mesh.RecalculateBounds();
             }))
                 .SetRefresh(function() {
                     var index = self.GetSibling("MESH LIST").GetSelection();
@@ -1081,9 +1077,7 @@ function ui_init_main(mode) {
                 var mesh = Game.meshes[index];
                 var old_value = mesh.ymax;
                 mesh.ymax = real(self.value);
-                if (old_value != mesh.ymax) {
-                    mesh.RecalculateBounds();
-                }
+                if (old_value != mesh.ymax) mesh.RecalculateBounds();
             }))
                 .SetRefresh(function() {
                     var index = self.GetSibling("MESH LIST").GetSelection();
@@ -1099,9 +1093,8 @@ function ui_init_main(mode) {
                 var mesh = Game.meshes[index];
                 var old_value = mesh.zmin;
                 mesh.zmin = real(self.value);
-                if (old_value != mesh.zmin) {
-                    mesh.RecalculateBounds();
-                }
+                if (old_value != mesh.zmin) mesh.RecalculateBounds();
+                self.root.Refresh();
             }))
                 .SetRefresh(function() {
                     var index = self.GetSibling("MESH LIST").GetSelection();
@@ -1117,9 +1110,8 @@ function ui_init_main(mode) {
                 var mesh = Game.meshes[index];
                 var old_value = mesh.zmax;
                 mesh.zmax = real(self.value);
-                if (old_value != mesh.zmax) {
-                    mesh.RecalculateBounds();
-                }
+                if (old_value != mesh.zmax) mesh.RecalculateBounds();
+                self.root.Refresh();
             }))
                 .SetRefresh(function() {
                     var index = self.GetSibling("MESH LIST").GetSelection();
@@ -1141,6 +1133,18 @@ function ui_init_main(mode) {
                 if(index == -1) return;
                 dialog_create_mesh_collision_data(Game.meshes[index]);
             }))
+                .SetRefresh(function() {
+                    var mesh = self.GetSibling("MESH LIST").GetSelectedItem();
+                    self.SetInteractive(!!mesh);
+                    if (!mesh) return;
+                    var ww = mesh.xmax - mesh.xmin;
+                    var hh = mesh.ymax - mesh.ymin;
+                    var dd = mesh.zmax - mesh.zmin;
+                    if (ww * hh * dd == 0) {
+                        self.SetInteractive(false);
+                    }
+                })
+                .SetID("MESH FLAGS")
                 .SetTooltip("Go to the Mesh management window."),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Submeshes", function() {
                 var index = self.GetSibling("MESH LIST").GetSelection();
