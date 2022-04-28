@@ -12,5 +12,5 @@ function __debug_time_manage(action) {
         case "start": t = get_timer(); break;
         case "finish": if (t != undefined) return string((get_timer() - t) / 1000) + " ms";
     }
-    return undefined;
+    return "";
 }
