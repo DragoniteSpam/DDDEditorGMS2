@@ -49,14 +49,12 @@
 #macro LAST_SAFE_RELEASE                    "2019.4.1.19";
 #macro DEFAULT_FROZEN_BUFFER_SIZE           1
 
-#macro ALARM_SETTINGS_SAVE                  0
 #macro AUTOTILE_COUNT                       48
 #macro BATCH_CACHE_SIZE                     160
 #macro buffer_datatype                      buffer_string
 #macro buffer_flag                          buffer_u64
 #macro buffer_field                         buffer_u64
 #macro buffer_eof                           0xffffffff
-#macro CAMERA_SAVE_FREQUENCY                5
 #macro CAMERA_ZNEAR                         0x0004
 #macro CAMERA_ZFAR                          0x2000
 #macro CH                                   900                                 // these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative

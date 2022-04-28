@@ -63,7 +63,17 @@ try {
     all_projects = { projects: [] };
 }
 
-alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
+self.SaveSettings = function() {
+    for (var i = 0, n = ds_list_size(all_modes); i < n; i++) {
+        all_modes[| i].Save();
+    }
+    
+    buffer_write_file(json_stringify(Settings), FILE_SETTINGS);
+};
+
+time_source_start(time_source_create(time_source_game, 10, time_source_units_seconds, function() {
+    Stuff.SaveSettings();
+}, -1));
 #endregion
 
 #region initialize standalone systems
