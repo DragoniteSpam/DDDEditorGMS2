@@ -341,7 +341,6 @@
     {"id":{"name":"dialog_create_manager_mesh_autotile","path":"scripts/dialog_create_manager_mesh_autotile/dialog_create_manager_mesh_autotile.yy",},"order":1,},
     {"id":{"name":"scribble_is_text_element","path":"scripts/scribble_is_text_element/scribble_is_text_element.yy",},"order":6,},
     {"id":{"name":"dialog_create_manager_audio","path":"scripts/dialog_create_manager_audio/dialog_create_manager_audio.yy",},"order":5,},
-    {"id":{"name":"dialog_create_manager_se","path":"scripts/dialog_create_manager_se/dialog_create_manager_se.yy",},"order":12,},
     {"id":{"name":"dialog_create_mesh_advanced","path":"scripts/dialog_create_mesh_advanced/dialog_create_mesh_advanced.yy",},"order":14,},
     {"id":{"name":"dialog_create_mesh_collision_data","path":"scripts/dialog_create_mesh_collision_data/dialog_create_mesh_collision_data.yy",},"order":16,},
     {"id":{"name":"EmuTabGroup","path":"scripts/EmuTabGroup/EmuTabGroup.yy",},"order":14,},
