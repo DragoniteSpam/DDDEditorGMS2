@@ -16,6 +16,23 @@ function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     
     static EditScript = function(root) { };
     
+    static SetBounds = function() {
+        var maxx = max(self.x1, self.x2);
+        var maxy = max(self.y1, self.y2);
+        var maxz = max(self.z1, self.z2);
+        var minx = min(self.x1, self.x2);
+        var miny = min(self.y1, self.y2);
+        var minz = min(self.z1, self.z2);
+        
+        self.x1 = minx;
+        self.y1 = miny;
+        self.z1 = minz;
+        self.x2 = maxx;
+        self.y2 = maxy;
+        self.z2 = maxz;
+        self.zz = minz;
+    };
+    
     // this is the base class, do not instantiate
     self.ExportBase = function(buffer) {
         buffer_write(buffer, buffer_string, self.ztype);
@@ -200,7 +217,7 @@ function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1,
             
             
         ]).AddDefaultCloseButton("Done", function() {
-            map_zone_collision(self.root.zone);
+            self.root.zone.SetBounds();
             self.root.Dispose();
         });
     };

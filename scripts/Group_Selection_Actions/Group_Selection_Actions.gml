@@ -65,7 +65,7 @@ function safc_fill_zone() {
             zone.name = instanceof(zone) + " " + string(array_length(Stuff.map.active_map.contents.all_zones));
             array_push(Stuff.map.active_map.contents.all_zones, zone);
             
-            map_zone_collision(zone);
+            zone.SetBounds();
             
             button.SetInteractive(true);
             button.SetCallback(zone.EditScript);

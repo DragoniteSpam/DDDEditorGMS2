@@ -95,7 +95,6 @@
     {"id":{"name":"__scribble_config_colours","path":"scripts/__scribble_config_colours/__scribble_config_colours.yy",},"order":1,},
     {"id":{"name":"FDefault20","path":"fonts/FDefault20/FDefault20.yy",},"order":4,},
     {"id":{"name":"Group_Graphics_3D","path":"scripts/Group_Graphics_3D/Group_Graphics_3D.yy",},"order":4,},
-    {"id":{"name":"map_zone_collision","path":"scripts/map_zone_collision/map_zone_collision.yy",},"order":6,},
     {"id":{"name":"tileset_create","path":"scripts/tileset_create/tileset_create.yy",},"order":1,},
     {"id":{"name":"dialog_create_mesh_other_settings","path":"scripts/dialog_create_mesh_other_settings/dialog_create_mesh_other_settings.yy",},"order":41,},
     {"id":{"name":"__carton_config","path":"scripts/__carton_config/__carton_config.yy",},"order":0,},
