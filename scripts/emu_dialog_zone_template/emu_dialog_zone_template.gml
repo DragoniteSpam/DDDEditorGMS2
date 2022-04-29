@@ -1,4 +1,4 @@
-function emu_dialog_zone_template(zone) {
+function emu_dialog_zone_template(zone, title) {
     var map = Stuff.map.active_map;
     
     var element_width = 320;
@@ -7,7 +7,7 @@ function emu_dialog_zone_template(zone) {
     var col1 = 32;
     var col2 = 384;
     
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Camera Zone Settings");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, title);
     dialog.zone = zone;
     
     return dialog.AddContent([
@@ -52,6 +52,5 @@ function emu_dialog_zone_template(zone) {
         }))
             .SetRealNumberBounds(1, 1000)
             .SetTooltip("If multiple zones overlap, the one with the highest priority will be the one that is acted upon."),
-        (new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Properties:")),
     ]);
 }
