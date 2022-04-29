@@ -66,11 +66,8 @@ function safc_fill_zone() {
             array_push(Stuff.map.active_map.contents.all_zones, zone);
             
             zone.SetBounds();
-            
-            button.SetInteractive(true);
-            button.SetCallback(zone.EditScript);
-            button.text = "Data: " + zone.name;
             Stuff.map.selected_zone = zone;
+            button.Refresh();
         }
     }
     

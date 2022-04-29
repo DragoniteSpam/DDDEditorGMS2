@@ -960,6 +960,13 @@ function ui_init_main(mode) {
                 if (ds_list_size(Stuff.map.selected_entities) != 1) return;
                 // this behavior will be dependent on the zone type
             }))
+                .SetRefresh(function() {
+                    var zone = Stuff.map.selected_zone;
+                    self.SetInteractive(!!zone);
+                    if (!zone) return;
+                    self.SetCallback(zone.EditScript);
+                    self.text = "Data: " + zone.name;
+                })
                 .SetTooltip("If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.")
                 .SetID("ZONE DATA"),
         ])

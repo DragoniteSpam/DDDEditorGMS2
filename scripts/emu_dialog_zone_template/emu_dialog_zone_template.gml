@@ -10,8 +10,13 @@ function emu_dialog_zone_template(zone) {
     var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Camera Zone Settings");
     dialog.zone = zone;
     
-    dialog.AddContent([
-        (new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Physicality:")),
+    return dialog.AddContent([
+        (new EmuInput(col1, EMU_BASE, element_width, element_height, "Name:", zone.name, "The name of the zone", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+            self.root.zone.name = self.value;
+            Stuff.map.ui.SearchID("ZONE DATA").Refresh();
+        }))
+            .SetTooltip("A name; this is for identification (and possibly debugging) purposes and has no influence on gameplay"),
+        (new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Physicality:")),
         (new EmuInput(col1, EMU_AUTO, element_width / 2, element_height, "x1:", zone.x1, "0..." + string(map.xx - 1), 4, E_InputTypes.INT, function() {
             self.root.x1 = real(self.value);
         }))
@@ -47,5 +52,6 @@ function emu_dialog_zone_template(zone) {
         }))
             .SetRealNumberBounds(1, 1000)
             .SetTooltip("If multiple zones overlap, the one with the highest priority will be the one that is acted upon."),
+        (new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Properties:")),
     ]);
 }
