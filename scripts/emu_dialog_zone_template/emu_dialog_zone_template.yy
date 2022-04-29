@@ -6,7 +6,7 @@
     "path": "folders/Emu Shortcuts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Group_Emu_Shortcut_Dialogs",
+  "name": "emu_dialog_zone_template",
   "tags": [],
   "resourceType": "GMScript",
 }

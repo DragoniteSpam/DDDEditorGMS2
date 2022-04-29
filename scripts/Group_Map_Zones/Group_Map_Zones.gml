@@ -140,56 +140,14 @@ function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1,
     
     static EditScript = function() {
         var zone = Stuff.map.selected_zone;
-        var map = Stuff.map.active_map;
         
         var element_width = 320;
         var element_height = 32;
-    
+        
         var col1 = 32;
         var col2 = 384;
-        var col3 = 736;
-    
-        var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Camera Zone Settings");
-        dialog.zone = zone;
         
-        dialog.AddContent([
-            (new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Physicality:")),
-            (new EmuInput(col1, EMU_AUTO, element_width / 2, element_height, "x1:", zone.x1, "0..." + string(map.xx - 1), 4, E_InputTypes.INT, function() {
-                self.root.x1 = real(self.value);
-            }))
-                .SetRealNumberBounds(0, map.xx - 1)
-                .SetTooltip("The starting X coordinate of the zone."),
-            (new EmuInput(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "x2:", zone.x2, "0..." + string(map.xx - 1), 4, E_InputTypes.INT, function() {
-                self.root.x2 = real(self.value);
-            }))
-                .SetRealNumberBounds(0, map.xx - 1)
-                .SetTooltip("The ending X coordinate of the zone."),
-            (new EmuInput(col1, EMU_AUTO, element_width / 2, element_height, "y1:", zone.y1, "0..." + string(map.yy - 1), 4, E_InputTypes.INT, function() {
-                self.root.y1 = real(self.value);
-            }))
-                .SetRealNumberBounds(0, map.yy - 1)
-                .SetTooltip("The starting Y coordinate of the zone."),
-            (new EmuInput(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "y2:", zone.y2, "0..." + string(map.yy - 1), 4, E_InputTypes.INT, function() {
-                self.root.y2 = real(self.value);
-            }))
-                .SetRealNumberBounds(0, map.yy - 1)
-                .SetTooltip("The ending Y coordinate of the zone."),
-            (new EmuInput(col1, EMU_AUTO, element_width / 2, element_height, "z1:", zone.z1, "0..." + string(map.zz - 1), 4, E_InputTypes.INT, function() {
-                self.root.z1 = real(self.value);
-            }))
-                .SetRealNumberBounds(0, map.zz - 1)
-                .SetTooltip("The starting Z coordinate of the zone."),
-            (new EmuInput(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "z2:", zone.z2, "0..." + string(map.zz - 1), 4, E_InputTypes.INT, function() {
-                self.root.z2 = real(self.value);
-            }))
-                .SetRealNumberBounds(0, map.zz - 1)
-                .SetTooltip("The ending Z coordinate of the zone."),
-            (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Priority:", zone.zone_priority, "1...1000", 4, E_InputTypes.INT, function() {
-                self.root.zone_priority = real(self.value);
-            }))
-                .SetRealNumberBounds(1, 1000)
-                .SetTooltip("If multiple zones overlap, the one with the highest priority will be the one that is acted upon."),
-        ]);
+        var dialog = emu_dialog_zone_template(zone);
         
         return dialog.AddContent([
             (new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Properties:")),
@@ -214,8 +172,6 @@ function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1,
                 .AddOptions(array_clone(global.animation_tween_names))
                 .SetColumns(16, element_width / 2)
                 .SetTooltip("The transition used when you enter this camera zone. In almost all cases, Linear or Quadratic In/Out should be fine."),
-            
-            
         ]).AddDefaultCloseButton("Done", function() {
             self.root.zone.SetBounds();
             self.root.Dispose();
