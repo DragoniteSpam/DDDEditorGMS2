@@ -6,8 +6,11 @@ function EmuBitfield(x, y, w, h, value, callback) : EmuCallback(x, y, w, h, valu
     self._fixed_spacing = -1;
     self._orientation = E_BitfieldOrientations.HORIZONTAL;
     
-    SetOrientation = function(orientation) {
+    self.max_stack_size = infinity;
+    
+    SetOrientation = function(orientation, max_stack_size = infinity) {
         _orientation = orientation;
+        self.max_stack_size = max_stack_size;
         ArrangeElements();
         return self;
     }
@@ -52,16 +55,16 @@ function EmuBitfield(x, y, w, h, value, callback) : EmuCallback(x, y, w, h, valu
                 var option = _contents[| i];
                 option.width = (_fixed_spacing == -1) ? floor(width / ds_list_size(_contents)) : _fixed_spacing;
                 option.height = height;
-                option.x = option.width * i;
-                option.y = 0;
+                option.x = option.width * (i % self.max_stack_size);
+                option.y = option.height * (i div self.max_stack_size);
             }
         } else {
             for (var i = 0; i < ds_list_size(_contents); i++) {
                 var option = _contents[| i];
                 option.width = width;
                 option.height = (_fixed_spacing == -1) ? floor(height / ds_list_size(_contents)) : _fixed_spacing;
-                option.x = 0;
-                option.y = option.height * i;
+                option.x = option.width * (i div self.max_stack_size);
+                option.y = option.height * (i % self.max_stack_size);
             }
         }
     }
