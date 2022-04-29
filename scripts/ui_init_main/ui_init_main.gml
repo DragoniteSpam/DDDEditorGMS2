@@ -1259,7 +1259,10 @@ function ui_init_main(mode) {
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Zone type:", element_height, 8, function() {
                 Settings.selection.zone_type = self.GetSelection();
             }))
-                .SetList(["Camera Zone", "Light Zone", "Flag Zone"]),
+                .SetAllowDeselect(false)
+                .SetList(["Camera Zone", "Light Zone", "Flag Zone"])
+                .Select(0)
+                .SetID("ZONE TYPE"),
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Mesh autotile type:", element_height, 8, function() {
                 var selection = self.GetSelection();
                 if (selection + 1) {
@@ -1268,6 +1271,7 @@ function ui_init_main(mode) {
                     Settings.selection.mesh_autotile_type = NULL;
                 }
             }))
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetList(Game.mesh_autotiles),
         ])
             .SetID("PLACEMENT OTHER"),
