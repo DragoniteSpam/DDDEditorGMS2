@@ -29,7 +29,7 @@ function dialog_create_manager_graphics() {
             .SetID("TYPE"),
         (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, 14, function() {
             if (self.root) {
-                self.root.Refresh({ list: self._entries, index: self.GetSelection() });
+                self.root.Refresh({ list: self.entries, index: self.GetSelection() });
             }
         }))
             .SetListColors(function(index) {

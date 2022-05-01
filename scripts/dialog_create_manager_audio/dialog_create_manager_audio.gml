@@ -24,7 +24,7 @@ function dialog_create_manager_audio() {
             .SetID("TYPE"),
         (new EmuList(col1, EMU_AUTO, element_width, element_height, "Audio files:", element_height, 16, function() {
             if (self.root) {
-                self.root.Refresh({ list: self._entries, index: self.GetSelection() });
+                self.root.Refresh({ list: self.entries, index: self.GetSelection() });
             }
         }))
             .SetNumbered(true)
