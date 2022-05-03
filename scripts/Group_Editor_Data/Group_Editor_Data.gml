@@ -87,7 +87,7 @@ function EditorModeData() : EditorModeBase() constructor {
                         case DataTypes.ASSET_FLAG:      // button which leads to a dialog with a list of flags
                             element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
                                 // needs to be Emu'd
-                                dialog_create_game_data_asset_flags(button, button.key);
+                                dialog_create_game_data_asset_flags(button.key);
                             });
                             break;
                         case DataTypes.ENUM:            // list
