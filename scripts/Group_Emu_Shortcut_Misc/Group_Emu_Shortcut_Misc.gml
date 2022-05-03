@@ -13,3 +13,14 @@ function emu_color_meshes(index) {
 function emu_color_maps(index) {
     return (Game.meta.start.map == Game.maps[index].GUID) ? c_aqua : EMU_COLOR_LIST_TEXT;
 }
+
+function emu_bitfield_flags(x, y, element_width, element_height, value, callback, tooltip = "") {
+    return (new EmuBitfield(x, y, element_width * 2 / 3, element_height * 48, value, callback))
+    .SetOrientation(E_BitfieldOrientations.VERTICAL, 24)
+    .AddOptions(array_clone(Game.vars.flags))
+    .AddOptions([
+        new EmuBitfieldOption("[c_aqua]All", 0x7fffffffffffffff, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
+        new EmuBitfieldOption("[c_aqua]None", 0, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
+    ])
+    .SetTooltip(tooltip);
+}

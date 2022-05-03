@@ -225,16 +225,9 @@ function MapZoneFlag(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, z
         dialog.width += 320;
         
         return dialog.AddContent([
-            (new EmuBitfield(col2, EMU_BASE, element_width * 2 / 3, element_height * 48, zone.zone_flags, function() {
+            emu_bitfield_flags(col2, EMU_BASE, element_width, element_height, zone.zone_flags, function() {
                 self.root.zone.zone_flags = self.value;
-            }))
-                .SetOrientation(E_BitfieldOrientations.VERTICAL, 24)
-                .AddOptions(array_clone(Game.vars.flags))
-                .AddOptions([
-                    new EmuBitfieldOption("[c_aqua]All", 0x7fffffffffffffff, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
-                    new EmuBitfieldOption("[c_aqua]None", 0, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
-                ])
-                .SetTooltip("Misc. flags which you may enable or disable in sections of the map for various purposes. You can define asset flags in Global Game Settings.")
+            }, "Misc. flags which you may enable or disable in sections of the map for various purposes. You can define asset flags in Global Game Settings.")
         ]).AddDefaultCloseButton();
     };
     
