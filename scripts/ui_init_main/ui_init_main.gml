@@ -976,7 +976,7 @@ function ui_init_main(mode) {
     
     #region world
     tab_group.AddTabs(2, [
-        (new EmuTab("Meshes")).AddContent([
+        (new EmuTab("Mesh Settings")).AddContent([
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 21, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
@@ -1167,7 +1167,7 @@ function ui_init_main(mode) {
                 .SetTooltip("General Mesh properties."),
         ])
             .SetID("PLACEMENT MESHES"),
-        (new EmuTab("Tiles")).AddContent([
+        (new EmuTab("Tile Settings")).AddContent([
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Primary map tileset:", element_height, 8, function() {
                 var index = self.GetSelection();
                 if (index == -1) return;
@@ -1256,13 +1256,13 @@ function ui_init_main(mode) {
             }, null))
         ])
             .SetID("PLACEMENT TILES"),
-        (new EmuTab("Tile Animation")).AddContent([
+        (new EmuTab("Anim. Settings")).AddContent([
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Animated tiles:", element_height, 22, function() {
                 // i'm sure i'll figure out what goes here eventually
             })),
         ])
             .SetID("PLACEMENT TILE ANIMATION"),
-        (new EmuTab("Other")).AddContent([
+        (new EmuTab("Misc. Settings")).AddContent([
             (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Zone type:", element_height, 8, function() {
                 Settings.selection.zone_type = self.GetSelection();
             }))

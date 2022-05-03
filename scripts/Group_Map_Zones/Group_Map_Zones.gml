@@ -283,23 +283,6 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
         dialog.width += 320 + 32;
         dialog.zone = zone;
         
-        static f_get_light_entities = function(list) {
-            var bag = { };
-            for (var i = 0, n = ds_list_size(list); i < n; i++) {
-                var entity = list[| i];
-                if ((entity.etype_flags & ETypeFlags.ENTITY_EFFECT) >= ETypeFlags.ENTITY_EFFECT) {
-                    bag[$ string(ptr(entity))] = entity;
-                }
-            }
-            var lights = array_create(variable_struct_names_count(bag));
-            var keys = variable_struct_get_names(bag);
-            array_sort(keys, true);
-            for (var i = 0, n = array_length(keys); i < n; i++) {
-                lights[i] = bag[$ keys[i]];
-            }
-            return lights;
-        };
-        
         return dialog.AddContent([
             (new EmuList(col2, EMU_BASE, element_width, element_height, "All lights:", element_height, 16, function() {
                 if (!self.root) return;
@@ -313,9 +296,29 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
                 }
             }))
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-                .SetList(f_get_light_entities(Stuff.map.active_map.contents.all_entities))
+                .SetList(
+                    #region I absolutely hate that this works as a reduction function
+                    (function(list) {
+                        var bag = { };
+                        for (var i = 0, n = ds_list_size(list); i < n; i++) {
+                            var entity = list[| i];
+                            if ((entity.etype_flags & ETypeFlags.ENTITY_EFFECT) >= ETypeFlags.ENTITY_EFFECT) {
+                                bag[$ string(ptr(entity))] = entity;
+                            }
+                        }
+                        var lights = array_create(variable_struct_names_count(bag));
+                        var keys = variable_struct_get_names(bag);
+                        array_sort(keys, true);
+                        for (var i = 0, n = array_length(keys); i < n; i++) {
+                            lights[i] = bag[$ keys[i]];
+                        }
+                        return lights;
+                    })(Stuff.map.active_map.contents.all_entities)
+                    #endregion
+                )
                 .SetListColors(function(index) {
-                    return self.At(index).com_light ? EMU_COLOR_TEXT : EMU_COLOR_DISABLED;
+                    var effect = self.At(index);
+                    return effect.com_light ? effect.com_light.label_colour : EMU_COLOR_INPUT_WARN;
                 })
                 .SetRefresh(function() {
                     var active_list = self.GetSibling("LIST");
@@ -326,7 +329,7 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
                 })
                 .SetTooltip("Directional lights will be shown in green. Point lights will be shown in blue. I recommend giving, at the very least, all of your Light entities unique names. Deselecting this list will clear the active light index.")
                 .SetID("ALL LIGHTS"),
-            (new EmuList(col3, EMU_BASE, element_width, element_height, "Active lights:", element_height, 16, function() {
+            (new EmuList(col3, EMU_BASE, element_width, element_height, "Active lights:", element_height, 14, function() {
                 if (!self.root) return;
                 
                 var selection = self.GetSelection();
@@ -339,19 +342,20 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
             }))
                 .SetListColors(function(index) {
                     var effect = refid_get(self.At(index));
-                    return (effect && effect.com_light) ? effect.com_light.label_colour : c_red;
+                    return (effect && effect.com_light) ? effect.com_light.label_colour : EMU_COLOR_INPUT_WARN;
                 })
                 .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
                     var entity = refid_get(self.At(index));
                     return entity ? entity.name : "<none>";
                 })
                 .SetVacantText("no active lights")
-                .SetTooltip("Effects with no light component (i.e. the light component has been removed) will be shown in red. One light will be reserved for the player at all times.")
+                .SetTooltip("Effects with no light component (eg if the light component has been removed) will be shown in red. One light will be reserved for the player at all times.")
                 .SetList(zone.lights)
                 .SetID("LIST"),
             (new EmuButton(col3, EMU_AUTO, element_width, element_height, "Clear", function() {
                 if (self.GetSibling("LIST").GetSelection() == -1) return;
                 self.root.zone.lights[self.GetSibling("LIST").GetSelection()] = NULL;
+                self.GetSibling("ALL LIGHTS").Deselect();
             }))
                 .SetID("CLEAR")
             
