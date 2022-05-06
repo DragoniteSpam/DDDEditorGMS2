@@ -36,13 +36,13 @@ function dialog_create_mesh_material_settings(dialog, selection) {    var dw = 5
     dg.active_shade = false;
     
     var tab_base = new EmuTab("Base Texture");
-    var tab_ambient = new EmuTab("Ambient Map");
-    var tab_specular_color = new EmuTab("Specular Color");
-    var tab_specular = new EmuTab("Specular Map");
-    var tab_alpha = new EmuTab("Alpha Map");
-    var tab_bump = new EmuTab("Bump Map");
-    var tab_displacement = new EmuTab("Displacement Map");
-    var tab_stencil = new EmuTab("Stencil Map");
+    var tab_ambient = new EmuTab("Ambient Map").SetInteractive(false);
+    var tab_specular_color = new EmuTab("Specular Color").SetInteractive(false);
+    var tab_specular = new EmuTab("Specular Map").SetInteractive(false);
+    var tab_alpha = new EmuTab("Alpha Map").SetInteractive(false);
+    var tab_bump = new EmuTab("Bump Map").SetInteractive(false);
+    var tab_displacement = new EmuTab("Displacement Map").SetInteractive(false);
+    var tab_stencil = new EmuTab("Stencil Map").SetInteractive(false);
     
     var tabs = new EmuTabGroup(32, 32, dw - 64, dh - 96, 2, 32);
     tabs.AddTabs(0, [tab_base, tab_ambient, tab_specular_color, tab_specular]);
