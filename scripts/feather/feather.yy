@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "CSV",
-    "path": "folders/SNAP/CSV.yy",
+    "name": "DDDEditor2-23",
+    "path": "DDDEditor2-23.yyp",
   },
   "resourceVersion": "1.0",
-  "name": "snap_to_csv",
+  "name": "feather",
   "tags": [],
   "resourceType": "GMScript",
 }
