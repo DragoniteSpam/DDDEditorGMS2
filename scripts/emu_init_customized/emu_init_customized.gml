@@ -51,12 +51,14 @@
 #macro EMU_INLINE                                                               ptr(1)
 #macro EMU_BASE                                                                 ptr(2)
 #macro EMU_AUTO_NO_SPACING                                                      ptr(3)
+
 #macro EmuOverlay                                                               (_emu_get_overlay())
 
 function _emu_get_overlay() {
     static _overlay = new EmuCore(0, 0, window_get_width(), window_get_height());
     return _overlay;
 }
+
 #macro EmuActiveElement (_emu_active_element())
 
 function _emu_active_element() { 

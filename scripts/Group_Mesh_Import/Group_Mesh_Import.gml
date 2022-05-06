@@ -727,14 +727,14 @@ function import_texture(fn) {
     var ts = tileset_create(fn);
     ts.name = filename_change_ext(filename_name(fn),"");
     
-    var top = ds_list_top(Stuff.dialogs);
-    if (!top || !(top.flags & DialogFlags.IS_GENERIC_WARNING)) {
-        dialog_create_manager_graphic_tileset(undefined).flags |= DialogFlags.IS_GENERIC_WARNING;
+    if (!EmuOverlay.GetTop() || !(EmuOverlay.GetTop().flags & DialogFlags.IS_GENERIC_WARNING)) {
+        var manager = dialog_create_manager_graphics();
+        manager.contents_interactive = true;
+        manager.flags |= DialogFlags.IS_GENERIC_WARNING;
+        manager.SearchID("TYPE").value = 0;
+        manager.SearchID("LIST").Select(array_length(Game.graphics.tilesets) - 1);
+        manager.Refresh({ list: Game.graphics.tilesets, index: array_length(Game.graphics.tilesets) - 1 });
     }
-    
-    //ui_list_deselect(top.el_list);
-    //ui_list_select(top.el_list, array_length(Game.graphics.tilesets) - 1);
-    //top.el_list.onvaluechange(top.el_list);
     
     return ts;
 }
