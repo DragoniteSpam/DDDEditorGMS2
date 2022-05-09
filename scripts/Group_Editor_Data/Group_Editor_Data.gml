@@ -1,4 +1,7 @@
 function EditorModeData() : EditorModeBase() constructor {
+    self.last_active_type = undefined;
+    self.last_active_instance = undefined;
+    
     self.GetActiveType = function() {
         var selection = self.ui.SearchID("LIST").GetSelection();
         if (selection == -1) return undefined;
@@ -8,7 +11,7 @@ function EditorModeData() : EditorModeBase() constructor {
     self.GetActiveInstance = function() {
         var type = self.GetActiveType();
         if (!type) return undefined;
-        var selection = self.ui.SearchID("LIST").GetSelection();
+        var selection = self.ui.SearchID("INSTANCES").GetSelection();
         if (selection == -1) return undefined;
         return type.instances[selection];
     };
@@ -26,15 +29,16 @@ function EditorModeData() : EditorModeBase() constructor {
     };
     
     self.Activate = function(data) {
-        var container = Stuff.data.ui.SearchID("PROPERTIES");
-        container.destroyContent();
+        var container = self.ui.SearchID("PROPERTIES");
+        container.ClearContent();
+        self.ui.Refresh();
         
         if (data.type == DataTypes.DATA) {
             var columns = 5;
             var spacing = 16;
             
             var col_width = (room_width / columns);
-            var col_height = room_height - 32;
+            var col_height = room_height - 32 - (DEBUG ? 64 : 0);
             var col_index = 0;
             var element_width = col_width - spacing * 2;
             var element_height = 32;
@@ -81,7 +85,7 @@ function EditorModeData() : EditorModeBase() constructor {
                                 help = string(property.range_min) + " - " + string(property.range_max);
                             }
                             element = new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
-                                    
+                                
                             });
                             break;
                         case DataTypes.ASSET_FLAG:      // button which leads to a dialog with a list of flags
@@ -155,6 +159,7 @@ function EditorModeData() : EditorModeBase() constructor {
                             element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
                                 // formerly uivc_data_set_property_built_in_data
                             }))
+                                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                                 .SetList(list)
                                 .SetVacantText("<no " + vacant_text + ">");
                             break;
@@ -168,9 +173,9 @@ function EditorModeData() : EditorModeBase() constructor {
                 if (element_header) column.AddContent([element_header]);
                 column.AddContent([element]);
                 
-                if (element.y + element.height > column.height) {
+                if (element.y + element.GetHeight() > column.height) {
                     column.RemoveContent(element);
-                    if (element_header) column.RemoveContent(element);
+                    if (element_header) column.RemoveContent(element_header);
                     
                     var column = new EmuCore(col_width * col_index++, 0, col_width, col_height);
                     container.AddContent(column);

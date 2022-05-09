@@ -17,15 +17,20 @@ function ui_init_game_data(mode) {
             
             if (array_empty(Game.data)) {
                 momu_data_types();
-            } else {
-                var selection = self.GetSelection();
-                if (selection == -1) {
-                    Stuff.data.ui.SearchID("PROPERTIES").destroyContent();
-                    Stuff.data.ui.Refresh();
-                } else if (Game.data[selection] != Stuff.data.GetActiveType()) {
-                    Stuff.data.Activate(Game.data[selection]);
-                }
+                return;
             }
+            
+            var selection = self.GetSelection();
+            if (selection == -1) {
+                Stuff.data.ui.SearchID("PROPERTIES").destroyContent();
+                Stuff.data.ui.Refresh();
+            } else if (Game.data[selection] != Stuff.data.last_active_type) {
+                Stuff.data.Activate(Game.data[selection]);
+            }
+            
+            // update the active type.instance
+            Stuff.data.GetActiveType();
+            Stuff.data.GetActiveInstance();
         }))
             .SetList(Game.data)
             .SetVacantText("click to define...")
@@ -33,7 +38,7 @@ function ui_init_game_data(mode) {
                 return (Game.data[index].type == DataTypes.ENUM) ? c_aqua : EMU_COLOR_TEXT;
             })
             .SetRefresh(function() {
-                self.SetList(Game.data);
+                if (Game.data != self.entries) self.SetList(Game.data);
             })
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetID("LIST"),
@@ -44,8 +49,18 @@ function ui_init_game_data(mode) {
             }),
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", element_height, 16, function() {
             //ui_init_game_data_refresh();
+            self.GetSibling("PROPERTIES").Refresh();
         }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); })
+            .SetRefresh(function() {
+                self.Deselect();
+                var type = Stuff.data.GetActiveType();
+                self.SetInteractive(!!type);
+                
+                if (!type) return;
+                
+                self.SetList(type.instances);
+                if (!array_empty(type.instances)) self.Select(0);
+            })
             .SetVacantText("no instances")
             .SetListColors(function(index) {
                 var inst = Stuff.data.GetActiveType().instances[index];
