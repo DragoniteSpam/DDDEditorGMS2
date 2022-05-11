@@ -425,7 +425,6 @@
     {"id":{"name":"__scribble_font_add_msdf_from_project","path":"scripts/__scribble_font_add_msdf_from_project/__scribble_font_add_msdf_from_project.yy",},"order":7,},
     {"id":{"name":"uivc_color_picker_reflect","path":"scripts/uivc_color_picker_reflect/uivc_color_picker_reflect.yy",},"order":23,},
     {"id":{"name":"scribble_anim_jitter","path":"scripts/scribble_anim_jitter/scribble_anim_jitter.yy",},"order":2,},
-    {"id":{"name":"uimu_data_add_data","path":"scripts/uimu_data_add_data/uimu_data_add_data.yy",},"order":1,},
     {"id":{"name":"uimu_data_alphabetize_name","path":"scripts/uimu_data_alphabetize_name/uimu_data_alphabetize_name.yy",},"order":4,},
     {"id":{"name":"uimu_data_alphabetize_internal","path":"scripts/uimu_data_alphabetize_internal/uimu_data_alphabetize_internal.yy",},"order":5,},
     {"id":{"name":"uivc_custom_data_property_type","path":"scripts/uivc_custom_data_property_type/uivc_custom_data_property_type.yy",},"order":9,},

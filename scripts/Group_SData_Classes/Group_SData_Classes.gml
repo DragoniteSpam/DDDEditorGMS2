@@ -39,8 +39,62 @@ function DataClass(source) : SData(source) constructor {
         }
     };
     
-    static AddInstance = function(inst, position = array_length(self.instances)) {
-        array_insert(self.instances, position, inst);
+    static AddInstance = function(instance, position = array_length(self.instances)) {
+        if (!instance) {
+            instance = new DataInstance(self.name + string(array_length(self.instances)));
+            instance.parent = self.GUID;
+            
+            for (var i = 0; i < array_length(self.properties); i++) {
+                var property = self.properties[i];
+                switch (property.type) {
+                    case DataTypes.INT:
+                    case DataTypes.COLOR:
+                        array_push(instance.values, [property.default_int]);
+                        break;
+                    case DataTypes.FLOAT:
+                        array_push(instance.values, [property.default_real]);
+                        break;
+                    case DataTypes.ASSET_FLAG:
+                        array_push(instance.values, [0]);
+                        break;
+                    case DataTypes.ENUM:
+                    case DataTypes.DATA:
+                    case DataTypes.MESH:
+                    case DataTypes.MESH_AUTOTILE:
+                    case DataTypes.IMG_TEXTURE:
+                    case DataTypes.IMG_BATTLER:
+                    case DataTypes.IMG_OVERWORLD:
+                    case DataTypes.IMG_PARTICLE:
+                    case DataTypes.IMG_UI:
+                    case DataTypes.IMG_ETC:
+                    case DataTypes.IMG_SKYBOX:
+                    case DataTypes.IMG_TILE_ANIMATION:
+                    case DataTypes.AUDIO_BGM:
+                    case DataTypes.AUDIO_SE:
+                    case DataTypes.ANIMATION:
+                    case DataTypes.MAP:
+                    case DataTypes.EVENT:
+                        array_push(instance.values, [NULL]);
+                        break;
+                    case DataTypes.STRING:
+                        array_push(instance.values, [property.default_string]);
+                        break;
+                    case DataTypes.BOOL:
+                        array_push(instance.values, [!!property.default_int]);
+                        break;
+                    case DataTypes.CODE:
+                        array_push(instance.values, [property.default_code]);
+                        break;
+                    case DataTypes.TILE:
+                    case DataTypes.ENTITY:
+                        instance.Destroy();
+                        not_yet_implemented();
+                        break;
+                }
+            }
+        }
+        
+        array_insert(self.instances, position, instance);
     };
     
     static RemoveInstance = function(inst) {
