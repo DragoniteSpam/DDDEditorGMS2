@@ -163,6 +163,24 @@ function array_sort_internal(array) {
         return a.internal_name > b.internal_name;
     });
 }
+
+function array_search_guid(array, guid) {
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (array[i].GUID == guid) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function array_search_internal_name(array, name) {
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (array[i].internal_name == name) {
+            return i;
+        }
+    }
+    return -1;
+}
 #endregion
 
 #region buffer stuff
