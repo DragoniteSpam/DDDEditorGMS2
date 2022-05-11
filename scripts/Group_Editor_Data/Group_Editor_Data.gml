@@ -31,7 +31,6 @@ function EditorModeData() : EditorModeBase() constructor {
     self.Activate = function(data) {
         var container = self.ui.SearchID("PROPERTIES");
         container.ClearContent();
-        self.ui.Refresh();
         
         if (data.type == DataTypes.DATA) {
             var columns = 5;
@@ -50,13 +49,27 @@ function EditorModeData() : EditorModeBase() constructor {
                 (new EmuInput(spacing, EMU_BASE, element_width, element_height, "Name:", "", "Instance name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
                     Stuff.data.GetActiveInstance().name = self.value;
                 }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var inst = Stuff.data.GetActiveInstance();
+                        self.SetInteractive(!!inst);
+                        if (!inst) return;
+                        self.SetValue(inst.name);
+                    })
                     .SetID("NAME"),
                 (new EmuInput(spacing, EMU_AUTO, element_width, element_height, "Internal name:", "", "Instance internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
                     if (!internal_name_get(self.value)) {
                         internal_name_set(Stuff.data.GetActiveInstance(), self.value);
                     }
                 }))
-                    .SetID("NAME"),
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var inst = Stuff.data.GetActiveInstance();
+                        self.SetInteractive(!!inst);
+                        if (!inst) return;
+                        self.SetValue(inst.internal_name);
+                    })
+                    .SetID("INTERNAL NAME"),
             ]);
                 
             for (var i = 0; i < array_length(data.properties); i++) {
@@ -84,25 +97,77 @@ function EditorModeData() : EditorModeBase() constructor {
                                 type = E_InputTypes.STRING;
                                 help = string(property.range_min) + " - " + string(property.range_max);
                             }
-                            element = new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
-                                
-                            });
+                            element = (new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
+                                Stuff.data.GetActiveInstance().values[self.key][0] = self.CastInput(self.value);
+                            }))
+                                .SetInteractive(false)
+                                .SetRefresh(function() {
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    self.SetInteractive(!!inst);
+                                    if (!inst) return;
+                                    self.SetValue(inst.values[self.key][0]);
+                                });
                             break;
                         case DataTypes.ASSET_FLAG:      // button which leads to a dialog with a list of flags
-                            element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
-                                // needs to be Emu'd
-                                dialog_create_game_data_asset_flags(button.key);
-                            });
+                            element = (new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
+                                var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Asset Flags");
+                                dialog.index = self.key;
+    
+                                var element_width = 320;
+                                var element_height = 32;
+    
+                                var col1 = 32;
+                                var col2 = 32 + 320 + 32;
+    
+                                var instance = Stuff.data.GetActiveInstance();
+                                dialog.instance = instance;
+    
+                                dialog.AddContent([
+                                    (new EmuText(col1, EMU_BASE, element_width, element_height, "Numerical value: 0x0000000000000000"))
+                                        .SetRefresh(function() {
+                                            self.value = "Numerical value: " + string(ptr(self.GetSibling("FIELD").value));
+                                        })
+                                        .SetID("LABEL")
+                                    (emu_bitfield_flags(col1, EMU_AUTO, element_width, element_height, instance.values[self.key][0], function() {
+                                        self.root.instance.values[self.root.index][0] = self.value;
+                                        self.root.Refresh();
+                                    }, "Asset flags can be toggled on or off. Shaded cells are on, while unshaded cells are off."))
+                                        .SetID("FIELD")
+                                ]).AddDefaultCloseButton();
+                            }))
+                                .SetInteractive(false)
+                                .SetRefresh(function() {
+                                    self.SetInteractive(!!Stuff.data.GetActiveInstance());
+                                });
                             break;
                         case DataTypes.ENUM:            // list
                         case DataTypes.DATA:            // list
                             var datadata = guid_get(property.type_guid);
                             if (datadata) {
-                                // callback used to be uivc_data_set_property_list
                                 element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
+                                    if (!self.root) return;
+                                    var item = self.GetSelectedItem();
+                                    Stuff.data.GetActiveInstance().values[self.key][0] = item ? item.GUID : NULL;
                                 }))
+                                    .SetInteractive(false)
+                                    .SetRefresh(function() {
+                                        self.Deselect();
+                                        if (!self.root) return;
+                                        var inst = Stuff.data.GetActiveInstance();
+                                        self.SetInteractive(!!inst);
+                                        if (!inst) return;
+                                        var list = (self.datadata.type == DataTypes.DATA) ? self.datadata.instances : self.datadata.properties;
+                                        var search = inst.values[self.key][0];
+                                        for (var i = 0, n = array_length(list); i < n; i++) {
+                                            if (list[i].GUID == search) {
+                                                self.Select(i);
+                                                break;
+                                            }
+                                        }
+                                    })
                                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                                     .SetVacantText("<no values for " + datadata.name + ">");
+                                element.datadata = datadata;
                                 if (datadata.type == DataTypes.DATA) {
                                     element.SetList(datadata.instances);
                                 } else if (datadata.type == DataTypes.ENUM) {
@@ -114,29 +179,57 @@ function EditorModeData() : EditorModeBase() constructor {
                             }
                             break;
                         case DataTypes.BOOL:        // checkbox
-                            element = new EmuCheckbox(spacing, EMU_AUTO, element_width, element_height, property.name, false, function() {
-                                // formerly uivc_data_set_property_boolean
-                            });
+                            element = (new EmuCheckbox(spacing, EMU_AUTO, element_width, element_height, property.name, false, function() {
+                                Stuff.data.GetActiveInstance().values[self.key][0] = self.value;
+                            }))
+                                .SetInteractive(false)
+                                .SetRefresh(function() {
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    self.SetInteractive(!!inst);
+                                    if (!inst) return;
+                                    // logic
+                                });
                             break;
                         case DataTypes.CODE:        // checkbox
-                            element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
+                            element = (new EmuButton(spacing, EMU_AUTO, element_width, element_height, property.name, function() {
                                 emu_dialog_notice("re-implement some kind of code editor some time if you really want this to be a thing");
-                            });
+                            }))
+                                .SetInteractive(false)
+                                .SetRefresh(function() {
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    self.SetInteractive(!!inst);
+                                    if (!inst) return;
+                                    // logic
+                                });
                             break;
                         case DataTypes.COLOR:       // checkbox
-                            element = new EmuColorPicker(spacing, EMU_AUTO, element_width, element_height, property.name, c_white, function() {
-                                // formerly uivc_data_set_property_color
-                            });
+                            element = (new EmuColorPicker(spacing, EMU_AUTO, element_width, element_height, property.name, c_white, function() {
+                                Stuff.data.GetActiveInstance().values[self.key][0] = self.value;
+                            }))
+                                .SetInteractive(false)
+                                .SetRefresh(function() {
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    self.SetInteractive(!!inst);
+                                    if (!inst) return;
+                                    // logic
+                                });
                             break;
                         case DataTypes.EVENT:      // list
                             element_header = new EmuText(spacing, EMU_AUTO, element_width, element_height, property.name);
-                            element = new EmuButton(spacing, EMU_AUTO, element_width, element_height, "Select Event...", function() {
+                            element = (new EmuButton(spacing, EMU_AUTO, element_width, element_height, "Select Event...", function() {
                                 // formerly dialog_create_data_get_event
-                            });
+                            }))
+                                .SetInteractive(false)
+                                .SetRefresh(function() {
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    self.SetInteractive(!!inst);
+                                    if (!inst) return;
+                                    // logic
+                                });
                             break;
                         case DataTypes.TILE:
                         case DataTypes.ENTITY:
-                            element = new EmuText(spacing, EMU_AUTO, element_width, element_height, "Not implemented/not available");
+                            element = new EmuText(spacing, EMU_AUTO, element_width, element_height, "Not implemented and/or available");
                             break;
                         default:
                             var vacant_text, list;
@@ -157,8 +250,17 @@ function EditorModeData() : EditorModeBase() constructor {
                                 case DataTypes.MAP: vacant_text = "maps"; list = Game.maps; break;
                             }
                             element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
-                                // formerly uivc_data_set_property_built_in_data
+                                if (!self.root) return;
+                                var item = self.GetSelectedItem();
+                                Stuff.data.GetActiveInstance().values[self.key][0] = item ? item.GUID : NULL;
                             }))
+                                .SetInteractive(false)
+                                .SetRefresh(function() {
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    self.SetInteractive(!!inst);
+                                    if (!inst) return;
+                                    // logic
+                                })
                                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                                 .SetList(list)
                                 .SetVacantText("<no " + vacant_text + ">");
@@ -202,6 +304,8 @@ function EditorModeData() : EditorModeBase() constructor {
                 container.GetSibling("NEXT").SetInteractive(false);
             }
         }
+        
+        self.ui.Refresh();
         
         return container;
     };

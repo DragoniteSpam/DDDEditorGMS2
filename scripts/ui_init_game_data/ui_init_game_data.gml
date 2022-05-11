@@ -59,7 +59,10 @@ function ui_init_game_data(mode) {
                 if (!type) return;
                 
                 self.SetList(type.instances);
-                if (!array_empty(type.instances)) self.Select(0);
+                if (!array_empty(type.instances)) {
+                    self.Select(0);
+                    self.GetSibling("PROPERTIES").Refresh();
+                }
             })
             .SetVacantText("no instances")
             .SetListColors(function(index) {
