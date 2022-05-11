@@ -98,7 +98,9 @@ function EditorModeData() : EditorModeBase() constructor {
                                 help = string(property.range_min) + " - " + string(property.range_max);
                             }
                             element = (new EmuInput(spacing, EMU_AUTO, element_width, element_height, property.name, "", help, char_limit, type, function() {
-                                Stuff.data.GetActiveInstance().values[self.key][0] = self.CastInput(self.value);
+                                var inst = Stuff.data.GetActiveInstance()
+                                if (!inst) return;
+                                inst.values[self.key][0] = self.CastInput(self.value);
                             }))
                                 .SetInteractive(false)
                                 .SetRefresh(function() {
@@ -147,7 +149,9 @@ function EditorModeData() : EditorModeBase() constructor {
                                 element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
                                     if (!self.root) return;
                                     var item = self.GetSelectedItem();
-                                    Stuff.data.GetActiveInstance().values[self.key][0] = item ? item.GUID : NULL;
+                                    var inst = Stuff.data.GetActiveInstance()
+                                    if (!inst) return;
+                                    inst.values[self.key][0] = item ? item.GUID : NULL;
                                 }))
                                     .SetInteractive(false)
                                     .SetRefresh(function() {
@@ -180,7 +184,9 @@ function EditorModeData() : EditorModeBase() constructor {
                             break;
                         case DataTypes.BOOL:        // checkbox
                             element = (new EmuCheckbox(spacing, EMU_AUTO, element_width, element_height, property.name, false, function() {
-                                Stuff.data.GetActiveInstance().values[self.key][0] = self.value;
+                                var inst = Stuff.data.GetActiveInstance()
+                                if (!inst) return;
+                                inst.values[self.key][0] = self.value;
                             }))
                                 .SetInteractive(false)
                                 .SetRefresh(function() {
@@ -204,7 +210,9 @@ function EditorModeData() : EditorModeBase() constructor {
                             break;
                         case DataTypes.COLOR:       // checkbox
                             element = (new EmuColorPicker(spacing, EMU_AUTO, element_width, element_height, property.name, c_white, function() {
-                                Stuff.data.GetActiveInstance().values[self.key][0] = self.value;
+                                var inst = Stuff.data.GetActiveInstance()
+                                if (!inst) return;
+                                inst.values[self.key][0] = self.value;
                             }))
                                 .SetInteractive(false)
                                 .SetRefresh(function() {
@@ -252,7 +260,9 @@ function EditorModeData() : EditorModeBase() constructor {
                             element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
                                 if (!self.root) return;
                                 var item = self.GetSelectedItem();
-                                Stuff.data.GetActiveInstance().values[self.key][0] = item ? item.GUID : NULL;
+                                var inst = Stuff.data.GetActiveInstance()
+                                if (!inst) return;
+                                inst.values[self.key][0] = item ? item.GUID : NULL;
                             }))
                                 .SetInteractive(false)
                                 .SetRefresh(function() {
