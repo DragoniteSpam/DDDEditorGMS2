@@ -120,7 +120,6 @@ function ui_init_game_data(mode) {
             self.GetSibling("INSTANCES").Deselect();
             data.RemoveInstance(instance);
             instance.Destroy();
-            ui_init_game_data_refresh();
         }))
             .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Duplicate Instance", function() {
