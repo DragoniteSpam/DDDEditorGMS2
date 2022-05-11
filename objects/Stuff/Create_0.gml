@@ -73,7 +73,7 @@ self.SaveSettings = function() {
 
 time_source_start(time_source_create(time_source_game, 10, time_source_units_seconds, function() {
     Stuff.SaveSettings();
-}, -1));
+}, [], -1));
 #endregion
 
 #region initialize standalone systems
