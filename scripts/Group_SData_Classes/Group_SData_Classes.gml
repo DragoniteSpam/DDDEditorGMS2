@@ -127,6 +127,12 @@ function DataInstance(source) : SData(source) constructor {
     self.parent = NULL;
     self.values = [];
     
+    enum DataInstanceFlags {
+        NO_LOCALIZE         = 0x010000,
+        DEFAULT_VALUE       = 0x020000,
+        SEPARATOR_VALUE     = 0x040000,
+    }
+    
     self.Export = function(buffer) {
         self.ExportBase(buffer);
         var class = guid_get(self.parent);

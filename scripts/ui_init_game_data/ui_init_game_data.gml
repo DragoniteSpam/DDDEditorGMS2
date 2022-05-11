@@ -48,7 +48,6 @@ function ui_init_game_data(mode) {
                 self.text = "[c_aqua]" + (type ? type.name : "No data selected...");
             }),
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", element_height, 16, function() {
-            //ui_init_game_data_refresh();
             self.GetSibling("PROPERTIES").Refresh();
         }))
             .SetRefresh(function() {
@@ -65,13 +64,7 @@ function ui_init_game_data(mode) {
                 }
             })
             .SetVacantText("no instances")
-            .SetListColors(function(index) {
-                var inst = Stuff.data.GetActiveType().instances[index];
-                if (string_copy(inst.name, 1, 1) == "+") return c_yellow;
-                if (string_copy(inst.name, 1, 3) == "---") return c_aqua;
-                return c_white;
-            })
-        // what was ui_render_list_data_instances used for in the past?
+            .SetListColors(emu_color_data_instances)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetNumbered(true)
             .SetCallbackMiddle(dialog_create_data_instance_alphabetize) // this can be done inline pretty easily now with a yes/no prompt

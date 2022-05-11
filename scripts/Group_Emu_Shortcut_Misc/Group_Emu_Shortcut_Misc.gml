@@ -24,3 +24,10 @@ function emu_bitfield_flags(x, y, element_width, element_height, value, callback
     ])
     .SetTooltip(tooltip);
 }
+
+function emu_color_data_instances(index) {
+    var inst = self.At(index);
+    if (inst.flags & DataInstanceFlags.SEPARATOR_VALUE) return c_aqua;
+    if (inst.flags & DataInstanceFlags.DEFAULT_VALUE) return c_aqua;
+    return c_white;
+}

@@ -70,6 +70,13 @@ function EditorModeData() : EditorModeBase() constructor {
                         self.SetValue(inst.internal_name);
                     })
                     .SetID("INTERNAL NAME"),
+                (new EmuButton(spacing, EMU_AUTO, element_width, element_height, "Flags", function() {
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        self.SetInteractive(!!Stuff.data.GetActiveInstance());
+                    })
+                    .SetID("FLAGS"),
             ]);
                 
             for (var i = 0; i < array_length(data.properties); i++) {
@@ -166,6 +173,7 @@ function EditorModeData() : EditorModeBase() constructor {
                                         var list = (self.datadata.type == DataTypes.DATA) ? self.datadata.instances : self.datadata.properties;
                                         self.Select(array_search_guid(list, inst.values[self.key][0]), true);
                                     })
+                                    .SetListColors(emu_color_data_instances)
                                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                                     .SetVacantText("<no values for " + datadata.name + ">");
                                 element.datadata = datadata;
