@@ -44,11 +44,13 @@ function MoveRoute(source) : SData(source) constructor {
                 case MoveRouteActions.WAIT:
                     buffer_write(buffer, buffer_f32, step[@ 1]);
                     break;
-                case MoveRouteActions.SWITCH_ON:
+                case MoveRouteActions.SWITCH:
                     buffer_write(buffer, buffer_u8, step[@ 1]);
+                    buffer_write(buffer, buffer_u8, step[@ 2]);
                     break;
-                case MoveRouteActions.SWITCH_OFF:
+                case MoveRouteActions.VARIABLE:
                     buffer_write(buffer, buffer_u8, step[@ 1]);
+                    buffer_write(buffer, buffer_f32, step[@ 2]);
                     break;
                 case MoveRouteActions.CHANGE_SPEED:
                     buffer_write(buffer, buffer_u8, step[@ 1]);
@@ -56,7 +58,8 @@ function MoveRoute(source) : SData(source) constructor {
                 case MoveRouteActions.CHANGE_FREQUENCY:
                     buffer_write(buffer, buffer_u8, step[@ 1]);
                     break;
-                case MoveRouteActions.CHANGE_GRAPHIC:
+                case MoveRouteActions.CHANGE_SPRITE:
+                case MoveRouteActions.CHANGE_MODEL:
                     buffer_write(buffer, buffer_datatype, step[@ 1]);
                     break;
                 case MoveRouteActions.CHANGE_OPACITY:
@@ -119,8 +122,8 @@ enum MoveRouteActions {
     TURN_TOWARD_PLAYER,
     TURN_AWAY_PLAYER,
     
-    SWITCH_ON,                  // [id, u8 self switch index]
-    SWITCH_OFF,                 // [id, u8 self switch index]
+    SWITCH,                     // [id, u8 self switch index, u8 state]
+    VARIABLE,                   // [id, u8 self switch index, f32 value]
     CHANGE_SPEED,               // [id, u8 speed 0...5]
     CHANGE_FREQUENCY,           // [id, u8 frequency 0...4]
     
@@ -135,12 +138,13 @@ enum MoveRouteActions {
     TRANSPARENT_ON,
     TRANSPARENT_OFF,
     
-    CHANGE_GRAPHIC,             // [id, guid graphic id]        - this will be implemented differently for different entity types - texture uv vs model vs npc etc
+    CHANGE_SPRITE,              // [id, guid sprite id]
+    CHANGE_MODEL,               // [id, guid model id]
     CHANGE_OPACITY,             // [id, f32 opacity]
     CHANGE_TINT,                // [id, u32 color]
     PLAY_SE,                    // [id, guid sound effect id]
     
-    EVENT,                      // [id, guid event id, guid entrypoint id]
+    EVENT,                      // [id, guid entrypoint id]
     
     MOVE_TO                     // [id, u16 x, u16 y]
 }

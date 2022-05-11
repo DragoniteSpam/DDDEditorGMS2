@@ -43,8 +43,8 @@ function ui_render_list_move_route_steps(argument0, argument1, argument2) {
             case MoveRouteActions.TURN_TOWARD_PLAYER: ds_list_add(list.entries, "Turn Towards"); break;
             case MoveRouteActions.TURN_AWAY_PLAYER: ds_list_add(list.entries, "Turn Away"); break;
             // column 3
-            case MoveRouteActions.SWITCH_ON: ds_list_add(list.entries, "Switch On: " + string(data[@ 1])); break;
-            case MoveRouteActions.SWITCH_OFF: ds_list_add(list.entries, "Switch Off: " + string(data[@ 1])); break;
+            case MoveRouteActions.SWITCH: ds_list_add(list.entries, "Switch " + string(data[@ 1]) + ": " + (data[@ 2] ? "On" : "Off")); break;
+            case MoveRouteActions.VARIABLE: ds_list_add(list.entries, "Variable " + string(data[@ 1]) + ": " + string(data[2])); break;
             case MoveRouteActions.CHANGE_SPEED: ds_list_add(list.entries, "Move Speed: " + string(data[@ 1])); break;
             case MoveRouteActions.CHANGE_FREQUENCY: ds_list_add(list.entries, "Move Frequency: " + string(data[@ 1])); break;
             case MoveRouteActions.WALKING_ANIM_ON: ds_list_add(list.entries, "Walk Animation: On"); break;
@@ -57,20 +57,19 @@ function ui_render_list_move_route_steps(argument0, argument1, argument2) {
             case MoveRouteActions.SOLID_OFF: ds_list_add(list.entries, "Solid: Off"); break;
             case MoveRouteActions.TRANSPARENT_ON: ds_list_add(list.entries, "Transparency: On"); break;
             case MoveRouteActions.TRANSPARENT_OFF: ds_list_add(list.entries, "Transparency: Off"); break;
-            // show the name once graphic list is implemented
-            case MoveRouteActions.CHANGE_GRAPHIC: ds_list_add(list.entries, "Graphic: <name>"); break;
-            case MoveRouteActions.CHANGE_OPACITY: ds_list_add(list.entries, "Opacity: "+string(data[@ 1])); break;
+            case MoveRouteActions.CHANGE_SPRITE: ds_list_add(list.entries, "Sprite: " + (guid_get(data[1]) ? guid_get(data[1]).name : "<none>")); break;
+            case MoveRouteActions.CHANGE_MODEL: ds_list_add(list.entries, "Model: " + (guid_get(data[1]) ? guid_get(data[1]).name : "<none>")); break;
+            case MoveRouteActions.CHANGE_OPACITY: ds_list_add(list.entries, "Opacity: "+ string(data[@ 1])); break;
             // color - not displayable
-            case MoveRouteActions.CHANGE_TINT: ds_list_add(list.entries, "Tint..."); break;
+            case MoveRouteActions.CHANGE_TINT: ds_list_add(list.entries, "Color: #" + string_hex(colour_reverse(data[1]), 6)); break;
             // show the name once sound effect list is implemented
-            case MoveRouteActions.PLAY_SE: ds_list_add(list.entries, "Sound: <name>"); break;
+            case MoveRouteActions.PLAY_SE: ds_list_add(list.entries, "Sound: " + (guid_get(data[1]) ? guid_get(data[1]).name : "<none>")); break;
             case MoveRouteActions.EVENT:
-                var event = guid_get(data[@ 1]);
-                var entrypoint = guid_get(data[@ 2]);
-                if (!event || !entrypoint) {
+                var entrypoint = guid_get(data[@ 1]);
+                if (!entrypoint) {
                     ds_list_add(list.entries, "Event: N/A");
                 } else {
-                    ds_list_add(list.entries, "Event: " + event.name + "/" + entrypoint.name);
+                    ds_list_add(list.entries, "Event: " + entrypoint.event.name + "/" + entrypoint.name);
                 }
                 break;
         }
