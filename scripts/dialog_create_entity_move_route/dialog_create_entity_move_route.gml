@@ -1,62 +1,57 @@
-function dialog_create_entity_move_route(dialog, route) {
-    var dw = 1024;
-    var dh = 560;
+function dialog_create_entity_move_route(route) {
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 704, "Edit Movement Route");
+    dialog.route = route;
     
-    // you can assume that this is valid data because this won't be called otherwise
-    var list = Stuff.map.selected_entities;
-    var entity = list[| 0];
-    var dg = dialog_create(dw, dh, "Edit Move Route", dialog_default, dialog_destroy, dialog);
-    dg.route = route;
+    var element_width = 320;
+    var element_height = 32;
     
-    var columns = 4;
-    var spacing = 16;
-    var spacing2 = 0;
-    var ew = dw / columns - spacing * 2;
-    var eh = 24;
-    var eh2 = 20;
+    var col1 = 32;
+    var col2 = 32 + 320 + 32;
+    var col3 = 32 + 320 + 32 + 320 + 32;
     
-    var c2 = dw / columns;
-    var c3 = dw * 2 / columns;
-    var c4 = dw * 3 / columns;
+    return dialog.AddContent([
+        (new EmuInput(col1, EMU_BASE, element_width, element_height, "Name:", route.name, "Movement route name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+            self.root.route.name = self.value;
+        })),
+        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Loop Route", route.repeat_action, function() {
+            self.root.route.repeat_action = self.value;
+        })),
+        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Skip if Blocked", route.skip, function() {
+            self.root.route.skip = self.value;
+        })),
+        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Wait for Completion", route.wait, function() {
+            self.root.route.wait = self.value;
+        })),
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Steps:", element_height, 10, emu_null))
+            .SetEntryTypes(E_ListEntryTypes.SCRIPTS, function(index) {
+                // formerly ui_render_list_move_route_steps
+                return "implement this";
+            })
+            .SetList(route.steps)
+            .SetID("LIST"),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Edit Step", function() {
+        }))
+            .SetRefresh(function() {
+                self.SetInteractive(self.GetSibling("LIST").GetSelection() != -1);
+            }),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Delete Step", function() {
+            var index = self.GetSibling("LIST").GetSelection();
+            array_delete(self.root.route.steps, index, 1);
+            if (index >= array_length(self.root.route.steps)) {
+                self.GetSibling("LIST").Deselect();
+            }
+        }))
+            .SetRefresh(function() {
+                self.SetInteractive(self.GetSibling("LIST").GetSelection() != -1);
+            }),
+    ]).AddDefaultCloseButton();
     
-    var vx1 = ew / 2;
-    var vy1 = 0;
-    var vx2 = ew;
-    var vy2 = eh;
     
-    var yy = 64;
     
-    var n = 10;
     
-    var el_name = create_input(16, yy, "Name:", ew * 2, eh, uivc_entity_move_route_name, route.name, "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2 + c2, vy2, dg);
     
-    yy += el_name.height + spacing;
     
-    var yy_grid = yy;
-
-    var el_steps = create_list(16, yy, "Steps: ", "<No move route steps>", ew, eh2, n, null, false, dg);
-    el_steps.numbered = true;
-    el_steps.render = ui_render_list_move_route_steps;
-    yy += el_steps.GetHeight() + spacing;
-    dg.el_steps = el_steps;
-
-    var el_step_edit = create_button(16, yy, "Edit Step", ew, eh, fa_center, null, dg);
-    yy += el_step_edit.height + spacing;
-
-    var el_step_remove = create_button(16, yy, "Delete Step", ew, eh, fa_center, omu_entity_remove_move_route_step, dg);
-    yy += el_step_remove.height + spacing;
-
-    var el_repeat = create_checkbox(16, yy, "Loop Route", ew, eh, uivc_entity_move_route_loop, route.repeat_action, dg);
-    yy += el_repeat.height + spacing;
-
-    var el_skip = create_checkbox(16, yy, "Skip If Blocked", ew, eh, uivc_entity_move_route_skip, route.skip, dg);
-    yy += el_skip.height + spacing;
-
-    var el_wait = create_checkbox(16, yy, "Wait For Completion", ew, eh, uivc_entity_move_route_wait, route.wait, dg);
-    yy += el_wait.height + spacing;
-
-    yy = yy_grid;
-
+    
     var el_cmd_move_down = create_button(c2 + 16, yy, "Move Down", ew, eh, fa_center, omu_mr_move_down, dg);
     yy += el_cmd_move_down.height + spacing2;
     var el_cmd_move_left = create_button(c2 + 16, yy, "Move Left", ew, eh, fa_center, omu_mr_move_left, dg);
@@ -164,30 +159,4 @@ function dialog_create_entity_move_route(dialog, route) {
     yy += el_cmd_play_se.height + spacing2;
     // this
     var el_cmd_event = create_button(c4 + 16, yy, "Execute Event", ew, eh, fa_center, omu_mr_event, dg);
-
-    var b_width = 128;
-    var b_height = 32;
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-
-    ds_list_add(dg.contents,
-        el_name, el_steps, el_step_edit, el_step_remove, el_repeat, el_skip, el_wait,
-        // first column of commands
-        el_cmd_move_down, el_cmd_move_left, el_cmd_move_right, el_cmd_move_up, el_cmd_move_ll, el_cmd_move_lr,
-        el_cmd_move_ul, el_cmd_move_ur, el_cmd_move_random, el_cmd_move_towards, el_cmd_move_away, el_cmd_move_forward,
-        el_cmd_move_backward, el_cmd_move_exactly, el_cmd_move_jump, el_cmd_move_hop,
-        // second column of commands
-        el_cmd_turn_down, el_cmd_turn_left, el_cmd_turn_right, el_cmd_turn_up, el_cmd_turn_90_right, el_cmd_turn_90_left,
-        el_cmd_turn_180, el_cmd_turn_90_random, el_cmd_turn_random, el_cmd_turn_towards, el_cmd_turn_away, el_cmd_switch_on,
-        el_cmd_switch_off, el_cmd_change_speed,
-        // third column of commands
-        el_cmd_walk_anim_on, el_cmd_walk_anim_off, el_cmd_step_anim_on, el_cmd_step_anim_off, el_cmd_direction_fix_on,
-        el_cmd_direction_fix_off, el_cmd_solid_on, el_cmd_solid_off, el_cmd_transparent_on, el_cmd_transparent_off,
-        el_cmd_change_graphic, el_cmd_change_alpha, el_cmd_change_tint, el_cmd_play_se, el_cmd_event,
-        // return to normal
-        el_confirm
-    );
-
-    return dg;
-
-
 }

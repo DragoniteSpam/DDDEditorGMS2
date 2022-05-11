@@ -9,7 +9,7 @@ function dialog_create_entity_autonomous_movement() {
     var col2 = 32 + 320 + 32;
     
     var f_route_callback = function() {
-        dialog_create_entity_move_route(undefined, self.root.entity.movement_routes[self.GetSibling("LIST").GetSelection()]);
+        dialog_create_entity_move_route(self.GetSibling("LIST").GetSelectedItem());
     };
     
     return dialog.AddContent([
@@ -40,6 +40,7 @@ function dialog_create_entity_autonomous_movement() {
             .SetRefresh(function(index) {
                 self.SetInteractive(index != -1);
             })
+            .SetInteractive(false)
             .SetTooltip("Edit the selected movement route."),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Movement Route", function() {
             array_push(self.root.entity.movement_routes, new MoveRoute("MoveRoute " + string(array_length(self.root.entity.movement_routes))));
@@ -56,6 +57,7 @@ function dialog_create_entity_autonomous_movement() {
             });
             dialog.entity = self.root.entity;
         }))
+            .SetInteractive(false)
             .SetRefresh(function(index) {
                 self.SetInteractive(index != -1);
             })
@@ -65,8 +67,10 @@ function dialog_create_entity_autonomous_movement() {
             var selection = self.GetSibling("LIST").GetSelection();
             entity.autonomous_movement_route = (selection == -1) ? NULL : entity.movement_routes[selection].GUID;
         }))
+            .SetInteractive(false)
             .SetRefresh(function(index) {
                 self.text = (array_length(self.root.entity.movement_routes) > 0) ? "Set Auto Route" : "Remove Auto Route";
+                self.SetInteractive(index != -1);
             })
             .SetTooltip("Set the selected movement route to run automatically."),
     ]).AddDefaultCloseButton();
