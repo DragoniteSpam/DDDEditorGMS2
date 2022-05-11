@@ -18,13 +18,6 @@ function EditorModeData() : EditorModeBase() constructor {
     
     self.SetMode = function() {
         editor_set_mode(self, ModeIDs.DATA);
-        
-        if (array_length(Game.data) > 0) {
-            //ui_list_select(self.ui.el_master, 0);
-        }
-    
-        //ui_init_game_data_activate();
-        
         self.ui.Refresh();
     };
     
