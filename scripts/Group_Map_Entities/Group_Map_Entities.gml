@@ -144,7 +144,7 @@ function Entity(source) constructor {
         buffer_write(buffer, buffer_u8, self.autonomous_movement_frequency);
         buffer_write(buffer, buffer_u8, self.autonomous_movement_route);
         
-        buffer_write(buffer, buffer_u8, array_length(self.movement_routes));
+        buffer_write(buffer, buffer_u32, array_length(self.movement_routes));
         for (var i = 0; i < array_length(self.movement_routes); i++) {
             self.movement_routes[i].Export(buffer);
         }
