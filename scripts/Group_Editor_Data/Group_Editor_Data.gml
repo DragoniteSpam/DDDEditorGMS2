@@ -139,7 +139,10 @@ function EditorModeData() : EditorModeBase() constructor {
                             }))
                                 .SetInteractive(false)
                                 .SetRefresh(function() {
-                                    self.SetInteractive(!!Stuff.data.GetActiveInstance());
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    self.SetInteractive(!!inst);
+                                    if (!inst) return;
+                                    self.SetValue(inst.values[self.key][0]);
                                 });
                             break;
                         case DataTypes.ENUM:            // list
@@ -149,9 +152,9 @@ function EditorModeData() : EditorModeBase() constructor {
                                 element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
                                     if (!self.root) return;
                                     var item = self.GetSelectedItem();
-                                    var inst = Stuff.data.GetActiveInstance()
-                                    if (!inst) return;
-                                    inst.values[self.key][0] = item ? item.GUID : NULL;
+                                    var inst = Stuff.data.GetActiveInstance();
+                                    if (!inst || !item) return;
+                                    inst.values[self.key][0] = item.GUID;
                                 }))
                                     .SetInteractive(false)
                                     .SetRefresh(function() {
@@ -161,13 +164,7 @@ function EditorModeData() : EditorModeBase() constructor {
                                         self.SetInteractive(!!inst);
                                         if (!inst) return;
                                         var list = (self.datadata.type == DataTypes.DATA) ? self.datadata.instances : self.datadata.properties;
-                                        var search = inst.values[self.key][0];
-                                        for (var i = 0, n = array_length(list); i < n; i++) {
-                                            if (list[i].GUID == search) {
-                                                self.Select(i);
-                                                break;
-                                            }
-                                        }
+                                        self.Select(array_search_guid(list, inst.values[self.key][0]), true);
                                     })
                                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                                     .SetVacantText("<no values for " + datadata.name + ">");
@@ -193,7 +190,7 @@ function EditorModeData() : EditorModeBase() constructor {
                                     var inst = Stuff.data.GetActiveInstance();
                                     self.SetInteractive(!!inst);
                                     if (!inst) return;
-                                    // logic
+                                    self.SetValue(inst.values[self.key][0]);
                                 });
                             break;
                         case DataTypes.CODE:        // checkbox
@@ -205,7 +202,7 @@ function EditorModeData() : EditorModeBase() constructor {
                                     var inst = Stuff.data.GetActiveInstance();
                                     self.SetInteractive(!!inst);
                                     if (!inst) return;
-                                    // logic
+                                    self.SetValue(inst.values[self.key][0]);
                                 });
                             break;
                         case DataTypes.COLOR:       // checkbox
@@ -219,7 +216,7 @@ function EditorModeData() : EditorModeBase() constructor {
                                     var inst = Stuff.data.GetActiveInstance();
                                     self.SetInteractive(!!inst);
                                     if (!inst) return;
-                                    // logic
+                                    self.SetValue(inst.values[self.key][0]);
                                 });
                             break;
                         case DataTypes.EVENT:      // list
@@ -260,16 +257,18 @@ function EditorModeData() : EditorModeBase() constructor {
                             element = (new EmuList(spacing, EMU_AUTO, element_width, element_height, property.name, element_height, 8, function() {
                                 if (!self.root) return;
                                 var item = self.GetSelectedItem();
-                                var inst = Stuff.data.GetActiveInstance()
-                                if (!inst) return;
-                                inst.values[self.key][0] = item ? item.GUID : NULL;
+                                var inst = Stuff.data.GetActiveInstance();
+                                if (!inst || !item) return;
+                                inst.values[self.key][0] = item.GUID;
                             }))
                                 .SetInteractive(false)
                                 .SetRefresh(function() {
+                                    self.Deselect();
+                                    if (!self.root) return;
                                     var inst = Stuff.data.GetActiveInstance();
                                     self.SetInteractive(!!inst);
                                     if (!inst) return;
-                                    // logic
+                                    self.Select(array_search_guid(self.entries, inst.values[self.key][0]), true);
                                 })
                                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                                 .SetList(list)
