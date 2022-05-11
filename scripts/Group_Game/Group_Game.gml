@@ -265,14 +265,7 @@ Game = new (function() constructor {
             new EventNodeProperty("Y", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
             new EventNodeProperty("A", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }),
             new EventNodeProperty("Direction", DataTypes.INT, 0, 1, false, 0, function() { show_message("wip"); }, function(event, index) {
-                var raw = event.custom_data[4][0];
-                
-                switch (raw) {
-                    case 0: return "Down";
-                    case 1: return "Left";
-                    case 2: return "Right";
-                    case 3: return "Up";
-                }
+                return global.rpg_maker_directions[event.custom_data[4][0]];
             }),
             new EventNodeProperty("FadeColor", DataTypes.COLOR, 0, 1, false, c_black, function() { show_message("wip"); }),
             new EventNodeProperty("FadeTime", DataTypes.FLOAT, 0, 1, false, 1, function() { show_message("wip"); }),

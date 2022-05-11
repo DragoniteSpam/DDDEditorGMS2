@@ -162,3 +162,10 @@ global.animation_end_action_names = [
     "Reverse",
     "End"
 ];
+
+global.rpg_maker_directions = [
+    "Down",
+    "Left",
+    "Right",
+    "Up"
+];

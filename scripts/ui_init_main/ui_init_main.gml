@@ -895,7 +895,7 @@ function ui_init_main(mode) {
                     entity.map_direction = data.value;
                 }, { value: self.value }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
             }))
-                .AddOptions(["Down", "Left", "Right", "Up"])
+                .AddOptions(global.rpg_maker_directions)
                 .SetID("ENTITY PAWN DIRECTION")
                 .SetTooltip("The direction you want this pawn to face on the map.")
                 .SetRefresh(function(sel) {
