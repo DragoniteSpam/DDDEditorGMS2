@@ -230,7 +230,7 @@ function selection_update_autotiles() {
     
     static surrounded_mask = ATMask.NORTHWEST | ATMask.NORTH | ATMask.NORTHEAST | ATMask.WEST | ATMask.EAST | ATMask.SOUTHWEST | ATMask.SOUTH | ATMask.SOUTHEAST;
     
-    for (var i = 0; i < ds_list_size(terrain); i++) {
+    for (var i = 0, n = ds_list_size(terrain); i < n; i++) {
         var thing = terrain[| i];
         var thing_is_mesh = (thing.etype == ETypes.ENTITY_MESH_AUTO);
         if (thing_is_mesh && thing.terrain_type == MeshAutotileLayers.SLOPE) continue;
