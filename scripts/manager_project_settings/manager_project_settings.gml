@@ -62,11 +62,132 @@ function dialog_create_settings_data() {
         #region Variables and stuff
         new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Variables and stuff"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Global Variables", function() {
-            dialog_create_settings_data_variables(); /* update this */
+            var dialog = new EmuDialog(32 + 320 + 32, 704, "Data settings: Global Variables");
+            var element_width = 320;
+            var element_height = 32;
+            
+            var col1 = 32;
+            
+            dialog.AddContent([
+                (new EmuList(col1, EMU_BASE, element_width, element_height, "Global Variables (" + string(array_length(Game.vars.variables)) + ")", element_height, 12, function() {
+                    if (!self.root) return;
+                    self.root.Refresh();
+                }))
+                    .SetRefresh(function() {
+                        self.text = "Glboal Variables (" + string(array_length(Game.vars.variables)) + ")";
+                    })
+                    .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                        return Game.vars.variables[index].name + ": " + string(Game.vars.variables[index].value);
+                    })
+                    .SetNumbered(true)
+                    .SetList(Game.vars.variables)
+                    .SetID("LIST"),
+                (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add", function() {
+                    array_push(Game.vars.variables, new DataValue("Variable " + string(array_length(Game.vars.variables)), 0));
+                }))
+                    .SetRefresh(function() {
+                        self.SetInteractive(array_length(Game.vars.variables) < 0xffff);
+                    }),
+                (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Delete", function() {
+                    var selection = self.GetSibling("LIST").GetSelection();
+                    array_delete(Game.vars.variables, selection, 1);
+                    if (selection >= array_length(Game.vars.variables)) {
+                        self.GetSibling("LIST").Deselect();
+                    }
+                    self.root.Refresh();
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        self.SetInteractive(array_length(Game.vars.variables) > 0 && self.GetSibling("LIST").GetSelection() != -1);
+                    }),
+                (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Name:", "", "32 characters", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                    Game.vars.variables[self.GetSibling("LIST").GetSelection()].name = self.value;
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var selection = self.GetSibling("LIST").GetSelection();
+                        self.SetInteractive(selection != -1);
+                        if (selection != -1) {
+                            self.SetValue(Game.vars.variables[selection].name);
+                        }
+                    }),
+                (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Starting Value", 0, "plus or minus ten million", 10, E_InputTypes.REAL, function() {
+                    Game.vars.variables[self.GetSibling("LIST").GetSelection()].value = real(self.value);
+                }))
+                    .SetRealNumberBounds(-10000000, 10000000)
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var selection = self.GetSibling("LIST").GetSelection();
+                        self.SetInteractive(selection != -1);
+                        if (selection != -1) {
+                            self.value = Game.vars.variables[selection].value;
+                        }
+                    })
+            ]).AddDefaultCloseButton();
         }))
             .SetTooltip("A list of built-in variables which you may wish to modify during the game. You may set their default values here."),
         (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Global Switches", function() {
-            dialog_create_settings_data_switches(); /* update this */
+            var dialog = new EmuDialog(32 + 320 + 32, 704, "Data settings: Global Switches");
+            var element_width = 320;
+            var element_height = 32;
+            
+            var col1 = 32;
+            
+            dialog.AddContent([
+                (new EmuList(col1, EMU_BASE, element_width, element_height, "Global Switches (" + string(array_length(Game.vars.switches)) + ")", element_height, 12, function() {
+                    if (!self.root) return;
+                    self.root.Refresh();
+                }))
+                    .SetRefresh(function() {
+                        self.text = "Glboal Switches (" + string(array_length(Game.vars.switches)) + ")";
+                    })
+                    .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                        return (Game.vars.switches[index].value ? "[c_aqua]" : "") + Game.vars.switches[index].name + ": " + (Game.vars.switches[index].value ? "On" : "Off");
+                    })
+                    .SetNumbered(true)
+                    .SetList(Game.vars.switches)
+                    .SetID("LIST"),
+                (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add", function() {
+                    array_push(Game.vars.switches, new DataValue("Switch " + string(array_length(Game.vars.switches)), false));
+                }))
+                    .SetRefresh(function() {
+                        self.SetInteractive(array_length(Game.vars.switches) < 0xffff);
+                    }),
+                (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Delete", function() {
+                    var selection = self.GetSibling("LIST").GetSelection();
+                    array_delete(Game.vars.switches, selection, 1);
+                    if (selection >= array_length(Game.vars.switches)) {
+                        self.GetSibling("LIST").Deselect();
+                    }
+                    self.root.Refresh();
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        self.SetInteractive(array_length(Game.vars.switches) > 0 && self.GetSibling("LIST").GetSelection() != -1);
+                    }),
+                (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Name:", "", "32 characters", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                    Game.vars.switches[self.GetSibling("LIST").GetSelection()].name = self.value;
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var selection = self.GetSibling("LIST").GetSelection();
+                        self.SetInteractive(selection != -1);
+                        if (selection != -1) {
+                            self.SetValue(Game.vars.switches[selection].name);
+                        }
+                    }),
+                (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Starting State", false, function() {
+                    Game.vars.switches[self.GetSibling("LIST").GetSelection()].value = self.value;
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var selection = self.GetSibling("LIST").GetSelection();
+                        self.SetInteractive(selection != -1);
+                        if (selection != -1) {
+                            self.value = Game.vars.switches[selection].value;
+                        }
+                    })
+            ]).AddDefaultCloseButton();
         }))
             .SetTooltip("A list of built-in variables which you may wish to modify during the game. You may set their default values here."),
         (new EmuButton(col3, EMU_INLINE, element_width, element_height, "Global Constants", function() {

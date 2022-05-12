@@ -130,7 +130,7 @@
 #macro BILLION                              1000000000
 #macro MILLION                              1000000
 
-#macro BASE_GAME_VARIABLES                  100                                 // this also counts for switches
+#macro BASE_GAME_VARIABLES                  10                                  // this also counts for switches
 #macro BASE_SELF_VARIABLES                  4                                   // this also counts for switches
 
 #macro PROJECT_PATH_ROOT                    (environment_get_variable("localappdata") + "/" + game_project_name + "/")     // in case an extension needs to see the exact path of something in local storage

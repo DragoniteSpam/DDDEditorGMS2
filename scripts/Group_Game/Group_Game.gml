@@ -155,8 +155,8 @@ Game = new (function() constructor {
     self.meta.export.locations[GameDataCategories.LANGUAGE_TEXT] = 0;
     
     for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
-        self.vars.switches[i] = new DataValue("Switch" + string(i));
-        self.vars.variables[i] = new DataValue("Variable" + string(i));
+        self.vars.switches[i] = new DataValue("Switch " + string(i), false);
+        self.vars.variables[i] = new DataValue("Variable " + string(i), 0);
     }
     
     self.vars.triggers[0] = "Action Button";
