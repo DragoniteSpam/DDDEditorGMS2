@@ -67,7 +67,23 @@ function ui_init_game_data(mode) {
             .SetListColors(emu_color_data_instances)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetNumbered(true)
-            .SetCallbackMiddle(dialog_create_data_instance_alphabetize) // this can be done inline pretty easily now with a yes/no prompt
+            .SetCallbackMiddle(function() {
+                (emu_dialog_confirm(self, "Do you want to alphabetize all instances of " + Stuff.data.GetActiveType().name + "?", function() {
+                    var data = Stuff.data.GetActiveType();
+                    var current = Stuff.data.GetActiveInstance();
+                    
+                    array_sort_name(data.instances);
+                    self.root.root.Deselect();
+                    for (var i = 0, n = array_length(data.instances); i < n; i++) {
+                        if (data.instances[i] == current) {
+                            self.root.root.Select(i, true);
+                            break;
+                        }
+                    }
+                    
+                    emu_dialog_close_auto();
+                })).contents_interactive = true;
+            })
             .SetID("INSTANCES"),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Up", function() {
             var data = Stuff.data.GetActiveType();
