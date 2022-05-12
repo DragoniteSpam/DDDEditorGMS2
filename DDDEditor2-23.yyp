@@ -266,7 +266,6 @@
     {"id":{"name":"dialog_entity_data_enable_by_type","path":"scripts/dialog_entity_data_enable_by_type/dialog_entity_data_enable_by_type.yy",},"order":4,},
     {"id":{"name":"carton_count","path":"scripts/carton_count/carton_count.yy",},"order":2,},
     {"id":{"name":"dialog_create_data_data_select","path":"scripts/dialog_create_data_data_select/dialog_create_data_data_select.yy",},"order":2,},
-    {"id":{"name":"dialog_create_data_instance_property_list","path":"scripts/dialog_create_data_instance_property_list/dialog_create_data_instance_property_list.yy",},"order":3,},
     {"id":{"name":"dmu_create_data_event_list","path":"scripts/dmu_create_data_event_list/dmu_create_data_event_list.yy",},"order":4,},
     {"id":{"name":"dmu_create_data_event_entrypoint_list","path":"scripts/dmu_create_data_event_entrypoint_list/dmu_create_data_event_entrypoint_list.yy",},"order":5,},
     {"id":{"name":"dmu_create_event_event_entrypoint_list","path":"scripts/dmu_create_event_event_entrypoint_list/dmu_create_event_event_entrypoint_list.yy",},"order":6,},
