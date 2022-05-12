@@ -15,23 +15,43 @@ function dialog_create_entity_move_route(route) {
         (new EmuInput(col1, EMU_BASE, element_width, element_height, "Name:", route.name, "Movement route name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
             self.root.route.name = self.value;
         })),
-        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Loop Route", route.repeat_action, function() {
-            self.root.route.repeat_action = self.value;
-        })),
-        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Skip if Blocked", route.skip, function() {
-            self.root.route.skip = self.value;
-        })),
-        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Wait for Completion", route.wait, function() {
-            self.root.route.wait = self.value;
-        })),
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Steps:", element_height, 10, emu_null))
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Steps:", element_height, 10, function() {
+            if (!self.root) return;
+            self.root.Refresh();
+        }))
             .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
                 return self.At(index).toString();
             })
             .SetList(route.steps)
             .SetID("LIST"),
-        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Edit Step", function() {
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Move Up", function() {
+            var selection = self.GetSibling("LIST").GetSelection();
+            var t = self.root.route.steps[selection];
+            self.root.route.steps[selection] = self.root.route.steps[selection - 1];
+            self.root.route.steps[selection - 1] = t;
+            self.GetSibling("LIST").Deselect();
+            self.GetSibling("LIST").Select(selection - 1, true);
         }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                self.SetInteractive(self.GetSibling("LIST").GetSelection() >= 1);
+            }),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Move Down", function() {
+            var selection = self.GetSibling("LIST").GetSelection();
+            var t = self.root.route.steps[selection];
+            self.root.route.steps[selection] = self.root.route.steps[selection + 1];
+            self.root.route.steps[selection + 1] = t;
+            self.GetSibling("LIST").Deselect();
+            self.GetSibling("LIST").Select(selection + 1, true);
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                self.SetInteractive(self.GetSibling("LIST").GetSelection() != -1 && self.GetSibling("LIST").GetSelection() < array_length(self.root.route.steps) - 1);
+            }),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Edit Step", function() {
+            self.GetSibling("LIST").GetSelectedItem().Edit();
+        }))
+            .SetInteractive(false)
             .SetRefresh(function() {
                 self.SetInteractive(self.GetSibling("LIST").GetSelection() != -1);
             }),
@@ -42,6 +62,7 @@ function dialog_create_entity_move_route(route) {
                 self.GetSibling("LIST").Deselect();
             }
         }))
+            .SetInteractive(false)
             .SetRefresh(function() {
                 self.SetInteractive(self.GetSibling("LIST").GetSelection() != -1);
             }),
@@ -50,7 +71,10 @@ function dialog_create_entity_move_route(route) {
         .SetDefaultSpacingY(0)
         .AddContent([
         #region column 2
-        new EmuButton(col2, 16, element_width, element_height, "Move Down", function() {
+        (new EmuCheckbox(col2, 16, element_width, element_height, "Loop Route", route.repeat_action, function() {
+            self.root.route.repeat_action = self.value;
+        })),
+        new EmuButton(col2, 16 + 16 + element_height, element_width, element_height, "Move Down", function() {
             array_push(self.root.route.steps, new MoveRouteAction_MoveDown());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Left", function() {
@@ -97,7 +121,10 @@ function dialog_create_entity_move_route(route) {
         }),
         #endregion
         #region column 3
-        new EmuButton(col3, 16, element_width, element_height, "Turn Down", function() {
+        (new EmuCheckbox(col3, 16, element_width, element_height, "Skip if Blocked", route.skip, function() {
+            self.root.route.skip = self.value;
+        })),
+        new EmuButton(col3, 16 + 16 + element_height, element_width, element_height, "Turn Down", function() {
             array_push(self.root.route.steps, new MoveRouteAction_TurnDown());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn Left", function() {
@@ -144,7 +171,10 @@ function dialog_create_entity_move_route(route) {
         }),
         #endregion
         #region column 4
-        new EmuButton(col4, 16, element_width, element_height, "Set Walk Animation...", function() {
+        (new EmuCheckbox(col4, 16, element_width, element_height, "Wait for Completion", route.wait, function() {
+            self.root.route.wait = self.value;
+        })),
+        new EmuButton(col4, 16 + 16 + element_height, element_width, element_height, "Set Walk Animation...", function() {
             array_push(self.root.route.steps, new MoveRouteAction_SetWalking());
         }),
         new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set Step Animation...", function() {

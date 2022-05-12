@@ -330,6 +330,7 @@
     {"id":{"name":"dialog_create_condition_switch_self_data","path":"scripts/dialog_create_condition_switch_self_data/dialog_create_condition_switch_self_data.yy",},"order":9,},
     {"id":{"name":"omu_event_condition_attain_variable_self_data","path":"scripts/omu_event_condition_attain_variable_self_data/omu_event_condition_attain_variable_self_data.yy",},"order":10,},
     {"id":{"name":"dialog_create_condition_variable_self_data","path":"scripts/dialog_create_condition_variable_self_data/dialog_create_condition_variable_self_data.yy",},"order":11,},
+    {"id":{"name":"spr_color_window","path":"sprites/spr_color_window/spr_color_window.yy",},"order":31,},
     {"id":{"name":"omu_event_attain_self_variable_data","path":"scripts/omu_event_attain_self_variable_data/omu_event_attain_self_variable_data.yy",},"order":12,},
     {"id":{"name":"omu_event_attain_mesh_anim_end_action","path":"scripts/omu_event_attain_mesh_anim_end_action/omu_event_attain_mesh_anim_end_action.yy",},"order":13,},
     {"id":{"name":"omu_event_attain_map_data","path":"scripts/omu_event_attain_map_data/omu_event_attain_map_data.yy",},"order":14,},

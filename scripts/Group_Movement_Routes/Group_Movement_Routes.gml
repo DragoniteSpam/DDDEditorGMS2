@@ -40,6 +40,8 @@ function MoveRouteAction() {
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u32, self.id);
     };
+    
+    self.Edit();
 }
 
 function MoveRouteAction_MoveDown() : MoveRouteAction() constructor {
@@ -108,7 +110,7 @@ function MoveRouteAction_MoveTo() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
@@ -117,6 +119,8 @@ function MoveRouteAction_MoveTo() : MoveRouteAction() constructor {
         buffer_write(buffer, buffer_u32, self.z);
         buffer_write(buffer, buffer_u8, self.direction);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_Jump() : MoveRouteAction() constructor {
     self.name = "Jump";
@@ -129,12 +133,14 @@ function MoveRouteAction_Jump() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_f32, self.height);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_Wait() : MoveRouteAction() constructor {
     self.name = "Wait";
@@ -147,12 +153,14 @@ function MoveRouteAction_Wait() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_f32, self.duration);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_TurnDown() : MoveRouteAction() constructor {
     self.name = "Turn Down";
@@ -210,13 +218,15 @@ function MoveRouteAction_SelfSwitch() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.index);
         buffer_write(buffer, buffer_u8, self.value);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SelfVariable() : MoveRouteAction() constructor {
     self.name = "Self Variable";
@@ -230,13 +240,17 @@ function MoveRouteAction_SelfVariable() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
+    
+    self.Edit();
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.index);
         buffer_write(buffer, buffer_f32, self.value);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetSpeed() : MoveRouteAction() constructor {
     self.name = "Set Speed";
@@ -249,12 +263,14 @@ function MoveRouteAction_SetSpeed() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.speed);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetFrequency() : MoveRouteAction() constructor {
     self.name = "Set Frequency";
@@ -267,12 +283,14 @@ function MoveRouteAction_SetFrequency() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.frequency);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetStepping() : MoveRouteAction() constructor {
     self.name = "Set Stepping Animation";
@@ -285,12 +303,14 @@ function MoveRouteAction_SetStepping() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.value);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetWalking() : MoveRouteAction() constructor {
     self.name = "Set Walking Animation";
@@ -303,12 +323,14 @@ function MoveRouteAction_SetWalking() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.value);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetDirectionFix() : MoveRouteAction() constructor {
     self.name = "Set Direction Fix";
@@ -321,12 +343,14 @@ function MoveRouteAction_SetDirectionFix() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.value);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetSprite() : MoveRouteAction() constructor {
     self.name = "Set Sprite";
@@ -339,12 +363,14 @@ function MoveRouteAction_SetSprite() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_datatype, self.sprite);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetMesh() : MoveRouteAction() constructor {
     self.name = "Set Mesh";
@@ -357,30 +383,34 @@ function MoveRouteAction_SetMesh() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_datatype, self.mesh);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetOpacity() : MoveRouteAction() constructor {
     self.name = "Set Opacity";
     self.id = MoveRouteActions.CHANGE_OPACITY;
     
-    self.alpha = NULL;
+    self.alpha = 1;
     
     self.toString = function() {
         return "Set opacity to " + string(round(self.alpha * 100)) + "%";
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_f32, self.alpha);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_SetTint() : MoveRouteAction() constructor {
     self.name = "Set Tint";
@@ -389,16 +419,18 @@ function MoveRouteAction_SetTint() : MoveRouteAction() constructor {
     self.tint = c_white;
     
     self.toString = function() {
-        return "Set tint to #" + string_hex(colour_reverse(self.tint));
+        return "Set tint to #" + string_hex(colour_reverse(self.tint), 6) + " [#" + string_hex(colour_reverse(self.tint)) + "][spr_color_window]";
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u32, self.tint);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_PlaySound() : MoveRouteAction() constructor {
     self.name = "Play Sound";
@@ -412,13 +444,15 @@ function MoveRouteAction_PlaySound() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_datatype, self.sound);
         buffer_write(buffer, buffer_u8, self.loop);
     };
+    
+    self.Edit();
 }
 function MoveRouteAction_Event() : MoveRouteAction() constructor {
     self.name = "Play Event";
@@ -431,12 +465,14 @@ function MoveRouteAction_Event() : MoveRouteAction() constructor {
     };
     
     self.Edit = function() {
-        throw "aaaaaaaaa";
+        
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_datatype, self.event);
     };
+    
+    self.Edit();
 }
 
 enum MoveRouteActions {
