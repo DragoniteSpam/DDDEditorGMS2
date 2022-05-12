@@ -25,9 +25,8 @@ function dialog_create_entity_move_route(route) {
             self.root.route.wait = self.value;
         })),
         (new EmuList(col1, EMU_AUTO, element_width, element_height, "Steps:", element_height, 10, emu_null))
-            .SetEntryTypes(E_ListEntryTypes.SCRIPTS, function(index) {
-                // formerly ui_render_list_move_route_steps
-                return "implement this";
+            .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                return self.At(index).toString();
             })
             .SetList(route.steps)
             .SetID("LIST"),
@@ -52,152 +51,128 @@ function dialog_create_entity_move_route(route) {
         .AddContent([
         #region column 2
         new EmuButton(col2, 16, element_width, element_height, "Move Down", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_DOWN, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveDown());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Left", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_LEFT, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveLeft());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Right", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_RIGHT, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveRight());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Up", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_UP, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveUp());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Lower Left", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_LOWER_LEFT, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveLowerLeft());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Lower Right", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_LOWER_RIGHT, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveLowerRight());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Upper Left", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_UPPER_LEFT, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveUpperLeft());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Upper Right", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_UPPER_RIGHT, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveUpperRight());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Randomly", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_RANDOM]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveRandom());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Towards Player", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_TOWARDS_PLAYER]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveTowardsPlayer());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Away From Player", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_AWAY_PLAYER]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveAwayFromPlayer());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Forward", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_FORWARD]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveForward());
         }),
         new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Back", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_BACKWARD]);
+            array_push(self.root.route.steps, new MoveRouteAction_MoveBackward());
         }),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move to Coordinates...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_TO, 0, 0]);
+        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move to...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_MoveTo());
         }),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Jump to Position...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_JUMP, "MAP", 0, 0, 0, 0]);
-        }),
-        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Jump in Place", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.MOVE_ACTUALLY_JUMP, 0]);
+        new EmuButton(col2, EMU_AUTO, element_width, element_height, "Jump in Place...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_Jump());
         }),
         #endregion
         #region column 3
         new EmuButton(col3, 16, element_width, element_height, "Turn Down", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_DOWN]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnDown());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn Left", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_LEFT]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnLeft());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn Right", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_RIGHT]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnRight());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn Up", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_UP]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnUp());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn 90° Left", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_90_LEFT]);
+            array_push(self.root.route.steps, new MoveRouteAction_Turn90Left());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn 90° Right", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_90_RIGHT]);
+            array_push(self.root.route.steps, new MoveRouteAction_Turn90Right());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn 180°", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_180]);
+            array_push(self.root.route.steps, new MoveRouteAction_Turn180());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn 90° Left Or Right", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_90_RANDOM]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnLeftOrRight());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn Randomly", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_RANDOM]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnRandom());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn Towards Player", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_TOWARD_PLAYER]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnTowardsPlayer());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Turn Away From Player", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TURN_AWAY_PLAYER]);
+            array_push(self.root.route.steps, new MoveRouteAction_TurnAwayFromPlayer());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Self Switch...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.SWITCH, 0, false]);
+            array_push(self.root.route.steps, new MoveRouteAction_SelfSwitch());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Self Variable...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.VARIABLE, 0, 0]);
+            array_push(self.root.route.steps, new MoveRouteAction_SelfVariable());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Change Move Speed...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.CHANGE_SPEED, 0]);
+            array_push(self.root.route.steps, new MoveRouteAction_SetSpeed());
         }),
         new EmuButton(col3, EMU_AUTO, element_width, element_height, "Change Move Frequency...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.CHANGE_FREQUENCY, 0]);
-        }),
-        new EmuButton(col3, EMU_AUTO, element_width, element_height, "Wait...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.WAIT, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_SetFrequency());
         }),
         #endregion
         #region column 4
-        new EmuButton(col4, 16, element_width, element_height, "Walk Animation: On", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.WALKING_ANIM_ON]);
+        new EmuButton(col4, 16, element_width, element_height, "Set Walk Animation...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_SetWalking());
         }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Walk Animation: Off", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.WALKING_ANIM_OFF]);
+        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set Step Animation...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_SetStepping());
         }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Step Animation: On", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.STEPPING_ANIM_ON]);
+        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set Direction Fix...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_SetDirectionFix());
         }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Step Animation: Off", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.STEPPING_ANIM_OFF]);
+        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set SpriteRenderer...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_SetSprite());
         }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Direction Fix: On", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.DIRECTION_FIX_ON]);
-        }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Direction Fix: Off", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.DIRECTION_FIX_OFF]);
-        }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Solid: On", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.SOLID_ON]);
-        }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Solid: Off", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.SOLID_OFF]);
-        }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Transparent: On", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TRANSPARENT_ON]);
-        }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Transparent: Off", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.TRANSPARENT_OFF]);
-        }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set Sprite...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.CHANGE_SPRITE, NULL]);
-        }),
-        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set Model...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.CHANGE_MODEL, NULL]);
+        new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set ModelRenderer...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_SetMesh());
         }),
         new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set alpha...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.CHANGE_OPACITY, 1]);
+            array_push(self.root.route.steps, new MoveRouteAction_SetOpacity());
         }),
         new EmuButton(col4, EMU_AUTO, element_width, element_height, "Set tint...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.CHANGE_TINT, c_white]);
+            array_push(self.root.route.steps, new MoveRouteAction_SetTint());
         }),
         new EmuButton(col4, EMU_AUTO, element_width, element_height, "Play sound effect...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.PLAY_SE, NULL]);
+            array_push(self.root.route.steps, new MoveRouteAction_PlaySound());
         }),
         new EmuButton(col4, EMU_AUTO, element_width, element_height, "Execute event...", function() {
-            array_push(self.root.route.steps, [MoveRouteActions.EVENT, NULL]);
+            array_push(self.root.route.steps, new MoveRouteAction_Event());
+        }),
+        new EmuButton(col3, EMU_AUTO, element_width, element_height, "Wait...", function() {
+            array_push(self.root.route.steps, new MoveRouteAction_Wait());
         }),
         #endregion
     ]).AddDefaultCloseButton();
