@@ -117,6 +117,7 @@ Settings.mesh[$ "draw_grid"] ??=                                                
 Settings.mesh[$ "wireframe_alpha"] ??=                                          1;
 Settings.mesh[$ "reflect_settings"] ??=                                         MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;
 Settings.mesh[$ "reflect_color"] ??=                                            0x7fff6600;
+Settings.mesh[$ "combine_obj_submeshes"] ??=                                    true;
 
 #macro COLOR_MODE_DARK_BACK                                                     0x1f1f1f
 #macro COLOR_MODE_DARK_DEFAULT                                                  0x5f5f5f

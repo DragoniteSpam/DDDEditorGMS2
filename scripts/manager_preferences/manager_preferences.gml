@@ -101,7 +101,11 @@ function dialog_create_preferences() {
                 Settings.mesh.reflect_color = self.value;
             }))
                 .SetAlphaUsed(true)
-                .SetTooltip("The color for reflected meshes wo be blended with. You probably want to pick something blue-ish. The alpha channel will determine the amount of blending; a value around 0.5 should be good for most cases. Color will only be applied if the Colorize option is enabled above.")
+                .SetTooltip("The color for reflected meshes wo be blended with. You probably want to pick something blue-ish. The alpha channel will determine the amount of blending; a value around 0.5 should be good for most cases. Color will only be applied if the Colorize option is enabled above."),
+        (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Combine obj submeshes?", Settings.mesh.combine_obj_submeshes, function() {
+            Settings.mesh.combine_obj_submeshes = self.value;
+        }))
+            .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material."),
     ]).AddDefaultCloseButton("Done");
     
     enum MeshReflectionSettings {
