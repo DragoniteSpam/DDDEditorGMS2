@@ -358,20 +358,20 @@ Game = new (function() constructor {
     };
 })();
 
-Identifiers = new (function() constructor {
-    self.guids = { };
-    self.internal = { };
+Identifiers = {
+    guids: { },
+    internal: { },
     
-    self.event_fixed_id = 0;
+    event_fixed_id: 0,
     
-    static Clear = function() {
+    Clear: function() {
         self.guids = { };
         self.internal = { };
         
         self.event_fixed_id = 0;
         
         Game.InitializeDefaultObjects();
-    };
-})();
+    },
+};
 
 Game.InitializeDefaultObjects();
