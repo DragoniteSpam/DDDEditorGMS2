@@ -5,7 +5,7 @@ function momu_editor_animation() {
 
 function momu_data_types() {
     momu_editor_3d();
-    var dialog = dialog_create_data_types(noone);
+    var dialog = dialog_create_data_types();
     emu_dialog_notice("There is no Undo button. Modifying game data is a permanent action, and deleted types or properties will be lost forever!");
 }
 

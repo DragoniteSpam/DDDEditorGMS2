@@ -1,148 +1,133 @@
-function dialog_create_data_types(dialog) {
-    // there's a fair amount of redundant code in here, and in the associated scripts.
-    // however, in this case, i've decided that a few lines of redundant code is better than
-    // the spaghetti that i had before.
-    var dw = 960;
-    var dh = 720;
+function dialog_create_data_types() {
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 640, "Data Types");
+    var element_width = 320;
+    var element_height = 32;
     
-    var dg = dialog_create(dw, dh, "Data: Data", dialog_default, undefined, dialog);
-    dg.selected_data = noone;
-    dg.selected_property = noone;
+    var col1 = 32;
+    var col2 = 32 + 320 + 32;
+    var col3 = 32 + 320 + 32 + 320 + 32;
     
-    var columns = 3;
-    var spacing = 16;
-    var ew = dw / columns - spacing * 2;
-    var eh = 24;
-    
-    var col1_x = dw * 0 / 3 + spacing;
-    var col2_x = dw * 1 / 3 + spacing;
-    var col3_x = dw * 2 / 3 + spacing;
-    
-    var vx1 = dw / (columns * 2) - 16;
-    var vy1 = 0;
-    var vx2 = vx1 + dw / (columns * 2) - 16;
-    var vy2 = eh;
-    
-    var b_width = 128;
-    var b_height = 32;
-    
-    var yy = 64;
-    var yy_base = yy;
-    
-    var el_list = create_list(col1_x, yy, "Data Types: ", "<no data types>", ew, eh, 18, function(list) {
-        var selection = ui_list_selection(list);
-        if (selection + 1) {
-            if (Game.data[selection] != list.root.selected_data) {
-                list.root.selected_data = Game.data[selection];
-                list.root.selected_property = noone;
+    return dialog.AddContent([
+        #region column 1
+        (new EmuList(col1, EMU_BASE, element_width, element_height, "Data types: " + string(array_length(Game.data)), element_height, 12, function() {
+            if (!self.root) return;
+            self.root.Refresh();
+        }))
+            .SetCallbackMiddle(function() {
+                var selection = self.GetSelectedItem();
                 
-                ui_list_deselect(list.root.el_list_p);
-                dialog_data_type_disable(list.root);
-                
-                list.root.el_data_name.interactive = true;
-                list.root.el_add_p.interactive = true;
-                list.root.el_remove_p.interactive = true;
-                
-                if (list.root.selected_data.type == DataTypes.DATA) {
-                    list.root.el_data_localize.interactive = true;
-                    list.root.el_data_localize.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE);
-                    list.root.el_data_localize_name.interactive = true;
-                    list.root.el_data_localize_name.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE_NAME);
-                    list.root.el_data_localize_summary.interactive = true;
-                    list.root.el_data_localize_summary.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE_SUMMARY);
-                } else {
-                    list.root.el_data_localize.interactive = false;
+                // alphabetize the data types with enums at the top
+                var list_data = [];
+                var list_enums = [];
+                for (var i = 0; i < array_length(Game.data); i++) {
+                    var data = Game.data[i];
+                    if (data.type == DataTypes.ENUM) {
+                        array_push(list_enums, data);
+                    } else {
+                        array_push(list_data, data);
+                    }
                 }
                 
-                ui_input_set_value(list.root.el_data_name, list.root.selected_data.name);
+                // Normally you'd just use the list sort funciton on the source lists since they
+                // don't modify them, but in this case we want the enums to always go at the top
+                var list_enums_sorted = array_sort_name(list_enums);
+                var list_data_sorted = array_sort_name(list_data);
                 
-                list.root.el_list_p.index = 0;
+                for (var i = 0, n = array_length(list_enums_sorted); i < n; i++) {
+                    Game.data[i] = list_enums_sorted[i];
+                }
+                var enums_count = array_length(list_enums_sorted);
+                for (var i = 0, n = array_length(list_data_sorted); i < n; i++) {
+                    Game.data[i + enums_count] = list_data_sorted[i];
+                }
+                
+                self.Deselect();
+                self.Select(array_search(Game.data, selection), true);
+            })
+            .SetListColors(function(index) {
+                return (self.At(index).type == DataTypes.ENUM) ? c_aqua : c_white;
+            })
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetList(Game.data)
+            .SetID("LIST"),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Data", function() {
+            array_push(Game.data, new DataClass("DataType" + string(array_length(Game.data))));
+        })),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Enum", function() {
+            var type = new DataClass("Enum" + string(array_length(Game.data)));
+            type.type = DataTypes.ENUM;
+            array_push(Game.data, type);
+        })),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Delete", function() {
+            var list = self.GetSibling("LIST");
+            var selection = list.GetSelectedItem();
+            if (selection) {
+                selection.Destroy();
+                self.root.Refresh();
             }
-        }
-    }, false, dg, Game.data);
-    el_list.render = function(list, x, y) {
-        var otext = list.text;
-        list.text = otext + string(array_length(Game.data));
-        ui_render_list(list, x, y);
-        list.text = otext;
-    };
-    el_list.render_colors = function(list, index) {
-        return (list.entries[index].type == DataTypes.ENUM) ? c_blue : c_black;
-    };
-    el_list.onmiddleclick = uivc_list_data_alphabetize;
-    el_list.entries_are = ListEntries.INSTANCES;
+        })),
+        #endregion
+        #region column 2
+        (new EmuInput(col2, EMU_BASE, element_width, element_height, "Name:", "", "data name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+            self.GetSibling("LIST").GetSelectedItem().name = self.value;
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                var selection = self.GetSibling("LIST").GetSelectedItem();
+                self.SetInteractive(!!selection);
+                if (!!selection) {
+                    self.SetValue(selection.name);
+                }
+            }),
+        (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "Don't Localize", false, function() {
+            var item = self.GetSibling("LIST").GetSelectedItem();
+            item.flags &= ~DataDataFlags.NO_LOCALIZE;
+            item.flags |= DataDataFlags.NO_LOCALIZE * self.value;
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                var selection = self.GetSibling("LIST").GetSelectedItem();
+                self.SetInteractive(!!selection);
+                if (!!selection) {
+                    self.SetValue((selection.flags & DataDataFlags.NO_LOCALIZE) > 0);
+                }
+            })
+            .SetTooltip("This data type will not have any of its properties localized (this overrides individual options)"),
+        (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "    Exclude Name", false, function() {
+            var item = self.GetSibling("LIST").GetSelectedItem();
+            item.flags &= ~DataDataFlags.NO_LOCALIZE_NAME;
+            item.flags |= DataDataFlags.NO_LOCALIZE_NAME * self.value;
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                var selection = self.GetSibling("LIST").GetSelectedItem();
+                self.SetInteractive(!!selection);
+                if (!!selection) {
+                    self.SetValue((selection.flags & DataDataFlags.NO_LOCALIZE_NAME) > 0);
+                }
+            })
+            .SetTooltip("This data's name will not be localized (regardless of the above setting)"),
+        (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "    Exclude Summary", false, function() {
+            var item = self.GetSibling("LIST").GetSelectedItem();
+            item.flags &= ~DataDataFlags.NO_LOCALIZE_SUMMARY;
+            item.flags |= DataDataFlags.NO_LOCALIZE_SUMMARY * self.value;
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                var selection = self.GetSibling("LIST").GetSelectedItem();
+                self.SetInteractive(!!selection);
+                if (!!selection) {
+                    self.SetValue((selection.flags & DataDataFlags.NO_LOCALIZE_SUMMARY) > 0);
+                }
+            })
+            .SetTooltip("This data's name will not be localized (regardless of the above setting)"),
+        #endregion
+    ]).AddDefaultCloseButton();
     
-    dg.el_list_main = el_list;
     
-    yy += el_list.GetHeight() + spacing;
     
-    var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
-        array_push(Game.data, new DataClass("DataType" + string(array_length(Game.data))));
-        ui_list_deselect(button.root.el_list_main);
-        button.root.selected_data = noone;
-        button.root.selected_property = noone;
-        dialog_data_type_disable(button.root);
-    }, dg);
-    yy += el_add.height + spacing;
     
-    var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, function(button) {
-        var addition = new DataClass("Enum" + string(array_length(Game.data)));
-        addition.type = DataTypes.ENUM;
-        array_push(Game.data, addition);
-        ui_list_deselect(button.root.el_list_main);
-        button.root.selected_data = noone;
-        button.root.selected_property = noone;
-        dialog_data_type_disable(button.root);
-    }, dg);
-    yy += el_add.height + spacing;
     
-    var el_remove = create_button(col1_x, yy, "Delete", ew, eh, fa_center, function(button) {
-        if (button.root.selected_data) {
-            button.root.selected_data.Destroy();
-            ui_list_deselect(button.root.el_list_main);
-            ui_list_deselect(button.root.el_list_p);
-            button.root.el_list_main.onvaluechange(button.root.el_list_main);
-            button.root.el_list_p.onvaluechange(button.root.el_list_p);
-            button.root.selected_data = noone;
-            button.root.selected_property = noone;
-        }
-    }, dg);
-    
-    // COLUMN 2
-    yy = yy_base;
-    
-    var el_data_name = create_input(col2_x, yy, "Data Name:", ew, eh, function(input) {
-        input.root.selected_data.name = input.value;
-    }, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-    el_data_name.interactive = false;
-    dg.el_data_name = el_data_name;
-    
-    yy += el_data_name.height + spacing;
-    
-    var el_data_localize = create_checkbox(col2_x, yy, "Don't Localize", ew, eh, function(checkbox) {
-        checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE;
-    }, true, dg);
-    el_data_localize.tooltip = "This data type will not have any of its properties localized (this overrides individual options)";
-    el_data_localize.interactive = false;
-    dg.el_data_localize = el_data_localize;
-    
-    yy += el_data_localize.height + spacing;
-    
-    var el_data_localize_name = create_checkbox(col2_x, yy, "Exclude Name", ew / 2, eh, function(checkbox) {
-        checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE_NAME;
-    }, true, dg);
-    el_data_localize_name.tooltip = "This data's name will not be localized (regardless of the above setting)";
-    el_data_localize_name.interactive = false;
-    dg.el_data_localize_name = el_data_localize_name;
-    
-    var el_data_localize_summary = create_checkbox(col2_x + 160, yy, "Summary", ew / 2, eh, function(checkbox) {
-        checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE_SUMMARY;
-    }, true, dg);
-    el_data_localize_summary.tooltip = "This data's summary will not be localized (regardless of the above setting)";
-    el_data_localize_summary.interactive = false;
-    dg.el_data_localize_summary = el_data_localize_summary;
-    
-    yy += el_data_localize_summary.height + spacing;
     
     var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, 12, function(list) {
         var selection = ui_list_selection(list);
@@ -402,49 +387,4 @@ function dialog_create_data_types(dialog) {
     create_radio_array_options(el_property_scale, ["Linear", "Quadratic", "Exponential"]);
     el_property_scale.enabled = false;
     dg.el_property_scale = el_property_scale;
-    
-    yy = yy_base_special;
-    
-    yy += eh + spacing;
-    
-    var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dialog_destroy, dg, fa_center);
-    
-    ds_list_add(dg.contents,
-        // data types
-        el_list,
-        el_add,
-        el_add_enum,
-        el_remove,
-        // data type
-        el_data_name,
-        el_data_localize,
-        el_list_p,
-        el_add_p,
-        el_move_up,
-        el_move_down,
-        el_remove_p,
-        // properties
-        el_property_name,
-        el_data_localize_name,
-        el_data_localize_summary,
-        el_property_localize,
-        el_property_type,
-        el_property_ext_type,
-        el_property_size,
-        el_property_size_can_be_zero,
-        el_property_type_guid,
-        el_property_min,
-        el_property_char_limit,
-        el_property_max,
-        el_property_scale,
-        el_property_default_code,
-        el_property_default_string,
-        el_property_default_real,
-        el_property_default_bool,
-        el_property_default_int,
-        // that's it
-        el_confirm
-    );
-    
-    return dg;
 }
