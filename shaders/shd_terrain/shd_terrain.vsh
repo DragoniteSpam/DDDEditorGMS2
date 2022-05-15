@@ -1,5 +1,4 @@
 attribute vec3 in_Position;
-attribute vec3 in_Normal;
 
 varying float v_FragDistance;
 varying vec4 v_WorldPosition;
