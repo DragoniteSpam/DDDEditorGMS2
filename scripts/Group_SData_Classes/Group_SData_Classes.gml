@@ -33,6 +33,8 @@ function DataClass(source) : SData(source) constructor {
     
     static RemoveProperty = function(property) {
         var index = array_search(self.properties, property);
+        if (index == -1) return;
+        property.Destroy();
         array_delete(self.properties, index, 1);
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
             array_delete(self.instances[i].values, index, 1);
