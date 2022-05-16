@@ -1,5 +1,5 @@
 function dialog_create_data_types() {
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 640, "Data Types");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 760, "Data Types");
     var element_width = 320;
     var element_height = 32;
     
@@ -9,7 +9,7 @@ function dialog_create_data_types() {
     
     return dialog.AddContent([
         #region column 1
-        (new EmuList(col1, EMU_BASE, element_width, element_height, "Data types: " + string(array_length(Game.data)), element_height, 12, function() {
+        (new EmuList(col1, EMU_BASE, element_width, element_height, "Data types: " + string(array_length(Game.data)), element_height, 13, function() {
             if (!self.root) return;
             self.root.Refresh();
         }))
@@ -52,12 +52,42 @@ function dialog_create_data_types() {
             .SetID("LIST"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Data", function() {
             array_push(Game.data, new DataClass("DataType" + string(array_length(Game.data))));
+            self.GetSibling("LIST").text = "Data types: " + string(array_length(Game.data));
         })),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Enum", function() {
             var type = new DataClass("Enum" + string(array_length(Game.data)));
             type.type = DataTypes.ENUM;
             array_push(Game.data, type);
+            self.GetSibling("LIST").text = "Data types: " + string(array_length(Game.data));
         })),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Move Up", function() {
+            var list = self.GetSibling("LIST");
+            var selection = list.GetSelection();
+            var t = Game.data[selection];
+            Game.data[selection] = Game.data[selection - 1];
+            Game.data[selection - 1] = t;
+            list.Deselect();
+            list.Select(selection - 1, true);
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                var selection = self.GetSibling("LIST").GetSelection();
+                self.SetInteractive(selection >= 1);
+            }),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Move Down", function() {
+            var list = self.GetSibling("LIST");
+            var selection = list.GetSelection();
+            var t = Game.data[selection];
+            Game.data[selection] = Game.data[selection + 1];
+            Game.data[selection + 1] = t;
+            list.Deselect();
+            list.Select(selection + 1, true);
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                var selection = self.GetSibling("LIST").GetSelection();
+                self.SetInteractive(selection != -1 && selection < array_length(Game.data) - 1);
+            }),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Delete", function() {
             var list = self.GetSibling("LIST");
             var selection = list.GetSelectedItem();
@@ -65,7 +95,11 @@ function dialog_create_data_types() {
                 selection.Destroy();
                 self.root.Refresh();
             }
-        })),
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+                self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
+            }),
         #endregion
         #region column 2
         (new EmuInput(col2, EMU_BASE, element_width, element_height, "Name:", "", "data name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
@@ -93,7 +127,7 @@ function dialog_create_data_types() {
                 }
             })
             .SetTooltip("This data type will not have any of its properties localized (this overrides individual options)"),
-        (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "    Exclude Name", false, function() {
+        (new EmuCheckbox(col2, EMU_AUTO, element_width / 2, element_height, "Exclude Name?", false, function() {
             var item = self.GetSibling("LIST").GetSelectedItem();
             item.flags &= ~DataDataFlags.NO_LOCALIZE_NAME;
             item.flags |= DataDataFlags.NO_LOCALIZE_NAME * self.value;
@@ -107,7 +141,7 @@ function dialog_create_data_types() {
                 }
             })
             .SetTooltip("This data's name will not be localized (regardless of the above setting)"),
-        (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "    Exclude Summary", false, function() {
+        (new EmuCheckbox(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Summary?", false, function() {
             var item = self.GetSibling("LIST").GetSelectedItem();
             item.flags &= ~DataDataFlags.NO_LOCALIZE_SUMMARY;
             item.flags |= DataDataFlags.NO_LOCALIZE_SUMMARY * self.value;
@@ -121,270 +155,277 @@ function dialog_create_data_types() {
                 }
             })
             .SetTooltip("This data's name will not be localized (regardless of the above setting)"),
+        (new EmuList(col2, EMU_AUTO, element_width, element_height, "Properties:", element_height, 9, function() {
+            if (!self.root) return;
+            self.GetSibling("PROPERTY SETTINGS").Refresh();
+            self.GetSibling("PROPERTY CONTROLS").Refresh();
+        }))
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetVacantText("<name is implicit>")
+            .SetRefresh(function() {
+                var selection = self.GetSibling("LIST").GetSelectedItem();
+                self.SetInteractive(!!selection);
+                if (!!selection) {
+                    self.SetList(selection.properties);
+                }
+            })
+            .SetID("PROPERTIES"),
+        (new EmuCore(col2, EMU_AUTO, dialog.width, dialog.height)).AddContent([
+            (new EmuButton(0, 0, element_width, element_height, "Add Property", function() {
+                var selection = self.root.GetSibling("LIST").GetSelectedItem();
+                selection.AddProperty(new DataProperty("Property" + string(array_length(selection.properties)), selection));
+                self.root.Refresh();
+            }))
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.root.GetSibling("LIST").GetSelectedItem());
+                }),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Move Up", function() {
+                var property_list = self.root.GetSibling("PROPERTIES");
+                self.root.GetSibling("LIST").GetSelectedItem().MovePropertyUp(property_list.GetSelectedItem());
+                var selection = property_list.GetSelection();
+                property_list.Deselect();
+                property_list.Select(selection - 1, true);
+            }))
+                .SetRefresh(function() {
+                    var datatype = self.root.GetSibling("LIST").GetSelectedItem();
+                    var selection = self.root.GetSibling("PROPERTIES").GetSelection();
+                    self.SetInteractive(!!datatype && selection >= 1);
+                }),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Move Down", function() {
+                var property_list = self.root.GetSibling("PROPERTIES");
+                self.root.GetSibling("LIST").GetSelectedItem().MovePropertyDown(property_list.GetSelectedItem());
+                var selection = property_list.GetSelection();
+                property_list.Deselect();
+                property_list.Select(selection + 1, true);
+            }))
+                .SetRefresh(function() {
+                    var datatype = self.root.GetSibling("LIST").GetSelectedItem();
+                    var property = self.root.GetSibling("PROPERTIES").GetSelection();
+                    self.SetInteractive(!!datatype && property != -1 && property != array_length(datatype.properties) - 1);
+                }),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Delete Property", function() {
+                var property_list = self.root.GetSibling("PROPERTIES");
+                var datatype = self.root.GetSibling("LIST").GetSelectedItem();
+                datatype.RemoveProperty(property_list.GetSelectedItem());
+                var index = property_list.GetSelected();
+                property_list.Deselect();
+                if (index <= array_length(datatype.properties)) {
+                    property_list.Select(index, true);
+                }
+            }))
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.root.GetSibling("LIST").GetSelectedItem());
+                }),
+        ])
+            .SetContentsInteractive(true)
+            .SetOverrideRootCheck(true)
+            .SetID("PROPERTY CONTROLS"),
+        #endregion
+        #region column 3
+        (new EmuCore(col3, EMU_BASE, element_width, dialog.height)).AddContent([
+            (new EmuInput(0, 0, element_width, element_height, "Name:", "", "property name", VISIBLE_NAME_LENGTH, E_InputTypes.LETTERSDIGITSANDUNDERSCORES, function() {
+                self.root.GetSibling("PROPERTIES").GetSelectedItem().name = self.value;
+            }))
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetInteractive(!!property);
+                    if (property) {
+                        self.SetValue(property.name);
+                    }
+                }),
+            (new EmuRadioArray(0, EMU_AUTO, element_width, element_height, "Type:", -1, function() {
+                self.root.GetSibling("PROPERTIES").GetSelectedItem().type = self.value;
+                self.root.Refresh();
+            }))
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetInteractive(!!property);
+                    if (property) {
+                        self.SetValue(property.type);
+                    }
+                })
+                .AddOptions(["Int", "Enum", "Float", "String", "Boolean", "Data"]),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Other types...", function() {
+                // this needs to be Emu'd eventually, ideally sooner rather than later
+                dialog_create_select_data_types_ext(self.root, self.root.GetSibling("PROPERTIES").GetSelectedItem().type, function(radio) {
+                    radio.root.GetSibling("PROPERTIES").GetSelectedItem().type = radio.value;
+                    radio.root.Refresh();
+                });
+            }))
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.root.GetSibling("PROPERTIES").GetSelectedItem());
+                }),
+            (new EmuInput(0, EMU_AUTO, element_width, element_height, "Capacity:", "", "1 for a single value, more than that for an array of values", 3, E_InputTypes.INT, function() {
+                self.root.GetSibling("PROPERTIES").GetSelectedItem().max_size = real(self.value);
+            }))
+                .SetInteractive(false)
+                .SetRealNumberBounds(1, 255)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetInteractive(!!property);
+                    if (property) {
+                        self.SetValue(property.max_size);
+                    }
+                }),
+            (new EmuCheckbox(0, EMU_AUTO, element_width, element_height, "Capacity can be zero?", false, function() {
+                self.root.GetSibling("PROPERTIES").GetSelectedItem().size_can_be_zero = self.value;
+            }))
+                .SetTooltip("List values are optionally allowed to have their capacity be zero.")
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetInteractive(!!property && property.max_size > 1);
+                    if (property) {
+                        self.SetValue(property.size_can_be_zero);
+                    }
+                }),
+            (new EmuCore(0, EMU_AUTO, element_width, element_height)).AddContent([
+                (new EmuButton(0, 0, element_width, element_height, "Code...", function() {
+                    emu_dialog_notice("create some new code editor sometime maybe");
+                }))
+            ])
+                .SetContentsInteractive(true)
+                .SetOverrideRootCheck(true)
+                .SetEnabled(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetEnabled(!!property && property.type == DataTypes.CODE);
+                })
+                .SetID("CODE DEFAULTS"),
+            (new EmuCore(0, EMU_INLINE, element_width, element_height)).AddContent([
+                (new EmuInput(0, 0, element_width, element_height, "Default:", "", "default string", 250, E_InputTypes.STRING, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().default_string = self.value;
+                }))
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property && property.type == DataTypes.STRING) {
+                            self.SetValue(property.default_string);
+                        }
+                    }),
+                (new EmuInput(0, EMU_AUTO, element_width, element_height, "Character limit:", "", "how much text", 3, E_InputTypes.INT, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().char_limit = real(self.value);
+                }))
+                    .SetRealNumberBounds(1, 1000)
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property && property.type == DataTypes.STRING) {
+                            self.SetValue(property.char_limit);
+                        }
+                    }),
+                (new EmuCheckbox(0, EMU_AUTO, element_width, element_height, "Don't localize?", false, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().flags ^= DataPropertyFlags.NO_LOCALIZE;
+                }))
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property && property.type == DataTypes.STRING) {
+                            self.SetValue((property.flags & DataPropertyFlags.NO_LOCALIZE) > 0);
+                        }
+                    })
+            ])
+                .SetContentsInteractive(true)
+                .SetOverrideRootCheck(true)
+                .SetEnabled(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetEnabled(!!property && property.type == DataTypes.STRING);
+                })
+                .SetID("STRING DEFAULTS"),
+            (new EmuCore(0, EMU_INLINE, element_width, element_height)).AddContent([
+                (new EmuInput(0, 0, element_width, element_height, "Default:", "", "default number", 10, E_InputTypes.INT, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().default_int = real(self.value);
+                }))
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property){
+                            if (property.type == DataTypes.INT) {
+                                self.SetValue(property.default_int);
+                                self.SetValueType(E_InputTypes.INT);
+                                self.SetRealNumberBounds(-0x80000000, 0x7fffffff)
+                            } else if (property.type == DataTypes.FLOAT) {
+                                self.SetValue(property.default_real);
+                                self.SetValueType(E_InputTypes.REAL);
+                                self.SetRealNumberBounds(-10000000000, 10000000000)
+                            }
+                        }
+                    }),
+                (new EmuInput(0, EMU_AUTO, element_width, element_height, "Min:", "", "min value", 10, E_InputTypes.INT, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().range_min = real(self.value);
+                }))
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property){
+                            self.SetValue(property.range_min);
+                            if (property.type == DataTypes.INT) {
+                                self.SetValueType(E_InputTypes.INT);
+                                self.SetRealNumberBounds(-0x80000000, 0x7fffffff)
+                            } else if (property.type == DataTypes.FLOAT) {
+                                self.SetValueType(E_InputTypes.REAL);
+                                self.SetRealNumberBounds(-10000000000, 10000000000)
+                            }
+                        }
+                    }),
+                (new EmuInput(0, EMU_AUTO, element_width, element_height, "Max:", "", "max value", 10, E_InputTypes.INT, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().range_max = real(self.value);
+                }))
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property){
+                            self.SetValue(property.range_max);
+                            if (property.type == DataTypes.INT) {
+                                self.SetValueType(E_InputTypes.INT);
+                                self.SetRealNumberBounds(-0x80000000, 0x7fffffff)
+                            } else if (property.type == DataTypes.FLOAT) {
+                                self.SetValueType(E_InputTypes.REAL);
+                                self.SetRealNumberBounds(-10000000000, 10000000000)
+                            }
+                        }
+                    }),
+                (new EmuRadioArray(0, EMU_AUTO, element_width, element_height, "Scale:", 0, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().number_scale = self.value;
+                }))
+                    .AddOptions(["Linear", "Quadratic", "Exponential"])
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property && (property.type == DataTypes.INT || property.type == DataTypes.FLOAT)){
+                            self.SetValue(property.number_scale);
+                        }
+                    }),
+            ])
+                .SetContentsInteractive(true)
+                .SetOverrideRootCheck(true)
+                .SetEnabled(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetEnabled(!!property && (property.type == DataTypes.INT || property.type == DataTypes.FLOAT));
+                })
+                .SetID("NUMERICAL DEFAULTS"),
+            (new EmuCore(0, EMU_INLINE, element_width, element_height)).AddContent([
+                (new EmuCheckbox(0, 0, element_width, element_height, "Default value", false, function() {
+                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().default_int = self.value;
+                }))
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!!property && property.type == DataTypes.BOOL) {
+                            self.SetValue(property.default_int);
+                        }
+                    })
+            ])
+                .SetContentsInteractive(true)
+                .SetOverrideRootCheck(true)
+                .SetEnabled(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetEnabled(!!property && property.type == DataTypes.BOOL);
+                })
+                .SetID("BOOL DEFAULTS"),
+        ])
+            .SetContentsInteractive(true)
+            .SetOverrideRootCheck(true)
+            .SetInteractive(true)
+            .SetID("PROPERTY SETTINGS"),
         #endregion
     ]).AddDefaultCloseButton();
-    
-    
-    
-    
-    
-    
-    var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, 12, function(list) {
-        var selection = ui_list_selection(list);
-        if (selection + 1) {
-            var listofthings = list.root.selected_data.properties;
-            if (listofthings[selection] != list.root.selected_property) {
-                list.root.selected_property = listofthings[selection];
-                dialog_data_type_disable(list.root);
-                dialog_data_type_enable_by_type(list.root);
-            }
-        } else {
-            dialog_data_type_disable(list.root);
-        }
-    }, false, dg, noone);
-    el_list_p.render = function(list, xx, yy) {
-        var otext = list.text;
-        var datadata = list.root.selected_data;
-        if (datadata) {
-            list.text = otext + string(array_length(datadata.properties));
-            list.entries = datadata.properties;
-        } else {
-            list.entries = [];
-        }
-        ui_render_list(list, xx, yy);
-        list.text = otext;
-    };
-    el_list_p.entries_are = ListEntries.INSTANCES;
-    dg.el_list_p = el_list_p;
-    
-    yy += el_list_p.GetHeight() + spacing;
-    
-    var el_add_p = create_button(col2_x, yy, "Add Property", ew, eh, fa_center, function(button) {
-        var datadata = button.root.selected_data;
-        
-        datadata.AddProperty(new DataProperty("Property" + string(array_length(datadata.properties)), datadata));
-        
-        ui_list_deselect(button.root.el_list_p);
-        
-        button.root.selected_property = noone;
-        
-        dialog_data_type_disable(button.root);
-        
-        button.root.el_data_name.interactive = true;
-        button.root.el_add_p.interactive = true;
-        button.root.el_move_up.interactive = true;
-        button.root.el_move_down.interactive = true;
-        button.root.el_remove_p.interactive = true;
-    }, dg);
-    el_add_p.interactive = false;
-    dg.el_add_p = el_add_p;
-    
-    yy += el_add_p.height + spacing;
-    
-    var el_move_up = create_button(col2_x, yy, "Move Up", ew, eh, fa_center, function(button) {
-        var datadata = button.root.selected_data;
-        var index = ui_list_selection(button.root.el_list_p);
-        
-        if (index > 0) {
-            var t = datadata.properties[index];
-            datadata.properties[@ index] = datadata.properties[index - 1];
-            datadata.properties[@ index - 1] = t;
-            
-            if (datadata.type == DataTypes.DATA) {
-                for (var i = 0; i < array_length(datadata.instances); i++) {
-                    var inst = datadata.instances[i];
-                    t = inst.values[index];
-                    inst.values[@ index] = inst.values[index] - 1;
-                    inst.values[@ index - 1] = t;
-                }
-            }
-            
-            ui_list_deselect(button.root.el_list_p);
-            ui_list_select(button.root.el_list_p, index - 1, true);
-        }
-    }, dg);
-    el_move_up.interactive = false;
-    dg.el_move_up = el_move_up;
-    
-    yy += el_move_up.height + spacing;
-    
-    var el_move_down = create_button(col2_x, yy, "Move Down", ew, eh, fa_center, function(button) {
-        var datadata = button.root.selected_data;
-        var index = ui_list_selection(button.root.el_list_p);
-        
-        if (index < array_length(datadata.properties) - 1) {
-            var t = datadata.properties[index];
-            datadata.properties[@ index] = datadata.properties[index + 1];
-            datadata.properties[@ index + 1] = t;
-            
-            if (datadata.type == DataTypes.DATA) {
-                for (var i = 0; i < array_length(datadata.instances); i++) {
-                    var inst = datadata.instances[i];
-                    t = inst.values[index];
-                    inst.values[@ index] = inst.values[index] + 1;
-                    inst.values[@ index + 1] = t;
-                }
-            }
-            
-            ui_list_deselect(button.root.el_list_p);
-            ui_list_select(button.root.el_list_p, index + 1, true);
-        }
-    }, dg);
-    el_move_down.interactive = false;
-    dg.el_move_down = el_move_down;
-    
-    yy += el_move_down.height + spacing;
-    
-    var el_remove_p = create_button(col2_x, yy, "Delete Property", ew, eh, fa_center, function(button) {
-        if (button.root.selected_property) {
-            var data = button.root.selected_data;
-            button.root.selected_property.Destroy();
-            
-            ui_list_deselect(button.root.el_list_p);
-            button.interactive = false;
-            button.root.el_move_up.interactive = false;
-            button.root.el_move_down.interactive = false;
-        }
-    }, dg);
-    el_remove_p.interactive = false;
-    dg.el_remove_p = el_remove_p;
-    
-    // COLUMN 3
-    yy = yy_base;
-    
-    var el_property_name = create_input(col3_x, yy, "Name:", ew, eh, function(input) {
-        input.root.selected_property.name = input.value;
-    }, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-    el_property_name.interactive = false;
-    dg.el_property_name = el_property_name;
-    
-    yy += el_property_name.height + spacing;
-    
-    var el_property_type = create_radio_array(col3_x, yy, "Type:", ew, eh, function(radio) {
-        radio.root.root.selected_property.type = radio.value;
-        dialog_data_type_disable(radio.root.root);
-        dialog_data_type_enable_by_type(radio.root.root);
-    }, 0, dg);
-    el_property_type.interactive = false;
-    create_radio_array_options(el_property_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code"]);
-    dg.el_property_type = el_property_type;
-    
-    yy += el_property_type.GetHeight() + spacing;
-    
-    var el_property_ext_type = create_button(col3_x, yy, "Other Data Types", ew, eh, fa_middle, function(button) {
-        dialog_create_select_data_types_ext(button, button.root.selected_property.type, uivc_radio_data_type_ext);
-    }, dg);
-    el_property_ext_type.interactive = false;
-    
-    yy += el_property_ext_type.height + spacing;
-    dg.el_property_ext_type = el_property_ext_type;
-    
-    var yy_top = yy;
-    
-    // anything common to all data types
-    var el_property_size = create_input(col3_x, yy, "Capacity:", ew, eh, function(input) {
-        input.root.selected_property.max_size = real(input.value);
-    }, "1", "1...255", validate_int, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
-    el_property_size.interactive = false;
-    dg.el_property_size = el_property_size;
-    
-    yy += eh + spacing;
-    
-    var el_property_size_can_be_zero = create_checkbox(col3_x, yy, "Capacity can be zero", ew, eh, function(checkbox) {
-        checkbox.root.selected_property.size_can_be_zero = checkbox.value;
-        if (!checkbox.root.selected_property.size_can_be_zero) {
-            var instances = checkbox.root.selected_data.instances;
-            var index = array_search(checkbox.root.selected_data.properties, checkbox.root.selected_property);
-            var n = 0;
-            for (var i = 0; i < array_length(instances); i++) {
-                var instance = instances[i];
-                var inst_property = instance.values[index];
-                if (array_length(inst_property) == 0) {
-                    array_push(inst_property, 0);
-                    n++;
-                }
-            }
-            if (n > 0) {
-                emu_dialog_notice(string(n) + " instances of " + checkbox.root.selected_data.name + " have default values auto-assigned to their " + checkbox.root.selected_property.name + " property.");
-            }
-        }
-    }, false, dg);
-    el_property_size_can_be_zero.tooltip = "List values are optionally allowed to have their capacity be zero.";
-    el_property_size_can_be_zero.interactive = false;
-    dg.el_property_size_can_be_zero = el_property_size_can_be_zero;
-    
-    yy += eh + spacing;
-    
-    var el_property_default_code = create_button(col3_x, yy, "Default:", ew, eh, fa_middle, function(input) {
-        emu_dialog_notice("create some new code editor sometime maybe");
-    }, dg);
-    el_property_default_code.enabled = false;
-    dg.el_property_default_code = el_property_default_code;
-    var el_property_default_string = create_input(col3_x, yy, "Default:", ew, eh, function(input) {
-        input.root.selected_property.default_string = input.value;
-    }, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
-    el_property_default_string.enabled = false;
-    dg.el_property_default_string = el_property_default_string;
-    var el_property_default_real = create_input(col3_x, yy, "Default:", ew, eh, function(input) {
-        input.root.selected_property.default_real = real(input.value);
-    }, "0", "number", validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
-    el_property_default_real.enabled = false;
-    dg.el_property_default_real = el_property_default_real;
-    var el_property_default_int = create_input(col3_x, yy, "Default:", ew, eh, function(input) {
-        input.root.selected_property.default_int = real(input.value);
-    }, "0", "int", validate_int, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
-    el_property_default_int.enabled = false;
-    dg.el_property_default_int = el_property_default_int;
-    var el_property_default_bool = create_checkbox(col3_x, yy, "Default value", ew, eh, function(checkbox) {
-        checkbox.root.selected_property.default_int = checkbox.value;
-    }, false, dg);
-    el_property_default_bool.enabled = false;
-    dg.el_property_default_bool = el_property_default_bool;
-    
-    // data and enum - onmouseup is assigned when the radio button is clicked
-    var el_property_type_guid = create_button(col3_x, yy, "Select Type...", ew, eh, fa_center, null, dg);
-    el_property_type_guid.enabled = false;
-    dg.el_property_type_guid = el_property_type_guid;
-    
-    yy += eh + spacing;
-    
-    var yy_base_special = yy;
-    
-    // int only
-    var el_property_min = create_input(col3_x, yy, "Min. Value:", ew, eh, function(input) {
-        input.root.selected_property.range_min = real(input.value);
-    }, "0", "+" + string(0x80000000), validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
-    el_property_min.enabled = false;
-    dg.el_property_min = el_property_min;
-    
-    // string only
-    var el_property_char_limit = create_input(col3_x, yy, "Char. Limit:", ew, eh, function(input) {
-        input.root.selected_property.char_limit = real(input.value);
-    }, "20", "1000", validate_int, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
-    el_property_char_limit.enabled = false;
-    dg.el_property_char_limit = el_property_char_limit;
-    
-    var el_property_localize = create_checkbox(col3_x, yy + el_property_char_limit.height + spacing, "Don't Localize", ew, eh, function(checkbox) {
-        checkbox.root.selected_property.flags ^= DataPropertyFlags.NO_LOCALIZE;
-    }, true, dg);
-    el_property_localize.enabled = false;
-    dg.el_property_localize = el_property_localize;
-    
-    yy += eh + spacing;
-    
-    // int and float only
-    var el_property_max = create_input(col3_x, yy, "Max. Value:", ew, eh, function(input) {
-        input.root.selected_property.range_max = real(input.value);
-    }, "0", "+" + string(-0x7fffffff), validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
-    el_property_max.enabled = false;
-    dg.el_property_max = el_property_max;
-    
-    yy += eh + spacing;
-    
-    var el_property_scale = create_radio_array(col3_x, yy, "Scale:", ew, eh, function(radio) {
-        radio.root.root.selected_property.number_scale = radio.value;
-    }, 0, dg);
-    create_radio_array_options(el_property_scale, ["Linear", "Quadratic", "Exponential"]);
-    el_property_scale.enabled = false;
-    dg.el_property_scale = el_property_scale;
 }
