@@ -39,6 +39,36 @@ function DataClass(source) : SData(source) constructor {
         }
     };
     
+    static MovePropertyUp = function(property) {
+        var index = array_search(self.properties, property);
+        if (index < 1) return;
+        
+        var t = self.properties[index];
+        self.properties[index] = self.properties[index - 1];
+        self.properties[index - 1] = t;
+        for (var i = 0, n = array_length(self.instances); i < n; i++) {
+            var instance = self.instances[i];
+            var t = instance.values[index];
+            instance.values[index] = instance.values[index - 1];
+            instance.values[index - 1] = t;
+        }
+    };
+    
+    static MovePropertyDown = function(property) {
+        var index = array_search(self.properties, property);
+        if (index == -1 || index == array_length(self.properties) - 1) return;
+        
+        var t = self.properties[index];
+        self.properties[index] = self.properties[index + 1];
+        self.properties[index + 1] = t;
+        for (var i = 0, n = array_length(self.instances); i < n; i++) {
+            var instance = self.instances[i];
+            var t = instance.values[index];
+            instance.values[index] = instance.values[index + 1];
+            instance.values[index + 1] = t;
+        }
+    };
+    
     static AddInstance = function(instance, position = array_length(self.instances)) {
         if (!instance) {
             instance = new DataInstance(self.name + string(array_length(self.instances)));
