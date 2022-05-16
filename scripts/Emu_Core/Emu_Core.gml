@@ -69,6 +69,11 @@ function EmuCore(x, y, w, h) constructor {
         return self;
     };
     
+    static SetContentsInteractive = function(interactive) {
+        self.contents_interactive = interactive;
+        return self;
+    };
+    
     static SetID = function(identifier) {
         identifier = string(identifier);
         if (self.root) {
@@ -119,6 +124,11 @@ function EmuCore(x, y, w, h) constructor {
     
     static SetEnabled = function(enabled) {
         self.enabled = enabled;
+        return self;
+    };
+    
+    static SetOverrideRootCheck = function(override) {
+        self._override_root_check = override;
         return self;
     };
     
