@@ -118,7 +118,6 @@
 #macro c_ev_ghost                           0x0099cc
 #macro c_ev_ghost_external                  0x4dd2ff
 #macro c_ev_init                            0xffcc99
-#macro c_magenta                            0xff00ff
 #macro c_progress_bar                       0xff9900
 #macro c_tooltip                            0xccffff
 #macro c_ui_active_bitfield                 0xc0c0c0

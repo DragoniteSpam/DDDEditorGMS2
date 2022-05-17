@@ -6,7 +6,7 @@
     "path": "folders/Extensions.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Macaw",
+  "name": "lots_and_lots_and_lots_of_colors",
   "tags": [],
   "resourceType": "GMScript",
 }
