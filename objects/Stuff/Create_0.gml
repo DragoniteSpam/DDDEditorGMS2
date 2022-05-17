@@ -236,16 +236,14 @@ data_type_meta = [
  *           - GameDataCategories
  *           - entry in dialog_create_settings_data_asset_files (with color)
  *  2. case in omu_data_list_add
- *  3. case in uivc_list_data_list_select
- *  4. case in draw_event_node
+ *  3. case in draw_event_node
  *          - in four different switch statements (can that be simplified?)
- *  5. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
- *  6. case in draw_active_event
- *  7. case in uimu_data_add_data
- *  8. case in dialog_entity_data_enable_by_type
- *  9. Stuff.Create - game data location and game data save scripts
- *  10. enum DataVersions - you most likely will need a new data version to handle the new data
- *  11. loading data in the game - read the data out
+ *  4. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
+ *  5. case in draw_active_event
+ *  6. case in uimu_data_add_data
+ *  7. Stuff.Create - game data location and game data save scripts
+ *  8. enum DataVersions - you most likely will need a new data version to handle the new data
+ *  9. loading data in the game - read the data out
  */
 #endregion
 
