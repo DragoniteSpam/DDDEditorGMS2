@@ -1,5 +1,6 @@
 function dialog_create_select_data_types_ext(root, value, callback) {
     var dialog = new EmuDialog(32 + 256 + 256 + 256, 400, "Other data types");
+    dialog.root = root;
     var element_width = 256;
     var element_height = 32;
     

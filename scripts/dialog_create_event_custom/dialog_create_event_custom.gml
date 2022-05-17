@@ -77,10 +77,10 @@ function dialog_create_event_custom(dialog) {
         var selection = ui_list_selection(button.root.el_list);
         if (selection + 1) {
             var property = button.root.event.types[selection];
-            dialog_create_select_data_types_ext(button, property.type, function(radio) {
+            dialog_create_select_data_types_ext(button.root, property.type, function() {
                 var offset = 0;
-                var value = radio.value + offset;
-                var base_dialog = radio.root.root.root.root;
+                var value = self.value + offset;
+                var base_dialog = self.root.root.root.root;
                 // selection is guaranteed to have a value at this point
                 var selection = ui_list_selection(base_dialog.el_list);
                 base_dialog.event.types[selection].type = value;
