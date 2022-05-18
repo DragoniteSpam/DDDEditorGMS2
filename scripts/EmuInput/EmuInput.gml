@@ -48,6 +48,11 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         return self;
     };
     
+    self.SetColorText = function(f) {
+        self.color_text = method(self, f);
+        return self;
+    };
+    
     SetMultiLine = function(multi_line) {
         self._multi_line = multi_line;
         return self;

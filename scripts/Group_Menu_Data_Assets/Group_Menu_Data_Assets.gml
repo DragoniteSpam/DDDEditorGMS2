@@ -5,7 +5,7 @@ function momu_audio_manager() {
 
 function momu_graphic_mesh_autotiles() {
     menu_close_all();
-    dialog_create_manager_mesh_autotile(undefined);
+    dialog_create_manager_mesh_autotile();
 }
 
 function momu_graphics_manager() {
