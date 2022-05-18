@@ -207,10 +207,10 @@ function dialog_create_data_types() {
                 var property_list = self.root.GetSibling("PROPERTIES");
                 var datatype = self.root.GetSibling("LIST").GetSelectedItem();
                 datatype.RemoveProperty(property_list.GetSelectedItem());
-                var index = property_list.GetSelected();
+                var index = property_list.GetSelection();
                 property_list.Deselect();
-                if (index <= array_length(datatype.properties)) {
-                    property_list.Select(index, true);
+                if (array_length(datatype.properties) > 0) {
+                    property_list.Select(min(index, array_length(datatype.properties) - 1), true);
                 }
             }))
                 .SetRefresh(function() {
@@ -224,7 +224,7 @@ function dialog_create_data_types() {
         #region column 3
         (new EmuCore(col3, EMU_BASE, element_width, dialog.height)).AddContent([
             (new EmuInput(0, 0, element_width, element_height, "Name:", "", "property name", VISIBLE_NAME_LENGTH, E_InputTypes.LETTERSDIGITSANDUNDERSCORES, function() {
-                self.root.root.GetSibling("PROPERTIES").GetSelectedItem().name = self.value;
+                self.root.GetSibling("PROPERTIES").GetSelectedItem().name = self.value;
             }))
                 .SetInteractive(false)
                 .SetRefresh(function() {
@@ -248,7 +248,6 @@ function dialog_create_data_types() {
                 })
                 .AddOptions(["Int", "Enum", "Float", "String", "Boolean", "Data"]),
             (new EmuButton(0, EMU_AUTO, element_width, element_height, "Other types...", function() {
-                // this needs to be Emu'd eventually, ideally sooner rather than later
                 dialog_create_select_data_types_ext(self/*button*/.root/*dialog*/, self.root.GetSibling("PROPERTIES").GetSelectedItem().type, function() {
                     self.root.root.GetSibling("PROPERTIES").GetSelectedItem().type = self.value;
                     self.root.root.Refresh();
