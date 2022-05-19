@@ -289,26 +289,9 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
                 }
             }))
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-                .SetList(
-                    #region I absolutely hate that this works as a reduction function
-                    (function(list) {
-                        var bag = { };
-                        for (var i = 0, n = ds_list_size(list); i < n; i++) {
-                            var entity = list[| i];
-                            if ((entity.etype_flags & ETypeFlags.ENTITY_EFFECT) >= ETypeFlags.ENTITY_EFFECT) {
-                                bag[$ string(ptr(entity))] = entity;
-                            }
-                        }
-                        var lights = array_create(variable_struct_names_count(bag));
-                        var keys = variable_struct_get_names(bag);
-                        array_sort(keys, true);
-                        for (var i = 0, n = array_length(keys); i < n; i++) {
-                            lights[i] = bag[$ keys[i]];
-                        }
-                        return lights;
-                    })(Stuff.map.active_map.contents.all_entities)
-                    #endregion
-                )
+                .SetList(ds_list_filter(Stuff.map.active_map.contents.all_entities, function(element) {
+                    return ((element.etype_flags & ETypeFlags.ENTITY_EFFECT) >= ETypeFlags.ENTITY_EFFECT);
+                }))
                 .SetListColors(function(index) {
                     var effect = self.At(index);
                     return effect.com_light ? effect.com_light.label_colour : EMU_COLOR_INPUT_WARN;
