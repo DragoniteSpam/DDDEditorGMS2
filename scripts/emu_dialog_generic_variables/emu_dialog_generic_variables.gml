@@ -302,8 +302,7 @@ function emu_dialog_generic_variables(list) {
             .SetID("TYPE GUID"),
         (new EmuList(col3, EMU_AUTO, element_width, element_height, "Instance:", element_height, 8, function() {
             if (self.GetSelection() == -1) return;
-            var data = self.root.list[self.GetSibling("LIST").GetSelection()];
-            data.value = self.GetSelectedItem().GUID;
+            self.GetSibling("LIST").GetSelectedItem().value = self.GetSelectedItem().GUID;
         }))
             .SetEnabled(false)
             .SetInteractive(false)

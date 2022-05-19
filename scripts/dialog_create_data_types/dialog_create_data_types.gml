@@ -301,6 +301,40 @@ function dialog_create_data_types() {
                 })
                 .SetID("CODE DEFAULTS"),
             (new EmuCore(0, EMU_INLINE, element_width, element_height)).AddContent([
+                (new EmuButton(0, 0, element_width, element_height, "Type:", function() {
+                    var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    if (property.type == DataTypes.ENUM) {
+                        dialog_create_data_enum_select(self.root.root, function() {
+                            if (!self.root) return;
+                            var selection = self.GetSibling("LIST").GetSelectedItem();
+                            self.root.root.GetSibling("PROPERTIES").GetSelectedItem().type_guid = selection ? selection.GUID : NULL;
+                            self.root.root.Refresh();
+                        });
+                    } else {
+                        dialog_create_data_data_select(self.root.root, function() {
+                            if (!self.root) return;
+                            var selection = self.GetSibling("LIST").GetSelectedItem();
+                            self.root.root.GetSibling("PROPERTIES").GetSelectedItem().type_guid = selection ? selection.GUID : NULL;
+                            self.root.root.Refresh();
+                        });
+                    }
+                }))
+                    .SetRefresh(function() {
+                        var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                        if (!property) return;
+                        var type = guid_get(property.type_guid);
+                        self.text = type ? ("Type: " + type.name) : "Type: (Select)";
+                    })
+            ])
+                .SetContentsInteractive(true)
+                .SetOverrideRootCheck(true)
+                .SetEnabled(false)
+                .SetRefresh(function() {
+                    var property = self.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    self.SetEnabled(!!property && ((property.type == DataTypes.DATA) || (property.type == DataTypes.ENUM)));
+                })
+                .SetID("DATA DEFAULTS"),
+            (new EmuCore(0, EMU_INLINE, element_width, element_height)).AddContent([
                 (new EmuInput(0, 0, element_width, element_height, "Default:", "", "default string", 250, E_InputTypes.STRING, function() {
                     self.root.root.GetSibling("PROPERTIES").GetSelectedItem().default_string = self.value;
                 }))
