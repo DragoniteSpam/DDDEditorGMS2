@@ -396,23 +396,6 @@ function ds_list_destroy_instances(list) {
     ds_list_destroy(list);
 }
 
-function ds_list_destroy_instances_indirect(list) {
-    // because there are some instances which automatically remove themselves
-    // from the list that you want to pass to this script, and doing this the
-    // easy way will cause the program to break
-    var n = ds_list_size(list);
-    var pending = ds_list_create();
-    ds_list_copy(pending, list);
-    for (var i = 0; i < ds_list_size(pending); i++) {
-        instance_activate_object(pending[| i]);
-        instance_destroy(pending[| i]);
-    }
-    ds_list_destroy(pending);
-    ds_list_destroy(list);
-    
-    return n;
-}
-
 function ds_list_filter(list, f) {
     var selected_elements = [];
     for (var i = 0, n = ds_list_size(list); i < n; i++) {
