@@ -49,6 +49,7 @@ function ui_init_game_data(mode) {
             }),
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Instances:", element_height, 16, function() {
             self.GetSibling("PROPERTIES").Refresh();
+            self.GetSibling("CONTROLS").Refresh();
         }))
             .SetRefresh(function() {
                 self.Deselect();
@@ -68,15 +69,15 @@ function ui_init_game_data(mode) {
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetNumbered(true)
             .SetCallbackMiddle(function() {
-                (emu_dialog_confirm(self, "Do you want to alphabetize all instances of " + Stuff.data.GetActiveType().name + "?", function() {
+                (emu_dialog_confirm(self.root, "Do you want to alphabetize all instances of " + Stuff.data.GetActiveType().name + "?", function() {
                     var data = Stuff.data.GetActiveType();
                     var current = Stuff.data.GetActiveInstance();
                     
                     array_sort_name(data.instances);
-                    self.root.root.Deselect();
+                    self.root.Deselect();
                     for (var i = 0, n = array_length(data.instances); i < n; i++) {
                         if (data.instances[i] == current) {
-                            self.root.root.Select(i, true);
+                            self.root.Select(i, true);
                             break;
                         }
                     }
@@ -85,72 +86,73 @@ function ui_init_game_data(mode) {
                 })).contents_interactive = true;
             })
             .SetID("INSTANCES"),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Up", function() {
-            var data = Stuff.data.GetActiveType();
-            var selection = self.GetSibling("LIST").GetSelection();
-            if (selection == -1) return;
-            var instance = data.instances[selection];
-            
-            if (instance && (selection > 0)) {
+        (new EmuCore(col2, EMU_AUTO, element_width, element_height)).AddContent([
+            (new EmuButton(0, 0, element_width, element_height, "Move Up", function() {
+                var data = Stuff.data.GetActiveType();
+                var selection = self.root.GetSibling("INSTANCES").GetSelection();
+                if (selection == -1) return;
+                
                 var t = data.instances[selection - 1];
-                data.instances[selection - 1] = instance;
+                data.instances[selection - 1] = data.instances[selection];
                 data.instances[selection] = t;
-                self.GetSibling("INSTANCES").Deselect();
-                self.GetSibling("INSTANCES").Select(selection - 1);
-            }
-        }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Move Down", function() {
-            var data = Stuff.data.GetActiveType();
-            var selection = self.GetSibling("LIST").GetSelection();
-            if (selection == -1) return;
-            var instance = data.instances[selection];
+                self.root.GetSibling("INSTANCES").Deselect();
+                self.root.GetSibling("INSTANCES").Select(selection - 1, true);
+            }))
+                .SetRefresh(function() { self.SetInteractive(Stuff.data.GetActiveType() && self.root.GetSibling("INSTANCES").GetSelection() > 0); }),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Move Down", function() {
+                var data = Stuff.data.GetActiveType();
+                var selection = self.root.GetSibling("INSTANCES").GetSelection();
+                if (selection == -1) return;
+                var instance = data.instances[selection];
             
-            if (instance && (selection < array_length(data.instances) - 1)) {
                 var t = data.instances[selection + 1];
-                data.instances[selection + 1] = instance;
+                data.instances[selection + 1] = data.instances[selection];
                 data.instances[selection] = t;
-                self.GetSibling("INSTANCES").Deselect();
-                self.GetSibling("INSTANCES").Select(selection + 1);
-            }
-        }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Instance", function() {
-            var instance_list = self.GetSibling("INSTANCES");
-            var index = instance_list.GetSelection();
-            var type = Stuff.data.GetActiveType();
-            var index_to_add = (index == -1) ? array_length(type.instances) : index + 1;
-            type.AddInstance(undefined, index_to_add);
-            instance_list.Deselect();
-            instance_list.Select(index_to_add, true);
-        }))
-            .SetID("ADD INSTANCE")
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Instance", function() {
-            var data = Stuff.data.GetActiveType();
-            var selection = self.GetSibling("LIST").GetSelection();
-            if (selection == -1) return;
-            var instance = data.instances[selection];
-            
-            self.GetSibling("INSTANCES").Deselect();
-            data.RemoveInstance(instance);
-            instance.Destroy();
-        }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Duplicate Instance", function() {
-            var data = Stuff.data.GetActiveType();
-            var instance_list = self.GetSibling("INSTANCES");
-            var selection = instance_list.GetSelection();
-            if (selection == -1) return;
-            var instance = data.instances[selection];
-            
-            if (instance) {
-                data.AddInstance(instance.Clone(), selection + 1);
+                self.root.GetSibling("INSTANCES").Deselect();
+                self.root.GetSibling("INSTANCES").Select(selection + 1, true);
+            }))
+                .SetRefresh(function() {
+                    var type = Stuff.data.GetActiveType();
+                    self.SetInteractive(type && self.root.GetSibling("INSTANCES").GetSelection() < array_length(type.instances) - 1);
+                }),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Add Instance", function() {
+                var instance_list = self.root.GetSibling("INSTANCES");
+                var index = instance_list.GetSelection();
+                var type = Stuff.data.GetActiveType();
+                var index_to_add = (index == -1) ? array_length(type.instances) : index + 1;
+                type.AddInstance(undefined, index_to_add);
                 instance_list.Deselect();
-                instance_list.Select(selection + 1, true);
-            }
-        }))
-            .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
+                instance_list.Select(index_to_add, true);
+            }))
+                .SetID("ADD INSTANCE")
+                .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Delete Instance", function() {
+                var data = Stuff.data.GetActiveType();
+                var selection = self.root.GetSibling("LIST").GetSelection();
+                if (selection == -1) return;
+                var instance = data.instances[selection];
+            
+                self.root.GetSibling("INSTANCES").Deselect();
+                data.RemoveInstance(instance);
+                instance.Destroy();
+            }))
+                .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
+            (new EmuButton(0, EMU_AUTO, element_width, element_height, "Duplicate Instance", function() {
+                var data = Stuff.data.GetActiveType();
+                var instance_list = self.root.GetSibling("INSTANCES");
+                var selection = instance_list.GetSelection();
+                if (selection == -1) return;
+                var instance = data.instances[selection];
+            
+                if (instance) {
+                    data.AddInstance(instance.Clone(), selection + 1);
+                    instance_list.Deselect();
+                    instance_list.Select(selection + 1, true);
+                }
+            }))
+                .SetRefresh(function() { self.SetInteractive(!!Stuff.data.GetActiveType()); }),
+        ])
+            .SetID("CONTROLS"),
         (new EmuButton(col3 + 0 * element_width / 3, EMU_BASE, element_width / 6, element_height, "<", function() {
             // this can be inlined and probably should be updated for emu
             omu_data_previous();
