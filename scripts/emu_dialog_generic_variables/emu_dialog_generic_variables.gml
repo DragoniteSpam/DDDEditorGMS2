@@ -23,7 +23,7 @@ function emu_dialog_generic_variables(list) {
             .SetID("LIST"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Value", function() {
             if (array_length(self.root.list) < 0xffff) {
-                array_push(self.root.list, new DataValue("Values" + string(array_length(self.root.list))));
+                array_push(self.root.list, new DataValue("Value" + string(array_length(self.root.list))));
             }
             self.root.Refresh();
         }))
