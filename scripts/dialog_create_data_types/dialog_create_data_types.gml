@@ -374,7 +374,12 @@ function dialog_create_data_types() {
                 .SetID("STRING DEFAULTS"),
             (new EmuCore(0, EMU_INLINE, element_width, element_height)).AddContent([
                 (new EmuInput(0, 0, element_width, element_height, "Default:", "", "default number", 10, E_InputTypes.INT, function() {
-                    self.root.root.GetSibling("PROPERTIES").GetSelectedItem().default_int = real(self.value);
+                    var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
+                    if (property.type == DataTypes.INT) {
+                        property.default_int = real(self.value);
+                    } else {
+                        property.default_real = real(self.value);
+                    }
                 }))
                     .SetRefresh(function() {
                         var property = self.root.root.GetSibling("PROPERTIES").GetSelectedItem();
@@ -382,11 +387,11 @@ function dialog_create_data_types() {
                             if (property.type == DataTypes.INT) {
                                 self.SetValue(property.default_int);
                                 self.SetValueType(E_InputTypes.INT);
-                                self.SetRealNumberBounds(-0x80000000, 0x7fffffff)
+                                self.SetRealNumberBounds(-0x800000, 0x7fffff)
                             } else if (property.type == DataTypes.FLOAT) {
                                 self.SetValue(property.default_real);
                                 self.SetValueType(E_InputTypes.REAL);
-                                self.SetRealNumberBounds(-10000000000, 10000000000)
+                                self.SetRealNumberBounds(-100000000, 100000000)
                             }
                         }
                     }),
