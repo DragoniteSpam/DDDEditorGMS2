@@ -113,7 +113,6 @@ function array_clear_4d(array, value = 0) {
     }
 }
 
-// i feel like i've already implemented this somewhere but i dont know where it is so here it is again
 function array_filter(array, f) {
     var selected_elements = [];
     for (var i = 0, n = array_length(array); i < n; i++) {
@@ -412,6 +411,16 @@ function ds_list_destroy_instances_indirect(list) {
     ds_list_destroy(list);
     
     return n;
+}
+
+function ds_list_filter(list, f) {
+    var selected_elements = [];
+    for (var i = 0, n = ds_list_size(list); i < n; i++) {
+        if (f(list[| i])) {
+            array_push(selected_elements, list[| i]);
+        }
+    }
+    return selected_elements;
 }
 
 function ds_list_pop(list) {
