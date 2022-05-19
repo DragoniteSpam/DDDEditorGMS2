@@ -489,14 +489,3 @@ function ds_list_top(list) {
     return list[| ds_list_size(list) - 1];
 }
 #endregion
-
-#region ds_map stuff
-function ds_map_to_array(map) {
-    var array = array_create(ds_map_size(map));
-    var index = 0;
-    for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
-        array[index++] = i;
-    }
-    return array;
-}
-#endregion
