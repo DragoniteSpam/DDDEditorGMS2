@@ -163,6 +163,8 @@ function project_load(id) {
         var custom = json.custom;
         var prefabs = json.prefabs;
         
+        array_resize(Game.events.events, 0);
+        
         for (var i = 0; i < array_length(custom); i++) {
             array_push(Game.events.custom, new DataEventNodeCustom(custom[i]));
         }
