@@ -499,12 +499,4 @@ function ds_map_to_array(map) {
     }
     return array;
 }
-
-function ds_map_to_list(map) {
-    var list = ds_list_create();
-    for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
-        ds_list_add(list, i);
-    }
-    return list;
-}
 #endregion
