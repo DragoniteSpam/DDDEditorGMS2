@@ -113,6 +113,17 @@ function array_clear_4d(array, value = 0) {
     }
 }
 
+// i feel like i've already implemented this somewhere but i dont know where it is so here it is again
+function array_filter(array, f) {
+    var selected_elements = [];
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (f(array[i])) {
+            array_push(selected_elements, array[i]);
+        }
+    }
+    return selected_elements;
+}
+
 function array_resize_2d(array, x, y) {
     array_resize(array, x);
     for (var i = 0; i < array_length(array); i++) {
