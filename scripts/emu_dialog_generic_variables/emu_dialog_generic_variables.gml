@@ -262,12 +262,12 @@ function emu_dialog_generic_variables(list) {
                 }
             })
             .SetID("GENERIC"),
-        (new EmuList(col3, EMU_INLINE, element_width, element_height, "Value type:", element_height, 8, function() {
-            var selection = self.GetSelection();
-            if (selection == -1) return;
+        (new EmuList(col3, EMU_INLINE, element_width, element_height, "Types:", element_height, 8, function() {
+            if (!self.root) return;
+            var type = self.GetSelectedItem();
+            if (!type) return;
             var data_index = self.GetSibling("LIST").GetSelection();
             var data = self.root.list[data_index];
-            var type = Game.data[selection];
             var previous_type = data.type_guid;
             data.type_guid = type.GUID;
             if (type.GUID != previous_type) {
@@ -282,21 +282,24 @@ function emu_dialog_generic_variables(list) {
             }
         }))
             .SetEnabled(false)
-            .SetInteractive(false)
             .SetList(Game.data)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetRefresh(function() {
                 var selection = self.GetSibling("LIST").GetSelectedItem();
-                self.SetInteractive(false);
+                self.SetEnabled(false);
                 self.Deselect();
                 if (!selection) return;
-                self.SetInteractive(selection.type == DataTypes.EVENT);
                 
                 if (selection.type == DataTypes.DATA || selection.type == DataTypes.ENUM) {
-                    self.SetInteractive(true);
-                    self.Select(array_search(Game.data, guid_get(selection.type_guid)), true);
-                    self.text = "Value type:";
+                    self.SetEnabled(true);
                     self.enabled = true;
+                    var filtered = array_filter(Game.data, (selection.type == DataTypes.DATA) ? (function(element) {
+                        return element.type == DataTypes.DATA;
+                    }) : (function(element) {
+                        return element.type == DataTypes.ENUM;
+                    }));
+                    self.SetList(filtered);
+                    self.Select(array_search(filtered, guid_get(selection.type_guid)), true);
                 }
             })
             .SetID("TYPE GUID"),
@@ -305,39 +308,21 @@ function emu_dialog_generic_variables(list) {
             self.GetSibling("LIST").GetSelectedItem().value = self.GetSelectedItem().GUID;
         }))
             .SetEnabled(false)
-            .SetInteractive(false)
             .SetRefresh(function() {
                 var selection = self.GetSibling("LIST").GetSelectedItem();
-                var class = self.GetSibling("TYPE GUID").GetSelectedItem();
-                self.SetInteractive(false);
+                var type = self.GetSibling("TYPE GUID").GetSelectedItem();
+                self.SetEnabled(false);
                 self.Deselect();
-                if (!selection || !class) return;
+                if (!selection || !type) return;
                 
-                switch (class.type) {
-                    case DataTypes.DATA:
-                        var type_selection = self.GetSibling("TYPE GUID").GetSelection();
-                        if (type_selection == -1) {
-                            self.SetList([]);
-                            return;
-                        }
-                        var type = Game.data[type_selection];
-                        self.SetList(type.instances);
-                        self.Select(array_search(type.instances, guid_get(selection.value)), true);
-                        self.SetInteractive(true);
-                        self.SetEnabled(true);
-                        break;
-                    case DataTypes.ENUM:
-                        var type_selection = self.GetSibling("TYPE GUID").GetSelection();
-                        if (type_selection == -1) {
-                            self.SetList([]);
-                            return;
-                        }
-                        var type = Game.data[type_selection];
-                        self.SetList(type.properties);
-                        self.Select(array_search(type.properties, guid_get(selection.value)), true);
-                        self.SetInteractive(true);
-                        self.SetEnabled(true);
-                        break;
+                if (type.type == DataTypes.DATA) {
+                    self.SetList(type.instances);
+                    self.Select(array_search(type.instances, guid_get(selection.value)), true);
+                    self.SetEnabled(true);
+                } else {
+                    self.SetList(type.properties);
+                    self.Select(array_search(type.properties, guid_get(selection.value)), true);
+                    self.SetEnabled(true);
                 }
             })
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
