@@ -29,7 +29,8 @@ function dialog_destroy() {
     // destroy it now, bad things will happen to other parts of the
     // Draw event which still reference it, because my code is spaghetti.
     if (dialog_exists()) {
-        instance_destroy_later(ds_list_pop(Stuff.dialogs));
+        instance_destroy_later(Stuff.dialogs[| ds_list_size(Stuff.dialogs) - 1]);
+        ds_list_delete(Stuff.dialogs, ds_list_size(Stuff.dialogs) - 1);
     }
 }
 
