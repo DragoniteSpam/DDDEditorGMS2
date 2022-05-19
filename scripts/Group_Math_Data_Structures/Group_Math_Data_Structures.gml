@@ -400,52 +400,52 @@ function ds_list_sort_fast() {
     var l = (argument_count > 2) ? argument[2] : 0;
     var r = (argument_count > 3) ? argument[3] : ds_list_size(list) - 1;
     
+    static merge = function(list, l, m, r, value) {
+        var n1 = m - l + 1;
+        var n2 = r - m;
+        var lt = ds_list_create();
+        var rt = ds_list_create();
+        
+        for (var i = 0; i < n1; i++) {
+            // this should technically be a ds_list_add but whatever
+            lt[| i] = list[| l +i ];
+        }
+        for (var j = 0; j < n2; j++) {
+            // ditto
+            rt[| j] = list[| m + j + 1];
+        }
+        
+        var i = 0;
+        var j = 0;
+        var k = l;
+        
+        while (i < n1 && j < n2) {
+            if (value(lt, i) <= value(rt, j)) {
+                list[| k++] = lt[| i++];
+            } else {
+                list[| k++] = rt[| j++];
+            }
+        }
+        
+        while (i < n1) {
+            list[| k++] = lt[| i++];
+        }
+        while (j < n2) {
+            list[| k++] = rt[| j++];
+        }
+        
+        ds_list_destroy(lt);
+        ds_list_destroy(rt);
+    }
+    
     if (l < r) {
         var m = (l + r) div 2;
         ds_list_sort_fast(list, value, l, m);
         ds_list_sort_fast(list, value, m + 1, r);
-        ds_list_sort_fast__merge(list, l, m, r, value);
+        merge(list, l, m, r, value);
     }
     
     return list;
-}
-
-function ds_list_sort_fast__merge(list, l, m, r, value) {
-    var n1 = m - l + 1;
-    var n2 = r - m;
-    var lt = ds_list_create();
-    var rt = ds_list_create();
-    
-    for (var i = 0; i < n1; i++) {
-        // this should technically be a ds_list_add but whatever
-        lt[| i] = list[| l +i ];
-    }
-    for (var j = 0; j < n2; j++) {
-        // ditto
-        rt[| j] = list[| m + j + 1];
-    }
-    
-    var i = 0;
-    var j = 0;
-    var k = l;
-    
-    while (i < n1 && j < n2) {
-        if (value(lt, i) <= value(rt, j)) {
-            list[| k++] = lt[| i++];
-        } else {
-            list[| k++] = rt[| j++];
-        }
-    }
-    
-    while (i < n1) {
-        list[| k++] = lt[| i++];
-    }
-    while (j < n2) {
-        list[| k++] = rt[| j++];
-    }
-    
-    ds_list_destroy(lt);
-    ds_list_destroy(rt);
 }
 
 /// @param list
