@@ -52,13 +52,19 @@ function dialog_create_data_types() {
             .SetID("LIST"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Data", function() {
             array_push(Game.data, new DataClass("DataType" + string(array_length(Game.data))));
-            self.GetSibling("LIST").text = "Data types: " + string(array_length(Game.data));
+            var list = self.GetSibling("LIST");
+            list.text = "Data types: " + string(array_length(Game.data));
+            list.Deselect();
+            list.Select(array_length(Game.data) - 1, true);
         })),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Enum", function() {
             var type = new DataClass("Enum" + string(array_length(Game.data)));
             type.type = DataTypes.ENUM;
             array_push(Game.data, type);
-            self.GetSibling("LIST").text = "Data types: " + string(array_length(Game.data));
+            var list = self.GetSibling("LIST");
+            list.text = "Data types: " + string(array_length(Game.data));
+            list.Deselect();
+            list.Select(array_length(Game.data) - 1, true);
         })),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Move Up", function() {
             var list = self.GetSibling("LIST");
