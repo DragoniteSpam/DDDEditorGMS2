@@ -51,11 +51,13 @@ function ui_init_event(mode) {
                         emu_dialog_notice("Can't delete the only event!");
                     } else {
                         var dialog = emu_dialog_confirm(self, "Are you sure you want to delete " + Game.events.events[index].name + "?", function() {
+                            Stuff.event.active.Destroy();
+                            var event_list = self.root.root.GetSibling("EVENT LIST");
                             array_delete(Game.events.events, self.root.event_index, 1);
-                            ui_list_deselect(button.root.root.el_event_list);
-                            Stuff.event.active = Game.events.events[max(0, self.root.event_index - 1)];
-                            event.Destroy();
-                            dialog_destroy();
+                            var selection = event_list.GetSelection();
+                            event_list.Deselect();
+                            event_list.Select(max(0, self.root.event_index - 1), true);
+                            emu_dialog_close_auto();
                         });
                         dialog.event_index = index;
                     }
