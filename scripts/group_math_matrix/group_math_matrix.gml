@@ -3,10 +3,10 @@ function matrix_inverse(_matrix) {
 }
 
 function matrix_multiply_vec4(point, matrix) {
-    var x = point[0];
-    var y = point[1];
-    var z = point[2];
-    var w = point[3];
+    var x = point.x;
+    var y = point.y;
+    var z = point.z;
+    var w = point.w;
     
     return [
         matrix[0] * x + matrix[4] * y + matrix[8] * z + matrix[12] * w,

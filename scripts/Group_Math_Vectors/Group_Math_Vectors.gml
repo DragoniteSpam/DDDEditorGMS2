@@ -118,6 +118,13 @@ function Vector3(x, y, z) constructor {
     }
 }
 
+function Vector4(x, y, z, w) constructor {
+    self.x = x;
+    self.y = y;
+    self.z = z;
+    self.w = w;
+}
+
 // these are for utility; please don't delete them just because they're not used
 // in the program anywhere
 function Vertex() constructor {
