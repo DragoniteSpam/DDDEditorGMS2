@@ -70,6 +70,7 @@
     {"id":{"name":"batch_mesh_autotile","path":"scripts/batch_mesh_autotile/batch_mesh_autotile.yy",},"order":4,},
     {"id":{"name":"EmuException","path":"scripts/EmuException/EmuException.yy",},"order":6,},
     {"id":{"name":"batch_cache","path":"scripts/batch_cache/batch_cache.yy",},"order":5,},
+    {"id":{"name":"Group_Math_Matrix","path":"scripts/Group_Math_Matrix/Group_Math_Matrix.yy",},"order":19,},
     {"id":{"name":"batch_again","path":"scripts/batch_again/batch_again.yy",},"order":6,},
     {"id":{"name":"batch_all_preview","path":"scripts/batch_all_preview/batch_all_preview.yy",},"order":7,},
     {"id":{"name":"batch_all_export","path":"scripts/batch_all_export/batch_all_export.yy",},"order":8,},
