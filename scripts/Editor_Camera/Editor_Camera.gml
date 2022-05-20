@@ -325,4 +325,13 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.GetWorldSpace = function(x, y) {
         return screen_to_world(x, y, self.view_mat, self.proj_mat, self.get_width(), self.get_height());
     };
+    
+    self.GetFrustum = function() {
+        var inverse_view = matrix_inverse(self.view_mat);
+        var inverse_proj = matrix_inverse(self.proj_mat);
+        var ndc_corner = new Vector4(-1, -1, -1, 1);
+        var view_corner_h = matrix_multiply_vec4(ndc_corner, inverse_proj);
+        var view_corner = view_corner_h.Mul(1 / view_corner_h.z);
+        return matrix_multiply_vec4(view_corner, inverse_view);
+    };
 }
