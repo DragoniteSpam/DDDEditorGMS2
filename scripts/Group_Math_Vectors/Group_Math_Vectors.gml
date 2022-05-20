@@ -123,6 +123,58 @@ function Vector4(x, y, z, w) constructor {
     self.y = y;
     self.z = z;
     self.w = w;
+    
+    static Add = function(val) {
+        return new Vector4(self.x + val.x, self.y + val.y, self.z + val.z, self.w + val.w);
+    };
+    
+    static Sub = function(val) {
+        return new Vector4(self.x - val.x, self.y - val.y, self.z - val.z, self.w - val.w);
+    };
+    
+    static Mul = function(val) {
+        if (is_numeric(val)) {
+            return new Vector4(self.x * val, self.y * val, self.z * val, self.w * val);
+        }
+        return new Vector4(self.x * val.x, self.y * val.y, self.z * val.z, self.w * val.w);
+    };
+    
+    static Div = function(val) {
+        if (is_numeric(val)) {
+            return new Vector4(self.x / val, self.y / val, self.z / val, self.w / val);
+        }
+        return new Vector4(self.x / val.x, self.y / val.y, self.z / val.z, self.w / val.w);
+    };
+    
+    static Magnitude = function() {
+        static zero = new Vector4(0, 0, 0, 0);
+        return self.DistanceTo(zero);
+    };
+    
+    static DistanceTo = function(val) {
+        var dx = val.x - self.x;
+        var dy = val.y - self.y;
+        var dz = val.z - self.z;
+        var dw = val.w - self.w;
+        return sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
+    };
+    
+    static Dot = function(val) {
+        return self.x * val.x + self.y * val.y + self.z * val.z + self.w * val.w;
+    };
+    
+    static Equals = function(val) {
+        return (self.x == val.x) && (self.y == val.y) && (self.z == val.z) && (self.w == val.w);
+    };
+    
+    static Normalize = function() {
+        var mag = self.Magnitude();
+        return new Vector4(self.x / mag, self.y / mag, self.z / mag, self.w / mag);
+    };
+    
+    static Abs = function() {
+        return new Vector4(abs(self.x), abs(self.y), abs(self.z), abs(self.w));
+    };
 }
 
 // these are for utility; please don't delete them just because they're not used
