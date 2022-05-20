@@ -57,23 +57,23 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         return window_get_height();
     };
     
-    static SetViewportAspect = function(width_function, height_function) {
+    self.SetViewportAspect = function(width_function, height_function) {
         self.get_width = method(self, width_function);
         self.get_height = method(self, height_function);
     };
     
-    static SetCenter = function(cx, cy) {
+    self.SetCenter = function(cx, cy) {
         self.center.x = cx;
         self.center.y = cy;
     };
     
-    static SetSkybox = function(vertex_buffer, sprite) {
+    self.SetSkybox = function(vertex_buffer, sprite) {
         self.skybox = sprite;
         self.skybox_mesh = vertex_buffer;
         return sprite;
     };
     
-    static Update = function() {
+    self.Update = function() {
         if (self.view_mat == undefined || self.proj_mat == undefined) return;
         if (EmuOverlay.GetTop() || !ds_list_empty(Stuff.dialogs)) return;
         
@@ -134,7 +134,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         self.zup = 1;
     };
     
-    static UpdateOrtho = function() {
+    self.UpdateOrtho = function() {
         if (self.view_mat == undefined || self.proj_mat == undefined) return;
         
         self.running = self.run_enabled && keyboard_check(vk_shift);
@@ -180,7 +180,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         }
     };
     
-    static SetProjection = function() {
+    self.SetProjection = function() {
         self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
         self.proj_mat = matrix_build_projection_perspective_fov(-self.fov * self.run_fov_active, -self.get_width() / self.get_height(), self.znear, self.zfar);
         
@@ -189,7 +189,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         camera_apply(self.camera);
     };
     
-    static SetProjectionOrtho = function() {
+    self.SetProjectionOrtho = function() {
         self.view_mat = matrix_build_lookat(self.x, self.y, self.zfar - 256, self.x, self.y, 0, 0, 1, 0);
         self.proj_mat = matrix_build_projection_ortho(-self.get_width() * self.scale, self.get_height() * self.scale, self.znear, self.zfar);
         
@@ -198,7 +198,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         camera_apply(self.camera);
     };
     
-    static SetProjectionGUI = function() {
+    self.SetProjectionGUI = function() {
         var view_mat = matrix_build_lookat(self.get_width() / 2, self.get_height() / 2, 1, self.get_width() / 2, self.get_height() / 2, -1, 0, -1, 0);
         var proj_mat = matrix_build_projection_ortho(self.get_width(), -self.get_height(), 1, 10);
         
@@ -213,7 +213,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         shader_reset();
     };
     
-    static DrawSkybox = function() {
+    self.DrawSkybox = function() {
         if (!sprite_exists(self.skybox)) return;
         if (self.skybox_mesh = -1) return;
         draw_clear_alpha(c_black, 1);
@@ -225,7 +225,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         gpu_set_ztestenable(true);
     };
     
-    static DrawSkyboxOrtho = function() {
+    self.DrawSkyboxOrtho = function() {
         if (!sprite_exists(self.skybox)) return;
         if (self.skybox_buffer = -1) return;
         draw_clear_alpha(c_black, 1);
@@ -237,7 +237,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         gpu_set_ztestenable(true);
     };
     
-    static Reset = function() {
+    self.Reset = function() {
         self.x = self.def_x;
         self.y = self.def_y;
         self.z = self.def_z;
@@ -253,7 +253,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         self.scale = 1;
     };
     
-    static Save = function() {
+    self.Save = function() {
         return {
             x: self.x,
             y: self.y,
@@ -272,7 +272,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         };
     };
     
-    static Load = function(source) {
+    self.Load = function(source) {
         try {
             self.x = source.x;
             self.y = source.y;
@@ -293,36 +293,36 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         }
     };
     
-    static GetCameraSpeed = function(z = self.z) {
+    self.GetCameraSpeed = function(z = self.z) {
         return max(1, (self.base_speed * (logn(32, max(z, 1)) + 1)) * Stuff.dt * min((Controller.time_wasd_seconds + 1) / self.accelerate_time * Settings.config.camera_fly_rate, 10)) * (self.running ? self.run_speed : 1);
     };
     
-    static GetVPMatrix = function() {
+    self.GetVPMatrix = function() {
         if (self.view_mat == undefined || self.proj_mat == undefined) return undefined;
         return matrix_multiply(self.view_mat, self.proj_mat);
     };
     
-    static DistanceTo = function(x, y, z) {
+    self.DistanceTo = function(x, y, z) {
         return point_distance_3d(self.x, self.y, self.z, x, y, z);
     };
     
-    static DistanceTo2D = function(x, y) {
+    self.DistanceTo2D = function(x, y) {
         return point_distance(self.x, self.y, x, y);
     };
     
-    static Dot = function(x, y, z) {
+    self.Dot = function(x, y, z) {
         return dot_product_3d_normalized(self.xto - self.x, self.yto - self.y, self.zto - self.z, x - self.x, y - self.y, z - self.z);
     };
     
-    static Dot2D = function(x, y) {
+    self.Dot2D = function(x, y) {
         return dot_product_normalized(self.xto - self.x, self.yto - self.y, x - self.x, y - self.y);
     };
     
-    static GetScreenSpace = function(x, y, z) {
+    self.GetScreenSpace = function(x, y, z) {
         return world_to_screen(x, y, z, self.view_mat, self.proj_mat, self.get_width(), self.get_height());
     };
     
-    static GetWorldSpace = function(x, y) {
+    self.GetWorldSpace = function(x, y) {
         return screen_to_world(x, y, self.view_mat, self.proj_mat, self.get_width(), self.get_height());
     };
 }
