@@ -8,10 +8,10 @@ function matrix_multiply_vec4(point, matrix) {
     var z = point.z;
     var w = point.w;
     
-    return [
-        matrix[0] * x + matrix[4] * y + matrix[8] * z + matrix[12] * w,
-        matrix[1] * x + matrix[5] * y + matrix[9] * z + matrix[13] * w,
-        matrix[2] * x + matrix[6] * y + matrix[10] * z + matrix[14] * w,
-        matrix[3] * x + matrix[7] * y + matrix[11] * z + matrix[15] * w,
-    ];
+    return new Vector4(
+        matrix[0] * xx + matrix[4] * yy + matrix[8] * zz + matrix[12] * ww,
+        matrix[1] * xx + matrix[5] * yy + matrix[9] * zz + matrix[13] * ww,
+        matrix[2] * xx + matrix[6] * yy + matrix[10] * zz + matrix[14] * ww,
+        matrix[3] * xx + matrix[7] * yy + matrix[11] * zz + matrix[15] * ww,
+    );
 }
