@@ -724,6 +724,9 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             mesh_create_submesh(mesh, value.buffer, vbuff, undefined, value.name);
         }
         
+        sprite_save(self.texture_image, 0, PATH_TEMP + "terrain_texture.png");
+        mesh.tex_base = tileset_create(PATH_TEMP + "terrain_texture.png");
+        
         array_push(Game.meshes, mesh);
     };
     
