@@ -17,17 +17,16 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     shader_set(shd_ddd);
     
     #region light stuff
-    var light_data = array_create(MAX_LIGHTS * 12);
-    array_clear(light_data, 0);
-    var ambient = Settings.mesh.draw_lighting ? c_gray : c_white;
+    var light_data = array_create(MAX_LIGHTS * 12, 0);
+    var ambient = Settings.mesh.draw_lighting ? c_dkgray : c_white;
     
     light_data[0] = dcos(Settings.mesh.draw_light_direction);
     light_data[1] = -dsin(Settings.mesh.draw_light_direction);
     light_data[2] = -1;  // this feels upside-down
     light_data[3] = LightTypes.DIRECTIONAL;
-    light_data[8] = 1;
-    light_data[9] = 1;
-    light_data[10] = 1;
+    light_data[8] = 0.75;
+    light_data[9] = 0.75;
+    light_data[10] = 0.75;
     
     var time_color = c_white;
     var weather_color = c_white;
