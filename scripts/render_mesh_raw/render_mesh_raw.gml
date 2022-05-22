@@ -11,10 +11,6 @@ function render_mesh_raw(entity) {
         vertex_submit(entity.GetVertexBuffer(), pr_trianglelist, tex);
     }
     
-    if (Settings.view.wireframe) {
-        /// @wireframe
-    }
-    
     if (Stuff.map.active_map.reflections_enabled) {
         var water = Stuff.map.active_map.water_level;
         var offset = (water - (entity.zz + entity.off_zz - water)) * TILE_DEPTH;
@@ -27,10 +23,6 @@ function render_mesh_raw(entity) {
             if (reflect) {
                 vertex_submit(reflect, pr_trianglelist, tex);
             }
-        }
-        
-        if (Settings.view.wireframe) {
-            /// @wireframe
         }
     }
     

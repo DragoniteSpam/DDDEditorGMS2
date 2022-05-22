@@ -47,32 +47,32 @@ function EditorGraphics() constructor {
         self.axes_center = vertex_load("data/basic/axes_center.vbuff", self.vertex_format_axes);
         #endregion
         
-        self.basic_cage = import_d3d("data/basic/cage.d3d", false);
-        self.indexed_cage = import_d3d("data/basic/cage-indexed.d3d", false);
-        self.indexed_cage_full = import_d3d("data/basic/cage-indexed-full.d3d", false);
-        self.basic_cube = import_d3d("data/basic/cube.d3d", false);
+        self.basic_cage = vertex_load("data/basic/cage.vbuff", self.vertex_format_axes);
+        self.indexed_cage = vertex_load("data/basic/cage-indexed.vbuff", self.vertex_format_axes);
+        self.indexed_cage_full = vertex_load("data/basic/cage-indexed-full.vbuff", self.vertex_format_axes);
+        self.basic_cube = vertex_load("data/basic/cube.vbuff", self.vertex_format_axes);
         // load both buffers
         var missing = import_d3d("data/basic/missing_autotile.d3d", false, true);
         self.missing_autotile = missing[0];
         self.missing_autotile_raw = missing[1];
-        self.indexed_cube = import_d3d("data/basic/cube-indexed.d3d", false);
-        self.base_npc = import_d3d("data/basic/base-npc.d3d", false);
-        self.axes_rotation = import_d3d("data/basic/rotation.d3d", false);
-        self.axes_translation = import_d3d("data/basic/translation.d3d", false);
-        self.axes_translation_x = import_d3d("data/basic/translation-x.d3d", false);
-        self.axes_translation_y = import_d3d("data/basic/translation-y.d3d", false);
-        self.axes_translation_z = import_d3d("data/basic/translation-z.d3d", false);
-        self.axes_translation_x_gold = import_d3d("data/basic/translation-x-gold.d3d", false);
-        self.axes_translation_y_gold = import_d3d("data/basic/translation-y-gold.d3d", false);
-        self.axes_translation_z_gold = import_d3d("data/basic/translation-z-gold.d3d", false);
-        self.skybox_base = import_d3d("data/basic/skybox-base.d3d", false);
+        self.indexed_cube = vertex_load("data/basic/cube-indexed.vbuff", self.vertex_format_axes);
+        self.base_npc = vertex_load("data/basic/base-npc.vbuff", self.vertex_format_axes);
+        self.axes_rotation = vertex_load("data/basic/rotation.vbuff", self.vertex_format_axes);
+        self.axes_translation = vertex_load("data/basic/translation.vbuff", self.vertex_format_axes);
+        self.axes_translation_x = vertex_load("data/basic/translation-x.vbuff", self.vertex_format_axes);
+        self.axes_translation_y = vertex_load("data/basic/translation-y.vbuff", self.vertex_format_axes);
+        self.axes_translation_z = vertex_load("data/basic/translation-z.vbuff", self.vertex_format_axes);
+        self.axes_translation_x_gold = vertex_load("data/basic/translation-x-gold.vbuff", self.vertex_format_axes);
+        self.axes_translation_y_gold = vertex_load("data/basic/translation-y-gold.vbuff", self.vertex_format_axes);
+        self.axes_translation_z_gold = vertex_load("data/basic/translation-z-gold.vbuff", self.vertex_format_axes);
+        self.skybox_base = vertex_load("data/basic/skybox-base.vbuff", self.vertex_format_axes);
         var qmark_data = import_d3d("data/basic/missing.d3d", false, true);
         self.mesh_missing = qmark_data[0];
         self.mesh_missing_data = qmark_data[1];
         
-        self.centered_sphere = import_d3d("data/basic/centered-sphere.d3d", false, false);
-        self.centered_cube = import_d3d("data/basic/centered-cube.d3d", false, false);
-        self.centered_capsule = import_d3d("data/basic/centered-capsule.d3d", false, false);
+        self.centered_sphere = vertex_load("data/basic/centered-sphere.vbuff", self.vertex_format_axes);
+        self.centered_cube = vertex_load("data/basic/centered-cube.vbuff", self.vertex_format_axes);
+        self.centered_capsule = vertex_load("data/basic/centered-capsule.vbuff", self.vertex_format_axes);
         
         self.grid = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
