@@ -371,10 +371,10 @@ function dialog_terrain_export() {
             Stuff.terrain.color.SaveState();
             
             if (levels == 0) {
-                Stuff.terrain.AddToProject("Terrain", 1, false, false, chunk_size);
+                Stuff.terrain.AddToProject("Terrain", 1, chunk_size);
             } else {
                 for (var i = 0; i < levels; i++) {
-                    Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i), false, false, chunk_size);
+                    Stuff.terrain.AddToProject("TerrainLOD" + string(i), power(reduction, i), chunk_size);
                 }
             }
             
