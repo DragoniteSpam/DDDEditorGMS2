@@ -508,7 +508,7 @@ function DataMap(source, directory) : SData(source) constructor {
         if (!self.contents.water) return;
         if (!Settings.view.water) return;
         
-        if (Settings.view.wireframe) wireframe_enable(1, 512);
+        wireframe_enable(Settings.view.wireframe, 512);
         
         matrix_set(matrix_world, matrix_build_identity());
         var tex = Settings.view.texture ? (self.water_texture == NULL ? -1 : sprite_get_texture(guid_get(self.water_texture).picture, 0)) : -1;

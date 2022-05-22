@@ -76,10 +76,11 @@ function ui_init_main(mode) {
                 Settings.view.threed = self.value;
             }))
                 .SetTooltip("View the map in 2D, or in 3D."),
-            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Wireframes", Settings.view.wireframe, function() {
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Wireframe alpha:"),
+            (new EmuProgressBar(col2x, EMU_AUTO, element_width, element_height, 8, 0, 1, true, Settings.view.wireframe, function() {
                 Settings.view.wireframe = self.value;
             }))
-                .SetTooltip("Whether or not you want to view the wireframes to go with visual data."),
+                .SetTooltip("The transparency of the wireframes drawn over objects in the world."),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Grid and Markers", Settings.view.grid, function() {
                 Settings.view.grid = self.value;
             }))

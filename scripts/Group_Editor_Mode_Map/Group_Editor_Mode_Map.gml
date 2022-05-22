@@ -199,6 +199,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
         
         graphics_set_lighting(shd_ddd);
+        wireframe_enable(Settings.view.wireframe, 512);
         
         // this will need to be dynamic at some point
         var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
@@ -211,17 +212,6 @@ function EditorModeMap() : EditorModeBase() constructor {
             if (self.active_map.reflections_enabled && map_contents.reflect_frozen) {
                 vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
             }
-            
-            if (Settings.view.wireframe) {
-                if (map_contents.frozen) {
-                    wireframe_enable(1, 512);
-                    vertex_submit(map_contents.frozen, pr_trianglelist, tex);
-                    if (self.active_map.reflections_enabled && map_contents.reflect_frozen) {
-                        vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
-                    }
-                    wireframe_disable();
-                }
-            }
         }
         
         if (Settings.view.entities) {    
@@ -232,18 +222,6 @@ function EditorModeMap() : EditorModeBase() constructor {
                     vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
                 }
             }
-            
-            if (Settings.view.wireframe) {
-                wireframe_enable();
-                for (var i = 0, n = array_length(map_contents.batches); i < n; i++) {
-                    var data = map_contents.batches[i];
-                    vertex_submit(data.vertex, pr_trianglelist, tex);
-                    if (self.active_map.reflections_enabled) {
-                        vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
-                    }
-                }
-                wireframe_disable();
-            }
         }
         
         for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
@@ -253,6 +231,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         
         // the water effect may use a different shader
         self.active_map.DrawWater();
+        wireframe_enable(Settings.view.wireframe, 512);
         
         // reset the lighting shader after the water has been drawn
         graphics_set_lighting(shd_ddd);
