@@ -11,8 +11,4 @@ function render_tile(tile) {
         vertex_submit(tile.vbuffer, pr_trianglelist, tex);
         matrix_set(matrix_world, matrix_build_identity());
     }
-    
-    if (Settings.view.wireframe) {
-        /// @wireframe
-    }
 }

@@ -12,9 +12,5 @@ function render_mesh_autotile(mesh_autotile) {
         vertex_submit(vbuffer, pr_trianglelist, tex);
     }
     
-    if (Settings.view.wireframe) {
-        /// @wireframe
-    }
-    
     matrix_set(matrix_world, matrix_build_identity());
 }
