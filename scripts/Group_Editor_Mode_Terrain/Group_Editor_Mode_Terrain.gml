@@ -709,23 +709,21 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     #endregion
     
     #region Export methods
-    self.AddToProject = function(name = "Terrain", density = 1, swap_zup = false, swap_uv = false, chunk_size = 0) {
-        density = floor(density);
-        
-        terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, undefined, Settings.terrain.water_level);
+    self.AddToProject = function(name = "Terrain", density = 1, chunk_size = 0) {
+        var results = terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, VertexFormatData.FULL, Settings.terrain.water_level);
         
         var mesh = new DataMesh(name);
-        for (var i = 0, n = hcount * vcount; i < n; i++) {
-            buffer_resize(chunk_array[i].buffer, buffer_peek(chunk_meta, i * 6 * 8, buffer_u64));
-            var vbuff = vertex_create_buffer_from_buffer(chunk_array[i].buffer, Stuff.graphics.vertex_format);
+        for (var i = 0, n = array_length(results); i < n; i++) {
+            var value = results[i];
+            var vbuff = vertex_create_buffer_from_buffer(value.buffer, Stuff.graphics.vertex_format);
             // there's a part of me that wants to just not include empty vertex
-            // buffers, but i'd still prefer to save empty chunks so that the user
-            // knows that something actually happened and the program didntn fail
-            // randomly
+            // buffers, but i'd still prefer to save empty chunks so that the
+            // user knows that something actually happened and the program
+            // didnt fail randomly
             if (vertex_get_number(vbuff) > 0) vertex_freeze(vbuff);
-            mesh_create_submesh(mesh, chunk_array[i].buffer, vbuff, undefined, chunk_array[i].name);
+            mesh_create_submesh(mesh, value.buffer, vbuff, undefined, value.name);
         }
-    
+        
         array_push(Game.meshes, mesh);
     };
     
