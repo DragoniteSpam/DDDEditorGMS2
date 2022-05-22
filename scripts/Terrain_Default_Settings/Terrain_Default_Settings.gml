@@ -20,7 +20,7 @@
 #macro TERRAIN_DEF_EXPORT_SMOOTH_THRESHOLD          60
 #macro TERRAIN_DEF_EXPORT_LOD_LEVELS                2
 #macro TERRAIN_DEF_EXPORT_LOD_REDUCTION             4
-#macro TERRAIN_DEF_EXPORT_VERTEX_FORMAT             DEFAULT_VERTEX_FORMAT
+#macro TERRAIN_DEF_EXPORT_VERTEX_FORMAT             VertexFormatData.STANDARD
 
 #macro TERRAIN_DEF_VIEW_WATER                       true
 #macro TERRAIN_DEF_WATER_MIN_ALPHA                  0.5

@@ -27,7 +27,7 @@ function project_load(id) {
             if (!is_numeric(Game.meta.export.locations[i])) Game.meta.export.locations[i] = 0;
         }
         
-        Game.meta.export[$ "vertex_format"] ??= DEFAULT_VERTEX_FORMAT;
+        Game.meta.export[$ "vertex_format"] ??= VertexFormatData.STANDARD;
         Game.meta.export[$ "flags"] ??= 0;
         Game.vars[$ "effect_markers"] ??= 0;
     };

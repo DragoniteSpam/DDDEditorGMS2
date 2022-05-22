@@ -48,7 +48,7 @@ function EditorModeMesh() : EditorModeBase() constructor {
         self.camera.Reset();
     };
     
-    self.vertex_format = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR;
+    self.vertex_format = VertexFormatData.STANDARD;
     
     enum VertexFormatData {
         POSITION_2D                         = 0x0001,
@@ -66,7 +66,9 @@ function EditorModeMesh() : EditorModeBase() constructor {
         SMALL_TEXCOORD                      = 0x0080,       // 4 bytes (u v 0 0)
         SMALL_NORMAL_PLUS_PALETTE           = 0x0100,       // 4 bytes (nx ny nz and a byte representing a 256 color palette index)
         SMALL_BARYCENTIRC                   = 0x0200,       // 4 bytes (x y z 0)
-        __COUNT,
+        // shorthands
+        STANDARD                            = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR,
+        FULL                                = VertexFormatData.STANDARD | VertexFormatData.TANGENT | VertexFormatData.BITANGENT | VertexFormatData.BARYCENTRIC,
     }
 }
 

@@ -16,7 +16,7 @@ Game = new (function() constructor {
         export: {
             files: [new DataFile("data", false, true), new DataFile("assets", false, false), new DataFile("terrain", true, false)],
             locations: [],
-            vertex_format: DEFAULT_VERTEX_FORMAT,
+            vertex_format: VertexFormatData.STANDARD,
             flags: 0,
         },
         
