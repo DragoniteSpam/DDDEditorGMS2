@@ -125,7 +125,7 @@ Settings.mesh[$ "combine_obj_submeshes"] ??=                                    
 #macro MESH_DEF_VIEW_DRAW_MESHES                                                true
 #macro MESH_DEF_VIEW_DRAW_TEXTURES                                              true
 #macro MESH_DEF_VIEW_DRAW_VERTEX_TEXTURES                                       true
-#macro MESH_DEF_VIEW_DRAW_LIGHTING                                              false
+#macro MESH_DEF_VIEW_DRAW_LIGHTING                                              true
 #macro MESH_DEF_VIEW_DRAW_BACK_FACES                                            false
 #macro MESH_DEF_VIEW_DRAW_REFLECTIONS                                           false
 #macro MESH_DEF_VIEW_DRAW_COLLISION                                             false
