@@ -239,6 +239,7 @@
     {"id":{"name":"dc_custom_event_set_img_tileset","path":"scripts/dc_custom_event_set_img_tileset/dc_custom_event_set_img_tileset.yy",},"order":16,},
     {"id":{"name":"dc_custom_event_set_img_ui","path":"scripts/dc_custom_event_set_img_ui/dc_custom_event_set_img_ui.yy",},"order":17,},
     {"id":{"name":"dc_custom_event_set_img_particle","path":"scripts/dc_custom_event_set_img_particle/dc_custom_event_set_img_particle.yy",},"order":18,},
+    {"id":{"name":"Changelog - Meshes","path":"notes/Changelog - Meshes/Changelog - Meshes.yy",},"order":1,},
     {"id":{"name":"dc_custom_event_set_mesh","path":"scripts/dc_custom_event_set_mesh/dc_custom_event_set_mesh.yy",},"order":19,},
     {"id":{"name":"dc_custom_event_set_se","path":"scripts/dc_custom_event_set_se/dc_custom_event_set_se.yy",},"order":20,},
     {"id":{"name":"lots_and_lots_and_lots_of_colors","path":"scripts/lots_and_lots_and_lots_of_colors/lots_and_lots_and_lots_of_colors.yy",},"order":8,},
