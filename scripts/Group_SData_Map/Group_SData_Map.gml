@@ -335,7 +335,7 @@ function DataMap(source, directory) : SData(source) constructor {
         #endregion
         
         #region frozen chunks
-        var chunks = self.GetFusedChunks(Game.meta.grid.chunk_size, (self.xx div Game.meta.grid.chunk_size) - 1, (self.yy div Game.meta.grid.chunk_size) - 1);
+        var chunks = self.GetFusedChunks(self.chunk_size, (self.xx div Game.meta.grid.chunk_size) - 1, (self.yy div Game.meta.grid.chunk_size) - 1);
         var keys = variable_struct_get_names(chunks);
         buffer_write(buffer, buffer_u32, array_length(keys));
         
