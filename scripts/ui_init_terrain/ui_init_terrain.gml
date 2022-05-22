@@ -40,6 +40,7 @@ function ui_init_terrain(mode) {
                     .SetTooltip("View the world through an overhead camera."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Viewer Settings", function() {
                     var dialog = new EmuDialog(640, 600, "Terrain viewer settings");
+                    dialog.root = self;
                     dialog.active_shade = 0;
                     dialog.x = 920;
                     dialog.y = 120;
@@ -48,7 +49,7 @@ function ui_init_terrain(mode) {
                     var col2x = 336;
                     var col_width = 288;
                     
-                    dialog.AddContent([
+                    return dialog.AddContent([
                         #region column 1
                         (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw water?", Settings.terrain.view_water, function() {
                             Settings.terrain.view_water = self.value;
@@ -107,6 +108,32 @@ function ui_init_terrain(mode) {
                             Settings.terrain.fog_color = self.value;
                         }))
                             .SetTooltip("The color of the pixel fog."),
+                        (new EmuButton(col2x, EMU_AUTO, col_width, 32, "[c_aqua]Reset", function() {
+                            Settings.terrain.view_water = TERRAIN_DEF_VIEW_WATER;
+                            Settings.terrain.view_water_min_alpha = TERRAIN_DEF_WATER_MIN_ALPHA;
+                            Settings.terrain.view_water_max_alpha = TERRAIN_DEF_WATER_MAX_ALPHA;
+                            Settings.terrain.water_level = TERRAIN_DEF_WATER_LEVEL;
+                            Settings.terrain.view_distance = TERRAIN_DEF_VIEW_DISTANCE;
+                            Settings.terrain.wireframe_alpha = TERRAIN_DEF_WIREFRAME_ALPHA;
+                            Settings.terrain.cursor_alpha = TERRAIN_DEF_CURSOR_ALPHA;
+                            Settings.terrain.view_skybox = TERRAIN_DEF_VIEW_SKYBOX;
+                            Settings.terrain.view_axes = TERRAIN_DEF_VIEW_AXES;
+                            Settings.terrain.view_data = TERRAIN_DEF_VIEW_DATA;
+                            Settings.terrain.orthographic = TERRAIN_DEF_ORTHOGRAPHIC;
+                            Settings.terrain.light_enabled = TERRAIN_DEF_LIGHT_ENABLED;
+                            Settings.terrain.fog_enabled = TERRAIN_DEF_FOG_ENABLED;
+                            Settings.terrain.fog_color = TERRAIN_DEF_FOG_COLOR;
+                            Settings.terrain.fog_start = TERRAIN_DEF_FOG_START;
+                            Settings.terrain.fog_end = TERRAIN_DEF_FOG_END;
+                            var xx = self.root.x;
+                            var yy = self.root.y;
+                            // i'm not even sorry
+                            self.root.Close();
+                            var dialog = self.root.root.callback();
+                            dialog.contents_interactive = true;
+                            dialog.x = xx;
+                            dialog.y = yy;
+                        }))
                         #endregion
                     ]).AddDefaultCloseButton();
                 }))
