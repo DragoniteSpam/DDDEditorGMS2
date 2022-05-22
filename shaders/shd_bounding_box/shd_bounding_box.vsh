@@ -1,5 +1,4 @@
 attribute vec3 in_Position;
-attribute vec3 in_Normal;
 attribute vec4 in_Colour;
 attribute vec2 in_TextureCoord;
 
