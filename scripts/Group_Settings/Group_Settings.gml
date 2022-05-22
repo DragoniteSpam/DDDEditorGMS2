@@ -101,23 +101,41 @@ Settings.view[$ "gizmos"] ??=                                                   
 Settings.view[$ "threed"] ??=                                                   true;
 
 Settings[$ "mesh"] ??=                                                          { };
-Settings.mesh[$ "draw_position"] ??=                                            new Vector3(0, 0, 0);
-Settings.mesh[$ "draw_rotation"] ??=                                            new Vector3(0, 0, 0);
-Settings.mesh[$ "draw_scale"] ??=                                               new Vector3(1, 1, 1);
-Settings.mesh[$ "draw_meshes"] ??=                                              true;
-Settings.mesh[$ "draw_textures"] ??=                                            true;
-Settings.mesh[$ "draw_vertex_colors"] ??=                                       true;
-Settings.mesh[$ "draw_lighting"] ??=                                            false;
-Settings.mesh[$ "draw_back_faces"] ??=                                          false;
-Settings.mesh[$ "draw_reflections"] ??=                                         false;
-Settings.mesh[$ "draw_collision"] ??=                                           false;
-Settings.mesh[$ "draw_axes"] ??=                                                true;
-Settings.mesh[$ "draw_light_direction"] ??=                                     180;
-Settings.mesh[$ "draw_grid"] ??=                                                true;
-Settings.mesh[$ "wireframe_alpha"] ??=                                          1;
-Settings.mesh[$ "reflect_settings"] ??=                                         MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE;
-Settings.mesh[$ "reflect_color"] ??=                                            0x7fff6600;
-Settings.mesh[$ "combine_obj_submeshes"] ??=                                    true;
+Settings.mesh[$ "draw_position"] ??=                                            MESH_DEF_VIEW_DRAW_POSITION;
+Settings.mesh[$ "draw_rotation"] ??=                                            MESH_DEF_VIEW_DRAW_ROTATION;
+Settings.mesh[$ "draw_scale"] ??=                                               MESH_DEF_VIEW_DRAW_SCALE;
+Settings.mesh[$ "draw_meshes"] ??=                                              MESH_DEF_VIEW_DRAW_MESHES;
+Settings.mesh[$ "draw_textures"] ??=                                            MESH_DEF_VIEW_DRAW_TEXTURES;
+Settings.mesh[$ "draw_vertex_colors"] ??=                                       MESH_DEF_VIEW_DRAW_VERTEX_TEXTURES;
+Settings.mesh[$ "draw_lighting"] ??=                                            MESH_DEF_VIEW_DRAW_LIGHTING; 
+Settings.mesh[$ "draw_back_faces"] ??=                                          MESH_DEF_VIEW_DRAW_BACK_FACES;
+Settings.mesh[$ "draw_reflections"] ??=                                         MESH_DEF_VIEW_DRAW_REFLECTIONS;
+Settings.mesh[$ "draw_collision"] ??=                                           MESH_DEF_VIEW_DRAW_COLLISION;
+Settings.mesh[$ "draw_axes"] ??=                                                MESH_DEF_VIEW_DRAW_AXES;
+Settings.mesh[$ "draw_light_direction"] ??=                                     MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION;
+Settings.mesh[$ "draw_grid"] ??=                                                MESH_DEF_VIEW_DRAW_GRID;
+Settings.mesh[$ "wireframe_alpha"] ??=                                          MESH_DEF_VIEW_WIREFRAME_ALPHA;
+Settings.mesh[$ "reflect_settings"] ??=                                         MESH_DEF_REFLECT_SETTINGS;
+Settings.mesh[$ "reflect_color"] ??=                                            MESH_DEF_REFLECT_COLOR;
+Settings.mesh[$ "combine_obj_submeshes"] ??=                                    MESH_DEF_COMBINE_OBJ_SUBMESHES;
+
+#macro MESH_DEF_VIEW_DRAW_POSITION                                              new Vector3(0, 0, 0)
+#macro MESH_DEF_VIEW_DRAW_ROTATION                                              new Vector3(0, 0, 0)
+#macro MESH_DEF_VIEW_DRAW_SCALE                                                 new Vector3(1, 1, 1)
+#macro MESH_DEF_VIEW_DRAW_MESHES                                                true
+#macro MESH_DEF_VIEW_DRAW_TEXTURES                                              true
+#macro MESH_DEF_VIEW_DRAW_VERTEX_TEXTURES                                       true
+#macro MESH_DEF_VIEW_DRAW_LIGHTING                                              false
+#macro MESH_DEF_VIEW_DRAW_BACK_FACES                                            false
+#macro MESH_DEF_VIEW_DRAW_REFLECTIONS                                           false
+#macro MESH_DEF_VIEW_DRAW_COLLISION                                             false
+#macro MESH_DEF_VIEW_DRAW_AXES                                                  true
+#macro MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION                                       180
+#macro MESH_DEF_VIEW_DRAW_GRID                                                  true
+#macro MESH_DEF_VIEW_WIREFRAME_ALPHA                                            1
+#macro MESH_DEF_REFLECT_SETTINGS                                                (MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE)
+#macro MESH_DEF_REFLECT_COLOR                                                   0x7fff6600
+#macro MESH_DEF_COMBINE_OBJ_SUBMESHES                                           true
 
 #macro COLOR_MODE_DARK_BACK                                                     0x1f1f1f
 #macro COLOR_MODE_DARK_DEFAULT                                                  0x5f5f5f
