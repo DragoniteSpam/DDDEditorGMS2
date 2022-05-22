@@ -41,7 +41,7 @@ function dialog_create_settings_data() {
         }))
             .SetTooltip("The default ambient lighting color. New maps will use this value. Existing maps will not be updated."),
         (new EmuInput(col2, EMU_INLINE, element_width, element_height, "Chunk size:", Game.meta.grid.chunk_size, "cells", 5, E_InputTypes.INT, function() {
-            Game.meta.grid.chunk_size = self.value;
+            Game.meta.grid.chunk_size = real(self.value);
         }))
             .SetRealNumberBounds(8, MAP_AXIS_LIMIT)
             .SetTooltip("The size of map chunks, in tiles"),

@@ -105,7 +105,7 @@ function dialog_create_settings_map() {
             .SetTooltip("The water texture to be used by the map. Deselect to clear."),
         new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Navigation"),
         (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Chunk size:", map.chunk_size, "in cells", 5, E_InputTypes.INT, function() {
-            self.root.map.chunk_size = string(self.value);
+            self.root.map.chunk_size = real(self.value);
         }))
             .SetTooltip("The size of the chunks maps are broken up into for optimization purposes."),
         (new EmuCheckbox(col3, EMU_AUTO, element_width, element_height, "Can fast travel to?", map.fast_travel_to, function() {
