@@ -214,7 +214,7 @@ function EditorModeMap() : EditorModeBase() constructor {
             
             if (Settings.view.wireframe) {
                 if (map_contents.frozen) {
-                    wireframe_enable();
+                    wireframe_enable(1, 512);
                     vertex_submit(map_contents.frozen, pr_trianglelist, tex);
                     if (self.active_map.reflections_enabled && map_contents.reflect_frozen) {
                         vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);

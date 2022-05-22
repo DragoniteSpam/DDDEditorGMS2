@@ -601,8 +601,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             ((Settings.terrain.fog_color>> 16) & 0xff) / 0xff
         );
         // wireframe uniforms
-        wireframe_enable(Settings.terrain.wireframe_alpha);
-        shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WireColor"), 1, 1, 1);
+        wireframe_enable(Settings.terrain.wireframe_alpha, );
         // water uniforms
         var water_level = 512 * power(Settings.terrain.water_level, 3);
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_WaterLevels"), water_level - 320, water_level, 0.75 * Settings.terrain.view_water);

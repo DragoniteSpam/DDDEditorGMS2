@@ -1,5 +1,7 @@
-function wireframe_enable(alpha = 1) {
+function wireframe_enable(alpha = 1, distance = 128, color = c_white) {
     shader_set_uniform_f(shader_get_uniform(shader_current(), "u_WireAlpha"), alpha);
+    shader_set_uniform_f(shader_get_uniform(shader_current(), "u_WireDistance"), distance);
+    shader_set_uniform_f(shader_get_uniform(shader_current(), "u_WireColor"), (color & 0x0000ff) / 0xff, ((color & 0x00ff00) >> 8) / 0xff, ((color & 0xff0000) >> 16) / 0xff);
 }
 
 function wireframe_disable() {
