@@ -125,7 +125,7 @@ function ui_init_mesh(mode) {
                     }
                 })
                 .SetID("DELETE MESH"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Export Mesh", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Export Mesh", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
                 var fn;
@@ -169,6 +169,12 @@ function ui_init_mesh(mode) {
     - [c_aqua]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
     - [c_aqua]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)")
                 .SetID("EXPORT MESH"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Vertex Format", function() {
+                emu_dialog_vertex_format(Stuff.mesh.vertex_format, function(value) {
+                    Stuff.mesh.vertex_format = value;
+                });
+            }))
+                .SetTooltip("Define the vertex format used for exporting vertex buffers"),
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Combine Submeshes", function() {
                 var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
                 
@@ -540,14 +546,4 @@ function ui_init_mesh(mode) {
     ]);
     
     return container.Refresh();
-    
-        /*
-        element = create_button(c2x, yy, "Exported Vertex Format", ew, eh, fa_center, function(button) {
-            emu_dialog_vertex_format(Stuff.mesh.vertex_format, function(value) {
-                Stuff.mesh.vertex_format = value;
-            });
-        }, id);
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        */
 }
