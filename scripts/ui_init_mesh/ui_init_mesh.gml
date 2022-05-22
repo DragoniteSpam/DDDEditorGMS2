@@ -453,16 +453,16 @@ function ui_init_mesh(mode) {
             // this one is for the masks and overlays
             //new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, emu_null, emu_null),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
-                var dialog = new EmuDialog(640, 600, "Mesh viewer settings");
+                var dialog = new EmuDialog(32 + 320 + 32, 640, "Mesh viewer settings");
+                dialog.root = self;
                 dialog.active_shade = 0;
                 dialog.x = 320;
                 dialog.y = 120;
                 
                 var col1x = 32;
-                var col2x = 336;
-                var col_width = 288;
+                var col_width = 320;
                 
-                dialog.AddContent([
+                return dialog.AddContent([
                     #region column 1
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw filled meshes?", Settings.mesh.draw_meshes, function() {
                         Settings.mesh.draw_meshes = self.value;
@@ -506,8 +506,29 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_grid = self.value;
                     }))
                         .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane."),
-                    #endregion
-                    #region column 2
+                    (new EmuButton(col1x, EMU_AUTO, col_width, 32, "[c_aqua]Reset", function() {
+                        Settings.mesh.draw_position = MESH_DEF_VIEW_DRAW_POSITION;
+                        Settings.mesh.draw_rotation = MESH_DEF_VIEW_DRAW_ROTATION;
+                        Settings.mesh.draw_scale = MESH_DEF_VIEW_DRAW_SCALE;
+                        Settings.mesh.draw_meshes = MESH_DEF_VIEW_DRAW_MESHES;
+                        Settings.mesh.draw_textures = MESH_DEF_VIEW_DRAW_TEXTURES;
+                        Settings.mesh.draw_vertex_colors = MESH_DEF_VIEW_DRAW_VERTEX_TEXTURES;
+                        Settings.mesh.draw_lighting = MESH_DEF_VIEW_DRAW_LIGHTING; 
+                        Settings.mesh.draw_back_faces = MESH_DEF_VIEW_DRAW_BACK_FACES;
+                        Settings.mesh.draw_reflections = MESH_DEF_VIEW_DRAW_REFLECTIONS;
+                        Settings.mesh.draw_collision = MESH_DEF_VIEW_DRAW_COLLISION;
+                        Settings.mesh.draw_axes = MESH_DEF_VIEW_DRAW_AXES;
+                        Settings.mesh.draw_light_direction = MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION;
+                        Settings.mesh.draw_grid = MESH_DEF_VIEW_DRAW_GRID;
+                        Settings.mesh.wireframe_alpha = MESH_DEF_VIEW_WIREFRAME_ALPHA;
+                        var xx = self.root.x;
+                        var yy = self.root.y;
+                        self.root.Close();
+                        var dialog = self.root.root.callback();
+                        dialog.contents_interactive = true;
+                        dialog.x = xx;
+                        dialog.y = yy;
+                    }))
                     #endregion
                 ]).AddDefaultCloseButton();
             }))
