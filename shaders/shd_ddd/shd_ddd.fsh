@@ -1,6 +1,7 @@
 // https://web.archive.org/web/20200306081453/http://codeflow.org/entries/2012/aug/02/easy-wireframe-display-with-barycentric-coordinates/
 #extension GL_OES_standard_derivatives : enable
 
+varying float v_FragDistance;
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 varying vec3 v_vBarycentric;
@@ -99,17 +100,25 @@ void CommonFog(inout vec4 baseColor) {
 // include("fog.f.xsh")
 #endregion
 
-// not sure why this works but gm_AlphaRefValue is not
-#define ALPHA_REF 0.2
-#define WIRE_ALPHA 1.0
-
-uniform float u_Wireframe;
-uniform float u_WireThickness;
+#region Wireframe
+#define WIRE_DISTANCE 128.0
+#define WIRE_THICKNESS 1.0
+uniform vec3 u_WireColor;
+uniform float u_WireAlpha;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
     return min(min(a3.x, a3.y), a3.z);
 }
+
+void DrawWireframe(inout vec3 color) {
+    color = mix(color, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_vBarycentric, WIRE_THICKNESS)) / (v_FragDistance / WIRE_DISTANCE));
+}
+#endregion
+
+// not sure why this works but gm_AlphaRefValue is not
+#define ALPHA_REF 0.2
+#define WIRE_ALPHA 1.0
 
 void main() {
     vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
@@ -121,11 +130,7 @@ void main() {
     
     gl_FragColor = vec4(color.rgb, sourceAlpha);
     
-    if (u_Wireframe == 1.0) {
-        float wire_value = 1.0 - wireEdgeFactor(v_vBarycentric, u_WireThickness);
-        gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(1), wire_value);
-        gl_FragColor.a = mix(gl_FragColor.a, 1.0, wire_value * 2.0);
-    }
+    DrawWireframe(gl_FragColor.rgb);
     
     if (gl_FragColor.a < ALPHA_REF) discard;
 }

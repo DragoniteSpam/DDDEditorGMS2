@@ -6,6 +6,7 @@ attribute vec3 in_Colour1;                                                      
 attribute vec3 in_Colour2;                                                      // bitangent
 attribute vec3 in_Colour3;                                                      // barycentric
 
+varying float v_FragDistance;
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 varying vec3 v_vBarycentric;
@@ -36,7 +37,9 @@ void CommonFogSetup() {
 // include("fog.v.xsh")
 
 void main() {
-    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1);
+    vec4 worldPosition = vec4(in_Position, 1);
+    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * worldPosition;
+    v_FragDistance = length((gm_Matrices[MATRIX_WORLD_VIEW] * worldPosition).xyz);
     
     CommonLightSetup();
     CommonFogSetup();

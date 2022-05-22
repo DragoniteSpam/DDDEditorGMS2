@@ -20,15 +20,6 @@ void CommonFog(inout vec4 baseColor) {
     baseColor.rgb = mix(baseColor.rgb, u_FogColor, f);
 }
 
-uniform vec3 u_WireColor;
-#define WIRE_THICKNESS 1.0
-uniform float u_WireAlpha;
-
-float wireEdgeFactor(vec3 barycentric, float thickness) {
-    vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
-    return min(min(a3.x, a3.y), a3.z);
-}
-
 uniform vec3 u_WaterLevels;             // end, start, strength
 uniform vec3 u_WaterColor;
 
@@ -81,6 +72,22 @@ void DrawCursor(inout vec3 base, vec2 position) {
 }
 #endregion
 
+#region Wireframe
+#define WIRE_THICKNESS 1.0
+#define WIRE_DISTANCE 128.0
+uniform vec3 u_WireColor;
+uniform float u_WireAlpha;
+
+float wireEdgeFactor(vec3 barycentric, float thickness) {
+    vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
+    return min(min(a3.x, a3.y), a3.z);
+}
+
+void DrawWireframe(inout vec3 color) {
+    color = mix(color, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / WIRE_DISTANCE));
+}
+#endregion
+
 void main() {
     vec3 normal = normalize(cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz)));
     float NdotL = clamp(dot(normal, u_LightDirection.xyz) * u_LightDirection.w, 0.0, 1.0);
@@ -125,6 +132,5 @@ void main() {
     }*/
     
     DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
-    
-    gl_FragColor.rgb = mix(gl_FragColor.rgb, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / 128.0));
+    DrawWireframe(gl_FragColor.rgb);
 }
