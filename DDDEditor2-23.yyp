@@ -271,6 +271,7 @@
     {"id":{"name":"spr_terrain_gen_part_snow","path":"sprites/spr_terrain_gen_part_snow/spr_terrain_gen_part_snow.yy",},"order":11,},
     {"id":{"name":"dmu_create_data_event_entrypoint_remove","path":"scripts/dmu_create_data_event_entrypoint_remove/dmu_create_data_event_entrypoint_remove.yy",},"order":7,},
     {"id":{"name":"dmu_create_event_event_entrypoint_remove","path":"scripts/dmu_create_event_event_entrypoint_remove/dmu_create_event_event_entrypoint_remove.yy",},"order":8,},
+    {"id":{"name":"Changelog - Terrain","path":"notes/Changelog - Terrain/Changelog - Terrain.yy",},"order":0,},
     {"id":{"name":"dmu_create_data_event_entrypoint_finalize","path":"scripts/dmu_create_data_event_entrypoint_finalize/dmu_create_data_event_entrypoint_finalize.yy",},"order":9,},
     {"id":{"name":"dmu_create_event_event_entrypoint_finalize","path":"scripts/dmu_create_event_event_entrypoint_finalize/dmu_create_event_event_entrypoint_finalize.yy",},"order":10,},
     {"id":{"name":"dialog_create_data_types","path":"scripts/dialog_create_data_types/dialog_create_data_types.yy",},"order":12,},
@@ -792,6 +793,7 @@
     {"folderPath":"folders/Terrain/Generation/Particles.yy","order":8,"resourceVersion":"1.0","name":"Particles","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Shading.yy","order":60,"resourceVersion":"1.0","name":"Shading","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Emu Implementation.yy","order":65,"resourceVersion":"1.0","name":"Emu Implementation","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Changelogs.yy","order":66,"resourceVersion":"1.0","name":"Changelogs","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
