@@ -125,6 +125,9 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"terrainops_min_height","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"terrainops_build_internal","kind":1,"help":"terrainops_build_internal(out)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+          ],"resourceVersion":"1.0","name":"__terrainops_build_internal","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"terrainops_version","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_set_active_data","path":"extensions/TerrainOps/TerrainOps.yy",},
@@ -155,6 +158,7 @@
         {"name":"__terrainops_build_obj","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_max_height","path":"extensions/TerrainOps/TerrainOps.yy",},
         {"name":"terrainops_min_height","path":"extensions/TerrainOps/TerrainOps.yy",},
+        {"name":"__terrainops_build_internal","path":"extensions/TerrainOps/TerrainOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",

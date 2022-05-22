@@ -64,6 +64,10 @@ function TERRAINOPS_BUILD_VBUFF(out) {
     return __terrainops_build_vbuff(buffer_get_address(out));
 }
 
+function TERRAINOPS_BUILD_INTERNAL(out) {
+    return __terrainops_build_internal(buffer_get_address(out));
+}
+
 function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale, sprite, format = DEFAULT_VERTEX_FORMAT, water_level = 0) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     static output = buffer_create(1024, buffer_fixed, 1);
@@ -86,12 +90,24 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     __terrainops_build_texture(buffer_get_address(texture_buffer));
     __terrainops_build_vertex_colour(buffer_get_address(colour_buffer));
     
+    var results = (builder_function == TERRAINOPS_BUILD_INTERNAL) ? { } : undefined;
+    
     for (var i = 0; i < w ; i += chunk_size) {
         for (var j = 0; j < h; j += chunk_size) {
             __terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
             var bytes = builder_function(output);
-            var output_name = fn + ((chunk_size < w || chunk_size < h) ? ("." + string(i div chunk_size) + "_" + string(j div chunk_size) + ext) : ext);
-            buffer_save_async(output, output_name, 0, bytes);
+            var key = string(i div chunk_size) + "_" + string(j div chunk_size);
+            if (builder_function == TERRAINOPS_BUILD_INTERNAL) {
+                results[$ key] = {
+                    x: i,
+                    y: j,
+                    buffer: buffer_create(bytes, buffer_fixed, 1),
+                };
+                buffer_copy(output, 0, bytes, results[$ key].buffer, 0);
+            } else {
+                var output_name = fn + ((chunk_size < w || chunk_size < h) ? ("." + key + ext) : ext);
+                buffer_save_async(output, output_name, 0, bytes);
+            }
         }
     }
     
@@ -99,6 +115,8 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     buffer_delete(colour_buffer);
     
     sprite_save(sprite, 0, filename_path(filename) + "terrain.png");
+    
+    return results;
 }
 
 function terrainops_build_mtl(filename) {
