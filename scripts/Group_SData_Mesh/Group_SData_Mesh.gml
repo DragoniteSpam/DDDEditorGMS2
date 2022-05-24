@@ -29,6 +29,8 @@ function DataMesh(source) : SData(source) constructor {
     
     self.texture_scale = 1;
     
+    self.terrain_data = undefined;
+    
     if (is_struct(source)) {
         self.type = source.type;
         self.tex_base = source.tex_base;
@@ -382,6 +384,8 @@ function DataMesh(source) : SData(source) constructor {
     static Destroy = function() {
         self.DestroyBase();
         
+        if (self.terrain_data) self.terrain_data.Destroy();
+        
         for (var i = 0; i < array_length(self.submeshes); i++) {
             self.submeshes[i].Destroy();
         }
@@ -480,6 +484,16 @@ function MeshCollisionShapeTrimesh() : MeshCollisionShape() constructor {
     self.triangles = [];
     self.type = MeshCollisionShapes.TRIMESH;
     // implement the trimesh later
+}
+
+function MeshTerrainData(w, h, heightmap) constructor {
+    self.h = h;
+    self.w = w;
+    self.heightmap = heightmap;
+    
+    self.Destroy = function() {
+        buffer_delete(self.heightmap);
+    };
 }
 
 enum MeshTypes {
