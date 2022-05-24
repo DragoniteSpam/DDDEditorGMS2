@@ -103,7 +103,16 @@ function dialog_create_settings_map() {
             .Select(array_search(Game.graphics.tilesets, guid_get(map.water_texture)))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("The water texture to be used by the map. Deselect to clear."),
-        new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Navigation"),
+        (new EmuList(col3, EMU_BASE, element_width, element_height, "Terrain:", element_height, 6, function() {
+            if (!self.root) return;
+            var selection = self.GetSelectedItem();
+            self.root.map.terrain = selection ? selection.GUID : NULL;
+        }))
+            .SetList(Game.mesh_terrain)
+            .Select(array_search(Game.mesh_terrain, guid_get(map.terrain)))
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetTooltip("The terrain model associated with this map."),
+        new EmuText(col3, EMU_AUTO, element_width, element_height, "[c_aqua]Navigation"),
         (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Chunk size:", map.chunk_size, "in cells", 5, E_InputTypes.INT, function() {
             self.root.map.chunk_size = real(self.value);
         }))
