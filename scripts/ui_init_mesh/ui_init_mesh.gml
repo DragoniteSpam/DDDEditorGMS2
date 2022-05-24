@@ -67,6 +67,11 @@ function ui_init_mesh(mode) {
             .SetID("MESH LIST"),
         (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
             self.GetSibling("MESH LIST").SetList(self.root.GetMeshType());
+            if (self.value == 0) {
+                self.GetSibling("MESH LIST").SetListColors(emu_color_meshes);
+            } else {
+                self.GetSibling("MESH LIST").SetListColors(function(index) { return EMU_COLOR_TEXT; });
+            }
         }))
             .AddOptions(["Standard", "Terrain"])
             .SetColumns(1, element_width / 2)
