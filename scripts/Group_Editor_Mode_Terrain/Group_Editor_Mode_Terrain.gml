@@ -726,7 +726,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         sprite_save(self.texture_image, 0, PATH_TEMP + "terrain_texture.png");
         mesh.tex_base = tileset_create(PATH_TEMP + "terrain_texture.png");
         
-        array_push(Game.meshes, mesh);
+        array_push(Game.mesh_terrain, mesh);
     };
     
     self.ExportD3D = function(filename, density = 1, chunk_size = 0) {

@@ -69,6 +69,7 @@ Game = new (function() constructor {
     };
     self.meshes = [];
     self.mesh_autotiles = [];
+    self.mesh_terrain = [];
     self.animations = [];
     self.events = {
         events: [],
