@@ -269,7 +269,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     self.cursor_position = undefined;
     
-    self.water = vertex_load("data/basic/water.vbuff", Stuff.graphics.vertex_format);
+    self.water = vertex_load("data/basic/water.vbuff", Stuff.graphics.format);
     self.depth_surface = surface_create(Settings.terrain.light_shadows_quality, Settings.terrain.light_shadows_quality);
     
     self.GenerateHeightData = function() {
@@ -714,7 +714,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         var mesh = new DataMesh(name);
         for (var i = 0, n = array_length(results); i < n; i++) {
             var value = results[i];
-            var vbuff = vertex_create_buffer_from_buffer(value.buffer, Stuff.graphics.vertex_format);
+            var vbuff = vertex_create_buffer_from_buffer(value.buffer, Stuff.graphics.format);
             // there's a part of me that wants to just not include empty vertex
             // buffers, but i'd still prefer to save empty chunks so that the
             // user knows that something actually happened and the program

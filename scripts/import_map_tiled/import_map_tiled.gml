@@ -99,21 +99,21 @@ function import_map_tiled(ask_clear = true) {
         buffer_resize(map_contents.frozen_data, buffer_tell(map_contents.frozen_data));
         
         if (buffer_get_size(map_contents.frozen_data) - 1) {
-            map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
+            map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.format);
             vertex_freeze(map_contents.frozen);
         } else {
             buffer_delete(map_contents.frozen_data);
             map_contents.frozen_data = undefined;
         }
         if (buffer_get_size(map_contents.reflect_frozen_data) - 1) {
-            map_contents.reflect_frozen = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+            map_contents.reflect_frozen = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data, Stuff.graphics.format);
             vertex_freeze(map_contents.reflect_frozen);
         } else {
             buffer_delete(map_contents.reflect_frozen_data);
             map_contents.reflect_frozen_data = undefined;
         }
         if (buffer_get_size(map_contents.water_data) - 1) {
-            map_contents.water = vertex_create_buffer_from_buffer(map_contents.water_data, Stuff.graphics.vertex_format);
+            map_contents.water = vertex_create_buffer_from_buffer(map_contents.water_data, Stuff.graphics.format);
             vertex_freeze(map_contents.water);
         } else {
             buffer_delete(map_contents.water_data);

@@ -12,8 +12,8 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 // not all of these may exist
                 if (file_exists(filename + ".vertex")) self.buffer = buffer_load(filename + ".vertex");
                 if (file_exists(filename + ".reflect")) self.reflect_buffer = buffer_load(filename + ".reflect");
-                try { self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format); } catch (e) { }
-                try { self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format); } catch (e) { }
+                try { self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format); } catch (e) { }
+                try { self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format); } catch (e) { }
             };
             
             static SaveAsset = function(filename) {

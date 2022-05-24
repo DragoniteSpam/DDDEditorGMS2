@@ -20,8 +20,8 @@ function batch_all_export(map, chunk_size) {
                             // are going to need to extract the coords later
                             key: key,
                         };
-                        vertex_begin(buffers[$ key].raw, Stuff.graphics.vertex_format);
-                        vertex_begin(buffers[$ key].raw_reflected, Stuff.graphics.vertex_format);
+                        vertex_begin(buffers[$ key].raw, Stuff.graphics.format);
+                        vertex_begin(buffers[$ key].raw_reflected, Stuff.graphics.format);
                     }
                     var vbuff = buffers[$ key];
                     thing.batch(vbuff.raw, undefined, vbuff.raw_reflected, undefined, thing);

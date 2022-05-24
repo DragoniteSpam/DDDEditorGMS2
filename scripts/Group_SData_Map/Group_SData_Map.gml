@@ -185,21 +185,21 @@ function DataMap(source, directory) : SData(source) constructor {
             #region batched stuff
             try {
                 self.contents.frozen_data = buffer_load(directory + "frozen.vbuff");
-                self.contents.frozen = vertex_create_buffer_from_buffer(self.contents.frozen_data, Stuff.graphics.vertex_format);
+                self.contents.frozen = vertex_create_buffer_from_buffer(self.contents.frozen_data, Stuff.graphics.format);
             } catch (e) {
                 wtf("Unable to load frozen vertex buffer data - " + self.name);
             }
             
             try {
                 self.contents.reflect_frozen_data = buffer_load(directory + "frozen.reflect");
-                self.contents.reflect_frozen = vertex_create_buffer_from_buffer(self.contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+                self.contents.reflect_frozen = vertex_create_buffer_from_buffer(self.contents.reflect_frozen_data, Stuff.graphics.format);
             } catch (e) {
                 wtf("Unable to load frozen reflection buffer data - " + self.name);
             }
             
             try {
                 self.contents.water_data = buffer_load(directory + "water.vbuff");
-                self.contents.water = vertex_create_buffer_from_buffer(self.contents.water_data, Stuff.graphics.vertex_format);
+                self.contents.water = vertex_create_buffer_from_buffer(self.contents.water_data, Stuff.graphics.format);
             } catch (e) {
                 wtf("Unable to load water buffer data - " + self.name);
             }

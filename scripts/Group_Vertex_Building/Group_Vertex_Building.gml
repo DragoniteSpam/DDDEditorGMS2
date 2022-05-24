@@ -54,7 +54,7 @@ function vertex_to_reflect(buffer) {
     
     try {
         rbuffer = vertex_create_buffer();
-        vertex_begin(rbuffer, Stuff.graphics.vertex_format);
+        vertex_begin(rbuffer, Stuff.graphics.format);
         var op_mirror_x = Settings.mesh.reflect_settings & MeshReflectionSettings.MIRROR_X;
         var op_mirror_y = Settings.mesh.reflect_settings & MeshReflectionSettings.MIRROR_Y;
         var op_mirror_z = Settings.mesh.reflect_settings & MeshReflectionSettings.MIRROR_Z;

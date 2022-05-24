@@ -31,7 +31,7 @@ function data_image_npc_frames(image) {
     
     for (var i = 0; i < image.hframes * image.vframes; i++) {
         var vbuffer = vertex_create_buffer();
-        vertex_begin(vbuffer, Stuff.graphics.vertex_format);
+        vertex_begin(vbuffer, Stuff.graphics.format);
         
         var uu = (i % image.hframes) * ww;
         var vv = (i div image.hframes) * hh;

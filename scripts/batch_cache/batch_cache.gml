@@ -8,8 +8,8 @@ function batch_cache() {
     };
     
     array_push(map_contents.batches, batch);
-    vertex_begin(batch.vertex, Stuff.graphics.vertex_format);
-    vertex_begin(batch.reflect_vertex, Stuff.graphics.vertex_format);
+    vertex_begin(batch.vertex, Stuff.graphics.format);
+    vertex_begin(batch.reflect_vertex, Stuff.graphics.format);
     
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
         var thing = map_contents.batch_in_the_future[| i];

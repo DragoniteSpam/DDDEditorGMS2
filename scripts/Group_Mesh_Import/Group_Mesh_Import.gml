@@ -23,7 +23,7 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
     
     var vbuffer = vertex_create_buffer();
     
-    vertex_begin(vbuffer, Stuff.graphics.vertex_format);
+    vertex_begin(vbuffer, Stuff.graphics.format);
     
     var vc = 0;
     
@@ -651,7 +651,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         
         if (!vbuffers[$ bmtl]) {
             vbuffers[$ bmtl] = vertex_create_buffer();
-            vertex_begin(vbuffers[$ bmtl], Stuff.graphics.vertex_format);
+            vertex_begin(vbuffers[$ bmtl], Stuff.graphics.format);
         }
         
         var vb = vbuffers[$ bmtl];

@@ -719,7 +719,7 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
         var th = TILE_HEIGHT;
         
         self.vbuffer = vertex_create_buffer();
-        vertex_begin(self.vbuffer, Stuff.graphics.vertex_format);
+        vertex_begin(self.vbuffer, Stuff.graphics.format);
         vertex_point_complete(self.vbuffer, 0, 0, 0, 0, 0, 1, texx1, texy1, self.tile_color, self.tile_alpha);
         vertex_point_complete(self.vbuffer, tw, 0, 0, 0, 0, 1, texx2, texy1, self.tile_color, self.tile_alpha);
         vertex_point_complete(self.vbuffer, tw, th, 0, 0, 0, 1, texx2, texy2, self.tile_color, self.tile_alpha);

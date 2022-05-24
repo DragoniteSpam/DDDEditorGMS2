@@ -48,6 +48,7 @@ function EditorModeMesh() : EditorModeBase() constructor {
         self.camera.Reset();
     };
     
+    // not a vertex format itself, but this is the attributes we export with
     self.vertex_format = VertexFormatData.STANDARD;
     
     enum VertexFormatData {

@@ -20,8 +20,8 @@ function MeshSubmesh(source) constructor {
         if (file_exists(directory  + proto + ".vertex")) self.buffer = buffer_load(directory  + proto + ".vertex");
         if (file_exists(directory  + proto + ".reflect")) self.reflect_buffer = buffer_load(directory  + proto + ".reflect");
         
-        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
-        if (self.reflect_buffer) self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
+        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format);
+        if (self.reflect_buffer) self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format);
     };
     
     static SaveAsset = function(directory) {
@@ -70,11 +70,11 @@ function MeshSubmesh(source) constructor {
         var cloned_data = new MeshSubmesh(self.name);
         if (self.buffer) {
             cloned_data.buffer = buffer_clone(self.buffer, buffer_fixed, 1);
-            cloned_data.vbuffer = vertex_create_buffer_from_buffer(cloned_data.buffer, Stuff.graphics.vertex_format);
+            cloned_data.vbuffer = vertex_create_buffer_from_buffer(cloned_data.buffer, Stuff.graphics.format);
         }
         if (self.reflect_buffer) {
             cloned_data.reflect_buffer = buffer_clone(self.reflect_buffer, buffer_fixed, 1);
-            cloned_data.reflect_vbuffer = vertex_create_buffer_from_buffer(cloned_data.reflect_buffer, Stuff.graphics.vertex_format);
+            cloned_data.reflect_vbuffer = vertex_create_buffer_from_buffer(cloned_data.reflect_buffer, Stuff.graphics.format);
         }
         cloned_data.path = self.path;
         
@@ -130,7 +130,7 @@ function MeshSubmesh(source) constructor {
         var old_size = buffer_get_size(self.buffer);
         buffer_resize(self.buffer, old_size + new_size);
         buffer_copy(raw_buffer, 0, new_size, self.buffer, old_size);
-        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
+        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format);
         vertex_freeze(self.vbuffer);
         
         if (self.reflect_buffer) {
@@ -152,13 +152,13 @@ function MeshSubmesh(source) constructor {
     
     static internalSetVertexBuffer = function() {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
-        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
+        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format);
         vertex_freeze(self.vbuffer);
     };
     
     static internalSetReflectVertexBuffer = function() {
         if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
-        self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
+        self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format);
         vertex_freeze(self.reflect_vbuffer);
     };
 }

@@ -295,7 +295,7 @@ function buffer_dotobj_to_standard(poly_list) {
     var format_code = poly_list[eDotDaePolyList.FormatCode];
     var raw = buffer_create_from_vertex_buffer(source, buffer_fixed, 1);
     var vbuff = vertex_create_buffer();
-    vertex_begin(vbuff, Stuff.graphics.vertex_format);
+    vertex_begin(vbuff, Stuff.graphics.format);
     
     if (format_code & DOTDAE_FORMAT_J) {
         repeat (vertex_get_number(source)) {
