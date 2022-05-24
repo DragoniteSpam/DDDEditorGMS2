@@ -5,9 +5,12 @@ attribute vec2 in_TextureCoord;
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+uniform float alpha;
+
 void main() {
-    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position.xyz, 1.);
+    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1);
     
     v_vColour = in_Colour;
+    v_vColour.a *= alpha;
     v_vTexcoord = in_TextureCoord;
 }

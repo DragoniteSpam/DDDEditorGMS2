@@ -74,7 +74,6 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                             shader_set(shd_wireframe);
                             var shape = mesh_data.collision_shapes[i];
                             switch (shape.type) {
-                                
                                 case MeshCollisionShapes.BOX:
                                     matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
                                     vertex_submit(Stuff.graphics.wire_box, pr_linelist, tex_none);
