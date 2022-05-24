@@ -10,6 +10,10 @@ function ui_init_mesh(mode) {
     
     var container = new EmuCore(0, 16, hud_width, hud_height);
     
+    container.GetMeshType = method(container, function() {
+        return (self.GetChild("LIST TYPE").value == 0) ? Game.meshes : Game.mesh_terrain;
+    });
+    
     container.AddContent([
         new EmuFileDropperListener(function(files) {
             var filtered_list = self.Filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
@@ -24,19 +28,19 @@ function ui_init_mesh(mode) {
                 }
             }
         }),
-        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, 25, function() {
+        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, 22, function() {
             self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
         }))
             .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
             .SetMultiSelect(true)
             .SetListColors(function(index) {
-                return (Game.meshes[index].type == MeshTypes.SMF) ? c_orange : EMU_COLOR_TEXT;
+                return (self.GetSibling("MESH LIST").At(index).type == MeshTypes.SMF) ? c_orange : EMU_COLOR_TEXT;
             })
             .SetCallbackMiddle(function() {
-                array_sort_name(Game.meshes);
+                array_sort_name(self.root.GetMeshType());
             })
             .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
-                var mesh = Game.meshes[index];
+                var mesh = self.At(index);
                 var prefix = "", suffix = "";
                 if (mesh.flags & MeshFlags.PARTICLE) {
                     prefix = "(p)" + prefix;
@@ -57,23 +61,30 @@ function ui_init_mesh(mode) {
                 return prefix + mesh.name + suffix;
             })
             .SetRefresh(function(data) {
-                self.SetList(Game.meshes);
+                self.SetList(self.root.GetMeshType());
             })
             .SetListColors(emu_color_meshes)
             .SetID("MESH LIST"),
+        (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
+            self.GetSibling("MESH LIST").SetList(self.root.GetMeshType());
+        }))
+            .AddOptions(["Standard", "Terrain"])
+            .SetColumns(1, element_width / 2)
+            .SetEnabled(EDITOR_BASE_MODE != ModeIDs.MESH)
+            .SetID("LIST TYPE"),
         (new EmuCore(0, 0, hud_width, hud_height)).AddContent([
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Essentials"),
             #region essentials
             (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Name:", "", "name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    Game.meshes[real(indices[i])].name = self.value;
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).name = self.value;
                 }
                 batch_again();
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined);
-                    self.SetValue((data != undefined && array_length(data) == 1) ? Game.meshes[data[0]].name : "");
+                    self.SetValue((data != undefined && array_length(data) == 1) ? self.root.GetSibling("MESH LIST").At(data[0]).name : "");
                 })
                 .SetID("MESH NAME"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
@@ -92,7 +103,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Delete Mesh", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
-                var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? Game.meshes[indices[0]].name : " the selected meshes") + "?", function() {
+                var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
                     var indices = self.root.indices;
                     
                     for (var i = 0, n = array_length(indices); i < n; i++) {
@@ -102,7 +113,7 @@ function ui_init_mesh(mode) {
                     array_sort(indices, false);
                     
                     for (var i = 0, n = array_length(indices); i < n; i++) {
-                        Game.meshes[real(indices[i])].Destroy();
+                        self.root.GetSibling("MESH LIST").At(real(indices[i])).Destroy();
                     }
                     batch_again();
                     self.root.Dispose();
@@ -130,7 +141,7 @@ function ui_init_mesh(mode) {
                 
                 var fn;
                 if (array_length(indices) == 1) {
-                    fn = get_save_filename_mesh(Game.meshes[indices[0]].name);
+                    fn = get_save_filename_mesh(self.root.GetSibling("MESH LIST").At(indices[0]).name);
                 } else {
                     fn = get_save_filename_mesh("save everything here");
                 }
@@ -139,7 +150,7 @@ function ui_init_mesh(mode) {
                 var folder = filename_path(fn);
                 
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    var mesh = Game.meshes[indices[i]];
+                    var mesh = self.root.GetSibling("MESH LIST").At(indices[i]);
                     var name = (array_length(indices) == 1) ? fn : (folder + mesh.name + filename_ext(fn));
                     switch (mesh.type) {
                         case MeshTypes.RAW:
@@ -176,7 +187,7 @@ function ui_init_mesh(mode) {
             }))
                 .SetTooltip("Define the vertex format used for exporting vertex buffers"),
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Combine Submeshes", function() {
-                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
+                var mesh = self.root.GetSibling("MESH LIST").GetSelectedItem();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
                     var mesh = self.root.mesh;
@@ -203,7 +214,7 @@ function ui_init_mesh(mode) {
             }))
                 .SetRefresh(function(data) {
                     if ((data != undefined) && (array_length(data) == 1)) {
-                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
+                        self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").At(real(data[0])).submeshes) > 1);
                     } else {
                         self.SetInteractive(false);
                     }
@@ -211,7 +222,7 @@ function ui_init_mesh(mode) {
                 .SetTooltip("Combine the submeshes of the selected 3D meshes.")
                 .SetID("COMBINE SUBMESHES"),
             (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Separate Submeshes", function() {
-                var mesh = Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()];
+                var mesh = self.root.GetSibling("MESH LIST").GetSelectedItem();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
                     var mesh = self.root.mesh;
@@ -220,7 +231,7 @@ function ui_init_mesh(mode) {
                         var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
                         var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
                         new_mesh.CopyPropertiesFrom(mesh);
-                        array_push(Game.meshes, new_mesh);
+                        array_push(self.root.GetMeshType(), new_mesh);
                     }
                     
                     self.root.Dispose();
@@ -230,7 +241,7 @@ function ui_init_mesh(mode) {
             }))
                 .SetRefresh(function(data) {
                     if ((data != undefined) && (array_length(data) == 1)) {
-                        self.SetInteractive(array_length(Game.meshes[real(data[0])].submeshes) > 1);
+                        self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").At(real(data[0])).submeshes) > 1);
                     } else {
                         self.SetInteractive(false);
                     }
@@ -321,7 +332,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Bake Transformation", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
-                var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? Game.meshes[indices[0]].name : " the selected meshes") + "?", function() {
+                var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
                     var indices = self.root.indices;
                     __meshops_transform_set_matrix(
                         Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z,
@@ -329,7 +340,7 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z
                     );
                     for (var i = 0, n = array_length(indices); i < n; i++) {
-                        Game.meshes[real(indices[i])].ActionTransform();
+                        self.root.list[real(indices[i])].ActionTransform();
                     }
                     batch_again();
                     Stuff.mesh.ResetTransform();
@@ -337,6 +348,7 @@ function ui_init_mesh(mode) {
                 });
                 
                 dg.indices = indices;
+                dg.list = self.root.GetMeshType();
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined && array_length(data) > 0);
@@ -354,7 +366,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Rotate Up Axis", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    Game.meshes[real(indices[i])].ActionRotateUpAxis();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionRotateUpAxis();
                 }
                 batch_again();
             }))
@@ -366,7 +378,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width / 3, element_height, "Mirror X", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    Game.meshes[real(indices[i])].ActionMirrorX();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorX();
                 }
                 batch_again();
             }))
@@ -378,7 +390,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x + element_width / 3, EMU_INLINE, element_width / 3, element_height, "Mirror Y", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    Game.meshes[real(indices[i])].ActionMirrorY();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorY();
                 }
                 batch_again();
             }))
@@ -390,7 +402,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x + element_width * 2 / 3, EMU_INLINE, element_width / 3, element_height, "Mirror Z", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    Game.meshes[real(indices[i])].ActionMirrorZ();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorZ();
                 }
                 batch_again();
             }))
@@ -402,7 +414,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Flip Texture Horizontally", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    Game.meshes[real(indices[i])].ActionFlipTexU();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionFlipTexU();
                 }
                 batch_again();
             }))
@@ -414,7 +426,7 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Flip Texture Vertically", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
-                    Game.meshes[real(indices[i])].ActionFlipTexV();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionFlipTexV();
                 }
                 batch_again();
             }))
@@ -424,7 +436,7 @@ function ui_init_mesh(mode) {
                 .SetTooltip("Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.")
                 .SetID("MIRROR TEX V"),
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Materials", function() {
-                dialog_create_mesh_material_settings(self, self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
+                dialog_create_mesh_material_settings(self.root.root.GetMeshType(), self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined && array_length(data) > 0);
@@ -432,7 +444,7 @@ function ui_init_mesh(mode) {
                 .SetTooltip("Set some material properties used by the selected meshes. Right now I've only implemented the base (diffuse) texture but I'd like to get around to the rest later.")
                 .SetID("MATERIALS"),
             (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Submeshes", function() {
-                dialog_create_mesh_submesh(Game.meshes[self.root.GetSibling("MESH LIST").GetSelection()]);
+                dialog_create_mesh_submesh(self.root.GetSibling("MESH LIST").GetSelectedItem());
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined && array_length(data)  == 1);
@@ -440,7 +452,7 @@ function ui_init_mesh(mode) {
                 .SetTooltip("View and manage mesh submeshes.")
                 .SetID("SUBMESHES"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "More...", function() {
-                dialog_create_mesh_other_settings(self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
+                dialog_create_mesh_other_settings(self.root.root.GetMeshType(), self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined && array_length(data) > 0);
@@ -457,7 +469,7 @@ function ui_init_mesh(mode) {
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
             // this one is for the masks and overlays
-            //new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, emu_null, emu_null),
+            //new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, /* ... */, /* ... */, emu_null, emu_null),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
                 var dialog = new EmuDialog(32 + 320 + 32, 640, "Mesh viewer settings");
                 dialog.root = self;

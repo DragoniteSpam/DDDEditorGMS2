@@ -1,12 +1,13 @@
-function dialog_create_mesh_normal_settings(selection) {
+function dialog_create_mesh_normal_settings(list, selection) {
     var dialog = new EmuDialog(320, 240, "Normals");
+    dialog.list = list;
     dialog.selection = selection;
     
     return dialog.AddContent([
         (new EmuButton(32, EMU_AUTO, 256, 32, "Set Flat Normals", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[real(selection[i])].ActionNormalsFlat();
+                self.root.list[real(selection[i])].ActionNormalsFlat();
             }
             batch_again();
         }))
@@ -14,7 +15,8 @@ function dialog_create_mesh_normal_settings(selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Set Smooth Normals", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[real(selection[i])].ActionNormalsSmooth(Settings.config.normal_threshold);            }
+                self.root.list[real(selection[i])].ActionNormalsSmooth(Settings.config.normal_threshold);
+            }
             batch_again();
         }))
             .SetTooltip("Weigh the normals of each vertex based on the angle of their surrounding triangles, if the angle between them is less than the specified threshold."),

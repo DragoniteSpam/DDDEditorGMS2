@@ -1,4 +1,5 @@
-function dialog_create_mesh_material_settings(dialog, selection) {    var dw = 560;
+function dialog_create_mesh_material_settings(mesh_list, selection) {
+    var dw = 560;
     var dh = 640;
     
     var columns = 1;
@@ -6,10 +7,10 @@ function dialog_create_mesh_material_settings(dialog, selection) {    var dw = 5
     var eh = 24;
     var n_list_entries = 16;
     
-    var find_tileset_index = function(selected_things, accessor) {
+    var find_tileset_index = function(list, selected_things, accessor) {
         var target_index = -1;
         for (var i = 0; i < array_length(selected_things); i++) {
-            var thing = Game.meshes[selected_things[i]];
+            var thing = list[selected_things[i]];
             for (var j = 0; j < array_length(Game.graphics.tilesets); j++) {
                 if (Game.graphics.tilesets[j].GUID == accessor(thing)) {
                     if (target_index != -1) {
@@ -22,16 +23,17 @@ function dialog_create_mesh_material_settings(dialog, selection) {    var dw = 5
         return target_index;
     };
     
-    var id_base = find_tileset_index(selection, function(thing) { return thing.tex_base; });
-    var id_ambient = find_tileset_index(selection, function(thing) { return thing.tex_ambient; });
-    var id_specular_color = find_tileset_index(selection, function(thing) { return thing.tex_specular_color; });
-    var id_specular_highlight = find_tileset_index(selection, function(thing) { return thing.tex_specular_highlight; });
-    var id_alpha = find_tileset_index(selection, function(thing) { return thing.tex_alpha; });
-    var id_bump = find_tileset_index(selection, function(thing) { return thing.tex_bump; });
-    var id_displacement = find_tileset_index(selection, function(thing) { return thing.tex_displacement; });
-    var id_decal = find_tileset_index(selection, function(thing) { return thing.tex_stencil; });
+    var id_base = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_base; });
+    var id_ambient = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_ambient; });
+    var id_specular_color = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_color; });
+    var id_specular_highlight = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_highlight; });
+    var id_alpha = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_alpha; });
+    var id_bump = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_bump; });
+    var id_displacement = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_displacement; });
+    var id_decal = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_stencil; });
     
     var dg = new EmuDialog(dw, dh, "Materials");
+    dg.list = mesh_list;
     dg.selection = selection;
     dg.active_shade = false;
     

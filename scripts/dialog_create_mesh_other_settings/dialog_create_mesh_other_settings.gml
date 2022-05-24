@@ -1,22 +1,23 @@
-function dialog_create_mesh_other_settings(selection) {
+function dialog_create_mesh_other_settings(list, selection) {
     var dialog = new EmuDialog(320, 400, "Other mesh options");
+    dialog.list = list;
     dialog.selection = selection;
     
     return dialog.AddContent([
         (new EmuButton(32, EMU_AUTO, 256, 32, "Normals", function() {
-            dialog_create_mesh_normal_settings(self.root.selection);
+            dialog_create_mesh_normal_settings(self.root.list, self.root.selection);
         }))
             .SetTooltip("Adjust the vertex normals of the selected meshes."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
             if (array_length(self.root.selection) != 1) return;
-            dialog_create_mesh_collision_settings(Game.meshes[self.root.selection[0]]);
+            dialog_create_mesh_collision_settings(self.root.list[self.root.selection[0]]);
         }))
             .SetTooltip("Collision shape data to go with this mesh.")
             .SetInteractive(array_length(selection) == 1),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Center", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[selection[i]].PositionAtCenter();
+                self.root.list[selection[i]].PositionAtCenter();
             }
             batch_again();
         }))
@@ -24,7 +25,7 @@ function dialog_create_mesh_other_settings(selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Invert Transparency", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[selection[i]].ActionInvertAlpha();
+                self.root.list[selection[i]].ActionInvertAlpha();
             }
             batch_again();
         }))
@@ -32,7 +33,7 @@ function dialog_create_mesh_other_settings(selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Transparency", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[selection[i]].ActionResetAlpha();
+                self.root.list[selection[i]].ActionResetAlpha();
             }
             batch_again();
         }))
@@ -40,7 +41,7 @@ function dialog_create_mesh_other_settings(selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Vertex Color", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[selection[i]].ActionResetColour();
+                self.root.list[selection[i]].ActionResetColour();
             }
             batch_again();
         }))
@@ -48,7 +49,7 @@ function dialog_create_mesh_other_settings(selection) {
         (new EmuButton(32, EMU_AUTO, 256, 32, "Generate Reflections", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                Game.meshes[real(selection[i])].GenerateReflections();
+                self.root.list[real(selection[i])].GenerateReflections();
             }
             batch_again();
         }))
