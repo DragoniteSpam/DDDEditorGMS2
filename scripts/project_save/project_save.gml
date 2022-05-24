@@ -91,6 +91,7 @@ function project_save() {
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
         meshes: project_write_json(Game.meshes),
+        terrain: project_write_json(Game.mesh_terrain),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshes.json");
     buffer_write_file(json_stringify({
