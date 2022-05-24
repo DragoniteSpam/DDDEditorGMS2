@@ -352,6 +352,9 @@ function DataMesh(source) : SData(source) constructor {
                 }
             }
         }
+        
+        buffer_write(buffer, buffer_bool, !!self.terrain_data);
+        if (self.terrain_data) self.terrain_data.Export(buffer);
     };
     
     static CreateJSONMesh = function() {
@@ -497,8 +500,8 @@ function MeshCollisionShapeTrimesh() : MeshCollisionShape() constructor {
 }
 
 function MeshTerrainData(w, h, heightmap) constructor {
-    self.h = h;
     self.w = w;
+    self.h = h;
     self.heightmap = heightmap;
     
     self.Destroy = function() {
@@ -521,6 +524,12 @@ function MeshTerrainData(w, h, heightmap) constructor {
     
     self.LoadAsset = function(directory) {
         self.heightmap = buffer_load(directory + ".hm");
+    };
+    
+    self.Export = function(buffer) {
+        buffer_write(buffer, buffer_u32, self.w);
+        buffer_write(buffer, buffer_u32, self.h);
+        buffer_write_buffer(buffer, self.height_data);
     };
 }
 
