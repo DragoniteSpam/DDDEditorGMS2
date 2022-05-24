@@ -109,7 +109,7 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var meshes = json.meshes;
-        var terrain = json.mesh_terrain;
+        var terrain = json[$ "terrain"];
         
         for (var i = 0; i < array_length(meshes); i++) {
             var mesh = new DataMesh(meshes[i]);
@@ -117,10 +117,12 @@ function project_load(id) {
             array_push(Game.meshes, mesh);
         }
         
-        for (var i = 0; i < array_length(terrain); i++) {
-            var mesh = new DataMesh(terrain[i]);
-            mesh.LoadAsset(directory);
-            array_push(Game.mesh_terrain, mesh);
+        if (terrain != undefined) {
+            for (var i = 0; i < array_length(terrain); i++) {
+                var mesh = new DataMesh(terrain[i]);
+                mesh.LoadAsset(directory);
+                array_push(Game.mesh_terrain, mesh);
+            }
         }
     };
     

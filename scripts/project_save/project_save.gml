@@ -135,6 +135,7 @@ function project_save() {
     save_assets(folder_audio_name, Game.audio.se);
     save_assets(folder_audio_name, Game.audio.bgm);
     save_assets(folder_mesh_name, Game.meshes);
+    save_assets(folder_mesh_name, Game.mesh_terrain);
     save_assets(folder_mesh_autotile_name, Game.mesh_autotiles);
     save_assets(folder_map_name, Game.maps);
     Stuff.terrain.SaveAsset(folder_terrain_name);
