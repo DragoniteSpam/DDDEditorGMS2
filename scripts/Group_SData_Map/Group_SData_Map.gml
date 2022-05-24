@@ -33,6 +33,8 @@ function DataMap(source, directory) : SData(source) constructor {
     self.skybox = NULL;                                                         // GUID
     self.chunk_size = 32;                                                       // int
     
+    self.terrain = NULL;                                                        // GUID
+    
     self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);               // 3D flag array
     self.lights = array_create(MAX_LIGHTS, NULL);                               // GUID array
     self.discovery = 0;                                                         // index
@@ -482,6 +484,7 @@ function DataMap(source, directory) : SData(source) constructor {
         json.code = self.code;
         json.generic_data = self.generic_data;
         json.grid_flags = self.grid_flags;
+        json.terrain = self.terrain;
         return json;
     };
     
@@ -545,5 +548,6 @@ function DataMap(source, directory) : SData(source) constructor {
         self.grid_flags = source.grid_flags;
         self.lights = source.lights;
         self.water_texture = source[$ "water_texture"] ?? NULL;
+        self.terrain = source[$ "terrain"] ?? NULL;
     }
 }
