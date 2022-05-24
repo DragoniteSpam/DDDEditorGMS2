@@ -60,6 +60,12 @@ function DataMesh(source) : SData(source) constructor {
         } catch (e) {
             self.collision_shapes = [];
         }
+        
+        try {
+            self.terrain_data = new MeshTerrainData(source.terrain_data.w, source.terrain_data.h, 0);
+        } catch (e) {
+            self.terrain_data = undefined;
+        }
     }
     
     self.CopyPropertiesFrom = function(mesh) {
@@ -272,6 +278,7 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             self.submeshes[i].LoadAsset(directory + guid + "_");
         }
+        if (self.terrain_data) self.terrain_data.LoadAsset(directory + guid + "+");
     };
     
     static SaveAsset = function(directory) {
@@ -280,6 +287,7 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             self.submeshes[i].SaveAsset(directory + guid + "_");
         }
+        if (self.terrain_data) self.terrain_data.SaveAsset(directory + guid + "+");
     };
     
     self.Export = function(buffer) {
@@ -373,6 +381,8 @@ function DataMesh(source) : SData(source) constructor {
         }
         
         json.collision_shapes = self.collision_shapes;
+        
+        if (self.terrain_data) json.terrain_data = self.terrain_data.Save();
         
         return json;
     };
@@ -493,6 +503,24 @@ function MeshTerrainData(w, h, heightmap) constructor {
     
     self.Destroy = function() {
         buffer_delete(self.heightmap);
+    };
+    
+    self.Save = function() {
+        return {
+            h: h, w: w,
+        };
+    };
+    
+    self.Load = function(source) {
+        
+    };
+    
+    self.SaveAsset = function(directory) {
+        buffer_save(self.heightmap, directory + ".hm");
+    };
+    
+    self.LoadAsset = function(directory) {
+        self.heightmap = buffer_load(directory + ".hm");
     };
 }
 
