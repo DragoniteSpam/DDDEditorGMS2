@@ -246,7 +246,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         #region grids, selection boxes, zones
         if (Settings.view.grid) {
             shader_set(shd_wireframe);
-            transform_set(0, 0, self.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
+            matrix_set(matrix_world, matrix_build(0, 0, self.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1));
             vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
             matrix_set(matrix_world, matrix_build_identity());
             shader_set(shd_ddd);
@@ -266,8 +266,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         
         #region unlit meshes - UI stuff like axes and gizmos
         if (Game.meta.start.map == self.active_map.GUID) {
-            transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Game.meta.start.direction], 1, 1, 1);
-            transform_add((Game.meta.start.x + 0.5) * TILE_WIDTH, (Game.meta.start.y + 0.5) * TILE_HEIGHT, Game.meta.start.z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+            matrix_set(matrix_world, matrix_build((Game.meta.start.x + 0.5) * TILE_WIDTH, (Game.meta.start.y + 0.5) * TILE_HEIGHT, Game.meta.start.z * TILE_DEPTH, 0, 0, Stuff.direction_lookup[Game.meta.start.direction], 1, 1, 1));
             vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
         }
         

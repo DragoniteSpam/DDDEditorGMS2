@@ -24,14 +24,14 @@ function draw_animator() {
             var ksz = animation.GetValue(i, moment, KeyframeParameters.SCALE_Z);
             var kcolor = animation.GetValue(i, moment, KeyframeParameters.COLOR);
             var kalpha = animation.GetValue(i, moment, KeyframeParameters.ALPHA);
-            transform_set(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
+            matrix_set(matrix_world, matrix_build(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz));
             // todo
             shader_set(shd_wireframe);
             vertex_submit(Stuff.graphics.grid_sphere, pr_linelist, -1);
         }
     }
     
-    transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
+    matrix_set(matrix_world, matrix_build(0, 0, 0.5, 0, 0, 0, 1, 1, 1));
     shader_set(shd_wireframe);
     vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
     shader_set(shd_basic_colors);

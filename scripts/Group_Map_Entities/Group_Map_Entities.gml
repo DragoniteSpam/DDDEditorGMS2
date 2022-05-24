@@ -434,7 +434,42 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.scalable = true;
     
     static batch = batch_mesh;
-    static render = render_mesh;
+    
+    static render = function(entity) {
+        var mesh = guid_get(entity.mesh);
+        if (mesh && entity.GetVertexBuffer()) {
+            switch (mesh.type) {
+                case MeshTypes.RAW:
+                    if (Settings.view.entities) {
+                        var mesh = guid_get(entity.mesh);
+                        matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+                        var tex = entity.GetTexture();
+                        vertex_submit(entity.GetVertexBuffer(), pr_trianglelist, tex);
+                        
+                        if (Stuff.map.active_map.reflections_enabled) {
+                            var water = Stuff.map.active_map.water_level;
+                            var offset = (water - (entity.zz + entity.off_zz - water)) * TILE_DEPTH;
+                            matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, offset, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+                            
+                            var reflect = entity.GetReflectVertexBuffer();
+                            if (reflect) {
+                                vertex_submit(reflect, pr_trianglelist, tex);
+                            }
+                        }
+                        
+                        matrix_set(matrix_world, matrix_build_identity());
+                    }
+                    break;
+                case MeshTypes.SMF: break;
+            }
+        } else {
+            if (Settings.view.entities) {
+                matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+                vertex_submit(Stuff.graphics.mesh_missing, pr_trianglelist, -1);
+                matrix_set(matrix_world, matrix_build_identity());
+            }
+        }
+    };
     
     static get_bounding_box = function() {
         var mesh_data = guid_get(self.mesh);
@@ -578,7 +613,22 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     self.scalable = false;
     
     static batch = batch_mesh_autotile;
-    static render = render_mesh_autotile;
+    static render = function(mesh_autotile) {
+        var mapping = get_index_from_autotile_mask(mesh_autotile.terrain_id);
+        
+        var at = guid_get(mesh_autotile.autotile_id);
+        var vbuffer = at ? at.layers[mesh_autotile.terrain_type].tiles[mapping].vbuffer : Stuff.graphics.missing_autotile;
+        if (!vbuffer) vbuffer = Stuff.graphics.missing_autotile;
+        
+        matrix_set(matrix_world, matrix_build(mesh_autotile.xx * TILE_WIDTH, mesh_autotile.yy * TILE_HEIGHT, mesh_autotile.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1));
+        
+        if (Settings.view.entities) {
+            var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+            vertex_submit(vbuffer, pr_trianglelist, tex);
+        }
+        
+        matrix_set(matrix_world, matrix_build_identity());
+    };
     
     self.get_bounding_box = function() {
         return new BoundingBox(self.xx, self.yy, self.zz, self.xx + 1, self.yy + 1, self.zz + 1);
@@ -653,7 +703,7 @@ function EntityPawn(source) : Entity(source) constructor {
     
         var index = self.map_direction * data.hframes + floor(self.frame);
     
-        transform_set(self.xx * TILE_WIDTH, self.yy * TILE_HEIGHT, self.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+        matrix_set(matrix_world, matrix_build(self.xx * TILE_WIDTH, self.yy * TILE_HEIGHT, self.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1));
         vertex_submit(data ? data.npc_frames[index] : Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(data ? data.picture : spr_pawn_missing, 0));
         matrix_set(matrix_world, matrix_build_identity());
     };
@@ -741,7 +791,20 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     self.slot = MapCellContents.TILE;
     
     static batch = batch_tile;
-    static render = render_tile;
+    static render = function(entity) {
+        var xx = tile.xx * TILE_WIDTH;
+        var yy = tile.yy * TILE_HEIGHT;
+        var zz = tile.zz * TILE_DEPTH;
+        
+        var ts = MAP_ACTIVE_TILESET;
+        
+        if (Settings.view.entities) {
+            var tex = sprite_get_texture(Settings.view.texture ? ts.picture : b_tileset_textureless, 0);
+            matrix_set(matrix_world, matrix_build(xx, yy, zz, 0, 0, 0, 1, 1, 1));
+            vertex_submit(tile.vbuffer, pr_trianglelist, tex);
+            matrix_set(matrix_world, matrix_build_identity());
+        }
+    };
     
     self.Export = function(buffer) {
         return 0;
