@@ -71,14 +71,14 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                             var shape = mesh_data.collision_shapes[i];
                             switch (shape.type) {
                                 case MeshCollisionShapes.BOX:
-                                    Stuff.graphics.DrawWireBox(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
+                                    Stuff.graphics.DrawWireBox(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z);
                                     break;
                                 case MeshCollisionShapes.CAPSULE:
                                     // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
-                                    Stuff.graphics.DrawWireCapsule(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
+                                    Stuff.graphics.DrawWireCapsule(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length);
                                     break;
                                 case MeshCollisionShapes.SPHERE:
-                                    Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
+                                    Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius);
                                     break;
                             }
                         

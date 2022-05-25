@@ -25,7 +25,7 @@ function draw_animator() {
             var kcolor = animation.GetValue(i, moment, KeyframeParameters.COLOR);
             var kalpha = animation.GetValue(i, moment, KeyframeParameters.ALPHA);
             // todo draw whatever is supposed to be drawn here
-            Stuff.graphics.DrawWireSphere(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz));
+            Stuff.graphics.DrawWireSphere(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
         }
     }
     
