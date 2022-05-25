@@ -63,7 +63,6 @@ function EditorGraphics() constructor {
         self.axes_rotation = vertex_load("data/basic/rotation.vbuff", self.format_pc);
         #endregion
         
-        self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.format_pc);
         self.basic_cage = vertex_load("data/basic/cage.vbuff", self.format_pntc);
         self.indexed_cage = vertex_load("data/basic/cage-indexed.vbuff", self.format_pntc);
         self.indexed_cage_full = vertex_load("data/basic/cage-indexed-full.vbuff", self.format_pntc);
