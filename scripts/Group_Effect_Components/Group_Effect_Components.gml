@@ -34,10 +34,10 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
             var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
             var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
             var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
-            graphics_add_gizmo(Stuff.graphics.axes_rotation, matrix_build(
+            Stuff.graphics.DrawAxesRotation(
                 world_x, world_y, world_z, 0, 0, 0,
-                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16,
-            ), true);
+                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16
+            );
         }
     };
     
@@ -80,10 +80,10 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
             var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
             var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
             var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
-            graphics_add_gizmo(Stuff.graphics.axes_rotation, matrix_build(
+            Stuff.graphics.DrawAxesRotation(
                 world_x, world_y, world_z, 0, 0, 0,
-                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16,
-            ), true);
+                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16
+            );
         }
     };
     
@@ -146,9 +146,10 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
             var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
             var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
             var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
-            graphics_add_gizmo(Stuff.graphics.axes_rotation, matrix_build(
-                world_x, world_y, world_z, 0, 0, 0, 4, 4, 4
-            ), true);
+            Stuff.graphics.DrawAxesRotation(
+                world_x, world_y, world_z, 0, 0, 0,
+                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16
+            );
         }
     };
     

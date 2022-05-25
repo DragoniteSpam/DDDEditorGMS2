@@ -1,5 +1,5 @@
 function EditorGraphics() constructor {
-    static Init = function() {
+    self.Init = function() {
         gpu_set_alphatestenable(true);
         gpu_set_alphatestref(20);
         gpu_set_tex_repeat(true);
@@ -39,27 +39,31 @@ function EditorGraphics() constructor {
         
         vertex_format_begin();
         vertex_format_add_position_3d();
-        vertex_format_add_texcoord();
-        vertex_format_add_colour();
-        self.format_ptc = vertex_format_end();
-        
-        vertex_format_begin();
-        vertex_format_add_position_3d();
         vertex_format_add_normal();
         vertex_format_add_texcoord();
         vertex_format_add_colour();
         self.format_pntc = vertex_format_end();
+        
+        vertex_format_begin();
+        vertex_format_add_position_3d();
+        vertex_format_add_colour();
+        self.format_pc = vertex_format_end();
         
         #region basic grids
         self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.format_pcb);
         self.wire_box = vertex_load("data/basic/wire_box.vbuff", self.format_pcb);
         self.wire_sphere = vertex_load("data/basic/wire_sphere.vbuff", self.format_pcb);
         self.wire_capsule = vertex_load("data/basic/wire_capsule.vbuff", self.format_pcb);
-        self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.format_ptc);
-        self.axes = vertex_load("data/basic/axes_corner.vbuff", self.format_ptc);
-        self.axes_center = vertex_load("data/basic/axes_center.vbuff", self.format_ptc);
         #endregion
         
+        #region 3D coordinate systems
+        self.axes = vertex_load("data/basic/axes.vbuff", self.format_pc);
+        self.axes_centered = vertex_load("data/basic/axes_centered.vbuff", self.format_pc);
+        self.axes_translation = vertex_load("data/basic/translation.vbuff", self.format_pc);
+        self.axes_rotation = vertex_load("data/basic/rotation.vbuff", self.format_pc);
+        #endregion
+        
+        self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.format_pc);
         self.basic_cage = vertex_load("data/basic/cage.vbuff", self.format_pntc);
         self.indexed_cage = vertex_load("data/basic/cage-indexed.vbuff", self.format_pntc);
         self.indexed_cage_full = vertex_load("data/basic/cage-indexed-full.vbuff", self.format_pntc);
@@ -71,14 +75,6 @@ function EditorGraphics() constructor {
         self.missing_autotile_raw = missing_data;
         self.indexed_cube = vertex_load("data/basic/cube-indexed.vbuff", self.format_pntc);
         self.base_npc = vertex_load("data/basic/base-npc.vbuff", self.format_pntc);
-        self.axes_rotation = vertex_load("data/basic/rotation.vbuff", self.format_pntc);
-        self.axes_translation = vertex_load("data/basic/translation.vbuff", self.format_pntc);
-        self.axes_translation_x = vertex_load("data/basic/translation-x.vbuff", self.format_pntc);
-        self.axes_translation_y = vertex_load("data/basic/translation-y.vbuff", self.format_pntc);
-        self.axes_translation_z = vertex_load("data/basic/translation-z.vbuff", self.format_pntc);
-        self.axes_translation_x_gold = vertex_load("data/basic/translation-x-gold.vbuff", self.format_pntc);
-        self.axes_translation_y_gold = vertex_load("data/basic/translation-y-gold.vbuff", self.format_pntc);
-        self.axes_translation_z_gold = vertex_load("data/basic/translation-z-gold.vbuff", self.format_pntc);
         self.skybox_base = vertex_load("data/basic/skybox-base.vbuff", self.format_pntc);
         var qmark_data = buffer_load("data/basic/missing.vbuff");
         self.mesh_missing = vertex_create_buffer_from_buffer(qmark_data, self.format_pntc);
@@ -89,25 +85,37 @@ function EditorGraphics() constructor {
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
     };
     
-    self.DrawGridCentered = function(x = 0, y = 0, z = 0) {
-        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+    self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
         vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
     };
     
-    self.DrawAxes = function(x = 0, y = 0, z = 0) {
-        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+    self.DrawAxes = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
         vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
     };
     
-    self.DrawAxesCentered = function(x = 0, y = 0, z = 0) {
-        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+    self.DrawAxesCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colorsDrawAxesCentered);
-        vertex_submit(Stuff.graphics.axes_center, pr_linelist, -1);
+        vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
     };
     
-    static RecreateGrids = function() {
+    self.DrawAxesTranslation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_basic_colors);
+        vertex_submit(Stuff.graphics.axes_translation, pr_linelist, -1);
+    };
+    
+    self.DrawAxesRotation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_basic_colors);
+        vertex_submit(Stuff.graphics.axes_rotation, pr_linelist, -1);
+    };
+    
+    self.RecreateGrids = function() {
         var map = Stuff.map.active_map;
         var map_contents = map.contents;
         

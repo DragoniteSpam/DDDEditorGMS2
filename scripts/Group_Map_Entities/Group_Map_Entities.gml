@@ -306,21 +306,18 @@ function EntityEffect(source) : Entity(source) constructor {
         var mode = Stuff.map;
         var camera = camera_get_active();
         var com_offset = 18;
-    
+        
         var world_x = (self.xx + self.off_xx) * TILE_WIDTH;
         var world_y = (self.yy + self.off_yy) * TILE_HEIGHT;
         var world_z = (self.zz + self.off_zz) * TILE_DEPTH;
-    
+        
         var position = mode.camera.GetScreenSpace(world_x, world_y, world_z);
         var dist = mode.camera.DistanceTo(world_x, world_y, world_z);
         var f = min(dist / 160, 2.5);
-        var transform = matrix_build(world_x, world_y, world_z, 0, 0, 0, f, f, f);
-        graphics_add_gizmo(Stuff.graphics.axes_translation_x, transform, false);
-        graphics_add_gizmo(Stuff.graphics.axes_translation_y, transform, false);
-        graphics_add_gizmo(Stuff.graphics.axes_translation_z, transform, false);
-    
+        Stuff.graphics.DrawAxesTranslation(world_x, world_y, world_z, 0, 0, 0, f, f, f);
+        
         render_effect_add_sprite(spr_star, position, new Vector2(0, 0));
-    
+        
         if (self.com_light) {
             render_effect_add_sprite(self.com_light.sprite, position, new Vector2(-com_offset, com_offset));
             self.com_light.Render();

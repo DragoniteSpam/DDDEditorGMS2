@@ -8,7 +8,6 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     gpu_set_ztestenable(true);
     gpu_set_zwriteenable(true);
     
-    matrix_set(matrix_world, matrix_build_identity());
     if (Settings.mesh.draw_grid) Stuff.graphics.DrawGridCentered();
     if (Settings.mesh.draw_axes) Stuff.graphics.DrawAxes();
     
