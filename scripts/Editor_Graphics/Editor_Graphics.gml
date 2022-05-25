@@ -37,8 +37,13 @@ function EditorGraphics() constructor {
         vertex_format_add_normal();
         vertex_format_add_texcoord();
         vertex_format_add_colour();
-        vertex_format_add_normal();
+        vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);      // barycentric coordinates
         self.format_pntcb = vertex_format_end();
+        
+        vertex_format_begin();
+        vertex_format_add_position_3d();
+        vertex_format_add_colour();
+        self.format_pc = vertex_format_end();
         
         #region basic grids
         self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.format_pntcb);
@@ -71,101 +76,91 @@ function EditorGraphics() constructor {
         vertex_freeze(self.mesh_missing);
         self.mesh_missing_data = qmark_data;
         
-        self.grid = undefined;
+        self.grid_map = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
     };
     
-    self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+    self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
-        vertex_submit(Stuff.graphics.wire_box, pr_linelist, -1);
+        vertex_submit(self.wire_box, pr_trianglelist, -1);
     };
     
-    self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+    self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
-        vertex_submit(Stuff.graphics.wire_capsule, pr_linelist, -1);
+        vertex_submit(self.wire_capsule, pr_trianglelist, -1);
     };
     
-    self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+    self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
-        vertex_submit(Stuff.graphics.wire_sphere, pr_linelist, -1);
+        vertex_submit(self.wire_sphere, pr_trianglelist, -1);
     };
     
-    self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+    self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
-        vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
+        vertex_submit(self.grid_centered, pr_trianglelist, -1);
     };
     
-    self.DrawAxes = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+    self.DrawMapGrid = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_utility_lines);
+        vertex_submit(self.grid_map, pr_linelist, -1);
+    };
+    
+    self.DrawAxes = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
-        vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
+        vertex_submit(self.axes, pr_trianglelist, -1);
     };
     
-    self.DrawAxesCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
-        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
-        shader_set(shd_basic_colorsDrawAxesCentered);
-        vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
-    };
-    
-    self.DrawAxesTranslation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+    self.DrawAxesCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
-        vertex_submit(Stuff.graphics.axes_translation, pr_linelist, -1);
+        vertex_submit(self.axes_centered, pr_trianglelist, -1);
     };
     
-    self.DrawAxesRotation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+    self.DrawAxesTranslation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
-        vertex_submit(Stuff.graphics.axes_rotation, pr_linelist, -1);
+        vertex_submit(self.axes_translation, pr_trianglelist, -1);
+    };
+    
+    self.DrawAxesRotation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_basic_colors);
+        vertex_submit(self.axes_rotation, pr_trianglelist, -1);
     };
     
     self.RecreateGrids = function() {
         var map = Stuff.map.active_map;
         var map_contents = map.contents;
         
-        if (self.grid) vertex_delete_buffer(self.grid);
-        self.grid = vertex_create_buffer();
-        vertex_begin(self.grid, self.format_pntcb);
+        if (self.grid_map) vertex_delete_buffer(self.grid_map);
+        self.grid_map = vertex_create_buffer();
+        vertex_begin(self.grid_map, self.format_pc);
         
         for (var i = 0; i <= map.xx; i++) {
             var xx = i * TILE_WIDTH;
             var yy = map.yy * TILE_HEIGHT;
-            
-            vertex_position_3d(self.grid, xx, 0, 0);
-            vertex_normal(self.grid, 0, 0, 1);
-            vertex_texcoord(self.grid, 0, 0);
-            vertex_colour(self.grid, c_white, 1);
-            vertex_normal(self.grid, 0, 0, 0);
-            
-            vertex_position_3d(self.grid, xx, yy, 0);
-            vertex_normal(self.grid, 0, 0, 1);
-            vertex_texcoord(self.grid, 0, 0);
-            vertex_colour(self.grid, c_white, 1);
-            vertex_normal(self.grid, 0, 0, 0);
+            vertex_position_3d(self.grid_map, xx, 0, 0);
+            vertex_colour(self.grid_map, c_white, 1);
+            vertex_position_3d(self.grid_map, xx, yy, 0);
+            vertex_colour(self.grid_map, c_white, 1);
         }
         
         for (var i = 0; i <= map.yy; i++) {
             var xx = map.xx * TILE_HEIGHT;
             var yy = i * TILE_WIDTH;
-            
-            vertex_position_3d(self.grid, 0, yy, 0);
-            vertex_normal(self.grid, 0, 0, 1);
-            vertex_texcoord(self.grid, 0, 0);
-            vertex_colour(self.grid, c_white, 1);
-            vertex_normal(self.grid, 0, 0, 0);
-            
-            vertex_position_3d(self.grid, xx, yy, 0);
-            vertex_normal(self.grid, 0, 0, 1);
-            vertex_texcoord(self.grid, 0, 0);
-            vertex_colour(self.grid, c_white, 1);
-            vertex_normal(self.grid, 0, 0, 0);
+            vertex_position_3d(self.grid_map, 0, yy, 0);
+            vertex_colour(self.grid_map, c_white, 1);
+            vertex_position_3d(self.grid_map, xx, yy, 0);
+            vertex_colour(self.grid_map, c_white, 1);
         }
         
-        vertex_end(self.grid);
-        vertex_freeze(self.grid);
+        vertex_end(self.grid_map);
+        vertex_freeze(self.grid_map);
     };
 }

@@ -242,13 +242,9 @@ function EditorModeMap() : EditorModeBase() constructor {
         gpu_set_cullmode(cull_noculling);
         
         #region grids, selection boxes, zones
-        if (Settings.view.grid) {
-            shader_set(shd_utility_wireframe);
-            matrix_set(matrix_world, matrix_build(0, 0, self.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1));
-            vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
-            matrix_set(matrix_world, matrix_build_identity());
-            shader_set(shd_ddd);
-        }
+        if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, self.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
+        
+        shader_set(shd_ddd);
         
         // tried using ztestenable for this - didn't look good. at all.
         for (var i = 0, n = array_length(self.selection); i < n; i++) {

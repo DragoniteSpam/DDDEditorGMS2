@@ -5,7 +5,7 @@
     "path": "folders/Shaders/Utility.yy",
   },
   "resourceVersion": "1.0",
-  "name": "shd_lines",
+  "name": "shd_utility_lines",
   "tags": [],
   "resourceType": "GMShader",
 }

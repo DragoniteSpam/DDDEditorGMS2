@@ -412,7 +412,7 @@
     {"id":{"name":"scribble_anim_jitter","path":"scripts/scribble_anim_jitter/scribble_anim_jitter.yy",},"order":2,},
     {"id":{"name":"uivc_custom_data_property_type","path":"scripts/uivc_custom_data_property_type/uivc_custom_data_property_type.yy",},"order":9,},
     {"id":{"name":"emu_dialog_zone_template","path":"scripts/emu_dialog_zone_template/emu_dialog_zone_template.yy",},"order":3,},
-    {"id":{"name":"shd_lines","path":"shaders/shd_lines/shd_lines.yy",},"order":4,},
+    {"id":{"name":"shd_utility_lines","path":"shaders/shd_utility_lines/shd_utility_lines.yy",},"order":4,},
     {"id":{"name":"Editor_UI","path":"scripts/Editor_UI/Editor_UI.yy",},"order":3,},
     {"id":{"name":"scribble_font_force_bilinear_filtering","path":"scripts/scribble_font_force_bilinear_filtering/scribble_font_force_bilinear_filtering.yy",},"order":5,},
     {"id":{"name":"spr_terrain_gen_mountain","path":"sprites/spr_terrain_gen_mountain/spr_terrain_gen_mountain.yy",},"order":3,},
