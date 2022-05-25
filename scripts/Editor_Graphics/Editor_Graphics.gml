@@ -33,6 +33,12 @@ function EditorGraphics() constructor {
         
         vertex_format_begin();
         vertex_format_add_position_3d();
+        vertex_format_add_colour();
+        vertex_format_add_normal();
+        self.format_pcb = vertex_format_end();      // barycentric
+        
+        vertex_format_begin();
+        vertex_format_add_position_3d();
         vertex_format_add_texcoord();
         vertex_format_add_colour();
         self.format_ptc = vertex_format_end();
@@ -45,10 +51,10 @@ function EditorGraphics() constructor {
         self.format_pntc = vertex_format_end();
         
         #region basic grids
-        self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.format_ptc);
-        self.wire_box = vertex_load("data/basic/wire_box.vbuff", self.format_ptc);
-        self.wire_sphere = vertex_load("data/basic/wire_sphere.vbuff", self.format_ptc);
-        self.wire_capsule = vertex_load("data/basic/wire_capsule.vbuff", self.format_ptc);
+        self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.format_pcb);
+        self.wire_box = vertex_load("data/basic/wire_box.vbuff", self.format_pcb);
+        self.wire_sphere = vertex_load("data/basic/wire_sphere.vbuff", self.format_pcb);
+        self.wire_capsule = vertex_load("data/basic/wire_capsule.vbuff", self.format_pcb);
         self.grid_sphere = vertex_load("data/basic/icosphere.vbuff", self.format_ptc);
         self.axes = vertex_load("data/basic/axes_corner.vbuff", self.format_ptc);
         self.axes_center = vertex_load("data/basic/axes_center.vbuff", self.format_ptc);
@@ -79,12 +85,26 @@ function EditorGraphics() constructor {
         vertex_freeze(self.mesh_missing);
         self.mesh_missing_data = qmark_data;
         
-        self.centered_sphere = vertex_load("data/basic/centered-sphere.vbuff", self.format_pntc);
-        self.centered_cube = vertex_load("data/basic/centered-cube.vbuff", self.format_pntc);
-        self.centered_capsule = vertex_load("data/basic/centered-capsule.vbuff", self.format_pntc);
-        
         self.grid = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
+    };
+    
+    self.DrawGridCentered = function(x = 0, y = 0, z = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+        shader_set(shd_utility_wireframe);
+        vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
+    };
+    
+    self.DrawAxes = function(x = 0, y = 0, z = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+        shader_set(shd_basic_colors);
+        vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
+    };
+    
+    self.DrawAxesCentered = function(x = 0, y = 0, z = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+        shader_set(shd_basic_colorsDrawAxesCentered);
+        vertex_submit(Stuff.graphics.axes_center, pr_linelist, -1);
     };
     
     static RecreateGrids = function() {

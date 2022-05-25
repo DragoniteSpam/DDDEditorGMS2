@@ -691,9 +691,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         }
         
         if (Settings.terrain.view_axes) {
-            matrix_set(matrix_world, matrix_build(0, 0, 1, 0, 0, 0, 0.5, 0.5, 0.5));
-            shader_set(shd_basic_colors);
-            vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
+            Stuff.graphics.DrawAxes();
         }
         
         self.DrawWater();

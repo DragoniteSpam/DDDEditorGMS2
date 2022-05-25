@@ -1,3 +1,6 @@
+// Utility shader:
+// render filled 3D mesh as a wireframe only (requires a normal attribute which contains the barycentric)
+
 attribute vec3 in_Position;
 attribute vec3 in_Normal;
 attribute vec4 in_Colour;

@@ -194,9 +194,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         gpu_set_zwriteenable(true);
         gpu_set_ztestenable(true);
         
-        // axes
-        shader_set(shd_basic_colors);
-        vertex_submit(Stuff.graphics.axes, pr_trianglelist, -1);
+        Stuff.graphics.DrawAxes();
         
         graphics_set_lighting(shd_ddd);
         wireframe_enable(Settings.view.wireframe, 512);
@@ -245,7 +243,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         
         #region grids, selection boxes, zones
         if (Settings.view.grid) {
-            shader_set(shd_wireframe);
+            shader_set(shd_utility_wireframe);
             matrix_set(matrix_world, matrix_build(0, 0, self.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1));
             vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
             matrix_set(matrix_world, matrix_build_identity());

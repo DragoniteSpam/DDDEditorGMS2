@@ -26,16 +26,13 @@ function draw_animator() {
             var kalpha = animation.GetValue(i, moment, KeyframeParameters.ALPHA);
             matrix_set(matrix_world, matrix_build(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz));
             // todo
-            shader_set(shd_wireframe);
+            shader_set(shd_utility_wireframe);
             vertex_submit(Stuff.graphics.grid_sphere, pr_linelist, -1);
         }
     }
     
-    matrix_set(matrix_world, matrix_build(0, 0, 0.5, 0, 0, 0, 1, 1, 1));
-    shader_set(shd_wireframe);
-    vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
-    shader_set(shd_basic_colors);
-    vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
+    Stuff.graphics.DrawGridCentered();
+    Stuff.graphics.DrawAxesCentered();
     
     matrix_set(matrix_world, matrix_build_identity());
     shader_reset();

@@ -1,11 +1,11 @@
 {
   "type": 1,
   "parent": {
-    "name": "Shaders",
-    "path": "folders/Shaders.yy",
+    "name": "Utility",
+    "path": "folders/Shaders/Utility.yy",
   },
   "resourceVersion": "1.0",
-  "name": "shd_default_alpha",
+  "name": "shd_utility_alpha",
   "tags": [],
   "resourceType": "GMShader",
 }

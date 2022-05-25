@@ -9,10 +9,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     gpu_set_zwriteenable(true);
     
     matrix_set(matrix_world, matrix_build_identity());
-    shader_set(shd_wireframe);
-    if (Settings.mesh.draw_grid) vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
-    shader_set(shd_basic_colors);
-    if (Settings.mesh.draw_axes) vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
+    if (Settings.mesh.draw_grid) Stuff.graphics.DrawGridCentered();
+    if (Settings.mesh.draw_axes) Stuff.graphics.DrawAxes();
     
     shader_set(shd_ddd);
     
@@ -71,7 +69,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                     
                     if (Settings.mesh.draw_collision) {
                         for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
-                            shader_set(shd_wireframe);
+                            shader_set(shd_utility_wireframe);
                             var shape = mesh_data.collision_shapes[i];
                             switch (shape.type) {
                                 case MeshCollisionShapes.BOX:
