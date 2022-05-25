@@ -85,6 +85,24 @@ function EditorGraphics() constructor {
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
     };
     
+    self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_utility_wireframe);
+        vertex_submit(Stuff.graphics.wire_sphere, pr_linelist, -1);
+    };
+    
+    self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_utility_wireframe);
+        vertex_submit(Stuff.graphics.wire_capsule, pr_linelist, -1);
+    };
+    
+    self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_utility_wireframe);
+        vertex_submit(Stuff.graphics.wire_sphere, pr_linelist, -1);
+    };
+    
     self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 0, ys = 0, zs = 0) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);

@@ -68,21 +68,17 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                     
                     if (Settings.mesh.draw_collision) {
                         for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
-                            shader_set(shd_utility_wireframe);
                             var shape = mesh_data.collision_shapes[i];
                             switch (shape.type) {
                                 case MeshCollisionShapes.BOX:
-                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
-                                    vertex_submit(Stuff.graphics.wire_box, pr_linelist, tex_none);
+                                    Stuff.graphics.DrawWireBox(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
                                     break;
                                 case MeshCollisionShapes.CAPSULE:
                                     // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
-                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
-                                    vertex_submit(Stuff.graphics.wire_capsule, pr_linelist, tex_none);
+                                    Stuff.graphics.DrawWireCapsule(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
                                     break;
                                 case MeshCollisionShapes.SPHERE:
-                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
-                                    vertex_submit(Stuff.graphics.wire_sphere, pr_linelist, tex_none);
+                                    Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
                                     break;
                             }
                         

@@ -24,10 +24,8 @@ function draw_animator() {
             var ksz = animation.GetValue(i, moment, KeyframeParameters.SCALE_Z);
             var kcolor = animation.GetValue(i, moment, KeyframeParameters.COLOR);
             var kalpha = animation.GetValue(i, moment, KeyframeParameters.ALPHA);
-            matrix_set(matrix_world, matrix_build(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz));
-            // todo
-            shader_set(shd_utility_wireframe);
-            vertex_submit(Stuff.graphics.grid_sphere, pr_linelist, -1);
+            // todo draw whatever is supposed to be drawn here
+            Stuff.graphics.DrawWireSphere(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz));
         }
     }
     
