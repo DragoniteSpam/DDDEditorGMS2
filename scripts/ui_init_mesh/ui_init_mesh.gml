@@ -117,14 +117,16 @@ function ui_init_mesh(mode) {
                     
                     array_sort(indices, false);
                     
-                    for (var i = 0, n = array_length(indices); i < n; i++) {
-                        self.root.GetSibling("MESH LIST").At(real(indices[i])).Destroy();
+                    var list = Stuff.mesh.ui.SearchID("MESH LIST");
+                    
+                    for (var i = array_length(indices) - 1; i >= 0; i--) {
+                        list.At(real(indices[i])).Destroy();
                     }
                     batch_again();
                     self.root.Dispose();
                     
                     Stuff.mesh.ResetTransform();
-                    Stuff.mesh.ui.SearchID("MESH LIST").Deselect();
+                    list.Deselect();
                     batch_again();
                 });
                 
