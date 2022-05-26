@@ -46,7 +46,7 @@ function EditorGraphics() constructor {
         self.format_pc = vertex_format_end();
         
         #region basic grids
-        self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.format_pntcb);
+        self.grid_centered = vertex_load("data/basic/grid_centered.vbuff", self.format_pc);
         self.wire_box = vertex_load("data/basic/wire_box.vbuff", self.format_pntcb);
         self.wire_sphere = vertex_load("data/basic/wire_sphere.vbuff", self.format_pntcb);
         self.wire_capsule = vertex_load("data/basic/wire_capsule.vbuff", self.format_pntcb);
@@ -100,8 +100,8 @@ function EditorGraphics() constructor {
     
     self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
-        shader_set(shd_utility_wireframe);
-        vertex_submit(self.grid_centered, pr_trianglelist, -1);
+        shader_set(shd_utility_lines);
+        vertex_submit(self.grid_centered, pr_linelist, -1);
     };
     
     self.DrawMapGrid = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
