@@ -59,7 +59,6 @@
 #macro CAMERA_ZFAR                          0x2000
 #macro CH                                   900                                 // these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CW                                   1080
-#macro C_OBJECT_CACHE_SIZE                  5000
 #macro DEBUG                                true
 #macro EVENT_NODE_CONTACT_HEIGHT            48
 #macro EVENT_NODE_CONTACT_WIDTH             320
@@ -122,6 +121,11 @@
 #macro c_ui_active_bitfield                 0xc0c0c0
 #macro c_ui_select                          0xffb8ac
 #macro c_ui                                 0xebebeb
+
+#macro c_wireframe_mesh_col_sphere          0x8080ff
+#macro c_wireframe_mesh_col_box             0x80ff80
+#macro c_wireframe_mesh_col_capsule         0xff8080
+#macro c_wireframe_mesh_col_trimesh         0x80ffff
 
 #macro c_array_zone_selected                c_white
 

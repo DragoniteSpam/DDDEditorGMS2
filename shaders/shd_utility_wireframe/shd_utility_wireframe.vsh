@@ -7,11 +7,11 @@ attribute vec2 in_TextureCoord;
 attribute vec4 in_Colour0;
 attribute vec3 in_Colour1;
 
-varying vec4 v_colour;
+varying vec3 v_colour;
 varying vec3 v_barycentric;
 
 void main() {
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1);
-    v_colour = in_Colour0;
+    v_colour = in_Colour0.rgb;
     v_barycentric = in_Colour1;
 }

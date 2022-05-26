@@ -83,21 +83,21 @@ function EditorGraphics() constructor {
     self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
-        wireframe_enable();
+        wireframe_enable(1, 1000000, c_wireframe_mesh_col_box);
         vertex_submit(self.wire_box, pr_trianglelist, -1);
     };
     
     self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
-        wireframe_enable();
+        wireframe_enable(1, 1000000, c_wireframe_mesh_col_capsule);
         vertex_submit(self.wire_capsule, pr_trianglelist, -1);
     };
     
     self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
-        wireframe_enable();
+        wireframe_enable(1, 1000000, c_wireframe_mesh_col_sphere);
         vertex_submit(self.wire_sphere, pr_trianglelist, -1);
     };
     
