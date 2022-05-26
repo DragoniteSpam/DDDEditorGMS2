@@ -37,7 +37,7 @@ function EditorGraphics() constructor {
         vertex_format_add_normal();
         vertex_format_add_texcoord();
         vertex_format_add_colour();
-        vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);      // barycentric coordinates
+        vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);
         self.format_pntcb = vertex_format_end();
         
         vertex_format_begin();
@@ -83,18 +83,21 @@ function EditorGraphics() constructor {
     self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
+        wireframe_enable();
         vertex_submit(self.wire_box, pr_trianglelist, -1);
     };
     
     self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
+        wireframe_enable();
         vertex_submit(self.wire_capsule, pr_trianglelist, -1);
     };
     
     self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_wireframe);
+        wireframe_enable();
         vertex_submit(self.wire_sphere, pr_trianglelist, -1);
     };
     

@@ -101,10 +101,10 @@ void CommonFog(inout vec4 baseColor) {
 #endregion
 
 #region Wireframe
-#define WIRE_THICKNESS 1.0
 uniform float u_WireDistance;
 uniform vec3 u_WireColor;
 uniform float u_WireAlpha;
+#define WIRE_THICKNESS 1.0
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);

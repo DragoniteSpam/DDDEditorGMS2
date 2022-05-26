@@ -819,10 +819,10 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"skybox-base.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"axes.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"translation.vbuff","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"water.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"wire_box.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"wire_capsule.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"wire_sphere.vbuff","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"water.vbuff","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2022.5.0.8",
