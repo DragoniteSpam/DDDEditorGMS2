@@ -137,6 +137,12 @@ function EditorGraphics() constructor {
         vertex_submit(self.axes_rotation, pr_trianglelist, -1);
     };
     
+    self.DrawBasicCage = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
+        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        shader_set(shd_basic_colors);
+        vertex_submit(self.basic_cage, pr_trianglelist, -1);
+    };
+    
     self.RecreateGrids = function() {
         var map = Stuff.map.active_map;
         var map_contents = map.contents;
