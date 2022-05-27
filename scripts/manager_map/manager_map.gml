@@ -1,4 +1,4 @@
-function dialog_create_settings_map() {
+function dialog_create_map_advanced() {
     var map = Stuff.map.active_map;
     
     var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 736, "Advanced Map Settings");
@@ -103,16 +103,6 @@ function dialog_create_settings_map() {
             .Select(array_search(Game.graphics.tilesets, guid_get(map.water_texture)))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("The water texture to be used by the map. Deselect to clear."),
-        (new EmuList(col3, EMU_BASE, element_width, element_height, "Terrain:", element_height, 6, function() {
-            if (!self.root) return;
-            var selection = self.GetSelectedItem();
-            self.root.map.terrain.id = selection ? selection.GUID : NULL;
-        }))
-            .SetList(Game.mesh_terrain)
-            .Select(array_search(Game.mesh_terrain, guid_get(map.terrain)))
-            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-            .SetTooltip("The terrain model associated with this map."),
-        new EmuText(col3, EMU_AUTO, element_width, element_height, "[c_aqua]Navigation"),
         (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Chunk size:", map.chunk_size, "in cells", 5, E_InputTypes.INT, function() {
             self.root.map.chunk_size = real(self.value);
         }))
@@ -149,4 +139,32 @@ function dialog_create_settings_map() {
         }
         emu_dialog_close_auto();
     });
+}
+
+function dialog_create_map_terrain() {
+    var map = Stuff.map.active_map;
+    
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 736, "Map Terrain Settings");
+    dialog.map = map;
+    var element_width = 320;
+    var element_height = 32;
+    
+    var col1 = 32;
+    var col2 = 32 + 320 + 32;
+    
+    return dialog.AddContent([
+        new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Base Properties"),
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Terrain:", element_height, 6, function() {
+            if (!self.root) return;
+            var selection = self.GetSelectedItem();
+            self.root.map.terrain.id = selection ? selection.GUID : NULL;
+        }))
+            .SetList(Game.mesh_terrain)
+            .Select(array_search(Game.mesh_terrain, guid_get(map.terrain.id)))
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetTooltip("The terrain model associated with this map."),
+        (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Scale:", string(map.terrain.scale), "The terrain scale", 2, E_InputTypes.INT, function() {
+            self.root.map.terrain.scale = real(self.value);
+        }))
+    ]).AddDefaultCloseButton();
 }

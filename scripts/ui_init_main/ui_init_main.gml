@@ -311,9 +311,13 @@ function ui_init_main(mode) {
             }))
                 .SetTooltip("You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them."),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Advanced", function() {
-                dialog_create_settings_map();
+                dialog_create_map_advanced();
             }))
                 .SetTooltip("I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Terrain", function() {
+                dialog_create_map_terrain();
+            }))
+                .SetTooltip("Stuff relating specifically to map terrain."),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Freeze Selected Objects", function() {
                 emu_dialog_notice("This has not yet been implemented!");
             }))

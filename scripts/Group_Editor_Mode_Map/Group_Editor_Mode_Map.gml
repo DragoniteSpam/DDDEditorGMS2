@@ -197,9 +197,10 @@ function EditorModeMap() : EditorModeBase() constructor {
         
         var terrain = guid_get(self.active_map.terrain.id);
         if (terrain) {
-            var scale = 32;
+            var scale = self.active_map.terrain.scale;
+            matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, scale, scale, scale));
             var texture_data = guid_get(terrain.tex_base);
-            var tex = texture_data ? sprite_get_texture(texture_data.picture, 0) : -1
+            var tex = texture_data ? sprite_get_texture(texture_data.picture, 0) : -1;
             for (var i = 0, n = array_length(terrain.submeshes); i < n; i++) {
                 vertex_submit(terrain.submeshes[i].vbuffer, pr_trianglelist, tex);
             }

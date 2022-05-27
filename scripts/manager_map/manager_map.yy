@@ -6,7 +6,7 @@
     "path": "folders/Emu Implementation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Manager_Map",
+  "name": "manager_map",
   "tags": [],
   "resourceType": "GMScript",
 }
