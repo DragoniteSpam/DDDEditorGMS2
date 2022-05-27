@@ -195,6 +195,16 @@ function EditorModeMap() : EditorModeBase() constructor {
         graphics_set_lighting(shd_ddd);
         wireframe_enable(Settings.view.wireframe, 512);
         
+        var terrain = guid_get(self.active_map.terrain);
+        if (terrain) {
+            var scale = 32;
+            var texture_data = guid_get(terrain.tex_base);
+            var tex = texture_data ? sprite_get_texture(texture_data.picture, 0) : -1
+            for (var i = 0, n = array_length(terrain.submeshes); i < n; i++) {
+                vertex_submit(terrain.submeshes[i].vbuffer, pr_trianglelist, tex);
+            }
+        }
+        
         // this will need to be dynamic at some point
         var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
         
