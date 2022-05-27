@@ -12,6 +12,30 @@ function import_mesh(filename) {
     array_push(Game.meshes, mesh);
 }
 
+function replace_mesh(filename, mesh) {
+    var data = import_3d_model_generic(filename);
+    if (data == undefined) return;
+    
+    // submeshes that are already loaded onto the mesh will be replaced; ones
+    // that do not yet exist will be replaced
+    for (var i = 0, n = array_length(data); i < n; i++) {
+        if (i < array_length(mesh.submeshes)) {
+            var submesh = mesh.submeshes[i];
+            mesh.AddSubmesh(submesh);
+            submesh.AddBufferData(data[i]);
+        } else {
+            var submesh = new MeshSubmesh("Submesh" + string(i));
+            submesh.AddBufferData(data[i]);
+            mesh.AddSubmesh(submesh);
+        }
+    }
+    
+    // additional submeshes attached to the mesh will be deleted
+    for (var i = array_length(mesh.submeshes) - 1; i >= array_length(data); i--) {
+        mesh.RemoveSubmesh(i);
+    }
+}
+
 function import_3d_model_generic(filename, everything, raw_buffer, existing_mesh_data, replace_index) {
     // @todo try catch
     if (file_exists(filename)) {
