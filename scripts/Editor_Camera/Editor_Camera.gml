@@ -219,6 +219,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         draw_clear_alpha(c_black, 1);
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
+        gpu_set_cullmode(cull_counterclockwise);
         matrix_set(matrix_world, matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1));
         vertex_submit(self.skybox_mesh, pr_trianglelist, sprite_get_texture(self.skybox, 0));
         gpu_set_zwriteenable(true);
@@ -231,6 +232,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         draw_clear_alpha(c_black, 1);
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
+        gpu_set_cullmode(cull_counterclockwise);
         matrix_set(matrix_world, matrix_build(self.x, self.y, self.zfar - 256, 0, 0, 0, 1, 1, 1));
         vertex_submit(self.skybox_buffer, pr_trianglelist, sprite_get_texture(self.skybox, 0));
         gpu_set_zwriteenable(true);

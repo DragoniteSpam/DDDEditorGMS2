@@ -175,15 +175,13 @@ function EditorModeMap() : EditorModeBase() constructor {
     self.DrawEditor = function() {
         var map_contents = self.active_map.contents;
         
-        draw_set_color(c_white);
-        gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
+        #region Clear the screen and set things up
+        draw_clear(Settings.config.color_world);
         
         self.camera.SetProjection();
-        //if (Settings.terrain.view_skybox) {
-            //self.camera.DrawSkybox();
-        //} else {
-            draw_clear(Settings.config.color_world);
-        //}
+        if (Settings.terrain.view_skybox) {
+            self.camera.DrawSkybox();
+        }
         
         if (Settings.terrain.orthographic) {
             self.camera.SetProjectionOrtho();
@@ -191,10 +189,8 @@ function EditorModeMap() : EditorModeBase() constructor {
             self.camera.SetProjection();
         }
         
-        gpu_set_zwriteenable(true);
-        gpu_set_ztestenable(true);
-        
         Stuff.graphics.DrawAxes();
+        #endregion
         
         graphics_set_lighting(shd_ddd);
         wireframe_enable(Settings.view.wireframe, 512);
