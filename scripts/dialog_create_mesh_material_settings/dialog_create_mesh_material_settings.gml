@@ -53,11 +53,11 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     dg.AddContent(tabs);
     
     var callback_set_map_to_selection = function() {
-        var selection = GetSelection();
+        var selection = self.GetSelection();
         var new_tex = (selection + 1) ? Game.graphics.tilesets[selection].GUID : NULL;
         var mesh_selection = self.root.root.root.selection;
         for (var i = 0, n = array_length(mesh_selection); i < n; i++) {
-            self.callback_set_texture(Game.meshes[real(mesh_selection[i])], new_tex);
+            self.callback_set_texture(self.root/*tab*/.root/*tag group*/.root/*dialog*/.list[real(mesh_selection[i])], new_tex);
         }
     };
     
