@@ -236,6 +236,27 @@ function Entity(source) constructor {
         self.DestroyBase();
     };
     
+    static GetTransform = function() {
+        return matrix_build(
+            (self.xx + self.off_xx) * TILE_WIDTH,
+            (self.yy + self.off_yy) * TILE_HEIGHT,
+            (self.zz + self.off_zz) * TILE_DEPTH,
+            self.rot_xx, self.rot_yy, self.rot_zz,
+            self.scale_xx, self.scale_yy, self.scale_zz
+        );
+    };
+    
+    static GetTransformReflected = function() {
+        var water = Stuff.map.active_map.water_level;
+        return matrix_build(
+            (self.xx + self.off_xx) * TILE_WIDTH,
+            (self.yy + self.off_yy) * TILE_HEIGHT,
+            (water - (self.zz + self.off_zz - water)) * TILE_DEPTH,
+            self.rot_xx, self.rot_yy, self.rot_zz,
+            self.scale_xx, self.scale_yy, self.scale_zz
+        );
+    };
+    
     if (is_struct(source)) {
         self.name = source.name;
         refid_set(self, source.refid);
