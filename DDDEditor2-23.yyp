@@ -67,7 +67,6 @@
     {"id":{"name":"batch_tile_raw","path":"scripts/batch_tile_raw/batch_tile_raw.yy",},"order":1,},
     {"id":{"name":"batch_autotile","path":"scripts/batch_autotile/batch_autotile.yy",},"order":2,},
     {"id":{"name":"batch_mesh","path":"scripts/batch_mesh/batch_mesh.yy",},"order":3,},
-    {"id":{"name":"batch_mesh_autotile","path":"scripts/batch_mesh_autotile/batch_mesh_autotile.yy",},"order":4,},
     {"id":{"name":"EmuException","path":"scripts/EmuException/EmuException.yy",},"order":6,},
     {"id":{"name":"batch_cache","path":"scripts/batch_cache/batch_cache.yy",},"order":5,},
     {"id":{"name":"Group_Math_Matrix","path":"scripts/Group_Math_Matrix/Group_Math_Matrix.yy",},"order":19,},
