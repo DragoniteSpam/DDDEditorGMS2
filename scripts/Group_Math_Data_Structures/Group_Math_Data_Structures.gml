@@ -1,4 +1,4 @@
-#region array stuff
+#region array stuff - please don't delete these, even if you find that they're not used anywhere
 function array_to_list(array) {
     var list = ds_list_create();
     for (var i = 0; i < array_length(array); i++) {
@@ -6,6 +6,24 @@ function array_to_list(array) {
     }
     
     return list;
+}
+
+function array_to_map(array) {
+    var results = { };
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        results[$ string(i)] = array[i];
+    }
+    return results;
+}
+
+function array_values_to_map(array) {
+    var results = { };
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (!variable_struct_exists(results, string(array[i]))) {
+            results[$ string(array[i])] = i;
+        }
+    }
+    return results;
 }
 
 function array_clear(array, value) {
