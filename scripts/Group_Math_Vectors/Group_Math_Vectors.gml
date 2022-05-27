@@ -185,11 +185,16 @@ function Vertex() constructor {
     self.tex = new Vector2(0, 0);
     self.color = c_white;
     self.alpha = 1;
-    self.extra = 0;
+    self.tangent = new Vector3(0, 0, 0);
+    self.bitangent = new Vector3(0, 0, 0);
+    self.barycentric = new Vector3(0, 0, 0);
 }
 
 function Triangle() constructor {
     self.vertex = [new Vertex(), new Vertex(), new Vertex()];
+    self.vertex[0].barycentric.x = 1;
+    self.vertex[1].barycentric.y = 1;
+    self.vertex[2].barycentric.z = 1;
 }
 
 function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
