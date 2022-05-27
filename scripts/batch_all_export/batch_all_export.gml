@@ -24,7 +24,7 @@ function batch_all_export(map, chunk_size) {
                         vertex_begin(buffers[$ key].raw_reflected, Stuff.graphics.format);
                     }
                     var vbuff = buffers[$ key];
-                    thing.batch(vbuff.raw, undefined, vbuff.raw_reflected, undefined, thing);
+                    thing.batch(vbuff.raw, vbuff.raw_reflected, thing);
                 }
             }
         }
