@@ -63,18 +63,11 @@ function EditorGraphics() constructor {
         self.indexed_cage = vertex_load("data/basic/cage-indexed.vbuff", self.format_pntcb);
         self.indexed_cage_full = vertex_load("data/basic/cage-indexed-full.vbuff", self.format_pntcb);
         self.basic_cube = vertex_load("data/basic/cube.vbuff", self.format_pntcb);
-        // load both buffers
-        var missing_data = buffer_load("data/basic/missing_autotile.vbuff");
-        self.missing_autotile = vertex_create_buffer_from_buffer(missing_data, self.format_pntcb);
-        vertex_freeze(self.missing_autotile);
-        self.missing_autotile_raw = missing_data;
         self.indexed_cube = vertex_load("data/basic/cube-indexed.vbuff", self.format_pntcb);
         self.base_npc = vertex_load("data/basic/base-npc.vbuff", self.format_pntcb);
         self.skybox_base = vertex_load("data/basic/skybox-base.vbuff", self.format_pntcb);
-        var qmark_data = buffer_load("data/basic/missing.vbuff");
-        self.mesh_missing = vertex_create_buffer_from_buffer(qmark_data, self.format_pntcb);
-        vertex_freeze(self.mesh_missing);
-        self.mesh_missing_data = qmark_data;
+        self.mesh_missing = vertex_load("data/basic/missing.vbuff", self.format_pntcb);
+        self.missing_autotile = vertex_load("data/basic/missing_autotile.vbuff", self.format_pntcb);
         
         self.grid_map = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
