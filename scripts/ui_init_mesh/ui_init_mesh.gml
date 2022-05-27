@@ -468,14 +468,9 @@ function ui_init_mesh(mode) {
             #endregion
             #region viewer
             (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function() {
-                var input_control = keyboard_check(vk_control);
-                if (CONTROL_3D_LOOK || !input_control) {
-                    Stuff.mesh.camera.Update();
-                }
+                Stuff.mesh.camera.Update();
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
-            // this one is for the masks and overlays
-            //new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, /* ... */, /* ... */, emu_null, emu_null),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
                 var dialog = new EmuDialog(32 + 320 + 32, 640, "Mesh viewer settings");
                 dialog.root = self;
