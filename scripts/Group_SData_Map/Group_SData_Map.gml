@@ -33,7 +33,10 @@ function DataMap(source, directory) : SData(source) constructor {
     self.skybox = NULL;                                                         // GUID
     self.chunk_size = 32;                                                       // int
     
-    self.terrain = NULL;                                                        // GUID
+    self.terrain = {
+        id: NULL,                                                               // GUID
+        scale: 1,                                                               // float
+    };
     
     self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);               // 3D flag array
     self.lights = array_create(MAX_LIGHTS, NULL);                               // GUID array
@@ -285,6 +288,9 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_u8, data.type);
             buffer_write(buffer, Stuff.data_type_meta[data.type].buffer_type, data.value);
         }
+        
+        buffer_write(buffer, buffer_datatype, self.terrain.id);
+        buffer_write(buffer, buffer_f32, self.terrain.scale);
     };
     
     static GetFusedChunks = function(chunk_size, max_x, max_y) {
@@ -484,7 +490,10 @@ function DataMap(source, directory) : SData(source) constructor {
         json.code = self.code;
         json.generic_data = self.generic_data;
         json.grid_flags = self.grid_flags;
-        json.terrain = self.terrain;
+        json.terrain = {
+            id: self.terrain.id,
+            scale: self.terrain.scale,
+        };
         return json;
     };
     
@@ -548,6 +557,9 @@ function DataMap(source, directory) : SData(source) constructor {
         self.grid_flags = source.grid_flags;
         self.lights = source.lights;
         self.water_texture = source[$ "water_texture"] ?? NULL;
-        self.terrain = source[$ "terrain"] ?? NULL;
+        if (source[$ "terrain"] != undefined) {
+            self.terrain.id = source.terrain.id;
+            self.terrain.scale = source.terrain.scale;
+        }
     }
 }

@@ -106,7 +106,7 @@ function dialog_create_settings_map() {
         (new EmuList(col3, EMU_BASE, element_width, element_height, "Terrain:", element_height, 6, function() {
             if (!self.root) return;
             var selection = self.GetSelectedItem();
-            self.root.map.terrain = selection ? selection.GUID : NULL;
+            self.root.map.terrain.id = selection ? selection.GUID : NULL;
         }))
             .SetList(Game.mesh_terrain)
             .Select(array_search(Game.mesh_terrain, guid_get(map.terrain)))

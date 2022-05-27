@@ -195,7 +195,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         graphics_set_lighting(shd_ddd);
         wireframe_enable(Settings.view.wireframe, 512);
         
-        var terrain = guid_get(self.active_map.terrain);
+        var terrain = guid_get(self.active_map.terrain.id);
         if (terrain) {
             var scale = 32;
             var texture_data = guid_get(terrain.tex_base);
