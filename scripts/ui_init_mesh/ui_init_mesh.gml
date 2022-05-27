@@ -109,28 +109,27 @@ function ui_init_mesh(mode) {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
-                    var indices = self.root.indices;
+                    var selection = { };
                     
-                    for (var i = 0, n = array_length(indices); i < n; i++) {
-                        indices[i] = real(indices[i]);
+                    for (var i = 0, n = array_length(self.root.indices); i < n; i++) {
+                        selection[$ string(ptr(self.root.type[self.root.indices[i]]))] = true;
                     }
                     
-                    array_sort(indices, false);
-                    
-                    var list = Stuff.mesh.ui.SearchID("MESH LIST");
-                    
-                    for (var i = array_length(indices) - 1; i >= 0; i--) {
-                        list.At(real(indices[i])).Destroy();
+                    for (var i = array_length(self.root.type) - 1; i >= 0; i--) {
+                        if (selection[$ string(ptr(self.root.type[i]))]) {
+                            self.root.type[i].Destroy();
+                        }
                     }
+                    
                     batch_again();
                     self.root.Dispose();
-                    
-                    Stuff.mesh.ResetTransform();
-                    list.Deselect();
+                    //Stuff.mesh.ResetTransform();
+                    Stuff.mesh.ui.GetChild("MESH LIST").Deselect();
                     batch_again();
                 });
                 
                 dg.indices = indices;
+                dg.type = Stuff.mesh.ui.GetMeshType();
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined);
