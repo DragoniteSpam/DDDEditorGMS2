@@ -355,7 +355,7 @@ function ui_init_mesh(mode) {
                 });
                 
                 dg.indices = indices;
-                dg.list = self.root.GetMeshType();
+                dg.list = self.root.root.GetMeshType();
             }))
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined && array_length(data) > 0);
