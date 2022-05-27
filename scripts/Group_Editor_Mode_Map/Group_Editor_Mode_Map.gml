@@ -169,9 +169,9 @@ function EditorModeMap() : EditorModeBase() constructor {
         ZONE,
     }
     
-    self.active_map = new DataMap("Test Map", "");
+    self.active_map = Game.maps[0];
     self.active_map.contents = new MapContents(self.active_map);
-
+    
     self.DrawEditor = function() {
         var map_contents = self.active_map.contents;
         

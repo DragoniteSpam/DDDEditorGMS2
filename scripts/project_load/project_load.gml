@@ -190,6 +190,7 @@ function project_load(id) {
         var version = json.version;
         var maps = json.maps;
         
+        array_resize(Game.maps, 0);
         for (var i = 0; i < array_length(maps); i++) {
             array_push(Game.maps, new DataMap(maps[i], directory));
         }
