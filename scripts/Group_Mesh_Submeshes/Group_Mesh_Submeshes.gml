@@ -83,13 +83,17 @@ function MeshSubmesh(source) constructor {
     };
     
     static ImportReflection = function() {
-        var fn = get_open_filename_mesh();
-        if (file_exists(fn)) {
-            var data = import_3d_model_generic(fn, false, true, undefined, 0);
-            internalDeleteReflect();
-            self.reflect_vbuffer = data[0];
-            self.reflect_buffer = data[1];
-            vertex_freeze(self.reflect_vbuffer);
+        var data = import_3d_model_generic(get_open_filename_mesh());
+        if (data == undefined) return;
+        internalDeleteReflect();
+        self.reflect_buffer = data[0];
+        self.reflect_vbuffer = vertex_create_buffer_from_buffer(data[0], Stuff.graphics.format);
+        vertex_freeze(self.reflect_vbuffer);
+        /// @todo add an optional "mesh count" parameter to
+        // import_3d_model_generic which eliminates the need
+        // to discoard additional returned buffers
+        for (var i = 1, n = array_length(data); i < n; i++) {
+            buffer_delete(data[i]);
         }
     };
     
@@ -112,16 +116,39 @@ function MeshSubmesh(source) constructor {
     };
     
     static Reload = function() {
+        var data = import_mesh(self.path);
+        if (data == undefined) return;
+        
         var index = array_search(self.owner.submeshes, self);
-        if (file_exists(self.path)) {
-            switch (filename_ext(self.path)) {
-                case ".obj": import_obj(self.path, undefined, self.owner, index); break;
-                case ".d3d": case ".gmmod": import_d3d(self.path, undefined, false, self.owner, index); break;
-                case ".smf": break;
+        if (index < array_length(data)) {
+            self.SetBufferData(data[index]);
+        }
+        
+        // delete all imported buffers that were not set to the mesh
+        for (var i = 0, n = array_length(data); i < n; i++) {
+            if (i != index) {
+                buffer_delete(data[i]);
             }
         }
     };
     
+    static SetBufferData = function(raw_buffer) {
+        if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
+        if (self.buffer) buffer_delete(self.buffer);
+        
+        self.buffer = raw_buffer;
+        self.vbuffer = vertex_create_buffer_from_buffer(raw_buffer, Stuff.graphics.format);
+        vertex_freeze(self.vbuffer);
+        
+        if (self.reflect_buffer) {
+            buffer_delete(self.reflect_buffer);
+            vertex_delete_buffer(self.reflect_vbuffer);
+            self.GenerateReflections();
+        }
+    };
+    
+    // Appends vertex data onto the end of an existing buffer; this is mostly
+    // used with the "combine submeshes" option in the Mesh editor
     static AddBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         var new_size = buffer_get_size(raw_buffer);

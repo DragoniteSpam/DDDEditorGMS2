@@ -21,16 +21,18 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 if (self.reflect_buffer) buffer_save(self.reflect_buffer, filename + ".reflect");
             };
             
-            static Set = function(buffer, vbuffer) {
+            static Set = function(buffer) {
+                static format = Stuff.graphics.format;
                 self.DestroyUpright();
                 self.buffer = buffer;
-                self.vbuffer = vbuffer;
+                self.vbuffer = vertex_create_buffer_from_buffer(buffer, format);
             };
             
-            static SetReflect = function(buffer, vbuffer) {
+            static SetReflect = function(buffer) {
+                static format = Stuff.graphics.format;
                 self.DestroyReflect();
                 self.reflect_buffer = buffer;
-                self.reflect_vbuffer = vbuffer;
+                self.reflect_vbuffer = vertex_create_buffer_from_buffer(buffer, format);
             };
             
             static AutoReflect = function() {

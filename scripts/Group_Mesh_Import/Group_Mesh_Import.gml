@@ -1,11 +1,11 @@
 function import_mesh(filename) {
     var data = import_3d_model_generic(filename);
-    if (data == undefined) return;
+    if (data == undefined) return undefined;
     
     var mesh = new DataMesh(filename_change_ext(filename_name(filename), ""));
     for (var i = 0, n = array_length(data); i < n; i++) {
         var submesh = new MeshSubmesh("Submesh" + string(i));
-        submesh.AddBufferData(data[i]);
+        submesh.SetBufferData(data[i]);
         mesh.AddSubmesh(submesh);
     }
     
@@ -14,7 +14,7 @@ function import_mesh(filename) {
 
 function replace_mesh(filename, mesh) {
     var data = import_3d_model_generic(filename);
-    if (data == undefined) return;
+    if (data == undefined) return undefined;
     
     // submeshes that are already loaded onto the mesh will be replaced; ones
     // that do not yet exist will be replaced
@@ -22,11 +22,11 @@ function replace_mesh(filename, mesh) {
         if (i < array_length(mesh.submeshes)) {
             var submesh = mesh.submeshes[i];
             mesh.AddSubmesh(submesh);
-            submesh.AddBufferData(data[i]);
+            submesh.SetBufferData(data[i]);
         } else {
             var submesh = new MeshSubmesh("Submesh" + string(i));
             submesh.AddBufferData(data[i]);
-            mesh.AddSubmesh(submesh);
+            mesh.SetBufferData(submesh);
         }
     }
     
@@ -36,14 +36,16 @@ function replace_mesh(filename, mesh) {
     }
 }
 
-function import_3d_model_generic(filename, everything, raw_buffer, existing_mesh_data, replace_index) {
-    // @todo try catch
-    if (file_exists(filename)) {
+function import_3d_model_generic(filename) {
+    /// @todo more robust try-catch
+    try {
         switch (filename_ext(filename)) {
-            case ".obj": return import_obj(filename, everything, raw_buffer, existing_mesh_data, replace_index);
-            case ".d3d": case ".gmmod": return import_d3d(filename, everything, raw_buffer, existing_mesh_data, replace_index);
+            case ".obj": return import_obj(filename);
+            case ".d3d": case ".gmmod": return import_d3d(filename);
             case ".smf": 
         }
+    } catch (e) {
+        // ignore
     }
     return undefined;
 }
