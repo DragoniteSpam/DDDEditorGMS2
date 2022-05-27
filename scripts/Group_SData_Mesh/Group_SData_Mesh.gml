@@ -411,7 +411,13 @@ function DataMesh(source) : SData(source) constructor {
             }
         }
         
-        array_delete(Game.meshes, array_search(Game.meshes, self), 1);
+        var list_index = array_search(Game.meshes, self);
+        if (list_index != -1) {
+            array_delete(Game.meshes, list_index, 1);
+        } else {
+            list_index = array_search(Game.mesh_terrain, self);
+            array_delete(Game.mesh_terrain, list_index, 1);
+        }
     };
     
     static RecalculateBounds = function() {
