@@ -5,3 +5,4 @@ https://github.com/DragoniteSpam/Documentation/wiki/TerrainOps
 
  - Added a "Reset" button to the viewer settings dialog
  - "Add to Project" button works (this will not affect much, since the rest of the editor is locked down in the terrain editor)
+    "Export Scale" is ignored for these terrains

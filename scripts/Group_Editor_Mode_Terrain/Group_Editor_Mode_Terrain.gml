@@ -707,7 +707,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     #region Export methods
     self.AddToProject = function(name = "Terrain", density = 1, chunk_size = 0) {
-        var results = terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, VertexFormatData.FULL, Settings.terrain.water_level);
+        // ignore the export scale here; terrains attached to maps have their own scaling settings
+        var results = terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, 1, self.texture_image, VertexFormatData.FULL, Settings.terrain.water_level);
         
         var mesh = new DataMesh(name);
         for (var i = 0, n = array_length(results); i < n; i++) {
