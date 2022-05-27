@@ -1,3 +1,17 @@
+function import_mesh(filename) {
+    var data = import_3d_model_generic(filename);
+    if (data == undefined) return;
+    
+    var mesh = new DataMesh(filename_change_ext(filename_name(filename), ""));
+    for (var i = 0, n = array_length(data); i < n; i++) {
+        var submesh = new MeshSubmesh("Submesh" + string(i));
+        submesh.AddBufferData(data[i]);
+        mesh.AddSubmesh(submesh);
+    }
+    
+    array_push(Game.meshes, mesh);
+}
+
 function import_3d_model_generic(filename, everything, raw_buffer, existing_mesh_data, replace_index) {
     // @todo try catch
     if (file_exists(filename)) {

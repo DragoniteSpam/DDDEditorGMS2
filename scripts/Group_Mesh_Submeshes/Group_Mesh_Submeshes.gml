@@ -8,8 +8,9 @@ function MeshSubmesh(source) constructor {
     self.reflect_buffer = undefined;
     self.reflect_vbuffer = undefined;
     
-    self.name = source;
-    if (is_struct(source)) {
+    if (is_string(source)) {
+        self.name = source;
+    } else if (is_struct(source)) {
         self.name = source.name;
         self.path = source.path;
         self.proto_guid = source.proto_guid;
