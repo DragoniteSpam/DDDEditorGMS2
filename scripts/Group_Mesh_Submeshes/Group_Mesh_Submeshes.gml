@@ -115,9 +115,17 @@ function MeshSubmesh(source) constructor {
         self.reflect_vbuffer = t;
     };
     
-    static Reload = function() {
-        var data = import_mesh(self.path);
-        if (data == undefined) return;
+    static Reload = function(filename = undefined) {
+        var old_path = self.path;
+        if (filename != undefined) {
+            self.path = filename;
+        }
+        
+        var data = import_3d_model_generic(self.path);
+        if (data == undefined) {
+            self.path = old_path;
+            return;
+        }
         
         var index = array_search(self.owner.submeshes, self);
         if (index < array_length(data)) {

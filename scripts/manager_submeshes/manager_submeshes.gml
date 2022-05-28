@@ -15,17 +15,7 @@ function dialog_create_mesh_submesh(mesh) {
         var index = self.GetSibling("SUBMESHES").GetSelection();
         if (index == -1) return;
         
-        try {
-            var fn = get_open_filename_mesh();
-            var mesh = self.root.mesh;
-            switch (filename_ext(fn)) {
-                case ".obj": import_obj(fn, undefined, mesh, selection); break;
-                case ".d3d": case ".gmmod": import_d3d(fn, undefined, false, mesh, selection); break;
-                case ".smf": break;
-            }
-        } catch (e) {
-            emu_dialog_notice("Couldn't load the file " + (e.message) + "!");
-        }
+        self.root.mesh.submeshes[index].Reload(get_open_filename_mesh());
         
         batch_again();
     };
@@ -45,17 +35,7 @@ function dialog_create_mesh_submesh(mesh) {
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetID("SUBMESHES"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Submesh", function() {
-            try {
-                var fn = get_open_filename_mesh();
-                var mesh = self.root.mesh;
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, undefined, mesh); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, undefined, false, mesh); break;
-                    case ".smf": break;
-                }
-            } catch (e) {
-                emu_dialog_notice("Couldn't load the file " + (e.message) + "!");
-            }
+            self.root.mesh.AddSubmeshFromFile(get_open_filename_mesh());
         }))
             .SetTooltip("Add a submesh")
             .SetID("ADD"),

@@ -18,13 +18,10 @@ function ui_init_mesh(mode) {
         new EmuFileDropperListener(function(files) {
             var filtered_list = self.Filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
             for (var i = 0; i < array_length(filtered_list); i++) {
-                var fn = filtered_list[i];
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, true); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, true); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                    case ".png": case ".bmp": case ".jpg": case ".jpeg": import_texture(fn); break;
+                // try to import the file as a 3D mesh; if that doesn't work,
+                // import it as a texture instead
+                if (!import_mesh(filtered_list[i])) {
+                    import_texture(filtered_list[i]);
                 }
             }
         }),
@@ -93,15 +90,7 @@ function ui_init_mesh(mode) {
                 })
                 .SetID("MESH NAME"),
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
-                var fn = get_open_filename_mesh();
-                if (file_exists(fn)) {
-                    switch (filename_ext(fn)) {
-                        case ".obj": import_obj(fn); break;
-                        case ".d3d": case ".gmmod": import_d3d(fn); break;
-                        case ".smf": break;
-                        case ".dae": import_dae(fn); break;
-                    }
-                }
+                import_mesh(get_open_filename_mesh());
             }))
                 .SetTooltip("Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.")
                 .SetID("ADD MESH"),

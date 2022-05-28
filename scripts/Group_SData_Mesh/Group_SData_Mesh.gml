@@ -112,6 +112,16 @@ function DataMesh(source) : SData(source) constructor {
         return submesh;
     };
     
+    static AddSubmeshFromFile = function(filename) {
+        var data = import_3d_model_generic(filename);
+        if (data == undefined) return;
+        for (var i = 0, n = array_length(data); i < n; i++) {
+            var submesh = new MeshSubmesh("Submesh" + string(array_length(self.submeshes)));
+            submesh.SetBufferData(data[i]);
+            self.AddSubmesh(submesh);
+        }
+    };
+    
     static AutoCalculateBounds = function() {
         self.xmin = infinity;
         self.ymin = infinity;
