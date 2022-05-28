@@ -180,7 +180,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     var base_path = filename_path(fn);
     var base_name = filename_change_ext(filename_name(fn), "");
     
-    if (!file_exists(fn)) return noone;
+    if (!file_exists(fn)) return undefined;
     
     var base_mtl = undefined;
     var active_mtl = -1;
@@ -535,7 +535,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     if (warnings) {
         var warn_header = "Warnings generated regarding the imported mesh:\n";
         var warn_header_plural = "Warnings generated regarding the a number of the imported meshes:\n";
-        var top = ds_list_top(Stuff.dialogs);
+        var top = EmuOverlay.GetTop();
         if (!top || !(top.flags & DialogFlags.IS_GENERIC_WARNING)) {
             var warn_string = "";
             if (warnings & warn_map_1) warn_string += "Tried to load more than one diffuse texture map (map_Kd) - this is not yet supported\n";
@@ -565,7 +565,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         return undefined;
     }
     
-    var vbuffers = { };
+    var buffers = { };
     
     var vc = 0;
     
@@ -587,16 +587,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         bny = v[4];
         bnz = v[5];
         
-        if (is_blender) {
-            v[7] = 1 - v[7];
-        }
-        
-        bxtex = v[6];
-        bytex = v[7];
-        
-        // the texture pages are 2k, so this is two pixels squared
-        bxtex = round_ext(bxtex, 1 / 1024);
-        bytex = round_ext(bytex, 1 / 1024);
+        bxtex = round_ext(v[6], 1 / 1024);
+        bytex = round_ext(is_blender ? v[7] : (1 - v[7]), 1 / 1024);
         
         bcolor = v[8];
         balpha = v[9];
@@ -606,16 +598,15 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         
         base_mtl ??= bmtl;
         
-        if (!vbuffers[$ bmtl]) {
-            vbuffers[$ bmtl] = vertex_create_buffer();
-            vertex_begin(vbuffers[$ bmtl], Stuff.graphics.format);
+        if (!buffers[$ bmtl]) {
+            buffers[$ bmtl] = buffer_create(1000, buffer_grow, 1);
         }
         
-        var vb = vbuffers[$ bmtl];
+        var data = buffers[$ bmtl];
         
-        vertex_point_complete(vb, bxx[vc], byy[vc], bzz[vc], bnx, bny, bnz, bxtex, bytex, bcolor, balpha);
+        vertex_point_complete_raw(data, bxx[vc], byy[vc], bzz[vc], bnx, bny, bnz, bxtex, bytex, bcolor, balpha);
         
-        vc = (++vc) % 3;
+        vc = ++vc % 3;
     }
     
     if (max_alpha < 0.05 && !warn_invisible) {
@@ -623,22 +614,18 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         warn_invisible = true;
     }
     
-    var vb_base = vbuffers[$ base_mtl];
+    var data = array_create(variable_struct_names_count(buffers));
+    data[0] = buffers[$ base_mtl];
+    buffer_resize(data[0], buffer_tell(data[0]));
+    variable_struct_remove(buffers, base_mtl);
     
-    vertex_end(vb_base);
-    
-    variable_struct_remove(vbuffers, base_mtl);
-    var vbuffer_materials = variable_struct_get_names(vbuffers);
-    
-    for (var i = 0; i < array_length(vbuffer_materials); i++) {
-        var mat = vbuffer_materials[i];
-        if (vertex_get_number(vbuffers[$ mat]) == 0) {
-            vertex_delete_buffer(vbuffers[$ mat]);
-            variable_struct_remove(vbuffers, mat);
-        } else {
-            vertex_end(vbuffers[$ mat]);
-        }
+    var keys = variable_struct_get_names(buffers);
+    for (var i = 0, n = array_length(keys); i < n; i++) {
+        data[i + 1] = buffers[$ keys[i]];
+        buffer_resize(data[i + 1], buffer_tell(data[i + 1]));
     }
+    
+    return data;
     
     if (everything) {
         var mesh = existing ? existing : new DataMesh(base_name);
@@ -668,15 +655,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         
         return mesh;
     }
-    
-    if (vertex_get_number(vb_base) > 0) {
-        vertex_freeze(vb_base);
-        return vb_base;
-    }
-    
-    vertex_delete_buffer(vb_base);
-    
-    return noone;
 }
 
 function import_texture(fn) {
