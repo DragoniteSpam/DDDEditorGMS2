@@ -1,6 +1,6 @@
 function DataMeshAutotile(source) : SData(source) constructor {
     static MeshAutotileLayer = function() constructor {
-        static MeshVertexBufferData = function(buffer, vbuffer) constructor {
+        static MeshVertexBufferData = function(buffer) constructor {
             self.buffer = undefined;
             self.vbuffer = undefined;
             self.reflect_buffer = undefined;
@@ -25,14 +25,16 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 static format = Stuff.graphics.format;
                 self.DestroyUpright();
                 self.buffer = buffer;
-                self.vbuffer = vertex_create_buffer_from_buffer(buffer, format);
+                if (buffer != undefined)
+                    self.vbuffer = vertex_create_buffer_from_buffer(buffer, format);
             };
             
             static SetReflect = function(buffer) {
                 static format = Stuff.graphics.format;
                 self.DestroyReflect();
                 self.reflect_buffer = buffer;
-                self.reflect_vbuffer = vertex_create_buffer_from_buffer(buffer, format);
+                if (buffer != undefined)
+                    self.reflect_vbuffer = vertex_create_buffer_from_buffer(buffer, format);
             };
             
             static AutoReflect = function() {
@@ -66,12 +68,12 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 return valid;
             };
             
-            self.Set(buffer, vbuffer);
+            self.Set(buffer);
         };
         
         self.tiles = array_create(AUTOTILE_COUNT);
         for (var i = 0; i < AUTOTILE_COUNT; i++) {
-            self.tiles[i] = new MeshVertexBufferData(undefined, undefined);
+            self.tiles[i] = new MeshVertexBufferData(undefined);
         }
         
         self.Destroy = function() {
