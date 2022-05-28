@@ -28,20 +28,13 @@ function import_3d_model_generic(filename) {
     return undefined;
 }
 
-function import_d3d(fn, everything = true, raw_buffer = false, existing = undefined, replace_index = -1) {
-    // returns either a DataMesh, a vertex buffer, or an array of [vertex buffer, data buffer]
-    // depending on what you ask it for
-    // this is VERY bad but i don't want to write more than one d3d importers, or to offload
-    // the d3d code to somewhere else, so it stays like this for now
-    
-    var f = file_text_open_read(fn);
+function import_d3d(filename) {
+    var f = file_text_open_read(filename);
     file_text_readln(f);
     var n = file_text_read_real(f) - 2;
     file_text_readln(f);
     
-    var vbuffer = vertex_create_buffer();
-    
-    vertex_begin(vbuffer, Stuff.graphics.format);
+    var data = buffer_create(1000, buffer_fixed, 1);
     
     var vc = 0;
     
@@ -94,9 +87,9 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
         vc++;
         
         if (vc == 3) {
-            vertex_point_complete(vbuffer, xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], color[0], alpha[0]);
-            vertex_point_complete(vbuffer, xx[1], yy[1], zz[1], nx[1], ny[1], nz[1], xtex[1], ytex[1], color[1], alpha[1]);
-            vertex_point_complete(vbuffer, xx[2], yy[2], zz[2], nx[2], ny[2], nz[2], xtex[2], ytex[2], color[2], alpha[2]);
+            vertex_point_complete_raw(data, xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], color[0], alpha[0]);
+            vertex_point_complete_raw(data, xx[1], yy[1], zz[1], nx[1], ny[1], nz[1], xtex[1], ytex[1], color[1], alpha[1]);
+            vertex_point_complete_raw(data, xx[2], yy[2], zz[2], nx[2], ny[2], nz[2], xtex[2], ytex[2], color[2], alpha[2]);
             
             switch (tri_type) {
                 case tri_type_list:
@@ -144,36 +137,8 @@ function import_d3d(fn, everything = true, raw_buffer = false, existing = undefi
     #endregion
     
     file_text_close(f);
-    vertex_end(vbuffer);
     
-    var dbuffer = raw_buffer ? buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1) : noone;
-    
-    if (vertex_get_number(vbuffer) == 0) {
-        vertex_delete_buffer(vbuffer);
-        vbuffer = noone;
-    }
-    
-    if (everything) {
-        var base_name = filename_change_ext(filename_name(fn), "");
-        var mesh = existing ? existing : new DataMesh(base_name);
-        if (!existing) array_push(Game.meshes, mesh);
-        
-        if (!existing) {
-            mesh.RecalculateBounds();
-            internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-        }
-        
-        if (vertex_get_number(vbuffer) > 0) {
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, undefined, base_name, replace_index, fn);
-            vertex_freeze(vbuffer);
-        } else {
-            vertex_delete_buffer(vbuffer);
-        }
-        
-        return mesh;
-    }
-    
-    return raw_buffer ? [vbuffer, dbuffer] : vbuffer;
+    return data;
 }
 
 function import_dae(filename, adjust_uvs = true, existing = undefined, replace_index = -1) {
