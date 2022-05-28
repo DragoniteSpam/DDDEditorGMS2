@@ -419,10 +419,9 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     mtl_color_b[$ mtl_name] = real(ds_queue_dequeue(spl)) * 255;
                                     break;
                                 case "d":   // "dissolved" (alpha)
+                                case "Tr":  // "transparent" (blender thinks this should be 1 - alpha???)
                                     mtl_alpha[$ mtl_name] = real(ds_queue_dequeue(spl));
-                                    break;
-                                case "Tr":  // "transparent" (1 - alpha)
-                                    mtl_alpha[$ mtl_name] = 1 - real(ds_queue_dequeue(spl));
+                                    if (is_blender) mtl_alpha[$ mtl_name] = 1 - mtl_alpha[$ mtl_name];
                                     break;
                                 case "map_Kd":                  // dissolve (base) texture
                                     var texfn = "";
