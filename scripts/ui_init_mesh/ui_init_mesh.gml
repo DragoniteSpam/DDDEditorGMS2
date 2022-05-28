@@ -101,11 +101,16 @@ function ui_init_mesh(mode) {
                     var selection = { };
                     
                     for (var i = 0, n = array_length(self.root.indices); i < n; i++) {
-                        selection[$ string(ptr(self.root.type[self.root.indices[i]]))] = true;
+                        // this is fine
+                        variable_struct_set(selection, string(ptr(self.root.type[self.root.indices[i]])), true);
+                        // this errors
+                        //selection[$ "!" + string(ptr(self.root.type[self.root.indices[i]]))] = true;
                     }
                     
                     for (var i = array_length(self.root.type) - 1; i >= 0; i--) {
-                        if (selection[$ string(ptr(self.root.type[i]))]) {
+                        // gamemaker why are you like this
+                        //if (selection[$ "!" + string(ptr(self.root.type[i]))]) {
+                        if (variable_struct_exists(selection, string(ptr(self.root.type[i])))) {
                             self.root.type[i].Destroy();
                         }
                     }
