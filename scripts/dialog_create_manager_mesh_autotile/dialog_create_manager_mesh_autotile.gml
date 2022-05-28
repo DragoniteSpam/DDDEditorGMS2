@@ -105,7 +105,7 @@ function dialog_create_manager_mesh_autotile() {
                     if (type == 0) {
                         at_layer.tiles[i].Set(data[0]);
                     } else {
-                        at_layer.tiles[i].SetReflect(data[0]]);
+                        at_layer.tiles[i].SetReflect(data[0]);
                     }
                     /// @todo add an optional "mesh count" parameter to
                     // import_3d_model_generic which eliminates the need

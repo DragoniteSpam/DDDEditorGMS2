@@ -34,7 +34,7 @@ function import_d3d(filename) {
     var n = file_text_read_real(f) - 2;
     file_text_readln(f);
     
-    var data = buffer_create(1000, buffer_fixed, 1);
+    var data = buffer_create(1000, buffer_grow, 1);
     
     var vc = 0;
     
@@ -138,7 +138,11 @@ function import_d3d(filename) {
     
     file_text_close(f);
     
-    return data;
+    buffer_resize(data, buffer_tell(data));
+    
+    // this function needs to return an array of buffers, even though there
+    // will only ever be one buffer loaded from a d3d file
+    return [data];
 }
 
 function import_dae(filename, adjust_uvs = true) {
