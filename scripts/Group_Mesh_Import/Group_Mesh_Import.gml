@@ -141,7 +141,7 @@ function import_d3d(filename) {
     return data;
 }
 
-function import_dae(filename, adjust_uvs = true, existing = undefined, replace_index = -1) {
+function import_dae(filename, adjust_uvs = true) {
     var container = dotdae_model_load_file(filename, adjust_uvs, false);
     
     var base_name = filename_change_ext(filename_name(filename), "");
@@ -154,38 +154,8 @@ function import_dae(filename, adjust_uvs = true, existing = undefined, replace_i
     
     for (var i = 0; i < array_length(vbuff_array); i++) {
         var poly_list = vbuff_array[i];
-        var vbuff = buffer_dotobj_to_standard(poly_list);
-        var buff = buffer_create_from_vertex_buffer(vbuff, buffer_fixed, 1);
-        mesh_create_submesh(mesh, buff, vbuff);
+        /// @todo ...
     }
-    
-    /*
-    var container = dotdae_model_load_file(filename, false, false);
-    var vbs = container[@ eDotDae.VertexBufferList];
-
-    if (everything) {
-        var base_name = filename_change_ext(filename_name(filename), "");
-        var mesh = existing ? existing : new DataMesh(base_name);
-        if (!existing) array_push(Game.meshes, mesh);
-    
-        if (!existing) {
-            data_mesh_recalculate_bounds(mesh);
-            internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-        }
-    
-        for (var i = 0; i < ds_list_size(vbs); i++) {
-            var vbuffer = vbs[| i];
-            vbuffer = vbuffer[@ eDotDaePolyList.VertexBuffer];
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, undefined, base_name, replace_index, filename);
-            vertex_freeze(vbuffer);
-        }
-    
-        return mesh;
-    }
-
-    return container;
-
-*/
 }
 
 function import_obj(fn, everything = true, raw_buffer = false, existing = undefined, replace_index = -1) {
