@@ -488,7 +488,7 @@ function ui_init_main(mode) {
                     if (entity.translateable) {
                         Stuff.map.active_map.Move(entity, data.value, entity.yy, entity.zz);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRequireConfirm(true)
                 .SetID("ENTITY POSITION X")
@@ -506,7 +506,7 @@ function ui_init_main(mode) {
                     if (entity.translateable) {
                         Stuff.map.active_map.Move(entity, entity.xx, data.value, entity.zz);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRequireConfirm(true)
                 .SetID("ENTITY POSITION Y")
@@ -524,7 +524,7 @@ function ui_init_main(mode) {
                     if (entity.translateable) {
                         Stuff.map.active_map.Move(entity, entity.xx, entity.yy, data.value);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRequireConfirm(true)
                 .SetID("ENTITY POSITION Z")
@@ -543,7 +543,7 @@ function ui_init_main(mode) {
                         entity.off_xx = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0, 1)
                 .SetRequireConfirm(true)
@@ -563,7 +563,7 @@ function ui_init_main(mode) {
                         entity.off_yy = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0, 1)
                 .SetRequireConfirm(true)
@@ -583,7 +583,7 @@ function ui_init_main(mode) {
                         entity.off_zz = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0, 1)
                 .SetRequireConfirm(true)
@@ -603,7 +603,7 @@ function ui_init_main(mode) {
                         entity.rot_xx = real(self.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0, 360)
                 .SetRequireConfirm(true)
@@ -623,7 +623,7 @@ function ui_init_main(mode) {
                         entity.off_yy = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0, 360)
                 .SetRequireConfirm(true)
@@ -643,7 +643,7 @@ function ui_init_main(mode) {
                         entity.off_zz = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0, 360)
                 .SetRequireConfirm(true)
@@ -663,7 +663,7 @@ function ui_init_main(mode) {
                         entity.scale_xx = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0.01, 100)
                 .SetRequireConfirm(true)
@@ -683,7 +683,7 @@ function ui_init_main(mode) {
                         entity.scale_yy = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0.01, 100)
                 .SetRequireConfirm(true)
@@ -703,7 +703,7 @@ function ui_init_main(mode) {
                         entity.scale_zz = real(data.value);
                         editor_map_mark_changed(entity);
                     }
-                }, { value: string(self.value) });
+                }, { value: real(self.value) });
             }))
                 .SetRealNumberBounds(0.01, 100)
                 .SetRequireConfirm(true)
