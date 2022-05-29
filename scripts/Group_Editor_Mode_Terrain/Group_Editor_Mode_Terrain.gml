@@ -724,7 +724,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         
         sprite_save(self.texture_image, 0, PATH_TEMP + "terrain_texture.png");
         mesh.tex_base = tileset_create(PATH_TEMP + "terrain_texture.png").GUID;
-        mesh.terrain_data = new MeshTerrainData(self.width, self.height, terrainops_to_heightmap(self.height_data));
+        mesh.terrain_data = new MeshTerrainData(self.width, self.height, buffer_clone(self.height_data, buffer_fixed, 4));
         
         array_push(Game.mesh_terrain, mesh);
     };
