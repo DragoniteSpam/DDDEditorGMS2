@@ -57,6 +57,76 @@ function dialog_create_map_advanced() {
             .SetID("LIGHT PLAYER")
             .SetTooltip("Whether or not there should be a point light around the player on this map"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Default Lights", function() {
+            // this is otherwise identical to MapZone's edit script, but that's
+            // already inserted into a generic zone edit script form and i
+            // can't (read: won't) generalize it
+            var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Default Lights");
+            var element_width = 320;
+            var element_height = 32;
+            
+            var col1 = 32;
+            var col2 = 32 + 320 + 32;
+            
+            return dialog.AddContent([
+                (new EmuList(col1, EMU_BASE, element_width, element_height, "All lights:", element_height, 16, function() {
+                    if (!self.root) return;
+                
+                    var selection = self.GetSelection();
+                    var active_lights = self.GetSibling("LIST");
+                    var active_selection = active_lights.GetSelection();
+                
+                    if (active_selection != -1 && selection != -1) {
+                        Stuff.map.active_map.lights[active_selection] = self.At(selection).REFID;
+                    }
+                }))
+                    .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                    .SetList(ds_list_filter(Stuff.map.active_map.contents.all_entities, function(element) {
+                        return ((element.etype_flags & ETypeFlags.ENTITY_EFFECT) >= ETypeFlags.ENTITY_EFFECT);
+                    }))
+                    .SetListColors(function(index) {
+                        var effect = self.At(index);
+                        return effect.com_light ? effect.com_light.label_colour : EMU_COLOR_INPUT_WARN;
+                    })
+                    .SetRefresh(function() {
+                        var active_list = self.GetSibling("LIST");
+                        var active_selection = active_list.GetSelection();
+                        if (active_selection != -1 && self.GetSelection() != -1) {
+                            Stuff.map.active_map.lights[active_selection] = self.GetSelectedItem().REFID;
+                        }
+                    })
+                    .SetTooltip("Directional lights will be shown in green. Point lights will be shown in blue. I recommend giving, at the very least, all of your Light entities unique names. Deselecting this list will clear the active light index.")
+                    .SetID("ALL LIGHTS"),
+                (new EmuList(col2, EMU_BASE, element_width, element_height, "Active lights:", element_height, 14, function() {
+                    if (!self.root) return;
+                
+                    var selection = self.GetSelection();
+                    var all_lights = self.GetSibling("ALL LIGHTS");
+                    all_lights.Deselect();
+                    if (selection != -1) {
+                        all_lights.Select(array_search(all_lights.entries, self.GetSelectedItem()));
+                    }
+                    self.root.Refresh();
+                }))
+                    .SetListColors(function(index) {
+                        var effect = refid_get(self.At(index));
+                        return (effect && effect.com_light) ? effect.com_light.label_colour : EMU_COLOR_INPUT_WARN;
+                    })
+                    .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                        var entity = refid_get(self.At(index));
+                        return entity ? entity.name : "<none>";
+                    })
+                    .SetVacantText("no active lights")
+                    .SetTooltip("Effects with no light component (eg if the light component has been removed) will be shown in red. One light will be reserved for the player at all times.")
+                    .SetList(Stuff.map.active_map.lights)
+                    .SetID("LIST"),
+                (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Clear", function() {
+                    if (self.GetSibling("LIST").GetSelection() == -1) return;
+                    Stuff.map.active_map.lights[self.GetSibling("LIST").GetSelection()] = NULL;
+                    self.GetSibling("ALL LIGHTS").Deselect();
+                }))
+                    .SetID("CLEAR")
+            
+            ]).AddDefaultCloseButton();
         }))
             .SetID("LIGHT DEFAULTS")
             .SetTooltip("Choose which lights will be turned on by default in this map. Up to eight lights may be active at one time."),
