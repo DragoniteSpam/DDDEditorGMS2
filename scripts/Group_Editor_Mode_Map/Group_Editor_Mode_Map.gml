@@ -253,6 +253,8 @@ function EditorModeMap() : EditorModeBase() constructor {
         
         shader_set(shd_ddd);
         
+        matrix_set(matrix_world, matrix_build_identity());
+        
         // tried using ztestenable for this - didn't look good. at all.
         for (var i = 0, n = array_length(self.selection); i < n; i++) {
             self.selection[i].render();
