@@ -334,7 +334,6 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
                 self.GetSibling("ALL LIGHTS").Deselect();
             }))
                 .SetID("CLEAR")
-            
         ]).AddDefaultCloseButton();
     };
     
