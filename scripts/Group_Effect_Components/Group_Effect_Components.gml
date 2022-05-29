@@ -146,10 +146,7 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
             var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
             var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
             var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
-            Stuff.graphics.DrawAxesRotation(
-                world_x, world_y, world_z, 0, 0, 0,
-                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16
-            );
+            Stuff.graphics.DrawAxesRotation(world_x, world_y, world_z, 0, 0, 0, 1, 1, 1);
         }
     };
     
