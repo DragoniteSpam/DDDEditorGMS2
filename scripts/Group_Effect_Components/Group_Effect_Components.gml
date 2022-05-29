@@ -50,13 +50,14 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
     self.light_radius = 255;
     
     if (is_struct(source)) {
-        self.light_colour = source.light.color;
-        self.light_radius = source.light.radius;
+        self.light_colour = source.specific.color;
+        self.light_radius = source.specific.radius;
     }
     
     static CreateJSONPointLight = function() {
         var json = self.CreateJSONComponent();
-        json.light = {
+        json.specific = {
+            type: self.type,
             color: self.light_colour,
             radius: self.light_radius,
         };
@@ -101,18 +102,19 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
     self.light_dz = -1;
     
     if (is_struct(source)) {
-        self.light_colour = source.light.color;
-        self.light_radius = source.light.radius;
-        self.light_cutoff_outer = source.light.cutoff_outer;
-        self.light_cutoff_inner = source.light.cutoff_inner;
-        self.light_dx = source.light.dx;
-        self.light_dy = source.light.dy;
-        self.light_dz = source.light.dz;
+        self.light_colour = source.specific.color;
+        self.light_radius = source.specific.radius;
+        self.light_cutoff_outer = source.specific.cutoff_outer;
+        self.light_cutoff_inner = source.specific.cutoff_inner;
+        self.light_dx = source.specific.dx;
+        self.light_dy = source.specific.dy;
+        self.light_dz = source.specific.dz;
     }
     
     static CreateJSONSpotLight = function() {
         var json = self.CreateJSONComponent();
-        json.light = {
+        json.specific = {
+            type: self.type,
             color: self.light_colour,
             radius: self.light_radius,
             cutoff_outer: self.light_cutoff_outer,
@@ -161,15 +163,16 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
     self.light_colour = c_white;
     
     if (is_struct(source)) {
-        self.light_colour = source.light.color;
-        self.light_dx = source.light.dx;
-        self.light_dy = source.light.dy;
-        self.light_dz = source.light.dz;
+        self.light_colour = source.specific.color;
+        self.light_dx = source.specific.dx;
+        self.light_dy = source.specific.dy;
+        self.light_dz = source.specific.dz;
     }
     
     static CreateJSONDirectionalLight = function() {
         var json = self.CreateJSONComponent();
-        json.light = {
+        json.specific = {
+            type: self.type,
             color: self.light_colour,
             dx: self.light_dx,
             dy: self.light_dy,

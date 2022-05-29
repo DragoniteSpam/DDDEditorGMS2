@@ -422,7 +422,7 @@ function EntityEffect(source) : Entity(source) constructor {
         if (light == pointer_null) light = undefined;
         if (particle == pointer_null) particle = undefined;
         if (audio == pointer_null) audio = undefined;
-        self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
+        self.com_light = light ? (new global.light_type_constructors[light.specific.type](self, light)) : undefined;
         self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
         self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
         self.com_marker = source.effects.com[$ "marker"] ?? -1;
