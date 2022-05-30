@@ -222,6 +222,29 @@ function buffer_get_pixel(surface, buffer, x, y) {
     return buffer_peek(buffer, offset, buffer_u32) >> 8;
 }
 
+function buffer_sample(buffer, u, v, w, h, type = buffer_u32) {
+    return buffer_sample_pixel(buffer, u * w, v * h, w, h, type);
+}
+
+function buffer_sample_pixel(buffer, x, y, w, h, type = buffer_u32) {
+    // might implement texture wrapping some other day but right now i dont feel like it
+    x = clamp(x, 0, w - 1);
+    y = clamp(y, 0, h - 1);
+    var address_ul = (floor(x) + floor(y) * w) * buffer_sizeof(type);
+    var address_ur = (ceil(x) + floor(y) * w) * buffer_sizeof(type);
+    var address_ll = (floor(x) + ceil(y) * w) * buffer_sizeof(type);
+    var address_lr = (ceil(x) + ceil(y) * w) * buffer_sizeof(type);
+    var horizontal_lerp = frac(x);
+    var vertical_lerp = frac(y);
+    var value_ul = buffer_peek(buffer, address_ul, type);
+    var value_ur = buffer_peek(buffer, address_ur, type);
+    var value_ll = buffer_peek(buffer, address_ll, type);
+    var value_lr = buffer_peek(buffer, address_lr, type);
+    var value_l = lerp(value_ul, value_ll, vertical_lerp);
+    var value_r = lerp(value_ur, value_lr, vertical_lerp);
+    return lerp(value_l, value_r, horizontal_lerp);
+}
+
 function buffer_read_buffer(source) {
     var length = buffer_read(source, buffer_u32);
     var sbuffer = buffer_create(length, buffer_fixed, 1);
