@@ -53,6 +53,7 @@
     {"id":{"name":"Group_Drago","path":"scripts/Group_Drago/Group_Drago.yy",},"order":0,},
     {"id":{"name":"spr_emu_progress","path":"sprites/spr_emu_progress/spr_emu_progress.yy",},"order":15,},
     {"id":{"name":"Group_Misc","path":"scripts/Group_Misc/Group_Misc.yy",},"order":1,},
+    {"id":{"name":"Group_Combine_Channels","path":"scripts/Group_Combine_Channels/Group_Combine_Channels.yy",},"order":1,},
     {"id":{"name":"Group_Validation","path":"scripts/Group_Validation/Group_Validation.yy",},"order":18,},
     {"id":{"name":"Group_3D","path":"scripts/Group_3D/Group_3D.yy",},"order":7,},
     {"id":{"name":"spr_terrain_gen_part_spark","path":"sprites/spr_terrain_gen_part_spark/spr_terrain_gen_part_spark.yy",},"order":7,},
@@ -427,6 +428,7 @@
     {"id":{"name":"EmuText","path":"scripts/EmuText/EmuText.yy",},"order":15,},
     {"id":{"name":"uivc_animation_keyframe_graphic_type","path":"scripts/uivc_animation_keyframe_graphic_type/uivc_animation_keyframe_graphic_type.yy",},"order":11,},
     {"id":{"name":"uivc_animation_keyframe_graphic_sprite","path":"scripts/uivc_animation_keyframe_graphic_sprite/uivc_animation_keyframe_graphic_sprite.yy",},"order":12,},
+    {"id":{"name":"shd_utility_combine_channels","path":"shaders/shd_utility_combine_channels/shd_utility_combine_channels.yy",},"order":0,},
     {"id":{"name":"uivc_animation_keyframe_graphic_mesh","path":"scripts/uivc_animation_keyframe_graphic_mesh/uivc_animation_keyframe_graphic_mesh.yy",},"order":13,},
     {"id":{"name":"uivc_animation_keyframe_graphic_frame","path":"scripts/uivc_animation_keyframe_graphic_frame/uivc_animation_keyframe_graphic_frame.yy",},"order":14,},
     {"id":{"name":"uivc_animation_keyframe_graphic_direction","path":"scripts/uivc_animation_keyframe_graphic_direction/uivc_animation_keyframe_graphic_direction.yy",},"order":15,},
@@ -789,6 +791,7 @@
     {"folderPath":"folders/Emu Implementation.yy","order":65,"resourceVersion":"1.0","name":"Emu Implementation","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Changelogs.yy","order":66,"resourceVersion":"1.0","name":"Changelogs","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Shaders/Utility.yy","order":9,"resourceVersion":"1.0","name":"Utility","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Shaders/Utility/Combine Channels.yy","order":7,"resourceVersion":"1.0","name":"Combine Channels","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
