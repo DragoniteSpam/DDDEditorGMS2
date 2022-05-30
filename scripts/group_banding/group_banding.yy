@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Wireframe",
-    "path": "folders/Shaders/Utility/Wireframe.yy",
+    "name": "Banding",
+    "path": "folders/Shaders/Utility/Banding.yy",
   },
   "resourceVersion": "1.0",
-  "name": "group_wireframe",
+  "name": "Group_Banding",
   "tags": [],
   "resourceType": "GMScript",
 }

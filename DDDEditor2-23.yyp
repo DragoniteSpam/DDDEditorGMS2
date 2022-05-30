@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"shd_utility_banding","path":"shaders/shd_utility_banding/shd_utility_banding.yy",},"order":0,},
     {"id":{"name":"b_tileset_textureless","path":"sprites/b_tileset_textureless/b_tileset_textureless.yy",},"order":0,},
     {"id":{"name":"b_tileset_magenta","path":"sprites/b_tileset_magenta/b_tileset_magenta.yy",},"order":1,},
     {"id":{"name":"Group_Manage_Audio","path":"scripts/Group_Manage_Audio/Group_Manage_Audio.yy",},"order":10,},
@@ -203,6 +204,7 @@
     {"id":{"name":"scribble_typist","path":"scripts/scribble_typist/scribble_typist.yy",},"order":8,},
     {"id":{"name":"create_text","path":"scripts/create_text/create_text.yy",},"order":5,},
     {"id":{"name":"__scribble_gen_5_finalize_bidi","path":"scripts/__scribble_gen_5_finalize_bidi/__scribble_gen_5_finalize_bidi.yy",},"order":5,},
+    {"id":{"name":"Group_Banding","path":"scripts/Group_Banding/Group_Banding.yy",},"order":1,},
     {"id":{"name":"spr_terrain_gen_part_explosion","path":"sprites/spr_terrain_gen_part_explosion/spr_terrain_gen_part_explosion.yy",},"order":8,},
     {"id":{"name":"Group_Map_Entities","path":"scripts/Group_Map_Entities/Group_Map_Entities.yy",},"order":1,},
     {"id":{"name":"create_button","path":"scripts/create_button/create_button.yy",},"order":7,},
@@ -336,7 +338,7 @@
     {"id":{"name":"manager_map","path":"scripts/manager_map/manager_map.yy",},"order":6,},
     {"id":{"name":"scribble_font_combine","path":"scripts/scribble_font_combine/scribble_font_combine.yy",},"order":5,},
     {"id":{"name":"__scribble_class_event","path":"scripts/__scribble_class_event/__scribble_class_event.yy",},"order":1,},
-    {"id":{"name":"Group_Wireframe","path":"scripts/Group_Wireframe/Group_Wireframe.yy",},"order":7,},
+    {"id":{"name":"group_wireframe","path":"scripts/group_wireframe/group_wireframe.yy",},"order":0,},
     {"id":{"name":"shd_terrain_paint_texture","path":"shaders/shd_terrain_paint_texture/shd_terrain_paint_texture.yy",},"order":6,},
     {"id":{"name":"dotdae_model_draw","path":"scripts/dotdae_model_draw/dotdae_model_draw.yy",},"order":6,},
     {"id":{"name":"dmu_dialog_event_save_prefab","path":"scripts/dmu_dialog_event_save_prefab/dmu_dialog_event_save_prefab.yy",},"order":0,},
@@ -588,7 +590,7 @@
     {"id":{"name":"snap_from_csv","path":"scripts/snap_from_csv/snap_from_csv.yy",},"order":0,},
     {"id":{"name":"scribble_external_sound_add","path":"scripts/scribble_external_sound_add/scribble_external_sound_add.yy",},"order":2,},
     {"id":{"name":"snap_to_binary","path":"scripts/snap_to_binary/snap_to_binary.yy",},"order":1,},
-    {"id":{"name":"shd_utility_wireframe","path":"shaders/shd_utility_wireframe/shd_utility_wireframe.yy",},"order":3,},
+    {"id":{"name":"shd_utility_wireframe","path":"shaders/shd_utility_wireframe/shd_utility_wireframe.yy",},"order":1,},
     {"id":{"name":"DragoExt","path":"extensions/DragoExt/DragoExt.yy",},"order":2,},
     {"id":{"name":"Group_Export_Main","path":"scripts/Group_Export_Main/Group_Export_Main.yy",},"order":4,},
     {"id":{"name":"dialog_create_mesh_collision_settings","path":"scripts/dialog_create_mesh_collision_settings/dialog_create_mesh_collision_settings.yy",},"order":42,},
@@ -791,7 +793,9 @@
     {"folderPath":"folders/Emu Implementation.yy","order":65,"resourceVersion":"1.0","name":"Emu Implementation","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Changelogs.yy","order":66,"resourceVersion":"1.0","name":"Changelogs","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Shaders/Utility.yy","order":9,"resourceVersion":"1.0","name":"Utility","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Shaders/Utility/Combine Channels.yy","order":7,"resourceVersion":"1.0","name":"Combine Channels","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Shaders/Utility/Combine Channels.yy","order":6,"resourceVersion":"1.0","name":"Combine Channels","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Shaders/Utility/Wireframe.yy","order":8,"resourceVersion":"1.0","name":"Wireframe","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Shaders/Utility/Banding.yy","order":9,"resourceVersion":"1.0","name":"Banding","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

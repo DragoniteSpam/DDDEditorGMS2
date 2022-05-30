@@ -1,8 +1,8 @@
 {
   "type": 1,
   "parent": {
-    "name": "Utility",
-    "path": "folders/Shaders/Utility.yy",
+    "name": "Wireframe",
+    "path": "folders/Shaders/Utility/Wireframe.yy",
   },
   "resourceVersion": "1.0",
   "name": "shd_utility_wireframe",
