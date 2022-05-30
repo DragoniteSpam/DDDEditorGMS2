@@ -214,7 +214,7 @@ function dialog_create_map_advanced() {
 function dialog_create_map_terrain() {
     var map = Stuff.map.active_map;
     
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 768, "Map Terrain Settings");
+    var dialog = new EmuDialog(32 + 32 + 320 + 32 + 320 + 32 + 320 + 32 + 32, 768, "Map Terrain Settings");
     dialog.map = map;
     dialog.generation_choices = [];
     var element_width = 320;
@@ -225,94 +225,123 @@ function dialog_create_map_terrain() {
     var col3 = 32 + 320 + 32 + 320 + 32;
     
     return dialog.AddContent([
-        new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Base Properties"),
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Terrain:", element_height, 5, function() {
-            if (!self.root) return;
-            var selection = self.GetSelectedItem();
-            self.root.map.terrain.id = selection ? selection.GUID : NULL;
-        }))
-            .SetList(Game.mesh_terrain)
-            .Select(array_search(Game.mesh_terrain, guid_get(map.terrain.id)))
-            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-            .SetTooltip("The terrain model associated with this map."),
-        (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Scale:", string(map.terrain.scale), "The terrain scale", 2, E_InputTypes.INT, function() {
-            self.root.map.terrain.scale = real(self.value);
-        })),
-        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Generate Texture", function() {
-            var terrain = guid_get(self.root.map.terrain.id) ? guid_get(self.root.map.terrain.id).terrain_data : undefined;
-            if (!terrain) return;
+        (new EmuTabGroup(col1, EMU_BASE, 32 + 320 + 32 + 320 + 32 + 320 + 32, dialog.height - 80, 1, element_height)).AddTabs(0, [
+            new EmuTab("General").AddContent([
+                new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Base Properties"),
+                (new EmuList(col1, EMU_AUTO, element_width, element_height, "Terrain:", element_height, 10, function() {
+                    if (!self.root) return;
+                    var selection = self.GetSelectedItem();
+                    self.root.map.terrain.id = selection ? selection.GUID : NULL;
+                }))
+                    .SetList(Game.mesh_terrain)
+                    .Select(array_search(Game.mesh_terrain, guid_get(map.terrain.id)))
+                    .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                    .SetTooltip("The terrain model associated with this map."),
+                (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Scale:", string(map.terrain.scale), "The terrain scale", 2, E_InputTypes.INT, function() {
+                    self.root.map.terrain.scale = real(self.value);
+                })),
+            ]),
+            (new EmuTab("Generation of Noise")).AddContent([
+                new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Perlin Noise"),
+                (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Generate Texture", function() {
+                    var terrain = guid_get(self.root.map.terrain.id) ? guid_get(self.root.map.terrain.id).terrain_data : undefined;
+                    if (!terrain) return;
             
-            var smoothness = self.GetSibling("GEN SMOOTHNESS").value;
-            var sprite_r_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
-            var sprite_g_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
-            var sprite_b_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
-            var sprite_r = sprite_r_source.ToSpriteDLL();
-            var sprite_g = sprite_g_source.ToSpriteDLL();
-            var sprite_b = sprite_b_source.ToSpriteDLL();
-            sprite_r_source.Destroy();
-            sprite_g_source.Destroy();
-            sprite_b_source.Destroy();
+                    var smoothness = self.GetSibling("GEN SMOOTHNESS").value;
+                    var sprite_r_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
+                    var sprite_g_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
+                    var sprite_b_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
+                    var sprite_r = sprite_r_source.ToSpriteDLL();
+                    var sprite_g = sprite_g_source.ToSpriteDLL();
+                    var sprite_b = sprite_b_source.ToSpriteDLL();
+                    sprite_r_source.Destroy();
+                    sprite_g_source.Destroy();
+                    sprite_b_source.Destroy();
             
-            var display = self.GetSibling("IMAGE");
-            if (sprite_exists(display.sprite)) {
-                sprite_delete(display.sprite);
-            }
+                    var display = self.GetSibling("IMAGE");
+                    if (sprite_exists(display.sprite)) {
+                        sprite_delete(display.sprite);
+                    }
             
-            display.sprite = sprite_combine_grayscale_channels(sprite_r, sprite_g, sprite_b);
-            sprite_delete(sprite_r);
-            sprite_delete(sprite_g);
-            sprite_delete(sprite_b);
+                    display.sprite = sprite_combine_grayscale_channels(sprite_r, sprite_g, sprite_b);
+                    sprite_delete(sprite_r);
+                    sprite_delete(sprite_g);
+                    sprite_delete(sprite_b);
             
-            sprite_set_offset(display.sprite, sprite_get_width(display.sprite) / 2, sprite_get_height(display.sprite) / 2);
-        })),
-        new EmuText(col1, EMU_AUTO, element_width / 2, element_height, "Smoothness:"),
-        (new EmuProgressBar(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, 8, 1, 12, true, 6, emu_null))
-            .SetIntegersOnly(true)
-            .SetID("GEN SMOOTHNESS"),
-        (new EmuButtonImage(col1, EMU_AUTO, element_width, element_width, -1, 0, c_white, 1, true, function() {
+                    sprite_set_offset(display.sprite, sprite_get_width(display.sprite) / 2, sprite_get_height(display.sprite) / 2);
+                })),
+                new EmuText(col1, EMU_AUTO, element_width / 2, element_height, "Smoothness:"),
+                (new EmuProgressBar(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, 8, 1, 12, true, 6, emu_null))
+                    .SetIntegersOnly(true)
+                    .SetID("GEN SMOOTHNESS"),
+                (new EmuButtonImage(col1, EMU_AUTO, element_width, element_width, -1, 0, c_white, 1, true, function() {
             
-        }))
-            .SetAlignment(fa_center, fa_middle)
-            .SetInteractive(false)
-            .SetDisabledColor(function() { return c_white; })
-            .SetID("IMAGE"),
-        (new EmuList(col2, EMU_BASE, element_width, element_height, "Meshes:", element_height, 20, function() {
-            if (!self.root) return;
+                }))
+                    .SetAlignment(fa_center, fa_middle)
+                    .SetInteractive(false)
+                    .SetDisabledColor(function() { return c_white; })
+                    .SetID("IMAGE"),
+            ]),
+            (new EmuTab("Generation of Content")).AddContent([
+                new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Spawned Objects"),
+                (new EmuList(col1, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 16, function() {
+                    if (!self.root) return;
             
-        }))
-            .SetList(Game.meshes)
-            .SetMultiSelect(true)
-            .SetAllowDeselect(false)
-            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-            .SetID("MESHES"),
-        (new EmuList(col3, EMU_BASE, element_width, element_height, "Generation Choices:", element_height, 8, function() {
-            if (!self.root) return;
+                }))
+                    .SetList(Game.meshes)
+                    .SetMultiSelect(true)
+                    .SetAllowDeselect(false)
+                    .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                    .SetID("MESHES"),
+                (new EmuList(col2, EMU_BASE, element_width, element_height, "Generation Choices:", element_height, 8, function() {
+                    if (!self.root) return;
             
-        }))
-            .SetList(dialog.generation_choices)
-            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
-            .SetID("CHOICES"),
-        (new EmuButton(col3, EMU_AUTO, element_width, element_height, "Add Choice", function() {
-            static generation_choice = function(mesh) constructor {
-                self.mesh = mesh;
-                self.name = mesh.name;
-                self.odds = 100;
-            };
+                }))
+                    .SetList(dialog.generation_choices)
+                    .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                    .SetID("CHOICES"),
+                (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Choice", function() {
+                    static generation_choice = function(mesh) constructor {
+                        self.mesh = mesh;
+                        self.name = mesh.name;
+                        self.odds = 100;
+                    };
             
-            array_push(self.root.generation_choices, new generation_choice(self.GetSibling("MESHES").GetSelectedItem()));
-        }))
-            .SetInteractive(false),
-        (new EmuButton(col3, EMU_AUTO, element_width, element_height, "Delete Choice", function() {
+                    array_push(self.root.generation_choices, new generation_choice(self.GetSibling("MESHES").GetSelectedItem()));
+                }))
+                    .SetInteractive(false),
+                (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Choice", function() {
             
-        }))
-            .SetInteractive(false)
-            .SetRefresh(function() {
-            }),
-        (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Odds:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                    }),
+                new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Weights"),
+                (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Elevation:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
             
-        }))
-            .SetInteractive(false)
-            .SetRefresh(function() {
-            }),
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                    }),
+                (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Temperature:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
+            
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                    }),
+                (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Precipitation:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
+            
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                    }),
+                (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Other:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
+            
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                    }),
+            ]),
+        ])
     ]).AddDefaultCloseButton();
 }
