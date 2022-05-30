@@ -95,6 +95,14 @@ Game = new (function() constructor {
         text: { English: { } },
     };
     
+    self.nosave = {
+        map_terrain_gen: {
+            choices: [],
+            tex_r: -1,
+            tex_g: -1,
+            tex_b: -1,
+        },
+    };
     // leave this here for now
     static Clear = function() {
         array_clear_instances(self.graphics.tilesets);
