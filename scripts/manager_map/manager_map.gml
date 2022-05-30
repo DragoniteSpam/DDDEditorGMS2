@@ -216,6 +216,7 @@ function dialog_create_map_terrain() {
     
     var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 768, "Map Terrain Settings");
     dialog.map = map;
+    dialog.generation_choices = [];
     var element_width = 320;
     var element_height = 32;
     
@@ -275,22 +276,32 @@ function dialog_create_map_terrain() {
             .SetInteractive(false)
             .SetDisabledColor(function() { return c_white; })
             .SetID("IMAGE"),
-        (new EmuList(col2, EMU_BASE, element_width, element_height, "Meshes:", element_height, 18, function() {
+        (new EmuList(col2, EMU_BASE, element_width, element_height, "Meshes:", element_height, 20, function() {
             if (!self.root) return;
             
         }))
             .SetList(Game.meshes)
             .SetMultiSelect(true)
-            .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+            .SetAllowDeselect(false)
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetID("MESHES"),
         (new EmuList(col3, EMU_BASE, element_width, element_height, "Generation Choices:", element_height, 8, function() {
             if (!self.root) return;
             
         }))
-            .SetList([])
-            .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+            .SetList(dialog.generation_choices)
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetID("CHOICES"),
         (new EmuButton(col3, EMU_AUTO, element_width, element_height, "Add Choice", function() {
+            static generation_choice = function(mesh) constructor {
+                self.mesh = mesh;
+                self.name = mesh.name;
+                self.odds = 100;
+            };
             
-        })),
+            array_push(self.root.generation_choices, new generation_choice(self.GetSibling("MESHES").GetSelectedItem()));
+        }))
+            .SetInteractive(false),
         (new EmuButton(col3, EMU_AUTO, element_width, element_height, "Delete Choice", function() {
             
         }))
