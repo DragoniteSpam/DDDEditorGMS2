@@ -214,13 +214,14 @@ function dialog_create_map_advanced() {
 function dialog_create_map_terrain() {
     var map = Stuff.map.active_map;
     
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 736, "Map Terrain Settings");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 736, "Map Terrain Settings");
     dialog.map = map;
     var element_width = 320;
     var element_height = 32;
     
     var col1 = 32;
     var col2 = 32 + 320 + 32;
+    var col3 = 32 + 320 + 32 + 320 + 32;
     
     return dialog.AddContent([
         new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Base Properties"),
@@ -235,6 +236,43 @@ function dialog_create_map_terrain() {
             .SetTooltip("The terrain model associated with this map."),
         (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Scale:", string(map.terrain.scale), "The terrain scale", 2, E_InputTypes.INT, function() {
             self.root.map.terrain.scale = real(self.value);
+        })),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Generate Texture", function() {
+            
+        })),
+        (new EmuButtonImage(col1, EMU_AUTO, element_width, element_width, -1, 0, c_white, 1, true, function() {
+            
         }))
+            .SetInteractive(false)
+            .SetDisabledColor(function() { return c_white; })
+            .SetID("IMAGE"),
+        (new EmuList(col2, EMU_BASE, element_width, element_height, "Meshes:", element_height, 18, function() {
+            if (!self.root) return;
+            
+        }))
+            .SetList(Game.meshes)
+            .SetMultiSelect(true)
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+        (new EmuList(col3, EMU_BASE, element_width, element_height, "Generation Choices:", element_height, 8, function() {
+            if (!self.root) return;
+            
+        }))
+            .SetList([])
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+        (new EmuButton(col3, EMU_AUTO, element_width, element_height, "Add Choice", function() {
+            
+        })),
+        (new EmuButton(col3, EMU_AUTO, element_width, element_height, "Delete Choice", function() {
+            
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+            }),
+        (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Odds:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
+            
+        }))
+            .SetInteractive(false)
+            .SetRefresh(function() {
+            }),
     ]).AddDefaultCloseButton();
 }
