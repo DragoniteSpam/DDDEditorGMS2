@@ -98,3 +98,15 @@ function number_max_digits(n) {
 function round_ext(value, to) {
     return round(value / to) * to;
 }
+
+function round_power_of_two(n) {
+    return power(2, round(log2(n)));
+}
+
+function floor_power_of_two(n) {
+    return power(2, floor(log2(n)));
+}
+
+function ceil_power_of_two(n) {
+    return power(2, ceil(log2(n)));
+}
