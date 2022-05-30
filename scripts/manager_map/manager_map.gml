@@ -249,13 +249,14 @@ function dialog_create_map_terrain() {
                 })),
             ]),
             (new EmuTab("Generation of Noise")).AddContent([
+                #region Images
                 (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
                     
-                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, self.GetSibling("SMOOTHNESS R").value, 255);
+                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, Game.nosave.map_terrain_gen.smoothness_r, 255);
                     if (gen_data.tex_r != -1) sprite_delete(gen_data.tex_r);
                     gen_data.tex_r = sprite_source.ToSpriteDLL();
                     sprite_source.Destroy();
@@ -287,7 +288,7 @@ function dialog_create_map_terrain() {
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
                     
-                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, self.GetSibling("SMOOTHNESS G").value, 255);
+                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, Game.nosave.map_terrain_gen.smoothness_g, 255);
                     if (gen_data.tex_g != -1) sprite_delete(gen_data.tex_g);
                     gen_data.tex_g = sprite_source.ToSpriteDLL();
                     sprite_source.Destroy();
@@ -319,7 +320,7 @@ function dialog_create_map_terrain() {
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
                     
-                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, self.GetSibling("SMOOTHNESS B").value, 255);
+                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, Game.nosave.map_terrain_gen.smoothness_b, 255);
                     if (gen_data.tex_b != -1) sprite_delete(gen_data.tex_b);
                     gen_data.tex_b = sprite_source.ToSpriteDLL();
                     sprite_source.Destroy();
@@ -354,19 +355,74 @@ function dialog_create_map_terrain() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     sprite_combine_grayscale_channels(gen_data.tex_r, gen_data.tex_g, gen_data.tex_b, self.width, self.height);
                 }, emu_null)),
+                #endregion
                 new EmuText(gen_col3, EMU_BASE, gen_element_width, gen_element_height, "[c_aqua]Smoothness"),
-                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Temperature:"),
-                (new EmuProgressBar(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, 8, 1, 10, true, 8, emu_null))
-                    .SetIntegersOnly(true)
-                    .SetID("SMOOTHNESS R"),
-                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Precipitation:"),
-                (new EmuProgressBar(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, 8, 1, 10, true, 8, emu_null))
-                    .SetIntegersOnly(true)
-                    .SetID("SMOOTHNESS G"),
-                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Other:"),
-                (new EmuProgressBar(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, 8, 1, 10, true, 8, emu_null))
-                    .SetIntegersOnly(true)
-                    .SetID("SMOOTHNESS B"),
+                new EmuText(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Temperature:"),
+                (new EmuProgressBar(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, 8, 4, 10, true, 8, function() {
+                    Game.nosave.map_terrain_gen.smoothness_r = self.value;
+                }))
+                    .SetIntegersOnly(true),
+                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Bands:", "255", "", 3, E_InputTypes.INT, function() {
+                    Game.nosave.map_terrain_gen.bands_r = self.value;
+                }))
+                    .SetRealNumberBounds(2, 255)
+                    .SetID("BANDS R"),
+                new EmuButton(gen_col3 + 0 * gen_element_width / 3, EMU_AUTO, gen_element_width / 3, gen_element_height, "4", function() {
+                    self.GetSibling("BANDS R").SetValue("4");
+                    Game.nosave.map_terrain_gen.bands_r = 4;
+                }),
+                new EmuButton(gen_col3 + 1 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "8", function() {
+                    self.GetSibling("BANDS R").SetValue("8");
+                    Game.nosave.map_terrain_gen.bands_r = 8;
+                }),
+                new EmuButton(gen_col3 + 2 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "All", function() {
+                    self.GetSibling("BANDS R").SetValue("255");
+                    Game.nosave.map_terrain_gen.bands_r = 255;
+                }),
+                new EmuText(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Precipitation:"),
+                (new EmuProgressBar(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, 8, 4, 10, true, 8, function() {
+                    Game.nosave.map_terrain_gen.smoothness_g = self.value;
+                }))
+                    .SetIntegersOnly(true),
+                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Bands:", "255", "", 3, E_InputTypes.INT, function() {
+                    Game.nosave.map_terrain_gen.bands_g = self.value;
+                }))
+                    .SetRealNumberBounds(2, 255)
+                    .SetID("BANDS G"),
+                new EmuButton(gen_col3 + 0 * gen_element_width / 3, EMU_AUTO, gen_element_width / 3, gen_element_height, "4", function() {
+                    self.GetSibling("BANDS G").SetValue("4");
+                    Game.nosave.map_terrain_gen.bands_r = 4;
+                }),
+                new EmuButton(gen_col3 + 1 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "8", function() {
+                    self.GetSibling("BANDS G").SetValue("8");
+                    Game.nosave.map_terrain_gen.bands_r = 8;
+                }),
+                new EmuButton(gen_col3 + 2 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "All", function() {
+                    self.GetSibling("BANDS G").SetValue("255");
+                    Game.nosave.map_terrain_gen.bands_r = 255;
+                }),
+                new EmuText(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Other:"),
+                (new EmuProgressBar(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, 8, 4, 10, true, 8, function() {
+                    Game.nosave.map_terrain_gen.smoothness_b = self.value;
+                }))
+                    .SetIntegersOnly(true),
+                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Bands:", "255", "", 3, E_InputTypes.INT, function() {
+                    Game.nosave.map_terrain_gen.bands_b = self.value;
+                }))
+                    .SetRealNumberBounds(2, 255)
+                    .SetID("BANDS B"),
+                new EmuButton(gen_col3 + 0 * gen_element_width / 3, EMU_AUTO, gen_element_width / 3, gen_element_height, "4", function() {
+                    self.GetSibling("BANDS B").SetValue("4");
+                    Game.nosave.map_terrain_gen.bands_r = 4;
+                }),
+                new EmuButton(gen_col3 + 1 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "8", function() {
+                    self.GetSibling("BANDS B").SetValue("8");
+                    Game.nosave.map_terrain_gen.bands_r = 8;
+                }),
+                new EmuButton(gen_col3 + 2 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "All", function() {
+                    self.GetSibling("BANDS B").SetValue("255");
+                    Game.nosave.map_terrain_gen.bands_r = 255;
+                }),
             ]),
             (new EmuTab("Generation of Content")).AddContent([
                 new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Spawned Objects"),

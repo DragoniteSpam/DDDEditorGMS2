@@ -101,6 +101,12 @@ Game = new (function() constructor {
             tex_r: -1,
             tex_g: -1,
             tex_b: -1,
+            smoothness_r: 9,
+            smoothness_g: 9,
+            smoothness_b: 9,
+            bands_r: 255,
+            bands_g: 255,
+            bands_b: 255,
         },
     };
     // leave this here for now
