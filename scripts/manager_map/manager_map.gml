@@ -214,7 +214,7 @@ function dialog_create_map_advanced() {
 function dialog_create_map_terrain() {
     var map = Stuff.map.active_map;
     
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 736, "Map Terrain Settings");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 768, "Map Terrain Settings");
     dialog.map = map;
     var element_width = 320;
     var element_height = 32;
@@ -225,7 +225,7 @@ function dialog_create_map_terrain() {
     
     return dialog.AddContent([
         new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Base Properties"),
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Terrain:", element_height, 6, function() {
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Terrain:", element_height, 5, function() {
             if (!self.root) return;
             var selection = self.GetSelectedItem();
             self.root.map.terrain.id = selection ? selection.GUID : NULL;
@@ -238,11 +238,40 @@ function dialog_create_map_terrain() {
             self.root.map.terrain.scale = real(self.value);
         })),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Generate Texture", function() {
+            var terrain = guid_get(self.root.map.terrain.id) ? guid_get(self.root.map.terrain.id).terrain_data : undefined;
+            if (!terrain) return;
             
+            var smoothness = self.GetSibling("GEN SMOOTHNESS").value;
+            var sprite_r_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
+            var sprite_g_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
+            var sprite_b_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
+            var sprite_r = sprite_r_source.ToSpriteDLL();
+            var sprite_g = sprite_g_source.ToSpriteDLL();
+            var sprite_b = sprite_b_source.ToSpriteDLL();
+            sprite_r_source.Destroy();
+            sprite_g_source.Destroy();
+            sprite_b_source.Destroy();
+            
+            var display = self.GetSibling("IMAGE");
+            if (sprite_exists(display.sprite)) {
+                sprite_delete(display.sprite);
+            }
+            
+            display.sprite = sprite_combine_grayscale_channels(sprite_r, sprite_g, sprite_b);
+            sprite_delete(sprite_r);
+            sprite_delete(sprite_g);
+            sprite_delete(sprite_b);
+            
+            sprite_set_offset(display.sprite, sprite_get_width(display.sprite) / 2, sprite_get_height(display.sprite) / 2);
         })),
+        new EmuText(col1, EMU_AUTO, element_width / 2, element_height, "Smoothness:"),
+        (new EmuProgressBar(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, 8, 1, 12, true, 6, emu_null))
+            .SetIntegersOnly(true)
+            .SetID("GEN SMOOTHNESS"),
         (new EmuButtonImage(col1, EMU_AUTO, element_width, element_width, -1, 0, c_white, 1, true, function() {
             
         }))
+            .SetAlignment(fa_center, fa_middle)
             .SetInteractive(false)
             .SetDisabledColor(function() { return c_white; })
             .SetID("IMAGE"),
