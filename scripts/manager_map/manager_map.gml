@@ -249,7 +249,7 @@ function dialog_create_map_terrain() {
                 })),
             ]),
             (new EmuTab("Generation of Noise")).AddContent([
-                (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Gen. Temperature", function() {
+                (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
@@ -278,8 +278,9 @@ function dialog_create_map_terrain() {
                 (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_r != -1) draw_sprite_stretched(gen_data.tex_r, 0, 0, 0, self.width, self.height);
+                    scribble("[FDefaultOutline]Temperature (red)").draw(10, 10);
                 }, emu_null)),
-                (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Gen. Precipitation", function() {
+                (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
@@ -308,8 +309,9 @@ function dialog_create_map_terrain() {
                 (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_g != -1) draw_sprite_stretched(gen_data.tex_g, 0, 0, 0, self.width, self.height);
+                    scribble("[FDefaultOutline]Precipitation (green)").draw(10, 10);
                 }, emu_null)),
-                (new EmuButton(gen_col2, EMU_BASE, gen_element_width / 2, gen_element_height, "Gen. Other", function() {
+                (new EmuButton(gen_col2, EMU_BASE, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
@@ -338,6 +340,7 @@ function dialog_create_map_terrain() {
                 (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_b != -1) draw_sprite_stretched(gen_data.tex_b, 0, 0, 0, self.width, self.height);
+                    scribble("[FDefaultOutline]Other (blue)").draw(10, 10);
                 }, emu_null)),
                 (new EmuButton(gen_col2, EMU_AUTO, gen_element_width, gen_element_height, "Generate All", function() {
                     self.GetSibling("R").callback();
