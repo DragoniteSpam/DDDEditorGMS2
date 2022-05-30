@@ -278,9 +278,15 @@ function dialog_create_map_terrain() {
                 })),
                 (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
-                    if (gen_data.tex_r != -1) draw_sprite_stretched_ext(gen_data.tex_r, 0, 0, 0, self.width, self.height, c_red, 1);
+                    if (gen_data.tex_r != -1) {
+                        shader_set(shd_utility_banding);
+                        banding_enable(Game.nosave.map_terrain_gen.bands_r);
+                        draw_sprite_stretched_ext(gen_data.tex_r, 0, 0, 0, self.width, self.height, c_red, 1);
+                        banding_disable();
+                        shader_reset();
+                        scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_r)) + " x " + string(sprite_get_height(gen_data.tex_r))).draw(10, 28);
+                    }
                     scribble("[FDefaultOutline]Temperature (red)").draw(10, 10);
-                    if (gen_data.tex_r != -1) scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_r)) + " x " + string(sprite_get_height(gen_data.tex_r))).draw(10, 28);
                 }, emu_null)),
                 (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
@@ -310,9 +316,15 @@ function dialog_create_map_terrain() {
                 })),
                 (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
-                    if (gen_data.tex_g != -1) draw_sprite_stretched_ext(gen_data.tex_g, 0, 0, 0, self.width, self.height, c_lime, 1);
+                    if (gen_data.tex_g != -1) {
+                        shader_set(shd_utility_banding);
+                        banding_enable(Game.nosave.map_terrain_gen.bands_g);
+                        draw_sprite_stretched_ext(gen_data.tex_g, 0, 0, 0, self.width, self.height, c_lime, 1);
+                        banding_disable();
+                        shader_reset();
+                        scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_g)) + " x " + string(sprite_get_height(gen_data.tex_g))).draw(10, 28);
+                    }
                     scribble("[FDefaultOutline]Precipitation (green)").draw(10, 10);
-                    if (gen_data.tex_g != -1) scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_g)) + " x " + string(sprite_get_height(gen_data.tex_g))).draw(10, 28);
                 }, emu_null)),
                 (new EmuButton(gen_col2, EMU_BASE, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
@@ -342,9 +354,15 @@ function dialog_create_map_terrain() {
                 })),
                 (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
-                    if (gen_data.tex_b != -1) draw_sprite_stretched_ext(gen_data.tex_b, 0, 0, 0, self.width, self.height, c_blue, 1);
+                    if (gen_data.tex_b != -1) {
+                        shader_set(shd_utility_banding);
+                        banding_enable(Game.nosave.map_terrain_gen.bands_b);
+                        draw_sprite_stretched_ext(gen_data.tex_b, 0, 0, 0, self.width, self.height, c_blue, 1);
+                        banding_disable();
+                        shader_reset();
+                        scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_b)) + " x " + string(sprite_get_height(gen_data.tex_b))).draw(10, 28);
+                    }
                     scribble("[FDefaultOutline]Other (blue)").draw(10, 10);
-                    if (gen_data.tex_b != -1) scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_b)) + " x " + string(sprite_get_height(gen_data.tex_b))).draw(10, 28);
                 }, emu_null)),
                 (new EmuButton(gen_col2, EMU_AUTO, gen_element_width, gen_element_height, "Generate All", function() {
                     self.GetSibling("R").callback();
@@ -353,7 +371,10 @@ function dialog_create_map_terrain() {
                 })),
                 (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
-                    sprite_combine_grayscale_channels(gen_data.tex_r, gen_data.tex_g, gen_data.tex_b, self.width, self.height);
+                    sprite_combine_grayscale_channels(
+                        gen_data.tex_r, gen_data.tex_g, gen_data.tex_b, self.width, self.height,
+                        Game.nosave.map_terrain_gen.bands_r, Game.nosave.map_terrain_gen.bands_g, Game.nosave.map_terrain_gen.bands_b
+                    );
                 }, emu_null)),
                 #endregion
                 new EmuText(gen_col3, EMU_BASE, gen_element_width, gen_element_height, "[c_aqua]Smoothness"),
@@ -391,15 +412,15 @@ function dialog_create_map_terrain() {
                     .SetID("BANDS G"),
                 new EmuButton(gen_col3 + 0 * gen_element_width / 3, EMU_AUTO, gen_element_width / 3, gen_element_height, "4", function() {
                     self.GetSibling("BANDS G").SetValue("4");
-                    Game.nosave.map_terrain_gen.bands_r = 4;
+                    Game.nosave.map_terrain_gen.bands_g = 4;
                 }),
                 new EmuButton(gen_col3 + 1 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "8", function() {
                     self.GetSibling("BANDS G").SetValue("8");
-                    Game.nosave.map_terrain_gen.bands_r = 8;
+                    Game.nosave.map_terrain_gen.bands_g = 8;
                 }),
                 new EmuButton(gen_col3 + 2 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "All", function() {
                     self.GetSibling("BANDS G").SetValue("255");
-                    Game.nosave.map_terrain_gen.bands_r = 255;
+                    Game.nosave.map_terrain_gen.bands_g = 255;
                 }),
                 new EmuText(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Other:"),
                 (new EmuProgressBar(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, 8, 4, 10, true, 8, function() {
@@ -413,15 +434,15 @@ function dialog_create_map_terrain() {
                     .SetID("BANDS B"),
                 new EmuButton(gen_col3 + 0 * gen_element_width / 3, EMU_AUTO, gen_element_width / 3, gen_element_height, "4", function() {
                     self.GetSibling("BANDS B").SetValue("4");
-                    Game.nosave.map_terrain_gen.bands_r = 4;
+                    Game.nosave.map_terrain_gen.bands_b = 4;
                 }),
                 new EmuButton(gen_col3 + 1 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "8", function() {
                     self.GetSibling("BANDS B").SetValue("8");
-                    Game.nosave.map_terrain_gen.bands_r = 8;
+                    Game.nosave.map_terrain_gen.bands_b = 8;
                 }),
                 new EmuButton(gen_col3 + 2 * gen_element_width / 3, EMU_INLINE, gen_element_width / 3, gen_element_height, "All", function() {
                     self.GetSibling("BANDS B").SetValue("255");
-                    Game.nosave.map_terrain_gen.bands_r = 255;
+                    Game.nosave.map_terrain_gen.bands_b = 255;
                 }),
             ]),
             (new EmuTab("Generation of Content")).AddContent([
