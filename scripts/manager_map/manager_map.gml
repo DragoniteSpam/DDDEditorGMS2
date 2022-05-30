@@ -279,6 +279,7 @@ function dialog_create_map_terrain() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_r != -1) draw_sprite_stretched_ext(gen_data.tex_r, 0, 0, 0, self.width, self.height, c_red, 1);
                     scribble("[FDefaultOutline]Temperature (red)").draw(10, 10);
+                    if (gen_data.tex_r != -1) scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_r)) + " x " + string(sprite_get_height(gen_data.tex_r))).draw(10, 28);
                 }, emu_null)),
                 (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
@@ -310,6 +311,7 @@ function dialog_create_map_terrain() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_g != -1) draw_sprite_stretched_ext(gen_data.tex_g, 0, 0, 0, self.width, self.height, c_lime, 1);
                     scribble("[FDefaultOutline]Precipitation (green)").draw(10, 10);
+                    if (gen_data.tex_g != -1) scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_g)) + " x " + string(sprite_get_height(gen_data.tex_g))).draw(10, 28);
                 }, emu_null)),
                 (new EmuButton(gen_col2, EMU_BASE, gen_element_width / 2, gen_element_height, "Generate", function() {
                     var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
@@ -341,6 +343,7 @@ function dialog_create_map_terrain() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_b != -1) draw_sprite_stretched_ext(gen_data.tex_b, 0, 0, 0, self.width, self.height, c_blue, 1);
                     scribble("[FDefaultOutline]Other (blue)").draw(10, 10);
+                    if (gen_data.tex_b != -1) scribble("[FDefaultOutline]" + string(sprite_get_width(gen_data.tex_b)) + " x " + string(sprite_get_height(gen_data.tex_b))).draw(10, 28);
                 }, emu_null)),
                 (new EmuButton(gen_col2, EMU_AUTO, gen_element_width, gen_element_height, "Generate All", function() {
                     self.GetSibling("R").callback();
