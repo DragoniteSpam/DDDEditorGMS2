@@ -216,13 +216,20 @@ function dialog_create_map_terrain() {
     
     var dialog = new EmuDialog(32 + 32 + 320 + 32 + 320 + 32 + 320 + 32 + 32, 768, "Map Terrain Settings");
     dialog.map = map;
-    dialog.generation_choices = [];
+    
     var element_width = 320;
     var element_height = 32;
     
     var col1 = 32;
     var col2 = 32 + 320 + 32;
     var col3 = 32 + 320 + 32 + 320 + 32;
+    
+    var gen_element_width = 320;
+    var gen_tex_size = 256;
+    var gen_element_height = 32;
+    var gen_col1 = 32;
+    var gen_col2 = 32 + 320 + 32;
+    var gen_col3 = 32 + 320 + 32 + 320 + 32;
     
     return dialog.AddContent([
         (new EmuTabGroup(col1, EMU_BASE, 32 + 320 + 32 + 320 + 32 + 320 + 32, dialog.height - 80, 1, element_height)).AddTabs(0, [
@@ -242,45 +249,100 @@ function dialog_create_map_terrain() {
                 })),
             ]),
             (new EmuTab("Generation of Noise")).AddContent([
-                new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Perlin Noise"),
-                (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Generate Texture", function() {
-                    var terrain = guid_get(self.root.map.terrain.id) ? guid_get(self.root.map.terrain.id).terrain_data : undefined;
-                    if (!terrain) return;
-            
-                    var smoothness = self.GetSibling("GEN SMOOTHNESS").value;
-                    var sprite_r_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
-                    var sprite_g_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
-                    var sprite_b_source = macaw_generate_dll(terrain.w, terrain.h, smoothness, 255);
-                    var sprite_r = sprite_r_source.ToSpriteDLL();
-                    var sprite_g = sprite_g_source.ToSpriteDLL();
-                    var sprite_b = sprite_b_source.ToSpriteDLL();
-                    sprite_r_source.Destroy();
-                    sprite_g_source.Destroy();
-                    sprite_b_source.Destroy();
-            
-                    var display = self.GetSibling("IMAGE");
-                    if (sprite_exists(display.sprite)) {
-                        sprite_delete(display.sprite);
-                    }
-            
-                    display.sprite = sprite_combine_grayscale_channels(sprite_r, sprite_g, sprite_b);
-                    sprite_delete(sprite_r);
-                    sprite_delete(sprite_g);
-                    sprite_delete(sprite_b);
-            
-                    sprite_set_offset(display.sprite, sprite_get_width(display.sprite) / 2, sprite_get_height(display.sprite) / 2);
-                })),
-                new EmuText(col1, EMU_AUTO, element_width / 2, element_height, "Smoothness:"),
-                (new EmuProgressBar(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, 8, 1, 12, true, 6, emu_null))
-                    .SetIntegersOnly(true)
-                    .SetID("GEN SMOOTHNESS"),
-                (new EmuButtonImage(col1, EMU_AUTO, element_width, element_width, -1, 0, c_white, 1, true, function() {
-            
+                (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Gen. Temperature", function() {
+                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    if (!terrain_mesh) return;
+                    var terrain =  terrain_mesh.terrain_data;
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    
+                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, self.GetSibling("SMOOTHNESS R").value, 255);
+                    if (gen_data.tex_r != -1) sprite_delete(gen_data.tex_r);
+                    gen_data.tex_r = sprite_source.ToSpriteDLL();
+                    sprite_source.Destroy();
                 }))
-                    .SetAlignment(fa_center, fa_middle)
-                    .SetInteractive(false)
-                    .SetDisabledColor(function() { return c_white; })
-                    .SetID("IMAGE"),
+                    .SetID("R"),
+                (new EmuButton(gen_col1 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, "Load...", function() {
+                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    if (!terrain_mesh) return;
+                    var terrain =  terrain_mesh.terrain_data;
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    
+                    
+                })),
+                (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    if (gen_data.tex_r != -1) draw_sprite_stretched(gen_data.tex_r, 0, 0, 0, self.width, self.height);
+                }, emu_null)),
+                (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Gen. Precipitation", function() {
+                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    if (!terrain_mesh) return;
+                    var terrain =  terrain_mesh.terrain_data;
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    
+                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, self.GetSibling("SMOOTHNESS G").value, 255);
+                    if (gen_data.tex_g != -1) sprite_delete(gen_data.tex_g);
+                    gen_data.tex_g = sprite_source.ToSpriteDLL();
+                    sprite_source.Destroy();
+                }))
+                    .SetID("G"),
+                (new EmuButton(gen_col1 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, "Load...", function() {
+                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    if (!terrain_mesh) return;
+                    var terrain =  terrain_mesh.terrain_data;
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    
+                    
+                })),
+                (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    if (gen_data.tex_g != -1) draw_sprite_stretched(gen_data.tex_g, 0, 0, 0, self.width, self.height);
+                }, emu_null)),
+                (new EmuButton(gen_col2, EMU_BASE, gen_element_width / 2, gen_element_height, "Gen. Other", function() {
+                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    if (!terrain_mesh) return;
+                    var terrain =  terrain_mesh.terrain_data;
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    
+                    var sprite_source = macaw_generate_dll(terrain.w, terrain.h, self.GetSibling("SMOOTHNESS B").value, 255);
+                    if (gen_data.tex_b != -1) sprite_delete(gen_data.tex_b);
+                    gen_data.tex_b = sprite_source.ToSpriteDLL();
+                    sprite_source.Destroy();
+                }))
+                    .SetID("B"),
+                (new EmuButton(gen_col2 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, "Load...", function() {
+                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    if (!terrain_mesh) return;
+                    var terrain =  terrain_mesh.terrain_data;
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    
+                    
+                })),
+                (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    if (gen_data.tex_b != -1) draw_sprite_stretched(gen_data.tex_b, 0, 0, 0, self.width, self.height);
+                }, emu_null)),
+                (new EmuButton(gen_col2, EMU_AUTO, gen_element_width, gen_element_height, "Generate All", function() {
+                    self.GetSibling("R").callback();
+                    self.GetSibling("G").callback();
+                    self.GetSibling("B").callback();
+                })),
+                (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                    var gen_data = Game.nosave.map_terrain_gen;
+                    sprite_combine_grayscale_channels(gen_data.tex_r, gen_data.tex_g, gen_data.tex_b, self.width, self.height);
+                }, emu_null)),
+                new EmuText(gen_col3, EMU_BASE, gen_element_width, gen_element_height, "[c_aqua]Smoothness"),
+                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Temperature:"),
+                (new EmuProgressBar(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, 8, 1, 10, true, 8, emu_null))
+                    .SetIntegersOnly(true)
+                    .SetID("SMOOTHNESS R"),
+                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Precipitation:"),
+                (new EmuProgressBar(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, 8, 1, 10, true, 8, emu_null))
+                    .SetIntegersOnly(true)
+                    .SetID("SMOOTHNESS G"),
+                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Other:"),
+                (new EmuProgressBar(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, 8, 1, 10, true, 8, emu_null))
+                    .SetIntegersOnly(true)
+                    .SetID("SMOOTHNESS B"),
             ]),
             (new EmuTab("Generation of Content")).AddContent([
                 new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Spawned Objects"),
@@ -297,7 +359,7 @@ function dialog_create_map_terrain() {
                     if (!self.root) return;
             
                 }))
-                    .SetList(dialog.generation_choices)
+                    .SetList(Game.nosave.map_terrain_gen.choices)
                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                     .SetID("CHOICES"),
                 (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Choice", function() {
@@ -307,7 +369,7 @@ function dialog_create_map_terrain() {
                         self.odds = 100;
                     };
             
-                    array_push(self.root.generation_choices, new generation_choice(self.GetSibling("MESHES").GetSelectedItem()));
+                    array_push(Game.nosave.map_terrain_gen.choices, new generation_choice(self.GetSibling("MESHES").GetSelectedItem()));
                 }))
                     .SetInteractive(false),
                 (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Choice", function() {
