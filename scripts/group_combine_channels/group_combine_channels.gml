@@ -1,10 +1,10 @@
-function sprite_combine_grayscale_channels(r, g, b, w, h) {
+function sprite_combine_grayscale_channels(r, g, b, w, h, bands_r = 255, bands_g = 255, bands_b = 255) {
     static sampler_red = shader_get_sampler_index(shd_utility_combine_channels, "samp_red");
     static sampler_green = shader_get_sampler_index(shd_utility_combine_channels, "samp_green");
     static sampler_blue = shader_get_sampler_index(shd_utility_combine_channels, "samp_blue");
-    static uniform_scale_r = shader_get_uniform(shd_utility_combine_channels, "u_SpriteScaleR");
-    static uniform_scale_g = shader_get_uniform(shd_utility_combine_channels, "u_SpriteScaleG");
-    static uniform_scale_b = shader_get_uniform(shd_utility_combine_channels, "u_SpriteScaleB");
+    static uniform_scale_r = shader_get_uniform(shd_utility_combine_channels, "u_SpriteDataR");
+    static uniform_scale_g = shader_get_uniform(shd_utility_combine_channels, "u_SpriteDataG");
+    static uniform_scale_b = shader_get_uniform(shd_utility_combine_channels, "u_SpriteDataB");
     static pixel = undefined;
     
     if (pixel == undefined) {
@@ -25,9 +25,9 @@ function sprite_combine_grayscale_channels(r, g, b, w, h) {
     
     var shader = shader_current();
     shader_set(shd_utility_combine_channels);
-    shader_set_uniform_f(uniform_scale_r, wr / ceil_power_of_two(wr), hr / ceil_power_of_two(hr));
-    shader_set_uniform_f(uniform_scale_g, wg / ceil_power_of_two(wg), hg / ceil_power_of_two(hg));
-    shader_set_uniform_f(uniform_scale_b, wb / ceil_power_of_two(wb), hb / ceil_power_of_two(hb));
+    shader_set_uniform_f(uniform_scale_r, wr / ceil_power_of_two(wr), hr / ceil_power_of_two(hr), bands_r);
+    shader_set_uniform_f(uniform_scale_g, wg / ceil_power_of_two(wg), hg / ceil_power_of_two(hg), bands_g);
+    shader_set_uniform_f(uniform_scale_b, wb / ceil_power_of_two(wb), hb / ceil_power_of_two(hb), bands_b);
     texture_set_stage(sampler_red, sprite_get_texture(sprite_exists(r) ? r : pixel, 0));
     texture_set_stage(sampler_green, sprite_get_texture(sprite_exists(g) ? g : pixel, 0));
     texture_set_stage(sampler_blue, sprite_get_texture(sprite_exists(b) ? b : pixel, 0));
