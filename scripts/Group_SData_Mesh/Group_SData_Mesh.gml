@@ -520,6 +520,10 @@ function MeshTerrainData(w, h, heightmap) constructor {
     self.h = h;
     self.heightmap = heightmap;
     
+    self.Sample = function(x, y) {
+        return buffer_sample_pixel(self.heightmap, x, y, self.w, self.h, buffer_f32);
+    };
+    
     self.Destroy = function() {
         buffer_delete(self.heightmap);
     };
