@@ -267,7 +267,13 @@ function dialog_create_map_terrain() {
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
                     
-                    
+                    try {
+                        var sprite = sprite_add(get_open_filename_image(), 1, false, false, 0, 0);
+                        if (gen_data.tex_r != -1) sprite_delete(gen_data.tex_r);
+                        gen_data.tex_r = sprite;
+                    } catch (e) {
+                        // guess you cant load that sprite
+                    }
                 })),
                 (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -291,7 +297,13 @@ function dialog_create_map_terrain() {
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
                     
-                    
+                    try {
+                        var sprite = sprite_add(get_open_filename_image(), 1, false, false, 0, 0);
+                        if (gen_data.tex_g != -1) sprite_delete(gen_data.tex_g);
+                        gen_data.tex_g = sprite;
+                    } catch (e) {
+                        // guess you cant load that sprite
+                    }
                 })),
                 (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -315,7 +327,13 @@ function dialog_create_map_terrain() {
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
                     
-                    
+                    try {
+                        var sprite = sprite_add(get_open_filename_image(), 1, false, false, 0, 0);
+                        if (gen_data.tex_b != -1) sprite_delete(gen_data.tex_b);
+                        gen_data.tex_b = sprite;
+                    } catch (e) {
+                        // guess you cant load that sprite
+                    }
                 })),
                 (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
