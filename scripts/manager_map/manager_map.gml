@@ -458,15 +458,15 @@ function dialog_create_map_terrain() {
                     .SetID("MESHES"),
                 (new EmuList(col2, EMU_BASE, element_width, element_height, "Generation Choices:", element_height, 8, function() {
                     if (!self.root) return;
-            
+                    self.root.Refresh();
                 }))
                     .SetList(Game.nosave.map_terrain_gen.choices)
                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                     .SetID("CHOICES"),
                 (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add Choice", function() {
                     static generation_choice = function(mesh) constructor {
-                        self.mesh = mesh;
-                        self.name = mesh.name;
+                        self.mesh = mesh ? mesh.GUID : NULL;
+                        self.name = mesh ? mesh.name : "(mesh N/A)";
                         self.odds_temperature = 100;
                         self.odds_precipitation = 100;
                         self.odds_other = 100;
@@ -494,84 +494,140 @@ function dialog_create_map_terrain() {
                 }))
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        self.SetInteractive(!!self.GetSibling("CHOICES").GetSelectedItem());
                     }),
                 new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Weighted Odds"),
                 (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Temperature:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.odds_temperature = string(self.value);
+                    choice.odds_temperature = string(self.value);
                 }))
+                    .SetRealNumberBounds(1, 10000)
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.odds_temperature);
                     }),
                 (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Precipitation:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.odds_precipitation = string(self.value);
+                    choice.odds_precipitation = string(self.value);
                 }))
+                    .SetRealNumberBounds(1, 10000)
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.odds_precipitation);
                     }),
                 (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Other:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.odds_other = string(self.value);
+                    choice.odds_other = string(self.value);
                 }))
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.odds_other);
                     }),
                 new EmuText(col3, EMU_AUTO, element_width, element_height, "[c_aqua]Spawn Clustering"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_temperature = self.value ? 0.5 : -1;
-                    if (!self.value) self.GetSibling("CLUSTER TEMPERATURE").SetValue("0.5");
+                    choice.cluster_temperature = self.value ? 0.5 : -1;
+                    self.root.Refresh();
                 }))
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_temperature != -1);
+                    })
                     .SetInteractive(false),
                 (new EmuInput(col3 + element_width / 6, EMU_INLINE, element_width * 5 / 6, element_height, "Temperature:", "0.5", "0...1", 4, E_InputTypes.REAL, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_temperature = string(self.value);
+                    choice.cluster_temperature = string(self.value);
                 }))
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.cluster_temperature != -1);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_temperature);
                     })
                     .SetID("CLUSTER TEMPERATURE"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_precipitation = self.value ? 0.5 : -1;
-                    if (!self.value) self.GetSibling("CLUSTER PRECIPITATION").SetValue("0.5");
+                    choice.cluster_precipitation = self.value ? 0.5 : -1;
+                    self.root.Refresh();
                 }))
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_precipitation != -1);
+                    })
                     .SetInteractive(false),
                 (new EmuInput(col3 + element_width / 6, EMU_INLINE, element_width * 5 / 6, element_height, "Precipitation:", "0.5", "0...1", 4, E_InputTypes.REAL, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_precipitation = string(self.value);
+                    choice.cluster_precipitation = string(self.value);
                 }))
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.cluster_precipitation != -1);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_precipitation);
                     })
                     .SetID("CLUSTER PRECIPITATION"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_other = self.value ? 0.5 : -1;
-                    if (!self.value) self.GetSibling("CLUSTER OTHER").SetValue("0.5");
+                    choice.cluster_other = self.value ? 0.5 : -1;
+                    self.root.Refresh();
                 }))
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_other != -1);
+                    })
                     .SetInteractive(false),
                 (new EmuInput(col3 + element_width / 6, EMU_INLINE, element_width * 5 / 6, element_height, "Other:", "0.5", "0...1", 4, E_InputTypes.REAL, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_other = string(self.value);
+                    choice.cluster_other = string(self.value);
                 }))
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.cluster_other != -1);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_other);
                     })
                     .SetID("CLUSTER OTHER"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_elevation = self.value ? 0.5 : -1;
+                    choice.cluster_elevation = self.value ? 0.5 : -1;
                     if (!self.value) self.GetSibling("CLUSTER ELEVATION").SetValue("0.5");
+                    self.root.Refresh();
                 }))
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_elevation != -1);
+                    })
                     .SetInteractive(false),
                 (new EmuInput(col3 + element_width / 6, EMU_INLINE, element_width * 5 / 6, element_height, "Elevation:", "0.5", "0...1", 4, E_InputTypes.REAL, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
-                    choices.cluster_elevation = string(self.value);
+                    choice.cluster_elevation = string(self.value);
                 }))
                     .SetInteractive(false)
                     .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.cluster_elevation != -1);
+                        if (!choice) return;
+                        self.SetValue(choice.cluster_elevation);
                     })
                     .SetID("CLUSTER ELEVATION"),
             ]),
