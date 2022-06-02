@@ -231,27 +231,39 @@ function dialog_create_map_terrain() {
     var gen_col2 = 32 + 320 + 32;
     var gen_col3 = 32 + 320 + 32 + 320 + 32;
     
-    return dialog.AddContent([
+    dialog.AddContent([
         (new EmuTabGroup(col1, EMU_BASE, 32 + 320 + 32 + 320 + 32 + 320 + 32, dialog.height - 80, 1, element_height)).AddTabs(0, [
             new EmuTab("General").AddContent([
                 new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Base Properties"),
                 (new EmuList(col1, EMU_AUTO, element_width, element_height, "Terrain:", element_height, 10, function() {
                     if (!self.root) return;
                     var selection = self.GetSelectedItem();
-                    self.root.map.terrain.id = selection ? selection.GUID : NULL;
+                    Stuff.map.active_map.terrain.id = selection ? selection.GUID : NULL;
+                    self.root.root.root.Refresh();
                 }))
                     .SetList(Game.mesh_terrain)
                     .Select(array_search(Game.mesh_terrain, guid_get(map.terrain.id)))
                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                     .SetTooltip("The terrain model associated with this map."),
                 (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Scale:", string(map.terrain.scale), "The terrain scale", 2, E_InputTypes.INT, function() {
-                    self.root.map.terrain.scale = real(self.value);
+                    Stuff.map.active_map.terrain.scale = real(self.value);
+                    self.root.Refresh();
                 })),
+                (new EmuText(col1, EMU_AUTO, element_width, element_height, "Dimensions:"))
+                    .SetRefresh(function() {
+                        var map_terrain = Stuff.map.active_map.terrain;
+                        var terrain = guid_get(map_terrain.id);
+                        if (terrain) {
+                            self.text = "Dimensions: " + string(terrain.terrain_data.w * map_terrain.scale) + " x " + string(terrain.terrain_data.h * map_terrain.scale);
+                        } else {
+                            self.text = "Dimensions: N/A";
+                        }
+                    }),
             ]),
             (new EmuTab("Generation of Noise")).AddContent([
                 #region Images
                 (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Generate", function() {
-                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    var terrain_mesh = guid_get(Stuff.map.active_map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -263,7 +275,7 @@ function dialog_create_map_terrain() {
                 }))
                     .SetID("R"),
                 (new EmuButton(gen_col1 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, "Load...", function() {
-                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    var terrain_mesh = guid_get(Stuff.map.active_map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -289,7 +301,7 @@ function dialog_create_map_terrain() {
                     scribble("[FDefaultOutline]Temperature (red)").draw(10, 10);
                 }, emu_null)),
                 (new EmuButton(gen_col1, EMU_AUTO, gen_element_width / 2, gen_element_height, "Generate", function() {
-                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    var terrain_mesh = guid_get(Stuff.map.active_map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -301,7 +313,7 @@ function dialog_create_map_terrain() {
                 }))
                     .SetID("G"),
                 (new EmuButton(gen_col1 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, "Load...", function() {
-                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    var terrain_mesh = guid_get(Stuff.map.active_map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -327,7 +339,7 @@ function dialog_create_map_terrain() {
                     scribble("[FDefaultOutline]Precipitation (green)").draw(10, 10);
                 }, emu_null)),
                 (new EmuButton(gen_col2, EMU_BASE, gen_element_width / 2, gen_element_height, "Generate", function() {
-                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    var terrain_mesh = guid_get(Stuff.map.active_map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -339,7 +351,7 @@ function dialog_create_map_terrain() {
                 }))
                     .SetID("B"),
                 (new EmuButton(gen_col2 + gen_element_width / 2, EMU_INLINE, gen_element_width / 2, gen_element_height, "Load...", function() {
-                    var terrain_mesh = guid_get(self.root.root.root.map.terrain.id);
+                    var terrain_mesh = guid_get(Stuff.map.active_map.terrain.id);
                     if (!terrain_mesh) return;
                     var terrain =  terrain_mesh.terrain_data;
                     var gen_data = Game.nosave.map_terrain_gen;
@@ -630,4 +642,8 @@ function dialog_create_map_terrain() {
             ]),
         ])
     ]).AddDefaultCloseButton();
+    
+    dialog.Refresh();
+    
+    return dialog;
 }
