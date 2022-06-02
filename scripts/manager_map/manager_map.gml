@@ -490,8 +490,9 @@ function dialog_create_map_terrain() {
                     
                     if (self.GetSibling("CHOICES").GetSibling("CHOICES") == -1) {
                         self.GetSibling("CHOICES").Select(array_length(Game.nosave.map_terrain_gen.choices) - 1);
-                        self.root.Refresh();
                     }
+                    
+                    self.root.Refresh();
                 })),
                 (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete Choice", function() {
                     var list = self.GetSibling("CHOICES");
@@ -667,11 +668,23 @@ function dialog_create_map_terrain() {
                     var terrain = guid_get(map.terrain.id).terrain_data;
                     var density = real(self.GetSibling("GEN DENSITY").value) / real(self.GetSibling("GEN AREA").value);
                     var area = terrain.w * terrain.h * power(map.terrain.scale, 2) / (TILE_WIDTH * TILE_HEIGHT);
-                    var total = density * area;
+                    
+                    map_generate_contents(density * area, Game.nosave.map_terrain_gen.choices);
                 })
                     .SetInteractive(false)
                     .SetRefresh(function() {
                         self.SetInteractive(!!guid_get(Stuff.map.active_map.terrain.id));
+                        if (!guid_get(Stuff.map.active_map.terrain.id)) return;
+                        
+                        // at least one of the choices needs to have a valid mesh
+                        self.SetInteractive(false);
+                        var choices = Game.nosave.map_terrain_gen.choices;
+                        for (var i = 0, n = array_length(choices); i < n; i++) {
+                            if (guid_get(choices[i].mesh)) {
+                                self.SetInteractive(true);
+                                return;
+                            }
+                        }
                     }),
             ]),
         ])

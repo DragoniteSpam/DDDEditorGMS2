@@ -624,6 +624,7 @@
     {"id":{"name":"Group_Control_Durations","path":"scripts/Group_Control_Durations/Group_Control_Durations.yy",},"order":8,},
     {"id":{"name":"UICheckbox","path":"objects/UICheckbox/UICheckbox.yy",},"order":7,},
     {"id":{"name":"UIInput","path":"objects/UIInput/UIInput.yy",},"order":8,},
+    {"id":{"name":"Group_Map_Generation","path":"scripts/Group_Map_Generation/Group_Map_Generation.yy",},"order":3,},
     {"id":{"name":"UIColorPicker","path":"objects/UIColorPicker/UIColorPicker.yy",},"order":9,},
     {"id":{"name":"UIColorPickerInput","path":"objects/UIColorPickerInput/UIColorPickerInput.yy",},"order":10,},
     {"id":{"name":"UIProgressBar","path":"objects/UIProgressBar/UIProgressBar.yy",},"order":11,},
