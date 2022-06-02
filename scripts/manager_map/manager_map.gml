@@ -461,7 +461,14 @@ function dialog_create_map_terrain() {
                 new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Spawned Objects"),
                 (new EmuList(col1, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 16, function() {
                     if (!self.root) return;
-            
+                    
+                    var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                    var mesh = self.GetSelectedItem();
+                    
+                    if (choice && mesh) {
+                        choice.mesh = mesh.GUID;
+                        choice.name = mesh.name;
+                    }
                 }))
                     .SetList(Game.meshes)
                     .SetMultiSelect(true)
