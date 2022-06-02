@@ -549,7 +549,7 @@ function MeshTerrainData(w, h, heightmap) constructor {
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u32, self.w);
         buffer_write(buffer, buffer_u32, self.h);
-        buffer_write_buffer(buffer, self.height_data);
+        buffer_write_buffer(buffer, self.heightmap);
     };
 }
 
