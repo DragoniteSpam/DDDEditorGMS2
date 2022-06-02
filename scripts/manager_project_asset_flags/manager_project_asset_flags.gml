@@ -130,6 +130,7 @@ function dialog_create_settings_data_asset_files() {
             .SetTooltip("The name of the data file. Names must be unique.")
             .SetID("NAME"),
         (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "Compressed?", false, function() {
+            var selection = self.GetSibling("LIST").GetSelection();
             Game.meta.export.files[selection].compressed = self.value;
         }))
             .SetRefresh(function() {
@@ -140,6 +141,7 @@ function dialog_create_settings_data_asset_files() {
             })
             .SetID("COMPRESSED"),
         (new EmuCheckbox(col2, EMU_AUTO, element_width, element_height, "Critical?", false, function() {
+            var selection = self.GetSibling("LIST").GetSelection();
             Game.meta.export.files[selection].critical = self.value;
         }))
             .SetRefresh(function() {
