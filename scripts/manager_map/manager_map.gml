@@ -456,25 +456,6 @@ function dialog_create_map_terrain() {
                     self.GetSibling("BANDS B").SetValue("255");
                     Game.nosave.map_terrain_gen.bands_b = 255;
                 }),
-                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "[c_aqua]Generation"),
-                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Density:", "10", "Density", 4, E_InputTypes.INT, emu_null))
-                    .SetRealNumberBounds(1, 9999)
-                    .SetID("GEN DENSITY"),
-                (new EmuInput(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 3, gen_element_height, "  /", "100", "Area", 4, E_InputTypes.INT, emu_null))
-                    .SetRealNumberBounds(1, 9999)
-                    .SetID("GEN AREA"),
-                new EmuText(gen_col3 + gen_element_width * 5 / 6, EMU_INLINE, gen_element_width / 6, gen_element_height, "m²"),
-                new EmuButton(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Generate", function() {
-                    var map = Stuff.map.active_map;
-                    var terrain = guid_get(map.terrain.id).terrain_data;
-                    var density = real(self.GetSibling("GEN DENSITY").value) / real(self.GetSibling("GEN AREA").value);
-                    var area = terrain.w * terrain.h * power(map.terrain.scale, 2) / (TILE_WIDTH * TILE_HEIGHT);
-                    var total = density * area;
-                })
-                    .SetInteractive(false)
-                    .SetRefresh(function() {
-                        self.SetInteractive(!!guid_get(Stuff.map.active_map.terrain.id));
-                    }),
             ]),
             (new EmuTab("Generation of Content")).AddContent([
                 new EmuText(col1, EMU_BASE, element_width, element_height, "[c_aqua]Spawned Objects"),
@@ -498,6 +479,7 @@ function dialog_create_map_terrain() {
                     static generation_choice = function(mesh) constructor {
                         self.mesh = mesh ? mesh.GUID : NULL;
                         self.name = mesh ? mesh.name : "(mesh N/A)";
+                        self.weight = 100;
                         self.temperature = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
                         self.precipitation = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
                         self.misc = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
@@ -525,6 +507,19 @@ function dialog_create_map_terrain() {
                         self.SetInteractive(!!self.GetSibling("CHOICES").GetSelectedItem());
                     }),
                 new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Weighted Odds"),
+                (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Spawn weight:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
+                    var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                    choice.weight = string(self.value);
+                }))
+                    .SetRealNumberBounds(1, 10000)
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice);
+                        if (!choice) return;
+                        self.SetValue(choice.weight);
+                    }),
+                /*
                 (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Temperature:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
                     choice.temperature.odds = string(self.value);
@@ -560,6 +555,7 @@ function dialog_create_map_terrain() {
                         if (!choice) return;
                         self.SetValue(choice.misc.odds);
                     }),
+                */
                 new EmuText(col3, EMU_AUTO, element_width, element_height, "[c_aqua]Spawn Clustering"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
@@ -658,6 +654,25 @@ function dialog_create_map_terrain() {
                         self.SetValue(choice.elevation.cluster);
                     })
                     .SetID("CLUSTER ELEVATION"),
+                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "[c_aqua]Generation"),
+                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Density:", "10", "Density", 4, E_InputTypes.INT, emu_null))
+                    .SetRealNumberBounds(1, 9999)
+                    .SetID("GEN DENSITY"),
+                (new EmuInput(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 3, gen_element_height, "  /", "100", "Area", 4, E_InputTypes.INT, emu_null))
+                    .SetRealNumberBounds(1, 9999)
+                    .SetID("GEN AREA"),
+                new EmuText(gen_col3 + gen_element_width * 5 / 6, EMU_INLINE, gen_element_width / 6, gen_element_height, "m²"),
+                new EmuButton(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Generate", function() {
+                    var map = Stuff.map.active_map;
+                    var terrain = guid_get(map.terrain.id).terrain_data;
+                    var density = real(self.GetSibling("GEN DENSITY").value) / real(self.GetSibling("GEN AREA").value);
+                    var area = terrain.w * terrain.h * power(map.terrain.scale, 2) / (TILE_WIDTH * TILE_HEIGHT);
+                    var total = density * area;
+                })
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        self.SetInteractive(!!guid_get(Stuff.map.active_map.terrain.id));
+                    }),
             ]),
         ])
     ]).AddDefaultCloseButton();
