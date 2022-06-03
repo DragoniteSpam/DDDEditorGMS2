@@ -209,6 +209,11 @@ function array_search_internal_name(array, name) {
     }
     return -1;
 }
+
+function random_element_from_array(array) {
+    if (array_length(array) == 0) return undefined;
+    return array[irandom(array_length(array) - 1)];
+}
 #endregion
 
 #region buffer stuff

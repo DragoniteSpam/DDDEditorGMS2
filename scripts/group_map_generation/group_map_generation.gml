@@ -50,6 +50,7 @@ function map_generate_contents(total, choices) {
         mesh.scale_xx = random_range(choice.spawn.scale.min_scale, choice.spawn.scale.max_scale);
         mesh.scale_yy = mesh.scale_xx;
         mesh.scale_zz = mesh.scale_zz;
+        mesh.texture = random_element_from_array(choice.spawn.textures) ?? NULL;
         map.Add(mesh, xx * xs + xoff, yy * ys + yoff, height * zs + zoff);
         
         placed++;
