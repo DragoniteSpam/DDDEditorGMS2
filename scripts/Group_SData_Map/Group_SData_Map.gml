@@ -51,7 +51,12 @@ function DataMap(source, directory) : SData(source) constructor {
         size: 0,
     };
     
-    static Add = function(entity, x = entity.xx, y = entity.yy, z = entity/zz, is_temp = false, add_to_lists = true) {
+    static Add = function(entity, x = entity.xx, y = entity.yy, z = entity.zz, is_temp = false, add_to_lists = true) {
+        if (!self.on_grid) {
+            self.AddOffGrid(entity, x, y, z);
+            return;
+        }
+        
         // Does not check to see if the specified coordinates are in bounds.
         // You are responsible for that.
         
@@ -84,6 +89,21 @@ function DataMap(source, directory) : SData(source) constructor {
         } else {
             selection_delete(entity);
         }
+    };
+    
+    static AddOffGrid = function(entity, x = entity.xx, y = entity.yy, z = entity.zz) {
+        entity.xx = x;
+        entity.yy = y;
+        entity.zz = z;
+        
+        ds_list_add(self.contents.all_entities, entity);
+        var list = entity.batchable ? self.contents.batch_in_the_future : self.contents.dynamic;
+        // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
+        if (entity.etype == ETypes.ENTITY_MESH && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
+            list = self.contents.dynamic;
+        }
+                
+        ds_list_add(list, entity);
     };
     
     static FreeAt = function(x, y, z, slot) {
