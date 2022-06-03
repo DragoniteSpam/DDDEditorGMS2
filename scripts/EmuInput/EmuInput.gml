@@ -31,6 +31,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     self._value_lower = 0;
     self._value_upper = 100;
     
+    self.strict_input = false;
+    
     self._surface = surface_create(self._value_x2 - self._value_x1, self._value_y2 - self._value_y1);
     
     self.SetValidateInput = function(f) {
@@ -50,6 +52,11 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     
     self.SetColorText = function(f) {
         self.color_text = method(self, f);
+        return self;
+    };
+    
+    self.SetStrictInput = function(strict) {
+        self.strict_input = strict;
         return self;
     };
     
@@ -231,7 +238,6 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 }
 				
                 if (ValidateInput(_working_value)) {
-                    self.value = _working_value;
                     var execute_value_change = (!_require_enter && v0 != _working_value) || (_require_enter && keyboard_check_pressed(vk_enter));
                     if (execute_value_change) {
                         var cast_value = CastInput(_working_value);
@@ -244,7 +250,12 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                         }
                     }
                 } else if (_working_value == "") {
-                	self.value = _working_value;
+                    self.value = _working_value;
+                } else {
+                    // you can set input boxes to reject invalid inputs entirely
+                    if (!self.strict_input) {
+                        self.value = _working_value;
+                    }
                 }
             }
             
