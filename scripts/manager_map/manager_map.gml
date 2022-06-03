@@ -663,7 +663,7 @@ function dialog_create_map_terrain() {
                     })
                     .SetID("CLUSTER ELEVATION"),
                 new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "[c_aqua]Generation"),
-                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Density:", "10", "Density", 4, E_InputTypes.INT, emu_null))
+                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Density:", "4", "Density", 4, E_InputTypes.INT, emu_null))
                     .SetRealNumberBounds(1, 9999)
                     .SetID("GEN DENSITY"),
                 (new EmuInput(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 3, gen_element_height, "  /", "100", "Area", 4, E_InputTypes.INT, emu_null))
