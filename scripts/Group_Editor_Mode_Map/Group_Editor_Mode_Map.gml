@@ -195,6 +195,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         graphics_set_lighting(shd_ddd);
         wireframe_enable(Settings.view.wireframe, 512);
         
+        #region terrain
         var terrain = guid_get(self.active_map.terrain.id);
         if (terrain) {
             var scale = self.active_map.terrain.scale;
@@ -204,7 +205,9 @@ function EditorModeMap() : EditorModeBase() constructor {
             for (var i = 0, n = array_length(terrain.submeshes); i < n; i++) {
                 vertex_submit(terrain.submeshes[i].vbuffer, pr_trianglelist, tex);
             }
+            matrix_set(matrix_world, matrix_build_identity());
         }
+        #endregion
         
         // this will need to be dynamic at some point
         var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
@@ -234,26 +237,20 @@ function EditorModeMap() : EditorModeBase() constructor {
             // batchable entities don't make use of move routes, so don't bother
         }
         
-        // the water effect may use a different shader
-        self.active_map.DrawWater();
-        wireframe_enable(Settings.view.wireframe, 512);
-        
         // reset the lighting shader after the water has been drawn
-        graphics_set_lighting(shd_ddd);
         for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
             map_contents.dynamic[| i].render(map_contents.dynamic[| i]);
         }
         #endregion
         
-        shader_reset();
+        // the water effect may use a different shader
+        wireframe_enable(Settings.view.wireframe, 512);
+        self.active_map.DrawWater();
+        
         gpu_set_cullmode(cull_noculling);
         
         #region grids, selection boxes, zones
         if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, self.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
-        
-        shader_set(shd_ddd);
-        
-        matrix_set(matrix_world, matrix_build_identity());
         
         // tried using ztestenable for this - didn't look good. at all.
         for (var i = 0, n = array_length(self.selection); i < n; i++) {
