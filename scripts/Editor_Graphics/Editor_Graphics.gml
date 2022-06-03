@@ -78,6 +78,8 @@ function EditorGraphics() constructor {
         shader_set(shd_utility_wireframe);
         wireframe_enable(1, 1000000, c_wireframe_mesh_col_box);
         vertex_submit(self.wire_box, pr_trianglelist, -1);
+        wireframe_disable();
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
@@ -85,6 +87,8 @@ function EditorGraphics() constructor {
         shader_set(shd_utility_wireframe);
         wireframe_enable(1, 1000000, c_wireframe_mesh_col_capsule);
         vertex_submit(self.wire_capsule, pr_trianglelist, -1);
+        wireframe_disable();
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
@@ -92,48 +96,57 @@ function EditorGraphics() constructor {
         shader_set(shd_utility_wireframe);
         wireframe_enable(1, 1000000, c_wireframe_mesh_col_sphere);
         vertex_submit(self.wire_sphere, pr_trianglelist, -1);
+        wireframe_disable();
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_lines);
         vertex_submit(self.grid_centered, pr_linelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawMapGrid = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_utility_lines);
         vertex_submit(self.grid_map, pr_linelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawAxes = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
         vertex_submit(self.axes, pr_trianglelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawAxesCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
         vertex_submit(self.axes_centered, pr_trianglelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawAxesTranslation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
         vertex_submit(self.axes_translation, pr_trianglelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawAxesRotation = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
         vertex_submit(self.axes_rotation, pr_trianglelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.DrawBasicCage = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         shader_set(shd_basic_colors);
         vertex_submit(self.basic_cage, pr_trianglelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     self.RecreateGrids = function() {
