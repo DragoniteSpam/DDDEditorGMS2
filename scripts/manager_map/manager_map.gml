@@ -491,6 +491,21 @@ function dialog_create_map_terrain() {
                         self.precipitation = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
                         self.misc = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
                         self.elevation = { odds: 100, cluster_enabled: -1, cluster: 128, falloff: 80 };
+                        
+                        self.spawn = {
+                            textures: [],
+                            offset: {
+                                min_x: 0, min_y: 0, min_z: 0,
+                                max_x: 0, max_y: 0, max_z: 0,
+                            },
+                            rotation: {
+                                min_x: 0, min_y: 0, min_z: 0,
+                                max_x: 0, max_y: 0, max_z: 0,
+                            },
+                            scale: {
+                                min_scale: 0, max_scale: 0
+                            },
+                        };
                     };
                     
                     array_push(Game.nosave.map_terrain_gen.choices, new generation_choice(self.GetSibling("MESHES").GetSelectedItem()));

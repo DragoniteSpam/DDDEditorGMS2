@@ -39,7 +39,18 @@ function map_generate_contents(total, choices) {
         // dont feel like it right now
         var height = buffer_sample_pixel(terrain.heightmap, yy, xx, w, h, buffer_f32);
         
-        map.Add(new EntityMesh("Mesh", guid_get(choice.mesh)), xx * xs, yy * ys, height * zs);
+        var xoff = random_range(choice.spawn.offset.min_x, choice.spawn.offset.max_x);
+        var yoff = random_range(choice.spawn.offset.min_y, choice.spawn.offset.max_y);
+        var zoff = random_range(choice.spawn.offset.min_z, choice.spawn.offset.max_z);
+        
+        var mesh = new EntityMesh("Mesh", guid_get(choice.mesh));
+        mesh.rot_xx = random_range(choice.spawn.rotation.min_x, choice.spawn.rotation.max_x);
+        mesh.rot_yy = random_range(choice.spawn.rotation.min_y, choice.spawn.rotation.max_y);
+        mesh.rot_zz = random_range(choice.spawn.rotation.min_z, choice.spawn.rotation.max_z);
+        mesh.scale_xx = random_range(choice.spawn.scale.min_scale, choice.spawn.scale.max_scale);
+        mesh.scale_yy = mesh.scale_xx;
+        mesh.scale_zz = mesh.scale_zz;
+        map.Add(mesh, xx * xs + xoff, yy * ys + yoff, height * zs + zoff);
         
         placed++;
     }
