@@ -510,7 +510,7 @@ function dialog_create_map_terrain() {
                     
                     array_push(Game.nosave.map_terrain_gen.choices, new generation_choice(self.GetSibling("MESHES").GetSelectedItem()));
                     
-                    if (self.GetSibling("CHOICES").GetSibling("CHOICES") == -1) {
+                    if (!self.GetSibling("CHOICES").GetSelectedItem()) {
                         self.GetSibling("CHOICES").Select(array_length(Game.nosave.map_terrain_gen.choices) - 1);
                     }
                     
@@ -677,6 +677,110 @@ function dialog_create_map_terrain() {
                         self.SetValue(choice.elevation.cluster);
                     })
                     .SetID("CLUSTER ELEVATION"),
+                (new EmuButton(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Advanced Settings", function() {
+                    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Advanced settings");
+                    var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                    dialog.choice = choice;
+                    
+                    var element_width = 320;
+                    var element_height = 32;
+                    
+                    var col1 = 32;
+                    var col2 = 32 + 320 + 32;
+                    
+                    return dialog.AddContent([
+                        new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Parameters"),
+                        (new EmuInput(col1, EMU_AUTO, element_width * 2 / 3, element_height, "Position:", choice.spawn.offset.min_x, "cells", 3, E_InputTypes.REAL, function() {
+                            self.root.choice.spawn.offset.min_x = real(self.value);
+                        }))
+                            .SetRealNumberBounds(-6, 6)
+                            .SetNext("OFF MAX X")
+                            .SetPrevious("OFF MAX Z")
+                            .SetID("OFF MIN X"),
+                        (new EmuInput(col1 + element_width * 2 / 3, EMU_INLINE, element_width / 3, element_height, "", choice.spawn.offset.max_x, "cells", 3, E_InputTypes.REAL, function() {
+                            self.root.choice.spawn.offset.max_x = real(self.value);
+                        }))
+                            .SetInputBoxPosition(0, 0)
+                            .SetRealNumberBounds(-6, 6)
+                            .SetNext("OFF MIN Y")
+                            .SetPrevious("OFF MIN X")
+                            .SetID("OFF MAX X"),
+                        (new EmuInput(col1, EMU_AUTO, element_width * 2 / 3, element_height, "Y:", choice.spawn.offset.min_y, "cells", 3, E_InputTypes.REAL, function() {
+                            self.root.choice.spawn.offset.min_y = real(self.value);
+                        }))
+                            .SetRealNumberBounds(-6, 6)
+                            .SetNext("OFF MAX Y")
+                            .SetPrevious("OFF MAX X")
+                            .SetID("OFF MIN Y"),
+                        (new EmuInput(col1 + element_width * 2 / 3, EMU_INLINE, element_width / 3, element_height, "", choice.spawn.offset.max_y, "cells", 3, E_InputTypes.REAL, function() {
+                            self.root.choice.spawn.offset.max_y = real(self.value);
+                        }))
+                            .SetInputBoxPosition(0, 0)
+                            .SetRealNumberBounds(-6, 6)
+                            .SetNext("OFF MIN Z")
+                            .SetPrevious("OFF MIN Y")
+                            .SetID("OFF MAX Y"),
+                        (new EmuInput(col1, EMU_AUTO, element_width * 2 / 3, element_height, "Z:", choice.spawn.offset.min_z, "cells", 3, E_InputTypes.REAL, function() {
+                            self.root.choice.spawn.offset.min_z = real(self.value);
+                        }))
+                            .SetRealNumberBounds(-6, 6)
+                            .SetNext("OFF MAX Z")
+                            .SetPrevious("OFF MAX Y")
+                            .SetID("OFF MIN Z"),
+                        (new EmuInput(col1 + element_width * 2 / 3, EMU_INLINE, element_width / 3, element_height, "", choice.spawn.offset.max_z, "cells", 3, E_InputTypes.REAL, function() {
+                            self.root.choice.spawn.offset.max_z = real(self.value);
+                        }))
+                            .SetInputBoxPosition(0, 0)
+                            .SetRealNumberBounds(-6, 6)
+                            .SetNext("OFF MIN X")
+                            .SetPrevious("OFF MIN Z")
+                            .SetID("OFF MAX Z"),
+                        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Available Textures:", element_height, 8, function() {
+                            if (!self.root) return;
+                            var selection = self.GetSibling("TEXTURES").GetSelection();
+                            if (selection != -1 && self.GetSelection() != -1) {
+                                self.root.choice.spawn.textures[selection] = self.GetSelectedItem().GUID;
+                            }
+                            self.root.Refresh();
+                        }))
+                            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                            .SetList(Game.graphics.tilesets)
+                            .SetID("AVAILABLE TEXTURES"),
+                        (new EmuList(col2, EMU_BASE, element_width, element_height, "Selected Textures:", element_height, 12, function() {
+                            if (!self.root) return;
+                            self.root.Refresh();
+                        }))
+                            .SetList(choice.spawn.textures)
+                            .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                                return guid_get(self.At(index)) ? guid_get(self.At(index)).name : "(none)";
+                            })
+                            .SetID("TEXTURES"),
+                        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Add", function() {
+                            var selection = self.GetSibling("AVAILABLE TEXTURES").GetSelectedItem();
+                            array_push(self.root.choice.spawn.textures, selection ? selection.GUID : NULL);
+                            if (!self.GetSibling("TEXTURES").GetSelectedItem()) {
+                                self.GetSibling("TEXTURES").Select(array_length(self.root.choice.spawn.textures) - 1, true);
+                            }
+                        })),
+                        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Delete", function() {
+                            var selection = self.GetSibling("TEXTURES").GetSelectedItem();
+                            array_delete(self.root.choice.spawn.textures, selection, 1);
+                            if (selection >= array_length(self.root.choice.spawn.textures)) {
+                                self.GetSibling("TEXTURES").Deselect();
+                            }
+                            self.root.Refresh();
+                        }))
+                            .SetInteractive(false)
+                            .SetRefresh(function() {
+                                self.SetInteractive(self.GetSibling("TEXTURES").GetSelection() != -1);
+                            }),
+                    ]).AddDefaultCloseButton();
+                }))
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        self.SetInteractive(!!self.GetSibling("CHOICES").GetSelectedItem());
+                    })
+                    .SetID("CHOICE ADVANCED"),
                 new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "[c_aqua]Generation"),
                 (new EmuInput(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Density:", "4", "Density", 4, E_InputTypes.INT, emu_null))
                     .SetRealNumberBounds(1, 9999)
