@@ -470,6 +470,13 @@ function dialog_create_map_terrain() {
                         choice.name = mesh.name;
                     }
                 }))
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        if (choice) {
+                            self.Deselect();
+                            self.Select(array_search(Game.meshes, guid_get(choice.mesh)));
+                        }
+                    })
                     .SetList(Game.meshes)
                     .SetMultiSelect(true)
                     .SetAllowDeselect(false)
@@ -487,6 +494,10 @@ function dialog_create_map_terrain() {
                         self.mesh = mesh ? mesh.GUID : NULL;
                         self.name = mesh ? mesh.name : "(mesh N/A)";
                         self.weight = 100;
+                        
+                        // if you wanted to, you COULD weigh each mesh based on
+                        // the attributes of the chosen position, but that would
+                        // be a lot of extra work, and also very slow
                         self.temperature = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
                         self.precipitation = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
                         self.misc = { odds: 100, cluster_enabled: -1, cluster: 0.5, falloff: 0.25 };
@@ -741,8 +752,14 @@ function dialog_create_map_terrain() {
                             if (selection != -1 && self.GetSelection() != -1) {
                                 self.root.choice.spawn.textures[selection] = self.GetSelectedItem().GUID;
                             }
-                            self.root.Refresh();
                         }))
+                            .SetRefresh(function() {
+                                var selection = self.GetSibling("TEXTURES").GetSelectedItem();
+                                if (selection != undefined) {
+                                    self.Deselect();
+                                    self.Select(array_search(Game.graphics.tilesets, guid_get(selection)));
+                                }
+                            })
                             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                             .SetList(Game.graphics.tilesets)
                             .SetID("AVAILABLE TEXTURES"),
