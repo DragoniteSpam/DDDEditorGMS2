@@ -445,6 +445,10 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.animation_speed = 0;
     self.animation_end_action = AnimationEndActions.LOOP;
     
+    // someday it would be nice to make this a Material but i dont have time
+    // to do that right now
+    self.texture = NULL;                                                        // GUID
+    
     // editor properties
     self.slot = MapCellContents.MESH;
     self.rotateable = true;
@@ -558,17 +562,26 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     };
     
     static GetTexture = function() {
+        var own_texture = guid_get(self.texture);
+        if (own_texture) {
+            return sprite_get_texture(own_texture.picture, 0);
+        }
+        
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        var def_texture = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
-        return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
+        var mesh_data = guid_get(self.mesh);
+        if (mesh_data && guid_get(mesh_data.tex_base)) {
+            return sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
+        }
+        
+        return Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
     };
     
     self.Export = function(buffer) {
         if (!self.ExportBase(buffer)) return 0;
         buffer_write(buffer, buffer_datatype, self.mesh);
         buffer_write(buffer, buffer_datatype, self.mesh_submesh);
+        buffer_write(buffer, buffer_datatype, self.texture);
         buffer_write(buffer, buffer_field, pack(
             self.animated
         ));
@@ -585,6 +598,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         json.mesh = {
             mesh: self.mesh,
             submesh: self.mesh_submesh,
+            texture: self.texture,
             animation: {
                 animated: self.animated,
                 index: self.animation_index,
@@ -603,6 +617,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     if (is_struct(source)) {
         self.mesh = source.mesh.mesh;
         self.mesh_submesh = source.mesh.submesh;
+        self.texture = source.mesh[$ "texture"] ?? NULL;
         self.animated = source.mesh.animation.animated;
         self.animation_index = source.mesh.animation.index;
         self.animation_type = source.mesh.animation.type;
