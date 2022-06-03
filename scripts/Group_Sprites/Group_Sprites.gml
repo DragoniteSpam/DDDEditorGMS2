@@ -194,13 +194,29 @@ function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
         cache[$ sprite_id] = buffer;
     }
     
+    return sprite_sample_buffer_pixel(buffer, x, y, sprite_get_width(sprite), sprite_get_height(sprite));
+}
+
+function sprite_sample_remove_from_cache(sprite, index) {
+    sprite_sample_pixel(sprite, index, 0, 0, "remove");
+}
+
+function sprite_sample_get_buffer(sprite, index) {
+    return sprite_sample_pixel(sprite, index, 0, 0, "buffer");
+}
+
+function sprite_sample_buffer(buffer, u, v, w, h) {
+    return sprite_sample_buffer_pixel(buffer, u * w, v * h, w, h);
+}
+
+function sprite_sample_buffer_pixel(buffer, x, y, w, h) {
     // might implement texture wrapping some other day but right now i dont feel like it
-    x = clamp(x, 0, sprite_get_width(sprite) - 1);
-    y = clamp(y, 0, sprite_get_height(sprite) - 1);
-    var address_ul = (floor(x) + floor(y) * sprite_get_width(sprite)) * 4;
-    var address_ur = (ceil(x) + floor(y) * sprite_get_width(sprite)) * 4;
-    var address_ll = (floor(x) + ceil(y) * sprite_get_width(sprite)) * 4;
-    var address_lr = (ceil(x) + ceil(y) * sprite_get_width(sprite)) * 4;
+    x = clamp(x, 0, w - 1);
+    y = clamp(y, 0, h - 1);
+    var address_ul = (floor(x) + floor(y) * w) * 4;
+    var address_ur = (ceil(x) + floor(y) * w) * 4;
+    var address_ll = (floor(x) + ceil(y) * w) * 4;
+    var address_lr = (ceil(x) + ceil(y) * w) * 4;
     var horizontal_lerp = frac(x);
     var vertical_lerp = frac(y);
     var colour_ul = buffer_peek(buffer, address_ul, buffer_u32);
@@ -210,12 +226,4 @@ function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
     var colour_l = merge_colour_ds(colour_ul, colour_ll, vertical_lerp);
     var colour_r = merge_colour_ds(colour_ur, colour_lr, vertical_lerp);
     return merge_colour_ds(colour_l, colour_r, horizontal_lerp);
-}
-
-function sprite_sample_remove_from_cache(sprite, index) {
-    sprite_sample_pixel(sprite, index, 0, 0, "remove");
-}
-
-function sprite_sample_get_buffer(sprite, index) {
-    return sprite_sample_pixel(sprite, index, 0, 0, "buffer");
 }
