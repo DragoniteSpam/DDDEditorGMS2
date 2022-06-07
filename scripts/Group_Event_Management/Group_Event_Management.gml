@@ -10,9 +10,6 @@ function event_create_node(event, type, xx = room_width / 2, yy = room_height / 
     
         // if there's a name collision, try the next number
         do {
-            // this used to be a # but that was screwing with game maker's newline thing because
-            // old game maker still used the stupid version of newlines and now that i'm on the
-            // new version i don't feel like changing it
             node.name = base_name + "$" + string(n++);
         } until (!event.name_map[$ node.name]);
 

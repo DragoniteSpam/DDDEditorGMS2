@@ -34,11 +34,7 @@ enum ModeIDs {
     TEXT,
 }
 
-tf = ["False", "True"];
-on_off = ["Off", "On"];
-color_channels = [0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000];
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];
-color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
 direction_lookup = [270, 180, 0, 90];
 
 // these are constants but we're allowed to change them here

@@ -213,7 +213,8 @@ function ui_render_color_picker_input(picker, xx, yy) {
         shader_set(shd_basic_colors);
     }
     
-    var c = Stuff.color_channels[picker.axis_channel];
+    static color_channels = [0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000];
+    var c = color_channels[picker.axis_channel];
     draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c, c, false);
     draw_rectangle(vx1, vy1, vx2, vy2, true);
     shader_reset();

@@ -197,7 +197,7 @@ function draw_event_node(node) {
                             var index = list_index[i];
                             if (index > -1) {
                                 var switch_data = Game.vars.switches[index];
-                                str = "Switch " + switch_data.name + " is " + Stuff.on_off[list_value[i]];
+                                str = "Switch " + switch_data.name + " is " + (list_value[i] ? "On" : "Off");
                             } else {
                                 str = "Switch data not set";
                             }
@@ -214,7 +214,7 @@ function draw_event_node(node) {
                         case ConditionBasicTypes.SELF_SWITCH:
                             var index = list_index[i];
                             if (index > -1) {
-                                str = "Self switch " + chr(ord("A") + index) + " is " + Stuff.on_off[list_value[i]];
+                                str = "Self switch " + chr(ord("A") + index) + " is " + (list_value[i] ? "On" : "Off");
                             } else {
                                 str = "Self switch data not set";
                             }
@@ -545,7 +545,7 @@ function draw_event_node(node) {
                                 break;
                             case DataTypes.BOOL:
                                 message = message + "(boolean): ";
-                                output_string = Stuff.tf[custom_data_list[0]];
+                                output_string = (custom_data_list[0] ? "True" : "False");
                                 break;
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
