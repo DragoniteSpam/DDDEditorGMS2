@@ -63,6 +63,7 @@ function DataMesh(source) : SData(source) constructor {
         
         try {
             self.terrain_data = new MeshTerrainData(source.terrain_data.w, source.terrain_data.h, 0);
+            self.terrain_data.Load(source);
         } catch (e) {
             self.terrain_data = undefined;
         }
@@ -519,6 +520,8 @@ function MeshTerrainData(w, h, heightmap) constructor {
     self.w = w;
     self.h = h;
     self.heightmap = heightmap;
+    self.min_height = 0;
+    self.max_height = 0;
     
     self.Sample = function(x, y) {
         return buffer_sample_pixel(self.heightmap, x, y, self.w, self.h, buffer_f32);
@@ -530,12 +533,16 @@ function MeshTerrainData(w, h, heightmap) constructor {
     
     self.Save = function() {
         return {
-            h: h, w: w,
+            h: self.h,
+            w: self.w,
+            min_height: self.min_height,
+            max_height: self.max_height,
         };
     };
     
     self.Load = function(source) {
-        
+        self.min_height = source[$ "min_height"];
+        self.max_height = source[$ "max_height"];
     };
     
     self.SaveAsset = function(directory) {
@@ -544,11 +551,24 @@ function MeshTerrainData(w, h, heightmap) constructor {
     
     self.LoadAsset = function(directory) {
         self.heightmap = buffer_load(directory + ".hm");
+        
+        // validate the min and max height of the terrain
+        if(self.min_height == undefined || self.max_height == undefined) {
+            self.min_height = infinity;
+            self.max_height = -infinity;
+            for (var i = 0, n = buffer_get_size(self.heightmap); i < n; i += buffer_sizeof(buffer_f32)) {
+                var z = buffer_peek(self.heightmap, i, buffer_f32);
+                self.min_height = min(self.min_height, z);
+                self.max_height = max(self.max_height, z);
+            }
+        }
     };
     
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_u32, self.w);
         buffer_write(buffer, buffer_u32, self.h);
+        buffer_write(buffer, buffer_f32, self.min_height);
+        buffer_write(buffer, buffer_f32, self.max_height);
         buffer_write_buffer(buffer, self.heightmap);
     };
 }
