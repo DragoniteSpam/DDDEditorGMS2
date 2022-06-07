@@ -45,7 +45,7 @@ function map_generate_contents(total, choices) {
         var param_elevation = buffer_sample_pixel(heightmap, y, x, w, h, buffer_f32);
         
         static get_cluster_value = function(cluster_data, param) {
-            if (!cluster_data.cluster_enabled) return 1;
+            if (!cluster_data.enabled) return 1;
             var dist = abs(param - cluster_data.cluster);
             return cos(min(dist, cluster_data.falloff) / cluster_data.falloff * pi / 2);
         };
