@@ -98,6 +98,7 @@ Game = new (function() constructor {
     self.nosave = {
         map_terrain_gen: {
             choices: [],
+            tex_size: 256,
             tex_r: -1,
             tex_g: -1,
             tex_b: -1,

@@ -224,8 +224,8 @@ function dialog_create_map_terrain() {
     var col2 = 32 + 320 + 32;
     var col3 = 32 + 320 + 32 + 320 + 32;
     
+    var gen_data = Game.nosave.map_terrain_gen;
     var gen_element_width = 320;
-    var gen_tex_size = 256;
     var gen_element_height = 32;
     var gen_col1 = 32;
     var gen_col2 = 32 + 320 + 32;
@@ -288,7 +288,7 @@ function dialog_create_map_terrain() {
                         // guess you cant load that sprite
                     }
                 })),
-                (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_data.tex_size, gen_data.tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_r != -1) {
                         shader_set(shd_utility_banding);
@@ -326,7 +326,7 @@ function dialog_create_map_terrain() {
                         // guess you cant load that sprite
                     }
                 })),
-                (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                (new EmuRenderSurface(gen_col1, EMU_AUTO, gen_data.tex_size, gen_data.tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_g != -1) {
                         shader_set(shd_utility_banding);
@@ -364,7 +364,7 @@ function dialog_create_map_terrain() {
                         // guess you cant load that sprite
                     }
                 })),
-                (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_data.tex_size, gen_data.tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     if (gen_data.tex_b != -1) {
                         shader_set(shd_utility_banding);
@@ -381,7 +381,7 @@ function dialog_create_map_terrain() {
                     self.GetSibling("G").callback();
                     self.GetSibling("B").callback();
                 })),
-                (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
+                (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_data.tex_size, gen_data.tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
                     draw_sprite_combine_channels(
                         gen_data.tex_r, gen_data.tex_g, gen_data.tex_b, self.width, self.height,
