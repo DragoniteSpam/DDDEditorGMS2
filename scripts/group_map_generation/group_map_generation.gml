@@ -36,9 +36,26 @@ function map_generate_contents(total, choices) {
     static placement_attempts = 25;
     
     // get the spawn odds, accounting for clustering settings
-    static get_spawn_odds = function(x, y, w, h, heightmap, noisemap) {
+    static get_spawn_odds = function(choice, x, y, w, h, heightmap, noisemap) {
+        var noise = sprite_sample(noisemap, 0, x / w, y / h);
+        var param_temperature = colour_get_red(noise) / 0xff;
+        var param_precipitation = colour_get_green(noise) / 0xff;
+        var param_misc = colour_get_blue(noise) / 0xff;
         // transpose the x and y
-        var height = buffer_sample_pixel(heightmap, y, x, w, h, buffer_f32);
+        var param_elevation = buffer_sample_pixel(heightmap, y, x, w, h, buffer_f32);
+        
+        static get_cluster_value = function(cluster_data, param) {
+            if (!cluster_data.cluster_enabled) return 1;
+            var dist = abs(param - cluster_data.cluster);
+            return cos(min(dist, cluster_data.falloff) / cluster_data.falloff * pi / 2);
+        };
+        
+        var cluster_temperature = get_cluster_value(choice.temperature, param_temperature);
+        var cluster_precipitation = get_cluster_value(choice.precipitation, param_precipitation);
+        var cluster_misc = get_cluster_value(choice.misc, param_misc);
+        var cluster_elevation = get_cluster_value(choice.elevation, param_elevation);
+        
+        return cluster_temperature * cluster_precipitation * cluster_misc * cluster_elevation;
     };
     
     // for each choice, attempt to place it somewhere
@@ -49,7 +66,7 @@ function map_generate_contents(total, choices) {
             var xx = random(w);
             var yy = random(h);
             
-            if (random(1) < get_spawn_odds(xx, yy, w, h, terrain.heightmap, terrain_noise)) {
+            if (random(1) < get_spawn_odds(choice, xx, yy, w, h, terrain.heightmap, terrain_noise)) {
                 // transpose the x and y - the heightmaps are laid out in the reverse
                 // order of sprite pixel grids, which i guess i could change, but i
                 // dont feel like it right now
