@@ -1,4 +1,4 @@
-function sprite_combine_grayscale_channels(r, g, b, w, h, bands_r = 255, bands_g = 255, bands_b = 255) {
+function draw_sprite_combine_channels(r, g, b, w, h, bands_r = 255, bands_g = 255, bands_b = 255) {
     static sampler_red = shader_get_sampler_index(shd_utility_combine_channels, "samp_red");
     static sampler_green = shader_get_sampler_index(shd_utility_combine_channels, "samp_green");
     static sampler_blue = shader_get_sampler_index(shd_utility_combine_channels, "samp_blue");
@@ -33,4 +33,18 @@ function sprite_combine_grayscale_channels(r, g, b, w, h, bands_r = 255, bands_g
     texture_set_stage(sampler_blue, sprite_get_texture(sprite_exists(b) ? b : pixel, 0));
     draw_sprite_stretched(pixel, 0, 0, 0, w, h);
     shader_set(shader);
+}
+
+function sprite_add_from_channels(r, g, b, w, h, bands_r = 255, bands_g = 255, bands_b = 255) {
+    var surface = surface_create(w, h);
+    surface_set_target(surface);
+    draw_clear(c_black);
+    var bm = gpu_get_blendmode();
+    gpu_set_blendmode(bm_add);
+    draw_sprite_combine_channels(r, g, b, w, h, bands_r, bands_g, bands_b);
+    gpu_set_blendmode(bm);
+    surface_reset_target();
+    var sprite = sprite_create_from_surface(surface, 0, 0, w, h, false, false, 0, 0);
+    surface_free(surface);
+    return sprite;
 }

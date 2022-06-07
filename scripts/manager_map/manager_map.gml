@@ -383,7 +383,7 @@ function dialog_create_map_terrain() {
                 })),
                 (new EmuRenderSurface(gen_col2, EMU_AUTO, gen_tex_size, gen_tex_size, function() {
                     var gen_data = Game.nosave.map_terrain_gen;
-                    sprite_combine_grayscale_channels(
+                    draw_sprite_combine_channels(
                         gen_data.tex_r, gen_data.tex_g, gen_data.tex_b, self.width, self.height,
                         Game.nosave.map_terrain_gen.bands_r, Game.nosave.map_terrain_gen.bands_g, Game.nosave.map_terrain_gen.bands_b
                     );
