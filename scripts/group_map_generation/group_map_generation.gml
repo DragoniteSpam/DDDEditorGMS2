@@ -10,6 +10,10 @@ function map_generate_contents(total, choices) {
     var h = terrain.h;
     var total_weights = 0;
     
+    // idk if you'll need these values or not
+    var min_height = terrain.min_height * map.terrain.scale;
+    var max_height = terrain.max_height * map.terrain.scale;
+    
     var gen_data = Game.nosave.map_terrain_gen;
     var terrain_noise = sprite_add_from_channels(
         gen_data.tex_r, gen_data.tex_g, gen_data.tex_b, gen_data.tex_size, gen_data.tex_size,
@@ -36,13 +40,13 @@ function map_generate_contents(total, choices) {
     static placement_attempts = 25;
     
     // get the spawn odds, accounting for clustering settings
-    static get_spawn_odds = function(choice, x, y, w, h, heightmap, noisemap) {
+    static get_spawn_odds = function(choice, x, y, w, h, heightmap, scale, noisemap) {
         var noise = sprite_sample(noisemap, 0, x / w, y / h);
         var param_temperature = colour_get_red(noise) / 0xff;
         var param_precipitation = colour_get_green(noise) / 0xff;
         var param_misc = colour_get_blue(noise) / 0xff;
         // transpose the x and y
-        var param_elevation = buffer_sample_pixel(heightmap, y, x, w, h, buffer_f32);
+        var param_elevation = buffer_sample_pixel(heightmap, y, x, w, h, buffer_f32) * scale;
         
         static get_cluster_value = function(cluster_data, param) {
             if (!cluster_data.enabled) return 1;
@@ -66,7 +70,7 @@ function map_generate_contents(total, choices) {
             var xx = random(w);
             var yy = random(h);
             
-            if (random(1) < get_spawn_odds(choice, xx, yy, w, h, terrain.heightmap, terrain_noise)) {
+            if (random(1) < get_spawn_odds(choice, xx, yy, w, h, terrain.heightmap, map.terrain.scale, terrain_noise)) {
                 // transpose the x and y - the heightmaps are laid out in the reverse
                 // order of sprite pixel grids, which i guess i could change, but i
                 // dont feel like it right now

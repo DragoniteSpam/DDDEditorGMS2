@@ -259,6 +259,16 @@ function dialog_create_map_terrain() {
                             self.text = "Dimensions: N/A";
                         }
                     }),
+                (new EmuText(col1, EMU_AUTO, element_width, element_height, "Vertical range:"))
+                    .SetRefresh(function() {
+                        var map_terrain = Stuff.map.active_map.terrain;
+                        var terrain = guid_get(map_terrain.id);
+                        if (terrain) {
+                            self.text = "Vertical range: " + string(terrain.terrain_data.min_height * map_terrain.scale) + " to " + string(terrain.terrain_data.max_height * map_terrain.scale);
+                        } else {
+                            self.text = "Vertical range: N/A";
+                        }
+                    }),
             ]),
             (new EmuTab("Generation of Noise")).AddContent([
                 #region Images
