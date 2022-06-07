@@ -238,6 +238,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 }
 				
                 if (ValidateInput(_working_value)) {
+                    self.value = _working_value;
                     var execute_value_change = (!_require_enter && v0 != _working_value) || (_require_enter && keyboard_check_pressed(vk_enter));
                     if (execute_value_change) {
                         var cast_value = CastInput(_working_value);
@@ -249,7 +250,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                             callback();
                         }
                     }
-                } else if (_working_value == "") {
+                } else if (_working_value != "") {
                     self.value = _working_value;
                 } else {
                     // you can set input boxes to reject invalid inputs entirely
