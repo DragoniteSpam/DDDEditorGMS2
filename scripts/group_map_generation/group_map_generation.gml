@@ -81,6 +81,7 @@ function map_generate_contents(total, choices) {
                 var zoff = random_range(choice.spawn.offset.min_z, choice.spawn.offset.max_z);
             
                 var mesh = new EntityMesh("Mesh", guid_get(choice.mesh));
+                mesh.is_static = true;
                 mesh.rot_xx = random_range(choice.spawn.rotation.min_x, choice.spawn.rotation.max_x);
                 mesh.rot_yy = random_range(choice.spawn.rotation.min_y, choice.spawn.rotation.max_y);
                 mesh.rot_zz = random_range(choice.spawn.rotation.min_z, choice.spawn.rotation.max_z);
@@ -89,7 +90,7 @@ function map_generate_contents(total, choices) {
                 mesh.scale_zz = mesh.scale_zz;
                 mesh.texture = random_element_from_array(choice.spawn.textures) ?? NULL;
                 map.Add(mesh, xx * xs + xoff, yy * ys + yoff, height * zs + zoff);
-            
+                
                 placed++;
                 break;
             }
