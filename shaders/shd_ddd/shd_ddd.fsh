@@ -130,7 +130,9 @@ void main() {
     
     gl_FragColor = vec4(color.rgb, sourceAlpha);
     
-    DrawWireframe(gl_FragColor.rgb);
+    if (u_WireAlpha > 0.0) {
+        DrawWireframe(gl_FragColor.rgb);
+    }
     
     if (gl_FragColor.a < ALPHA_REF) discard;
 }

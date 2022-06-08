@@ -132,5 +132,8 @@ void main() {
     }*/
     
     DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
-    DrawWireframe(gl_FragColor.rgb);
+    
+    if (u_WireAlpha > 0.0) {
+        DrawWireframe(gl_FragColor.rgb);
+    }
 }
