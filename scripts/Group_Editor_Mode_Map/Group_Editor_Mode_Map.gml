@@ -180,6 +180,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         
         self.camera.SetProjection();
         if (Settings.terrain.view_skybox) {
+            self.camera.SetSkybox(Stuff.graphics.skybox_base, guid_get(self.active_map.skybox) ? guid_get(self.active_map.skybox).picture : -1);
             self.camera.DrawSkybox();
         }
         
