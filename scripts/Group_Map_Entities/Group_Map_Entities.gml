@@ -462,34 +462,30 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         if (mesh && entity.GetVertexBuffer()) {
             switch (mesh.type) {
                 case MeshTypes.RAW:
-                    if (Settings.view.entities) {
-                        var mesh = guid_get(entity.mesh);
-                        matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
-                        var tex = entity.GetTexture();
-                        vertex_submit(entity.GetVertexBuffer(), pr_trianglelist, tex);
+                    var mesh = guid_get(entity.mesh);
+                    matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+                    var tex = entity.GetTexture();
+                    vertex_submit(entity.GetVertexBuffer(), pr_trianglelist, tex);
+                    
+                    if (Stuff.map.active_map.reflections_enabled) {
+                        var water = Stuff.map.active_map.water_level;
+                        var offset = (water - (entity.zz + entity.off_zz - water)) * TILE_DEPTH;
+                        matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, offset, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
                         
-                        if (Stuff.map.active_map.reflections_enabled) {
-                            var water = Stuff.map.active_map.water_level;
-                            var offset = (water - (entity.zz + entity.off_zz - water)) * TILE_DEPTH;
-                            matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, offset, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
-                            
-                            var reflect = entity.GetReflectVertexBuffer();
-                            if (reflect) {
-                                vertex_submit(reflect, pr_trianglelist, tex);
-                            }
+                        var reflect = entity.GetReflectVertexBuffer();
+                        if (reflect) {
+                            vertex_submit(reflect, pr_trianglelist, tex);
                         }
-                        
-                        matrix_set(matrix_world, matrix_build_identity());
                     }
+                    
+                    matrix_set(matrix_world, matrix_build_identity());
                     break;
                 case MeshTypes.SMF: break;
             }
         } else {
-            if (Settings.view.entities) {
-                matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
-                vertex_submit(Stuff.graphics.mesh_missing, pr_trianglelist, -1);
-                matrix_set(matrix_world, matrix_build_identity());
-            }
+            matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+            vertex_submit(Stuff.graphics.mesh_missing, pr_trianglelist, -1);
+            matrix_set(matrix_world, matrix_build_identity());
         }
     };
     

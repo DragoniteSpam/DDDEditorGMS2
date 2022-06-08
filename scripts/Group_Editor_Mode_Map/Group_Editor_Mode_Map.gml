@@ -230,16 +230,14 @@ function EditorModeMap() : EditorModeBase() constructor {
                     vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
                 }
             }
-        }
-        
-        for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
-            map_contents.batch_in_the_future[| i].render(map_contents.batch_in_the_future[| i]);
-            // batchable entities don't make use of move routes, so don't bother
-        }
-        
-        // reset the lighting shader after the water has been drawn
-        for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
-            map_contents.dynamic[| i].render(map_contents.dynamic[| i]);
+            
+            for (var i = 0, n = ds_list_size(map_contents.batch_in_the_future); i < n; i++) {
+                map_contents.batch_in_the_future[| i].render(map_contents.batch_in_the_future[| i]);
+            }
+            
+            for (var i = 0, n = ds_list_size(map_contents.dynamic); i < n; i++) {
+                map_contents.dynamic[| i].render(map_contents.dynamic[| i]);
+            }
         }
         #endregion
         
