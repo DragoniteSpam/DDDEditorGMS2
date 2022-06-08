@@ -39,16 +39,20 @@ function editor_cleanup_map() {
                 if (thing.modification == Modifications.REMOVE) {
                     if (thing.batch_addr) {
                         var list_instances = thing.batch_addr.instances;
-                        ds_list_delete(list_instances, ds_list_find_index(list_instances, thing));
+                        var index = ds_list_find_index(list_instances, thing);
+                        if (index != -1) ds_list_delete(list_instances, index);
                         rebatch_these[$ thing.batch_addr] = true;
                     } else if (thing.batchable) {
-                        ds_list_delete(map.batch_in_the_future, ds_list_find_index(map.batch_in_the_future, thing));
+                        var index = ds_list_find_index(map.batch_in_the_future, thing);
+                        if (index != -1) ds_list_delete(map.batch_in_the_future, index);
                     } else {
-                        ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, thing));
+                        var index = ds_list_find_index(map.dynamic, thing);
+                        if (index != -1) ds_list_delete(map.dynamic, index);
                     }
                     
                     base_map.Remove(thing);
-                    ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
+                    var index = ds_list_find_index(map.all_entities, thing);
+                    if (index != -1) ds_list_delete(map.all_entities, index);
                     
                     thing.Destroy();
                 } else if (thing.modification == Modifications.UPDATE) {
@@ -87,18 +91,22 @@ function editor_cleanup_map() {
                     // Update the current batch
                     if (thing.batch_addr) {
                         var list_instances = thing.batch_addr.instances;
-                        ds_list_delete(list_instances, ds_list_find_index(list_instances, thing));
+                        var index = ds_list_find_index(list_instances, thing);
+                        if (index != -1) ds_list_delete(list_instances, index);
                         rebatch_these[$ thing.batch_addr] = true;
                     // Remove from the future batch list
                     } else if (thing.batchable) {
-                        ds_list_delete(map.batch_in_the_future, ds_list_find_index(map.batch_in_the_future, thing));
+                        var index = ds_list_find_index(map.batch_in_the_future, thing);
+                        if (index != -1) ds_list_delete(map.batch_in_the_future, index);
                     // Remove from the dynamic list
                     } else {
-                        ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, thing));
+                        var index = ds_list_find_index(map.dynamic, thing);
+                        if (index != -1) ds_list_delete(map.dynamic, index);
                     }
                     
                     base_map.Remove(thing);
-                    ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
+                    var index = ds_list_find_index(map.all_entities, thing);
+                    if (index != -1) ds_list_delete(map.all_entities, index);
                     thing.Destroy();
                 } else {
                     if (thing.batch_addr) {
