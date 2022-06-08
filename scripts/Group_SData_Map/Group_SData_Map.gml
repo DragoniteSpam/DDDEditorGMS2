@@ -78,7 +78,7 @@ function DataMap(source, directory) : SData(source) constructor {
             // be because it's a temporary instance, or perhaps it's already in the map and you're
             // just trying to move it
             if (!is_temp && add_to_lists) {
-                var list = entity.batchable ? self.contents.batch_in_the_future : self.contents.dynamic;
+                var list = (entity.batchable && MAP_BATCH_MESH_ENABLED) ? self.contents.batch_in_the_future : self.contents.dynamic;
                 // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
                 if (entity.etype == ETypes.ENTITY_MESH && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
                     list = self.contents.dynamic;
@@ -97,7 +97,7 @@ function DataMap(source, directory) : SData(source) constructor {
         entity.zz = z;
         
         ds_list_add(self.contents.all_entities, entity);
-        var list = entity.batchable ? self.contents.batch_in_the_future : self.contents.dynamic;
+        var list = (entity.batchable && MAP_BATCH_MESH_ENABLED) ? self.contents.batch_in_the_future : self.contents.dynamic;
         // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
         if (entity.etype == ETypes.ENTITY_MESH && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
             list = self.contents.dynamic;

@@ -91,6 +91,8 @@
 #macro VERTEX_SIZE                          Stuff.graphics.format_size
 #macro VERTEX_SIZE_TERRAIN                  12
 
+#macro MAP_BATCH_MESH_ENABLED               false
+
 #macro FILE_SETTINGS                        "settings.json"
 #macro FILE_TERRAIN_TEXTURE                 PATH_TERRAIN + "tex.png"
 
