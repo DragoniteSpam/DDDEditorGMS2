@@ -51,7 +51,7 @@ function DataMap(source, directory) : SData(source) constructor {
         size: 0,
     };
     
-    static Add = function(entity, x = entity.xx, y = entity.yy, z = entity.zz, is_temp = false, add_to_lists = true) {
+    self.Add = function(entity, x = entity.xx, y = entity.yy, z = entity.zz, is_temp = false, add_to_lists = true) {
         if (!self.on_grid) {
             self.AddOffGrid(entity, x, y, z);
             return;
@@ -91,7 +91,7 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
-    static AddOffGrid = function(entity, x = entity.xx, y = entity.yy, z = entity.zz) {
+    self.AddOffGrid = function(entity, x = entity.xx, y = entity.yy, z = entity.zz) {
         entity.xx = x;
         entity.yy = y;
         entity.zz = z;
@@ -106,15 +106,15 @@ function DataMap(source, directory) : SData(source) constructor {
         ds_list_add(list, entity);
     };
     
-    static FreeAt = function(x, y, z, slot) {
+    self.FreeAt = function(x, y, z, slot) {
         return !self.contents.map_grid[x][y][z][slot];
     };
     
-    static Get = function(x, y, z) {
+    self.Get = function(x, y, z) {
         return self.contents.map_grid[x][y][z];
     };
     
-    static GetMeshAutotileData = function(x, y, z) {
+    self.GetMeshAutotileData = function(x, y, z) {
         if (!is_clamped(x, 0, self.xx - 1) || !is_clamped(y, 0, self.yy - 1) || !is_clamped(z, 0, self.zz - 1)) return false;
         
         var what = self.contents.map_grid[x][y][z][MapCellContents.MESH];
@@ -130,15 +130,15 @@ function DataMap(source, directory) : SData(source) constructor {
         return result;
     };
     
-    static GetFlag = function(x, y, z) {
+    self.GetFlag = function(x, y, z) {
         return self.grid_flags[x][y][z];
     };
     
-    static SetFlag = function(x, y, z, flag) {
+    self.SetFlag = function(x, y, z, flag) {
         self.grid_flags[@ x][@ y][@ z] = flag;
     };
     
-    static SetSize = function(x, y, z) {
+    self.SetSize = function(x, y, z) {
         self.xx = x;
         self.yy = y;
         self.zz = z;
@@ -167,7 +167,7 @@ function DataMap(source, directory) : SData(source) constructor {
         Stuff.map.ui.SearchID("ENTITY POSITION Z").SetRealNumberBounds(0, z - 1);
     };
     
-    static Move = function(entity, x, y, z, mark_changed = true) {
+    self.Move = function(entity, x, y, z, mark_changed = true) {
         if (self.FreeAt(x, y, z, entity.slot)) {
             self.Remove(entity);
             self.Add(entity, x, y, z, false, false);
@@ -177,14 +177,14 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
-    static Remove = function(entity) {
+    self.Remove = function(entity) {
         var cell = self.contents.map_grid[entity.xx][entity.yy][entity.zz];
         if (cell[entity.slot] == entity) {
             cell[@ entity.slot] = undefined;
         }
     };
     
-    static Load = function() {
+    self.Load = function() {
         if (Stuff.map.active_map) Stuff.map.active_map.Close();
         Stuff.map.active_map = self;
         
@@ -243,7 +243,7 @@ function DataMap(source, directory) : SData(source) constructor {
         Stuff.map.ui.Refresh();
     };
     
-    static SaveUnloaded = function(directory) {
+    self.SaveUnloaded = function(directory) {
         var new_directory = directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         var old_directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         if (!directory_exists(old_directory)) return;
@@ -313,7 +313,7 @@ function DataMap(source, directory) : SData(source) constructor {
         buffer_write(buffer, buffer_f32, self.terrain.scale);
     };
     
-    static GetFusedChunks = function(chunk_size, max_x, max_y) {
+    self.GetFusedChunks = function(chunk_size, max_x, max_y) {
         static chunk_buffer = function(records, buffer, chunk_size, max_x, max_y, buffer_name) {
             static master_chunk_class = function(coords) constructor {
                 self.coords = coords;
@@ -438,7 +438,7 @@ function DataMap(source, directory) : SData(source) constructor {
         wtf("   Map \"" + self.name + "\" saved to file index " + string(self.export.index) + " at address " + string(self.export.address) + " (" + string(self.export.size) + " bytes)");
     };
     
-    static SaveAsset = function(directory) {
+    self.SaveAsset = function(directory) {
         if (!self.contents) {
             self.SaveUnloaded(directory);
             return;
@@ -479,7 +479,7 @@ function DataMap(source, directory) : SData(source) constructor {
         #endregion
     };
     
-    static CreateJSONMap = function() {
+    self.CreateJSONMap = function() {
         var json = self.CreateJSONBase();
         json.xx = self.xx;
         json.yy = self.yy;
@@ -517,11 +517,11 @@ function DataMap(source, directory) : SData(source) constructor {
         return json;
     };
     
-    static CreateJSON = function() {
+    self.CreateJSON = function() {
         return self.CreateJSONMap();
     };
     
-    static Close = function() {
+    self.Close = function() {
         if (self.contents) self.contents.Destroy();
         if (self.data_buffer) buffer_delete(self.data_buffer);
         if (self.preview) buffer_delete(self.preview);
@@ -529,13 +529,13 @@ function DataMap(source, directory) : SData(source) constructor {
         self.contents = undefined;
     };
     
-    static Destroy = function() {
+    self.Destroy = function() {
         self.Close();
         array_delete(Game.maps, array_search(Game.maps, self), 1);
     };
     
     #region Editor stuff
-    static DrawWater = function(set_lights = true) {
+    self.DrawWater = function(set_lights = true) {
         if (!self.draw_water) return;
         if (!self.contents.water) return;
         if (!Settings.view.water) return;
