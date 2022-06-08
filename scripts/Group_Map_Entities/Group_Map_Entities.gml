@@ -455,9 +455,9 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.offsettable = true;
     self.scalable = true;
     
-    static batch = batch_mesh;
+    self.batch = method(self, batch_mesh);
     
-    static render = function(entity) {
+    self.render = function(entity) {
         var mesh = guid_get(entity.mesh);
         if (mesh && entity.GetVertexBuffer()) {
             switch (mesh.type) {
@@ -489,12 +489,12 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         }
     };
     
-    static get_bounding_box = function() {
+    self.get_bounding_box = function() {
         var mesh_data = guid_get(self.mesh);
         return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
     };
     
-    static SetMesh = function(mesh, submesh = undefined) {
+    self.SetMesh = function(mesh, submesh = undefined) {
         self.mesh_submesh = NULL;
         self.is_static = false;
         self.batchable = false;
@@ -521,7 +521,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     
     self.SetMesh(mesh);
     
-    static GetBuffer = function() {
+    self.GetBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
@@ -530,16 +530,16 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].buffer : undefined;
     };
     
-    static GetVertexBuffer = function() {
+    self.GetVertexBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
+        var mesh_data = guid_get(self.mesh);
         if (!mesh_data) return undefined;
         if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].vbuffer : undefined;
     };
     
-    static GetReflectBuffer = function() {
+    self.GetReflectBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
@@ -548,7 +548,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_buffer : undefined;
     };
     
-    static GetReflectVertexBuffer = function() {
+    self.GetReflectVertexBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
@@ -557,7 +557,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_vbuffer : undefined;
     };
     
-    static GetTexture = function() {
+    self.GetTexture = function() {
         var own_texture = guid_get(self.texture);
         if (own_texture) {
             return sprite_get_texture(own_texture.picture, 0);
