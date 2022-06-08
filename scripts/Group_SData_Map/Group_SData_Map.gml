@@ -102,7 +102,7 @@ function DataMap(source, directory) : SData(source) constructor {
         if (entity.etype == ETypes.ENTITY_MESH && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
             list = self.contents.dynamic;
         }
-                
+        
         ds_list_add(list, entity);
     };
     

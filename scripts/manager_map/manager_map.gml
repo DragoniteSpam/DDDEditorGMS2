@@ -524,7 +524,7 @@ function dialog_create_map_terrain() {
                                 max_x: 0, max_y: 0, max_z: 0,
                             },
                             scale: {
-                                min_scale: 0, max_scale: 0
+                                min_scale: 1, max_scale: 1
                             },
                         };
                     };
@@ -549,6 +549,37 @@ function dialog_create_map_terrain() {
                     .SetInteractive(false)
                     .SetRefresh(function() {
                         self.SetInteractive(!!self.GetSibling("CHOICES").GetSelectedItem());
+                    }),
+                new EmuText(col2, EMU_AUTO, gen_element_width, gen_element_height, "[c_aqua]Generation"),
+                (new EmuInput(col2, EMU_AUTO, gen_element_width / 2, gen_element_height, "Density:", "4", "Density", 4, E_InputTypes.INT, emu_null))
+                    .SetRealNumberBounds(1, 9999)
+                    .SetID("GEN DENSITY"),
+                (new EmuInput(col2 + gen_element_width / 2, EMU_INLINE, gen_element_width / 3, gen_element_height, "  /", "400", "Area", 4, E_InputTypes.INT, emu_null))
+                    .SetRealNumberBounds(1, 9999)
+                    .SetID("GEN AREA"),
+                new EmuText(col2 + gen_element_width * 5 / 6, EMU_INLINE, gen_element_width / 6, gen_element_height, "m²"),
+                new EmuButton(col2, EMU_AUTO, gen_element_width, gen_element_height, "Generate", function() {
+                    var map = Stuff.map.active_map;
+                    var terrain = guid_get(map.terrain.id).terrain_data;
+                    var density = real(self.GetSibling("GEN DENSITY").value) / real(self.GetSibling("GEN AREA").value);
+                    var area = terrain.w * terrain.h * power(map.terrain.scale, 2) / (TILE_WIDTH * TILE_HEIGHT);
+                    
+                    map_generate_contents(density * area, Game.nosave.map_terrain_gen.choices);
+                })
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        self.SetInteractive(!!guid_get(Stuff.map.active_map.terrain.id));
+                        if (!guid_get(Stuff.map.active_map.terrain.id)) return;
+                        
+                        // at least one of the choices needs to have a valid mesh
+                        self.SetInteractive(false);
+                        var choices = Game.nosave.map_terrain_gen.choices;
+                        for (var i = 0, n = array_length(choices); i < n; i++) {
+                            if (guid_get(choices[i].mesh)) {
+                                self.SetInteractive(true);
+                                return;
+                            }
+                        }
                     }),
                 new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Weighted Odds"),
                 (new EmuInput(col3, EMU_AUTO, element_width, element_height, "Spawn weight:", "100", "Relative spawn odds", 4, E_InputTypes.INT, function() {
@@ -588,6 +619,19 @@ function dialog_create_map_terrain() {
                         self.SetValue(choice.temperature.cluster);
                     })
                     .SetID("CLUSTER TEMPERATURE"),
+                (new EmuInput(col3 + element_width / 6, EMU_AUTO, element_width * 5 / 6, element_height, "Falloff:", "0.25", "0.01...1.0", 3, E_InputTypes.REAL, function() {
+                    var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                    choice.temperature.falloff = string(self.value);
+                }))
+                    .SetRealNumberBounds(0.01, 1)
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.temperature.enabled);
+                        if (!choice) return;
+                        self.SetValue(choice.temperature.falloff);
+                    })
+                    .SetID("CLUSTER TEMPERATURE FALLOFF"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
                     choice.precipitation.enabled = self.value;
@@ -612,6 +656,19 @@ function dialog_create_map_terrain() {
                         self.SetValue(choice.precipitation.cluster);
                     })
                     .SetID("CLUSTER PRECIPITATION"),
+                (new EmuInput(col3 + element_width / 6, EMU_AUTO, element_width * 5 / 6, element_height, "Falloff:", "0.25", "0.01...1.0", 3, E_InputTypes.REAL, function() {
+                    var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                    choice.precipitation.falloff = string(self.value);
+                }))
+                    .SetRealNumberBounds(0.01, 1)
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.precipitation.enabled);
+                        if (!choice) return;
+                        self.SetValue(choice.precipitation.falloff);
+                    })
+                    .SetID("CLUSTER PRECIPITATION FALLOFF"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
                     choice.misc.enabled = self.value;
@@ -636,6 +693,19 @@ function dialog_create_map_terrain() {
                         self.SetValue(choice.misc.cluster);
                     })
                     .SetID("CLUSTER OTHER"),
+                (new EmuInput(col3 + element_width / 6, EMU_AUTO, element_width * 5 / 6, element_height, "Falloff:", "0.25", "0.01...1.0", 3, E_InputTypes.REAL, function() {
+                    var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                    choice.misc.falloff = string(self.value);
+                }))
+                    .SetRealNumberBounds(0.01, 1)
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.misc.enabled);
+                        if (!choice) return;
+                        self.SetValue(choice.misc.falloff);
+                    })
+                    .SetID("CLUSTER MISC FALLOFF"),
                 (new EmuCheckbox(col3, EMU_AUTO, element_width / 6, element_height, "", false, function() {
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
                     choice.elevation.enabled = self.value;
@@ -662,6 +732,19 @@ function dialog_create_map_terrain() {
                         self.SetValue(choice.elevation.cluster);
                     })
                     .SetID("CLUSTER ELEVATION"),
+                (new EmuInput(col3 + element_width / 6, EMU_AUTO, element_width * 5 / 6, element_height, "Falloff:", "80", "1...999", 3, E_InputTypes.REAL, function() {
+                    var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                    choice.elevation.falloff = string(self.value);
+                }))
+                    .SetRealNumberBounds(0, 999)
+                    .SetInteractive(false)
+                    .SetRefresh(function() {
+                        var choice = self.GetSibling("CHOICES").GetSelectedItem();
+                        self.SetInteractive(!!choice && choice.elevation.enabled);
+                        if (!choice) return;
+                        self.SetValue(choice.elevation.falloff);
+                    })
+                    .SetID("CLUSTER ELEVATION FALLOFF"),
                 (new EmuButton(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Advanced Settings", function() {
                     var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 640, "Advanced settings");
                     var choice = self.GetSibling("CHOICES").GetSelectedItem();
@@ -772,37 +855,6 @@ function dialog_create_map_terrain() {
                         self.SetInteractive(!!self.GetSibling("CHOICES").GetSelectedItem());
                     })
                     .SetID("CHOICE ADVANCED"),
-                new EmuText(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "[c_aqua]Generation"),
-                (new EmuInput(gen_col3, EMU_AUTO, gen_element_width / 2, gen_element_height, "Density:", "4", "Density", 4, E_InputTypes.INT, emu_null))
-                    .SetRealNumberBounds(1, 9999)
-                    .SetID("GEN DENSITY"),
-                (new EmuInput(gen_col3 + gen_element_width / 2, EMU_INLINE, gen_element_width / 3, gen_element_height, "  /", "100", "Area", 4, E_InputTypes.INT, emu_null))
-                    .SetRealNumberBounds(1, 9999)
-                    .SetID("GEN AREA"),
-                new EmuText(gen_col3 + gen_element_width * 5 / 6, EMU_INLINE, gen_element_width / 6, gen_element_height, "m²"),
-                new EmuButton(gen_col3, EMU_AUTO, gen_element_width, gen_element_height, "Generate", function() {
-                    var map = Stuff.map.active_map;
-                    var terrain = guid_get(map.terrain.id).terrain_data;
-                    var density = real(self.GetSibling("GEN DENSITY").value) / real(self.GetSibling("GEN AREA").value);
-                    var area = terrain.w * terrain.h * power(map.terrain.scale, 2) / (TILE_WIDTH * TILE_HEIGHT);
-                    
-                    map_generate_contents(density * area, Game.nosave.map_terrain_gen.choices);
-                })
-                    .SetInteractive(false)
-                    .SetRefresh(function() {
-                        self.SetInteractive(!!guid_get(Stuff.map.active_map.terrain.id));
-                        if (!guid_get(Stuff.map.active_map.terrain.id)) return;
-                        
-                        // at least one of the choices needs to have a valid mesh
-                        self.SetInteractive(false);
-                        var choices = Game.nosave.map_terrain_gen.choices;
-                        for (var i = 0, n = array_length(choices); i < n; i++) {
-                            if (guid_get(choices[i].mesh)) {
-                                self.SetInteractive(true);
-                                return;
-                            }
-                        }
-                    }),
             ]),
         ])
     ]).AddDefaultCloseButton();
