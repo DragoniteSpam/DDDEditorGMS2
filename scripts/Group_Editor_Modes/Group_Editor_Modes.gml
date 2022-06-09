@@ -64,9 +64,9 @@ function EditorModeMesh() : EditorModeBase() constructor {
         SMALL_NORMAL                        = 0x0100,       // 4 bytes (nx ny nz 0)
         SMALL_TANGENT                       = 0x0200,       // 4 bytes (tx ty tz 0)
         SMALL_BITANGENT                     = 0x0400,       // 4 bytes (bx by bz 0)
-        SMALL_TEXCOORD                      = 0x0080,       // 4 bytes (u v 0 0)
-        SMALL_NORMAL_PLUS_PALETTE           = 0x0100,       // 4 bytes (nx ny nz and a byte representing a 256 color palette index)
-        SMALL_BARYCENTIRC                   = 0x0200,       // 4 bytes (x y z 0)
+        SMALL_TEXCOORD                      = 0x0800,       // 4 bytes (u v 0 0)
+        SMALL_NORMAL_PLUS_PALETTE           = 0x1000,       // 4 bytes (nx ny nz and a byte representing a 256 color palette index)
+        SMALL_BARYCENTIRC                   = 0x2000,       // 4 bytes (x y z 0)
         // shorthands
         STANDARD                            = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR,
         FULL                                = VertexFormatData.STANDARD | VertexFormatData.TANGENT | VertexFormatData.BITANGENT | VertexFormatData.BARYCENTRIC,
