@@ -36,7 +36,7 @@ function emu_dialog_confirm(root, message, action_confirm, caption_message = "Im
 
 function emu_dialog_vertex_format(value, callback) {
     var dw = 680;
-    var dh = 480;
+    var dh = 512;
     var c1x = 32;
     var c2x = 352;
     
@@ -49,36 +49,43 @@ function emu_dialog_vertex_format(value, callback) {
             self.root.value &= ~VertexFormatData.POSITION_3D;
             if (self.value) self.root.value |= VertexFormatData.POSITION_3D;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         })).SetInteractive(false),
         new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Normal", !!(value & VertexFormatData.NORMAL), function() {
             self.root.value &= ~VertexFormatData.NORMAL;
             if (self.value) self.root.value |= VertexFormatData.NORMAL;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Texture", !!(value & VertexFormatData.TEXCOORD), function() {
             self.root.value &= ~VertexFormatData.TEXCOORD;
             if (self.value) self.root.value |= VertexFormatData.TEXCOORD;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Color", !!(value & VertexFormatData.COLOUR), function() {
             self.root.value &= ~VertexFormatData.COLOUR;
             if (self.value) self.root.value |= VertexFormatData.COLOUR;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Tangent", !!(value & VertexFormatData.TANGENT), function() {
             self.root.value &= ~VertexFormatData.TANGENT;
             if (self.value) self.root.value |= VertexFormatData.TANGENT;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Bitangent", !!(value & VertexFormatData.BITANGENT), function() {
             self.root.value &= ~VertexFormatData.BITANGENT;
             if (self.value) self.root.value |= VertexFormatData.BITANGENT;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c1x, EMU_AUTO, 256, 32, "Barycentric", !!(value & VertexFormatData.BARYCENTRIC), function() {
             self.root.value &= ~VertexFormatData.BARYCENTRIC;
             if (self.value) self.root.value |= VertexFormatData.BARYCENTRIC;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         
         new EmuText(c2x, 32, 256, 32, "[c_aqua]Nonstandard attributes"),
@@ -86,33 +93,63 @@ function emu_dialog_vertex_format(value, callback) {
             self.root.value &= ~VertexFormatData.SMALL_NORMAL;
             if (self.value) self.root.value |= VertexFormatData.SMALL_NORMAL;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small tangent", !!(value & VertexFormatData.SMALL_TANGENT), function() {
             self.root.value &= ~VertexFormatData.SMALL_TANGENT;
             if (self.value) self.root.value |= VertexFormatData.SMALL_TANGENT;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small bitangent", !!(value & VertexFormatData.SMALL_BITANGENT), function() {
             self.root.value &= ~VertexFormatData.SMALL_BITANGENT;
             if (self.value) self.root.value |= VertexFormatData.SMALL_BITANGENT;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small texcoord", !!(value & VertexFormatData.SMALL_TEXCOORD), function() {
             self.root.value &= ~VertexFormatData.SMALL_TEXCOORD;
             if (self.value) self.root.value |= VertexFormatData.SMALL_TEXCOORD;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small normal plus palette", !!(value & VertexFormatData.SMALL_NORMAL_PLUS_PALETTE), function() {
             self.root.value &= ~VertexFormatData.SMALL_NORMAL_PLUS_PALETTE;
             if (self.value) self.root.value |= VertexFormatData.SMALL_NORMAL_PLUS_PALETTE;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
         new EmuCheckbox(c2x, EMU_AUTO, 256, 32, "Small barycentric", !!(value & VertexFormatData.SMALL_BARYCENTIRC), function() {
             self.root.value &= ~VertexFormatData.SMALL_BARYCENTIRC;
             if (self.value) self.root.value |= VertexFormatData.SMALL_BARYCENTIRC;
             self.root.cb(self.root.value);
+            self.root.Refresh();
         }),
-    ]).AddDefaultCloseButton("Done");
+        (new EmuText(c2x, EMU_AUTO, 256, 32, "Mask:"))
+            .SetRefresh(function() {
+                self.text = "Mask: " + string(ptr(self.root.value));
+            }),
+        (new EmuText(c2x, EMU_AUTO, 256, 32, "Vertex size:"))
+            .SetRefresh(function() {
+                var bytes = 0;
+                var value = self.root.value;
+                if (!!(value & VertexFormatData.POSITION_3D)) bytes += 12;
+                if (!!(value & VertexFormatData.POSITION_2D)) bytes += 8;
+                if (!!(value & VertexFormatData.NORMAL)) bytes += 12;
+                if (!!(value & VertexFormatData.TEXCOORD)) bytes += 8;
+                if (!!(value & VertexFormatData.COLOUR)) bytes += 4;
+                if (!!(value & VertexFormatData.TANGENT)) bytes += 8;
+                if (!!(value & VertexFormatData.BITANGENT)) bytes += 8;
+                if (!!(value & VertexFormatData.BARYCENTRIC)) bytes += 8;
+                if (!!(value & VertexFormatData.SMALL_NORMAL)) bytes += 4;
+                if (!!(value & VertexFormatData.SMALL_TANGENT)) bytes += 4;
+                if (!!(value & VertexFormatData.SMALL_BITANGENT)) bytes += 4;
+                if (!!(value & VertexFormatData.SMALL_NORMAL_PLUS_PALETTE)) bytes += 4;
+                if (!!(value & VertexFormatData.SMALL_BARYCENTIRC)) bytes += 4;
+                
+                self.text = "Vertex size: " + string(bytes) + " bytes";
+            }),
+    ]).AddDefaultCloseButton("Done").Refresh();
     
     return dialog;
 }
