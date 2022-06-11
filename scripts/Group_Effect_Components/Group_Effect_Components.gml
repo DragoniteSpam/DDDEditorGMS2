@@ -137,7 +137,7 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
         buffer_write(buffer, buffer_u32, self.light_cutoff_outer);
         buffer_write(buffer, buffer_u32, self.light_cutoff_inner);
         buffer_write(buffer, buffer_f32, self.light_dx);
-        buffer_write(buffer, buffer_u32, self.light_dy);
+        buffer_write(buffer, buffer_f32, self.light_dy);
         buffer_write(buffer, buffer_f32, self.light_dz);
     };
 }
@@ -189,7 +189,7 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_dx);
-        buffer_write(buffer, buffer_u32, self.light_dy);
+        buffer_write(buffer, buffer_f32, self.light_dy);
         buffer_write(buffer, buffer_f32, self.light_dz);
     };
 }
