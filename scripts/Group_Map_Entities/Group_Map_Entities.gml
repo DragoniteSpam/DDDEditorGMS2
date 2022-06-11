@@ -112,9 +112,9 @@ function Entity(source) constructor {
         
         buffer_write(buffer, buffer_u32, self.etype);
         buffer_write(buffer, buffer_string, self.name);
-        buffer_write(buffer, buffer_u32, self.xx);
-        buffer_write(buffer, buffer_u32, self.yy);
-        buffer_write(buffer, buffer_u32, self.zz);
+        buffer_write(buffer, buffer_f32, self.xx);
+        buffer_write(buffer, buffer_f32, self.yy);
+        buffer_write(buffer, buffer_f32, self.zz);
         buffer_write(buffer, buffer_datatype, self.REFID);
         
         buffer_write(buffer, buffer_field, pack(
@@ -578,6 +578,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         buffer_write(buffer, buffer_datatype, self.mesh);
         buffer_write(buffer, buffer_datatype, self.mesh_submesh);
         buffer_write(buffer, buffer_datatype, self.texture);
+        // we may export other material data too eventually
         buffer_write(buffer, buffer_field, pack(
             self.animated
         ));
