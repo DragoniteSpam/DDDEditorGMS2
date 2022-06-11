@@ -127,7 +127,7 @@ function ui_init_main(mode) {
                 
                 Settings.selection.mask = 0;
                 self.ForEachSelection(function(index) {
-                    var entity = ds_list_find_value(Stuff.map.active_map.contents.all_entities, index);
+                    var entity = Stuff.map.active_map.contents.all_entities[| index];
                     Settings.selection.mask |= entity.etype_flags;
                     var selection = new SelectionSingle(entity.xx, entity.yy, entity.zz);
                 });

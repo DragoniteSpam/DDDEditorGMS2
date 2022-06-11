@@ -80,6 +80,27 @@ function DataImage(source) : SData(source) constructor {
         self.ExportImage(buffer, include_image);
     };
     
+    self.Resize = function(w, h) {
+        w = clamp(w, 1, 0x4000);
+        h = clamp(h, 1, 0x4000);
+        var surface = surface_create(w, h);
+        surface_set_target(surface);
+        draw_clear_alpha(c_black, 0);
+        gpu_set_blendmode(bm_add);
+        gpu_set_blendenable(false);
+        draw_sprite_stretched(self.picture, 0, 0, 0, w, h);
+        gpu_set_blendmode(bm_normal);
+        gpu_set_blendenable(true);
+        surface_reset_target();
+        sprite_delete(self.picture);
+        self.picture = sprite_create_from_surface(surface, 0, 0, w, h, false, false, 0, 0);
+        surface_free(surface);
+        self.width = w;
+        self.height = h;
+        self.vframes = 1;
+        self.hframes = 1;
+    };
+    
     // we dont have a SaveJSON here because we're literally just saving the
     // struct verbatim
     

@@ -122,6 +122,19 @@ function dialog_create_manager_graphics() {
             .SetInteractive(false)
             .SetTooltip("Remove the transparent background color from the image, that being defined as the color of the pixel in the bottom-right corner")
             .SetID("BACKGROUND"),
+        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Resize:", "1.0", "proportionally", 4, E_InputTypes.REAL, function() {
+            var scale = real(self.value);
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            image.Resize(image.width * scale, image.height * scale);
+            self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetInteractive(false)
+            .SetRealNumberBounds(0.125, 8)
+            .SetRequireConfirm(true)
+            .SetID("RESIZE"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Name:", "", "image name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
             self.GetSibling("LIST").GetSelectedItem().name = self.value;
         }))
