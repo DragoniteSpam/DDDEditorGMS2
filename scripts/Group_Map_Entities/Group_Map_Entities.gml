@@ -364,19 +364,19 @@ function EntityEffect(source) : Entity(source) constructor {
         if (self.com_light) {
             self.com_light.Export(buffer);
         } else {
-            buffer_write(buffer, buffer_u8, LightTypes.NONE);
+            buffer_write(buffer, buffer_u32, LightTypes.NONE);
         }
         
         if (self.com_particle) {
             self.com_particle.Export(buffer);
         } else {
-            buffer_write(buffer, buffer_u8, 0);
+            buffer_write(buffer, buffer_u32, 0);
         }
         
         if (self.com_audio) {
             self.com_audio.Export(buffer);
         } else {
-            buffer_write(buffer, buffer_u8, 0);
+            buffer_write(buffer, buffer_u32, 0);
         }
         buffer_write(buffer, buffer_s32, self.com_marker);
         return 1;
