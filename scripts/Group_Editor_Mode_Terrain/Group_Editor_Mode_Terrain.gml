@@ -558,8 +558,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         
         draw_set_color(c_white);
         gpu_set_zwriteenable(true);
-        gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
         gpu_set_ztestenable(true);
+        gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
         
         self.camera.SetProjection();
         if (Settings.terrain.view_skybox) {
@@ -695,6 +695,9 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         }
         
         self.DrawWater();
+        
+        gpu_set_ztestenable(false);
+        gpu_set_zwriteenable(false);
         
         // overlay stuff
         self.camera.SetProjectionGUI();

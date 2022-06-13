@@ -178,6 +178,9 @@ function EditorModeSpart() : EditorModeBase() constructor {
         // draw the grid here
         
         // draw the spart editor here
+        
+        gpu_set_zwriteenable(false);
+        gpu_set_ztestenable(false);
     };
 
     self.mode_id = ModeIDs.SPART;

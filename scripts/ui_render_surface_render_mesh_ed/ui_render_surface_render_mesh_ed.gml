@@ -92,6 +92,9 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         if (++rendered_count > limit) break;
     }
     
+    gpu_set_ztestenable(false);
+    gpu_set_zwriteenable(false);
+    
     #region draw the overlay
     Stuff.mesh.camera.SetProjectionGUI();
     

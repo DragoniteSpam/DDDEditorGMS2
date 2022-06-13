@@ -193,6 +193,8 @@ function EditorModeMap() : EditorModeBase() constructor {
         Stuff.graphics.DrawAxes();
         #endregion
         
+        gpu_set_zwriteenable(true);
+        gpu_set_ztestenable(true);
         graphics_set_lighting(shd_ddd);
         wireframe_enable(Settings.view.wireframe, 512);
         
@@ -278,6 +280,9 @@ function EditorModeMap() : EditorModeBase() constructor {
             vertex_submit(vbuffer, pr_trianglelist, -1);
         }
         #endregion
+        
+        gpu_set_zwriteenable(false);
+        gpu_set_ztestenable(false);
         
         #region overlay stuff
         self.camera.SetProjectionGUI();

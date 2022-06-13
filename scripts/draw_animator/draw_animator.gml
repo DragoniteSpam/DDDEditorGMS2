@@ -34,4 +34,6 @@ function draw_animator() {
     
     matrix_set(matrix_world, matrix_build_identity());
     shader_reset();
+    gpu_set_zwriteenable(false);
+    gpu_set_ztestenable(false);
 }
