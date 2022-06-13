@@ -42,6 +42,7 @@ Game = new (function() constructor {
         },
         extra: {
             guid_current: 0,
+            mesh_use_independent_bounds_default: false,
         },
     };
     self.vars = {

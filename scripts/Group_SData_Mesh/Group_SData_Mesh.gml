@@ -18,6 +18,8 @@ function DataMesh(source) : SData(source) constructor {
     
     /* s */ self.asset_flags = [[[0]]];
     
+    self.use_independent_bounds = Game.meta.extra.mesh_use_independent_bounds_default;
+    
     self.tex_base = NULL;                    // map_Kd
     self.tex_ambient = NULL;                 // map_Ka
     self.tex_specular_color = NULL;          // map_Ls
@@ -67,6 +69,8 @@ function DataMesh(source) : SData(source) constructor {
         } catch (e) {
             self.terrain_data = undefined;
         }
+        
+        self.use_independent_bounds = source[$ "use_independent_bounds"] ?? self.use_independent_bounds;
     }
     
     self.CopyPropertiesFrom = function(mesh) {
@@ -380,6 +384,8 @@ function DataMesh(source) : SData(source) constructor {
         json.tex_displacement = self.tex_displacement;
         json.tex_stencil = self.tex_stencil;
         json.texture_scale = self.texture_scale;
+        
+        json.use_independent_bounds = self.use_independent_bounds;
         
         json.asset_flags = self.asset_flags;
         json.xmin = self.xmin;

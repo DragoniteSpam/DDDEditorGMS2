@@ -294,5 +294,19 @@ function dialog_create_settings_data() {
             dialog_create_settings_data_asset_files();
         }))
             .SetTooltip("You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control."),
+        (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Project Defaults", function() {
+            var dialog = new EmuDialog(32 + 320 + 32, 640, "Project Defaults");
+            var element_width = 320;
+            var element_height = 32;
+    
+            var col1 = 32;
+    
+            return dialog.AddContent([
+                new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "DataMesh: use independent bounds?", Game.meta.extra.mesh_use_independent_bounds_default, function() {
+                    Game.meta.extra.mesh_use_independent_bounds_default = self.value;
+                })
+            ]).AddDefaultCloseButton();
+        }))
+            .SetTooltip("Misc. default settings for various types of objects."),
     ]).AddDefaultCloseButton();
 }

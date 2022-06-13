@@ -30,6 +30,7 @@ function project_load(id) {
         Game.meta.export[$ "vertex_format"] ??= VertexFormatData.STANDARD;
         Game.meta.export[$ "flags"] ??= 0;
         Game.vars[$ "effect_markers"] ??= 0;
+        Game.meta.extra[$ "mesh_use_independent_bounds_default"] ??= false;
     };
     
     static project_load_images = function(filename, directory) {
