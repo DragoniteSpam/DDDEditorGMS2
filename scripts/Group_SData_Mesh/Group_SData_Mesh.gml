@@ -18,6 +18,8 @@ function DataMesh(source) : SData(source) constructor {
     
     /* s */ self.asset_flags = [[[0]]];
     
+    self.physical_bounds = new BoundingBox(0, 0, 0, 0, 0, 0);
+    
     self.use_independent_bounds = Game.meta.extra.mesh_use_independent_bounds_default;
     
     self.tex_base = NULL;                    // map_Kd
@@ -71,6 +73,22 @@ function DataMesh(source) : SData(source) constructor {
         }
         
         self.use_independent_bounds = source[$ "use_independent_bounds"] ?? self.use_independent_bounds;
+        
+        try {
+            self.physical_bounds.x1 = source.physical_bounds.x1;
+            self.physical_bounds.y1 = source.physical_bounds.y1;
+            self.physical_bounds.z1 = source.physical_bounds.z1;
+            self.physical_bounds.x2 = source.physical_bounds.x2;
+            self.physical_bounds.y2 = source.physical_bounds.y2;
+            self.physical_bounds.z2 = source.physical_bounds.z2;
+        } catch (e) {
+            self.physical_bounds.x1 = 0;
+            self.physical_bounds.y1 = 0;
+            self.physical_bounds.z1 = 0;
+            self.physical_bounds.x2 = 0;
+            self.physical_bounds.y2 = 0;
+            self.physical_bounds.z2 = 0;
+        }
     }
     
     self.CopyPropertiesFrom = function(mesh) {
@@ -91,6 +109,8 @@ function DataMesh(source) : SData(source) constructor {
         self.tex_displacement = mesh.tex_displacement;
         self.tex_stencil = mesh.tex_stencil;
         self.texture_scale = mesh.texture_scale;
+        
+        self.use_independent_bounds = mesh.use_independent_bounds;
         
         var hh = abs(mesh.xmax - mesh.xmin);
         var ww = abs(mesh.ymax - mesh.ymin);
@@ -127,31 +147,35 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    static AutoCalculateBounds = function() {
-        self.xmin = infinity;
-        self.ymin = infinity;
-        self.zmin = infinity;
-        self.xmax = -infinity;
-        self.ymax = -infinity;
-        self.zmax = -infinity;
+    self.CalculatePhysicalBounds = function() {
+        self.physical_bounds.x1 = infinity;
+        self.physical_bounds.y1 = infinity;
+        self.physical_bounds.z1 = infinity;
+        self.physical_bounds.x2 = -infinity;
+        self.physical_bounds.y2 = -infinity;
+        self.physical_bounds.z2 = -infinity;
         
         for (var i = 0; i < array_length(self.submeshes); i++) {
             if (!self.submeshes[i].buffer) continue;
             var sub_bounds = meshops_get_bounds(self.submeshes[i].buffer);
-            self.xmin = min(self.xmin, sub_bounds.x1);
-            self.ymin = min(self.ymin, sub_bounds.y1);
-            self.zmin = min(self.zmin, sub_bounds.y1);
-            self.xmax = max(self.xmax, sub_bounds.x2);
-            self.ymax = max(self.ymax, sub_bounds.y2);
-            self.zmax = max(self.zmax, sub_bounds.z2);
+            self.physical_bounds.x1 = min(self.physical_bounds.x1, sub_bounds.x1);
+            self.physical_bounds.y1 = min(self.physical_bounds.y1, sub_bounds.y1);
+            self.physical_bounds.z1 = min(self.physical_bounds.z1, sub_bounds.y1);
+            self.physical_bounds.x2 = max(self.physical_bounds.x2, sub_bounds.x2);
+            self.physical_bounds.y2 = max(self.physical_bounds.y2, sub_bounds.y2);
+            self.physical_bounds.z2 = max(self.physical_bounds.z2, sub_bounds.z2);
         }
+    };
+    
+    static AutoCalculateBounds = function() {
+        self.CalculatePhysicalBounds();
         
-        self.xmin = round(self.xmin / TILE_WIDTH);
-        self.ymin = round(self.ymin / TILE_HEIGHT);
-        self.zmin = round(self.zmin / TILE_DEPTH);
-        self.xmax = round(self.xmax / TILE_WIDTH);
-        self.ymax = round(self.ymax / TILE_HEIGHT);
-        self.zmax = round(self.zmax / TILE_DEPTH);
+        self.xmin = round(self.physical_bounds.x1 / TILE_WIDTH);
+        self.ymin = round(self.physical_bounds.y1 / TILE_HEIGHT);
+        self.zmin = round(self.physical_bounds.z1 / TILE_DEPTH);
+        self.xmax = round(self.physical_bounds.x2 / TILE_WIDTH);
+        self.ymax = round(self.physical_bounds.y2 / TILE_HEIGHT);
+        self.zmax = round(self.physical_bounds.z2 / TILE_DEPTH);
         
         self.RecalculateBounds();
     };
@@ -403,6 +427,8 @@ function DataMesh(source) : SData(source) constructor {
         json.collision_shapes = self.collision_shapes;
         
         if (self.terrain_data) json.terrain_data = self.terrain_data.Save();
+        
+        json.physical_bounds = self.physical_bounds;
         
         return json;
     };
