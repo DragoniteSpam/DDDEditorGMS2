@@ -105,7 +105,7 @@ function project_export() {
                 buffer_delete(buffer);
             }
             
-            wtf("Export took " + debug_timer_finish());
+            Stuff.AddStatusMessage("Exporting project \"" + Stuff.save_name + "\" took " + debug_timer_finish());
         }
         
         #macro LAST_SAFE_VERSION DataVersions.V2

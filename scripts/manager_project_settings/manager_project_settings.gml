@@ -295,8 +295,8 @@ function dialog_create_settings_data() {
         }))
             .SetTooltip("You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control."),
         (new EmuButton(col2, EMU_INLINE, element_width, element_height, "Project Defaults", function() {
-            var dialog = new EmuDialog(32 + 320 + 32, 640, "Project Defaults");
-            var element_width = 320;
+            var dialog = new EmuDialog(32 + 480 + 32, 320, "Project Defaults");
+            var element_width = 480;
             var element_height = 32;
     
             var col1 = 32;

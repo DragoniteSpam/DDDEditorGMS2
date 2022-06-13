@@ -249,5 +249,5 @@ function project_load(id) {
     
     Stuff.mesh.ui.Refresh();
     
-    wtf("Loading took " + debug_timer_finish());
+    Stuff.AddStatusMessage("Loading project \"" + Stuff.save_name + "\" took " + debug_timer_finish());
 }

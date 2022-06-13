@@ -142,7 +142,7 @@ function project_save() {
     
     setting_project_add(fn, project_id);
     
-    wtf("Saving took " + debug_timer_finish());
+    Stuff.AddStatusMessage("Saving project \"" + Stuff.save_name + "\" took " + debug_timer_finish());
 }
 
 enum ProjectSaveVersions {
