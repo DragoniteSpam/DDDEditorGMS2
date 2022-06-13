@@ -108,6 +108,8 @@ function Entity(source) constructor {
     };
     
     self.ExportBase = function(buffer) {
+        buffer_write(buffer, buffer_u32, self.is_static);
+        
         if (self.is_static) return false;
         
         buffer_write(buffer, buffer_u32, self.etype);
@@ -360,7 +362,8 @@ function EntityEffect(source) : Entity(source) constructor {
     self.com_marker = -1;
     
     self.Export = function(buffer) {
-        self.ExportBase(buffer);
+        if (!self.ExportBase(buffer)) return false;
+        
         if (self.com_light) {
             self.com_light.Export(buffer);
         } else {
@@ -379,7 +382,8 @@ function EntityEffect(source) : Entity(source) constructor {
             buffer_write(buffer, buffer_u32, 0);
         }
         buffer_write(buffer, buffer_s32, self.com_marker);
-        return 1;
+        
+        return true;
     };
     
     static CreateJSONEffect = function() {
@@ -574,7 +578,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     };
     
     self.Export = function(buffer) {
-        if (!self.ExportBase(buffer)) return 0;
+        if (!self.ExportBase(buffer)) return false;
+        
         buffer_write(buffer, buffer_datatype, self.mesh);
         buffer_write(buffer, buffer_datatype, self.mesh_submesh);
         buffer_write(buffer, buffer_datatype, self.texture);
@@ -587,7 +592,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         buffer_write(buffer, buffer_f32, self.animation_speed);
         buffer_write(buffer, buffer_u8, self.animation_end_action);
         
-        return 1;
+        return true;
     };
     
     static CreateJSONMesh = function() {
@@ -739,10 +744,12 @@ function EntityPawn(source) : Entity(source) constructor {
     };
     
     self.Export = function(buffer) {
-        self.ExportBase(buffer);
+        if (!self.ExportBase(buffer)) return false;
+        
         buffer_write(buffer, buffer_u8, self.map_direction);
         buffer_write(buffer, buffer_datatype, self.overworld_sprite);
-        return 1;
+        
+        return true;
     };
     
     // pawns can't be static
