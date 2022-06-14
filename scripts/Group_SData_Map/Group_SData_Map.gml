@@ -404,14 +404,14 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_bool, chunk.raw != -1);
             if (chunk.raw != -1) {
                 buffer_write_vertex_buffer(buffer, chunk.raw);
+                vertex_delete_buffer(chunk.raw);
             }
-            vertex_delete_buffer(chunk.raw);
             
             buffer_write(buffer, buffer_bool, chunk.raw_reflected != -1);
             if (chunk.raw_reflected != -1) {
                 buffer_write_vertex_buffer(buffer, chunk.raw_reflected);
+                vertex_delete_buffer(chunk.raw_reflected);
             }
-            vertex_delete_buffer(chunk.raw_reflected);
         }
         #endregion
         
