@@ -305,7 +305,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     self.GetTerrainBufferPositionWorld = function(index) {
         return new Vector2(
             (index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
-            (index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE,
+            (index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE
         );
     };
     

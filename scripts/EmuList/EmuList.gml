@@ -372,7 +372,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             var srange = smax - smin;
             var sy = smin + srange * _index / noutofrange;
             var active = GetInteractive();
-            var 
+            
             draw_rectangle_colour(x2 - sw, y2, x2, y3, cback, cback, cback, cback, false);
             draw_line_colour(x2 - sw, y2 + sw, x2, y2 + sw, cc, cc);
             draw_line_colour(x2 - sw, y3 - sw, x2, y3 - sw, cc, cc);
