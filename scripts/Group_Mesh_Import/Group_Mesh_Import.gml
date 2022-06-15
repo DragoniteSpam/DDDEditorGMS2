@@ -1,3 +1,8 @@
+function MeshImportData(buffer, material) constructor {
+    self.buffer = buffer;
+    self.material = material;
+}
+
 function import_mesh(filename) {
     var data = import_3d_model_generic(filename);
     if (data == undefined) return undefined;
@@ -5,9 +10,11 @@ function import_mesh(filename) {
     var mesh = new DataMesh(filename_change_ext(filename_name(filename), ""));
     for (var i = 0, n = array_length(data); i < n; i++) {
         var submesh = new MeshSubmesh("Submesh" + string(i));
-        submesh.SetBufferData(data[i]);
+        submesh.SetBufferData(data[i].buffer);
         mesh.AddSubmesh(submesh);
     }
+    
+    mesh.SetMaterial(data[0].material);
     
     array_push(Game.meshes, mesh);
     
@@ -140,9 +147,9 @@ function import_d3d(filename) {
     
     buffer_resize(data, buffer_tell(data));
     
-    // this function needs to return an array of buffers, even though there
-    // will only ever be one buffer loaded from a d3d file
-    return [data];
+    // this function needs to return an array of MeshImportData, even though
+    // there will only ever be one buffer loaded from a d3d file
+    return [new MeshImportData(data, new Material(filename_name(filename_change_ext(filename, "")) + "_Material"))];
 }
 
 function import_dae(filename, adjust_uvs = true) {
