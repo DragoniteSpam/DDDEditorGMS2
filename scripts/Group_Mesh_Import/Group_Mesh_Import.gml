@@ -176,16 +176,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     var warnings = 0;
     static warn_invisible = false;
     
-    var warn_map_1 =            0x0001;
-    var warn_map_2 =            0x0002;
-    var warn_map_3 =            0x0004;
-    var warn_map_4 =            0x0008;
-    var warn_map_5 =            0x0010;
-    var warn_map_6 =            0x0020;
-    var warn_map_7 =            0x0040;
-    var warn_map_8 =            0x0080;
-    var warn_alt_bump =         0x0100;
-    
     var base_path = filename_path(fn);
     var base_name = filename_change_ext(filename_name(fn), "");
     
@@ -193,22 +183,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     
     var base_mtl = undefined;
     var active_mtl = -1;
-    var mtl_alpha = { };
-    var mtl_color_r = { };
-    var mtl_color_g = { };
-    var mtl_color_b = { };
-    var mtl_map_diffuse = { };
-    var mtl_map_ambient = { };
-    var mtl_map_specular_color = { };
-    var mtl_map_specular_highlight = { };
-    var mtl_map_alpha = { };
-    var mtl_map_bump = { };
-    var mtl_map_displace = { };
-    var mtl_map_decal = { };
-    mtl_alpha[$ active_mtl] = 1;
-    mtl_color_r[$ active_mtl] = 255;
-    mtl_color_g[$ active_mtl] = 255;
-    mtl_color_b[$ active_mtl] = 255;
+    var materials = { };
     
     var tex_base = undefined;
     var tex_ambient = undefined;
@@ -438,9 +413,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".BaseTexture";
-                                    if (tex_base) warnings |= warn_map_1;
-                                    else mtl_map_diffuse[$ mtl_name] = ts;
-                                    tex_base = (tex_base) ? tex_base : ts;
+                                    mtl_map_diffuse[$ mtl_name] = ts;
+                                    tex_base ??=  ts;
                                     break;
                                 case "map_Ka":                  // ambient texture
                                     var texfn = "";
@@ -448,9 +422,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".AmbientMap";
-                                    if (tex_ambient) warnings |= warn_map_2;
-                                    else mtl_map_ambient[$ mtl_name] = ts;
-                                    tex_ambient = (tex_ambient) ? tex_ambient : ts;
+                                    mtl_map_ambient[$ mtl_name] = ts;
+                                    tex_ambient ??= ts;
                                     break;
                                 case "map_Ks":                  // specular color texture
                                     var texfn = "";
@@ -458,9 +431,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".SpecularColorMap";
-                                    if (tex_specular_color) warnings |= warn_map_3;
-                                    else mtl_map_specular_color[$ mtl_name] = ts;
-                                    tex_specular_color = (tex_specular_color) ? tex_specular_color : ts;
+                                    mtl_map_specular_color[$ mtl_name] = ts;
+                                    tex_specular_color ??= ts;
                                     break;
                                 case "map_Ns":                  // specular highlight texture
                                     var texfn = "";
@@ -468,9 +440,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".SpecularHighlightMap";
-                                    if (tex_specular_highlight) warnings |= warn_map_4;
-                                    else mtl_map_specular_highlight[$ mtl_name] = ts;
-                                    tex_specular_highlight = (tex_specular_highlight) ? tex_specular_highlight : ts;
+                                    mtl_map_specular_highlight[$ mtl_name] = ts;
+                                    tex_specular_highlight ??= ts;
                                     break;
                                 case "map_d":                   // alpha texture
                                     var texfn = "";
@@ -478,22 +449,18 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".AlphaMap";
-                                    if (tex_alpha) warnings |= warn_map_5;
-                                    else mtl_map_alpha[$ mtl_name] = ts;
-                                    tex_alpha = (tex_alpha) ? tex_alpha : ts;
+                                    mtl_map_alpha[$ mtl_name] = ts;
+                                    tex_alpha ??= ts;
                                     break;
                                 case "map_bump":                // bump texture
+                                case "bump":
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".BumpMap";
-                                    if (tex_bump) warnings |= warn_map_6;
-                                    else mtl_map_bump[$ mtl_name] = ts;
-                                    tex_bump = (tex_bump) ? tex_bump : ts;
-                                    break;
-                                case "bump":
-                                    warnings |= warn_alt_bump;
+                                    mtl_map_bump[$ mtl_name] = ts;
+                                    tex_bump ??= ts;
                                     break;
                                 case "disp":                    // displacement texture
                                     var texfn = "";
@@ -501,9 +468,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".DisplacementMap";
-                                    if (tex_displace) warnings |= warn_map_7;
-                                    else mtl_map_displace[$ mtl_name] = ts;
-                                    tex_displace = (tex_displace) ? tex_displace : ts;
+                                    mtl_map_displace[$ mtl_name] = ts;
+                                    tex_displace ??= ts;
                                     break;
                                 case "decal":                   // stencil decal texture
                                     var texfn = "";
@@ -511,9 +477,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn);
                                     ts.name = base_name + ".StencilDecal";
-                                    if (tex_decal) warnings |= warn_map_8;
-                                    else mtl_map_decal[$ mtl_name] = ts;
-                                    tex_decal = (tex_decal) ? tex_decal : ts;
+                                    mtl_map_decal[$ mtl_name] = ts;
+                                    tex_decal ??= ts;
                                     break;
                                 default:    // There are way more attributes available than I'm going to use later - maybe
                                     break;
@@ -546,15 +511,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         var top = EmuOverlay.GetTop();
         if (!top || !(top.flags & DialogFlags.IS_GENERIC_WARNING)) {
             var warn_string = "";
-            if (warnings & warn_map_1) warn_string += "Tried to load more than one diffuse texture map (map_Kd) - this is not yet supported\n";
-            if (warnings & warn_map_2) warn_string += "Tried to load more than one ambient texture map (map_Ka) - this is not yet supported\n";
-            if (warnings & warn_map_3) warn_string += "Tried to load more than one specular color texture map (map_Ks) - this is not yet supported\n";
-            if (warnings & warn_map_4) warn_string += "Tried to load more than one specular highlight texture map (map_Ns) - this is not yet supported\n";
-            if (warnings & warn_map_5) warn_string += "Tried to load more than one alpha texture map (map_Ka) - this is not yet supported\n";
-            if (warnings & warn_map_6) warn_string += "Tried to load more than one bump map (map_bump) - this is not yet supported\n";
-            if (warnings & warn_map_7) warn_string += "Tried to load more than one displacement texture map (disp) - this is not yet supported\n";
-            if (warnings & warn_map_8) warn_string += "Tried to load more than one stencil decal texture map (decal) - this is not yet supported\n";
-            if (warnings & warn_alt_bump) warn_string += "Alternate bump map material data found - this is not yet supported\n";
             (emu_dialog_notice(warn_header + warn_string)).flags |= DialogFlags.IS_GENERIC_WARNING;
         } else {
             top.el_text.text = string_replace(top.el_text.text, warn_header, warn_header_plural);
