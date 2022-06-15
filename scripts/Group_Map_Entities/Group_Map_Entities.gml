@@ -439,7 +439,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.etype = ETypes.ENTITY_MESH;
     self.etype_flags = ETypeFlags.ENTITY_MESH;
     
-    self.is_static = true;
+    self.is_static = mesh ? !!(mesh.flags & MeshFlags.AUTO_STATIC) : false;
     
     self.mesh = NULL;
     self.mesh_submesh = NULL;                                                   // proto-GUID
@@ -520,7 +520,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
             switch (mesh.type) {
                 case MeshTypes.RAW:
                     self.mesh_submesh = submesh ?? mesh.first_proto_guid;
-                    self.is_static = true;
+                    self.is_static = !!(mesh.flags & MeshFlags.AUTO_STATIC);
                     self.batchable = true;
                     self.SetStatic = function(state) { self.is_static = state; };
                     break;
@@ -636,6 +636,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         self.animation_type = source.mesh.animation.type;
         self.animation_speed = source.mesh.animation.speed;
         self.animation_end_action = source.mesh.animation.end_action;
+        
+        self.is_static = !!(guid_get(self.mesh).flags & MeshFlags.AUTO_STATIC);
     }
 }
 
