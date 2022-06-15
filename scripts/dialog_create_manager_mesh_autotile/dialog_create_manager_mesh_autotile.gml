@@ -103,15 +103,15 @@ function dialog_create_manager_mesh_autotile() {
                     failures++;
                 } else {
                     if (type == 0) {
-                        at_layer.tiles[i].Set(data[0]);
+                        at_layer.tiles[i].Set(data[0].buffer);
                     } else {
-                        at_layer.tiles[i].SetReflect(data[0]);
+                        at_layer.tiles[i].SetReflect(data[0].buffer);
                     }
                     /// @todo add an optional "mesh count" parameter to
                     // import_3d_model_generic which eliminates the need
                     // to discoard additional returned buffers
                     for (var i = 1, n = array_length(data); i < n; i++) {
-                        buffer_delete(data[i]);
+                        buffer_delete(data[i].buffer);
                     }
                     changes[$ change_prefix + string(i)] = true;
                 }
@@ -236,15 +236,15 @@ function dialog_create_manager_mesh_autotile() {
                 emu_dialog_notice("Unable to load file: " + fn);
             } else {
                 if (type == 0) {
-                    tile_data.Set(data[1], data[0]);
+                    tile_data.Set(data[0].buffer);
                 } else {
-                    tile_data.SetReflect(data[1], data[0]);
+                    tile_data.SetReflect(data[0].buffer);
                 }
                 /// @todo add an optional "mesh count" parameter to
                 // import_3d_model_generic which eliminates the need
                 // to discoard additional returned buffers
                 for (var i = 1, n = array_length(data); i < n; i++) {
-                    buffer_delete(data[i]);
+                    buffer_delete(data[i].buffer);
                 }
             }
             
@@ -303,15 +303,15 @@ function dialog_create_manager_mesh_autotile() {
                         failures++;
                     } else {
                         if (type == 0) {
-                            at_layer.tiles[index].Set(data[0]);
+                            at_layer.tiles[index].Set(data[0].buffer);
                         } else {
-                            at_layer.tiles[index].SetReflect(data[0]);
+                            at_layer.tiles[index].SetReflect(data[0].buffer);
                         }
                         /// @todo add an optional "mesh count" parameter to
                         // import_3d_model_generic which eliminates the need
                         // to discoard additional returned buffers
                         for (var i = 1, n = array_length(data); i < n; i++) {
-                            buffer_delete(data[i]);
+                            buffer_delete(data[i].buffer);
                         }
                         changes[$ change_prefix + name] = true;
                     }

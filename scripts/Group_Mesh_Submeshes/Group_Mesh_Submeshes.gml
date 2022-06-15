@@ -86,14 +86,14 @@ function MeshSubmesh(source) constructor {
         var data = import_3d_model_generic(get_open_filename_mesh());
         if (data == undefined) return;
         internalDeleteReflect();
-        self.reflect_buffer = data[0];
-        self.reflect_vbuffer = vertex_create_buffer_from_buffer(data[0], Stuff.graphics.format);
+        self.reflect_buffer = data[0].buffer;
+        self.reflect_vbuffer = vertex_create_buffer_from_buffer(data[0].buffer, Stuff.graphics.format);
         vertex_freeze(self.reflect_vbuffer);
         /// @todo add an optional "mesh count" parameter to
         // import_3d_model_generic which eliminates the need
         // to discoard additional returned buffers
         for (var i = 1, n = array_length(data); i < n; i++) {
-            buffer_delete(data[i]);
+            buffer_delete(data[i].buffer);
         }
     };
     
@@ -129,13 +129,13 @@ function MeshSubmesh(source) constructor {
         
         var index = array_search(self.owner.submeshes, self);
         if (index < array_length(data)) {
-            self.SetBufferData(data[index]);
+            self.SetBufferData(data[index].buffer);
         }
         
         // delete all imported buffers that were not set to the mesh
         for (var i = 0, n = array_length(data); i < n; i++) {
             if (i != index) {
-                buffer_delete(data[i]);
+                buffer_delete(data[i].buffer);
             }
         }
     };

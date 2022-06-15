@@ -157,7 +157,7 @@ function DataMesh(source) : SData(source) constructor {
         if (data == undefined) return;
         for (var i = 0, n = array_length(data); i < n; i++) {
             var submesh = new MeshSubmesh("Submesh" + string(array_length(self.submeshes)));
-            submesh.SetBufferData(data[i]);
+            submesh.SetBufferData(data[i].buffer);
             self.AddSubmesh(submesh);
         }
     };
