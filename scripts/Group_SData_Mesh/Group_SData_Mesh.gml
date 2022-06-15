@@ -31,6 +31,21 @@ function DataMesh(source) : SData(source) constructor {
     self.tex_displacement = NULL;            // disp
     self.tex_stencil = NULL;                 // decal
     
+    self.SetMaterial = function(material) {
+        // it is highly likely at some point that we'll change this system to
+        // use "real" 3D materials
+        
+        self.tex_base = material.tex_base;
+        self.tex_ambient = material.tex_ambient;
+        self.tex_specular_color = material.tex_specular_color;
+        self.tex_specular_highlight = material.tex_specular_highlight;
+        self.tex_alpha = material.tex_alpha;
+        self.tex_bump = material.tex_bump;
+        self.tex_displacement = material.tex_displacement;
+        self.tex_stencil = material.tex_stencil;
+        self.tex_normal = material.tex_normal;
+    };
+    
     self.texture_scale = 1;
     
     self.terrain_data = undefined;
