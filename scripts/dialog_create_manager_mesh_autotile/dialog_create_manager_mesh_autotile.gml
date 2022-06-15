@@ -98,7 +98,7 @@ function dialog_create_manager_mesh_autotile() {
                 
                 file_count++;
                 
-                var data = import_3d_model_generic(filename);
+                var data = import_3d_model_generic(filename, true);
                 if (data == undefined) {
                     failures++;
                 } else {
@@ -106,12 +106,6 @@ function dialog_create_manager_mesh_autotile() {
                         at_layer.tiles[i].Set(data[0].buffer);
                     } else {
                         at_layer.tiles[i].SetReflect(data[0].buffer);
-                    }
-                    /// @todo add an optional "mesh count" parameter to
-                    // import_3d_model_generic which eliminates the need
-                    // to discoard additional returned buffers
-                    for (var i = 1, n = array_length(data); i < n; i++) {
-                        buffer_delete(data[i].buffer);
                     }
                     changes[$ change_prefix + string(i)] = true;
                 }
@@ -231,7 +225,7 @@ function dialog_create_manager_mesh_autotile() {
             
             var fn = get_open_filename_mesh_d3d();
             
-            var data = import_3d_model_generic(fn);
+            var data = import_3d_model_generic(fn, true);
             if (data == undefined) {
                 emu_dialog_notice("Unable to load file: " + fn);
             } else {
@@ -239,12 +233,6 @@ function dialog_create_manager_mesh_autotile() {
                     tile_data.Set(data[0].buffer);
                 } else {
                     tile_data.SetReflect(data[0].buffer);
-                }
-                /// @todo add an optional "mesh count" parameter to
-                // import_3d_model_generic which eliminates the need
-                // to discoard additional returned buffers
-                for (var i = 1, n = array_length(data); i < n; i++) {
-                    buffer_delete(data[i].buffer);
                 }
             }
             
@@ -297,7 +285,7 @@ function dialog_create_manager_mesh_autotile() {
                 var name = filename_change_ext(filename_name(filename), "");
                 if (validate_int(name) && is_clamped(string(name), 0, AUTOTILE_COUNT - 1)) {
                     var index = string(name);
-                    var data = import_3d_model_generic(filename);
+                    var data = import_3d_model_generic(filename, true);
                     
                     if (data == undefined) {
                         failures++;
@@ -306,12 +294,6 @@ function dialog_create_manager_mesh_autotile() {
                             at_layer.tiles[index].Set(data[0].buffer);
                         } else {
                             at_layer.tiles[index].SetReflect(data[0].buffer);
-                        }
-                        /// @todo add an optional "mesh count" parameter to
-                        // import_3d_model_generic which eliminates the need
-                        // to discoard additional returned buffers
-                        for (var i = 1, n = array_length(data); i < n; i++) {
-                            buffer_delete(data[i].buffer);
                         }
                         changes[$ change_prefix + name] = true;
                     }

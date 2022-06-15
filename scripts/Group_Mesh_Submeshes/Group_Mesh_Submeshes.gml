@@ -83,18 +83,12 @@ function MeshSubmesh(source) constructor {
     };
     
     static ImportReflection = function() {
-        var data = import_3d_model_generic(get_open_filename_mesh());
+        var data = import_3d_model_generic(get_open_filename_mesh(), true);
         if (data == undefined) return;
         internalDeleteReflect();
         self.reflect_buffer = data[0].buffer;
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(data[0].buffer, Stuff.graphics.format);
         vertex_freeze(self.reflect_vbuffer);
-        /// @todo add an optional "mesh count" parameter to
-        // import_3d_model_generic which eliminates the need
-        // to discoard additional returned buffers
-        for (var i = 1, n = array_length(data); i < n; i++) {
-            buffer_delete(data[i].buffer);
-        }
     };
     
     static GenerateReflections = function() {

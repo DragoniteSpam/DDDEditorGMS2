@@ -21,11 +21,11 @@ function import_mesh(filename) {
     return mesh;
 }
 
-function import_3d_model_generic(filename) {
+function import_3d_model_generic(filename, squash = false) {
     /// @todo more robust try-catch
     try {
         switch (filename_ext(filename)) {
-            case ".obj": return import_obj(filename);
+            case ".obj": return import_obj(filename, squash);
             case ".d3d": case ".gmmod": return import_d3d(filename);
             case ".smf": 
         }
@@ -35,7 +35,9 @@ function import_3d_model_generic(filename) {
     return undefined;
 }
 
-function import_d3d(filename) {
+function import_d3d(filename, squash = false) {
+    // "squash" will force all submeshes to be loaded as a single submesh,
+    // overriding the global setting
     var f = file_text_open_read(filename);
     file_text_readln(f);
     var n = file_text_read_real(f) - 2;
