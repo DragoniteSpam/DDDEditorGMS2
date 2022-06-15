@@ -244,7 +244,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Most of the time this is going to be either 1 or 4.")
             .SetID("Y FRAMES"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Speed:", "1", "animation speed", 3, E_InputTypes.REAL, function() {
-            var image = self.GetSibling("LIST").GetSelectedItem().aspeed = real(self.value);
+            self.GetSibling("LIST").GetSelectedItem().aspeed = real(self.value);
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);

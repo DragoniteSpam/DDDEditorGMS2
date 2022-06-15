@@ -558,14 +558,14 @@ function dialog_create_map_terrain() {
                     .SetRealNumberBounds(1, 9999)
                     .SetID("GEN AREA"),
                 new EmuText(col2 + gen_element_width * 5 / 6, EMU_INLINE, gen_element_width / 6, gen_element_height, "m²"),
-                new EmuButton(col2, EMU_AUTO, gen_element_width, gen_element_height, "Generate", function() {
+                (new EmuButton(col2, EMU_AUTO, gen_element_width, gen_element_height, "Generate", function() {
                     var map = Stuff.map.active_map;
                     var terrain = guid_get(map.terrain.id).terrain_data;
                     var density = real(self.GetSibling("GEN DENSITY").value) / real(self.GetSibling("GEN AREA").value);
                     var area = terrain.w * terrain.h * power(map.terrain.scale, 2) / (TILE_WIDTH * TILE_HEIGHT);
                     
                     map_generate_contents(density * area, Game.nosave.map_terrain_gen.choices);
-                })
+                }))
                     .SetInteractive(false)
                     .SetRefresh(function() {
                         self.SetInteractive(!!guid_get(Stuff.map.active_map.terrain.id));

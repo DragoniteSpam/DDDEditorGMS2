@@ -722,7 +722,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             // user knows that something actually happened and the program
             // didnt fail randomly
             if (vertex_get_number(vbuff) > 0) vertex_freeze(vbuff);
-            mesh_create_submesh(mesh, value.buffer, vbuff, undefined, value.name);
+            mesh_create_submesh(mesh, value.buffer, vbuff, value.name);
         }
         
         sprite_save(self.texture_image, 0, PATH_TEMP + "terrain_texture.png");

@@ -639,7 +639,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         vbuffer_materials = variable_struct_get_names(vbuffers);
         for (var i = 0; i < array_length(vbuffer_materials); i++) {
             var mat = vbuffer_materials[i];
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], undefined, base_name + "." + mat, -1, fn);
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], base_name + "." + mat, fn);
         }
         
         // assign these based on the material lookup eventually

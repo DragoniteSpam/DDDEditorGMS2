@@ -265,11 +265,11 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             #endregion
                             
                             #region alpha
-                            if (_allow_alpha) {
-                                vx1 = x1 + alpha_x;
-                                vy1 = y1 + alpha_y;
-                                vx2 = vx1 + _main_size;
-                                vy2 = vy1 + _alpha_height;
+                            if (self._allow_alpha) {
+                                vx1 = x1 + self.alpha_x;
+                                vy1 = y1 + self.alpha_y;
+                                vx2 = vx1 + self._main_size;
+                                vy2 = vy1 + self._alpha_height;
                                 var w = vx2 - vx1;
                                 var h = vy2 - vy1;
                                 

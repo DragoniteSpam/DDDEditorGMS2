@@ -130,7 +130,7 @@ function DataMesh(source) : SData(source) constructor {
         self.collision_shapes = json_parse(json_stringify(mesh.collision_shapes));
     };
     
-    static AddSubmesh = function(submesh, proto_guid) {
+    static AddSubmesh = function(submesh, proto_guid = undefined) {
         submesh.proto_guid = proto_guid_set(self, array_length(self.submeshes), proto_guid);
         submesh.owner = self;
         array_push(self.submeshes, submesh);

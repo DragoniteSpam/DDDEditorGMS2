@@ -232,7 +232,7 @@ function DataMap(source, directory) : SData(source) constructor {
             var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
             for (var i = 0; i < array_length(entity_data.entities); i++) {
                 var ref_data = entity_data.entities[i];
-                var entity = new global.etype_meta[ref_data.type].constructor(ref_data);
+                var entity = new global.etype_meta[ref_data.type].ctor(ref_data);
                 self.Add(entity, entity.xx, entity.yy, entity.zz);
             }
             #endregion

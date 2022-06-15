@@ -22,10 +22,10 @@ enum ETypeFlags {
     ENTITY_ANY              = 0xffffffff,
 }
 
-var etype = function(id, name, constructor, mask) constructor {
+var etype = function(id, name, ctor, mask) constructor {
     self.id = id;
     self.name = name;
-    self.constructor = constructor;
+    self.ctor = ctor;
     self.mask = mask;
 }
 
