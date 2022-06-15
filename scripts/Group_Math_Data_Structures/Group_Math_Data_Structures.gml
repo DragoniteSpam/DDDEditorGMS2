@@ -527,3 +527,13 @@ function ds_list_top(list) {
     return list[| ds_list_size(list) - 1];
 }
 #endregion
+
+#region ds queue stuff
+function ds_queue_concatenate(queue, character = " ") {
+    var result = "";
+    while (!ds_queue_empty(queue)) {
+        result += ds_queue_dequeue(queue) + (ds_queue_empty(queue) ? "" : character);
+    }
+    return result;
+}
+#endregion
