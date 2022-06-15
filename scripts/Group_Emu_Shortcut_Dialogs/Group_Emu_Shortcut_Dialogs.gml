@@ -11,6 +11,7 @@ function emu_dialog_notice(message, dw = 420, dh = 240) {
     });
     var dg = new EmuDialog(dw, dh, "Hey, listen!");
     dg.AddContent([el_text, el_button]);
+    /// @todo eventually, turn this into values that can be gotten with GetChild(...)
     dg.el_text = el_text;
     dg.el_button = el_button;
     

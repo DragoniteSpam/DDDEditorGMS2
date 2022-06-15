@@ -173,26 +173,16 @@ function import_dae(filename, adjust_uvs = true) {
 
 function import_obj(fn, everything = true, raw_buffer = false, existing = undefined, replace_index = -1) {
     var err = "";
-    var warnings = 0;
     static warn_invisible = false;
     
     var base_path = filename_path(fn);
     var base_name = filename_change_ext(filename_name(fn), "");
     
     if (!file_exists(fn)) return undefined;
-    
     var base_mtl = undefined;
-    var active_mtl = -1;
     var materials = { };
-    
-    var tex_base = undefined;
-    var tex_ambient = undefined;
-    var tex_specular_color = undefined;
-    var tex_specular_highlight = undefined;
-    var tex_alpha = undefined;
-    var tex_bump = undefined;
-    var tex_displace = undefined;
-    var tex_decal = undefined;
+    var active_material = new Material(base_name + "_BaseMaterial", c_white, 1, , , , MAP_ACTIVE_TILESET.GUID);
+    var base_material = active_material;
     
     var f = file_text_open_read(fn);
     var line_number = 0;
@@ -220,10 +210,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     var nx = [0, 0, 0];
     var ny = [0, 0, 0];
     var nz = [0, 0, 0];
-    var r = [0, 0, 0];
-    var g = [0, 0, 0];
-    var b = [0, 0, 0];
-    var a = [0, 0, 0];
     var xtex = [0, 0, 0];
     var ytex = [0, 0, 0];
     
@@ -280,12 +266,11 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                     }
                     break;
                 case "usemtl":
-                    active_mtl = ds_queue_dequeue(q);
+                    active_material = materials[$ ds_queue_dequeue(q)] ?? base_material;
                     break;
                 case "usemap":
-                    // this doesnt seem like a very common way to fetch a texture
-                    // map but maybe it'll be worth including later anyway
-                    var tex_map = ds_queue_dequeue(q);
+                    // this would specifically fetch a texture map but i'd
+                    // rather not support it if i dont have to
                     break;
                 case "f":
                     #region face data
@@ -298,10 +283,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                         nz = [0, 0, 0];
                         xtex = [0, 0, 0];
                         ytex = [0, 0, 0];
-                        r = [0, 0, 0];
-                        g = [0, 0, 0];
-                        b = [0, 0, 0];
-                        a = [0, 0, 0];
                         var s = ds_queue_size(q);
                         for (var i = 0; i < s; i++) {
                             var vertex_q = split(ds_queue_dequeue(q), "/", false, true);
@@ -316,10 +297,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     nz[i] = 1;
                                     xtex[i] = 0;
                                     ytex[i] = 0;
-                                    r[i] = (mtl_color_r[$ active_mtl] != undefined) ? mtl_color_r[$ active_mtl] : 255;
-                                    g[i] = (mtl_color_g[$ active_mtl] != undefined) ? mtl_color_g[$ active_mtl] : 255;
-                                    b[i] = (mtl_color_b[$ active_mtl] != undefined) ? mtl_color_b[$ active_mtl] : 255;
-                                    a[i] = (mtl_alpha[$ active_mtl] != undefined) ? mtl_alpha[$ active_mtl] : 1;
                                     break;
                                 case 2:
                                     var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -332,10 +309,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     nx[i] = 0;
                                     ny[i] = 0;
                                     nz[i] = 1;
-                                    r[i] = (mtl_color_r[$ active_mtl] != undefined) ? mtl_color_r[$ active_mtl] : 255;
-                                    g[i] = (mtl_color_g[$ active_mtl] != undefined) ? mtl_color_g[$ active_mtl] : 255;
-                                    b[i] = (mtl_color_b[$ active_mtl] != undefined) ? mtl_color_b[$ active_mtl] : 255;
-                                    a[i] = (mtl_alpha[$ active_mtl] != undefined) ? mtl_alpha[$ active_mtl] : 1;
                                     break;
                                 case 3:
                                     var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -350,17 +323,8 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     nx[i] = v_nx[| normal];
                                     ny[i] = v_ny[| normal];
                                     nz[i] = v_nz[| normal];
-                                    if (tex == -1) {
-                                        xtex[i] = 0;
-                                        ytex[i] = 0;
-                                    } else {
-                                        xtex[i] = v_xtex[| tex];
-                                        ytex[i] = v_ytex[| tex];
-                                    }
-                                    r[i] = (mtl_color_r[$ active_mtl] != undefined) ? mtl_color_r[$ active_mtl] : 255;
-                                    g[i] = (mtl_color_g[$ active_mtl] != undefined) ? mtl_color_g[$ active_mtl] : 255;
-                                    b[i] = (mtl_color_b[$ active_mtl] != undefined) ? mtl_color_b[$ active_mtl] : 255;
-                                    a[i] = (mtl_alpha[$ active_mtl] != undefined) ? mtl_alpha[$ active_mtl] : 1;
+                                    xtex[i] = (tex == -1) ? 0 : v_xtex[| tex];
+                                    ytex[i] = (tex == -1) ? 0 : v_ytex[| tex];
                                     break;
                             }
                             ds_queue_destroy(vertex_q);
@@ -368,9 +332,9 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                         
                         // faces are triangle fans
                         for (var i = 2; i < array_length(xx); i++) {
-                            ds_list_add(temp_vertices, [xx[0],      yy[0],      zz[0],      nx[0],      ny[0],      nz[0],      xtex[0],        ytex[0],        (b[0] << 16) |      (g[0] << 8) |       r[0],       a[0], active_mtl]);
-                            ds_list_add(temp_vertices, [xx[i - 1],  yy[i - 1],  zz[i - 1],  nx[i - 1],  ny[i - 1],  nz[i - 1],  xtex[i - 1],    ytex[i - 1],    (b[i - 1] << 16) |  (g[i - 1] << 8) |   r[i - 1],   a[i - 1], active_mtl]);
-                            ds_list_add(temp_vertices, [xx[i - 0],  yy[i - 0],  zz[i - 0],  nx[i - 0],  ny[i - 0],  nz[i - 0],  xtex[i - 0],    ytex[i - 0],    (b[i - 0] << 16) |  (g[i - 0] << 8) |   r[i - 0],   a[i - 0], active_mtl]);
+                            ds_list_add(temp_vertices, [xx[0],      yy[0],      zz[0],      nx[0],      ny[0],      nz[0],      xtex[0],        ytex[0],        active_material]);
+                            ds_list_add(temp_vertices, [xx[i - 1],  yy[i - 1],  zz[i - 1],  nx[i - 1],  ny[i - 1],  nz[i - 1],  xtex[i - 1],    ytex[i - 1],    active_material]);
+                            ds_list_add(temp_vertices, [xx[i - 0],  yy[i - 0],  zz[i - 0],  nx[i - 0],  ny[i - 0],  nz[i - 0],  xtex[i - 0],    ytex[i - 0],    active_material]);
                         }
                     } else {
                         err = "Malformed face found (line " + string(line_number) + ")";
@@ -381,112 +345,10 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                     break;
                 case "mtllib":  // specify the mtllib file
                     #region mtl data
-                    var mfn = "";
-                    while (!ds_queue_empty(q)) mfn += ds_queue_dequeue(q) + (ds_queue_empty(q) ? "" : " ");
-                    if (!file_exists(mfn)) mfn = base_path + mfn;
-                    
-                    if (file_exists(mfn)) {
-                        var matfile = file_text_open_read(mfn);
-                        var mtl_name = "";
-                        
-                        while (!file_text_eof(matfile)) {
-                            var line = file_text_read_string(matfile);
-                            file_text_readln(matfile);
-                            var spl = split(line, " ");
-                            switch (ds_queue_dequeue(spl)) {
-                                case "newmtl":
-                                    mtl_name = ds_queue_dequeue(spl);
-                                    break;
-                                case "Kd":  // Diffuse color (the color we're concerned with)
-                                    mtl_color_r[$ mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                    mtl_color_g[$ mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                    mtl_color_b[$ mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                    break;
-                                case "d":   // "dissolved" (alpha)
-                                case "Tr":  // "transparent" (blender thinks this should be 1 - alpha???)
-                                    mtl_alpha[$ mtl_name] = real(ds_queue_dequeue(spl));
-                                    if (is_blender) mtl_alpha[$ mtl_name] = 1 - mtl_alpha[$ mtl_name];
-                                    break;
-                                case "map_Kd":                  // dissolve (base) texture
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".BaseTexture";
-                                    mtl_map_diffuse[$ mtl_name] = ts;
-                                    tex_base ??=  ts;
-                                    break;
-                                case "map_Ka":                  // ambient texture
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".AmbientMap";
-                                    mtl_map_ambient[$ mtl_name] = ts;
-                                    tex_ambient ??= ts;
-                                    break;
-                                case "map_Ks":                  // specular color texture
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".SpecularColorMap";
-                                    mtl_map_specular_color[$ mtl_name] = ts;
-                                    tex_specular_color ??= ts;
-                                    break;
-                                case "map_Ns":                  // specular highlight texture
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".SpecularHighlightMap";
-                                    mtl_map_specular_highlight[$ mtl_name] = ts;
-                                    tex_specular_highlight ??= ts;
-                                    break;
-                                case "map_d":                   // alpha texture
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".AlphaMap";
-                                    mtl_map_alpha[$ mtl_name] = ts;
-                                    tex_alpha ??= ts;
-                                    break;
-                                case "map_bump":                // bump texture
-                                case "bump":
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".BumpMap";
-                                    mtl_map_bump[$ mtl_name] = ts;
-                                    tex_bump ??= ts;
-                                    break;
-                                case "disp":                    // displacement texture
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".DisplacementMap";
-                                    mtl_map_displace[$ mtl_name] = ts;
-                                    tex_displace ??= ts;
-                                    break;
-                                case "decal":                   // stencil decal texture
-                                    var texfn = "";
-                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn);
-                                    ts.name = base_name + ".StencilDecal";
-                                    mtl_map_decal[$ mtl_name] = ts;
-                                    tex_decal ??= ts;
-                                    break;
-                                default:    // There are way more attributes available than I'm going to use later - maybe
-                                    break;
-                            }
-                            ds_queue_destroy(spl);
-                        }
-                        file_text_close(matfile);
-                    }
+                    var material_name = ds_queue_concatenate(q);
+                    var filename = file_exists(material_name) ? material_name : base_path + material_name;
+                    if (!file_exists(filename)) break;
+                    materials[$ material_name] = new Material("").LoadFromFile(filename);
                     #endregion
                     break;
                 case "g":   // group
@@ -504,18 +366,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     }
     file_text_close(f);
     #endregion
-    
-    if (warnings) {
-        var warn_header = "Warnings generated regarding the imported mesh:\n";
-        var warn_header_plural = "Warnings generated regarding the a number of the imported meshes:\n";
-        var top = EmuOverlay.GetTop();
-        if (!top || !(top.flags & DialogFlags.IS_GENERIC_WARNING)) {
-            var warn_string = "";
-            (emu_dialog_notice(warn_header + warn_string)).flags |= DialogFlags.IS_GENERIC_WARNING;
-        } else {
-            top.el_text.text = string_replace(top.el_text.text, warn_header, warn_header_plural);
-        }
-    }
     
     if (err != "") {
         emu_dialog_notice("Could not load the model " + fn + ": " + err);
