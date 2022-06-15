@@ -1,6 +1,7 @@
 function Material(
         source,
         col_diffuse = c_white,
+        alpha = 1,
         col_ambient = c_white,
         col_specular = c_black,
         col_specular_exponent = 10,
@@ -16,6 +17,7 @@ function Material(
     ) : SData(source) constructor {
     
     self.col_diffuse = col_diffuse;
+    self.alpha = alpha;
     self.col_ambient = col_ambient;
     self.col_specular = col_specular;
     self.col_specular_exponent = col_specular_exponent;
@@ -31,6 +33,7 @@ function Material(
     
     if (is_struct(source)) {
         self.col_diffuse = source.col_diffuse;
+        self.alpha = source.alpha;
         self.col_ambient = source.col_ambient;
         self.col_specular = source.col_specular;
         self.col_specular_exponent = source.col_specular_exponent;
@@ -52,6 +55,7 @@ function Material(
     self.CreateJSON = function() {
         var json = self.CreateJSONBase();
         json.col_diffuse = self.col_diffuse;
+        json.alpha = self.alpha;
         json.col_ambient = self.col_ambient;
         json.col_specular = self.col_specular;
         json.col_specular_exponent = self.col_specular_exponent;
@@ -71,7 +75,7 @@ function Material(
     
     self.Export = function(buffer) {
         self.ExportBase(buffer);
-        buffer_write(buffer, buffer_u32, self.col_diffuse);
+        buffer_write(buffer, buffer_u32, self.col_diffuse | (floor(self.col_alpha * 255) << 24));
         buffer_write(buffer, buffer_u32, self.col_ambient);
         buffer_write(buffer, buffer_u32, self.col_specular);
         buffer_write(buffer, buffer_f32, self.col_specular_exponent);
