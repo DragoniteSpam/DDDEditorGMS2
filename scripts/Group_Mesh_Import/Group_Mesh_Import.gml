@@ -35,9 +35,7 @@ function import_3d_model_generic(filename, squash = false) {
     return undefined;
 }
 
-function import_d3d(filename, squash = false) {
-    squash |= Settings.config.squash_meshes;
-    
+function import_d3d(filename) {
     var f = file_text_open_read(filename);
     file_text_readln(f);
     var n = file_text_read_real(f) - 2;
@@ -171,7 +169,9 @@ function import_dae(filename, adjust_uvs = true) {
     }
 }
 
-function import_obj(fn, everything = true, raw_buffer = false, existing = undefined, replace_index = -1) {
+function import_obj(fn, squash = false) {
+    squash |= Settings.config.squash_meshes;
+    
     var err = "";
     static warn_invisible = false;
     
@@ -179,7 +179,6 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
     var base_name = filename_change_ext(filename_name(fn), "");
     
     if (!file_exists(fn)) return undefined;
-    var base_mtl = undefined;
     var materials = { };
     var active_material = new Material(base_name + "_BaseMaterial", c_white, 1, , , , MAP_ACTIVE_TILESET.GUID);
     var base_material = active_material;
@@ -316,7 +315,7 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
                                     // not the same as having just two terms (v/vt)
                                     var middle_term = ds_queue_dequeue(vertex_q);
                                     var tex = (middle_term == "") ? -1 : (real(middle_term) - 1);
-                                    var normal = real(ds_queue_dequeue(vertex_q))-1;
+                                    var normal = real(ds_queue_dequeue(vertex_q)) - 1;
                                     xx[i] = v_x[| vert];
                                     yy[i] = v_y[| vert];
                                     zz[i] = v_z[| vert];
@@ -379,46 +378,47 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         return undefined;
     }
     
-    var buffers = { };
+    var output = [];
+    var output_material = base_material;
+    var output_data = undefined;
     
     var vc = 0;
-    
-    var bxx = [0, 0, 0];
-    var byy = [0, 0, 0];
-    var bzz = [0, 0, 0];
-    var bnx, bny, bnz, bxtex, bytex, bcolor, balpha, bmtl;
+    var bxx, byy, bzz, bnx, bny, bnz, bxtex, bytex, bmtl;
     
     var max_alpha = 0;
     
     for (var i = 0; i < n; i++) {
         var v = temp_vertices[| i];
         
-        bxx[vc] = v[0];
-        byy[vc] = v[1];
-        bzz[vc] = v[2];
-        
+        bxx = v[0];
+        byy = v[1];
+        bzz = v[2];
         bnx = v[3];
         bny = v[4];
         bnz = v[5];
+        bxtex = v[6];
+        bytex = is_blender ? v[7] : (1 - v[7]);
+        bmtl = v[8];
         
-        bxtex = round_ext(v[6], 1 / 1024);
-        bytex = round_ext(is_blender ? v[7] : (1 - v[7]), 1 / 1024);
-        
-        bcolor = v[8];
-        balpha = v[9];
-        bmtl = v[10];
-        
-        max_alpha = max(max_alpha, balpha);
-        
-        base_mtl ??= bmtl;
-        
-        if (!buffers[$ bmtl]) {
-            buffers[$ bmtl] = buffer_create(1000, buffer_grow, 1);
+        // if the material you're working with changes, check to see if any
+        // output data with the material already exists; if not, create one
+        var current_output_material = squash ? base_material : bmtl;
+        if (output_material != current_output_material) {
+            output_data = undefined;
+            for (var j = 0, n2 = array_length(output); j < n2; j++) {
+                if (output[j].material == current_output_material) {
+                    output_data = output[j];
+                    output_material = current_output_material;
+                }
+            }
+            if (!output_data) {
+                output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), current_output_material);
+            }
         }
         
-        var data = buffers[$ bmtl];
-        
-        vertex_point_complete_raw(data, bxx[vc], byy[vc], bzz[vc], bnx, bny, bnz, bxtex, bytex, bcolor, balpha);
+        // always use the vertex color of the current material, even if squashed
+        max_alpha = max(max_alpha, bmtl.alpha);
+        vertex_point_complete_raw(output_data.buffer, bxx, byy, bzz, bnx, bny, bnz, bxtex, bytex, bmtl.color, bmtl.alpha);
         
         vc = ++vc % 3;
     }
@@ -428,47 +428,16 @@ function import_obj(fn, everything = true, raw_buffer = false, existing = undefi
         warn_invisible = true;
     }
     
-    var data = array_create(variable_struct_names_count(buffers));
-    data[0] = buffers[$ base_mtl];
-    buffer_resize(data[0], buffer_tell(data[0]));
-    variable_struct_remove(buffers, base_mtl);
-    
-    var keys = variable_struct_get_names(buffers);
-    for (var i = 0, n = array_length(keys); i < n; i++) {
-        data[i + 1] = buffers[$ keys[i]];
-        buffer_resize(data[i + 1], buffer_tell(data[i + 1]));
+    for (var i = array_length(output) - 1; i >= 0; i--) {
+        if (buffer_tell(output[i].buffer) == 0) {
+            buffer_delete(output[i].buffer);
+            array_delete(output, i, 1);
+        } else {
+            buffer_resize(output, buffer_tell(output));
+        }
     }
     
-    return data;
-    
-    if (everything) {
-        var mesh = existing ? existing : new DataMesh(base_name);
-        if (!existing) array_push(Game.meshes, mesh);
-        
-        if (!existing) {
-            mesh.RecalculateBounds();
-            internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-        }
-        
-        //This is untested and will probably break in a lot of places
-        vbuffer_materials = variable_struct_get_names(vbuffers);
-        for (var i = 0; i < array_length(vbuffer_materials); i++) {
-            var mat = vbuffer_materials[i];
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], base_name + "." + mat, fn);
-        }
-        
-        // assign these based on the material lookup eventually
-        mesh.tex_base = tex_base ? tex_base.GUID : NULL;
-        mesh.tex_ambient = tex_ambient ? tex_ambient.GUID : NULL;
-        mesh.tex_specular_color = tex_specular_color ? tex_specular_color.GUID : NULL;
-        mesh.tex_specular_highlight = tex_specular_highlight ? tex_specular_highlight.GUID : NULL;
-        mesh.tex_alpha = tex_alpha ? tex_alpha.GUID : NULL;
-        mesh.tex_bump = tex_bump ? tex_bump.GUID : NULL;
-        mesh.tex_displacement = tex_displace ? tex_displace.GUID : NULL;
-        mesh.tex_stencil = tex_decal ? tex_decal.GUID : NULL;
-        
-        return mesh;
-    }
+    return output;
 }
 
 function import_texture(fn) {
