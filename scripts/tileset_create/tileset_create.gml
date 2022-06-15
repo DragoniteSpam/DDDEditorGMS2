@@ -1,4 +1,6 @@
 function tileset_create(filename) {
+    // these are expensive, so if you've already got the same image loaded into
+    // the editor, just return a reference to that instead
     var file_hash = "";
     if (file_exists(filename)) {
         file_hash = md5_file(filename);
