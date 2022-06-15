@@ -45,6 +45,10 @@ function Material(
         self.tex_stencil = source.tex_stencil;
     }
     
+    self.Clone = function() {
+        return new Material(self);
+    };
+    
     self.CreateJSON = function() {
         var json = self.CreateJSONBase();
         json.col_diffuse = self.col_diffuse;
