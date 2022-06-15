@@ -6,7 +6,7 @@
     "path": "folders/Resources.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Group_Get_Save_Filename",
+  "name": "Group_Material",
   "tags": [],
   "resourceType": "GMScript",
 }
