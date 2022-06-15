@@ -158,7 +158,7 @@ function dialog_create_mesh_submesh(mesh) {
             self.root.mesh.flags = self.value;
         }))
             .AddOptions([
-                "Particle Mesh", "", "", "",
+                "Particle", "Auto Static", "", "",
                 "", "", "", ""
             ])
             .SetOrientation(E_BitfieldOrientations.VERTICAL)
