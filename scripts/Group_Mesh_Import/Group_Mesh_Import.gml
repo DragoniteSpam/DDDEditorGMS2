@@ -36,8 +36,8 @@ function import_3d_model_generic(filename, squash = false) {
 }
 
 function import_d3d(filename, squash = false) {
-    // "squash" will force all submeshes to be loaded as a single submesh,
-    // overriding the global setting
+    squash |= Settings.config.squash_meshes;
+    
     var f = file_text_open_read(filename);
     file_text_readln(f);
     var n = file_text_read_real(f) - 2;

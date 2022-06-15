@@ -4,7 +4,7 @@ function dialog_create_preferences() {
     var ew = 292;
     var eh = 32;
     
-    var dialog = new EmuDialog(720, 640, "Preferences");
+    var dialog = new EmuDialog(720, 672, "Preferences");
     
     dialog.AddContent([
         (new EmuInput(c1x, EMU_AUTO, ew, eh, "Bezier precision:", Settings.config.bezier_precision, "0...16", 2, E_InputTypes.INT, function() {
@@ -88,13 +88,17 @@ function dialog_create_preferences() {
             self.root.active_shade = self.value;
         }))
             .SetTooltip("The opacity behind the active dialog box. Not all dialog boxes may show the opacity, although most will."),
+        (new EmuCheckbox(c1x, EMU_AUTO, ew, eh, "Squash 3D meshes on import?", Settings.config.squash_meshes, function() {
+            Settings.config.squash_meshes = self.value;
+        }))
+            .SetTooltip("If this is enabled, 3D model files that you import will be loaded as a single submesh instead of separate submeshes for each Material."),
         new EmuText(c2x, EMU_BASE, ew, eh, "Mesh Reflection Actions:"),
         (new EmuBitfield(c2x, EMU_AUTO, ew, eh * 8, Settings.mesh.reflect_settings, function() {
             Settings.mesh.reflect_settings = self.value;
         }))
             .SetOrientation(E_BitfieldOrientations.VERTICAL)
             .AddOptions([
-                "Mirror (X)", "Mirror (Y)", "Mirror (Z)", "Rotate (X)", "Rotate (Y)", "Rotate (Z)", "Reverse", "Colorize",
+                "Mirror (X)", "Mirror (Y)", "Mirror (Z)", "Rotate (X)", "Rotate (Y)", "Rotate (Z)", "Reverse Faces", "Colorize",
             ])
             .SetTooltip("Automatically generating a reflection mesh may involve different operations for different games. The Mirror options will reflect the mesh across the specified axis; the Rotate options will rotate the mesh 180 degrees around the specified axis; Reverse Triangles will reverse the culling direction of each triangle; Colorize will blend the color of each vertex to another color (see below), allowing you to make objects intended to be underwater to appear bluer, etc."),
             (new EmuColorPicker(c2x, EMU_AUTO, ew, eh, "Reflection color:", Settings.mesh.reflect_color, function() {
