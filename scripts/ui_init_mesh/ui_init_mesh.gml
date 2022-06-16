@@ -208,6 +208,7 @@ function ui_init_mesh(mode) {
                 var mesh = self.root.GetSibling("MESH LIST").GetSelectedItem();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
+                    debug_timer_start();
                     var mesh = self.root.mesh;
                     var old_submesh_list = mesh.submeshes;
                     mesh.submeshes = [];
@@ -225,6 +226,7 @@ function ui_init_mesh(mode) {
                     mesh.first_proto_guid = combine_submesh.proto_guid;
                     
                     batch_again();
+                    Stuff.AddStatusMessage("Combining the submesh took " + debug_timer_finish());
                     self.root.Dispose();
                 });
                 
