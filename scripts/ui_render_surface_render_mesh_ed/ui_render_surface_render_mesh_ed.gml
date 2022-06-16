@@ -57,8 +57,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         switch (mesh_data.type) {
             case MeshTypes.RAW:
                 var this_tex = -1;
-                if (mesh_data.tex_base != NULL && Settings.mesh.draw_textures) {
-                    this_tex = guid_get(mesh_data.tex_base) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_tex;
+                if (Settings.mesh.draw_textures && guid_get(mesh_data.tex_base)) {
+                    this_tex = sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
                 }
                 for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
                     var vbuffer = mesh_data.submeshes[sm_index].vbuffer;
