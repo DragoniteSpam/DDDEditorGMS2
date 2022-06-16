@@ -187,22 +187,25 @@ function import_obj(fn, squash = false) {
     var f = file_text_open_read(fn);
     var line_number = 0;
     
-    static v_x = ds_list_create();
-    static v_y = ds_list_create();
-    static v_z = ds_list_create();
-    static v_nx = ds_list_create();
-    static v_ny = ds_list_create();
-    static v_nz = ds_list_create();
-    static v_xtex = ds_list_create();
-    static v_ytex = ds_list_create();
-    ds_list_clear(v_x);
-    ds_list_clear(v_y);
-    ds_list_clear(v_z);
-    ds_list_clear(v_nx);
-    ds_list_clear(v_ny);
-    ds_list_clear(v_nz);
-    ds_list_clear(v_xtex);
-    ds_list_clear(v_ytex);
+    static buffer_attribute_type = buffer_f32;
+    static buffer_attribute_size = buffer_sizeof(buffer_attribute_type);
+    
+    static v_x = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_y = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_z = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_nx = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_ny = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_nz = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_xtex = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_ytex = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    buffer_seek(v_x, buffer_seek_start, 0);
+    buffer_seek(v_y, buffer_seek_start, 0);
+    buffer_seek(v_z, buffer_seek_start, 0);
+    buffer_seek(v_nx, buffer_seek_start, 0);
+    buffer_seek(v_ny, buffer_seek_start, 0);
+    buffer_seek(v_nz, buffer_seek_start, 0);
+    buffer_seek(v_xtex, buffer_seek_start, 0);
+    buffer_seek(v_ytex, buffer_seek_start, 0);
     
     static xx = [0, 0, 0];
     static yy = [0, 0, 0];
@@ -241,26 +244,26 @@ function import_obj(fn, squash = false) {
             switch (word) {
                 case "v":
                     if (ds_queue_size(q) >= 3) {
-                        ds_list_add(v_x, real(ds_queue_dequeue(q)));
-                        ds_list_add(v_y, real(ds_queue_dequeue(q)));
-                        ds_list_add(v_z, real(ds_queue_dequeue(q)));
+                        buffer_write(v_x, buffer_attribute_type, real(ds_queue_dequeue(q)));
+                        buffer_write(v_y, buffer_attribute_type, real(ds_queue_dequeue(q)));
+                        buffer_write(v_z, buffer_attribute_type, real(ds_queue_dequeue(q)));
                     } else {
                         err = "Malformed vertex found (line " + string(line_number) + ")";
                     }
                     break;
                 case "vt":
                     if (ds_queue_size(q) >= 2) {
-                        ds_list_add(v_xtex, real(ds_queue_dequeue(q)));
-                        ds_list_add(v_ytex, real(ds_queue_dequeue(q)));
+                        buffer_write(v_xtex, buffer_attribute_type, real(ds_queue_dequeue(q)));
+                        buffer_write(v_ytex, buffer_attribute_type, real(ds_queue_dequeue(q)));
                     } else {
                         err = "Malformed vertex texture found (line " + string(line_number) + ")";
                     }
                     break;
                 case "vn":
                     if (ds_queue_size(q) >= 3) {
-                        ds_list_add(v_nx, real(ds_queue_dequeue(q)));
-                        ds_list_add(v_ny, real(ds_queue_dequeue(q)));
-                        ds_list_add(v_nz, real(ds_queue_dequeue(q)));
+                        buffer_write(v_nx, buffer_attribute_type, real(ds_queue_dequeue(q)));
+                        buffer_write(v_ny, buffer_attribute_type, real(ds_queue_dequeue(q)));
+                        buffer_write(v_nz, buffer_attribute_type, real(ds_queue_dequeue(q)));
                     } else {
                         err = "Malformed vertex normal found (line " + string(line_number) + ")";
                     }
@@ -280,10 +283,10 @@ function import_obj(fn, squash = false) {
                             var vertex_q = split(ds_queue_dequeue(q), "/", false, true);
                             switch (ds_queue_size(vertex_q)) {
                                 case 1:
-                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;    // each of these are -1 because they start indexing from 1 instead of 0. Why?
-                                    xx[i] = v_x[| vert];
-                                    yy[i] = v_y[| vert];
-                                    zz[i] = v_z[| vert];
+                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;    // each of these are -1 because they start indexing from 1 instead of 0. Why? because the obj file format sucks.
+                                    xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
+                                    yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
+                                    zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
                                     nx[i] = 0;
                                     ny[i] = 0;
                                     nz[i] = 1;
@@ -293,11 +296,11 @@ function import_obj(fn, squash = false) {
                                 case 2:
                                     var vert = real(ds_queue_dequeue(vertex_q)) - 1;
                                     var tex = real(ds_queue_dequeue(vertex_q)) - 1;
-                                    xx[i] = v_x[| vert];
-                                    yy[i] = v_y[| vert];
-                                    zz[i] = v_z[| vert];
-                                    xtex[i] = v_xtex[| tex];
-                                    ytex[i] = v_ytex[| tex];
+                                    xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
+                                    yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
+                                    zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
+                                    xtex[i] = buffer_peek(v_xtex, buffer_attribute_size * tex, buffer_attribute_type);
+                                    ytex[i] = buffer_peek(v_ytex, buffer_attribute_size * tex, buffer_attribute_type);
                                     nx[i] = 0;
                                     ny[i] = 0;
                                     nz[i] = 1;
@@ -309,14 +312,14 @@ function import_obj(fn, squash = false) {
                                     var middle_term = ds_queue_dequeue(vertex_q);
                                     var tex = (middle_term == "") ? -1 : (real(middle_term) - 1);
                                     var normal = real(ds_queue_dequeue(vertex_q)) - 1;
-                                    xx[i] = v_x[| vert];
-                                    yy[i] = v_y[| vert];
-                                    zz[i] = v_z[| vert];
-                                    nx[i] = v_nx[| normal];
-                                    ny[i] = v_ny[| normal];
-                                    nz[i] = v_nz[| normal];
-                                    xtex[i] = (tex == -1) ? 0 : v_xtex[| tex];
-                                    ytex[i] = (tex == -1) ? 0 : v_ytex[| tex];
+                                    xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
+                                    yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
+                                    zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
+                                    nx[i] = buffer_peek(v_nx, buffer_attribute_size * normal, buffer_attribute_type);
+                                    ny[i] = buffer_peek(v_ny, buffer_attribute_size * normal, buffer_attribute_type);
+                                    nz[i] = buffer_peek(v_nz, buffer_attribute_size * normal, buffer_attribute_type);
+                                    xtex[i] = (tex == -1) ? 0 : buffer_peek(v_xtex, buffer_attribute_size * tex,  buffer_attribute_type);
+                                    ytex[i] = (tex == -1) ? 0 : buffer_peek(v_ytex, buffer_attribute_size * tex,  buffer_attribute_type);
                                     break;
                             }
                             ds_queue_destroy(vertex_q);
