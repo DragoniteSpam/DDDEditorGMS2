@@ -204,14 +204,14 @@ function import_obj(fn, squash = false) {
     ds_list_clear(v_xtex);
     ds_list_clear(v_ytex);
     
-    var xx = [0, 0, 0];
-    var yy = [0, 0, 0];
-    var zz = [0, 0, 0];
-    var nx = [0, 0, 0];
-    var ny = [0, 0, 0];
-    var nz = [0, 0, 0];
-    var xtex = [0, 0, 0];
-    var ytex = [0, 0, 0];
+    static xx = [0, 0, 0];
+    static yy = [0, 0, 0];
+    static zz = [0, 0, 0];
+    static nx = [0, 0, 0];
+    static ny = [0, 0, 0];
+    static nz = [0, 0, 0];
+    static xtex = [0, 0, 0];
+    static ytex = [0, 0, 0];
     
     static temp_vertices = ds_list_create();
     ds_list_clear(temp_vertices);
@@ -275,14 +275,6 @@ function import_obj(fn, squash = false) {
                 case "f":
                     #region face data
                     if (ds_queue_size(q) >= 3) {
-                        xx = [0, 0, 0];
-                        yy = [0, 0, 0];
-                        zz = [0, 0, 0];
-                        nx = [0, 0, 0];
-                        ny = [0, 0, 0];
-                        nz = [0, 0, 0];
-                        xtex = [0, 0, 0];
-                        ytex = [0, 0, 0];
                         var s = ds_queue_size(q);
                         for (var i = 0; i < s; i++) {
                             var vertex_q = split(ds_queue_dequeue(q), "/", false, true);
@@ -492,20 +484,14 @@ function import_obj(fn, squash = false) {
     var output = [output_data];
     
     var vc = 0;
-    var bxx, byy, bzz, bnx, bny, bnz, bxtex, bytex, bmtl;
+    var bytex, bmtl;
     
     var max_alpha = 0;
     
     for (var i = 0; i < n; i++) {
         var v = temp_vertices[| i];
         
-        bxx = v[0];
-        byy = v[1];
-        bzz = v[2];
-        bnx = v[3];
-        bny = v[4];
-        bnz = v[5];
-        bxtex = v[6];
+        // the other attributes are read in directly since they don't need processing
         bytex = is_blender ? v[7] : (1 - v[7]);
         bmtl = v[8];
         
@@ -528,7 +514,7 @@ function import_obj(fn, squash = false) {
         
         // always use the vertex color of the current material, even if squashed
         max_alpha = max(max_alpha, bmtl.alpha);
-        vertex_point_complete_raw(output_data.buffer, bxx, byy, bzz, bnx, bny, bnz, bxtex, bytex, bmtl.col_diffuse, bmtl.alpha);
+        vertex_point_complete_raw(output_data.buffer, v[0], v[1], v[2], v[3], v[4], v[5], v[6], bytex, bmtl.col_diffuse, bmtl.alpha);
         
         vc = ++vc % 3;
     }
