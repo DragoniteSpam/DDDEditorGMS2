@@ -20,8 +20,17 @@ function ui_init_mesh(mode) {
             for (var i = 0; i < array_length(filtered_list); i++) {
                 // try to import the file as a 3D mesh; if that doesn't work,
                 // import it as a texture instead
-                if (!import_mesh(filtered_list[i])) {
-                    import_texture(filtered_list[i]);
+                switch (string_lower(filename_ext(filtered_list[i]))) {
+                    case ".d3d":
+                    case ".gmmod":
+                    case ".obj":
+                    case ".dae":
+                    case ".smf":
+                        import_mesh(filtered_list[i]);
+                        break;
+                    default:
+                        import_texture(filtered_list[i]);
+                        break;
                 }
             }
         }),

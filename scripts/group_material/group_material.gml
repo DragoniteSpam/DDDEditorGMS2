@@ -8,7 +8,7 @@ function Material(
         tex_base = NULL,
         tex_normal = NULL,
         tex_ambient = NULL,
-        tex_specular = NULL,
+        tex_specular_color = NULL,
         tex_specular_highlight = NULL,
         tex_alpha = NULL,
         tex_bump = NULL,
@@ -24,7 +24,7 @@ function Material(
     self.tex_base = tex_base;
     self.tex_normal = tex_normal;
     self.tex_ambient = tex_ambient;
-    self.tex_specular = tex_specular;
+    self.tex_specular_color = tex_specular_color;
     self.tex_specular_highlight = tex_specular_highlight;
     self.tex_alpha = tex_alpha;
     self.tex_bump = tex_bump;
@@ -40,7 +40,7 @@ function Material(
         self.tex_base = source.tex_base;
         self.tex_normal = source.tex_normal;
         self.tex_ambient = source.tex_ambient;
-        self.tex_specular = source.tex_specular;
+        self.tex_specular_color = source.tex_specular_color;
         self.tex_specular_highlight = source.tex_specular_highlight;
         self.tex_alpha = source.tex_alpha;
         self.tex_bump = source.tex_bump;
@@ -62,7 +62,7 @@ function Material(
         json.tex_base = self.tex_base;
         json.tex_normal = self.tex_normal;
         json.tex_ambient = self.tex_ambient;
-        json.tex_specular = self.tex_specular;
+        json.tex_specular_color = self.tex_specular_color;
         json.tex_specular_highlight = self.tex_specular_highlight;
         json.tex_alpha = self.tex_alpha;
         json.tex_bump = self.tex_bump;
@@ -118,6 +118,7 @@ function Material(
                 case "map_Kd":                  // dissolve (base) texture
                     var texfn = ds_queue_concatenate(spl);
                     if (!file_exists(texfn)) texfn = base_path + texfn;
+                    wtf(["looking for ", texfn])
                     self.tex_base = tileset_create(texfn);
                     self.tex_base.name = self.name + ".BaseTexture";
                     break;

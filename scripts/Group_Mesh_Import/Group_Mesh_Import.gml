@@ -378,9 +378,9 @@ function import_obj(fn, squash = false) {
         return undefined;
     }
     
-    var output = [];
     var output_material = base_material;
-    var output_data = undefined;
+    var output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), output_material);
+    var output = [output_data];
     
     var vc = 0;
     var bxx, byy, bzz, bnx, bny, bnz, bxtex, bytex, bmtl;
@@ -418,7 +418,7 @@ function import_obj(fn, squash = false) {
         
         // always use the vertex color of the current material, even if squashed
         max_alpha = max(max_alpha, bmtl.alpha);
-        vertex_point_complete_raw(output_data.buffer, bxx, byy, bzz, bnx, bny, bnz, bxtex, bytex, bmtl.color, bmtl.alpha);
+        vertex_point_complete_raw(output_data.buffer, bxx, byy, bzz, bnx, bny, bnz, bxtex, bytex, bmtl.col_diffuse, bmtl.alpha);
         
         vc = ++vc % 3;
     }
@@ -429,13 +429,16 @@ function import_obj(fn, squash = false) {
     }
     
     for (var i = array_length(output) - 1; i >= 0; i--) {
-        if (buffer_tell(output[i].buffer) == 0) {
-            buffer_delete(output[i].buffer);
+        var buffer = output[i].buffer;
+        if (buffer_tell(buffer) == 0) {
+            buffer_delete(buffer);
             array_delete(output, i, 1);
         } else {
-            buffer_resize(output, buffer_tell(output));
+            buffer_resize(buffer, buffer_tell(buffer));
         }
     }
+    
+    if (array_length(output) == 0) return undefined;
     
     return output;
 }
