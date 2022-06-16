@@ -52,7 +52,7 @@ function buffer_text_close(_file_handle, _callback = undefined) {
 
 	if (!global.__buffer_text_async)
 	{
-	    var _callback = _file_handle[@ BUFFER_TEXT.CALLBACK];
+	    _callback = _file_handle[@ BUFFER_TEXT.CALLBACK];
 	    if ((_callback != undefined) && script_exists(_callback)) script_execute(_callback, _file_handle);
 	}
 }

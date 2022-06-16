@@ -36,7 +36,7 @@ function buffer_text_open_append(_filename, _callback = undefined) {
 
 	if (!global.__buffer_text_async)
 	{
-	    var _callback = _array[@ BUFFER_TEXT.CALLBACK];
+	    _callback = _array[@ BUFFER_TEXT.CALLBACK];
 	    if ((_callback != undefined) && script_exists(_callback)) script_execute(_callback, _array);
 	}
 
