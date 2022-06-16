@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Animation",
-    "path": "folders/Scribble/Animation.yy",
+    "path": "folders/Extensions/Scribble/Animation.yy",
   },
   "resourceVersion": "1.0",
   "name": "scribble_anim_reset",

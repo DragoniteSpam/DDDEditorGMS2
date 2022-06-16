@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "GML",
-    "path": "folders/SNAP/GML.yy",
+    "path": "folders/Extensions/SNAP/GML.yy",
   },
   "resourceVersion": "1.0",
   "name": "snap_from_gml",

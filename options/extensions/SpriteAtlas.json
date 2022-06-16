@@ -1,0 +1,9 @@
+{
+  "extensionId": {
+    "name": "SpriteAtlas",
+    "path": "extensions/SpriteAtlas/SpriteAtlas.yy"
+  },
+  "resourceVersion": "1.0",
+  "resourceType": "GMExtensionConfigSet",
+  "configurables": null
+}

@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "INI",
-    "path": "folders/SNAP/INI.yy",
+    "path": "folders/Extensions/SNAP/INI.yy",
   },
   "resourceVersion": "1.0",
   "name": "snap_from_ini_string",

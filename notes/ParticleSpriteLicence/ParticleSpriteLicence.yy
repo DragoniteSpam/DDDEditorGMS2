@@ -1,7 +1,7 @@
 {
   "parent": {
     "name": "Notes",
-    "path": "folders/sPart/Notes.yy",
+    "path": "folders/Extensions/sPart/Notes.yy",
   },
   "resourceVersion": "1.1",
   "name": "ParticleSpriteLicence",

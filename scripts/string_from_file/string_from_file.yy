@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "SNAP",
-    "path": "folders/SNAP.yy",
+    "path": "folders/Extensions/SNAP.yy",
   },
   "resourceVersion": "1.0",
   "name": "string_from_file",
