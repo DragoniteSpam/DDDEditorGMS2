@@ -207,6 +207,13 @@ function import_obj(fn, squash = false) {
     buffer_seek(v_xtex, buffer_seek_start, 0);
     buffer_seek(v_ytex, buffer_seek_start, 0);
     
+    static face_attribute_type = buffer_f32;
+    
+    static face_vertex_attributes = buffer_create(1000, buffer_grow, buffer_sizeof(face_attribute_type));
+    static face_vertex_materials = ds_list_create();
+    buffer_seek(face_vertex_attributes, buffer_seek_start, 0);
+    ds_list_clear(face_vertex_materials);
+    
     static xx = [0, 0, 0];
     static yy = [0, 0, 0];
     static zz = [0, 0, 0];
@@ -216,8 +223,6 @@ function import_obj(fn, squash = false) {
     static xtex = [0, 0, 0];
     static ytex = [0, 0, 0];
     
-    static temp_vertices = ds_list_create();
-    ds_list_clear(temp_vertices);
     var first_line_read = false;
     var is_blender = false;
     
@@ -327,9 +332,31 @@ function import_obj(fn, squash = false) {
                         
                         // faces are triangle fans
                         for (var i = 2; i < array_length(xx); i++) {
-                            ds_list_add(temp_vertices, [xx[0],      yy[0],      zz[0],      nx[0],      ny[0],      nz[0],      xtex[0],        ytex[0],        active_material]);
-                            ds_list_add(temp_vertices, [xx[i - 1],  yy[i - 1],  zz[i - 1],  nx[i - 1],  ny[i - 1],  nz[i - 1],  xtex[i - 1],    ytex[i - 1],    active_material]);
-                            ds_list_add(temp_vertices, [xx[i - 0],  yy[i - 0],  zz[i - 0],  nx[i - 0],  ny[i - 0],  nz[i - 0],  xtex[i - 0],    ytex[i - 0],    active_material]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xx[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, yy[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, zz[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nx[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ny[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nz[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[0]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xx[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, yy[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, zz[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nx[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ny[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nz[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xx[i]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, yy[i]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, zz[i]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nx[i]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ny[i]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nz[i]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[i]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[i]);
+                            ds_list_add(face_vertex_materials, active_material);
                         }
                     } else {
                         err = "Malformed face found (line " + string(line_number) + ")";
@@ -475,9 +502,9 @@ function import_obj(fn, squash = false) {
         return undefined;
     }
     
-    var n = ds_list_size(temp_vertices);
+    var face_count = ds_list_size(face_vertex_materials);
     
-    if (n == 0) {
+    if (face_count == 0) {
         emu_dialog_notice("No face data found in the model " + fn);
         return undefined;
     }
@@ -486,21 +513,16 @@ function import_obj(fn, squash = false) {
     var output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), output_material);
     var output = [output_data];
     
-    var vc = 0;
-    var bytex, bmtl;
-    
     var max_alpha = 0;
     
-    for (var i = 0; i < n; i++) {
-        var v = temp_vertices[| i];
-        
-        // the other attributes are read in directly since they don't need processing
-        bytex = is_blender ? v[7] : (1 - v[7]);
-        bmtl = v[8];
+    buffer_seek(face_vertex_attributes, buffer_seek_start, 0);
+    
+    for (var i = 0; i < face_count; i++) {
+        var face_material = face_vertex_materials[| i];
         
         // if the material you're working with changes, check to see if any
         // output data with the material already exists; if not, create one
-        var current_output_material = squash ? base_material : bmtl;
+        var current_output_material = squash ? base_material : face_material;
         if (output_material != current_output_material) {
             output_data = undefined;
             for (var j = 0, n2 = array_length(output); j < n2; j++) {
@@ -516,10 +538,18 @@ function import_obj(fn, squash = false) {
         }
         
         // always use the vertex color of the current material, even if squashed
-        max_alpha = max(max_alpha, bmtl.alpha);
-        vertex_point_complete_raw(output_data.buffer, v[0], v[1], v[2], v[3], v[4], v[5], v[6], bytex, bmtl.col_diffuse, bmtl.alpha);
-        
-        vc = ++vc % 3;
+        max_alpha = max(max_alpha, face_material.alpha);
+        repeat (3) {
+            var xx = buffer_read(face_vertex_attributes, face_attribute_type);
+            var yy = buffer_read(face_vertex_attributes, face_attribute_type);
+            var zz = buffer_read(face_vertex_attributes, face_attribute_type);
+            var nx = buffer_read(face_vertex_attributes, face_attribute_type);
+            var ny = buffer_read(face_vertex_attributes, face_attribute_type);
+            var nz = buffer_read(face_vertex_attributes, face_attribute_type);
+            var xtex = buffer_read(face_vertex_attributes, face_attribute_type);
+            var ytex = buffer_read(face_vertex_attributes, face_attribute_type);
+            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? ytex : (1 - ytex), face_material.col_diffuse, face_material.alpha);
+        }
     }
     
     if (max_alpha < 0.05 && !warn_invisible) {
