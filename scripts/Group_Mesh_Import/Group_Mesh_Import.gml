@@ -406,6 +406,29 @@ function import_obj(fn, squash = false) {
                                     );
                                 }
                                 break;
+                            case "Ka":  // Ambient color
+                                if (current_material) {
+                                    current_material.col_ambient = make_colour_rgb(
+                                        real(ds_queue_dequeue(spl)) * 255,
+                                        real(ds_queue_dequeue(spl)) * 255,
+                                        real(ds_queue_dequeue(spl)) * 255
+                                    );
+                                }
+                                break;
+                            case "Ks":  // Specular color
+                                if (current_material) {
+                                    current_material.col_specular = make_colour_rgb(
+                                        real(ds_queue_dequeue(spl)) * 255,
+                                        real(ds_queue_dequeue(spl)) * 255,
+                                        real(ds_queue_dequeue(spl)) * 255
+                                    );
+                                }
+                                break;
+                            case "Ns":  // Specular exponent
+                                if (current_material) {
+                                    current_material.col_specular_exponent = real(ds_queue_dequeue(spl));
+                                }
+                                break;
                             case "d":   // "dissolved" (alpha)
                                 current_material.alpha = real(ds_queue_dequeue(spl));
                                 break;
