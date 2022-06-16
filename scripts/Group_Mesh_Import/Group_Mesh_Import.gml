@@ -180,6 +180,7 @@ function import_obj(fn, squash = false) {
     
     if (!file_exists(fn)) return undefined;
     var materials = { };
+    var material_cache = { };                                   // if you try to load in a bunch of files at once that all use the same mtl, you only need to parse the file once
     var active_material = new Material(base_name + "_BaseMaterial", c_white, 1, , , , MAP_ACTIVE_TILESET.GUID);
     var base_material = active_material;
     
@@ -265,7 +266,7 @@ function import_obj(fn, squash = false) {
                     }
                     break;
                 case "usemtl":
-                    active_material = materials[$ ds_queue_dequeue(q)] ?? base_material;
+                    active_material = materials[$ ds_queue_concatenate(q)] ?? base_material;
                     break;
                 case "usemap":
                     // this would specifically fetch a texture map but i'd
@@ -344,10 +345,118 @@ function import_obj(fn, squash = false) {
                     break;
                 case "mtllib":  // specify the mtllib file
                     #region mtl data
-                    var material_name = ds_queue_concatenate(q);
-                    var filename = file_exists(material_name) ? material_name : base_path + material_name;
+                    var material_file_name = ds_queue_concatenate(q);
+                    
+                    if (material_cache[$ material_file_name]) {
+                        var keys = variable_struct_get_names(material_cache[$ material_file_name]);
+                        for (var i = 0, n = array_length(keys); i < n; i++) {
+                            materials[$ keys[i]] = material_cache[$ material_file_name][$ keys[i]];
+                        }
+                        break;
+                    }
+                    
+                    var filename = file_exists(material_file_name) ? material_file_name : (base_path + material_file_name);
                     if (!file_exists(filename)) break;
-                    materials[$ material_name] = new Material("").LoadFromFile(filename);
+                    
+                    var matfile = file_text_open_read(filename);
+                    var current_material = undefined;
+                    var from_file = { };
+                    material_cache[$ filename] = from_file;
+                    self.name = filename_name(filename_change_ext(filename, ""));
+                        
+                    while (!file_text_eof(matfile)) {
+                        var line = file_text_read_string(matfile);
+                        file_text_readln(matfile);
+                        var spl = split(line, " ");
+                        switch (ds_queue_dequeue(spl)) {
+                            case "newmtl":
+                                var name = ds_queue_concatenate(spl);
+                                current_material = new Material(name)
+                                materials[$ name] = current_material;
+                                from_file[$ name] = current_material;
+                                break;
+                            case "Kd":  // Diffuse color (the color we're concerned with)
+                                if (current_material) {
+                                    current_material.col_diffuse = make_colour_rgb(
+                                        real(ds_queue_dequeue(spl)) * 255,
+                                        real(ds_queue_dequeue(spl)) * 255,
+                                        real(ds_queue_dequeue(spl)) * 255
+                                    );
+                                }
+                                break;
+                            case "d":   // "dissolved" (alpha)
+                                current_material.alpha = real(ds_queue_dequeue(spl));
+                                break;
+                            case "Tr":  // "transparent" (blender thinks this should be 1 - alpha???)
+                                if (current_material) {
+                                    current_material.alpha = is_blender ? (1 - real(ds_queue_dequeue(spl))) : real(ds_queue_dequeue(spl));
+                                }
+                                break;
+                            case "map_Kd":                  // dissolve (base) texture
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_base = tileset_create(texfn, current_material.name + ".BaseTexture").GUID;
+                                }
+                                break;
+                            case "map_Ka":                  // ambient texture
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_base = tileset_create(texfn, current_material.name + ".AmbientMap").GUID;
+                                }
+                                break;
+                            case "map_Ks":                  // specular color texture
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_specular_color = tileset_create(texfn, current_material.name + ".SpecularColorMap").GUID;
+                                }
+                                break;
+                            case "map_Ns":                  // specular highlight texture
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_specular_highlight = tileset_create(texfn, current_material.name + ".SpecularHighlightMap").GUID;
+                                }
+                                break;
+                            case "map_d":                   // alpha texture
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_alpha = tileset_create(texfn, current_material.name + ".AlphaMap").GUID;
+                                }
+                                break;
+                            case "map_bump":                // bump texture
+                            case "bump":
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_bump = tileset_create(texfn, current_material.name + ".BumpMap").GUID;
+                                }
+                                break;
+                            case "disp":                    // displacement texture
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_displace = tileset_create(texfn, current_material.name + ".DisplacementMap").GUID;
+                                }
+                                break;
+                            case "decal":                   // stencil decal texture
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_decal = tileset_create(texfn, current_material.name + ".StencilDecal").GUID;
+                                }
+                                break;
+                            default:    // There are way more attributes available than I'm going to use later - maybe
+                                break;
+                        }
+                        ds_queue_destroy(spl);
+                    }
+                    
+                    file_text_close(matfile);
+                    
                     #endregion
                     break;
                 case "g":   // group
@@ -413,6 +522,7 @@ function import_obj(fn, squash = false) {
             }
             if (!output_data) {
                 output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), current_output_material);
+                array_push(output, output_data);
             }
         }
         
