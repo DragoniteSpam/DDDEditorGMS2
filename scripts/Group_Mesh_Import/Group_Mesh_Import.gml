@@ -35,6 +35,7 @@ function import_3d_model_generic(filename, squash = false) {
             case ".smf": 
         }
     } catch (e) {
+        Stuff.AddStatusMessage("Could not load the file: [c_orange]" + e.message);
         // ignore
     }
     return undefined;
@@ -177,7 +178,6 @@ function import_dae(filename, adjust_uvs = true) {
 function import_obj(fn, squash = false) {
     squash |= Settings.config.squash_meshes;
     
-    var err = "";
     static warn_invisible = false;
     
     var base_path = filename_path(fn);
@@ -232,7 +232,7 @@ function import_obj(fn, squash = false) {
     var is_blender = false;
     
     #region parse the obj file
-    while (!file_text_eof(f) && err == "") {
+    while (!file_text_eof(f)) {
         line_number++;
         var str = string_strip(file_text_read_string(f));
         
@@ -258,7 +258,7 @@ function import_obj(fn, squash = false) {
                         buffer_write(v_y, buffer_attribute_type, real(ds_queue_dequeue(q)));
                         buffer_write(v_z, buffer_attribute_type, real(ds_queue_dequeue(q)));
                     } else {
-                        err = "Malformed vertex found (line " + string(line_number) + ")";
+                        throw { message: "Malformed vertex found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
                     }
                     break;
                 case "vt":
@@ -266,7 +266,7 @@ function import_obj(fn, squash = false) {
                         buffer_write(v_xtex, buffer_attribute_type, real(ds_queue_dequeue(q)));
                         buffer_write(v_ytex, buffer_attribute_type, real(ds_queue_dequeue(q)));
                     } else {
-                        err = "Malformed vertex texture found (line " + string(line_number) + ")";
+                        throw { message: "Malformed vertex texture found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
                     }
                     break;
                 case "vn":
@@ -275,7 +275,7 @@ function import_obj(fn, squash = false) {
                         buffer_write(v_ny, buffer_attribute_type, real(ds_queue_dequeue(q)));
                         buffer_write(v_nz, buffer_attribute_type, real(ds_queue_dequeue(q)));
                     } else {
-                        err = "Malformed vertex normal found (line " + string(line_number) + ")";
+                        throw { message: "Malformed vertex normal found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
                     }
                     break;
                 case "usemtl":
@@ -364,7 +364,7 @@ function import_obj(fn, squash = false) {
                             ds_list_add(face_vertex_materials, active_material);
                         }
                     } else {
-                        err = "Malformed face found (line " + string(line_number) + ")";
+                        throw { message: "Malformed face found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
                     }
                     #endregion
                     break;
@@ -515,20 +515,12 @@ function import_obj(fn, squash = false) {
                     break;
                 case "l":   // line
                     break;
-                default:
-                    err = "Unsupported thing found in your model, skipping everything (line " + string(line_number) + "): " + string(word);
-                    break;
             }
         }
         ds_queue_destroy(q);
     }
     file_text_close(f);
     #endregion
-    
-    if (err != "") {
-        emu_dialog_notice("Could not load the model " + fn + ": " + err);
-        return undefined;
-    }
     
     var face_count = ds_list_size(face_vertex_materials);
     
