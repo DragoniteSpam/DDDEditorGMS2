@@ -1,16 +1,4 @@
 function dialog_create_mesh_submesh(mesh) {
-    var dw = 960;
-    var dh = 672;
-    
-    var columns = 3;
-    var spacing = 16;
-    var element_width = dw / columns - spacing * 2;
-    var element_height = 32;
-    
-    var col1 = dw * 0 / columns + spacing;
-    var col2 = dw * 1 / columns + spacing;
-    var col3 = dw * 2 / columns + spacing;
-    
     var replace_submesh = function() {
         var index = self.GetSibling("SUBMESHES").GetSelection();
         if (index == -1) return;
@@ -20,8 +8,14 @@ function dialog_create_mesh_submesh(mesh) {
         batch_again();
     };
     
-    var dialog = new EmuDialog(dw, dh, "Advanced Mesh Options: " + mesh.name);
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 688, "Advanced Mesh Options: " + mesh.name);
     dialog.mesh = mesh;
+    
+    var element_width = 320;
+    var element_height = 32;
+    var col1 = 32;
+    var col2 = 32 + 320 + 32;
+    var col3 = 32 + 320 + 32 + 320 + 32;
     
     dialog.AddContent([
         #region column 1
@@ -34,7 +28,15 @@ function dialog_create_mesh_submesh(mesh) {
             .SetMultiSelect(true)
             .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
                 var submesh = self.entries[index];
-                return submesh.editor_visible ? submesh.name : ("[c_ltgray][slant]" + submesh.name);
+                var buffer_size = (submesh.buffer ? buffer_get_size(submesh.buffer) : 0) / VERTEX_SIZE / 3;
+                var reflect_buffer_size = (submesh.reflect_buffer ? buffer_get_size(submesh.reflect_buffer) : 0) / VERTEX_SIZE / 3;
+                var suffix = "";
+                if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
+                    suffix = " (" + string(buffer_size) + " triangles)";
+                } else {
+                    suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
+                }
+                return (submesh.editor_visible ? submesh.name : ("[c_ltgray][slant]" + submesh.name + "[]")) + suffix;
             })
             .SetID("SUBMESHES"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Submesh", function() {
