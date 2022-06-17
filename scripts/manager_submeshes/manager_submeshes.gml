@@ -1,6 +1,6 @@
 function dialog_create_mesh_submesh(mesh) {
     var dw = 960;
-    var dh = 640;
+    var dh = 672;
     
     var columns = 3;
     var spacing = 16;
@@ -62,18 +62,43 @@ function dialog_create_mesh_submesh(mesh) {
         (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Name:", "", "name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
             var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
             for (var i = 0, n = array_length(selection); i < n; i++) {
-                self.root.mesh.submeshes[i].name = self.value;
+                self.root.mesh.submeshes[selection[i]].name = self.value;
             }
         }))
             .SetRefresh(function() {
-                if (array_length(self.GetSibling("SUBMESHES").GetAllSelectedIndices()) > 1) {
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                if (array_length(selection) == 0) {
+                    self.SetInteractive(false);
+                } else if (array_length(selection) > 1) {
+                    self.SetInteractive(true);
                     self.SetValue("");
                 } else {
-                    self.SetValue(self.root.mesh.submeshes[0].name);
+                    self.SetInteractive(true);
+                    self.SetValue(self.root.mesh.submeshes[selection[0]].name);
                 }
             })
             .SetTooltip("You don't have to, but it's generally helpful to give your submeshes names to identify them with.")
             .SetID("NAME"),
+        (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Visible in editor?", true, function() {
+            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.mesh.submeshes[selection[i]].editor_visible = self.value;
+            }
+        }))
+            .SetRefresh(function() {
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                if (array_length(selection) == 0) {
+                    self.SetInteractive(false);
+                } else if (array_length(selection) > 1) {
+                    self.SetInteractive(true);
+                    self.SetValue(2);
+                } else {
+                    self.SetInteractive(true);
+                    self.SetValue(self.root.mesh.submeshes[selection[0]].editor_visible);
+                }
+            })
+            .SetTooltip("Is the submesh drawn in the mesh editor window?")
+            .SetID("VISIBLE"),
         (new EmuText(col1, EMU_AUTO, element_width, element_height, ""))
             .SetRefresh(function() {
                 var mesh = self.root.mesh;

@@ -12,6 +12,9 @@ function MeshSubmesh(source) constructor {
     // i'll have proper material support
     self.tex_base_override = NULL;
     
+    // not serialized
+    self.editor_visible = true;
+    
     if (is_string(source)) {
         self.name = source;
     } else if (is_struct(source)) {

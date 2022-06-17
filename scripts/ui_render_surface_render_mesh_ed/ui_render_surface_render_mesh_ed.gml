@@ -59,35 +59,37 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                 }
                 for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
                     var submesh = mesh_data.submeshes[sm_index];
+                    if (!submesh.editor_visible) continue;
                     var vbuffer = submesh.vbuffer;
                     var reflect_vbuffer = submesh.reflect_vbuffer;
                     var submesh_tex = guid_get(submesh.tex_base_override) ? sprite_get_texture(guid_get(submesh.tex_base_override).picture, 0) : mesh_tex;
                     if (Settings.mesh.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, submesh_tex);
                     if (Settings.mesh.draw_reflections && Settings.mesh.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, submesh_tex);
-                    
-                    if (Settings.mesh.draw_collision) {
-                        for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
-                            var shape = mesh_data.collision_shapes[i];
-                            switch (shape.type) {
-                                case MeshCollisionShapes.BOX:
-                                    Stuff.graphics.DrawWireBox(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z);
-                                    break;
-                                case MeshCollisionShapes.CAPSULE:
-                                    // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
-                                    Stuff.graphics.DrawWireCapsule(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length);
-                                    break;
-                                case MeshCollisionShapes.SPHERE:
-                                    Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius);
-                                    break;
-                            }
-                        }
-                        
-                        matrix_set(matrix_world, matrix_build_identity());
-                        shader_set(shd_ddd);
-                    }
                 }
                 break;
         }
+        
+        if (Settings.mesh.draw_collision) {
+            for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
+                var shape = mesh_data.collision_shapes[i];
+                switch (shape.type) {
+                    case MeshCollisionShapes.BOX:
+                        Stuff.graphics.DrawWireBox(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z);
+                        break;
+                    case MeshCollisionShapes.CAPSULE:
+                        // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
+                        Stuff.graphics.DrawWireCapsule(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length);
+                        break;
+                    case MeshCollisionShapes.SPHERE:
+                        Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius);
+                        break;
+                }
+            }
+                        
+            matrix_set(matrix_world, matrix_build_identity());
+            shader_set(shd_ddd);
+        }
+        
         if (++rendered_count > limit) break;
     }
     
