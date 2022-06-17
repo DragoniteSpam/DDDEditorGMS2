@@ -181,7 +181,7 @@ function import_obj(fn, squash = false) {
     if (!file_exists(fn)) return undefined;
     var materials = { };
     var material_cache = { };                                   // if you try to load in a bunch of files at once that all use the same mtl, you only need to parse the file once
-    var active_material = new Material(base_name + "_BaseMaterial", c_white, 1, , , , MAP_ACTIVE_TILESET.GUID);
+    var active_material = new Material(base_name + "_BaseMaterial");
     var base_material = active_material;
     
     var f = file_text_open_read(fn);
