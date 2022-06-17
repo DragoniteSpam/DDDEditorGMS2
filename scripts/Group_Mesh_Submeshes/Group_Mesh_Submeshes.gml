@@ -8,6 +8,10 @@ function MeshSubmesh(source) constructor {
     self.reflect_buffer = undefined;
     self.reflect_vbuffer = undefined;
     
+    // i may implement the others, but hopefully by the time we get to that
+    // i'll have proper material support
+    self.tex_base_override = NULL;
+    
     if (is_string(source)) {
         self.name = source;
     } else if (is_struct(source)) {

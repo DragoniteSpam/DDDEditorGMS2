@@ -56,15 +56,17 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
         switch (mesh_data.type) {
             case MeshTypes.RAW:
-                var this_tex = -1;
+                var mesh_tex = -1;
                 if (Settings.mesh.draw_textures && guid_get(mesh_data.tex_base)) {
-                    this_tex = sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
+                    mesh_tex = sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
                 }
                 for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
-                    var vbuffer = mesh_data.submeshes[sm_index].vbuffer;
-                    var reflect_vbuffer = mesh_data.submeshes[sm_index].reflect_vbuffer;
-                    if (Settings.mesh.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, this_tex);
-                    if (Settings.mesh.draw_reflections && Settings.mesh.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
+                    var submesh = mesh_data.submeshes[sm_index];
+                    var vbuffer = submesh.vbuffer;
+                    var reflect_vbuffer = submesh.reflect_vbuffer;
+                    var submesh_tex = guid_get(submesh.tex_base_override) ? sprite_get_texture(guid_get(submesh.tex_base_override).picture, 0) : mesh_tex;
+                    if (Settings.mesh.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, submesh_tex);
+                    if (Settings.mesh.draw_reflections && Settings.mesh.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, submesh_tex);
                     
                     if (Settings.mesh.draw_collision) {
                         for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
