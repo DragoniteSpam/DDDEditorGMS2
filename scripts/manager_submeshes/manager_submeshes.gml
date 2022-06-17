@@ -32,7 +32,10 @@ function dialog_create_mesh_submesh(mesh) {
             .SetList(mesh.submeshes)
             .SetTooltip("Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation.")
             .SetMultiSelect(true)
-            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                var submesh = self.entries[index];
+                return submesh.editor_visible ? submesh.name : ("[c_ltgray][slant]" + submesh.name);
+            })
             .SetID("SUBMESHES"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Submesh", function() {
             self.root.mesh.AddSubmeshFromFile(get_open_filename_mesh());
