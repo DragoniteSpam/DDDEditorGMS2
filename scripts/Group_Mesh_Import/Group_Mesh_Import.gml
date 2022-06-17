@@ -331,7 +331,7 @@ function import_obj(fn, squash = false) {
                         }
                         
                         // faces are triangle fans
-                        for (var i = 2; i < array_length(xx); i++) {
+                        for (var i = 2; i < s; i++) {
                             buffer_write(face_vertex_attributes, face_attribute_type, xx[0]);
                             buffer_write(face_vertex_attributes, face_attribute_type, yy[0]);
                             buffer_write(face_vertex_attributes, face_attribute_type, zz[0]);
@@ -340,14 +340,14 @@ function import_obj(fn, squash = false) {
                             buffer_write(face_vertex_attributes, face_attribute_type, nz[0]);
                             buffer_write(face_vertex_attributes, face_attribute_type, xtex[0]);
                             buffer_write(face_vertex_attributes, face_attribute_type, ytex[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, xx[1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, yy[1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, zz[1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nx[1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ny[1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nz[1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xx[i - 1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, yy[i - 1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, zz[i - 1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nx[i - 1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ny[i - 1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, nz[i - 1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[i - 1]);
+                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[i - 1]);
                             buffer_write(face_vertex_attributes, face_attribute_type, xx[i]);
                             buffer_write(face_vertex_attributes, face_attribute_type, yy[i]);
                             buffer_write(face_vertex_attributes, face_attribute_type, zz[i]);
