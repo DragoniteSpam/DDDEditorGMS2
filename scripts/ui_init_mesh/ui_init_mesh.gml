@@ -68,7 +68,13 @@ function ui_init_mesh(mode) {
                         suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
                     }
                 } else {
-                    suffix = " (" + string(array_length(mesh.submeshes)) + " submeshes)";
+                    var bytes = 0;
+                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
+                        if (buffer_exists(mesh.submeshes[i].buffer)) {
+                            bytes += buffer_get_size(mesh.submeshes[i].buffer);
+                        }
+                    }
+                    suffix = " (" + string(array_length(mesh.submeshes)) + " submeshes, " + string(bytes / VERTEX_SIZE / 3) + " triangles)";
                 }
                 return prefix + mesh.name + suffix;
             })
