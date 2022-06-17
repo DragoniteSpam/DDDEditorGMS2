@@ -40,9 +40,6 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     wireframe_enable(Settings.mesh.wireframe_alpha);
     
-    // so that gmedit stops yelling at me
-    var tex_none = -1;
-    
     gpu_set_cullmode(Settings.mesh.draw_back_faces ? cull_noculling : cull_counterclockwise);
     var mat_translate = matrix_build(Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z, 0, 0, 0, 1, 1, 1);
     var mat_rotate = matrix_build(0, 0, 0, Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z, 1, 1, 1);
@@ -83,10 +80,10 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                                     Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius);
                                     break;
                             }
-                        
-                            matrix_set(matrix_world, matrix_build_identity());
-                            shader_set(shd_ddd);
                         }
+                        
+                        matrix_set(matrix_world, matrix_build_identity());
+                        shader_set(shd_ddd);
                     }
                 }
                 break;
@@ -100,7 +97,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     #region draw the overlay
     Stuff.mesh.camera.SetProjectionGUI();
     
-    scribble("[c_white]Use WASD to fly around, and hold the middle mouse button to aim the camera")
+    scribble("[c_white]Use WASD to fly around, Shift to move faster, middle mouse button to aim the camera")
         .align(fa_left, fa_top)
         .wrap(-1, -1)
         .draw(20, 20);
