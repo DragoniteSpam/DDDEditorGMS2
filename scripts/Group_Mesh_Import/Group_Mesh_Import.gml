@@ -11,10 +11,15 @@ function import_mesh(filename) {
     for (var i = 0, n = array_length(data); i < n; i++) {
         var submesh = new MeshSubmesh("Submesh" + string(i));
         submesh.SetBufferData(data[i].buffer);
+        if (array_length(data) >= 1) {
+            submesh.SetMaterial(data[i].material);
+        }
         mesh.AddSubmesh(submesh);
     }
     
-    mesh.SetMaterial(data[0].material);
+    if (array_length(data) == 1) {
+        mesh.SetMaterial(data[0].material);
+    }
     
     array_push(Game.meshes, mesh);
     

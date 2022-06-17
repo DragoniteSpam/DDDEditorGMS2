@@ -174,6 +174,10 @@ function MeshSubmesh(source) constructor {
         }
     };
     
+    self.SetMaterial = function(material) {
+        self.tex_base_override = material.tex_base;
+    };
+    
     static internalDeleteUpright = function() {
         if (self.buffer) buffer_delete(self.buffer);
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
