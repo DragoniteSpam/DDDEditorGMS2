@@ -47,29 +47,37 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     matrix_set(matrix_world, matrix_multiply(matrix_multiply(mat_scale, mat_rotate), mat_translate));
     
     var rendered_count = 0;
-    var limit = 10;
-    var def_tex = sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0);
-    for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
-        var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
-        switch (mesh_data.type) {
-            case MeshTypes.RAW:
-                var mesh_tex = -1;
-                if (Settings.mesh.draw_textures && guid_get(mesh_data.tex_base)) {
-                    mesh_tex = sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
-                }
-                for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
-                    var submesh = mesh_data.submeshes[sm_index];
-                    if (!submesh.editor_visible) continue;
-                    var vbuffer = submesh.vbuffer;
-                    var reflect_vbuffer = submesh.reflect_vbuffer;
-                    var submesh_tex = guid_get(submesh.tex_base_override) ? sprite_get_texture(guid_get(submesh.tex_base_override).picture, 0) : mesh_tex;
-                    if (Settings.mesh.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, submesh_tex);
-                    if (Settings.mesh.draw_reflections && Settings.mesh.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, submesh_tex);
-                }
-                break;
-        }
+    var limit = 24;
+    if (Settings.mesh.draw_meshes) {
+        var def_tex = sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0);
+        for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+            var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
+            switch (mesh_data.type) {
+                case MeshTypes.RAW:
+                    var mesh_tex = -1;
+                    if (Settings.mesh.draw_textures && guid_get(mesh_data.tex_base)) {
+                        mesh_tex = sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
+                    }
+                    for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
+                        var submesh = mesh_data.submeshes[sm_index];
+                        if (!submesh.editor_visible) continue;
+                        var vbuffer = submesh.vbuffer;
+                        var reflect_vbuffer = submesh.reflect_vbuffer;
+                        var submesh_tex = guid_get(submesh.tex_base_override) ? sprite_get_texture(guid_get(submesh.tex_base_override).picture, 0) : mesh_tex;
+                        if (vbuffer) vertex_submit(vbuffer, pr_trianglelist, submesh_tex);
+                        if (Settings.mesh.draw_reflections && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, submesh_tex);
+                    }
+                    break;
+            }
         
-        if (Settings.mesh.draw_collision) {
+            if (++rendered_count > limit) break;
+        }
+    }
+    
+    if (Settings.mesh.draw_collision) {
+        var rendered_count = 0;
+        for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+            var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
             for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
                 var shape = mesh_data.collision_shapes[i];
                 switch (shape.type) {
@@ -85,14 +93,12 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                         break;
                 }
             }
-                        
-            matrix_set(matrix_world, matrix_build_identity());
-            shader_set(shd_ddd);
+            
+            if (++rendered_count > limit) break;
         }
-        
-        if (++rendered_count > limit) break;
     }
     
+    shader_reset();
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);
     
