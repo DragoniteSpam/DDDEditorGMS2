@@ -22,14 +22,15 @@ function DataMesh(source) : SData(source) constructor {
     
     self.use_independent_bounds = Game.meta.extra.mesh_use_independent_bounds_default;
     
-    self.tex_base = NULL;                    // map_Kd
-    self.tex_ambient = NULL;                 // map_Ka
-    self.tex_specular_color = NULL;          // map_Ls
-    self.tex_specular_highlight = NULL;      // map_Ns
-    self.tex_alpha = NULL;                   // map_d
-    self.tex_bump = NULL;                    // map_bump
-    self.tex_displacement = NULL;            // disp
-    self.tex_stencil = NULL;                 // decal
+    self.tex_base = NULL;                   // map_Kd
+    self.tex_normal = NULL;                 // map_Kn
+    self.tex_ambient = NULL;                // map_Ka
+    self.tex_specular_color = NULL;         // map_Ls
+    self.tex_specular_highlight = NULL;     // map_Ns
+    self.tex_alpha = NULL;                  // map_d
+    self.tex_bump = NULL;                   // map_bump
+    self.tex_displacement = NULL;           // disp
+    self.tex_stencil = NULL;                // decal
     
     self.SetMaterial = function(material) {
         // it is highly likely at some point that we'll change this system to
@@ -53,6 +54,7 @@ function DataMesh(source) : SData(source) constructor {
     if (is_struct(source)) {
         self.type = source.type;
         self.tex_base = source.tex_base;
+        self.tex_normal = source.tex_normal;
         self.tex_ambient = source.tex_ambient;
         self.tex_specular_color = source.tex_specular_color;
         self.tex_specular_highlight = source.tex_specular_highlight;

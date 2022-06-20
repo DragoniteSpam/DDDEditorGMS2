@@ -10,6 +10,7 @@ function MeshSubmesh(source) constructor {
     
     // overrides
     self.tex_base = NULL;
+    self.tex_normal = NULL;
     self.tex_ambient = NULL;
     self.tex_specular_color = NULL;
     self.tex_specular_highlight = NULL;
@@ -27,6 +28,16 @@ function MeshSubmesh(source) constructor {
         self.name = source.name;
         self.path = source.path;
         self.proto_guid = source.proto_guid;
+        
+        self.tex_base = source.tex_base;
+        self.tex_normal = source.tex_normal;
+        self.tex_ambient = source.tex_ambient;
+        self.tex_specular_color = source.tex_specular_color;
+        self.tex_specular_highlight = source.tex_specular_highlight;
+        self.tex_alpha = source.tex_alpha;
+        self.tex_bump = source.tex_bump;
+        self.tex_displacement = source.tex_displacement;
+        self.tex_stencil = source.tex_stencil;
     }
     
     static LoadAsset = function(directory) {
@@ -62,6 +73,16 @@ function MeshSubmesh(source) constructor {
             name: self.name,
             path: self.path,
             proto_guid: self.proto_guid,
+            
+            tex_base: self.tex_base,
+            tex_normal: self.tex_normal,
+            tex_ambient: self.tex_ambient,
+            tex_specular_color: self.tex_specular_color,
+            tex_specular_highlight: self.tex_specular_highlight,
+            tex_alpha: self.tex_alpha,
+            tex_bump: self.tex_bump,
+            tex_displacement: self.tex_displacement,
+            tex_stencil: self.tex_stencil,
         };
     };
     
@@ -185,6 +206,7 @@ function MeshSubmesh(source) constructor {
     
     self.SetMaterial = function(material) {
         self.tex_base = material.tex_base;
+        self.tex_normal = material.tex_normal;
         self.tex_ambient = material.tex_ambient;
         self.tex_specular_color = material.tex_specular_color;
         self.tex_specular_highlight = material.tex_specular_highlight;

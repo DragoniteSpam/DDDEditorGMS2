@@ -449,6 +449,15 @@ function import_obj(fn, squash = false) {
                                     current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
+                            // there are other PBR attributes but this is the one i care most about now
+                            case "map_Kn":                  // normal map texture
+                            case "norm":
+                                if (current_material) {
+                                    var texfn = ds_queue_concatenate(spl);
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    current_material.tex_normal = tileset_create(texfn, filename_name(texfn)).GUID;
+                                }
+                                break;
                             case "map_Ka":                  // ambient texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
