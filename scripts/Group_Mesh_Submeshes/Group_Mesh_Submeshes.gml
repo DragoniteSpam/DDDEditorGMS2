@@ -8,9 +8,15 @@ function MeshSubmesh(source) constructor {
     self.reflect_buffer = undefined;
     self.reflect_vbuffer = undefined;
     
-    // i may implement the others, but hopefully by the time we get to that
-    // i'll have proper material support
-    self.tex_base_override = NULL;
+    // overrides
+    self.tex_base = NULL;
+    self.tex_ambient = NULL;
+    self.tex_specular_color = NULL;
+    self.tex_specular_highlight = NULL;
+    self.tex_alpha = NULL;
+    self.tex_bump = NULL;
+    self.tex_displacement = NULL;
+    self.tex_stencil = NULL;
     
     // not serialized
     self.editor_visible = true;
@@ -178,7 +184,14 @@ function MeshSubmesh(source) constructor {
     };
     
     self.SetMaterial = function(material) {
-        self.tex_base_override = material.tex_base;
+        self.tex_base = material.tex_base;
+        self.tex_ambient = material.tex_ambient;
+        self.tex_specular_color = material.tex_specular_color;
+        self.tex_specular_highlight = material.tex_specular_highlight;
+        self.tex_alpha = material.tex_alpha;
+        self.tex_bump = material.tex_bump;
+        self.tex_displacement = material.tex_displacement;
+        self.tex_stencil = material.tex_stencil;
     };
     
     static internalDeleteUpright = function() {

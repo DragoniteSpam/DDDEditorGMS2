@@ -64,8 +64,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                         var vbuffer = submesh.vbuffer;
                         var reflect_vbuffer = submesh.reflect_vbuffer;
                         var submesh_tex = mesh_tex;
-                        if (Settings.mesh.draw_textures && guid_get(submesh.tex_base_override)) {
-                             submesh_tex = sprite_get_texture(guid_get(submesh.tex_base_override).picture, 0);
+                        if (Settings.mesh.draw_textures && guid_get(submesh.tex_base)) {
+                             submesh_tex = sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
                         }
                         if (vbuffer) vertex_submit(vbuffer, pr_trianglelist, submesh_tex);
                         if (Settings.mesh.draw_reflections && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, submesh_tex);
