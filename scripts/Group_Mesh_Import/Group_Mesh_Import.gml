@@ -577,7 +577,7 @@ function import_obj(fn, squash = false) {
             var nz = buffer_read(face_vertex_attributes, face_attribute_type);
             var xtex = buffer_read(face_vertex_attributes, face_attribute_type);
             var ytex = buffer_read(face_vertex_attributes, face_attribute_type);
-            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? ytex : (1 - ytex), face_material.col_diffuse, face_material.alpha);
+            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? (1 - ytex) : ytex, face_material.col_diffuse, face_material.alpha);
         }
     }
     
