@@ -53,16 +53,16 @@ function DataMesh(source) : SData(source) constructor {
     
     if (is_struct(source)) {
         self.type = source.type;
-        self.tex_base = source.tex_base;
-        self.tex_normal = source.tex_normal;
-        self.tex_ambient = source.tex_ambient;
-        self.tex_specular_color = source.tex_specular_color;
-        self.tex_specular_highlight = source.tex_specular_highlight;
-        self.tex_alpha = source.tex_alpha;
-        self.tex_bump = source.tex_bump;
-        self.tex_displacement = source.tex_displacement;
-        self.tex_stencil = source.tex_stencil;
-        self.texture_scale = source.texture_scale;
+        self.tex_base = source[$ "tex_base"] ?? NULL;
+        self.tex_normal = source[$ "tex_normal"] ?? NULL;
+        self.tex_ambient = source[$ "tex_ambient"] ?? NULL;
+        self.tex_specular_color = source[$ "tex_specular_color"] ?? NULL;
+        self.tex_specular_highlight = source[$ "tex_specular_highlight"] ?? NULL;
+        self.tex_alpha = source[$ "tex_alpha"] ?? NULL;
+        self.tex_bump = source[$ "tex_bump"] ?? NULL;
+        self.tex_displacement = source[$ "tex_displacement"] ?? NULL;
+        self.tex_stencil = source[$ "tex_stencil"] ?? NULL;
+        self.texture_scale = source[$ "texture_scale"] ?? NULL;
         
         self.asset_flags = source.asset_flags;
         self.xmin = source.xmin;

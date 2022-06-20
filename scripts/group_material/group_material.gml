@@ -38,7 +38,7 @@ function Material(
         self.col_specular = source.col_specular;
         self.col_specular_exponent = source.col_specular_exponent;
         self.tex_base = source.tex_base;
-        self.tex_normal = source.tex_normal;
+        self.tex_normal = source[$ "tex_normal"] ?? NULL;
         self.tex_ambient = source.tex_ambient;
         self.tex_specular_color = source.tex_specular_color;
         self.tex_specular_highlight = source.tex_specular_highlight;
