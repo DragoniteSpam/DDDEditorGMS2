@@ -108,15 +108,18 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     #region draw the overlay
     Stuff.mesh.camera.SetProjectionGUI();
     
-    scribble("[c_white]Use WASD to fly around, Shift to move faster, middle mouse button to aim the camera")
+    scribble("[FDefaultOutline][c_white]Use WASD to fly around, Shift to move faster, and the")
         .align(fa_left, fa_top)
         .wrap(-1, -1)
         .draw(20, 20);
-    
-    scribble("[c_white]Use Q and E to rotate the light source")
+    scribble("[FDefaultOutline][c_white]middle mouse button to aim the camera")
         .align(fa_left, fa_top)
         .wrap(-1, -1)
         .draw(20, 40);
+    scribble("[FDefaultOutline][c_white]Use Q and E to rotate the light source")
+        .align(fa_left, fa_top)
+        .wrap(-1, -1)
+        .draw(20, 60);
     
     // i legitimately dont know why the vertical offset here needs to be 32 and not self.y
     editor_gui_button(spr_camera_icons, 2, 16, self.height - 48, self.x, 32, null, function() {
