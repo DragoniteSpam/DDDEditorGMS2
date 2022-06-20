@@ -162,7 +162,13 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         return self;
     }
     
-    Select = function(_list_index, _set_index = false) {
+    self.Select = function(_list_index, _set_index = false) {
+        self.SelectNoCallback(_list_index, _set_index);
+        self.callback();
+        return self;
+    }
+    
+    self.SelectNoCallback = function(_list_index, _set_index = false) {
         if (_list_index < 0 || _list_index >= (is_array(entries) ? array_length(entries) : ds_list_size(entries))) return self;
         if (!variable_struct_exists(_selected_entries, "first")) _selected_entries.first = _list_index;
         _selected_entries.last = _list_index;
@@ -170,19 +176,23 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         if (_set_index && clamp(_list_index, _index, _index + slots - 1) != _list_index) {
             _index = max(0, min(_list_index, is_array(entries) ? array_length(entries) : ds_list_size(entries) - slots));
         }
-        callback();
         return self;
     }
     
     Deselect = function(_list_index = undefined) {
+    	self.DeselectNoCallback();
+        self.callback();
+        return self;
+    };
+    
+    DeselectNoCallback = function(_list_index = undefined) {
     	if (_list_index == undefined) {
     		self._selected_entries = { };
     	} else {
     		variable_struct_remove(self._selected_entries, _list_index);
     	}
-        callback();
         return self;
-    }
+    };
     
     Render = function(base_x, base_y) {
     	self.update_script();
