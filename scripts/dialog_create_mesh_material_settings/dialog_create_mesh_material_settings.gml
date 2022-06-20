@@ -35,7 +35,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     var id_displacement = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_displacement; });
     var id_decal = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_stencil; });
     
-    var dg = new EmuDialog((default_mesh_tex_only ? 0 : (32 + 320)) + 32 + 320 + 32 + 32 + 32 + 480 + 32, 640, "Materials");
+    var dg = new EmuDialog((default_mesh_tex_only ? 0 : (32 + 320)) + 32 + 320 + 32 + 32 + 32, 672, "Materials");
     dg.list = mesh_list;
     dg.selection = selection;
     dg.default_mesh_tex_only = default_mesh_tex_only;
@@ -79,11 +79,21 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     var tab_displacement = new EmuTab("Displacement Map").SetInteractive(false);
     var tab_stencil = new EmuTab("Stencil Map").SetInteractive(false);
     
-    var tabs = new EmuTabGroup(default_mesh_tex_only ? col1 : col2, EMU_BASE, ew + 32 + 32, dg.height - 96, 2, eh);
+    var tabs = new EmuTabGroup(default_mesh_tex_only ? col1 : col2, EMU_BASE, ew + 32 + 32, dg.height - 128, 2, eh);
     tabs.AddTabs(0, [tab_base, tab_ambient, tab_specular_color, tab_specular]);
     tabs.AddTabs(1, [tab_alpha, tab_bump, tab_displacement, tab_stencil]);
     tabs.RequestActivateTab(tab_base);
-    dg.AddContent(tabs);
+    dg.AddContent([
+        tabs,
+        new EmuCheckbox(default_mesh_tex_only ? col1 : col2, EMU_AUTO, ew, eh, "Preview texture?", false, function() {
+            self.GetSibling("PREVIEW").SetEnabled(self.value);
+            if (self.value) {
+                self.root.width += 480 + 32;
+            } else {
+                self.root.width -= 480 + 32;
+            }
+        })
+    ]);
     
     var preview = (new EmuRenderSurface(tabs.x + tabs.width + 32, EMU_BASE, 480, 480, function() {
         self.drawCheckerbox();
@@ -93,6 +103,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         var shortest_dimension = min(1, self.width / sprite_get_width(tex.picture), self.height / sprite_get_height(tex.picture));
         draw_sprite_ext(tex.picture, 0, 0, 0, shortest_dimension, shortest_dimension, 0, c_white, 1);
     }, emu_null))
+        .SetEnabled(false)
         .SetID("PREVIEW");
     preview.sprite = NULL;
     
