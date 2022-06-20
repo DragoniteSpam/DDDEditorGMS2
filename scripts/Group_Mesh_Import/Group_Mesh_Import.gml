@@ -446,35 +446,35 @@ function import_obj(fn, squash = false) {
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_base = tileset_create(texfn, current_material.name + ".BaseTexture").GUID;
+                                    current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "map_Ka":                  // ambient texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_base = tileset_create(texfn, current_material.name + ".AmbientMap").GUID;
+                                    current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "map_Ks":                  // specular color texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_specular_color = tileset_create(texfn, current_material.name + ".SpecularColorMap").GUID;
+                                    current_material.tex_specular_color = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "map_Ns":                  // specular highlight texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_specular_highlight = tileset_create(texfn, current_material.name + ".SpecularHighlightMap").GUID;
+                                    current_material.tex_specular_highlight = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "map_d":                   // alpha texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_alpha = tileset_create(texfn, current_material.name + ".AlphaMap").GUID;
+                                    current_material.tex_alpha = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "map_bump":                // bump texture
@@ -482,21 +482,21 @@ function import_obj(fn, squash = false) {
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_bump = tileset_create(texfn, current_material.name + ".BumpMap").GUID;
+                                    current_material.tex_bump = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "disp":                    // displacement texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_displace = tileset_create(texfn, current_material.name + ".DisplacementMap").GUID;
+                                    current_material.tex_displace = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "decal":                   // stencil decal texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_decal = tileset_create(texfn, current_material.name + ".StencilDecal").GUID;
+                                    current_material.tex_decal = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             default:    // There are way more attributes available than I'm going to use later - maybe
