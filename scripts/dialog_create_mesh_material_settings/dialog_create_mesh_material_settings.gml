@@ -3,7 +3,9 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         var target_index = -1;
         for (var i = 0, n = array_length(selected_things); i < n; i++) {
             var mesh = list[selected_things[i]];
-            var mesh_texture_index = array_search(Game.graphics.tilesets, guid_get(accessor(mesh)));
+            var data = guid_get(accessor(mesh));
+            if (!data) return -1;
+            var mesh_texture_index = array_search(Game.graphics.tilesets, data);
             if (target_index == -1) {
                 target_index = mesh_texture_index;
             } else if (target_index != mesh_texture_index) {
@@ -14,7 +16,9 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     };
     
     static find_tileset_index_submesh = function(submesh, accessor) {
-        return array_search(Game.graphics.tilesets, guid_get(accessor(submesh)));
+        var data = guid_get(accessor(submesh));
+        if (!data) return -1;
+        return array_search(Game.graphics.tilesets, data);
     };
     
     // if you have multiple meshes selected or your mesh only has a single
@@ -22,6 +26,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     var default_mesh_tex_only = (array_length(selection) > 1) || ((array_length(selection) == 1) && array_length(mesh_list[selection[0]].submeshes) == 1) || (mesh_list == Game.mesh_terrain);
     
     var id_base = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_base; });
+    var id_normal = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_normal; });
     var id_ambient = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_ambient; });
     var id_specular_color = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_color; });
     var id_specular_highlight = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_highlight; });
@@ -64,9 +69,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         ]);
     }
     
-    var n_list_entries = 12;
-    
     var tab_base = new EmuTab("Diffuse");
+    var tab_normal = new EmuTab("Normal Map").SetInteractive(false);
     var tab_ambient = new EmuTab("Ambient Map").SetInteractive(false);
     var tab_specular_color = new EmuTab("Specular Color").SetInteractive(false);
     var tab_specular = new EmuTab("Specular Map").SetInteractive(false);
@@ -93,135 +97,37 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         }
     };
     
-    var list = new EmuList(col1, EMU_AUTO, ew, eh, "Textures:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_base.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_base = tex; };
-    list.SetList(Game.graphics.tilesets)
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_base, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_base; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_base; }));
-        }
-    });
+    var texture_list_general = function(x, ew, eh, name, callback_set_map_to_selection, callback_set_texture, callback_get_texture, default_selection) {
+        var n_list_entries = 12;
+        
+        var list = new EmuList(x, EMU_AUTO, ew, eh, name, eh, n_list_entries, callback_set_map_to_selection);
+        list.callback_set_texture = callback_set_texture;
+        list.callback_get_texture = callback_get_texture;
+        list.SetList(Game.graphics.tilesets)
+        list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+        list.SelectNoCallback(default_selection, true);
+        list.SetRefresh(function() {
+            self.DeselectNoCallback();
+            var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
+            if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
+                self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, self.callback_get_texture), true);
+            } else {
+                self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.callback_get_texture), true);
+            }
+        });
+        
+        return list;
+    };
     
-    list = new EmuList(col1, EMU_AUTO, ew, eh, "Ambient map:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_ambient.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_ambient = tex; };
-    list.SetList(Game.graphics.tilesets);
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_ambient, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_ambient; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_ambient; }));
-        }
-    });
+    tab_base.AddContent(texture_list_general(col1, ew, eh, "Textures:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_base = tex; }, function(thing) { return thing.tex_base; }, id_base));
+    tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_normal = tex; }, function(thing) { return thing.tex_normal; }, id_normal));
+    tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_ambient = tex; }, function(thing) { return thing.tex_ambient; }, id_specular_color));
+    tab_specular_color.AddContent(texture_list_general(col1, ew, eh, "Specular color:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_specular_color = tex; }, function(thing) { return thing.tex_specular_color; }, id_specular_color));
+    tab_specular.AddContent(texture_list_general(col1, ew, eh, "Specular highlight map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_specular_highlight = tex; }, function(thing) { return thing.tex_specular_highlight; }, id_specular_highlight));
+    tab_alpha.AddContent(texture_list_general(col1, ew, eh, "Alpha map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_alpha = tex; }, function(thing) { return thing.tex_alpha; }, id_alpha));
+    tab_bump.AddContent(texture_list_general(col1, ew, eh, "Bump map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_bump = tex; }, function(thing) { return thing.tex_bump; }, id_bump));
+    tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_displacement = tex; }, function(thing) { return thing.tex_displacement; }, id_displacement));
+    tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_stencil = tex; }, function(thing) { return thing.tex_stencil; }, id_decal));
     
-    list = new EmuList(col1, EMU_AUTO, ew, eh, "Specular color:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_specular_color.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_specular_color = tex; };
-    list.SetList(Game.graphics.tilesets);
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_specular_color, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_specular_color; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_specular_color; }));
-        }
-    });
-    
-    list = new EmuList(col1, EMU_AUTO, ew, eh, "Specular highlight map:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_specular.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_specular_highlight = tex; };
-    list.SetList(Game.graphics.tilesets);
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_specular_highlight, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_specular_highlight; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_specular_highlight; }));
-        }
-    });
-    
-    list = new EmuList(col1, EMU_AUTO, ew, eh, "Alpha map:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_alpha.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_alpha = tex; };
-    list.SetList(Game.graphics.tilesets);
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_alpha, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_alpha; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_alpha; }));
-        }
-    });
-    
-    list = new EmuList(col1, EMU_AUTO, ew, eh, "Bump map:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_bump.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_bump = tex; };
-    list.SetList(Game.graphics.tilesets);
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_bump, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_bump; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_bump; }));
-        }
-    });
-    
-    list = new EmuList(col1, EMU_AUTO, ew, eh, "Displacement map:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_displacement.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_displacement = tex; };
-    list.SetList(Game.graphics.tilesets);
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_displacement, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_displacement; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_displacement; }));
-        }
-    });
-    
-    list = new EmuList(col1, EMU_AUTO, ew, eh, "Stencil map:", eh, n_list_entries, callback_set_map_to_selection);
-    tab_stencil.AddContent(list);
-    list.callback_set_texture = function(mesh, tex) { mesh.tex_stencil = tex; };
-    list.SetList(Game.graphics.tilesets);
-    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
-    list.SelectNoCallback(id_decal, true);
-    list.SetRefresh(function() {
-        self.DeselectNoCallback();
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, function(thing) { return thing.tex_stencil; }));
-        } else {
-            self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), function(thing) { return thing.tex_stencil; }));
-        }
-    });
-    
-    dg.AddDefaultCloseButton();
-    
-    return dg;
+    return dg.AddDefaultCloseButton();
 }
