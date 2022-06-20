@@ -35,7 +35,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     var id_displacement = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_displacement; });
     var id_decal = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_stencil; });
     
-    var dg = new EmuDialog((default_mesh_tex_only ? 0 : (32 + 320)) + 32 + 320 + 32 + 32 + 32, 640, "Materials");
+    var dg = new EmuDialog((default_mesh_tex_only ? 0 : (32 + 320)) + 32 + 320 + 32 + 32 + 32 + 480 + 32, 640, "Materials");
     dg.list = mesh_list;
     dg.selection = selection;
     dg.default_mesh_tex_only = default_mesh_tex_only;
@@ -85,22 +85,35 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     tabs.RequestActivateTab(tab_base);
     dg.AddContent(tabs);
     
-    var callback_set_map_to_selection = function() {
-        var new_tex = self.GetSelectedItem() ? self.GetSelectedItem().GUID : NULL;
-        var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-        if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-            for (var i = 0, n = array_length(dialog.selection); i < n; i++) {
-                self.callback_set_texture(dialog.list[real(dialog.selection[i])], new_tex);
-            }
-        } else {
-            self.callback_set_texture(dialog.GetChild("SUBMESHES").GetSelectedItem(), new_tex);
-        }
-    };
+    var preview = (new EmuRenderSurface(tabs.x + tabs.width + 32, EMU_BASE, 480, 480, function() {
+        self.drawCheckerbox();
+        var tex = guid_get(self.sprite);
+        if (!tex) return;
+        
+        var shortest_dimension = min(1, self.width / sprite_get_width(tex.picture), self.height / sprite_get_height(tex.picture));
+        draw_sprite_ext(tex.picture, 0, 0, 0, shortest_dimension, shortest_dimension, 0, c_white, 1);
+    }, emu_null))
+        .SetID("PREVIEW");
+    preview.sprite = NULL;
     
-    var texture_list_general = function(x, ew, eh, name, callback_set_map_to_selection, callback_set_texture, callback_get_texture, default_selection) {
+    dg.AddContent(preview);
+    
+    // we really don't want to have to call this code like nine different times
+    var texture_list_general = function(x, ew, eh, name, callback_set_texture, callback_get_texture, default_selection) {
         var n_list_entries = 12;
         
-        var list = new EmuList(x, EMU_AUTO, ew, eh, name, eh, n_list_entries, callback_set_map_to_selection);
+        var list = new EmuList(x, EMU_AUTO, ew, eh, name, eh, n_list_entries, function() {
+            var new_tex = self.GetSelectedItem() ? self.GetSelectedItem().GUID : NULL;
+            var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
+            dialog.GetChild("PREVIEW").sprite = new_tex;
+            if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
+                for (var i = 0, n = array_length(dialog.selection); i < n; i++) {
+                    self.callback_set_texture(dialog.list[real(dialog.selection[i])], new_tex);
+                }
+            } else {
+                self.callback_set_texture(dialog.GetChild("SUBMESHES").GetSelectedItem(), new_tex);
+            }
+        });
         list.callback_set_texture = callback_set_texture;
         list.callback_get_texture = callback_get_texture;
         list.SetList(Game.graphics.tilesets)
@@ -110,24 +123,32 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             self.DeselectNoCallback();
             var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
             if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-                self.SelectNoCallback(dialog.find_tileset_index(dialog.list, dialog.selection, self.callback_get_texture), true);
+                var index = dialog.find_tileset_index(dialog.list, dialog.selection, self.callback_get_texture);
+                self.SelectNoCallback(index, true);
+                if (self.root.isActiveTab()) {
+                    dialog.GetChild("PREVIEW").sprite = (index == -1) ? NULL : Game.graphics.tilesets[index].GUID;
+                }
             } else {
-                self.SelectNoCallback(dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.callback_get_texture), true);
+                var index = dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.callback_get_texture);
+                self.SelectNoCallback(index, true);
+                if (self.root.isActiveTab()) {
+                    dialog.GetChild("PREVIEW").sprite = (index == -1) ? NULL : Game.graphics.tilesets[index].GUID;
+                }
             }
         });
         
         return list;
     };
     
-    tab_base.AddContent(texture_list_general(col1, ew, eh, "Textures:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_base = tex; }, function(thing) { return thing.tex_base; }, id_base));
-    tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_normal = tex; }, function(thing) { return thing.tex_normal; }, id_normal));
-    tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_ambient = tex; }, function(thing) { return thing.tex_ambient; }, id_specular_color));
-    tab_specular_color.AddContent(texture_list_general(col1, ew, eh, "Specular color:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_specular_color = tex; }, function(thing) { return thing.tex_specular_color; }, id_specular_color));
-    tab_specular.AddContent(texture_list_general(col1, ew, eh, "Specular highlight map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_specular_highlight = tex; }, function(thing) { return thing.tex_specular_highlight; }, id_specular_highlight));
-    tab_alpha.AddContent(texture_list_general(col1, ew, eh, "Alpha map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_alpha = tex; }, function(thing) { return thing.tex_alpha; }, id_alpha));
-    tab_bump.AddContent(texture_list_general(col1, ew, eh, "Bump map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_bump = tex; }, function(thing) { return thing.tex_bump; }, id_bump));
-    tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_displacement = tex; }, function(thing) { return thing.tex_displacement; }, id_displacement));
-    tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", callback_set_map_to_selection, function(mesh, tex) { mesh.tex_stencil = tex; }, function(thing) { return thing.tex_stencil; }, id_decal));
+    tab_base.AddContent(texture_list_general(col1, ew, eh, "Textures:", function(mesh, tex) { mesh.tex_base = tex; }, function(thing) { return thing.tex_base; }, id_base));
+    tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", function(mesh, tex) { mesh.tex_normal = tex; }, function(thing) { return thing.tex_normal; }, id_normal));
+    tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", function(mesh, tex) { mesh.tex_ambient = tex; }, function(thing) { return thing.tex_ambient; }, id_specular_color));
+    tab_specular_color.AddContent(texture_list_general(col1, ew, eh, "Specular color:", function(mesh, tex) { mesh.tex_specular_color = tex; }, function(thing) { return thing.tex_specular_color; }, id_specular_color));
+    tab_specular.AddContent(texture_list_general(col1, ew, eh, "Specular highlight map:", function(mesh, tex) { mesh.tex_specular_highlight = tex; }, function(thing) { return thing.tex_specular_highlight; }, id_specular_highlight));
+    tab_alpha.AddContent(texture_list_general(col1, ew, eh, "Alpha map:", function(mesh, tex) { mesh.tex_alpha = tex; }, function(thing) { return thing.tex_alpha; }, id_alpha));
+    tab_bump.AddContent(texture_list_general(col1, ew, eh, "Bump map:", function(mesh, tex) { mesh.tex_bump = tex; }, function(thing) { return thing.tex_bump; }, id_bump));
+    tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", function(mesh, tex) { mesh.tex_displacement = tex; }, function(thing) { return thing.tex_displacement; }, id_displacement));
+    tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", function(mesh, tex) { mesh.tex_stencil = tex; }, function(thing) { return thing.tex_stencil; }, id_decal));
     
     return dg.AddDefaultCloseButton();
 }
