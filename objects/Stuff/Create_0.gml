@@ -76,7 +76,7 @@ time_source_start(time_source_create(time_source_game, 10, time_source_units_sec
 
 buffer_text_init(false);
 scribble_font_set_default("FDefault");
-scribble_font_bake_outline_8dir("FDefault", "FDefaultOutline", c_black, true);
+scribble_font_bake_outline_8dir_2px("FDefault", "FDefaultOutline", c_black, true);
 
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
