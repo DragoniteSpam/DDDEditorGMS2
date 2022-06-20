@@ -61,7 +61,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         }
         entries = _list;
         _own_entries = false;
-        Deselect();
+        self.DeselectNoCallback();
         return self;
     }
     
