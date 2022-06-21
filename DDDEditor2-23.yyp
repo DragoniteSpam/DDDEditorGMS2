@@ -364,6 +364,7 @@
     {"id":{"name":"Group_Menu_File","path":"scripts/Group_Menu_File/Group_Menu_File.yy",},"order":3,},
     {"id":{"name":"Group_Menu_Edit","path":"scripts/Group_Menu_Edit/Group_Menu_Edit.yy",},"order":2,},
     {"id":{"name":"Group_Menu","path":"scripts/Group_Menu/Group_Menu.yy",},"order":0,},
+    {"id":{"name":"shd_texture_mapping","path":"shaders/shd_texture_mapping/shd_texture_mapping.yy",},"order":10,},
     {"id":{"name":"Group_Menu_Help","path":"scripts/Group_Menu_Help/Group_Menu_Help.yy",},"order":4,},
     {"id":{"name":"Group_Menu_Data","path":"scripts/Group_Menu_Data/Group_Menu_Data.yy",},"order":6,},
     {"id":{"name":"__dotdae_object_new","path":"scripts/__dotdae_object_new/__dotdae_object_new.yy",},"order":1,},
