@@ -17,10 +17,6 @@ function import_mesh(filename) {
         mesh.AddSubmesh(submesh);
     }
     
-    if (array_length(data) == 1) {
-        mesh.SetMaterial(data[0].material);
-    }
-    
     array_push(Game.meshes, mesh);
     
     return mesh;
@@ -462,7 +458,7 @@ function import_obj(fn, squash = false) {
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    current_material.tex_ambient = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
                                 break;
                             case "map_Ks":                  // specular color texture

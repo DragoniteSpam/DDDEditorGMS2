@@ -713,6 +713,9 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         // ignore the export scale here; terrains attached to maps have their own scaling settings
         var results = terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, 1, self.texture_image, VertexFormatData.FULL, Settings.terrain.water_level);
         
+        sprite_save(self.texture_image, 0, PATH_TEMP + "terrain_texture.png");
+        var tex_base = tileset_create(PATH_TEMP + "terrain_texture.png");
+        
         var mesh = new DataMesh(name);
         for (var i = 0, n = array_length(results); i < n; i++) {
             var value = results[i];
@@ -722,11 +725,11 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             // user knows that something actually happened and the program
             // didnt fail randomly
             if (vertex_get_number(vbuff) > 0) vertex_freeze(vbuff);
-            mesh_create_submesh(mesh, value.buffer, vbuff, value.name);
+            var submesh = mesh_create_submesh(mesh, value.buffer, vbuff, value.name);
+            submesh.tex_base = tex_base;
+            // do other materials later, perhaps
         }
         
-        sprite_save(self.texture_image, 0, PATH_TEMP + "terrain_texture.png");
-        mesh.tex_base = tileset_create(PATH_TEMP + "terrain_texture.png").GUID;
         mesh.terrain_data = new MeshTerrainData(self.width, self.height, buffer_clone(self.height_data, buffer_fixed, 4));
         
         array_push(Game.mesh_terrain, mesh);

@@ -203,10 +203,11 @@ function EditorModeMap() : EditorModeBase() constructor {
         if (terrain) {
             var scale = self.active_map.terrain.scale;
             matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, scale, scale, scale));
-            var texture_data = guid_get(terrain.tex_base);
-            var tex = texture_data ? sprite_get_texture(texture_data.picture, 0) : -1;
+            
             for (var i = 0, n = array_length(terrain.submeshes); i < n; i++) {
-                vertex_submit(terrain.submeshes[i].vbuffer, pr_trianglelist, tex);
+                var submesh = terrain.submeshes[i];
+                var tex = guid_get(submesh.tex_base) ? sprite_get_texture(guid_get(submesh.tex_base), 0) : -1;
+                vertex_submit(submesh.vbuffer, pr_trianglelist, tex);
             }
             matrix_set(matrix_world, matrix_build_identity());
         }

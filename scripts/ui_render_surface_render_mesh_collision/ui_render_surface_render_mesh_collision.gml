@@ -27,12 +27,14 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     vertex_submit(Stuff.graphics.basic_cube, pr_trianglelist, -1);
     
     // draw the mesh
-    var tex = sprite_get_texture((guid_get(mesh.tex_base) ? guid_get(mesh.tex_base) : MAP_ACTIVE_TILESET).picture, 0);
     shader_set_uniform_f(shader_get_uniform(shd_utility_alpha, "alpha"), surface.root.el_alpha.value);
     matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot, Stuff.mesh_scale, Stuff.mesh_scale, Stuff.mesh_scale));
     switch (mesh.type) {
         case MeshTypes.RAW:
-            vertex_submit(mesh.submeshes[0].vbuffer, pr_trianglelist, tex);
+            for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
+                var tex = guid_get(mesh.submeshes[i].tex_base) ? sprite_get_texture(guid_get(mesh.submeshes[i].tex_base).picture, 0) : -1;
+                vertex_submit(mesh.submeshes[i].vbuffer, pr_trianglelist, tex);
+            }
             break;
     }
     shader_reset();

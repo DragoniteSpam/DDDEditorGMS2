@@ -539,7 +539,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.GetBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
+        var mesh_data = guid_get(self.mesh);
         if (!mesh_data) return undefined;
         if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].buffer : undefined;
@@ -557,7 +557,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.GetReflectBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
+        var mesh_data = guid_get(self.mesh);
         if (!mesh_data) return undefined;
         if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
         return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_buffer : undefined;
@@ -573,19 +573,24 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     };
     
     self.GetTexture = function() {
+        if (!Settings.view.texture) return -1;
+        
         var own_texture = guid_get(self.texture);
         if (own_texture) {
             return sprite_get_texture(own_texture.picture, 0);
         }
         
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
         var mesh_data = guid_get(self.mesh);
-        if (mesh_data && guid_get(mesh_data.tex_base)) {
-            return sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
+        if (!mesh_data) return undefined;
+        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
+        
+        var submesh = mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)];
+        
+        if (submesh && guid_get(submesh.tex_base)) {
+            return sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
         }
         
-        return sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0);
+        return -1;
     };
     
     self.Export = function(buffer) {
@@ -849,7 +854,7 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
         var ts = MAP_ACTIVE_TILESET;
         
         if (Settings.view.entities) {
-            var tex = sprite_get_texture(Settings.view.texture ? ts.picture : b_tileset_textureless, 0);
+            var tex = Settings.view.texture ? sprite_get_texture(ts.picture, 0) : -1;
             matrix_set(matrix_world, matrix_build(xx, yy, zz, 0, 0, 0, 1, 1, 1));
             vertex_submit(tile.vbuffer, pr_trianglelist, tex);
             matrix_set(matrix_world, matrix_build_identity());

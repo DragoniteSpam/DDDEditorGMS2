@@ -8,7 +8,7 @@ function dialog_create_mesh_submesh(mesh) {
         batch_again();
     };
     
-    var dialog = new EmuDialog(32 + 320 + 32 + ((EDITOR_BASE_MODE != ModeIDs.MESH) ? (320 + 32 + 320 + 32) : 0), 688, "Advanced Mesh Options: " + mesh.name);
+    var dialog = new EmuDialog(32 + 320 + 32 + ((EDITOR_BASE_MODE != ModeIDs.MESH) ? (320 + 32 + 320 + 32) : 0), 688, "Submesh Options: " + mesh.name);
     dialog.mesh = mesh;
     
     var element_width = 320;

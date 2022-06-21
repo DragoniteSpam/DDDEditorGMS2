@@ -22,46 +22,13 @@ function DataMesh(source) : SData(source) constructor {
     
     self.use_independent_bounds = Game.meta.extra.mesh_use_independent_bounds_default;
     
-    self.tex_base = NULL;                   // map_Kd
-    self.tex_normal = NULL;                 // map_Kn
-    self.tex_ambient = NULL;                // map_Ka
-    self.tex_specular_color = NULL;         // map_Ls
-    self.tex_specular_highlight = NULL;     // map_Ns
-    self.tex_alpha = NULL;                  // map_d
-    self.tex_bump = NULL;                   // map_bump
-    self.tex_displacement = NULL;           // disp
-    self.tex_stencil = NULL;                // decal
-    
-    self.SetMaterial = function(material) {
-        // it is highly likely at some point that we'll change this system to
-        // use "real" 3D materials
-        
-        self.tex_base = material.tex_base;
-        self.tex_ambient = material.tex_ambient;
-        self.tex_specular_color = material.tex_specular_color;
-        self.tex_specular_highlight = material.tex_specular_highlight;
-        self.tex_alpha = material.tex_alpha;
-        self.tex_bump = material.tex_bump;
-        self.tex_displacement = material.tex_displacement;
-        self.tex_stencil = material.tex_stencil;
-        self.tex_normal = material.tex_normal;
-    };
-    
     self.texture_scale = 1;
     
     self.terrain_data = undefined;
     
     if (is_struct(source)) {
         self.type = source.type;
-        self.tex_base = source[$ "tex_base"] ?? NULL;
-        self.tex_normal = source[$ "tex_normal"] ?? NULL;
-        self.tex_ambient = source[$ "tex_ambient"] ?? NULL;
-        self.tex_specular_color = source[$ "tex_specular_color"] ?? NULL;
-        self.tex_specular_highlight = source[$ "tex_specular_highlight"] ?? NULL;
-        self.tex_alpha = source[$ "tex_alpha"] ?? NULL;
-        self.tex_bump = source[$ "tex_bump"] ?? NULL;
-        self.tex_displacement = source[$ "tex_displacement"] ?? NULL;
-        self.tex_stencil = source[$ "tex_stencil"] ?? NULL;
+        
         self.texture_scale = source[$ "texture_scale"] ?? NULL;
         
         self.asset_flags = source.asset_flags;
@@ -117,14 +84,6 @@ function DataMesh(source) : SData(source) constructor {
         self.ymax = mesh.ymax;
         self.zmax = mesh.zmax;
         
-        self.tex_base = mesh.tex_base;
-        self.tex_ambient = mesh.tex_ambient;
-        self.tex_specular_color = mesh.tex_specular_color;
-        self.tex_specular_highlight = mesh.tex_specular_highlight;
-        self.tex_alpha = mesh.tex_alpha;
-        self.tex_bump = mesh.tex_bump;
-        self.tex_displacement = mesh.tex_displacement;
-        self.tex_stencil = mesh.tex_stencil;
         self.texture_scale = mesh.texture_scale;
         
         self.use_independent_bounds = mesh.use_independent_bounds;
@@ -408,14 +367,6 @@ function DataMesh(source) : SData(source) constructor {
     static CreateJSONMesh = function() {
         var json = self.CreateJSONBase();
         json.type = self.type;
-        json.tex_base = self.tex_base;
-        json.tex_ambient = self.tex_ambient;
-        json.tex_specular_color = self.tex_specular_color;
-        json.tex_specular_highlight = self.tex_specular_highlight;
-        json.tex_alpha = self.tex_alpha;
-        json.tex_bump = self.tex_bump;
-        json.tex_displacement = self.tex_displacement;
-        json.tex_stencil = self.tex_stencil;
         json.texture_scale = self.texture_scale;
         
         json.use_independent_bounds = self.use_independent_bounds;

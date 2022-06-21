@@ -1,18 +1,21 @@
 function dialog_create_mesh_material_settings(mesh_list, selection) {
     static find_tileset_index = function(list, selected_things, accessor) {
-        var target_index = -1;
+        var target = undefined;
+        
         for (var i = 0, n = array_length(selected_things); i < n; i++) {
             var mesh = list[selected_things[i]];
-            var data = guid_get(accessor(mesh));
-            if (!data) return -1;
-            var mesh_texture_index = array_search(Game.graphics.tilesets, data);
-            if (target_index == -1) {
-                target_index = mesh_texture_index;
-            } else if (target_index != mesh_texture_index) {
-                return -1;
+            for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                var data = guid_get(accessor(mesh.submeshes[j]));
+                if (!data) return -1;
+                if (target == undefined) {
+                    target = data;
+                } else if (target != data) {
+                    return -1;
+                }
             }
         }
-        return target_index;
+        
+        return array_search(Game.graphics.tilesets, target);
     };
     
     static find_tileset_index_submesh = function(submesh, accessor) {
@@ -63,7 +66,9 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
                 Stuff.mesh.ClearHighlightedSubmeshes();
                 if (self.GetSelectedItem()) Stuff.mesh.SetHighlightedSubmesh(self.GetSelectedItem());
             }))
+                .SetAllowDeselect(false)
                 .SetList(mesh_list[selection[0]].submeshes)
+                .Select(0)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetID("SUBMESHES"),
             (new EmuButton(col1, EMU_AUTO, ew, eh, "Base Mesh", function() {
@@ -127,9 +132,12 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             var new_tex = self.GetSelectedItem() ? self.GetSelectedItem().GUID : NULL;
             var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
             dialog.GetChild("PREVIEW").sprite = new_tex;
-            if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
+            if (dialog.default_mesh_tex_only) {
                 for (var i = 0, n = array_length(dialog.selection); i < n; i++) {
-                    self.callback_set_texture(dialog.list[real(dialog.selection[i])], new_tex);
+                    var mesh = dialog.list[real(dialog.selection[i])];
+                    for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                        self.callback_set_texture(mesh.submeshes[j], new_tex);
+                    }
                 }
             } else {
                 self.callback_set_texture(dialog.GetChild("SUBMESHES").GetSelectedItem(), new_tex);
@@ -161,15 +169,15 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         return list;
     };
     
-    tab_base.AddContent(texture_list_general(col1, ew, eh, "Textures:", function(mesh, tex) { mesh.tex_base = tex; }, function(thing) { return thing.tex_base; }, id_base));
-    tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", function(mesh, tex) { mesh.tex_normal = tex; }, function(thing) { return thing.tex_normal; }, id_normal));
-    tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", function(mesh, tex) { mesh.tex_ambient = tex; }, function(thing) { return thing.tex_ambient; }, id_specular_color));
-    tab_specular_color.AddContent(texture_list_general(col1, ew, eh, "Specular color:", function(mesh, tex) { mesh.tex_specular_color = tex; }, function(thing) { return thing.tex_specular_color; }, id_specular_color));
-    tab_specular.AddContent(texture_list_general(col1, ew, eh, "Specular highlight map:", function(mesh, tex) { mesh.tex_specular_highlight = tex; }, function(thing) { return thing.tex_specular_highlight; }, id_specular_highlight));
-    tab_alpha.AddContent(texture_list_general(col1, ew, eh, "Alpha map:", function(mesh, tex) { mesh.tex_alpha = tex; }, function(thing) { return thing.tex_alpha; }, id_alpha));
-    tab_bump.AddContent(texture_list_general(col1, ew, eh, "Bump map:", function(mesh, tex) { mesh.tex_bump = tex; }, function(thing) { return thing.tex_bump; }, id_bump));
-    tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", function(mesh, tex) { mesh.tex_displacement = tex; }, function(thing) { return thing.tex_displacement; }, id_displacement));
-    tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", function(mesh, tex) { mesh.tex_stencil = tex; }, function(thing) { return thing.tex_stencil; }, id_decal));
+    tab_base.AddContent(texture_list_general(col1, ew, eh, "Textures:", function(submesh, tex) { submesh.tex_base = tex; }, function(submesh) { return submesh.tex_base; }, id_base));
+    tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", function(submesh, tex) { submesh.tex_normal = tex; }, function(submesh) { return submesh.tex_normal; }, id_normal));
+    tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", function(submesh, tex) { submesh.tex_ambient = tex; }, function(submesh) { return submesh.tex_ambient; }, id_specular_color));
+    tab_specular_color.AddContent(texture_list_general(col1, ew, eh, "Specular color:", function(submesh, tex) { submesh.tex_specular_color = tex; }, function(submesh) { return submesh.tex_specular_color; }, id_specular_color));
+    tab_specular.AddContent(texture_list_general(col1, ew, eh, "Specular highlight map:", function(submesh, tex) { submesh.tex_specular_highlight = tex; }, function(submesh) { return submesh.tex_specular_highlight; }, id_specular_highlight));
+    tab_alpha.AddContent(texture_list_general(col1, ew, eh, "Alpha map:", function(submesh, tex) { submesh.tex_alpha = tex; }, function(submesh) { return submesh.tex_alpha; }, id_alpha));
+    tab_bump.AddContent(texture_list_general(col1, ew, eh, "Bump map:", function(submesh, tex) { submesh.tex_bump = tex; }, function(submesh) { return submesh.tex_bump; }, id_bump));
+    tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", function(submesh, tex) { submesh.tex_displacement = tex; }, function(submesh) { return submesh.tex_displacement; }, id_displacement));
+    tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", function(submesh, tex) { submesh.tex_stencil = tex; }, function(submesh) { return submesh.tex_stencil; }, id_decal));
     
     return dg.AddDefaultCloseButton("Close", function() {
         Stuff.mesh.ClearHighlightedSubmeshes();
