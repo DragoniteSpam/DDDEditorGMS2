@@ -59,13 +59,17 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             (new EmuList(col1, EMU_AUTO, ew, eh, "Submesh Override:", eh, 12, function() {
                 if (!self.root) return;
                 self.root.Refresh();
+                self.GetSibling("BASE MESH BUTTON").SetInteractive(true);
             }))
                 .SetList(mesh_list[selection[0]].submeshes)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetID("SUBMESHES"),
             (new EmuButton(col1, EMU_AUTO, ew, eh, "Base Mesh", function() {
                 self.GetSibling("SUBMESHES").Deselect();
+                self.SetInteractive(false)
             }))
+                .SetInteractive(false)
+                .SetID("BASE MESH BUTTON")
         ]);
     }
     
@@ -79,9 +83,13 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     var tab_displacement = new EmuTab("Displacement Map").SetInteractive(false);
     var tab_stencil = new EmuTab("Stencil Map").SetInteractive(false);
     
-    var tabs = new EmuTabGroup(default_mesh_tex_only ? col1 : col2, EMU_BASE, ew + 32 + 32, dg.height - 128, 2, eh);
-    tabs.AddTabs(0, [tab_base, tab_ambient, tab_specular_color, tab_specular]);
-    tabs.AddTabs(1, [tab_alpha, tab_bump, tab_displacement, tab_stencil]);
+    var tabs = new EmuTabGroup(default_mesh_tex_only ? col1 : col2, EMU_BASE, ew + 32 + 32, dg.height - 128, (EDITOR_BASE_MODE != ModeIDs.MESH) ? 2 : 1, eh);
+    if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+        tabs.AddTabs(0, [tab_base, tab_ambient, tab_specular_color, tab_specular]);
+        tabs.AddTabs(1, [tab_alpha, tab_normal, tab_bump, tab_displacement, tab_stencil]);
+    } else {
+        tabs.AddTabs(0, [tab_base]);
+    }
     tabs.RequestActivateTab(tab_base);
     dg.AddContent([
         tabs,
