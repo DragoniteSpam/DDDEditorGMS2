@@ -2,7 +2,6 @@
   "resources": [
     {"id":{"name":"shd_utility_banding","path":"shaders/shd_utility_banding/shd_utility_banding.yy",},"order":0,},
     {"id":{"name":"buffer_text_writeln","path":"scripts/buffer_text_writeln/buffer_text_writeln.yy",},"order":12,},
-    {"id":{"name":"b_tileset_textureless","path":"sprites/b_tileset_textureless/b_tileset_textureless.yy",},"order":0,},
     {"id":{"name":"b_tileset_magenta","path":"sprites/b_tileset_magenta/b_tileset_magenta.yy",},"order":1,},
     {"id":{"name":"Group_Manage_Audio","path":"scripts/Group_Manage_Audio/Group_Manage_Audio.yy",},"order":10,},
     {"id":{"name":"b_tileset_checkers","path":"sprites/b_tileset_checkers/b_tileset_checkers.yy",},"order":2,},

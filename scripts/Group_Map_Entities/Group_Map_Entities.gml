@@ -585,7 +585,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
             return sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
         }
         
-        return Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+        return sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0);
     };
     
     self.Export = function(buffer) {
@@ -671,7 +671,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
         matrix_set(matrix_world, matrix_build(mesh_autotile.xx * TILE_WIDTH, mesh_autotile.yy * TILE_HEIGHT, mesh_autotile.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1));
         
         if (Settings.view.entities) {
-            var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+            var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : -1;
             vertex_submit(vbuffer, pr_trianglelist, tex);
         }
         

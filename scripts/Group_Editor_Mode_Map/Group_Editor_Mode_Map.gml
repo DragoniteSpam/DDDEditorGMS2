@@ -213,7 +213,7 @@ function EditorModeMap() : EditorModeBase() constructor {
         #endregion
         
         // this will need to be dynamic at some point
-        var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+        var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : -1;
         
         #region entities
         if (Settings.view.frozen) {
