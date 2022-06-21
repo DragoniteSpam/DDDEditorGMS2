@@ -83,8 +83,10 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
     return min(min(a3.x, a3.y), a3.z);
 }
 
-void DrawWireframe(inout vec3 color) {
-    color = mix(color, u_WireColor, u_WireAlpha * (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / u_WireDistance));
+void DrawWireframe(inout vec4 color) {
+    float factor = (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / u_WireDistance);
+    color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * factor);
+    color.a += factor * 2.0;
 }
 #endregion
 
@@ -134,6 +136,6 @@ void main() {
     DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
     
     if (u_WireAlpha > 0.0) {
-        DrawWireframe(gl_FragColor.rgb);
+        DrawWireframe(gl_FragColor);
     }
 }

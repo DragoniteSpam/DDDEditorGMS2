@@ -7,7 +7,7 @@
 varying vec3 v_colour;
 varying vec3 v_barycentric;
 
-uniform vec3 u_WireColor;
+uniform vec4 u_WireColor;
 uniform float u_WireThickness;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
@@ -16,6 +16,6 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 }
 
 void main() {
-    gl_FragColor = vec4(u_WireColor * v_colour, mix(1.0, 0.0, wireEdgeFactor(v_barycentric, u_WireThickness)));
+    gl_FragColor = vec4(u_WireColor.rgb * v_colour, mix(1.0, 0.0, wireEdgeFactor(v_barycentric, u_WireThickness)));
     if (gl_FragColor.a < ALPHA_REF) discard;
 }
