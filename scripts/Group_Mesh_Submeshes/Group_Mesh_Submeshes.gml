@@ -129,8 +129,8 @@ function MeshSubmesh(source) constructor {
     static GenerateReflections = function() {
         if (!self.buffer) return;
         internalDeleteReflect();
-        self.reflect_vbuffer = vertex_to_reflect(self.buffer);
-        self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
+        self.reflect_buffer = vertex_to_reflect_buffer(self.buffer);
+        self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format);
         vertex_freeze(self.reflect_vbuffer);
     };
     

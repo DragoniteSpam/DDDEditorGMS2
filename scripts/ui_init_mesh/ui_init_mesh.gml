@@ -358,6 +358,17 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Bake Transformation", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
+                // expensive operation, don't do unless you have to
+                if (Settings.mesh.draw_position.x == 0 &&
+                    Settings.mesh.draw_position.y == 0 &&
+                    Settings.mesh.draw_position.z == 0 &&
+                    Settings.mesh.draw_rotation.x == 0 &&
+                    Settings.mesh.draw_rotation.y == 0 &&
+                    Settings.mesh.draw_rotation.z == 0 &&
+                    Settings.mesh.draw_scale.x == 1 &&
+                    Settings.mesh.draw_scale.y == 1 &&
+                    Settings.mesh.draw_scale.z == 1) return;
+                
                 var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
                     var indices = self.root.indices;
                     __meshops_transform_set_matrix(
