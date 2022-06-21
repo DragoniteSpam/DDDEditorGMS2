@@ -3,17 +3,11 @@ function dialog_create_mesh_other_settings(list, selection) {
     dialog.list = list;
     dialog.selection = selection;
     
-    return dialog.AddContent([
+    dialog.AddContent([
         (new EmuButton(32, EMU_AUTO, 256, 32, "Normals", function() {
             dialog_create_mesh_normal_settings(self.root.list, self.root.selection);
         }))
             .SetTooltip("Adjust the vertex normals of the selected meshes."),
-        (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
-            if (array_length(self.root.selection) != 1) return;
-            dialog_create_mesh_collision_settings(self.root.list[self.root.selection[0]]);
-        }))
-            .SetTooltip("Collision shape data to go with this mesh.")
-            .SetInteractive(array_length(selection) == 1),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Center", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
@@ -45,14 +39,27 @@ function dialog_create_mesh_other_settings(list, selection) {
             }
             batch_again();
         }))
-            .SetTooltip("Set the blending color of every vertex to white."),
-        (new EmuButton(32, EMU_AUTO, 256, 32, "Generate Reflections", function() {
-            var selection = self.root.selection;
-            for (var i = 0, n = array_length(selection); i < n; i++) {
-                self.root.list[real(selection[i])].GenerateReflections();
-            }
-            batch_again();
-        }))
-            .SetTooltip("Auto-generate reflections for all selected meshes and their submeshes."),
-    ]).AddDefaultCloseButton();
+            .SetTooltip("Set the blending color of every vertex to white.")
+    ]);
+    
+    if (EDITOR_BASE_MODE == ModeIDs.MAP) {
+        dialog.AddContent([
+            (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
+                if (array_length(self.root.selection) != 1) return;
+                dialog_create_mesh_collision_settings(self.root.list[self.root.selection[0]]);
+            }))
+                .SetTooltip("Collision shape data to go with this mesh.")
+                .SetInteractive(array_length(selection) == 1),
+            (new EmuButton(32, EMU_AUTO, 256, 32, "Generate Reflections", function() {
+                var selection = self.root.selection;
+                for (var i = 0, n = array_length(selection); i < n; i++) {
+                    self.root.list[real(selection[i])].GenerateReflections();
+                }
+                batch_again();
+            }))
+                .SetTooltip("Auto-generate reflections for all selected meshes and their submeshes."),
+        ]);
+    }
+    
+    return dialog.AddDefaultCloseButton();
 }
