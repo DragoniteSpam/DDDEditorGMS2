@@ -168,6 +168,10 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"meshops_blend_colour","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_reverse","kind":1,"help":"meshops_reverse(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_reverse","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -197,6 +201,7 @@
         {"name":"meshops_set_matrix_raw","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_blend_color","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_blend_colour","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_reverse","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
