@@ -86,7 +86,7 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 void DrawWireframe(inout vec4 color) {
     float factor = (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / u_WireDistance);
     color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * factor);
-    color.a += factor * 2.0;
+    color.a = mix(color.a, 1.0, u_WireAlpha * factor * 4.0);
 }
 #endregion
 
