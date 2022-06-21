@@ -53,16 +53,12 @@ function ui_render_surface_render_mesh_ed(mx, my) {
             var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
             switch (mesh_data.type) {
                 case MeshTypes.RAW:
-                    var mesh_tex = -1;
-                    if (Settings.mesh.draw_textures && guid_get(mesh_data.tex_base)) {
-                        mesh_tex = sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0);
-                    }
                     for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
                         var submesh = mesh_data.submeshes[sm_index];
                         if (!submesh.editor_visible) continue;
                         var vbuffer = submesh.vbuffer;
                         var reflect_vbuffer = submesh.reflect_vbuffer;
-                        var submesh_tex = mesh_tex;
+                        var submesh_tex = -1;
                         if (Settings.mesh.draw_textures && guid_get(submesh.tex_base)) {
                              submesh_tex = sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
                         }
