@@ -143,7 +143,9 @@ default_pawn.aframes = 0;
 default_pawn.aspeed = 0;
 data_image_npc_frames(default_pawn);
 
-tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
+if (LOAD_DEFAULT_TILESET) {
+    tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
+}
 #endregion
 
 #region data types

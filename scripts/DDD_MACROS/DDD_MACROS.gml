@@ -34,7 +34,8 @@
 #macro Terrain:TERRAIN_MODE                 true
 //
 #macro DEFAULT_TILESET                      "b_tileset_overworld_0.png"
-#macro mesh:DEFAULT_TILESET                 "b_magenta.png"
+#macro LOAD_DEFAULT_TILESET                 true
+#macro mesh:LOAD_DEFAULT_TILESET            false
 
 // game maker
 #macro wtf                                  show_debug_message
