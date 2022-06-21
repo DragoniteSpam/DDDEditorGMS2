@@ -9,25 +9,30 @@ function dialog_create_manager_graphics() {
     var col2 = 384;
     var col3 = 736;
     
-    return dialog.AddContent([
-        (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
-            switch (self.value) {
-                case 0: self.root.graphics_list = Game.graphics.tilesets; self.root.graphics_prefix = PREFIX_GRAPHIC_TILESET; break;
-                case 1: self.root.graphics_list = Game.graphics.overworlds; self.root.graphics_prefix = PREFIX_GRAPHIC_OVERWORLD; break;
-                case 2: self.root.graphics_list = Game.graphics.battlers; self.root.graphics_prefix = PREFIX_GRAPHIC_BATTLER; break;
-                case 3: self.root.graphics_list = Game.graphics.ui; self.root.graphics_prefix = PREFIX_GRAPHIC_UI; break;
-                case 4: self.root.graphics_list = Game.graphics.skybox; self.root.graphics_prefix = PREFIX_GRAPHIC_SKYBOX; break;
-                case 5: self.root.graphics_list = Game.graphics.particles; self.root.graphics_prefix = PREFIX_GRAPHIC_PARTICLE; break;
-                case 6: self.root.graphics_list = Game.graphics.etc; self.root.graphics_prefix = PREFIX_GRAPHIC_ETC; break;
-            }
-            self.GetSibling("LIST").Deselect().SetList(self.root.graphics_list);
-            self.root.Refresh({ list: self.root.graphics_list, index: -1 });
-        }))
-            .AddOptions(["Tilesets", "Overworlds", "Battlers", "UI", "Skyboxes", "Particles", "Misc"])
-            .SetColumns(4, 160)
-            .SetTooltip("Choose from the various categories of imges")
-            .SetID("TYPE"),
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, 14, function() {
+    if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+        dialog.AddContent([
+            (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
+                switch (self.value) {
+                    case 0: self.root.graphics_list = Game.graphics.tilesets; self.root.graphics_prefix = PREFIX_GRAPHIC_TILESET; break;
+                    case 1: self.root.graphics_list = Game.graphics.overworlds; self.root.graphics_prefix = PREFIX_GRAPHIC_OVERWORLD; break;
+                    case 2: self.root.graphics_list = Game.graphics.battlers; self.root.graphics_prefix = PREFIX_GRAPHIC_BATTLER; break;
+                    case 3: self.root.graphics_list = Game.graphics.ui; self.root.graphics_prefix = PREFIX_GRAPHIC_UI; break;
+                    case 4: self.root.graphics_list = Game.graphics.skybox; self.root.graphics_prefix = PREFIX_GRAPHIC_SKYBOX; break;
+                    case 5: self.root.graphics_list = Game.graphics.particles; self.root.graphics_prefix = PREFIX_GRAPHIC_PARTICLE; break;
+                    case 6: self.root.graphics_list = Game.graphics.etc; self.root.graphics_prefix = PREFIX_GRAPHIC_ETC; break;
+                }
+                self.GetSibling("LIST").Deselect().SetList(self.root.graphics_list);
+                self.root.Refresh({ list: self.root.graphics_list, index: -1 });
+            }))
+                .AddOptions(["Tilesets", "Overworlds", "Battlers", "UI", "Skyboxes", "Particles", "Misc"])
+                .SetColumns(4, 160)
+                .SetTooltip("Choose from the various categories of imges")
+                .SetID("TYPE")
+        ]);
+    }
+    
+    dialog.AddContent([
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, (EDITOR_BASE_MODE != ModeIDs.MESH) ? 14 : 20, function() {
             if (self.root) {
                 self.root.Refresh({ list: self.entries, index: self.GetSelection() });
             }
@@ -302,4 +307,6 @@ function dialog_create_manager_graphics() {
         }),
     ])
         .AddDefaultCloseButton();
+    
+    return dialog;
 }
