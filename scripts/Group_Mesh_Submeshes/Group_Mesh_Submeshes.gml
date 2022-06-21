@@ -59,6 +59,15 @@ function MeshSubmesh(source) constructor {
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_datatype, self.proto_guid);
+        buffer_write(buffer, buffer_datatype, self.tex_base);
+        buffer_write(buffer, buffer_datatype, self.tex_normal);
+        buffer_write(buffer, buffer_datatype, self.tex_ambient);
+        buffer_write(buffer, buffer_datatype, self.tex_specular_color);
+        buffer_write(buffer, buffer_datatype, self.tex_specular_highlight);
+        buffer_write(buffer, buffer_datatype, self.tex_alpha);
+        buffer_write(buffer, buffer_datatype, self.tex_bump);
+        buffer_write(buffer, buffer_datatype, self.tex_displacement);
+        buffer_write(buffer, buffer_datatype, self.tex_stencil);
         buffer_write(buffer, buffer_u8, ((!!self.buffer) << 1) | (!!self.reflect_buffer));
         
         if (self.buffer) {

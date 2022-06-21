@@ -349,14 +349,6 @@ function DataMesh(source) : SData(source) constructor {
     self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, self.type);
-        buffer_write(buffer, buffer_datatype, self.tex_base);
-        buffer_write(buffer, buffer_datatype, self.tex_ambient);
-        buffer_write(buffer, buffer_datatype, self.tex_specular_color);
-        buffer_write(buffer, buffer_datatype, self.tex_specular_highlight);
-        buffer_write(buffer, buffer_datatype, self.tex_alpha);
-        buffer_write(buffer, buffer_datatype, self.tex_bump);
-        buffer_write(buffer, buffer_datatype, self.tex_displacement);
-        buffer_write(buffer, buffer_datatype, self.tex_stencil);
         buffer_write(buffer, buffer_s16, self.xmin);
         buffer_write(buffer, buffer_s16, self.ymin);
         buffer_write(buffer, buffer_s16, self.zmin);
