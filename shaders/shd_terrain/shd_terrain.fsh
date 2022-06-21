@@ -73,7 +73,7 @@ void DrawCursor(inout vec3 base, vec2 position) {
 #endregion
 
 #region Wireframe
-#define WIRE_THICKNESS 1.0
+uniform float u_WireThickness;
 uniform float u_WireDistance;
 uniform vec3 u_WireColor;
 uniform float u_WireAlpha;
@@ -84,7 +84,7 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 }
 
 void DrawWireframe(inout vec4 color) {
-    float factor = (1.0 - wireEdgeFactor(v_Barycentric, WIRE_THICKNESS)) / (v_FragDistance / u_WireDistance);
+    float factor = (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / u_WireDistance);
     color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * factor);
     color.a = mix(color.a, 1.0, u_WireAlpha * factor * 4.0);
 }

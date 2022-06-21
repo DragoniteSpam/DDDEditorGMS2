@@ -59,7 +59,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                         var vbuffer = submesh.vbuffer;
                         
                         if (Stuff.mesh.GetHighlightedSubmesh(submesh)) {
-                            wireframe_enable(1, 512, c_aqua, 2);
+                            wireframe_enable(1, 512, c_aqua, 0.5);
                         }
                         
                         var reflect_vbuffer = submesh.reflect_vbuffer;

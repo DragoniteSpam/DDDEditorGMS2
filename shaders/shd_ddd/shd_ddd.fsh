@@ -104,7 +104,7 @@ void CommonFog(inout vec4 baseColor) {
 uniform float u_WireDistance;
 uniform vec3 u_WireColor;
 uniform float u_WireAlpha;
-#define WIRE_THICKNESS 1.0
+uniform float u_WireThickness;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
@@ -112,7 +112,7 @@ float wireEdgeFactor(vec3 barycentric, float thickness) {
 }
 
 void DrawWireframe(inout vec4 color) {
-    float factor = clamp((1.0 - wireEdgeFactor(v_vBarycentric, WIRE_THICKNESS)) / (v_FragDistance / u_WireDistance), 0.0, 1.0);
+    float factor = clamp((1.0 - wireEdgeFactor(v_vBarycentric, u_WireThickness)) / (v_FragDistance / u_WireDistance), 0.0, 1.0);
     color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * factor);
     color.a = mix(color.a, 1.0, u_WireAlpha * factor * 4.0);
 }
