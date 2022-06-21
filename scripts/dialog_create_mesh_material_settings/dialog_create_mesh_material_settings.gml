@@ -60,6 +60,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
                 if (!self.root) return;
                 self.root.Refresh();
                 self.GetSibling("BASE MESH BUTTON").SetInteractive(true);
+                Stuff.mesh.ClearHighlightedSubmeshes();
+                if (self.GetSelectedItem()) Stuff.mesh.SetHighlightedSubmesh(self.GetSelectedItem());
             }))
                 .SetList(mesh_list[selection[0]].submeshes)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
@@ -169,5 +171,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", function(mesh, tex) { mesh.tex_displacement = tex; }, function(thing) { return thing.tex_displacement; }, id_displacement));
     tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", function(mesh, tex) { mesh.tex_stencil = tex; }, function(thing) { return thing.tex_stencil; }, id_decal));
     
-    return dg.AddDefaultCloseButton();
+    return dg.AddDefaultCloseButton("Close", function() {
+        Stuff.mesh.ClearHighlightedSubmeshes();
+        self.root.Dispose();
+    });
 }

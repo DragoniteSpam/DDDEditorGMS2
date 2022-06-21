@@ -21,6 +21,8 @@ function dialog_create_mesh_submesh(mesh) {
         #region column 1
         (new EmuList(col1, EMU_BASE, element_width, element_height, mesh.name + " submeshes", element_height, 10, function() {
             if (self.root) self.root.Refresh();
+            Stuff.mesh.ClearHighlightedSubmeshes();
+            if (self.GetSelectedItem()) Stuff.mesh.SetHighlightedSubmesh(self.GetSelectedItem());
         }))
             .SetCallbackDouble(replace_submesh)
             .SetList(mesh.submeshes)
@@ -213,6 +215,9 @@ function dialog_create_mesh_submesh(mesh) {
         ]);
     }
     
-    return dialog.AddDefaultCloseButton();
+    return dialog.AddDefaultCloseButton("Close", function() {
+        Stuff.mesh.ClearHighlightedSubmeshes();
+        self.root.Dispose();
+    });
     
 }

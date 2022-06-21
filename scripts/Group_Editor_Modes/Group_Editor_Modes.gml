@@ -71,6 +71,25 @@ function EditorModeMesh() : EditorModeBase() constructor {
         STANDARD                            = VertexFormatData.POSITION_3D | VertexFormatData.NORMAL | VertexFormatData.TEXCOORD | VertexFormatData.COLOUR,
         FULL                                = VertexFormatData.STANDARD | VertexFormatData.TANGENT | VertexFormatData.BITANGENT | VertexFormatData.BARYCENTRIC,
     }
+    
+    self.highlighted_submeshes = { };
+    
+    self.SetHighlightedSubmesh = function(submesh) {
+        self.highlighted_submeshes[$ string(submesh.vbuffer)] = submesh.vbuffer;
+    };
+    
+    self.GetHighlightedSubmesh = function(submesh) {
+        return !!self.highlighted_submeshes[$ string(submesh.vbuffer)];
+    };
+    
+    self.RemoveHighlightedSubmesh = function(submesh) {
+        if (variable_struct_exists(self.highlighted_submeshes, string(submesh.vbuffer)))
+            variable_struct_remove(self.highlighted_submeshes, string(submesh.vbuffer));
+    };
+    
+    self.ClearHighlightedSubmeshes = function() {
+        self.highlighted_submeshes = { };
+    };
 }
 
 function EditorModeText() : EditorModeBase() constructor {
