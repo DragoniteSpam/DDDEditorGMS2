@@ -8,7 +8,7 @@ function dialog_create_mesh_submesh(mesh) {
         batch_again();
     };
     
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 688, "Advanced Mesh Options: " + mesh.name);
+    var dialog = new EmuDialog(32 + 320 + 32 + ((EDITOR_BASE_MODE != ModeIDs.MESH) ? (320 + 32 + 320 + 32) : 0), 688, "Advanced Mesh Options: " + mesh.name);
     dialog.mesh = mesh;
     
     var element_width = 320;
@@ -131,73 +131,88 @@ function dialog_create_mesh_submesh(mesh) {
             })
             .SetID("LOCATION"),
         #endregion
-        #region column 2
-        new EmuText(col2, EMU_BASE, element_width, element_height, "[c_aqua]Operations"),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Reload from Source", function() {
-            var mesh = self.root.mesh;
-            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
-            
-            for (var i = 0, n = array_length(selection); i < n; i++) {
-                mesh.submeshes[selection[i]].Reload();
-            }
-            
-            batch_again();
-        }))
-            .SetTooltip("Reload selected submeshes from their source file (if their source file exists).")
-            .SetID("RELOAD"),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Import Reflection...", function() {
-            var mesh = self.root.mesh;
-            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
-            
-            for (var i = 0, n = array_length(selection); i < n; i++) {
-                mesh.submeshes[selection[i]].ImportReflection();
-            }
-            
-            batch_again();
-        }))
-            .SetTooltip("Import a reflection mesh for all selected submeshes.")
-            .SetID("IMPORT REFLECTION"),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto-Generate Reflection", function() {
-            var mesh = self.root.mesh;
-            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
-            
-            for (var i = 0, n = array_length(selection); i < n; i++) {
-                mesh.submeshes[selection[i]].GenerateReflections();
-            }
-            
-            batch_again();
-        }))
-            .SetTooltip("Generate a reflection mesh for this submesh by flipping the model upside down over the XY plane. (See File/Preferences for reflection parameters.)")
-            .SetID("AUTO REFLECTION"),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Swap Reflection and Upright", function() {
-            var mesh = self.root.mesh;
-            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
-            
-            for (var i = 0, n = array_length(selection); i < n; i++) {
-                mesh.submeshes[selection[i]].SwapReflections();
-            }
-            
-            batch_again();
-        }))
-            .SetTooltip("The upright mesh will become the reflection mesh, and vice versa.")
-            .SetID("SWAP REFLECTION"),
-        #endregion
-        #region column 3
-        new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Editor Attributes"),
-        (new EmuBitfield(col3, EMU_AUTO, element_width, element_height * 8, mesh.flags, function() {
-            self.root.mesh.flags = self.value;
-        }))
-            .AddOptions([
-                "Particle", "Auto Static", "", "",
-                "", "", "", ""
-            ])
-            .SetOrientation(E_BitfieldOrientations.VERTICAL)
-            .SetTooltip("Extra attributes you can assign to meshes.")
-            .SetID("ATTRIBUTES")
-        #endregion
-    ])
-        .AddDefaultCloseButton();
+    ]);
     
-    return dialog;
+    if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+        dialog.AddContent([
+            #region column 2 - additional stuff
+            new EmuText(col2, EMU_BASE, element_width, element_height, "[c_aqua]Submesh Operations"),
+            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Reload from Source", function() {
+                var mesh = self.root.mesh;
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                
+                for (var i = 0, n = array_length(selection); i < n; i++) {
+                    mesh.submeshes[selection[i]].Reload();
+                }
+                
+                batch_again();
+            }))
+                .SetRefresh(function() {
+                    var mesh = self.root.mesh;
+                    var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                    self.SetInteractive(false);
+                    for (var i = 0, n = array_length(selection); i < n; i++) {
+                        if (mesh.submeshes[selection[i]].path != "") {
+                            self.SetInteractive(true);
+                            return;
+                        }
+                    }
+                })
+                .SetTooltip("Reload selected submeshes from their source file (if their source file exists).")
+                .SetID("RELOAD"),
+            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Import Reflection...", function() {
+                var mesh = self.root.mesh;
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                
+                for (var i = 0, n = array_length(selection); i < n; i++) {
+                    mesh.submeshes[selection[i]].ImportReflection();
+                }
+                
+                batch_again();
+            }))
+                .SetTooltip("Import a reflection mesh for all selected submeshes.")
+                .SetID("IMPORT REFLECTION"),
+            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto-Generate Reflection", function() {
+                var mesh = self.root.mesh;
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                
+                for (var i = 0, n = array_length(selection); i < n; i++) {
+                    mesh.submeshes[selection[i]].GenerateReflections();
+                }
+                
+                batch_again();
+            }))
+                .SetTooltip("Generate a reflection mesh for this submesh by flipping the model upside down over the XY plane. (See File/Preferences for reflection parameters.)")
+                .SetID("AUTO REFLECTION"),
+            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Swap Reflection and Upright", function() {
+                var mesh = self.root.mesh;
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                
+                for (var i = 0, n = array_length(selection); i < n; i++) {
+                    mesh.submeshes[selection[i]].SwapReflections();
+                }
+                
+                batch_again();
+            }))
+                .SetTooltip("The upright mesh will become the reflection mesh, and vice versa.")
+                .SetID("SWAP REFLECTION"),
+            #endregion
+            #region column 3
+            new EmuText(col3, EMU_BASE, element_width, element_height, "[c_aqua]Editor Attributes"),
+            (new EmuBitfield(col3, EMU_AUTO, element_width, element_height * 8, mesh.flags, function() {
+                self.root.mesh.flags = self.value;
+            }))
+                .AddOptions([
+                    "Particle", "Auto Static", "", "",
+                    "", "", "", ""
+                ])
+                .SetOrientation(E_BitfieldOrientations.VERTICAL)
+                .SetTooltip("Extra attributes you can assign to meshes.")
+                .SetID("ATTRIBUTES")
+            #endregion
+        ]);
+    }
+    
+    return dialog.AddDefaultCloseButton();
     
 }
