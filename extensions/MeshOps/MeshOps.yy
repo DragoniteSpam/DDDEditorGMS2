@@ -156,6 +156,18 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"meshops_set_matrix_raw","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_blend_colour","kind":1,"help":"meshops_blend_colour(data, length, color, amount)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_blend_color","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_blend_colour","kind":1,"help":"meshops_blend_colour(data, length, color, amount)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_blend_colour","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -183,6 +195,8 @@
         {"name":"__meshops_chunk","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_transform_set_matrix","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_set_matrix_raw","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_blend_color","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_blend_colour","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
