@@ -9,6 +9,11 @@ function MeshSubmesh(source) constructor {
     self.reflect_vbuffer = undefined;
     
     // overrides
+    self.col_diffuse = c_white;
+    self.alpha = 1;
+    self.col_ambient = c_gray;
+    self.col_specular = c_white;
+    self.col_specular_exponent = 10;
     self.tex_base = NULL;
     self.tex_normal = NULL;
     self.tex_ambient = NULL;
@@ -29,6 +34,11 @@ function MeshSubmesh(source) constructor {
         self.path = source.path;
         self.proto_guid = source.proto_guid;
         
+        self.col_diffuse = source[$ "col_diffuse"] ?? self.col_diffuse;
+        self.alpha = source[$ "alpha"] ?? self.alpha;
+        self.col_ambient = source[$ "col_ambient"] ?? self.col_ambient;
+        self.col_specular = source[$ "col_specular"] ?? self.col_specular;
+        self.col_specular_exponent = source[$ "col_specular_exponent"] ?? self.col_specular_exponent;
         self.tex_base = source[$ "tex_base"] ?? NULL;
         self.tex_normal = source[$ "tex_normal"] ?? NULL;
         self.tex_ambient = source[$ "tex_ambient"] ?? NULL;
@@ -59,6 +69,10 @@ function MeshSubmesh(source) constructor {
     self.Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_datatype, self.proto_guid);
+        buffer_write(buffer, buffer_u32, self.col_diffuse | (floor(self.alpha * 255) << 24));
+        buffer_write(buffer, buffer_u32, self.col_ambient);
+        buffer_write(buffer, buffer_u32, self.col_specular);
+        buffer_write(buffer, buffer_f32, self.col_specular_exponent);
         buffer_write(buffer, buffer_datatype, self.tex_base);
         buffer_write(buffer, buffer_datatype, self.tex_normal);
         buffer_write(buffer, buffer_datatype, self.tex_ambient);
@@ -84,6 +98,11 @@ function MeshSubmesh(source) constructor {
             path: self.path,
             proto_guid: self.proto_guid,
             
+            col_diffuse: self.col_diffuse,
+            alpha: self.alpha,
+            col_ambient: self.col_ambient,
+            col_specular: self.col_specular,
+            col_specular_exponent: self.col_specular_exponent,
             tex_base: self.tex_base,
             tex_normal: self.tex_normal,
             tex_ambient: self.tex_ambient,
@@ -215,6 +234,11 @@ function MeshSubmesh(source) constructor {
     };
     
     self.SetMaterial = function(material) {
+        self.col_diffuse = material.col_diffuse;
+        self.alpha = material.alpha;
+        self.col_ambient = material.col_ambient;
+        self.col_specular = material.col_specular;
+        self.col_specular_exponent = material.col_specular_exponent;
         self.tex_base = material.tex_base;
         self.tex_normal = material.tex_normal;
         self.tex_ambient = material.tex_ambient;
