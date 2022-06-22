@@ -172,6 +172,16 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"meshops_reverse","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_color(data, length, target, start, finish)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_multiply_color","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_colour(data, length, target, start, finish)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"meshops_multiply_colour","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -202,6 +212,8 @@
         {"name":"meshops_blend_color","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_blend_colour","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_reverse","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_multiply_color","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_multiply_colour","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
