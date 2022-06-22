@@ -234,5 +234,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     return dg.AddDefaultCloseButton("Close", function() {
         Stuff.mesh.ClearHighlightedSubmeshes();
         self.root.Dispose();
+    }).SetCallback(function() {
+        Stuff.mesh.ClearHighlightedSubmeshes();
+        self.Close();
     });
 }

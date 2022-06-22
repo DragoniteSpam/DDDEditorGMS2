@@ -218,6 +218,8 @@ function dialog_create_mesh_submesh(mesh) {
     return dialog.AddDefaultCloseButton("Close", function() {
         Stuff.mesh.ClearHighlightedSubmeshes();
         self.root.Dispose();
+    }).SetCallback(function() {
+        Stuff.mesh.ClearHighlightedSubmeshes();
+        self.Close();
     });
-    
 }
