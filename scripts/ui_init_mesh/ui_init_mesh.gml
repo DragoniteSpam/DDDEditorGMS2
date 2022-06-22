@@ -405,7 +405,7 @@ function ui_init_mesh(mode) {
             #endregion
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Operations"),
             #region other operations
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Rotate Up Axis", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Rotate Up Axis", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
                     self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionRotateUpAxis();
@@ -417,6 +417,19 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/")
                 .SetID("ROTATE UP AXIS"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Rotate (Swap Hnd.)", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionRotateUpAxis();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorX();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/")
+                .SetID("ROTATE AND SWAP"),
             (new EmuButton(col2x, EMU_AUTO, element_width / 3, element_height, "Mirror X", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
