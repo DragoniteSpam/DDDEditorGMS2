@@ -292,6 +292,14 @@ function buffer_write_buffer(to, from) {
     buffer_seek(to, buffer_seek_relative, size);
 }
 
+// this is like buffer_write_buffer but it doesnt write the length or seek
+// to the new position
+function buffer_append_buffer(to, from) {
+    var buffer_end = buffer_get_size(to);
+    buffer_resize(to, buffer_get_size(to) + buffer_get_size(from));
+    buffer_copy(from, 0, buffer_get_size(from), to, buffer_end);
+}
+
 function buffer_write_vertex_buffer(buffer, vbuff_data) {
     var formatted = meshops_vertex_formatted(vbuff_data, Game.meta.export.vertex_format);
     buffer_write_buffer(buffer, formatted);
