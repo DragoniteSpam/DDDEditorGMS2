@@ -23,7 +23,10 @@ function dialog_create_mesh_submesh(mesh) {
         (new EmuList(col1, EMU_BASE, element_width, element_height, mesh.name + " submeshes", element_height, 10, function() {
             if (self.root) self.root.Refresh();
             Stuff.mesh.ClearHighlightedSubmeshes();
-            if (self.GetSelectedItem()) Stuff.mesh.SetHighlightedSubmesh(self.GetSelectedItem());
+            var selection = self.GetAllSelectedIndices();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                Stuff.mesh.SetHighlightedSubmesh(self.root.mesh.submeshes[selection[i]]);
+            }
         }))
             .SetCallbackDouble(replace_submesh)
             .SetList(mesh.submeshes)
