@@ -33,7 +33,6 @@ function import_3d_model_generic(filename, squash = false) {
         }
     } catch (e) {
         Stuff.AddStatusMessage("Could not load the file: [c_orange]" + e.message);
-        // ignore
     }
     return undefined;
 }
@@ -399,29 +398,26 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "Kd":  // Diffuse color (the color we're concerned with)
                                 if (current_material) {
-                                    current_material.col_diffuse = make_colour_rgb(
-                                        real(ds_queue_dequeue(spl)) * 255,
-                                        real(ds_queue_dequeue(spl)) * 255,
-                                        real(ds_queue_dequeue(spl)) * 255
-                                    );
+                                    var cr = real(ds_queue_dequeue(spl)) * 255;
+                                    var cg = real(ds_queue_dequeue(spl)) * 255;
+                                    var cb = real(ds_queue_dequeue(spl)) * 255;
+                                    current_material.col_diffuse = make_colour_rgb(cr, cg, cb);
                                 }
                                 break;
                             case "Ka":  // Ambient color
                                 if (current_material) {
-                                    current_material.col_ambient = make_colour_rgb(
-                                        real(ds_queue_dequeue(spl)) * 255,
-                                        real(ds_queue_dequeue(spl)) * 255,
-                                        real(ds_queue_dequeue(spl)) * 255
-                                    );
+                                    var cr = real(ds_queue_dequeue(spl)) * 255;
+                                    var cg = real(ds_queue_dequeue(spl)) * 255;
+                                    var cb = real(ds_queue_dequeue(spl)) * 255;
+                                    current_material.col_ambient = make_colour_rgb(cr, cg, cb);
                                 }
                                 break;
                             case "Ks":  // Specular color
                                 if (current_material) {
-                                    current_material.col_specular = make_colour_rgb(
-                                        real(ds_queue_dequeue(spl)) * 255,
-                                        real(ds_queue_dequeue(spl)) * 255,
-                                        real(ds_queue_dequeue(spl)) * 255
-                                    );
+                                    var cr = real(ds_queue_dequeue(spl)) * 255;
+                                    var cg = real(ds_queue_dequeue(spl)) * 255;
+                                    var cb = real(ds_queue_dequeue(spl)) * 255;
+                                    current_material.col_specular = make_colour_rgb(cr, cg, cb);
                                 }
                                 break;
                             case "Ns":  // Specular exponent
