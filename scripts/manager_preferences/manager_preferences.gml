@@ -106,10 +106,14 @@ function dialog_create_preferences() {
             }))
                 .SetAlphaUsed(true)
                 .SetTooltip("The color for reflected meshes wo be blended with. You probably want to pick something blue-ish. The alpha channel will determine the amount of blending; a value around 0.5 should be good for most cases. Color will only be applied if the Colorize option is enabled above."),
-        (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Combine obj submeshes?", Settings.mesh.combine_obj_submeshes, function() {
+        (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Combine OBJ vertex colors?", Settings.mesh.fuse_textureless_materials, function() {
+            Settings.mesh.fuse_textureless_materials = self.value;
+        }))
+            .SetTooltip("Import OBJ models with multiple materials that don't use any texture maps as a single submesh?"),
+        (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Combine all OBJ submeshes?", Settings.mesh.combine_obj_submeshes, function() {
             Settings.mesh.combine_obj_submeshes = self.value;
         }))
-            .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material."),
+            .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material?"),
     ]).AddDefaultCloseButton("Done");
     
     enum MeshReflectionSettings {

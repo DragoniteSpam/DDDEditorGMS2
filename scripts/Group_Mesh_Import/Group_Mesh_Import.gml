@@ -594,26 +594,28 @@ function import_obj(fn, squash = false) {
         }
     }
     
-    // if any material doesn't actually have any textures (eg a mesh that
-    // uses only vertex colors), you can fuse them together for free
-    var common_data = undefined;
-    for (var i = array_length(output) - 1; i >= 0; i--) {
-        var submesh = output[i];
-        if (!submesh.material.HasAnyTextures()) {
-            if (!common_data) {
-                common_data = new MeshImportData(submesh.buffer, new Material("BASE MATERIAL"));
-            } else {
-                var tell = buffer_get_size(common_data.buffer);
-                buffer_resize(common_data.buffer, buffer_get_size(common_data.buffer) + buffer_get_size(submesh.buffer));
-                buffer_copy(submesh.buffer, 0, buffer_get_size(submesh.buffer), common_data.buffer, tell);
-                buffer_delete(submesh.buffer);
+    if (Settings.mesh.fuse_textureless_materials) {
+        // if any material doesn't actually have any textures (eg a mesh that
+        // uses only vertex colors), you can fuse them together for free
+        var common_data = undefined;
+        for (var i = array_length(output) - 1; i >= 0; i--) {
+            var submesh = output[i];
+            if (!submesh.material.HasAnyTextures()) {
+                if (!common_data) {
+                    common_data = new MeshImportData(submesh.buffer, new Material("BASE MATERIAL"));
+                } else {
+                    var tell = buffer_get_size(common_data.buffer);
+                    buffer_resize(common_data.buffer, buffer_get_size(common_data.buffer) + buffer_get_size(submesh.buffer));
+                    buffer_copy(submesh.buffer, 0, buffer_get_size(submesh.buffer), common_data.buffer, tell);
+                    buffer_delete(submesh.buffer);
+                }
+                array_delete(output, i, 1);
             }
-            array_delete(output, i, 1);
         }
-    }
-    
-    if (common_data) {
-        array_insert(output, 0, common_data);
+        
+        if (common_data) {
+            array_insert(output, 0, common_data);
+        }
     }
     
     if (array_length(output) == 0) return undefined;
