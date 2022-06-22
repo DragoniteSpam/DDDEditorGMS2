@@ -849,7 +849,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"wire_sphere.vbuff","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.600.0.134",
+    "IDEVersion": "2022.600.0.138",
   },
   "resourceVersion": "1.5",
   "name": "DDDEditor2-23",
