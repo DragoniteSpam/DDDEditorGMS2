@@ -26,6 +26,18 @@ function ui_init_mesh(mode) {
             if (array_length(filtered_list) > 0) {
                 self.GetSibling("MESH LIST").Deselect();
             }
+            // if you drag an obj and the mtl that it belongs to into the
+            // editor, you usually don't want to load it twice
+            var obj_cache = { };
+            for (var i = array_length(filtered_list) - 1; i >= 0; i--) {
+                if (filename_ext(filtered_list[i]) == ".mtl" || filename_ext(filtered_list[i]) == ".obj") {
+                    if (obj_cache[$ filename_change_ext(filtered_list[i], "")]) {
+                        array_delete(filtered_list, i, 1);
+                        continue;
+                    }
+                    obj_cache[$ filename_change_ext(filtered_list[i], "")] = true;
+                }
+            }
             var n = 0;
             for (var i = 0; i < array_length(filtered_list); i++) {
                 // try to import the file as a 3D mesh; if that doesn't work,
