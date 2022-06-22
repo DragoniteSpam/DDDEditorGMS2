@@ -68,7 +68,6 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             }))
                 .SetAllowDeselect(false)
                 .SetList(mesh_list[selection[0]].submeshes)
-                .Select(0)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetID("SUBMESHES"),
             (new EmuButton(col1, EMU_AUTO, ew, eh, "Base Mesh", function() {
@@ -230,6 +229,10 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     tab_bump.AddContent(texture_list_general(col1, ew, eh, "Bump map:", function(submesh, tex) { submesh.tex_bump = tex; }, function(submesh) { return submesh.tex_bump; }, id_bump));
     tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", function(submesh, tex) { submesh.tex_displacement = tex; }, function(submesh) { return submesh.tex_displacement; }, id_displacement));
     tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", function(submesh, tex) { submesh.tex_stencil = tex; }, function(submesh) { return submesh.tex_stencil; }, id_decal));
+    
+    if (dg.GetChild("SUBMESHES")) {
+        dg.GetChild("SUBMESHES").Select(0);
+    }
     
     return dg.AddDefaultCloseButton("Close", function() {
         Stuff.mesh.ClearHighlightedSubmeshes();
