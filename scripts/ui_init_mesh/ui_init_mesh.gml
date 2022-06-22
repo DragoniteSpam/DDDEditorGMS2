@@ -508,6 +508,8 @@ function ui_init_mesh(mode) {
                 if (keyboard_check_pressed(vk_mesh_editor_overlay_text_toggle)) {
                     Settings.mesh.draw_3d_view_overlay_text = !Settings.mesh.draw_3d_view_overlay_text;
                 }
+                if (keyboard_check(ord("Q"))) Settings.mesh.draw_light_direction++;
+                if (keyboard_check(ord("E"))) Settings.mesh.draw_light_direction--;
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {

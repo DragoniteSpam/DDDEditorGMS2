@@ -21,9 +21,9 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     light_data[1] = -dsin(Settings.mesh.draw_light_direction);
     light_data[2] = -1;  // this feels upside-down
     light_data[3] = LightTypes.DIRECTIONAL;
-    light_data[8] = 0.75;
-    light_data[9] = 0.75;
-    light_data[10] = 0.75;
+    light_data[8] = 0.9;
+    light_data[9] = 0.9;
+    light_data[10] = 0.9;
     
     var time_color = c_white;
     var weather_color = c_white;
