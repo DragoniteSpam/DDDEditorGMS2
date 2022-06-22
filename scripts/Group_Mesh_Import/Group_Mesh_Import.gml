@@ -23,11 +23,11 @@ function import_mesh(filename) {
     return mesh;
 }
 
-function import_3d_model_generic(filename) {
+function import_3d_model_generic(filename, squash = false) {
     /// @todo more robust try-catch
     try {
         switch (filename_ext(filename)) {
-            case ".obj": return import_obj(filename);
+            case ".obj": return import_obj(filename, squash);
             case ".d3d": case ".gmmod": return import_d3d(filename);
             case ".smf": 
         }
@@ -172,7 +172,7 @@ function import_dae(filename, adjust_uvs = true) {
     }
 }
 
-function import_obj(fn) {
+function import_obj(fn, squash = false) {
     static warn_invisible = false;
     
     var base_path = filename_path(fn);
@@ -572,7 +572,7 @@ function import_obj(fn) {
             var nz = buffer_read(face_vertex_attributes, face_attribute_type);
             var xtex = buffer_read(face_vertex_attributes, face_attribute_type);
             var ytex = buffer_read(face_vertex_attributes, face_attribute_type);
-            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? (1 - ytex) : ytex, face_material.col_diffuse, face_material.alpha);
+            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? (1 - ytex) : ytex, c_white, 1);
         }
     }
     
@@ -592,7 +592,7 @@ function import_obj(fn) {
         }
     }
     
-    if (Settings.mesh.combine_obj_submeshes) {
+    if (Settings.mesh.combine_obj_submeshes || squash) {
         // this option will supercede (and include) the next one
         var common_data = buffer_create(0, buffer_fixed, 1);
         for (var i = array_length(output) - 1; i >= 0; i--) {
