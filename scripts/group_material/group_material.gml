@@ -72,7 +72,6 @@ function Material(
         return json;
     };
     
-    
     self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.col_diffuse | (floor(self.col_alpha * 255) << 24));
@@ -87,5 +86,18 @@ function Material(
         buffer_write(buffer, buffer_datatype, self.tex_bump);
         buffer_write(buffer, buffer_datatype, self.tex_displacement);
         buffer_write(buffer, buffer_datatype, self.tex_stencil);
+    };
+    
+    self.HasAnyTextures = function() {
+        if (self.tex_base != NULL) return true;
+        if (self.tex_normal != NULL) return true;
+        if (self.tex_ambient != NULL) return true;
+        if (self.tex_specular_color != NULL) return true;
+        if (self.tex_specular_highlight != NULL) return true;
+        if (self.tex_alpha != NULL) return true;
+        if (self.tex_bump != NULL) return true;
+        if (self.tex_displacement != NULL) return true;
+        if (self.tex_stencil != NULL) return true;
+        return false;
     };
 }
