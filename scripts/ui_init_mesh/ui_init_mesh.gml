@@ -18,6 +18,9 @@ function ui_init_mesh(mode) {
         new EmuFileDropperListener(function(files) {
             debug_timer_start();
             var filtered_list = self.Filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
+            if (array_length(filtered_list) > 0) {
+                self.GetSibling("MESH LIST").Deselect();
+            }
             var n = 0;
             for (var i = 0; i < array_length(filtered_list); i++) {
                 // try to import the file as a 3D mesh; if that doesn't work,
@@ -113,6 +116,8 @@ function ui_init_mesh(mode) {
             (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
                 debug_timer_start();
                 if (import_mesh(get_open_filename_mesh())) {
+                    self.root.GetSibling("MESH LIST").Deselect();
+                    self.root.GetSibling("MESH LIST").Select(array_length(Game.meshes) - 1, true);
                     Stuff.AddStatusMessage("Importing mesh took " + debug_timer_finish());
                 }
             }))

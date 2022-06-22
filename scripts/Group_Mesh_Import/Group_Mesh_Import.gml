@@ -18,6 +18,7 @@ function import_mesh(filename) {
     }
     
     array_push(Game.meshes, mesh);
+    Stuff.mesh.ui.GetChild("MESH LIST").Select(array_length(Game.meshes) - 1, true);
     
     return mesh;
 }
