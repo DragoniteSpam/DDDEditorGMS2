@@ -40,7 +40,10 @@ function get_open_filename_image() {
 }
 
 function get_open_filename_mesh() {
-    return __get_open_filename_general("Any valid mesh file|*.d3d;*.gmmod;*.obj;*.dae;*.smf;|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|Collada models|*.dae", "", Settings.location.mesh, "Select a 3D model file", function(directory) {
+    var filter = (EDITOR_BASE_MODE != ModeIDs.MESH) ?
+        "Any valid mesh file|*.d3d;*.gmmod;*.obj;*.dae;*.smf;|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|Collada models|*.dae" :
+        "Any valid mesh file|*.d3d;*.gmmod;*.obj;|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj";
+    return __get_open_filename_general(filter, "", Settings.location.mesh, "Select a 3D model file", function(directory) {
         Settings.location.mesh = directory;
     });
 }

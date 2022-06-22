@@ -17,7 +17,12 @@ function ui_init_mesh(mode) {
     container.AddContent([
         new EmuFileDropperListener(function(files) {
             debug_timer_start();
-            var filtered_list = self.Filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
+            var filter_array = [".d3d", ".gmmod", ".obj", ".png", ".bmp", ".jpg", ".jpeg"];
+            // we can add these back in later when they're working
+            if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+                array_push(filter_array, ".dae", ".smf");
+            }
+            var filtered_list = self.Filter(files, filter_array);
             if (array_length(filtered_list) > 0) {
                 self.GetSibling("MESH LIST").Deselect();
             }
