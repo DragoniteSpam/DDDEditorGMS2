@@ -67,6 +67,7 @@ Settings.config[$ "color_world"] ??=                                            
 Settings.config[$ "mode"] ??=                                                   EDITOR_BASE_MODE;
 Settings.config[$ "remove_covered_mesh_at"] ??=                                 false;
 Settings.config[$ "show_debug_ribbon"] ??=                                      true;
+Settings.config[$ "show_status_messages"] ??=                                   true;
 
 Settings[$ "location"] ??=                                                      { };
 Settings.location[$ "ddd"] ??=                                                  "";

@@ -58,7 +58,8 @@ if (Settings.config.tooltip && Stuff.element_tooltip && (Stuff.element_tooltip_t
 Stuff.element_tooltip_previous = Stuff.element_tooltip;
 Stuff.element_tooltip = noone;
 
-// status messages
-for (var i = 0, n = array_length(self.status_messages); i < n; i++) {
-    self.status_messages[i].Render();
+if (Settings.config.show_status_messages) {
+    for (var i = 0, n = array_length(self.status_messages); i < n; i++) {
+        self.status_messages[i].Render();
+    }
 }

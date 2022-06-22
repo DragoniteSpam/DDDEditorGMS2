@@ -110,6 +110,10 @@ function dialog_create_preferences() {
             Settings.mesh.combine_obj_submeshes = self.value;
         }))
             .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material?"),
+        (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Show status messages?", Settings.config.show_status_messages, function() {
+            Settings.config.show_status_messages = self.value;
+        }))
+            .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material?"),
     ]).AddDefaultCloseButton("Done");
     
     enum MeshReflectionSettings {
