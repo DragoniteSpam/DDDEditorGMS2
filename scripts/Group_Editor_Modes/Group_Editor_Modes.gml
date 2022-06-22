@@ -75,16 +75,16 @@ function EditorModeMesh() : EditorModeBase() constructor {
     self.highlighted_submeshes = { };
     
     self.SetHighlightedSubmesh = function(submesh) {
-        self.highlighted_submeshes[$ string(submesh.vbuffer)] = submesh.vbuffer;
+        self.highlighted_submeshes[$ string(ptr(submesh))] = submesh;
     };
     
     self.GetHighlightedSubmesh = function(submesh) {
-        return !!self.highlighted_submeshes[$ string(submesh.vbuffer)];
+        return !!self.highlighted_submeshes[$ string(ptr(submesh))];
     };
     
     self.RemoveHighlightedSubmesh = function(submesh) {
-        if (variable_struct_exists(self.highlighted_submeshes, string(submesh.vbuffer)))
-            variable_struct_remove(self.highlighted_submeshes, string(submesh.vbuffer));
+        if (variable_struct_exists(self.highlighted_submeshes, string(ptr(submesh))))
+            variable_struct_remove(self.highlighted_submeshes, string(ptr(submesh)));
     };
     
     self.ClearHighlightedSubmeshes = function() {
