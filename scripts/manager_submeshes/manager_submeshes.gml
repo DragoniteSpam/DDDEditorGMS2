@@ -10,6 +10,7 @@ function dialog_create_mesh_submesh(mesh) {
     
     var dialog = new EmuDialog(32 + 320 + 32 + ((EDITOR_BASE_MODE != ModeIDs.MESH) ? (320 + 32 + 320 + 32) : 0), 688, "Submesh Options: " + mesh.name);
     dialog.mesh = mesh;
+    dialog.active_shade = 0;
     
     var element_width = 320;
     var element_height = 32;
