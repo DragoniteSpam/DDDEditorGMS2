@@ -468,6 +468,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
                 case MeshTypes.RAW:
                     var mesh = guid_get(entity.mesh);
                     matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+                    graphics_set_material(entity.GetSubmesh());
                     var tex = entity.GetTexture();
                     vertex_submit(entity.GetVertexBuffer(), pr_trianglelist, tex);
                     
@@ -537,39 +538,32 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.SetMesh(mesh);
     
     self.GetBuffer = function() {
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.buffer : undefined;
+    };
+    
+    self.GetSubmesh = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
         var mesh_data = guid_get(self.mesh);
         if (!mesh_data) return undefined;
         if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].buffer : undefined;
+        return mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)];
     };
     
     self.GetVertexBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(self.mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].vbuffer : undefined;
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.vbuffer : undefined;
     };
     
     self.GetReflectBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(self.mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_buffer : undefined;
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.reflect_buffer : undefined;
     };
     
     self.GetReflectVertexBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_vbuffer : undefined;
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.reflect_vbuffer : undefined;
     };
     
     self.GetTexture = function() {
@@ -580,12 +574,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
             return sprite_get_texture(own_texture.picture, 0);
         }
         
-        var mesh_data = guid_get(self.mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        
-        var submesh = mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)];
-        
+        var submesh = self.GetSubmesh();
         if (submesh && guid_get(submesh.tex_base)) {
             return sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
         }
@@ -674,6 +663,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
         if (!vbuffer) vbuffer = Stuff.graphics.missing_autotile;
         
         matrix_set(matrix_world, matrix_build(mesh_autotile.xx * TILE_WIDTH, mesh_autotile.yy * TILE_HEIGHT, mesh_autotile.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1));
+        graphics_set_material();
         
         if (Settings.view.entities) {
             var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : -1;
@@ -757,6 +747,7 @@ function EntityPawn(source) : Entity(source) constructor {
         var index = self.map_direction * data.hframes + floor(self.frame);
     
         matrix_set(matrix_world, matrix_build(self.xx * TILE_WIDTH, self.yy * TILE_HEIGHT, self.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1));
+        graphics_set_material();
         vertex_submit(data ? data.npc_frames[index] : Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(data ? data.picture : spr_pawn_missing, 0));
         matrix_set(matrix_world, matrix_build_identity());
     };
@@ -856,6 +847,7 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
         if (Settings.view.entities) {
             var tex = Settings.view.texture ? sprite_get_texture(ts.picture, 0) : -1;
             matrix_set(matrix_world, matrix_build(xx, yy, zz, 0, 0, 0, 1, 1, 1));
+            graphics_set_material();
             vertex_submit(tile.vbuffer, pr_trianglelist, tex);
             matrix_set(matrix_world, matrix_build_identity());
         }

@@ -69,3 +69,14 @@ function graphics_set_lighting(shader) {
     shader_set_uniform_f(shader_get_uniform(shader, "fogEnd"), map.fog_end);
     shader_set_uniform_f(shader_get_uniform(shader, "fogColor"), (map.fog_colour & 0x0000ff) / 0xff, ((map.fog_colour & 0x00ff00) >> 8) / 0xff, ((map.fog_colour & 0xff0000) >> 16) / 0xff);
 }
+
+function graphics_set_material(material_content = undefined) {
+    // calling this function with no parameter will reset the material values
+    var cr = material_content ? (colour_get_red(material_content.col_diffuse) / 0xff) : 1;
+    var cg = material_content ? (colour_get_green(material_content.col_diffuse) / 0xff) : 1;
+    var cb = material_content ? (colour_get_blue(material_content.col_diffuse) / 0xff) : 1;
+    var ca = material_content ? material_content.alpha : 1;
+    
+    var shader = shader_current();
+    shader_set_uniform_f(shader_get_uniform(shader, "u_MaterialColor"), cr, cg, cb, ca);
+}

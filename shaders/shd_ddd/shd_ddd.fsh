@@ -118,13 +118,17 @@ void DrawWireframe(inout vec4 color) {
 }
 #endregion
 
+#region material stuff
+uniform vec4 u_MaterialColor;
+#endregion
+
 // not sure why this works but gm_AlphaRefValue is not
 #define ALPHA_REF 0.2
 #define WIRE_ALPHA 1.0
 
 void main() {
-    vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
-    vec4 color = v_vColour * baseColor;
+    vec4 diffuseColor = texture2D(gm_BaseTexture, v_vTexcoord);
+    vec4 color = v_vColour * diffuseColor * u_MaterialColor;
     float sourceAlpha = color.a;
     
     CommonLight(color);
