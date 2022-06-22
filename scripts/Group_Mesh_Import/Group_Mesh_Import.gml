@@ -594,7 +594,19 @@ function import_obj(fn, squash = false) {
         }
     }
     
-    if (Settings.mesh.fuse_textureless_materials) {
+    if (Settings.mesh.combine_obj_submeshes) {
+        // this option will supercede (and include) the next one
+        var common_data = buffer_create(0, buffer_fixed, 1);
+        for (var i = array_length(output) - 1; i >= 0; i--) {
+            var submesh = output[i];
+            var tell = buffer_get_size(common_data);
+            buffer_resize(common_data, buffer_get_size(common_data) + buffer_get_size(submesh.buffer));
+            buffer_copy(submesh.buffer, 0, buffer_get_size(submesh.buffer), common_data, tell);
+            buffer_delete(submesh.buffer);
+        }
+        
+        output = [new MeshImportData(common_data, new Material("BASE TEXTURE"))];
+    } else if (Settings.mesh.fuse_textureless_materials) {
         // if any material doesn't actually have any textures (eg a mesh that
         // uses only vertex colors), you can fuse them together for free
         var common_data = undefined;
