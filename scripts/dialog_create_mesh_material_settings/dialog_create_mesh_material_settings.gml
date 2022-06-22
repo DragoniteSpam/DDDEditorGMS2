@@ -118,28 +118,34 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         var shortest_dimension = min(1, self.width / sprite_get_width(tex.picture), self.height / sprite_get_height(tex.picture));
         draw_sprite_ext(tex.picture, 0, 0, 0, shortest_dimension, shortest_dimension, 0, c_white, 1);
         
-        var ww = shortest_dimension * sprite_get_width(tex.picture);
-        var hh = shortest_dimension * sprite_get_height(tex.picture);
-        
-        var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
-        shader_set(shd_texture_mapping);
-        matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, ww, hh, shortest_dimension));
-        wireframe_enable(1, 10000, c_aqua, 1);
-        for (var i = 0, n = array_length(highlighted); i < n; i++) {
-            vertex_submit(highlighted[i], pr_trianglelist, -1);
+        if (self.GetSibling("VIEW UVS").value) {
+            var ww = shortest_dimension * sprite_get_width(tex.picture);
+            var hh = shortest_dimension * sprite_get_height(tex.picture);
+            
+            var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
+            shader_set(shd_texture_mapping);
+            matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, ww, hh, shortest_dimension));
+            wireframe_enable(1, 10000, c_aqua, 1);
+            for (var i = 0, n = array_length(highlighted); i < n; i++) {
+                vertex_submit(highlighted[i], pr_trianglelist, -1);
+            }
+            wireframe_disable();
+            for (var i = 0, n = array_length(highlighted); i < n; i++) {
+                vertex_submit(highlighted[i], pr_pointlist, -1);
+            }
+            matrix_set(matrix_world, matrix_build_identity());
+            shader_reset();
         }
-        wireframe_disable();
-        for (var i = 0, n = array_length(highlighted); i < n; i++) {
-            vertex_submit(highlighted[i], pr_pointlist, -1);
-        }
-        matrix_set(matrix_world, matrix_build_identity());
-        shader_reset();
     }, emu_null))
         .SetEnabled(false)
         .SetID("PREVIEW");
     preview.sprite = NULL;
     
-    dg.AddContent(preview);
+    dg.AddContent([
+        preview,
+        (new EmuCheckbox(tabs.x + tabs.width + 32, EMU_AUTO, ew, eh, "View UVs?", true, emu_null))
+            .SetID("VIEW UVS")
+    ]);
     
     // we really don't want to have to call this code like nine different times
     var texture_list_general = function(x, ew, eh, name, callback_set_texture, callback_get_texture, default_selection) {
