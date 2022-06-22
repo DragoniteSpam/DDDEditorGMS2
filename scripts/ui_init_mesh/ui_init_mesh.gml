@@ -500,6 +500,9 @@ function ui_init_mesh(mode) {
             #region viewer
             (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function() {
                 Stuff.mesh.camera.Update();
+                if (keyboard_check_pressed(vk_mesh_editor_overlay_text_toggle)) {
+                    Settings.mesh.draw_3d_view_overlay_text = !Settings.mesh.draw_3d_view_overlay_text;
+                }
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {

@@ -119,6 +119,7 @@ Settings.mesh[$ "wireframe_alpha"] ??=                                          
 Settings.mesh[$ "reflect_settings"] ??=                                         MESH_DEF_REFLECT_SETTINGS;
 Settings.mesh[$ "reflect_color"] ??=                                            MESH_DEF_REFLECT_COLOR;
 Settings.mesh[$ "combine_obj_submeshes"] ??=                                    MESH_DEF_COMBINE_OBJ_SUBMESHES;
+Settings.mesh[$ "draw_3d_view_overlay_text"] ??=                                MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT;
 
 #macro MESH_DEF_VIEW_DRAW_POSITION                                              new Vector3(0, 0, 0)
 #macro MESH_DEF_VIEW_DRAW_ROTATION                                              new Vector3(0, 0, 0)
@@ -137,6 +138,8 @@ Settings.mesh[$ "combine_obj_submeshes"] ??=                                    
 #macro MESH_DEF_REFLECT_SETTINGS                                                (MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE)
 #macro MESH_DEF_REFLECT_COLOR                                                   0x7fff6600
 #macro MESH_DEF_COMBINE_OBJ_SUBMESHES                                           true
+#macro MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT                                       true
+#macro vk_mesh_editor_overlay_text_toggle                                       ord("O")
 
 #macro COLOR_MODE_DARK_BACK                                                     0x1f1f1f
 #macro COLOR_MODE_DARK_DEFAULT                                                  0x5f5f5f
