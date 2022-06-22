@@ -59,10 +59,9 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
                 "a whole, or set [c_aqua]overrides[/c] for individual \n" +
                 "submeshes."
             ),
-            (new EmuList(col1, EMU_AUTO, ew, eh, "Submesh Override:", eh, 12, function() {
+            (new EmuList(col1, EMU_AUTO, ew, eh, "Submesh:", eh, 14, function() {
                 if (!self.root) return;
                 self.root.Refresh();
-                self.GetSibling("BASE MESH BUTTON").SetInteractive(true);
                 Stuff.mesh.ClearHighlightedSubmeshes();
                 if (self.GetSelectedItem()) Stuff.mesh.SetHighlightedSubmesh(self.GetSelectedItem());
             }))
@@ -70,12 +69,6 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
                 .SetList(mesh_list[selection[0]].submeshes)
                 .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                 .SetID("SUBMESHES"),
-            (new EmuButton(col1, EMU_AUTO, ew, eh, "Base Mesh", function() {
-                self.GetSibling("SUBMESHES").Deselect();
-                self.SetInteractive(false)
-            }))
-                .SetInteractive(false)
-                .SetID("BASE MESH BUTTON")
         ]);
     }
     
