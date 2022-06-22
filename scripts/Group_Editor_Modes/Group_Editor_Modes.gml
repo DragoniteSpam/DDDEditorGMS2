@@ -90,6 +90,15 @@ function EditorModeMesh() : EditorModeBase() constructor {
     self.ClearHighlightedSubmeshes = function() {
         self.highlighted_submeshes = { };
     };
+    
+    self.GetAllHighlightedSubmeshes = function() {
+        var keys = variable_struct_get_names(self.highlighted_submeshes);
+        var collection = array_create(array_length(keys));
+        for (var i = 0, n = array_length(keys); i < n; i++) {
+            collection[i] = self.highlighted_submeshes[$ keys[i]];
+        }
+        return collection;
+    };
 }
 
 function EditorModeText() : EditorModeBase() constructor {

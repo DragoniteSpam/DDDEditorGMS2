@@ -100,7 +100,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     tabs.RequestActivateTab(tab_base);
     dg.AddContent([
         tabs,
-        new EmuCheckbox(default_mesh_tex_only ? col1 : col2, EMU_AUTO, ew, eh, "Preview texture?", false, function() {
+        new EmuCheckbox(default_mesh_tex_only ? col1 : col2, EMU_AUTO, ew, eh, "View texture?", false, function() {
             self.GetSibling("PREVIEW").SetEnabled(self.value);
             if (self.value) {
                 self.root.width += 480 + 32;
@@ -117,6 +117,23 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         
         var shortest_dimension = min(1, self.width / sprite_get_width(tex.picture), self.height / sprite_get_height(tex.picture));
         draw_sprite_ext(tex.picture, 0, 0, 0, shortest_dimension, shortest_dimension, 0, c_white, 1);
+        
+        var ww = shortest_dimension * sprite_get_width(tex.picture);
+        var hh = shortest_dimension * sprite_get_height(tex.picture);
+        
+        var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
+        shader_set(shd_texture_mapping);
+        matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, ww, hh, shortest_dimension));
+        wireframe_enable(1, 10000, c_aqua, 1);
+        for (var i = 0, n = array_length(highlighted); i < n; i++) {
+            vertex_submit(highlighted[i], pr_trianglelist, -1);
+        }
+        wireframe_disable();
+        for (var i = 0, n = array_length(highlighted); i < n; i++) {
+            vertex_submit(highlighted[i], pr_pointlist, -1);
+        }
+        matrix_set(matrix_world, matrix_build_identity());
+        shader_reset();
     }, emu_null))
         .SetEnabled(false)
         .SetID("PREVIEW");
