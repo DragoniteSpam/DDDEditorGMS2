@@ -88,10 +88,6 @@ function dialog_create_preferences() {
             self.root.active_shade = self.value;
         }))
             .SetTooltip("The opacity behind the active dialog box. Not all dialog boxes may show the opacity, although most will."),
-        (new EmuCheckbox(c1x, EMU_AUTO, ew, eh, "Squash 3D meshes on import?", Settings.config.squash_meshes, function() {
-            Settings.config.squash_meshes = self.value;
-        }))
-            .SetTooltip("If this is enabled, 3D model files that you import will be loaded as a single submesh instead of separate submeshes for each Material."),
         new EmuText(c2x, EMU_BASE, ew, eh, "Mesh Reflection Actions:"),
         (new EmuBitfield(c2x, EMU_AUTO, ew, eh * 8, Settings.mesh.reflect_settings, function() {
             Settings.mesh.reflect_settings = self.value;

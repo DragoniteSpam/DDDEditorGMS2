@@ -23,11 +23,11 @@ function import_mesh(filename) {
     return mesh;
 }
 
-function import_3d_model_generic(filename, squash = false) {
+function import_3d_model_generic(filename) {
     /// @todo more robust try-catch
     try {
         switch (filename_ext(filename)) {
-            case ".obj": return import_obj(filename, squash);
+            case ".obj": return import_obj(filename);
             case ".d3d": case ".gmmod": return import_d3d(filename);
             case ".smf": 
         }
@@ -172,9 +172,7 @@ function import_dae(filename, adjust_uvs = true) {
     }
 }
 
-function import_obj(fn, squash = false) {
-    squash |= Settings.config.squash_meshes;
-    
+function import_obj(fn) {
     static warn_invisible = false;
     
     var base_path = filename_path(fn);
@@ -548,7 +546,7 @@ function import_obj(fn, squash = false) {
         
         // if the material you're working with changes, check to see if any
         // output data with the material already exists; if not, create one
-        var current_output_material = squash ? base_material : face_material;
+        var current_output_material = face_material;
         if (output_material != current_output_material) {
             output_data = undefined;
             for (var j = 0, n2 = array_length(output); j < n2; j++) {
@@ -563,7 +561,7 @@ function import_obj(fn, squash = false) {
             }
         }
         
-        // always use the vertex color of the current material, even if squashed
+        // always use the vertex color of the current material (for now)
         max_alpha = max(max_alpha, face_material.alpha);
         repeat (3) {
             var xx = buffer_read(face_vertex_attributes, face_attribute_type);
@@ -605,7 +603,8 @@ function import_obj(fn, squash = false) {
             buffer_delete(submesh.buffer);
         }
         
-        output = [new MeshImportData(common_data, new Material("BASE TEXTURE"))];
+        output = [new MeshImportData(common_data, base_material)];
+        base_material.name = "BASE MATERIAL";
     } else if (Settings.mesh.fuse_textureless_materials) {
         // if any material doesn't actually have any textures (eg a mesh that
         // uses only vertex colors), you can fuse them together for free
