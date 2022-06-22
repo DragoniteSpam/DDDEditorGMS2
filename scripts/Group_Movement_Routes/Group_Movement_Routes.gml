@@ -30,7 +30,7 @@ function MoveRoute(source) : SData(source) constructor {
 
 function MoveRouteAction() {
     self.name = "base action";
-    self.id = -1;
+    self.action_id = -1;
     
     self.toString = function() {
         return self.name;
@@ -38,7 +38,7 @@ function MoveRouteAction() {
     
     self.Edit = function() { };
     self.Export = function(buffer) {
-        buffer_write(buffer, buffer_u32, self.id);
+        buffer_write(buffer, buffer_u32, self.action_id);
     };
     
     self.Edit();
@@ -46,59 +46,59 @@ function MoveRouteAction() {
 
 function MoveRouteAction_MoveDown() : MoveRouteAction() constructor {
     self.name = "Move Down";
-    self.id = MoveRouteActions.MOVE_DOWN;
+    self.action_id = MoveRouteActions.MOVE_DOWN;
 }
 function MoveRouteAction_MoveLeft() : MoveRouteAction() constructor {
     self.name = "Move Left";
-    self.id = MoveRouteActions.MOVE_LEFT;
+    self.action_id = MoveRouteActions.MOVE_LEFT;
 }
 function MoveRouteAction_MoveRight() : MoveRouteAction() constructor {
     self.name = "Move Right";
-    self.id = MoveRouteActions.MOVE_RIGHT;
+    self.action_id = MoveRouteActions.MOVE_RIGHT;
 }
 function MoveRouteAction_MoveUp() : MoveRouteAction() constructor {
     self.name = "Move Up";
-    self.id = MoveRouteActions.MOVE_UP;
+    self.action_id = MoveRouteActions.MOVE_UP;
 }
 function MoveRouteAction_MoveLowerLeft() : MoveRouteAction() constructor {
     self.name = "Move Lower Left";
-    self.id = MoveRouteActions.MOVE_LOWER_LEFT;
+    self.action_id = MoveRouteActions.MOVE_LOWER_LEFT;
 }
 function MoveRouteAction_MoveLowerRight() : MoveRouteAction() constructor {
     self.name = "Move Lower Right";
-    self.id = MoveRouteActions.MOVE_LOWER_RIGHT;
+    self.action_id = MoveRouteActions.MOVE_LOWER_RIGHT;
 }
 function MoveRouteAction_MoveUpperLeft() : MoveRouteAction() constructor {
     self.name = "Move Upper Left";
-    self.id = MoveRouteActions.MOVE_UPPER_LEFT;
+    self.action_id = MoveRouteActions.MOVE_UPPER_LEFT;
 }
 function MoveRouteAction_MoveUpperRight() : MoveRouteAction() constructor {
     self.name = "Move Upper Right";
-    self.id = MoveRouteActions.MOVE_UPPER_RIGHT;
+    self.action_id = MoveRouteActions.MOVE_UPPER_RIGHT;
 }
 function MoveRouteAction_MoveRandom() : MoveRouteAction() constructor {
     self.name = "Move Randomly";
-    self.id = MoveRouteActions.MOVE_RANDOM;
+    self.action_id = MoveRouteActions.MOVE_RANDOM;
 }
 function MoveRouteAction_MoveTowardsPlayer() : MoveRouteAction() constructor {
     self.name = "Move Towards Player";
-    self.id = MoveRouteActions.MOVE_TOWARDS_PLAYER;
+    self.action_id = MoveRouteActions.MOVE_TOWARDS_PLAYER;
 }
 function MoveRouteAction_MoveAwayFromPlayer() : MoveRouteAction() constructor {
     self.name = "Move Away From Player";
-    self.id = MoveRouteActions.MOVE_AWAY_PLAYER;
+    self.action_id = MoveRouteActions.MOVE_AWAY_PLAYER;
 }
 function MoveRouteAction_MoveForward() : MoveRouteAction() constructor {
     self.name = "Move Forward";
-    self.id = MoveRouteActions.MOVE_FORWARD;
+    self.action_id = MoveRouteActions.MOVE_FORWARD;
 }
 function MoveRouteAction_MoveBackward() : MoveRouteAction() constructor {
     self.name = "Move Backward";
-    self.id = MoveRouteActions.MOVE_BACKWARD;
+    self.action_id = MoveRouteActions.MOVE_BACKWARD;
 }
 function MoveRouteAction_MoveTo() : MoveRouteAction() constructor {
     self.name = "Move To Position";
-    self.id = MoveRouteActions.MOVE_TO_POSITION;
+    self.action_id = MoveRouteActions.MOVE_TO_POSITION;
     
     self.x = 0;
     self.y = 0;
@@ -124,7 +124,7 @@ function MoveRouteAction_MoveTo() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_Jump() : MoveRouteAction() constructor {
     self.name = "Jump";
-    self.id = MoveRouteActions.MOVE_JUMP;
+    self.action_id = MoveRouteActions.MOVE_JUMP;
     
     self.height = 1;
     
@@ -144,7 +144,7 @@ function MoveRouteAction_Jump() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_Wait() : MoveRouteAction() constructor {
     self.name = "Wait";
-    self.id = MoveRouteActions.WAIT;
+    self.action_id = MoveRouteActions.WAIT;
     
     self.duration = 1;
     
@@ -164,51 +164,51 @@ function MoveRouteAction_Wait() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_TurnDown() : MoveRouteAction() constructor {
     self.name = "Turn Down";
-    self.id = MoveRouteActions.TURN_DOWN;
+    self.action_id = MoveRouteActions.TURN_DOWN;
 }
 function MoveRouteAction_TurnLeft() : MoveRouteAction() constructor {
     self.name = "Turn Left";
-    self.id = MoveRouteActions.TURN_LEFT;
+    self.action_id = MoveRouteActions.TURN_LEFT;
 }
 function MoveRouteAction_TurnRight() : MoveRouteAction() constructor {
     self.name = "Turn Right";
-    self.id = MoveRouteActions.TURN_RIGHT;
+    self.action_id = MoveRouteActions.TURN_RIGHT;
 }
 function MoveRouteAction_TurnUp() : MoveRouteAction() constructor {
     self.name = "Turn Up";
-    self.id = MoveRouteActions.TURN_UP;
+    self.action_id = MoveRouteActions.TURN_UP;
 }
 function MoveRouteAction_Turn90Left() : MoveRouteAction() constructor {
     self.name = "Turn 90° Left";
-    self.id = MoveRouteActions.TURN_90_LEFT;
+    self.action_id = MoveRouteActions.TURN_90_LEFT;
 }
 function MoveRouteAction_Turn90Right() : MoveRouteAction() constructor {
     self.name = "Turn 90° Right";
-    self.id = MoveRouteActions.TURN_90_RIGHT;
+    self.action_id = MoveRouteActions.TURN_90_RIGHT;
 }
 function MoveRouteAction_Turn180() : MoveRouteAction() constructor {
     self.name = "Turn 180°";
-    self.id = MoveRouteActions.TURN_180;
+    self.action_id = MoveRouteActions.TURN_180;
 }
 function MoveRouteAction_TurnLeftOrRight() : MoveRouteAction() constructor {
     self.name = "Turn Left Or Right";
-    self.id = MoveRouteActions.TURN_90_RANDOM;
+    self.action_id = MoveRouteActions.TURN_90_RANDOM;
 }
 function MoveRouteAction_TurnRandom() : MoveRouteAction() constructor {
     self.name = "Turn Randomly";
-    self.id = MoveRouteActions.TURN_RANDOM;
+    self.action_id = MoveRouteActions.TURN_RANDOM;
 }
 function MoveRouteAction_TurnTowardsPlayer() : MoveRouteAction() constructor {
     self.name = "Turn Towards the Player";
-    self.id = MoveRouteActions.TURN_TOWARD_PLAYER;
+    self.action_id = MoveRouteActions.TURN_TOWARD_PLAYER;
 }
 function MoveRouteAction_TurnAwayFromPlayer() : MoveRouteAction() constructor {
     self.name = "Turn Away From the Player";
-    self.id = MoveRouteActions.TURN_AWAY_PLAYER;
+    self.action_id = MoveRouteActions.TURN_AWAY_PLAYER;
 }
 function MoveRouteAction_SelfSwitch() : MoveRouteAction() constructor {
     self.name = "Self Switch";
-    self.id = MoveRouteActions.SWITCH;
+    self.action_id = MoveRouteActions.SWITCH;
     
     self.index = 0;
     self.value = true;
@@ -230,7 +230,7 @@ function MoveRouteAction_SelfSwitch() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SelfVariable() : MoveRouteAction() constructor {
     self.name = "Self Variable";
-    self.id = MoveRouteActions.VARIABLE;
+    self.action_id = MoveRouteActions.VARIABLE;
     
     self.index = 0;
     self.value = true;
@@ -254,7 +254,7 @@ function MoveRouteAction_SelfVariable() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetSpeed() : MoveRouteAction() constructor {
     self.name = "Set Speed";
-    self.id = MoveRouteActions.CHANGE_SPEED;
+    self.action_id = MoveRouteActions.CHANGE_SPEED;
     
     self.speed = 2;
     
@@ -274,7 +274,7 @@ function MoveRouteAction_SetSpeed() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetFrequency() : MoveRouteAction() constructor {
     self.name = "Set Frequency";
-    self.id = MoveRouteActions.CHANGE_FREQUENCY;
+    self.action_id = MoveRouteActions.CHANGE_FREQUENCY;
     
     self.frequency = 2;
     
@@ -294,7 +294,7 @@ function MoveRouteAction_SetFrequency() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetStepping() : MoveRouteAction() constructor {
     self.name = "Set Stepping Animation";
-    self.id = MoveRouteActions.STEPPING_ANIM;
+    self.action_id = MoveRouteActions.STEPPING_ANIM;
     
     self.value = false;
     
@@ -314,7 +314,7 @@ function MoveRouteAction_SetStepping() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetWalking() : MoveRouteAction() constructor {
     self.name = "Set Walking Animation";
-    self.id = MoveRouteActions.WALKING_ANIM;
+    self.action_id = MoveRouteActions.WALKING_ANIM;
     
     self.value = false;
     
@@ -334,7 +334,7 @@ function MoveRouteAction_SetWalking() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetDirectionFix() : MoveRouteAction() constructor {
     self.name = "Set Direction Fix";
-    self.id = MoveRouteActions.DIRECTION_FIX;
+    self.action_id = MoveRouteActions.DIRECTION_FIX;
     
     self.value = false;
     
@@ -354,7 +354,7 @@ function MoveRouteAction_SetDirectionFix() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetSprite() : MoveRouteAction() constructor {
     self.name = "Set Sprite";
-    self.id = MoveRouteActions.CHANGE_SPRITE;
+    self.action_id = MoveRouteActions.CHANGE_SPRITE;
     
     self.sprite = NULL;
     
@@ -374,7 +374,7 @@ function MoveRouteAction_SetSprite() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetMesh() : MoveRouteAction() constructor {
     self.name = "Set Mesh";
-    self.id = MoveRouteActions.CHANGE_MODEL;
+    self.action_id = MoveRouteActions.CHANGE_MODEL;
     
     self.mesh = NULL;
     
@@ -394,7 +394,7 @@ function MoveRouteAction_SetMesh() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetOpacity() : MoveRouteAction() constructor {
     self.name = "Set Opacity";
-    self.id = MoveRouteActions.CHANGE_OPACITY;
+    self.action_id = MoveRouteActions.CHANGE_OPACITY;
     
     self.alpha = 1;
     
@@ -414,7 +414,7 @@ function MoveRouteAction_SetOpacity() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_SetTint() : MoveRouteAction() constructor {
     self.name = "Set Tint";
-    self.id = MoveRouteActions.CHANGE_TINT;
+    self.action_id = MoveRouteActions.CHANGE_TINT;
     
     self.tint = c_white;
     
@@ -434,7 +434,7 @@ function MoveRouteAction_SetTint() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_PlaySound() : MoveRouteAction() constructor {
     self.name = "Play Sound";
-    self.id = MoveRouteActions.PLAY_SE;
+    self.action_id = MoveRouteActions.PLAY_SE;
     
     self.sound = NULL;
     self.loop = false;
@@ -456,7 +456,7 @@ function MoveRouteAction_PlaySound() : MoveRouteAction() constructor {
 }
 function MoveRouteAction_Event() : MoveRouteAction() constructor {
     self.name = "Play Event";
-    self.id = MoveRouteActions.EVENT;
+    self.action_id = MoveRouteActions.EVENT;
     
     self.event = NULL;
     
