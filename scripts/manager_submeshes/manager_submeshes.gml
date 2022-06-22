@@ -108,6 +108,8 @@ function dialog_create_mesh_submesh(mesh) {
             .SetID("VISIBLE"),
         (new EmuText(col1, EMU_AUTO, element_width, element_height, ""))
             .SetRefresh(function() {
+                if (EDITOR_BASE_MODE == ModeIDs.MESH) return;
+                
                 var mesh = self.root.mesh;
                 var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
                 var path = "";
