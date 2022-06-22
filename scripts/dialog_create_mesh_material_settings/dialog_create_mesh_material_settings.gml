@@ -102,6 +102,9 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         tabs,
         new EmuCheckbox(default_mesh_tex_only ? col1 : col2, EMU_AUTO, ew, eh, "View texture?", false, function() {
             self.GetSibling("PREVIEW").SetEnabled(self.value);
+            self.GetSibling("VIEW UVS").SetEnabled(self.value);
+            self.GetSibling("FLIP TEX U").SetEnabled(self.value);
+            self.GetSibling("FLIP TEX V").SetEnabled(self.value);
             if (self.value) {
                 self.root.width += 480 + 32;
             } else {
@@ -127,12 +130,9 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, ww, hh, shortest_dimension));
             wireframe_enable(1, 10000, c_aqua, 1);
             for (var i = 0, n = array_length(highlighted); i < n; i++) {
-                vertex_submit(highlighted[i], pr_trianglelist, -1);
+                vertex_submit(highlighted[i].vbuffer, pr_trianglelist, -1);
             }
             wireframe_disable();
-            for (var i = 0, n = array_length(highlighted); i < n; i++) {
-                vertex_submit(highlighted[i], pr_pointlist, -1);
-            }
             matrix_set(matrix_world, matrix_build_identity());
             shader_reset();
         }
@@ -143,8 +143,37 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     
     dg.AddContent([
         preview,
-        (new EmuCheckbox(tabs.x + tabs.width + 32, EMU_AUTO, ew, eh, "View UVs?", true, emu_null))
-            .SetID("VIEW UVS")
+        (new EmuCheckbox(tabs.x + tabs.width + 32, EMU_AUTO, ew / 2, eh, "View UVs?", true, emu_null))
+            .SetEnabled(false)
+            .SetID("VIEW UVS"),
+        (new EmuButton(tabs.x + tabs.width + 32 + ew / 2, EMU_INLINE, ew / 2, eh, "Flip U", function() {
+            var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
+            for (var i = 0, n = array_length(highlighted); i < n; i++) {
+                var submesh = highlighted[i];
+                meshops_flip_tex_u(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+                submesh.internalSetVertexBuffer();
+                if (submesh.reflect_buffer) {
+                    meshops_flip_tex_u(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+                    submesh.internalSetReflectVertexBuffer();
+                }
+            }
+        }))
+            .SetEnabled(false)
+            .SetID("FLIP TEX U"),
+        (new EmuButton(tabs.x + tabs.width + 32 + ew, EMU_INLINE, ew / 2, eh, "Flip V", function() {
+            var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
+            for (var i = 0, n = array_length(highlighted); i < n; i++) {
+                var submesh = highlighted[i];
+                meshops_flip_tex_v(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer));
+                submesh.internalSetVertexBuffer();
+                if (submesh.reflect_buffer) {
+                    meshops_flip_tex_v(buffer_get_address(submesh.reflect_buffer), buffer_get_size(submesh.reflect_buffer));
+                    submesh.internalSetReflectVertexBuffer();
+                }
+            }
+        }))
+            .SetEnabled(false)
+            .SetID("FLIP TEX V"),
     ]);
     
     // we really don't want to have to call this code like nine different times
