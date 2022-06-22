@@ -27,6 +27,7 @@ function import_3d_model_generic(filename, squash = false) {
     /// @todo more robust try-catch
     try {
         switch (filename_ext(filename)) {
+            case ".mtl": return import_obj(filename_change_ext(filename, ".obj"), squash);
             case ".obj": return import_obj(filename, squash);
             case ".d3d": case ".gmmod": return import_d3d(filename);
             case ".smf": 

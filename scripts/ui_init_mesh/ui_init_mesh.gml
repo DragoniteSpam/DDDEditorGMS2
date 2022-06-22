@@ -17,7 +17,7 @@ function ui_init_mesh(mode) {
     container.AddContent([
         new EmuFileDropperListener(function(files) {
             debug_timer_start();
-            var filter_array = [".d3d", ".gmmod", ".obj", ".png", ".bmp", ".jpg", ".jpeg"];
+            var filter_array = [".d3d", ".gmmod", ".obj", ".mtl", ".png", ".bmp", ".jpg", ".jpeg"];
             // we can add these back in later when they're working
             if (EDITOR_BASE_MODE != ModeIDs.MESH) {
                 array_push(filter_array, ".dae", ".smf");
@@ -34,6 +34,7 @@ function ui_init_mesh(mode) {
                     case ".d3d":
                     case ".gmmod":
                     case ".obj":
+                    case ".mtl":
                     case ".dae":
                     case ".smf":
                         import_mesh(filtered_list[i]);
