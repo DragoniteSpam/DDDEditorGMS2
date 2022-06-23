@@ -106,7 +106,6 @@ Settings[$ "mesh"] ??=                                                          
 Settings.mesh[$ "draw_position"] ??=                                            MESH_DEF_VIEW_DRAW_POSITION;
 Settings.mesh[$ "draw_rotation"] ??=                                            MESH_DEF_VIEW_DRAW_ROTATION;
 Settings.mesh[$ "draw_scale"] ??=                                               MESH_DEF_VIEW_DRAW_SCALE;
-Settings.mesh[$ "draw_meshes"] ??=                                              MESH_DEF_VIEW_DRAW_MESHES;
 Settings.mesh[$ "draw_textures"] ??=                                            MESH_DEF_VIEW_DRAW_TEXTURES;
 Settings.mesh[$ "draw_vertex_colors"] ??=                                       MESH_DEF_VIEW_DRAW_VERTEX_COLORS;
 Settings.mesh[$ "draw_lighting"] ??=                                            MESH_DEF_VIEW_DRAW_LIGHTING; 
@@ -127,7 +126,6 @@ Settings.mesh[$ "fuse_textureless_materials"] ??=                               
 #macro MESH_DEF_VIEW_DRAW_POSITION                                              new Vector3(0, 0, 0)
 #macro MESH_DEF_VIEW_DRAW_ROTATION                                              new Vector3(0, 0, 0)
 #macro MESH_DEF_VIEW_DRAW_SCALE                                                 new Vector3(1, 1, 1)
-#macro MESH_DEF_VIEW_DRAW_MESHES                                                true
 #macro MESH_DEF_VIEW_DRAW_TEXTURES                                              true
 #macro MESH_DEF_VIEW_DRAW_VERTEX_COLORS                                         true
 #macro MESH_DEF_VIEW_DRAW_LIGHTING                                              true

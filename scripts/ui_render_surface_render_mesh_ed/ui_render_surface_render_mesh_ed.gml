@@ -52,39 +52,37 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     var rendered_count = 0;
     var limit = 24;
-    if (Settings.mesh.draw_meshes) {
-        for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
-            var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
-            switch (mesh_data.type) {
-                case MeshTypes.RAW:
-                    for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
-                        var submesh = mesh_data.submeshes[sm_index];
-                        if (!submesh.editor_visible) continue;
+    for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+        var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
+        switch (mesh_data.type) {
+            case MeshTypes.RAW:
+                for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
+                    var submesh = mesh_data.submeshes[sm_index];
+                    if (!submesh.editor_visible) continue;
                         
-                        if (Stuff.mesh.GetHighlightedSubmesh(submesh)) {
-                            wireframe_enable(1, 512, c_aqua, 0.5);
-                        }
-                        
-                        graphics_set_material(submesh);
-                        
-                        var submesh_tex = -1;
-                        if (Settings.mesh.draw_textures) {
-                            if (guid_get(submesh.tex_base)) {
-                                submesh_tex = sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
-                            } else if (submesh.tex_base != NULL) {
-                                submesh_tex = TEX_MISSING;
-                            }
-                        }
-                        if (submesh.vbuffer) vertex_submit(submesh.vbuffer, pr_trianglelist, submesh_tex);
-                        if (Settings.mesh.draw_reflections && submesh.reflect_vbuffer) vertex_submit(submesh.reflect_vbuffer, pr_trianglelist, submesh_tex);
-                        
-                        wireframe_enable(Settings.mesh.wireframe_alpha);
+                    if (Stuff.mesh.GetHighlightedSubmesh(submesh)) {
+                        wireframe_enable(1, 512, c_aqua, 0.5);
                     }
-                    break;
-            }
-        
-            if (++rendered_count > limit) break;
+                        
+                    graphics_set_material(submesh);
+                        
+                    var submesh_tex = -1;
+                    if (Settings.mesh.draw_textures) {
+                        if (guid_get(submesh.tex_base)) {
+                            submesh_tex = sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
+                        } else if (submesh.tex_base != NULL) {
+                            submesh_tex = TEX_MISSING;
+                        }
+                    }
+                    if (submesh.vbuffer) vertex_submit(submesh.vbuffer, pr_trianglelist, submesh_tex);
+                    if (Settings.mesh.draw_reflections && submesh.reflect_vbuffer) vertex_submit(submesh.reflect_vbuffer, pr_trianglelist, submesh_tex);
+                        
+                    wireframe_enable(Settings.mesh.wireframe_alpha);
+                }
+                break;
         }
+        
+        if (++rendered_count > limit) break;
     }
     
     if (Settings.mesh.draw_collision) {

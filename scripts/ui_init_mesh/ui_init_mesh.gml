@@ -555,10 +555,6 @@ function ui_init_mesh(mode) {
                 
                 dialog.AddContent([
                     #region column 1
-                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw filled meshes?", Settings.mesh.draw_meshes, function() {
-                        Settings.mesh.draw_meshes = self.value;
-                    }))
-                        .SetTooltip("Draw the filled part of the 3D meshes."),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw textures?", Settings.mesh.draw_textures, function() {
                         Settings.mesh.draw_textures = self.value;
                     }))
@@ -613,7 +609,6 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_position = MESH_DEF_VIEW_DRAW_POSITION;
                         Settings.mesh.draw_rotation = MESH_DEF_VIEW_DRAW_ROTATION;
                         Settings.mesh.draw_scale = MESH_DEF_VIEW_DRAW_SCALE;
-                        Settings.mesh.draw_meshes = MESH_DEF_VIEW_DRAW_MESHES;
                         Settings.mesh.draw_textures = MESH_DEF_VIEW_DRAW_TEXTURES;
                         Settings.mesh.draw_vertex_colors = MESH_DEF_VIEW_DRAW_VERTEX_COLORS;
                         Settings.mesh.draw_physical_bounds = MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS;

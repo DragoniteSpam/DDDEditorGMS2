@@ -42,7 +42,6 @@ A bunch of extra tools have been added, existing ones have been improved, and pe
 
 There are now too many of these to simply draw beneath the 3D render.
 
- - Draw filled meshes (vs wireframe only)
  - Draw wireframe
  - Draw the bounding box around a mesh
  - When selecting a submesh in the Submeshes or Materials dialogs, the relevant triangles will be shown in blue
