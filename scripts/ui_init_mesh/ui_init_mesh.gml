@@ -61,7 +61,7 @@ function ui_init_mesh(mode) {
                 Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
             }
         }),
-        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, 22, function() {
+        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, (EDITOR_BASE_MODE != ModeIDs.MESH) ? 22 : 24, function() {
             self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
         }))
             .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
