@@ -37,6 +37,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStrength"), 0);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), CAMERA_ZFAR * 2);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
+    
+    shader_set_uniform_f(shader_get_uniform(shd_ddd, "u_DrawVertexColors"), Settings.mesh.draw_vertex_colors);
     #endregion
     
     wireframe_enable(Settings.mesh.wireframe_alpha);

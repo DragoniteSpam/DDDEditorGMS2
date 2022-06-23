@@ -565,7 +565,6 @@ function ui_init_mesh(mode) {
                         .SetTooltip("Whether or not to draw the meshes in the preview window using a texture."),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw vertex colors?", Settings.mesh.draw_vertex_colors, function() {
                         Settings.mesh.draw_vertex_colors = self.value;
-                        show_message("not yet implemented");
                     }))
                         .SetTooltip("Whether or not to colorize the verties of meshes."),
                     new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
@@ -605,7 +604,7 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_scale = MESH_DEF_VIEW_DRAW_SCALE;
                         Settings.mesh.draw_meshes = MESH_DEF_VIEW_DRAW_MESHES;
                         Settings.mesh.draw_textures = MESH_DEF_VIEW_DRAW_TEXTURES;
-                        Settings.mesh.draw_vertex_colors = MESH_DEF_VIEW_DRAW_VERTEX_TEXTURES;
+                        Settings.mesh.draw_vertex_colors = MESH_DEF_VIEW_DRAW_VERTEX_COLORS;
                         Settings.mesh.draw_lighting = MESH_DEF_VIEW_DRAW_LIGHTING; 
                         Settings.mesh.draw_back_faces = MESH_DEF_VIEW_DRAW_BACK_FACES;
                         Settings.mesh.draw_reflections = MESH_DEF_VIEW_DRAW_REFLECTIONS;

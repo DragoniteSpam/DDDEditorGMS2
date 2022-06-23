@@ -36,6 +36,8 @@ void CommonFogSetup() {
 }
 // include("fog.v.xsh")
 
+uniform float u_DrawVertexColors;
+
 void main() {
     vec4 worldPosition = vec4(in_Position, 1);
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * worldPosition;
@@ -45,7 +47,12 @@ void main() {
     CommonFogSetup();
     
     v_vTexcoord = in_TextureCoord;
-    v_vColour = in_Colour0;
+    
+    if (u_DrawVertexColors != 0.0) {
+        v_vColour = in_Colour0;
+    } else {
+        v_vColour = vec4(1);
+    }
     vec3 tangent = in_Colour1;
     vec3 bitangent = in_Colour2;
     v_vBarycentric = in_Colour3;

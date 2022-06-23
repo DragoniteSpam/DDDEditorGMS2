@@ -107,7 +107,7 @@ Settings.mesh[$ "draw_rotation"] ??=                                            
 Settings.mesh[$ "draw_scale"] ??=                                               MESH_DEF_VIEW_DRAW_SCALE;
 Settings.mesh[$ "draw_meshes"] ??=                                              MESH_DEF_VIEW_DRAW_MESHES;
 Settings.mesh[$ "draw_textures"] ??=                                            MESH_DEF_VIEW_DRAW_TEXTURES;
-Settings.mesh[$ "draw_vertex_colors"] ??=                                       MESH_DEF_VIEW_DRAW_VERTEX_TEXTURES;
+Settings.mesh[$ "draw_vertex_colors"] ??=                                       MESH_DEF_VIEW_DRAW_VERTEX_COLORS;
 Settings.mesh[$ "draw_lighting"] ??=                                            MESH_DEF_VIEW_DRAW_LIGHTING; 
 Settings.mesh[$ "draw_back_faces"] ??=                                          MESH_DEF_VIEW_DRAW_BACK_FACES;
 Settings.mesh[$ "draw_reflections"] ??=                                         MESH_DEF_VIEW_DRAW_REFLECTIONS;
@@ -127,7 +127,7 @@ Settings.mesh[$ "fuse_textureless_materials"] ??=                               
 #macro MESH_DEF_VIEW_DRAW_SCALE                                                 new Vector3(1, 1, 1)
 #macro MESH_DEF_VIEW_DRAW_MESHES                                                true
 #macro MESH_DEF_VIEW_DRAW_TEXTURES                                              true
-#macro MESH_DEF_VIEW_DRAW_VERTEX_TEXTURES                                       true
+#macro MESH_DEF_VIEW_DRAW_VERTEX_COLORS                                         true
 #macro MESH_DEF_VIEW_DRAW_LIGHTING                                              true
 #macro MESH_DEF_VIEW_DRAW_BACK_FACES                                            false
 #macro MESH_DEF_VIEW_DRAW_REFLECTIONS                                           false
