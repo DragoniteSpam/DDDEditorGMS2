@@ -116,6 +116,7 @@ Settings.mesh[$ "draw_collision"] ??=                                           
 Settings.mesh[$ "draw_axes"] ??=                                                MESH_DEF_VIEW_DRAW_AXES;
 Settings.mesh[$ "draw_light_direction"] ??=                                     MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION;
 Settings.mesh[$ "draw_grid"] ??=                                                MESH_DEF_VIEW_DRAW_GRID;
+Settings.mesh[$ "draw_physical_bounds"] ??=                                     MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS;
 Settings.mesh[$ "wireframe_alpha"] ??=                                          MESH_DEF_VIEW_WIREFRAME_ALPHA;
 Settings.mesh[$ "reflect_settings"] ??=                                         MESH_DEF_REFLECT_SETTINGS;
 Settings.mesh[$ "reflect_color"] ??=                                            MESH_DEF_REFLECT_COLOR;
@@ -136,6 +137,7 @@ Settings.mesh[$ "fuse_textureless_materials"] ??=                               
 #macro MESH_DEF_VIEW_DRAW_AXES                                                  true
 #macro MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION                                       180
 #macro MESH_DEF_VIEW_DRAW_GRID                                                  true
+#macro MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS                                       false
 #macro MESH_DEF_VIEW_WIREFRAME_ALPHA                                            1
 #macro MESH_DEF_REFLECT_SETTINGS                                                (MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE)
 #macro MESH_DEF_REFLECT_COLOR                                                   0x7fff6600

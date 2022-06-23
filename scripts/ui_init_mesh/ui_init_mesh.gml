@@ -544,7 +544,7 @@ function ui_init_mesh(mode) {
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
-                var dialog = new EmuDialog(32 + 320 + 32, 640, "Mesh viewer settings");
+                var dialog = new EmuDialog(32 + 320 + 32, 688, "Mesh viewer settings");
                 dialog.root = self;
                 dialog.active_shade = 0;
                 dialog.x = 320;
@@ -598,6 +598,10 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_grid = self.value;
                     }))
                         .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw physical bounds?", Settings.mesh.draw_physical_bounds, function() {
+                        Settings.mesh.draw_physical_bounds = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane."),
                     (new EmuButton(col1x, EMU_AUTO, col_width, 32, "[c_aqua]Reset", function() {
                         Settings.mesh.draw_position = MESH_DEF_VIEW_DRAW_POSITION;
                         Settings.mesh.draw_rotation = MESH_DEF_VIEW_DRAW_ROTATION;
@@ -605,6 +609,7 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_meshes = MESH_DEF_VIEW_DRAW_MESHES;
                         Settings.mesh.draw_textures = MESH_DEF_VIEW_DRAW_TEXTURES;
                         Settings.mesh.draw_vertex_colors = MESH_DEF_VIEW_DRAW_VERTEX_COLORS;
+                        Settings.mesh.draw_physical_bounds = MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS;
                         Settings.mesh.draw_lighting = MESH_DEF_VIEW_DRAW_LIGHTING; 
                         Settings.mesh.draw_back_faces = MESH_DEF_VIEW_DRAW_BACK_FACES;
                         Settings.mesh.draw_reflections = MESH_DEF_VIEW_DRAW_REFLECTIONS;
