@@ -199,10 +199,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     ]);
     
     // we really don't want to have to call this code like nine different times
-    var texture_list_general = function(x, ew, eh, name, callback_set_texture, callback_get_texture, default_selection) {
-        var n_list_entries = 12;
-        
-        var list = new EmuList(x, EMU_AUTO, ew, eh, name, eh, n_list_entries, function() {
+    var texture_list_general = function(x, ew, eh, name, callback_set_texture, callback_get_texture, default_selection, entry_count = 12) {
+        var list = new EmuList(x, EMU_AUTO, ew, eh, name, eh, entry_count, function() {
             var new_tex = self.GetSelectedItem() ? self.GetSelectedItem().GUID : NULL;
             var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
             dialog.GetChild("PREVIEW").sprite = new_tex;
@@ -277,7 +275,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     };
     
     tab_base.AddContent([
-        texture_list_general(col1, ew, eh, "Textures:", function(submesh, tex) { submesh.tex_base = tex; }, function(submesh) { return submesh.tex_base; }, id_base),
+        texture_list_general(col1, ew, eh, "Textures:", function(submesh, tex) { submesh.tex_base = tex; }, function(submesh) { return submesh.tex_base; }, id_base, 10),
         (material_element_generic(EmuColorPicker, col1, EMU_AUTO, ew, eh, "Diffuse color:", function(submesh, value) {
             submesh.col_diffuse = value & 0x00ffffff;
             submesh.alpha = (value >> 24) / 0xff;
@@ -286,7 +284,32 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         }, function(value) {
             return (value == -1) ? 0xffffffff : value;
         }, common_diffuse_color))
-            .SetAlphaUsed(true),
+            .SetAlphaUsed(true)
+            .SetID("DIFFUSE COLOR"),
+        (new EmuButton(col1, EMU_AUTO, ew / 2, eh, "Bake Diffuse Color", function() {
+            var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
+            if (dialog.default_mesh_tex_only) {
+                for (var i = 0, n = array_length(dialog.selection); i < n; i++) {
+                    dialog.list[real(dialog.selection[i])].BakeDiffuseColor();
+                }
+            } else {
+                dialog.GetChild("SUBMESHES").GetSelectedItem().BakeDiffuseColor();
+            }
+            self.GetSibling("DIFFUSE COLOR").SetValue(0xffffffff);
+        }))
+            .SetTooltip("Bake the material's diffuse color into the submesh's vertex color."),
+        (new EmuButton(col1 + ew / 2, EMU_INLINE, ew / 2, eh, "Reset Vertex Color", function() {
+            var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
+            if (dialog.default_mesh_tex_only) {
+                for (var i = 0, n = array_length(dialog.selection); i < n; i++) {
+                    dialog.list[real(dialog.selection[i])].ResetVertexColor();
+                }
+            } else {
+                dialog.GetChild("SUBMESHES").GetSelectedItem().ResetVertexColor();
+            }
+            self.GetSibling("DIFFUSE COLOR").SetValue(0xffffffff);
+        }))
+            .SetTooltip("Reset the vertex color to white with 100% transparency.")
     ]);
     tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", function(submesh, tex) { submesh.tex_normal = tex; }, function(submesh) { return submesh.tex_normal; }, id_normal));
     tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", function(submesh, tex) { submesh.tex_ambient = tex; }, function(submesh) { return submesh.tex_ambient; }, id_specular_color));
