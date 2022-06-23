@@ -209,6 +209,20 @@ function MeshSubmesh(source) constructor {
         self.alpha = 1;
     };
     
+    self.ResetVertexColor = function() {
+        if (self.owner.type == MeshTypes.SMF) return;
+        meshops_set_color(buffer_get_address(self.buffer), buffer_get_size(self.buffer), c_white);
+        meshops_set_alpha(buffer_get_address(self.buffer), buffer_get_size(self.buffer), 1);
+        self.internalSetVertexBuffer();
+        if (self.reflect_vbuffer) {
+            meshops_set_color(buffer_get_address(self.reflect_vbuffer), buffer_get_size(self.reflect_vbuffer), Settings.mesh.reflect_color & 0x00ffffff);
+            meshops_set_alpha(buffer_get_address(self.reflect_vbuffer), buffer_get_size(self.reflect_vbuffer), (Settings.mesh.reflect_color >> 24) / 0xff);
+            self.internalSetReflectVertexBuffer();
+        }
+        self.col_diffuse = c_white;
+        self.alpha = 1;
+    };
+    
     static SetBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         if (self.buffer) buffer_delete(self.buffer);
