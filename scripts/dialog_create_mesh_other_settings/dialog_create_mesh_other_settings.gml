@@ -39,7 +39,15 @@ function dialog_create_mesh_other_settings(list, selection) {
             }
             batch_again();
         }))
-            .SetTooltip("Set the blending color of every vertex to white.")
+            .SetTooltip("Set the blending color of every vertex to white."),
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Material Color", function() {
+            var selection = self.root.selection;
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].ActionResetDiffuseMaterialColour();
+            }
+            batch_again();
+        }))
+            .SetTooltip("Set the diffuse color of every submesh's material to white."),
     ]);
     
     if (EDITOR_BASE_MODE == ModeIDs.MAP) {

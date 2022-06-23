@@ -223,6 +223,11 @@ function MeshSubmesh(source) constructor {
         self.alpha = 1;
     };
     
+    self.ActionResetDiffuseMaterialColour = function() {
+        self.col_diffuse = c_white;
+        self.alpha = 1;
+    };
+    
     static SetBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         if (self.buffer) buffer_delete(self.buffer);
