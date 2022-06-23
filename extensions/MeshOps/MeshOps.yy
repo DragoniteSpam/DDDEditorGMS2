@@ -172,12 +172,12 @@
             1,
             2,
           ],"resourceVersion":"1.0","name":"meshops_reverse","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_color(data, length, target, start, finish)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_color(data, length, target)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
           ],"resourceVersion":"1.0","name":"meshops_multiply_color","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_colour(data, length, target, start, finish)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_colour(data, length, target)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
