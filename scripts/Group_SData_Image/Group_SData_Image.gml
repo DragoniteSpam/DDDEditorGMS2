@@ -76,6 +76,10 @@ function DataImage(source) : SData(source) constructor {
         buffer_write(buffer, buffer_f32, self.packed.h);
     };
     
+    self.SaveToFile = function(filename) {
+        sprite_save(self.picture, 0, filename);
+    };
+    
     self.Export = function(buffer, include_image = true) {
         self.ExportImage(buffer, include_image);
     };
