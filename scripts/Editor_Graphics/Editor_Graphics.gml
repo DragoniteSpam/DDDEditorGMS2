@@ -73,33 +73,33 @@ function EditorGraphics() constructor {
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
     };
     
-    self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
+    self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1, color = c_wireframe_mesh_col_box) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         var shader = shader_current();
         shader_set(shd_utility_wireframe);
-        wireframe_enable(1, 1000000, c_wireframe_mesh_col_box);
+        wireframe_enable(1, 1000000, color);
         vertex_submit(self.wire_box, pr_trianglelist, -1);
         wireframe_disable();
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);
     };
     
-    self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
+    self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1, color = c_wireframe_mesh_col_capsule) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         var shader = shader_current();
         shader_set(shd_utility_wireframe);
-        wireframe_enable(1, 1000000, c_wireframe_mesh_col_capsule);
+        wireframe_enable(1, 1000000, color);
         vertex_submit(self.wire_capsule, pr_trianglelist, -1);
         wireframe_disable();
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);
     };
     
-    self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
+    self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1, color = c_wireframe_mesh_col_sphere) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         var shader = shader_current();
         shader_set(shd_utility_wireframe);
-        wireframe_enable(1, 1000000, c_wireframe_mesh_col_sphere);
+        wireframe_enable(1, 1000000, color);
         vertex_submit(self.wire_sphere, pr_trianglelist, -1);
         wireframe_disable();
         matrix_set(matrix_world, matrix_build_identity());
