@@ -31,7 +31,7 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
     buffer_write(buffer, buffer_f32, nz);
     buffer_write(buffer, buffer_f32, xtex);
     buffer_write(buffer, buffer_f32, ytex);
-    buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | colour_reverse(color));
+    buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | color);
     // tangent
     buffer_write(buffer, buffer_f32, 0);
     buffer_write(buffer, buffer_f32, 1);
