@@ -198,6 +198,8 @@ function EditorModeMap() : EditorModeBase() constructor {
         graphics_set_lighting(shd_ddd);
         wireframe_enable(Settings.view.wireframe, 512);
         
+        shader_set_uniform_f(shader_get_uniform(shd_ddd, "u_DrawVertexColors"), Settings.view.vertex_colors);
+        
         #region terrain
         var terrain = guid_get(self.active_map.terrain.id);
         if (terrain) {

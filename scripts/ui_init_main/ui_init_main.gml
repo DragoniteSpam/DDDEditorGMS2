@@ -85,6 +85,10 @@ function ui_init_main(mode) {
                 Settings.view.grid = self.value;
             }))
                 .SetTooltip("Whether or not you want to view the cell grid and grid axes."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Vertex Colors", Settings.view.vertex_colors, function() {
+                Settings.view.vertex_colors = self.value;
+            }))
+                .SetTooltip("Whether or not to view vertex colors in the editor."),
             (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Texture", Settings.view.texture, function() {
                 Settings.view.texture = self.value;
             }))

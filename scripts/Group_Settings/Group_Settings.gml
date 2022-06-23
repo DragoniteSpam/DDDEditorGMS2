@@ -100,6 +100,7 @@ Settings.view[$ "zones"] ??=                                                    
 Settings.view[$ "lighting"] ??=                                                 true;
 Settings.view[$ "gizmos"] ??=                                                   true;
 Settings.view[$ "threed"] ??=                                                   true;
+Settings.view[$ "vertex_colors"] ??=                                            true;
 
 Settings[$ "mesh"] ??=                                                          { };
 Settings.mesh[$ "draw_position"] ??=                                            MESH_DEF_VIEW_DRAW_POSITION;
