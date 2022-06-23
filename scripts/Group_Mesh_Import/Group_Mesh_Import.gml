@@ -437,6 +437,7 @@ function import_obj(fn, squash = false) {
                             case "map_Kd":                  // dissolve (base) texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -446,6 +447,7 @@ function import_obj(fn, squash = false) {
                             case "norm":
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_normal = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -453,6 +455,7 @@ function import_obj(fn, squash = false) {
                             case "map_Ka":                  // ambient texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_ambient = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -460,6 +463,7 @@ function import_obj(fn, squash = false) {
                             case "map_Ks":                  // specular color texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_specular_color = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -467,6 +471,7 @@ function import_obj(fn, squash = false) {
                             case "map_Ns":                  // specular highlight texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_specular_highlight = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -474,6 +479,7 @@ function import_obj(fn, squash = false) {
                             case "map_d":                   // alpha texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_alpha = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -482,6 +488,7 @@ function import_obj(fn, squash = false) {
                             case "bump":
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_bump = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -489,6 +496,7 @@ function import_obj(fn, squash = false) {
                             case "disp":                    // displacement texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_displace = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
@@ -496,6 +504,7 @@ function import_obj(fn, squash = false) {
                             case "decal":                   // stencil decal texture
                                 if (current_material) {
                                     var texfn = ds_queue_concatenate(spl);
+                                    texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_decal = tileset_create(texfn, filename_name(texfn)).GUID;
                                 }
