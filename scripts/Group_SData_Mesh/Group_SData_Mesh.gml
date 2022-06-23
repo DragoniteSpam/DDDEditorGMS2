@@ -169,6 +169,13 @@ function DataMesh(source) : SData(source) constructor {
     };
     
     #region Actions
+    self.BakeDiffuseColor = function() {
+        if (self.type == MeshTypes.SMF) return;
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            self.submeshes[i].BakeDiffuseColor();
+        }
+    };
+    
     static PositionAtCenter = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {

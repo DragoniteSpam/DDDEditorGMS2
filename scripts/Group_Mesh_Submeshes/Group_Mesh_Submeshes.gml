@@ -197,6 +197,18 @@ function MeshSubmesh(source) constructor {
         }
     };
     
+    self.BakeDiffuseColor = function() {
+        if (self.owner.type == MeshTypes.SMF) return;
+        meshops_multiply_color(buffer_get_address(self.buffer), buffer_get_size(self.buffer), self.col_diffuse | (floor(self.alpha * 0xff) << 24));
+        self.internalSetVertexBuffer();
+        if (self.reflect_vbuffer) {
+            meshops_multiply_color(buffer_get_address(self.reflect_buffer), buffer_get_size(self.reflect_buffer), self.col_diffuse | (floor(self.alpha * 0xff) << 24));
+            self.internalSetReflectVertexBuffer();
+        }
+        self.col_diffuse = c_white;
+        self.alpha = 1;
+    };
+    
     static SetBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         if (self.buffer) buffer_delete(self.buffer);
