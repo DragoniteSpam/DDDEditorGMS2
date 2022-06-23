@@ -828,7 +828,7 @@
   "IncludedFiles": [
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/graphics","resourceVersion":"1.0","name":"b_sky_clouds_blue.png","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"readme.md","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"terrain.md","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"axes_centered.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"cube-indexed.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"cage.vbuff","resourceType":"GMIncludedFile",},
@@ -847,6 +847,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"wire_box.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"wire_capsule.vbuff","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/basic","resourceVersion":"1.0","name":"wire_sphere.vbuff","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"penguin.md","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2022.600.0.138",

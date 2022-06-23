@@ -16,12 +16,17 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
     
     self.color_back = function() { return EMU_COLOR_BACK; };
     
-    SetAlphaUsed = function(_alpha_used) {
+    self.SetActiveShade = function(value) {
+        self.active_shade = value;
+        return self;
+    };
+    
+    self.SetAlphaUsed = function(_alpha_used) {
         _allow_alpha = _alpha_used;
         return self;
     }
     
-    SetInputBoxPosition = function(_vx1, _vy1, _vx2, _vy2) {
+    self.SetInputBoxPosition = function(_vx1, _vy1, _vx2, _vy2) {
         _value_x1 = _vx1;
         _value_y1 = _vy1;
         _value_x2 = _vx2;
@@ -64,6 +69,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                     Activate();
                     var dialog = new EmuDialog(480, 400, "Pick a color");
                     dialog.base_color_element = self;
+                    dialog.active_shade = self.active_shade;
                     
                     var ew = 256;
                     var eh = 32;

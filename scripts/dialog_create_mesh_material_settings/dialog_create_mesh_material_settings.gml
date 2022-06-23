@@ -284,6 +284,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         }, function(value) {
             return (value == -1) ? 0xffffffff : value;
         }, common_diffuse_color))
+            .SetActiveShade(0)
             .SetAlphaUsed(true)
             .SetID("DIFFUSE COLOR"),
         (new EmuButton(col1, EMU_AUTO, ew / 2, eh, "Bake Diffuse Color", function() {
