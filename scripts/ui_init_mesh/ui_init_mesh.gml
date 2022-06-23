@@ -126,6 +126,7 @@ function ui_init_mesh(mode) {
                 }
                 batch_again();
             }))
+                .SetInputBoxPosition(element_width / 4)
                 .SetRefresh(function(data) {
                     self.SetInteractive(data != undefined);
                     self.SetValue((data != undefined && array_length(data) == 1) ? self.root.GetSibling("MESH LIST").At(data[0]).name : "");
@@ -484,7 +485,7 @@ function ui_init_mesh(mode) {
                 })
                 .SetTooltip("Mirror the selected meshes over the Z axis. Triangle vertex order will not be changed.")
                 .SetID("MIRROR Z"),
-            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Flip Texture Horizontally", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Flip Texture Horiz.", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 for (var i = 0, n = array_length(indices); i < n; i++) {
                     self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionFlipTexU();
