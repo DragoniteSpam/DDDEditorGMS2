@@ -50,6 +50,15 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     // submesh, skip the submesh list
     var default_mesh_tex_only = (array_length(selection) > 1) || ((array_length(selection) == 1) && array_length(mesh_list[selection[0]].submeshes) == 1) || (mesh_list == Game.mesh_terrain);
     
+    if (default_mesh_tex_only) {
+        for (var i = 0, n = array_length(selection); i < n; i++) {
+            var mesh = mesh_list[selection[i]];
+            for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                Stuff.mesh.SetHighlightedSubmesh(mesh.submeshes[j]);
+            }
+        }
+    }
+    
     var id_base = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_base; });
     var id_normal = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_normal; });
     var id_ambient = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_ambient; });
