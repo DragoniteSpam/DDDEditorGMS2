@@ -89,7 +89,11 @@ function EmuTabGroup(x, y, w, h, rows, row_height) : EmuCore(x, y, w, h) constru
     
     RequestActivateTab = function(tab) {
         _active_tab_request = tab;
-    }
+    };
+    
+    self.GetActiveTab = function() {
+        return self._active_tab;
+    };
     
     Render = function(base_x, base_y) {
         var x1 = x + base_x;

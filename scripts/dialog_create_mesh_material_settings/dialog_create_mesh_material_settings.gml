@@ -57,6 +57,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
                 Stuff.mesh.SetHighlightedSubmesh(mesh.submeshes[j]);
             }
         }
+    } else {
+        Stuff.mesh.SetHighlightedSubmesh(mesh_list[selection[0]].submeshes[0]);
     }
     
     var id_base = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_base; });
@@ -128,6 +130,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     } else {
         tabs.AddTabs(0, [tab_base]);
     }
+    tabs.SetID("TAB GROUP");
     tabs.RequestActivateTab(tab_base);
     dg.AddContent([
         tabs,
@@ -144,36 +147,33 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         })
     ]);
     
-    var preview = (new EmuRenderSurface(tabs.x + tabs.width + 32, EMU_BASE, 480, 480, function() {
-        self.drawCheckerbox();
-        var tex = guid_get(self.sprite);
-        if (!tex) return;
-        
-        var shortest_dimension = min(1, self.width / sprite_get_width(tex.picture), self.height / sprite_get_height(tex.picture));
-        draw_sprite_ext(tex.picture, 0, 0, 0, shortest_dimension, shortest_dimension, 0, c_white, 1);
-        
-        if (self.GetSibling("VIEW UVS").value) {
-            var ww = shortest_dimension * sprite_get_width(tex.picture);
-            var hh = shortest_dimension * sprite_get_height(tex.picture);
-            
-            var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
-            shader_set(shd_texture_mapping);
-            matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, ww, hh, shortest_dimension));
-            wireframe_enable(1, 10000, c_aqua, 1);
-            for (var i = 0, n = array_length(highlighted); i < n; i++) {
-                vertex_submit(highlighted[i].vbuffer, pr_trianglelist, -1);
-            }
-            wireframe_disable();
-            matrix_set(matrix_world, matrix_build_identity());
-            shader_reset();
-        }
-    }, emu_null))
-        .SetEnabled(false)
-        .SetID("PREVIEW");
-    preview.sprite = NULL;
-    
     dg.AddContent([
-        preview,
+        (new EmuRenderSurface(tabs.x + tabs.width + 32, EMU_BASE, 480, 480, function() {
+            self.drawCheckerbox();
+            var tex = self.GetSibling("TAB GROUP").GetActiveTab().GetChild("TEX LIST").GetSelectedItem();
+            if (!tex) return;
+            
+            var shortest_dimension = min(1, self.width / sprite_get_width(tex.picture), self.height / sprite_get_height(tex.picture));
+            draw_sprite_ext(tex.picture, 0, 0, 0, shortest_dimension, shortest_dimension, 0, c_white, 1);
+            
+            if (self.GetSibling("VIEW UVS").value) {
+                var ww = shortest_dimension * sprite_get_width(tex.picture);
+                var hh = shortest_dimension * sprite_get_height(tex.picture);
+                
+                var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
+                shader_set(shd_texture_mapping);
+                matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, ww, hh, shortest_dimension));
+                wireframe_enable(1, 10000, c_aqua, 1);
+                for (var i = 0, n = array_length(highlighted); i < n; i++) {
+                    vertex_submit(highlighted[i].vbuffer, pr_trianglelist, -1);
+                }
+                wireframe_disable();
+                matrix_set(matrix_world, matrix_build_identity());
+                shader_reset();
+            }
+        }, emu_null))
+            .SetEnabled(false)
+            .SetID("PREVIEW"),
         (new EmuCheckbox(tabs.x + tabs.width + 32, EMU_AUTO, ew / 2, eh, "View UVs?", true, emu_null))
             .SetEnabled(false)
             .SetID("VIEW UVS"),
@@ -212,7 +212,6 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         var list = new EmuList(x, EMU_AUTO, ew, eh, name, eh, entry_count, function() {
             var new_tex = self.GetSelectedItem() ? self.GetSelectedItem().GUID : NULL;
             var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
-            dialog.GetChild("PREVIEW").sprite = new_tex;
             if (dialog.default_mesh_tex_only) {
                 for (var i = 0, n = array_length(dialog.selection); i < n; i++) {
                     var mesh = dialog.list[real(dialog.selection[i])];
@@ -235,17 +234,12 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
                 var index = dialog.find_common_tileset_index(dialog.list, dialog.selection, self.callback_get_texture);
                 self.SelectNoCallback(index, true);
-                if (self.root.isActiveTab()) {
-                    dialog.GetChild("PREVIEW").sprite = (index == -1) ? NULL : Game.graphics.tilesets[index].GUID;
-                }
             } else {
                 var index = dialog.find_common_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.callback_get_texture);
                 self.SelectNoCallback(index, true);
-                if (self.root.isActiveTab()) {
-                    dialog.GetChild("PREVIEW").sprite = (index == -1) ? NULL : Game.graphics.tilesets[index].GUID;
-                }
             }
         });
+        list.SetID("TEX LIST");
         
         return list;
     };
