@@ -106,14 +106,14 @@ function DataMesh(source) : SData(source) constructor {
         self.collision_shapes = json_parse(json_stringify(mesh.collision_shapes));
     };
     
-    static AddSubmesh = function(submesh, proto_guid = undefined) {
+    self.AddSubmesh = function(submesh, proto_guid = undefined) {
         submesh.proto_guid = proto_guid_set(self, array_length(self.submeshes), proto_guid);
         submesh.owner = self;
         array_push(self.submeshes, submesh);
         return submesh;
     };
     
-    static AddSubmeshFromFile = function(filename) {
+    self.AddSubmeshFromFile = function(filename) {
         var data = import_3d_model_generic(filename);
         if (data == undefined) return;
         for (var i = 0, n = array_length(data); i < n; i++) {
@@ -121,6 +121,7 @@ function DataMesh(source) : SData(source) constructor {
             submesh.SetBufferData(data[i].buffer);
             self.AddSubmesh(submesh);
         }
+        self.CalculatePhysicalBounds();
     };
     
     self.CalculatePhysicalBounds = function() {
@@ -143,7 +144,7 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    static AutoCalculateBounds = function() {
+    self.AutoCalculateBounds = function() {
         self.CalculatePhysicalBounds();
         
         self.xmin = round(self.physical_bounds.x1 / TILE_WIDTH);
@@ -156,16 +157,17 @@ function DataMesh(source) : SData(source) constructor {
         self.RecalculateBounds();
     };
     
-    static GenerateReflections = function() {
-        for (var i = 0; i < array_length(submeshes); i++) {
-            submeshes[i].GenerateReflections();
+    self.GenerateReflections = function() {
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            self.submeshes[i].GenerateReflections();
         }
     };
     
-    static SwapReflections = function() {
-        for (var i = 0; i < array_length(submeshes); i++) {
-            submeshes[i].SwapReflections();
+    self.SwapReflections = function() {
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            self.submeshes[i].SwapReflections();
         }
+        self.CalculatePhysicalBounds();
     };
     
     #region Actions
@@ -189,91 +191,97 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    static PositionAtCenter = function() {
+    self.PositionAtCenter = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_transform_center(buffer_get_address(buffer), buffer_get_size(buffer));
         });
+        self.CalculatePhysicalBounds();
     };
     
-    static ActionTransform = function() {
+    self.ActionTransform = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBufferParam(function(buffer, data) {
             meshops_transform(buffer_get_address(buffer), buffer_get_size(buffer));
         }, { });
+        self.CalculatePhysicalBounds();
     };
     
-    static ActionMirrorX = function() {
+    self.ActionMirrorX = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_mirror_axis_x(buffer_get_address(buffer), buffer_get_size(buffer));
         });
+        self.CalculatePhysicalBounds();
     };
     
-    static ActionMirrorY = function() {
+    self.ActionMirrorY = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_mirror_axis_y(buffer_get_address(buffer), buffer_get_size(buffer));
         });
+        self.CalculatePhysicalBounds();
     };
     
-    static ActionMirrorZ = function() {
+    self.ActionMirrorZ = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_mirror_axis_z(buffer_get_address(buffer), buffer_get_size(buffer));
         });
+        self.CalculatePhysicalBounds();
     };
     
-    static ActionRotateUpAxis = function() {
+    self.ActionRotateUpAxis = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_rotate_up(buffer_get_address(buffer), buffer_get_size(buffer));
         });
+        self.CalculatePhysicalBounds();
     };
     
-    static ActionInvertAlpha = function() {
+    self.ActionInvertAlpha = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_invert_alpha(buffer_get_address(buffer), buffer_get_size(buffer));
         });
     };
     
-    static ActionResetAlpha = function() {
+    self.ActionResetAlpha = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_set_alpha(buffer_get_address(buffer), buffer_get_size(buffer), 1);
         });
     };
     
-    static ActionResetColour = function() {
+    self.ActionResetColour = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_set_color(buffer_get_address(buffer), buffer_get_size(buffer), c_white);
         });
     };
     
-    static ActionFlipTexU = function() {
+    self.ActionFlipTexU = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_flip_tex_u(buffer_get_address(buffer), buffer_get_size(buffer));
         });
     };
     
-    static ActionFlipTexV = function() {
+    self.ActionFlipTexV = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_flip_tex_v(buffer_get_address(buffer), buffer_get_size(buffer));
         });
     };
     
-    static ActionNormalsFlat = function() {
+    self.ActionNormalsFlat = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
             meshops_set_normals_flat(buffer_get_address(buffer), buffer_get_size(buffer));
         });
     };
     
-    static ActionNormalsSmooth = function(threshold) {
+    self.ActionNormalsSmooth = function(threshold) {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBufferParam(function(buffer, threshold) {
             meshops_set_normals_smooth(buffer_get_address(buffer), buffer_get_size(buffer), dcos(threshold));
@@ -281,33 +289,35 @@ function DataMesh(source) : SData(source) constructor {
     };
     #endregion
     
-    static Reload = function() {
-        for (var i = 0; i < array_length(submeshes); i++) {
-            submeshes[i].Reload();
+    self.Reload = function() {
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            self.submeshes[i].Reload();
         }
+        self.CalculatePhysicalBounds();
     };
     
-    static RemoveSubmesh = function(index) {
+    self.RemoveSubmesh = function(index) {
         proto_guid_remove(self, submeshes[index].proto_guid);
         submeshes[index].Destroy();
         array_delete(submeshes, index, 1);
+        self.CalculatePhysicalBounds();
     };
     
-    static AddCollisionShape = function(type) {
+    self.AddCollisionShape = function(type) {
         var shape = new type();
         array_push(self.collision_shapes, shape);
         return self.collision_shapes[array_length(self.collision_shapes) - 1];
     };
     
-    static RenameCollisionShape = function(index, name) {
+    self.RenameCollisionShape = function(index, name) {
         self.collision_shapes[index].name = name;
     }
     
-    static DeleteCollisionShape = function(index) {
+    self.DeleteCollisionShape = function(index) {
         array_delete(self.collision_shapes, index, 1);
     }
     
-    static LoadAsset = function(directory) {
+    self.LoadAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
@@ -316,7 +326,7 @@ function DataMesh(source) : SData(source) constructor {
         if (self.terrain_data) self.terrain_data.LoadAsset(directory + guid + "+");
     };
     
-    static SaveAsset = function(directory) {
+    self.SaveAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
@@ -384,7 +394,7 @@ function DataMesh(source) : SData(source) constructor {
         if (self.terrain_data) self.terrain_data.Export(buffer);
     };
     
-    static CreateJSONMesh = function() {
+    self.CreateJSONMesh = function() {
         var json = self.CreateJSONBase();
         json.type = self.type;
         json.texture_scale = self.texture_scale;
@@ -413,11 +423,11 @@ function DataMesh(source) : SData(source) constructor {
         return json;
     };
     
-    static CreateJSON = function() {
+    self.CreateJSON = function() {
         return self.CreateJSONMesh();
     };
     
-    static Destroy = function() {
+    self.Destroy = function() {
         self.DestroyBase();
         
         if (self.terrain_data) self.terrain_data.Destroy();
@@ -443,7 +453,7 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    static RecalculateBounds = function() {
+    self.RecalculateBounds = function() {
         var xx = self.xmax - self.xmin;
         var yy = self.ymax - self.ymin;
         var zz = self.zmax - self.zmin;
@@ -465,7 +475,7 @@ function DataMesh(source) : SData(source) constructor {
     };
     
     /// @ignore
-    static foreachSubmeshBuffer = function(f) {
+    self.foreachSubmeshBuffer = function(f) {
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             var submesh = self.submeshes[i];
             f(submesh.buffer);
@@ -478,7 +488,7 @@ function DataMesh(source) : SData(source) constructor {
     };
     
     /// @ignore
-    static foreachSubmeshBufferParam = function(f, arg) {
+    self.foreachSubmeshBufferParam = function(f, arg) {
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             var submesh = self.submeshes[i];
             f(submesh.buffer, arg);

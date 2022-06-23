@@ -1,5 +1,5 @@
 function meshops_get_bounds(buffer) {
-    var output = buffer_create(24, buffer_fixed, 4);
+    static output = buffer_create(24, buffer_fixed, 4);
     __meshops_get_bounds(buffer_get_address(buffer), buffer_get_address(output), buffer_get_size(buffer));
     var data = new BoundingBox(
         buffer_peek(output,  0, buffer_f32),
@@ -9,7 +9,6 @@ function meshops_get_bounds(buffer) {
         buffer_peek(output, 16, buffer_f32),
         buffer_peek(output, 20, buffer_f32),
     );
-    buffer_delete(output);
     return data;
 }
 
