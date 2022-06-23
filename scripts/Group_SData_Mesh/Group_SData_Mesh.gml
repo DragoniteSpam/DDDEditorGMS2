@@ -110,6 +110,7 @@ function DataMesh(source) : SData(source) constructor {
         submesh.proto_guid = proto_guid_set(self, array_length(self.submeshes), proto_guid);
         submesh.owner = self;
         array_push(self.submeshes, submesh);
+        self.CalculatePhysicalBounds();
         return submesh;
     };
     
@@ -132,12 +133,12 @@ function DataMesh(source) : SData(source) constructor {
         self.physical_bounds.y2 = -infinity;
         self.physical_bounds.z2 = -infinity;
         
-        for (var i = 0; i < array_length(self.submeshes); i++) {
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             if (!self.submeshes[i].buffer) continue;
             var sub_bounds = meshops_get_bounds(self.submeshes[i].buffer);
             self.physical_bounds.x1 = min(self.physical_bounds.x1, sub_bounds.x1);
             self.physical_bounds.y1 = min(self.physical_bounds.y1, sub_bounds.y1);
-            self.physical_bounds.z1 = min(self.physical_bounds.z1, sub_bounds.y1);
+            self.physical_bounds.z1 = min(self.physical_bounds.z1, sub_bounds.z1);
             self.physical_bounds.x2 = max(self.physical_bounds.x2, sub_bounds.x2);
             self.physical_bounds.y2 = max(self.physical_bounds.y2, sub_bounds.y2);
             self.physical_bounds.z2 = max(self.physical_bounds.z2, sub_bounds.z2);

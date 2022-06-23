@@ -228,7 +228,7 @@ function MeshSubmesh(source) constructor {
         self.alpha = 1;
     };
     
-    static SetBufferData = function(raw_buffer) {
+    self.SetBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         if (self.buffer) buffer_delete(self.buffer);
         
@@ -241,11 +241,13 @@ function MeshSubmesh(source) constructor {
             vertex_delete_buffer(self.reflect_vbuffer);
             self.GenerateReflections();
         }
+        
+        if (self.owner) self.owner.CalculatePhysicalBounds();
     };
     
     // Appends vertex data onto the end of an existing buffer; this is mostly
     // used with the "combine submeshes" option in the Mesh editor
-    static AddBufferData = function(raw_buffer) {
+    self.AddBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         var new_size = buffer_get_size(raw_buffer);
         if (!self.buffer) {
@@ -262,6 +264,8 @@ function MeshSubmesh(source) constructor {
             vertex_delete_buffer(self.reflect_vbuffer);
             self.GenerateReflections();
         }
+        
+        if (self.owner) self.owner.CalculatePhysicalBounds();
     };
     
     self.SetMaterial = function(material) {
@@ -281,23 +285,23 @@ function MeshSubmesh(source) constructor {
         self.tex_stencil = material.tex_stencil;
     };
     
-    static internalDeleteUpright = function() {
+    self.internalDeleteUpright = function() {
         if (self.buffer) buffer_delete(self.buffer);
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
     };
     
-    static internalDeleteReflect = function() {
+    self.internalDeleteReflect = function() {
         if (self.reflect_buffer) buffer_delete(self.reflect_buffer);
         if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
     };
     
-    static internalSetVertexBuffer = function() {
+    self.internalSetVertexBuffer = function() {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format);
         vertex_freeze(self.vbuffer);
     };
     
-    static internalSetReflectVertexBuffer = function() {
+    self.internalSetReflectVertexBuffer = function() {
         if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format);
         vertex_freeze(self.reflect_vbuffer);
