@@ -47,7 +47,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     var mat_translate = matrix_build(Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z, 0, 0, 0, 1, 1, 1);
     var mat_rotate = matrix_build(0, 0, 0, Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z, 1, 1, 1);
     var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z,);
-    matrix_set(matrix_world, matrix_multiply(matrix_multiply(mat_scale, mat_rotate), mat_translate));
+    var mat_transform = matrix_multiply(matrix_multiply(mat_scale, mat_rotate), mat_translate);
+    matrix_set(matrix_world, mat_transform);
     
     var rendered_count = 0;
     var limit = 24;
@@ -103,6 +104,34 @@ function ui_render_surface_render_mesh_ed(mx, my) {
             }
             
             if (++rendered_count > limit) break;
+        }
+    }
+    
+    if (Settings.mesh.draw_physical_bounds) {
+        var rendered_count = 0;
+        for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+            var mesh = self.root.GetSibling("MESH LIST").At(real(indices[index]));
+            var bounds = mesh.physical_bounds;
+            var point_000 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y1, bounds.z1);
+            var point_001 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y1, bounds.z2);
+            var point_010 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y2, bounds.z1);
+            var point_011 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y2, bounds.z2);
+            var point_100 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y1, bounds.z1);
+            var point_101 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y1, bounds.z2);
+            var point_110 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y2, bounds.z1);
+            var point_111 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y2, bounds.z2);
+            var bounds_x1 = min(point_000[0], point_001[0], point_010[0], point_011[0], point_100[0], point_101[0], point_110[0], point_111[0]);
+            var bounds_y1 = min(point_000[1], point_001[1], point_010[1], point_011[1], point_100[1], point_101[1], point_110[1], point_111[1]);
+            var bounds_z1 = min(point_000[2], point_001[2], point_010[2], point_011[2], point_100[2], point_101[2], point_110[2], point_111[2]);
+            var bounds_x2 = max(point_000[0], point_001[0], point_010[0], point_011[0], point_100[0], point_101[0], point_110[0], point_111[0]);
+            var bounds_y2 = max(point_000[1], point_001[1], point_010[1], point_011[1], point_100[1], point_101[1], point_110[1], point_111[1]);
+            var bounds_z2 = max(point_000[2], point_001[2], point_010[2], point_011[2], point_100[2], point_101[2], point_110[2], point_111[2]);
+            Stuff.graphics.DrawWireBox(
+                mean(bounds_x1, bounds_x2), mean(bounds_y1, bounds_y2), mean(bounds_z1, bounds_z2),
+                0, 0, 0,
+                abs(bounds_x2 - bounds_x1), abs(bounds_y2 - bounds_y1), abs(bounds_z2 - bounds_z1),
+                c_red
+            );
         }
     }
     
