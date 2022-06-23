@@ -544,7 +544,7 @@ function ui_init_mesh(mode) {
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
-                var dialog = new EmuDialog(32 + 320 + 32, 688, "Mesh viewer settings");
+                var dialog = new EmuDialog(32 + 320 + 32, 608, "Mesh viewer settings");
                 dialog.root = self;
                 dialog.active_shade = 0;
                 dialog.x = 320;
@@ -553,7 +553,7 @@ function ui_init_mesh(mode) {
                 var col1x = 32;
                 var col_width = 320;
                 
-                return dialog.AddContent([
+                dialog.AddContent([
                     #region column 1
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw filled meshes?", Settings.mesh.draw_meshes, function() {
                         Settings.mesh.draw_meshes = self.value;
@@ -580,16 +580,6 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_back_faces = self.value;
                     }))
                         .SetTooltip("For backface culling."),
-                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw reflections?", Settings.mesh.draw_reflections, function() {
-                        Settings.mesh.draw_reflections = self.value;
-                    }))
-                        .SetInteractive(EDITOR_BASE_MODE != ModeIDs.MESH)
-                        .SetTooltip("If you have a reflection mesh set up, you may draw it, as well."),
-                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
-                        Settings.mesh.draw_collision = self.value;
-                    }))
-                        .SetInteractive(EDITOR_BASE_MODE != ModeIDs.MESH)
-                        .SetTooltip("Whether or not to show collision shapes associated with meshes."),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw 3D axes?", Settings.mesh.draw_axes, function() {
                         Settings.mesh.draw_axes = self.value;
                     }))
@@ -601,7 +591,24 @@ function ui_init_mesh(mode) {
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw physical bounds?", Settings.mesh.draw_physical_bounds, function() {
                         Settings.mesh.draw_physical_bounds = self.value;
                     }))
-                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane."),
+                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
+                ]);
+                
+                if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+                    dialog.AddContent([
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw reflections?", Settings.mesh.draw_reflections, function() {
+                            Settings.mesh.draw_reflections = self.value;
+                        }))
+                            .SetTooltip("If you have a reflection mesh set up, you may draw it, as well."),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
+                            Settings.mesh.draw_collision = self.value;
+                        }))
+                            .SetTooltip("Whether or not to show collision shapes associated with meshes."),
+                    ]);
+                    dialog.height += 96;
+                }
+                
+                dialog.AddContent([
                     (new EmuButton(col1x, EMU_AUTO, col_width, 32, "[c_aqua]Reset", function() {
                         Settings.mesh.draw_position = MESH_DEF_VIEW_DRAW_POSITION;
                         Settings.mesh.draw_rotation = MESH_DEF_VIEW_DRAW_ROTATION;
