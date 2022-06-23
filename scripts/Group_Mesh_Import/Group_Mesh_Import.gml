@@ -643,7 +643,7 @@ function import_texture(fn) {
         var manager = dialog_create_manager_graphics();
         manager.contents_interactive = true;
         manager.flags |= DialogFlags.IS_GENERIC_WARNING;
-        manager.SearchID("TYPE").value = 0;
+        if (manager.SearchID("TYPE")) manager.SearchID("TYPE").value = 0;
         manager.SearchID("LIST").Select(array_length(Game.graphics.tilesets) - 1);
         manager.Refresh({ list: Game.graphics.tilesets, index: array_length(Game.graphics.tilesets) - 1 });
     }
