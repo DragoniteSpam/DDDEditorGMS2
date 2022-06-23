@@ -1,5 +1,8 @@
 function EditorGraphics() constructor {
     self.Init = function() {
+        #macro TEX_MISSING Stuff.graphics.tex_missing
+        self.tex_missing = sprite_get_texture(b_tileset_magenta, 0);
+        
         gpu_set_alphatestenable(true);
         gpu_set_alphatestref(20);
         gpu_set_tex_repeat(true);

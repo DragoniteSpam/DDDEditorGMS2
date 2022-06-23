@@ -68,8 +68,12 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                         graphics_set_material(submesh);
                         
                         var submesh_tex = -1;
-                        if (Settings.mesh.draw_textures && guid_get(submesh.tex_base)) {
-                             submesh_tex = sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
+                        if (Settings.mesh.draw_textures) {
+                            if (guid_get(submesh.tex_base)) {
+                                submesh_tex = sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
+                            } else if (submesh.tex_base != NULL) {
+                                submesh_tex = TEX_MISSING;
+                            }
                         }
                         if (submesh.vbuffer) vertex_submit(submesh.vbuffer, pr_trianglelist, submesh_tex);
                         if (Settings.mesh.draw_reflections && submesh.reflect_vbuffer) vertex_submit(submesh.reflect_vbuffer, pr_trianglelist, submesh_tex);
