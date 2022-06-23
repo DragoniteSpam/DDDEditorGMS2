@@ -1,5 +1,5 @@
 function dialog_create_mesh_material_settings(mesh_list, selection) {
-    static find_tileset_index = function(list, selected_things, accessor) {
+    static find_common_tileset_index = function(list, selected_things, accessor) {
         var target = undefined;
         
         for (var i = 0, n = array_length(selected_things); i < n; i++) {
@@ -18,25 +18,53 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         return array_search(Game.graphics.tilesets, target);
     };
     
-    static find_tileset_index_submesh = function(submesh, accessor) {
+    static find_common_value = function(list, selected_things, accessor) {
+        var target = undefined;
+        
+        for (var i = 0, n = array_length(selected_things); i < n; i++) {
+            var mesh = list[selected_things[i]];
+            for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                var data = accessor(mesh.submeshes[j]);
+                if (target == undefined) {
+                    target = data;
+                } else if (target != data) {
+                    return -1;
+                }
+            }
+        }
+        
+        return target;
+    };
+    
+    static find_common_tileset_index_submesh = function(submesh, accessor) {
         var data = guid_get(accessor(submesh));
         if (!data) return -1;
         return array_search(Game.graphics.tilesets, data);
+    };
+    
+    static find_common_value_submesh = function(submesh, accessor) {
+        return accessor(submesh);
     };
     
     // if you have multiple meshes selected or your mesh only has a single
     // submesh, skip the submesh list
     var default_mesh_tex_only = (array_length(selection) > 1) || ((array_length(selection) == 1) && array_length(mesh_list[selection[0]].submeshes) == 1) || (mesh_list == Game.mesh_terrain);
     
-    var id_base = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_base; });
-    var id_normal = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_normal; });
-    var id_ambient = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_ambient; });
-    var id_specular_color = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_color; });
-    var id_specular_highlight = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_highlight; });
-    var id_alpha = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_alpha; });
-    var id_bump = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_bump; });
-    var id_displacement = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_displacement; });
-    var id_decal = find_tileset_index(mesh_list, selection, function(thing) { return thing.tex_stencil; });
+    var id_base = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_base; });
+    var id_normal = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_normal; });
+    var id_ambient = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_ambient; });
+    var id_specular_color = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_color; });
+    var id_specular_highlight = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_highlight; });
+    var id_alpha = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_alpha; });
+    var id_bump = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_bump; });
+    var id_displacement = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_displacement; });
+    var id_decal = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_stencil; });
+    
+    var common_diffuse_color = find_common_value(mesh_list, selection, function(thing) { return thing.col_diffuse; });
+    if (common_diffuse_color == -1) common_diffuse_color = c_white;
+    var common_diffuse_alpha = find_common_value(mesh_list, selection, function(thing) { return thing.alpha; });
+    if (common_diffuse_alpha == -1) common_diffuse_alpha = 1;
+    common_diffuse_color |= floor(common_diffuse_alpha * 0xff) << 24;
     
     var dg = new EmuDialog((default_mesh_tex_only ? 0 : (32 + 320)) + 32 + 320 + 32 + 32 + 32, 672, "Materials");
     dg.list = mesh_list;
@@ -44,8 +72,10 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     dg.default_mesh_tex_only = default_mesh_tex_only;
     dg.active_shade = false;
     
-    dg.find_tileset_index = find_tileset_index;
-    dg.find_tileset_index_submesh = find_tileset_index_submesh;
+    dg.find_common_tileset_index = find_common_tileset_index;
+    dg.find_common_tileset_index_submesh = find_common_tileset_index_submesh;
+    dg.find_common_value = find_common_value;
+    dg.find_common_value_submesh = find_common_value_submesh;
     
     var ew = 320;
     var eh = 32;
@@ -196,13 +226,13 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             self.DeselectNoCallback();
             var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
             if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
-                var index = dialog.find_tileset_index(dialog.list, dialog.selection, self.callback_get_texture);
+                var index = dialog.find_common_tileset_index(dialog.list, dialog.selection, self.callback_get_texture);
                 self.SelectNoCallback(index, true);
                 if (self.root.isActiveTab()) {
                     dialog.GetChild("PREVIEW").sprite = (index == -1) ? NULL : Game.graphics.tilesets[index].GUID;
                 }
             } else {
-                var index = dialog.find_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.callback_get_texture);
+                var index = dialog.find_common_tileset_index_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.callback_get_texture);
                 self.SelectNoCallback(index, true);
                 if (self.root.isActiveTab()) {
                     dialog.GetChild("PREVIEW").sprite = (index == -1) ? NULL : Game.graphics.tilesets[index].GUID;
@@ -213,7 +243,51 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
         return list;
     };
     
-    tab_base.AddContent(texture_list_general(col1, ew, eh, "Textures:", function(submesh, tex) { submesh.tex_base = tex; }, function(submesh) { return submesh.tex_base; }, id_base));
+    var material_element_generic = function(type, x, y, ew, eh, name, callback_set, callback_get, callback_validate_value, default_value) {
+        var element = new type(x, EMU_AUTO, ew, eh, name, default_value, function() {
+            var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
+            if (dialog.default_mesh_tex_only) {
+                for (var i = 0, n = array_length(dialog.selection); i < n; i++) {
+                    var mesh = dialog.list[real(dialog.selection[i])];
+                    for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                        self.callback_set(mesh.submeshes[j], self.value);
+                    }
+                }
+            } else {
+                self.callback_set(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.value);
+            }
+        });
+        element.callback_set = callback_set;
+        element.callback_get = callback_get;
+        element.callback_validate_value = callback_validate_value;
+        element.SetRefresh(function() {
+            var dialog = self.root/*tab*/.root/*tag group*/.root/*dialog*/;
+            if (dialog.default_mesh_tex_only || (dialog.GetChild("SUBMESHES") && !dialog.GetChild("SUBMESHES").GetSelectedItem())) {
+                var common = dialog.find_common_value(dialog.list, dialog.selection, self.callback_get);
+                common = self.callback_validate_value(common);
+                self.SetValue(common);
+            } else {
+                var common = dialog.find_common_value_submesh(dialog.GetChild("SUBMESHES").GetSelectedItem(), self.callback_get);
+                common = self.callback_validate_value(common);
+                self.SetValue(common);
+            }
+        });
+        
+        return element;
+    };
+    
+    tab_base.AddContent([
+        texture_list_general(col1, ew, eh, "Textures:", function(submesh, tex) { submesh.tex_base = tex; }, function(submesh) { return submesh.tex_base; }, id_base),
+        (material_element_generic(EmuColorPicker, col1, EMU_AUTO, ew, eh, "Diffuse color:", function(submesh, value) {
+            submesh.col_diffuse = value & 0x00ffffff;
+            submesh.alpha = (value >> 24) / 0xff;
+        }, function(submesh) {
+            return submesh.col_diffuse | (floor(submesh.alpha * 0xff) << 24);
+        }, function(value) {
+            return (value == -1) ? 0xffffffff : value;
+        }, common_diffuse_color))
+            .SetAlphaUsed(true),
+    ]);
     tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", function(submesh, tex) { submesh.tex_normal = tex; }, function(submesh) { return submesh.tex_normal; }, id_normal));
     tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", function(submesh, tex) { submesh.tex_ambient = tex; }, function(submesh) { return submesh.tex_ambient; }, id_specular_color));
     tab_specular_color.AddContent(texture_list_general(col1, ew, eh, "Specular color:", function(submesh, tex) { submesh.tex_specular_color = tex; }, function(submesh) { return submesh.tex_specular_color; }, id_specular_color));
