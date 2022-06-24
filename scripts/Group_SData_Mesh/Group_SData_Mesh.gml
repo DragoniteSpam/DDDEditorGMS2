@@ -26,55 +26,6 @@ function DataMesh(source) : SData(source) constructor {
     
     self.terrain_data = undefined;
     
-    if (is_struct(source)) {
-        self.type = source.type;
-        
-        self.texture_scale = source[$ "texture_scale"] ?? NULL;
-        
-        self.asset_flags = source.asset_flags;
-        self.xmin = source.xmin;
-        self.ymin = source.ymin;
-        self.zmin = source.zmin;
-        self.xmax = source.xmax;
-        self.ymax = source.ymax;
-        self.zmax = source.zmax;
-        
-        for (var i = 0; i < array_length(source.submeshes); i++) {
-            self.AddSubmesh(new MeshSubmesh(source.submeshes[i]), source.submeshes[i].proto_guid);
-        }
-        
-        try {
-            self.collision_shapes = source.collision_shapes;
-        } catch (e) {
-            self.collision_shapes = [];
-        }
-        
-        try {
-            self.terrain_data = new MeshTerrainData(source.terrain_data.w, source.terrain_data.h, 0);
-            self.terrain_data.Load(source);
-        } catch (e) {
-            self.terrain_data = undefined;
-        }
-        
-        self.use_independent_bounds = source[$ "use_independent_bounds"] ?? self.use_independent_bounds;
-        
-        try {
-            self.physical_bounds.x1 = source.physical_bounds.x1;
-            self.physical_bounds.y1 = source.physical_bounds.y1;
-            self.physical_bounds.z1 = source.physical_bounds.z1;
-            self.physical_bounds.x2 = source.physical_bounds.x2;
-            self.physical_bounds.y2 = source.physical_bounds.y2;
-            self.physical_bounds.z2 = source.physical_bounds.z2;
-        } catch (e) {
-            self.physical_bounds.x1 = 0;
-            self.physical_bounds.y1 = 0;
-            self.physical_bounds.z1 = 0;
-            self.physical_bounds.x2 = 0;
-            self.physical_bounds.y2 = 0;
-            self.physical_bounds.z2 = 0;
-        }
-    }
-    
     self.CopyPropertiesFrom = function(mesh) {
         // cshape is currently NOT copied!
         self.xmin = mesh.xmin;
@@ -500,6 +451,51 @@ function DataMesh(source) : SData(source) constructor {
             }
         }
     };
+    
+    
+    if (is_struct(source)) {
+        self.type = source.type;
+        
+        self.texture_scale = source[$ "texture_scale"] ?? NULL;
+        
+        self.asset_flags = source.asset_flags;
+        self.xmin = source.xmin;
+        self.ymin = source.ymin;
+        self.zmin = source.zmin;
+        self.xmax = source.xmax;
+        self.ymax = source.ymax;
+        self.zmax = source.zmax;
+        
+        for (var i = 0; i < array_length(source.submeshes); i++) {
+            self.AddSubmesh(new MeshSubmesh(source.submeshes[i]), source.submeshes[i].proto_guid);
+        }
+        
+        try {
+            self.collision_shapes = source.collision_shapes;
+        } catch (e) {
+            self.collision_shapes = [];
+        }
+        
+        try {
+            self.terrain_data = new MeshTerrainData(source.terrain_data.w, source.terrain_data.h, 0);
+            self.terrain_data.Load(source);
+        } catch (e) {
+            self.terrain_data = undefined;
+        }
+        
+        self.use_independent_bounds = source[$ "use_independent_bounds"] ?? self.use_independent_bounds;
+        
+        try {
+            self.physical_bounds.x1 = source.physical_bounds.x1;
+            self.physical_bounds.y1 = source.physical_bounds.y1;
+            self.physical_bounds.z1 = source.physical_bounds.z1;
+            self.physical_bounds.x2 = source.physical_bounds.x2;
+            self.physical_bounds.y2 = source.physical_bounds.y2;
+            self.physical_bounds.z2 = source.physical_bounds.z2;
+        } catch (e) {
+            self.physical_bounds = undefined;
+        }
+    }
 }
 
 // if you give these methods or anything you're going to have to write
