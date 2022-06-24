@@ -276,6 +276,11 @@ function DataMesh(source) : SData(source) constructor {
             self.submeshes[i].LoadAsset(directory + guid + "_");
         }
         if (self.terrain_data) self.terrain_data.LoadAsset(directory + guid + "+");
+        
+        if (!self.physical_bounds) {
+            self.physical_bounds = new BoundingBox();
+            self.CalculatePhysicalBounds();
+        }
     };
     
     self.SaveAsset = function(directory) {
