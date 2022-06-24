@@ -208,7 +208,7 @@ function EditorModeMap() : EditorModeBase() constructor {
             
             for (var i = 0, n = array_length(terrain.submeshes); i < n; i++) {
                 var submesh = terrain.submeshes[i];
-                var tex = guid_get(submesh.tex_base) ? sprite_get_texture(guid_get(submesh.tex_base), 0) : -1;
+                var tex = guid_get(submesh.tex_base) ? sprite_get_texture(guid_get(submesh.tex_base).picture, 0) : -1;
                 vertex_submit(submesh.vbuffer, pr_trianglelist, tex);
             }
             matrix_set(matrix_world, matrix_build_identity());
