@@ -1,8 +1,12 @@
-#macro MACAW_VERSION "1.0.3"
+#macro MACAW_VERSION            "1.0.5"
+
+#macro MACAW_MAX_GEN_SIZE       16384
 
 global.__macaw_seed = 0;
 
 function macaw_generate_dll(w, h, octaves, amplitude) {
+    w = min(MACAW_MAX_GEN_SIZE, w);
+    h = min(MACAW_MAX_GEN_SIZE, h);
     static warned = false;
     var perlin = buffer_create(w * h * 4, buffer_fixed, 4);
     
@@ -48,6 +52,18 @@ function macaw_generate(w, h, octave_count, amplitude) {
             buffer_resize(smooth_noise, w * h * octave_count * 4);
         }
         
+        // the interpolation function you use can make quite a difference, it seems
+        // https://web.archive.org/web/20220130085702/https://en.wikipedia.org/wiki/Perlin_noise#Implementation
+        static macaw_lerp = lerp;
+        
+        static macaw_lerp_cubic = function(a, b, f) {
+            return (b - a) * (3.0 - f * 2.0) * f * f + a;
+        };
+        
+        static macaw_lerp_whatevers_better_than_cubic = function(a, b, f) {
+            return (b - a) * ((f * (f * 6.0 - 15.0) + 10.0) * f * f * f) + a;
+        };
+        
         for (var octave = 0; octave < octave_count; octave++) {
             var period = 1 << octave;
             var frequency = 1 / period;
@@ -73,9 +89,9 @@ function macaw_generate(w, h, octave_count, amplitude) {
                     var b01 = base_noise[i0 * h + j1];
                     var b11 = base_noise[i1 * h + j1];
                     
-                    var top = lerp(b00, b10, hblend);
-                    var bottom = lerp(b01, b11, hblend);
-                    buffer_poke(smooth_noise, (base_b + j++) * 4, buffer_f32, lerp(top, bottom, vblend));
+                    var top = macaw_lerp_whatevers_better_than_cubic(b00, b10, hblend);
+                    var bottom = macaw_lerp_whatevers_better_than_cubic(b01, b11, hblend);
+                    buffer_poke(smooth_noise, (base_b + j++) * 4, buffer_f32, macaw_lerp_whatevers_better_than_cubic(top, bottom, vblend));
                 }
                 i++;
             }
@@ -84,6 +100,8 @@ function macaw_generate(w, h, octave_count, amplitude) {
         return smooth_noise;
     };
     
+    w = min(MACAW_MAX_GEN_SIZE, w);
+    h = min(MACAW_MAX_GEN_SIZE, h);
     var base_noise = macaw_white_noise(w, h);
     var len = w * h * 4;
     var persistence = 0.5;
@@ -131,7 +149,7 @@ function macaw_version() {
 function macaw_set_seed(seed) {
     // MD5 will produce a hex value that's 32 hextets long, which will cause problems
     // if we try to convert it to an int64, so we only use the first 15 digits
-    seed = real(ptr(string_copy(md5_string_utf8(string(seed)), 1, 15)));
+    seed = int64(ptr(string_copy(md5_string_utf8(string(seed)), 1, 15)));
     global.__macaw_seed = seed;
     __macaw_set_seed(seed);
 }
@@ -148,13 +166,13 @@ function __macaw_class(noise, w, h, amplitude) constructor {
     self.width = w;
     self.height = h;
     self.amplitude = amplitude;
-            
+    
     static Get = function(x, y) {
         x = floor(clamp(x, 0, self.width - 1));
         y = floor(clamp(y, 0, self.height - 1));
         return buffer_peek(self.noise, ((x * self.height) + y) * 4, buffer_f32);
     };
-            
+    
     static GetNormalized = function(u, v) {
         return self.Get(x * self.width, y * self.height);
     };

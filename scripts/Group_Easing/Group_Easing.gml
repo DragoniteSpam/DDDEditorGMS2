@@ -1,28 +1,39 @@
 function easing_get(type, t) {
-    /// @todo
-    if (code_is_compiled()) {
-        show_debug_message("The YYC mangles the values inside this struct for some reason and it causes problems for all involved so I'm just going to have it return 0 for now");
-        return 0;
-    }
-    if (type == AnimationTweens.IGNORE || type == AnimationTweens.NONE) return 0;
-    return animcurve_channel_evaluate(animcurve_get(ac_easings).channels[type - 2], t);
+    if (type == Easings.NONE) return 0;
+    var curve = animcurve_get(ac_easings);
+    if (is_string(type)) return animcurve_channel_evaluate(curve.channels[animcurve_get_channel_index(curve, type)], t);
+    return animcurve_channel_evaluate(curve.channels[type], t);
 }
 
-function easing_tween(value_start, value_end, f, type) {
-    return easing_get(type, f) * (value_end - value_start) + value_start;
-};
-
-enum AnimationTweens {
-    // i MAY add an option to disable keyframes for properties entirely at some point (but probably not)
-    // but for now this is just going to just be the same as "none"
-    IGNORE, NONE, LINEAR,
-    EASE_QUAD_I, EASE_QUAD_O, EASE_QUAD_IO,
-    EASE_CUBE_I, EASE_CUBE_O, EASE_CUBE_IO,
-    EASE_QUART_I, EASE_QUART_O, EASE_QUART_IO,
-    EASE_EXP_I, EASE_EXP_O, EASE_EXP_IO,
-    EASE_CIRC_I, EASE_CIRC_O, EASE_CIRC_IO,
-    EASE_BACK_I, EASE_BACK_O, EASE_BACK_IO,
-    EASE_ELASTIC_I, EASE_ELASTIC_O, EASE_ELASTIC_IO,
-    EASE_BOUNCE_I, EASE_BOUNCE_O, EASE_BOUNCE_IO,
-    EASE_FAST_TO_SLOW, EASE_MID_TO_SLOW,
+function ease(val1, val2, f, type) {
+    return easing_get(type, f) * (val2 - val1) + val1;
 }
+
+enum Easings {
+    LINEAR,
+    QUAD_I, QUAD_O, QUAD_IO,
+    CUBE_I, CUBE_O, CUBE_IO,
+    QUART_I, QUART_O, QUART_IO,
+    EXP_I, EXP_O, EXP_IO,
+    CIRC_I, CIRC_O, CIRC_IO,
+    BACK_I, BACK_O, BACK_IO,
+    ELASTIC_I, ELASTIC_O, ELASTIC_IO,
+    BOUNCE_I, BOUNCE_O, BOUNCE_IO,
+    FAST_TO_SLOW, MID_TO_SLOW,
+    // added these later
+    NONE
+}
+
+// just in case you want to attach strings to them
+global.animation_tween_names = [
+    "Linear",
+    "Quadratic In", "Quadratic Out", "Quadratic In/Out",
+    "Cubic In", "Cubic Out", "Cubic In/Out",
+    "Quartic In", "Quartic Out", "Quartic In/Out",
+    "Exponential In", "Exponential Out", "Exponential In/Out",
+    "Circular In", "Circular Out", "Circular In/Out",
+    "Back In", "Back Out", "There and Back Again",
+    "Elastic In", "Elastic Out", "Elastic In/Out",
+    "Bounce In", "Bounce Out", "Bounce In/Out",
+    "Fast to Slow", "Mid to Slow",
+];

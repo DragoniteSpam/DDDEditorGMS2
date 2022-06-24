@@ -1,0 +1,7 @@
+Another changelog.
+
+# Changes since 2022.0.2.78
+
+ - Rewrote most of the tooling from scratch in C++ to make it considerably faster
+ - Enabled the submesh manager in the mesh editor
+ - Added a "Reset" button to the viewer settings dialog

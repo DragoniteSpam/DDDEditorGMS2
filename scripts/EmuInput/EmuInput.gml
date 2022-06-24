@@ -1,19 +1,20 @@
 // Emu (c) 2020 @dragonitespam
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Emu/wiki
 function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, callback) : EmuCallback(x, y, w, h, value, callback) constructor {
-    enum E_InputTypes { STRING, INT, REAL, HEX };
+    enum E_InputTypes { STRING, INT, REAL, HEX, LETTERSDIGITS, LETTERSDIGITSANDUNDERSCORES };
     
     self.text = text;
     self.help_text = help_text;
     self.character_limit = clamp(character_limit, 1, 1000);  // keyboard_string maxes out at 1024 characters but I like to cut it off before then to be safe
     
-    self.color_help_text = EMU_COLOR_HELP_TEXT;
-    self.color_warn = EMU_COLOR_INPUT_WARN;
-    self.color_reject = EMU_COLOR_INPUT_REJECT;
-    self.color_back = EMU_COLOR_BACK;
-    self.color_disabled = EMU_COLOR_DISABLED;
-    self.color_selected = EMU_COLOR_SELECTED;
-    self.input_font = EMU_FONT_DEFAULT;
+    self.color_text = function() { return EMU_COLOR_TEXT };
+    self.color_help_text = function() { return EMU_COLOR_HELP_TEXT; }
+    self.color_warn = function() { return EMU_COLOR_INPUT_WARN; }
+    self.color_reject = function() { return EMU_COLOR_INPUT_REJECT; }
+    self.color_back = function() { return EMU_COLOR_BACK; }
+    self.color_disabled = function() { return EMU_COLOR_DISABLED; }
+    self.color_selected = function() { return EMU_COLOR_SELECTED; }
+    self.input_font = function() { return EMU_FONT_DEFAULT; }
     
     self.sprite_ring = spr_emu_ring;
     self.sprite_enter = spr_emu_enter;
@@ -30,7 +31,34 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     self._value_lower = 0;
     self._value_upper = 100;
     
+    self.strict_input = false;
+    
     self._surface = surface_create(self._value_x2 - self._value_x1, self._value_y2 - self._value_y1);
+    
+    self.SetValidateInput = function(f) {
+        self.ValidateInput = method(self, f);
+        return self;
+    };
+    
+    self.SetValueType = function(type) {
+        self._value_type = type;
+        return self;
+    };
+    
+    self.SetCharacterLimit = function(limit) {
+        self.character_limit = limit;
+        return self;
+    };
+    
+    self.SetColorText = function(f) {
+        self.color_text = method(self, f);
+        return self;
+    };
+    
+    self.SetStrictInput = function(strict) {
+        self.strict_input = strict;
+        return self;
+    };
     
     SetMultiLine = function(multi_line) {
         self._multi_line = multi_line;
@@ -42,7 +70,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         return self;
     }
     
-    SetInputBoxPosition = function(vx1, vy1, vx2, vy2) {
+    SetInputBoxPosition = function(vx1 = self._value_x1, vy1 = self._value_y1, vx2 = self._value_x2, vy2 = self._value_y2) {
         self._value_x1 = vx1;
         self._value_y1 = vy1;
         self._value_x2 = vx2;
@@ -66,12 +94,13 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     
     Render = function(base_x, base_y) {
         processAdvancement();
+        self.update_script();
         
         var x1 = x + base_x;
         var y1 = y + base_y;
         var x2 = x1 + width;
         var y2 = y1 + height;
-        var c = color;
+        var c = self.color_text();
 
         var vx1 = x1 + _value_x1;
         var vy1 = y1 + _value_y1;
@@ -88,17 +117,18 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         var sw_end = sw + 4;
         
         #region work out the input color
-        scribble_set_box_align(fa_left, fa_middle);
-        scribble_set_wrap(width, height);
-        scribble_draw(tx, ty, string(text));
+        scribble(string(self.text))
+        	.align(fa_left, fa_middle)
+        	.wrap(self.width, self.height)
+        	.draw(tx, ty);
         
         if (ValidateInput(_working_value)) {
             var cast_value = CastInput(_working_value);
             if (is_real(cast_value) && clamp(cast_value, _value_lower, _value_upper) != cast_value) {
-                c = color_warn;
+                c = self.color_warn();
             }
         } else {
-            var c = color_reject;
+            c = self.color_reject();
         }
         #endregion
         
@@ -117,7 +147,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
 
         surface_set_target(_surface);
         surface_set_target(_surface);
-        draw_clear(GetInteractive() ? color_back : color_disabled);
+        draw_clear(GetInteractive() ? self.color_back (): self.color_disabled());
         surface_reset_target();
         
         var display_text = _working_value + (isActiveElement() && (floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
@@ -133,7 +163,9 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 var remaining_h = string_height(string(remaining));
                 var remaining_x = ww - 4 - remaining_w;
                 var remaining_y = hh - remaining_h;
-                scribble_draw(remaining_x, remaining_y, string(remaining));
+                
+                scribble(string(remaining))
+                	.draw(remaining_x, remaining_y);
             } else {
                 var remaining_x = ww - 16;
                 var remaining_y = hh - 16;
@@ -141,7 +173,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 var steps = 32;
                 draw_sprite(sprite_ring, 0, remaining_x, remaining_y);
                 draw_primitive_begin_texture(pr_trianglefan, sprite_get_texture(sprite_ring, 0));
-                draw_vertex_texture_colour(remaining_x, remaining_y, 0.5, 0.5, color_selected, 1);
+                var csel = self.color_selected();
+                draw_vertex_texture_colour(remaining_x, remaining_y, 0.5, 0.5, csel, 1);
                 for (var i = 0; i <= steps * f; i++) {
                     var angle = 360 / steps * i - 90;
                     draw_vertex_texture_colour(
@@ -149,7 +182,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                         clamp(remaining_y + r * dsin(angle), remaining_y - r, remaining_y + r),
                         clamp(0.5 + 0.5 * dcos(angle), 0, 1),
                         clamp(0.5 + 0.5 * dsin(angle), 0, 1),
-                    color_selected, 1);
+                    csel, 1);
                 }
                 draw_primitive_end();
             }
@@ -157,21 +190,22 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
             
             draw_set_halign(fa_left);
             draw_set_valign(fa_top);
-            draw_set_font(input_font);
+            draw_set_font(self.input_font());
             var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
             var vty = vy1 + offset;
             draw_text_ext_colour(vtx - vx1, min(vty - vy1, hh - spacing - sh), display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
         } else {
             draw_set_halign(fa_left);
             draw_set_valign(fa_middle);
-            draw_set_font(input_font);
+            draw_set_font(self.input_font());
             var sw_begin = min(vtx - vx1, ww - offset - sw);
             draw_text_colour(sw_begin, vty - vy1, display_text, c, c, c, c, 1);
             sw_end = sw_begin + sw + 4;
         }
         
         if (string_length(value) == 0) {
-            draw_text_colour(vtx - vx1, vty - vy1, string(help_text), color_help_text, color_help_text, color_help_text, color_help_text, 1);
+            var tc = self.color_help_text();
+            draw_text_colour(vtx - vx1, vty - vy1, string(help_text), tc, tc, tc, tc, 1);
         }
 
         if (_require_enter) {
@@ -183,7 +217,12 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         if (GetInteractive()) {
             if (isActiveElement()) {
                 var v0 = _working_value;
-                _working_value = string_copy(keyboard_string, 1, min(string_length(keyboard_string), character_limit));
+                _working_value = keyboard_string;
+                
+                if (string_length(_working_value) > character_limit) {
+                	_working_value = string_copy(_working_value, 1, character_limit);
+                	keyboard_string = _working_value;
+                }
                 
 				// press escape to clear input
 				if (keyboard_check_pressed(vk_escape)) {
@@ -195,27 +234,32 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
 				// add newline on pressing enter, if allowed
                 if (_multi_line && !_require_enter && keyboard_check_pressed(vk_enter)) {
                     _working_value += "\n";
-                    keyboard_string = keyboard_string + "\n";
+                    keyboard_string += "\n";
                 }
 				
                 if (ValidateInput(_working_value)) {
+                    self.value = _working_value;
                     var execute_value_change = (!_require_enter && v0 != _working_value) || (_require_enter && keyboard_check_pressed(vk_enter));
                     if (execute_value_change) {
                         var cast_value = CastInput(_working_value);
                         if (is_real(cast_value)) {
-                            execute_value_change = execute_value_change && (clamp(cast_value, _value_lower, _value_upper) == cast_value);
+                            execute_value_change &= (clamp(cast_value, _value_lower, _value_upper) == cast_value);
                         }
 						
                         if (execute_value_change) {
-                            value = _working_value;
                             callback();
                         }
                     }
+                } else if (_working_value != "") {
+                    self.value = _working_value;
+                } else {
+                    // you can set input boxes to reject invalid inputs entirely
+                    if (!self.strict_input) {
+                        self.value = _working_value;
+                    }
                 }
-                
-				keyboard_string = string_copy(_working_value, 1, min(string_length(_working_value), character_limit));
-                value = keyboard_string;
             }
+            
             // activation
             if (getMouseHover(vx1, vy1, vx2, vy2)) {
                 if (getMouseReleased(vx1, vy1, vx2, vy2)) {
@@ -230,7 +274,14 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         #endregion
         
         draw_surface(_surface, vx1, vy1);
-        draw_rectangle_colour(vx1, vy1, vx2, vy2, color, color, color, color, true);
+        var c = self.color();
+        draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c, c, true);
+    }
+    
+    static Activate = function() {
+    	keyboard_string = self.value;
+        _emu_active_element(self);
+        return self;
     }
     
     Destroy = function() {
@@ -243,25 +294,30 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         	case E_InputTypes.STRING:
         		return true;
         	case E_InputTypes.INT:
-	        	if (string_count(".", text) > 0) return false;
-	        	if (string_count("e", text) > 0) return false;
 	            try {
 	                real(text);
 	            } catch (e) {
 	                return false;
 	            }
+	            return int64(text) == real(text);
         	case E_InputTypes.REAL:
 	            try {
 	                real(text);
 	            } catch (e) {
 	                return false;
 	            }
+	            return true;
             case E_InputTypes.HEX:
 	            try {
 	                emu_hex(text);
 	            } catch (e) {
 	                return false;
 	            }
+	            return true;
+            case E_InputTypes.LETTERSDIGITS:
+	            return string_lettersdigits(text) == text;
+            case E_InputTypes.LETTERSDIGITSANDUNDERSCORES:
+	            return string_length(string_lettersdigits(text)) + string_count("_", text) == string_length(text);
         }
         return true;
     }
@@ -269,6 +325,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     CastInput = function(text) {
         switch (self._value_type) {
             case E_InputTypes.STRING: return text;
+            case E_InputTypes.LETTERSDIGITS: return text;
+            case E_InputTypes.LETTERSDIGITSANDUNDERSCORES: return text;
             case E_InputTypes.INT: return real(text);
             case E_InputTypes.REAL: return real(text);
             case E_InputTypes.HEX: return emu_hex(text);
@@ -301,13 +359,9 @@ function emu_string_hex() {
 
 function emu_hex(str) {
     var result = 0;
-    var ZERO = ord("0");
-    var NINE = ord("9");
-    var A = ord("A");
-    var F = ord("F");
     
     try {
-        result = real(ptr(str));
+        result = int64(ptr(str));
     } catch (e) {
         throw new EmuException("Bad input for emu_hex()", "Could not parse " + string(str) + " as a hex value");
     }

@@ -11,23 +11,6 @@ function draw_editor_event() {
     var controller_release_right = Controller.release_right;
     var controller_release_middle = Controller.release_middle;
     
-    // There are other ways to do this, but disable controller (mouse) input if
-    // the mouse isn't in the view
-    
-    if (!mouse_within_view(view_fullscreen)) {
-        Controller.mouse_left = false;
-        Controller.mouse_right = false;
-        Controller.mouse_middle = false;
-        
-        Controller.press_left = false;
-        Controller.press_right = false;
-        Controller.press_middle = false;
-        
-        Controller.release_left = false;
-        Controller.release_right = false;
-        Controller.release_middle = false;
-    }
-    
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);
     
@@ -38,7 +21,7 @@ function draw_editor_event() {
     var checker_width = sprite_get_width(b_tileset_checkers);
     var checker_height = sprite_get_height(b_tileset_checkers);
     
-    var camera = view_get_camera(view_current);
+    var camera = camera_get_active();
     var xview = camera_get_view_x(camera);
     var yview = camera_get_view_y(camera);
     var wview = camera_get_view_width(camera);
@@ -52,7 +35,7 @@ function draw_editor_event() {
     
     draw_rectangle_colour(xview, yview + hview - 16, xview + wview, yview + hview, c_white, c_white, c_white, c_white, false);
     draw_text_colour(xview + 16, yview + hview - 8, string("Canvas at (" + string(xview) + ", " + string(yview) + "); mouse at (" +
-        string(mouse_x_view) + ", " + string(mouse_y_view) + ")"), c_black, c_black, c_black, c_black, 1);
+        string(mouse_x) + ", " + string(mouse_y) + ")"), c_black, c_black, c_black, c_black, 1);
     
     if (CONTROL_3D_LOOK) {
         if (!dialog_exists()) {
@@ -69,21 +52,5 @@ function draw_editor_event() {
         request_cancel_active_node = false;
         canvas_active_node = noone;
         canvas_active_node_index = 0;
-    }
-    
-    // Reset controller input
-    
-    if (!mouse_within_view(view_fullscreen)) {
-        Controller.mouse_left = controller_left;
-        Controller.mouse_right = controller_right;
-        Controller.mouse_middle = controller_middle;
-        
-        Controller.press_left = controller_press_left;
-        Controller.press_right = controller_press_right;
-        Controller.press_middle = controller_press_middle;
-        
-        Controller.release_left = controller_release_left;
-        Controller.release_right = controller_release_right;
-        Controller.release_middle = controller_release_middle;
     }
 }

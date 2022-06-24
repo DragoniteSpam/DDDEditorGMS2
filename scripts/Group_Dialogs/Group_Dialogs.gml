@@ -29,7 +29,8 @@ function dialog_destroy() {
     // destroy it now, bad things will happen to other parts of the
     // Draw event which still reference it, because my code is spaghetti.
     if (dialog_exists()) {
-        instance_destroy_later(ds_list_pop(Stuff.dialogs));
+        instance_destroy_later(Stuff.dialogs[| ds_list_size(Stuff.dialogs) - 1]);
+        ds_list_delete(Stuff.dialogs, ds_list_size(Stuff.dialogs) - 1);
     }
 }
 
@@ -62,13 +63,13 @@ function dialog_default(dialog) {
     // move the box first
     if (active) {
         cbi = 0;
-        if (mouse_within_rectangle_determine(x1, y1, x2, y1 + header_height, true)) {
+        if (mouse_within_rectangle(x1, y1, x2, y1 + header_height)) {
             // close box
             var cbx1 = cbx - cbs;
             var cby1 = cby - cbs;
             var cbx2 = cbx + cbs;
             var cby2 = cby + cbs;
-            if (mouse_within_rectangle_determine(cbx1, cby1, cbx2, cby2, true)) {
+            if (mouse_within_rectangle(cbx1, cby1, cbx2, cby2)) {
                 cbi = 1;
                 if (!(dialog.flags & DialogFlags.NO_CLOSE_BUTTON) && Controller.release_left) {
                     kill = true;
@@ -94,6 +95,10 @@ function dialog_default(dialog) {
             dialog.cmx = mouse_x;
             dialog.cmy = mouse_y;
         }
+        
+        if (device_mouse_check_button_released(0, mb_left)) {
+            self.contents_interactive = true;
+        }
     }
     
     // re-set these in case you dragged the window around, in which case they got moved
@@ -116,7 +121,7 @@ function dialog_default(dialog) {
     draw_rectangle_colour(x1, y1, x2, y2, c_white, c_white, c_white, c_white, false);
     draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
     
-    var hc = active ? Settings.config.color : merge_colour(Settings.config.color, c_white, 0.75);
+    var hc = active ? Settings.colors.primary : merge_colour(Settings.colors.primary, c_white, 0.75);
     
     draw_rectangle_colour(x1, y1, x2, y1 + header_height, hc, hc, hc, hc, false);
     draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_black);

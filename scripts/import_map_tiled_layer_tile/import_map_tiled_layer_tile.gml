@@ -1,7 +1,7 @@
 function import_map_tiled_layer_tile(x, y, z, json, columns, alpha, tiled_cache) {
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
-    var ts = get_active_tileset();
+    var ts = MAP_ACTIVE_TILESET;
     
     var layer_data = json.data;
     var layer_name = json.name;

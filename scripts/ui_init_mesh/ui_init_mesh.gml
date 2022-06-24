@@ -1,534 +1,643 @@
 function ui_init_mesh(mode) {
-    with (instance_create_depth(0, 0, 0, UIThing)) {
-        var columns = 4;
-        var spacing = 16;
-        
-        var cw = (room_width - columns * 32) / columns;
-        var ew = cw - spacing * 2;
-        var ew0 = cw + spacing * 2;
-        var eh = 24;
-        
-        var c1x = cw * 0 + spacing;
-        // the first column is a bit wider
-        var c2x = cw * 1.00 + spacing + spacing * 4;
-        var c3x = cw * 2.00 + spacing + spacing * 4;
-        var c4x = cw * 2.75 + spacing + spacing * 4;
-        var c5x = cw * 3.50 + spacing + spacing * 4;
-        
-        var vx1 = ew / 2;
-        var vy1 = 0;
-        var vx2 = ew;
-        var vy2 = eh;
-        
-        var b_width = 128;
-        var b_height = 32;
-        
-        var yy_header = 64;
-        var yy = 64 + eh;
-        var yy_base = yy;
-        
-        var this_column = 0;
-        var xx = this_column * cw + spacing;
-        
-        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 22, function(list) {
-            var selection = list.selected_entries;
-            if (ds_map_size(selection) == 0) {
-                ui_input_set_value(list.root.mesh_name, "");
-            } else if (ds_map_size(selection) == 1) {
-                ui_input_set_value(list.root.mesh_name, Game.meshes[ds_map_find_first(selection)].name);
-            } else {
-                ui_input_set_value(list.root.mesh_name, "(multiple)");
+    var hud_width = room_width / 4;
+    var hud_height = room_height;
+    var col1x = hud_width * 0 + 16;
+    var col2x = hud_width * 1 + 16;
+    var col3x = hud_width * 2 + 16;
+    var col4x = hud_width * 3 + 16;
+    var element_width = hud_width - 32;
+    var element_height = 32;
+    
+    var container = new EmuCore(0, 16, hud_width, hud_height);
+    
+    container.GetMeshType = method(container, function() {
+        return (self.GetChild("LIST TYPE").value == 0) ? Game.meshes : Game.mesh_terrain;
+    });
+    
+    container.AddContent([
+        new EmuFileDropperListener(function(files) {
+            debug_timer_start();
+            var filter_array = [".d3d", ".gmmod", ".obj", ".mtl", ".png", ".bmp", ".jpg", ".jpeg"];
+            // we can add these back in later when they're working
+            if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+                array_push(filter_array, ".dae", ".smf");
             }
-        }, true, id, Game.meshes);
-        element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
-        element.render_colors = function(list, index) {
-            return (Game.meshes[index].type == MeshTypes.SMF) ? c_red : c_black;
-        };
-        element.onmiddleclick = function(list) {
-            array_sort_name(Game.meshes);
-        }
-        element.evaluate_text = function(list, index) {
-            var mesh = list.entries[index];
-            var prefix = "", suffix = "";
-            if (mesh.flags & MeshFlags.PARTICLE) {
-                prefix = "(p)" + prefix;
+            var filtered_list = self.Filter(files, filter_array);
+            if (array_length(filtered_list) > 0) {
+                self.GetSibling("MESH LIST").Deselect();
             }
-            if (array_length(mesh.submeshes) == 1) {
-                var buffer = mesh.submeshes[0].buffer;
-                var reflect_buffer = mesh.submeshes[0].reflect_buffer;
-                var buffer_size = (buffer ? buffer_get_size(buffer) : 0) / VERTEX_SIZE / 3;
-                var reflect_buffer_size = (reflect_buffer ? buffer_get_size(reflect_buffer) : 0) / VERTEX_SIZE / 3;
-                if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
-                    suffix = " (" + string(buffer_size) + " triangles)";
-                } else {
-                    suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
-                }
-            } else {
-                suffix = " (" + string(array_length(mesh.submeshes)) + " submeshes)";
-            }
-            return prefix + mesh.name + suffix;
-        };
-        element.entries_are = ListEntries.SCRIPT;
-        mesh_list = element;
-        ds_list_add(contents, element);
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(c1x, yy, "Add Mesh", ew0, eh, fa_center, function(button) {
-            var fn = get_open_filename_mesh();
-            if (file_exists(fn)) {
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, undefined); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                }
-            }
-        }, id);
-        element.tooltip = "Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.";
-        element.file_dropper_action = function(thing, files) {
-            var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".dae", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
-            for (var i = 0; i < array_length(filtered_list); i++) {
-                var fn = filtered_list[i];
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, true); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, true); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                    case ".png": case ".bmp": case ".jpg": case ".jpeg": import_texture(fn); break;
-                }
-            }
-        };
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_input(c1x, yy, "Name:", ew0, eh, function(input) {
-            var selection = input.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].name = input.value;
-            }
-        }, "", "name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, ew0, vy2, id);
-        element.tooltip = "The name of the selected mesh(es).";
-        mesh_name = element;
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c1x, yy, "Remove Mesh", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            // because when you delete stuff from the mesh list, the indices may
-            // change, and if the indices change while you're in the middle of
-            // deleting from it, things will get ugly
-            var to_delete = [];
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                array_push(to_delete, Game.meshes[index]);
-            }
-            
-            for (var i = 0; i < array_length(to_delete); i++) {
-                to_delete[i].Destroy();
-            }
-            
-            ui_list_deselect(list);
-            batch_again();
-        }, id);
-        element.tooltip = "Remove the selected 3D meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c1x, yy, "Combine Submeshes", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            var valid_count = 0;
-            var first_mesh = undefined;
-            
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                if (!first_mesh) first_mesh = Game.meshes[index];
-                if (array_length(Game.meshes[index].submeshes) > 1) {
-                    valid_count++;
-                }
-            }
-            
-            if (valid_count == 0) return;
-            
-            var dg = emu_dialog_confirm(button.root, "Would you like to combine the submeshes in " + ((valid_count == 1) ? first_mesh.name : (string(valid_count) + " meshes")) + "?", function() {
-                var selection = self.root.selection;
-                for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                    var mesh = Game.meshes[index];
-                    if (array_length(mesh.submeshes) > 1) {
-                        var old_submesh_list = mesh.submeshes;
-                        mesh.submeshes = [];
-                        mesh.proto_guids = { };
-                        var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
-                        
-                        for (var i = 0, n = array_length(old_submesh_list); i < n; i++) {
-                            combine_submesh.AddBufferData(old_submesh_list[i].buffer);
-                            old_submesh_list[i].Destroy();
-                        }
-                        
-                        combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
-                        combine_submesh.owner = mesh;
-                        array_push(mesh.submeshes, combine_submesh);
-                        mesh.first_proto_guid = combine_submesh.proto_guid;
+            // if you drag an obj and the mtl that it belongs to into the
+            // editor, you usually don't want to load it twice
+            var obj_cache = { };
+            for (var i = array_length(filtered_list) - 1; i >= 0; i--) {
+                if (filename_ext(filtered_list[i]) == ".mtl" || filename_ext(filtered_list[i]) == ".obj") {
+                    if (obj_cache[$ filename_change_ext(filtered_list[i], "")]) {
+                        array_delete(filtered_list, i, 1);
+                        continue;
                     }
+                    obj_cache[$ filename_change_ext(filtered_list[i], "")] = true;
+                }
+            }
+            var n = 0;
+            for (var i = 0; i < array_length(filtered_list); i++) {
+                // try to import the file as a 3D mesh; if that doesn't work,
+                // import it as a texture instead
+                switch (string_lower(filename_ext(filtered_list[i]))) {
+                    case ".d3d":
+                    case ".gmmod":
+                    case ".obj":
+                    case ".mtl":
+                    case ".dae":
+                    case ".smf":
+                        import_mesh(filtered_list[i]);
+                        n++;
+                        break;
+                    default:
+                        import_texture(filtered_list[i]);
+                        break;
+                }
+            }
+            if (n > 0) {
+                Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
+            }
+        }),
+        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, (EDITOR_BASE_MODE != ModeIDs.MESH) ? 22 : 24, function() {
+            self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
+        }))
+            .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
+            .SetMultiSelect(true)
+            .SetListColors(function(index) {
+                return (self.GetSibling("MESH LIST").At(index).type == MeshTypes.SMF) ? c_orange : EMU_COLOR_TEXT;
+            })
+            .SetCallbackMiddle(function() {
+                array_sort_name(self.root.GetMeshType());
+            })
+            .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
+                var mesh = self.At(index);
+                var prefix = "", suffix = "";
+                if (mesh.flags & MeshFlags.PARTICLE) {
+                    prefix = "(p)" + prefix;
+                }
+                if (array_length(mesh.submeshes) == 1) {
+                    var buffer = mesh.submeshes[0].buffer;
+                    var reflect_buffer = mesh.submeshes[0].reflect_buffer;
+                    var buffer_size = (buffer ? buffer_get_size(buffer) : 0) / VERTEX_SIZE / 3;
+                    var reflect_buffer_size = (reflect_buffer ? buffer_get_size(reflect_buffer) : 0) / VERTEX_SIZE / 3;
+                    if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
+                        suffix = " (" + string(buffer_size) + " triangles)";
+                    } else {
+                        suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
+                    }
+                } else {
+                    var bytes = 0;
+                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
+                        if (buffer_exists(mesh.submeshes[i].buffer)) {
+                            bytes += buffer_get_size(mesh.submeshes[i].buffer);
+                        }
+                    }
+                    suffix = " (" + string(array_length(mesh.submeshes)) + " submeshes, " + string(bytes / VERTEX_SIZE / 3) + " triangles)";
+                }
+                return prefix + mesh.name + suffix;
+            })
+            .SetRefresh(function(data) {
+                self.SetList(self.root.GetMeshType());
+            })
+            .SetListColors(emu_color_meshes)
+            .SetID("MESH LIST"),
+        (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
+            self.GetSibling("MESH LIST").SetList(self.root.GetMeshType());
+            if (self.value == 0) {
+                self.GetSibling("MESH LIST").SetListColors(emu_color_meshes);
+            } else {
+                self.GetSibling("MESH LIST").SetListColors(function(index) { return EMU_COLOR_TEXT; });
+            }
+        }))
+            .AddOptions(["Standard", "Terrain"])
+            .SetColumns(1, element_width / 2)
+            .SetEnabled(EDITOR_BASE_MODE != ModeIDs.MESH)
+            .SetID("LIST TYPE"),
+        (new EmuCore(0, 0, hud_width, hud_height)).AddContent([
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Essentials"),
+            #region essentials
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Name:", "", "name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).name = self.value;
+                }
+                batch_again();
+            }))
+                .SetInputBoxPosition(element_width / 4)
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined);
+                    self.SetValue((data != undefined && array_length(data) == 1) ? self.root.GetSibling("MESH LIST").At(data[0]).name : "");
+                })
+                .SetID("MESH NAME"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
+                debug_timer_start();
+                if (import_mesh(get_open_filename_mesh())) {
+                    self.root.GetSibling("MESH LIST").Deselect();
+                    self.root.GetSibling("MESH LIST").Select(array_length(Game.meshes) - 1, true);
+                    Stuff.AddStatusMessage("Importing mesh took " + debug_timer_finish());
+                }
+            }))
+                .SetTooltip("Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.")
+                .SetID("ADD MESH"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Delete Mesh", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
+                    var selection = { };
+                    
+                    for (var i = 0, n = array_length(self.root.indices); i < n; i++) {
+                        // this is fine
+                        variable_struct_set(selection, string(ptr(self.root.type[self.root.indices[i]])), true);
+                        // this errors
+                        //selection[$ "!" + string(ptr(self.root.type[self.root.indices[i]]))] = true;
+                    }
+                    
+                    for (var i = array_length(self.root.type) - 1; i >= 0; i--) {
+                        // gamemaker why are you like this
+                        //if (selection[$ "!" + string(ptr(self.root.type[i]))]) {
+                        if (variable_struct_exists(selection, string(ptr(self.root.type[i])))) {
+                            self.root.type[i].Destroy();
+                        }
+                    }
+                    
+                    batch_again();
+                    self.root.Dispose();
+                    //Stuff.mesh.ResetTransform();
+                    Stuff.mesh.ui.GetChild("MESH LIST").Deselect();
+                    batch_again();
+                });
+                
+                dg.indices = indices;
+                dg.type = Stuff.mesh.ui.GetMeshType();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined);
+                    if (data != undefined) {
+                        if (array_length(data) == 1) {
+                            self.text = "Delete Mesh";
+                        } else {
+                            self.text = "Delete Meshes";
+                        }
+                    }
+                })
+                .SetID("DELETE MESH"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Export Mesh", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                
+                var fn;
+                if (array_length(indices) == 1) {
+                    fn = get_save_filename_mesh(self.root.GetSibling("MESH LIST").At(indices[0]).name);
+                } else {
+                    fn = get_save_filename_mesh("save everything here");
                 }
                 
-                batch_again();
-                self.root.Dispose();
-            });
-            
-            dg.selection = selection;
-            
-            dg.height -= 64;
-            dg.el_confirm.y -= 64;
-            dg.el_cancel.y -= 64;
-            dg.el_text.y -= 32;
-        }, id);
-        element.tooltip = "Remove the selected 3D meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
+                if (fn == "") return;
+                var folder = filename_path(fn);
+                
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    var mesh = self.root.GetSibling("MESH LIST").At(indices[i]);
+                    var name = (array_length(indices) == 1) ? fn : (folder + mesh.name + filename_ext(fn));
+                    switch (mesh.type) {
+                        case MeshTypes.RAW:
+                            switch (filename_ext(fn)) {
+                                case ".obj": export_obj(name, mesh); break;
+                                case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
+                                case ".vbuff": export_vb(name, mesh, Stuff.mesh.vertex_format); break;
+                            }
+                            break;
+                        case MeshTypes.SMF:
+                            break;
+                    }
+                }
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive((data != undefined) && (array_length(data) > 0));
+                    if (array_length(data) == 1) {
+                        self.text = "Export Mesh";
+                    } else {
+                        self.text = "Export Meshes";
+                    }
+                })
+                .SetTooltip(@"Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.
         
-        element = create_button(c1x, yy, "Separate Submeshes", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                if (array_length(mesh.submeshes) > 1) {
+    You may convert to several different types of 3D model files.
+    - [c_aqua]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
+    - [c_aqua]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
+    - [c_aqua]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)")
+                .SetID("EXPORT MESH"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Vertex Format", function() {
+                emu_dialog_vertex_format(Stuff.mesh.vertex_format, function(value) {
+                    Stuff.mesh.vertex_format = value;
+                });
+            }))
+                .SetTooltip("Define the vertex format used for exporting vertex buffers"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Combine Submeshes", function() {
+                var mesh = self.root.GetSibling("MESH LIST").GetSelectedItem();
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
+                    debug_timer_start();
+                    var mesh = self.root.mesh;
+                    var old_submesh_list = mesh.submeshes;
+                    mesh.submeshes = [];
+                    mesh.proto_guids = { };
+                    var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
+                    
+                    for (var i = 0, n = array_length(old_submesh_list); i < n; i++) {
+                        combine_submesh.AddBufferData(old_submesh_list[i].buffer);
+                        old_submesh_list[i].Destroy();
+                    }
+                    
+                    combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
+                    combine_submesh.owner = mesh;
+                    array_push(mesh.submeshes, combine_submesh);
+                    mesh.first_proto_guid = combine_submesh.proto_guid;
+                    
+                    batch_again();
+                    Stuff.AddStatusMessage("Combining the submesh took " + debug_timer_finish());
+                    self.root.Dispose();
+                });
+                
+                dg.mesh = mesh;
+            }))
+                .SetRefresh(function(data) {
+                    if ((data != undefined) && (array_length(data) == 1)) {
+                        self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").At(real(data[0])).submeshes) > 1);
+                    } else {
+                        self.SetInteractive(false);
+                    }
+                })
+                .SetTooltip("Combine the submeshes of the selected 3D meshes.")
+                .SetID("COMBINE SUBMESHES"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Separate Submeshes", function() {
+                var mesh = self.root.GetSibling("MESH LIST").GetSelectedItem();
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
+                    var mesh = self.root.mesh;
+                    
                     for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
                         var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
                         var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
                         new_mesh.CopyPropertiesFrom(mesh);
-                        array_push(Game.meshes, new_mesh);
+                        array_push(self.root.GetMeshType(), new_mesh);
                     }
-                }
-            }
-        }, id);
-        element.tooltip = "Separate the selected 3D meshes into individual models.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c1x, yy, "Export Selected", ew0, eh, fa_center, function(button) {
-            var list = button.root.mesh_list;
-            var selection = list.selected_entries;
-            
-            var export_count = ds_map_size(selection);
-            if (export_count == 0) return;
-            
-            var fn;
-            if (export_count == 1) {
-                var mesh = Game.meshes[ds_map_find_first(selection)];
-                fn = get_save_filename_mesh(mesh.name);
-            } else {
-                fn = get_save_filename_mesh("save everything here");
-            }
-            
-            if (fn == "") return;
-            var folder = filename_path(fn);
-            
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[index];
-                var name = (export_count == 1) ? fn : (folder + mesh.name + filename_ext(fn));
-                switch (mesh.type) {
-                    case MeshTypes.RAW:
-                        switch (filename_ext(fn)) {
-                            case ".obj": export_obj(name, mesh); break;
-                            case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
-                            case ".vbuff": export_vb(name, mesh, Stuff.mesh_ed.vertex_format); break;
-                        }
-                        break;
-                    case MeshTypes.SMF:
-                        break;
-                }
-            }
-        }, id);
-        element.tooltip = @"Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.
-        
-    You may convert to several different types of 3D model files.
-    - [c_blue]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
-    - [c_blue]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
-    - [c_blue]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base;
-        
-        element = create_button(c2x, yy, "Exported Vertex Format", ew, eh, fa_center, function(button) {
-            emu_dialog_vertex_format(Stuff.mesh_ed.vertex_format, function(value) {
-                Stuff.mesh_ed.vertex_format = value;
-            });
-        }, id);
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_text(c2x, yy, "[c_blue]Editing", ew, eh, fa_left, ew, id);
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_input(c2x, yy, "Scale:", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_scale = real(input.value);
-        }, mode.draw_scale, "float", validate_double, 0.01, 100, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Set the scale used by the preview on the right. If you want to apply the scale to the selected meshes permanently, click the button below.";
-        ds_list_add(contents, element);
-        mesh_scale = element;
-        yy += element.height + spacing;
-        
-        element = create_input(c2x, yy, "Rotation (X):", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_rot_x = real(input.value);
-        }, mode.draw_rot_x, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Rotate the model(s) drawn in the preview window around the X axis.";
-        ds_list_add(contents, element);
-        mesh_rot_x = element;
-        yy += element.height + spacing;
-        
-        element = create_input(c2x, yy, "Rotation (Y):", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_rot_y = real(input.value);
-        }, mode.draw_rot_y, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Rotate the model(s) drawn in the preview window around the Y axis.";
-        ds_list_add(contents, element);
-        mesh_rot_y = element;
-        yy += element.height + spacing;
-        
-        element = create_input(c2x, yy, "Rotation (Z):", ew, eh, function(input) {
-            Stuff.mesh_ed.draw_rot_z = real(input.value);
-        }, mode.draw_rot_z, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
-        element.tooltip = "Rotate the model(s) drawn in the preview window around the Z axis.";
-        ds_list_add(contents, element);
-        mesh_rot_z = element;
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Apply Scale", ew, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionScale(Stuff.mesh_ed.draw_scale);
-            }
-            Stuff.mesh_ed.draw_scale = 1;
-            ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
-            batch_again();
-        }, id);
-        element.tooltip = "Apply the preview scale to the selected meshes. Useful for converting between different scale systems (1 unit = 1 meter vs 32 units = 1 meter, etc).";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Reset Transform", ew, eh, fa_center, function(button) {
-            Stuff.mesh_ed.draw_scale = 1;
-            ui_input_set_value(button.root.mesh_scale, string(Stuff.mesh_ed.draw_scale));
-            Stuff.mesh_ed.draw_rot_x = 0;
-            ui_input_set_value(button.root.mesh_rot_x, string(Stuff.mesh_ed.draw_rot_x));
-            Stuff.mesh_ed.draw_rot_y = 0;
-            ui_input_set_value(button.root.mesh_rot_y, string(Stuff.mesh_ed.draw_rot_y));
-            Stuff.mesh_ed.draw_rot_z = 0;
-            ui_input_set_value(button.root.mesh_rot_z, string(Stuff.mesh_ed.draw_rot_z));
-        }, id);
-        element.tooltip = "Reset the transform used in the preview.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionRotateUpAxis();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionMirrorX();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Mirror the selected meshes over the X axis. Triangle vertex order will not be changed.";
-        ds_list_add(contents, element);
-        element = create_button(c2x + ew / 3, yy, "Mirror Y Axis", ew / 3, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionMirrorY();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Mirror the selected meshes over the Y axis. Triangle vertex order will not be changed.";
-        ds_list_add(contents, element);
-        element = create_button(c2x + 2 * ew / 3, yy, "Mirror Z Axis", ew / 3, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionMirrorZ();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Mirror the selected meshes over the Z axis. Triangle vertex order will not be changed.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Flip Texture U", ew / 2, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionFlipTexU();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "I don't actually know why you would need to do this, but it's here.";
-        ds_list_add(contents, element);
-        element = create_button(c2x + ew / 2, yy, "Flip Texture V", ew / 2, eh, fa_center, function(button) {
-            var selection = button.root.mesh_list.selected_entries;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionFlipTexV();
-            }
-            batch_again();
-        }, id);
-        element.tooltip = "Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c2x, yy, "Other tools...", ew, eh, fa_center, function(button) {
-            if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
-            dialog_create_mesh_other_settings(button, button.root.mesh_list.selected_entries);
-        }, id);
-        element.tooltip = "Other misc operations you amy want to do on a mesh.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base;
-        
-        element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
-        ds_list_add(contents, element);
-        
-        element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, function(surface, x1, y1, x2, y2) {
-            var mode = Stuff.mesh_ed;
-            if (!mode.draw_collision) return;
-            
-            surface.mask_surface = surface_rebuild(surface.mask_surface, surface.width, surface.height);
-            surface_set_target(surface.mask_surface);
-            draw_clear_alpha(c_black, 0);
-            
-            var cam = camera_get_active();
-            camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
-            camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -surface.width / surface.height, CAMERA_ZNEAR, CAMERA_ZFAR));
-            camera_apply(cam);
-            
-            shader_set(shd_solid_color);
-            shader_set_uniform_f(shader_get_uniform(shd_solid_color, "col"), 1, 1, 1, 0.1);
-            
-            var mesh_list = surface.root.mesh_list;
-            var n = 0;
-            var limit = 10;
-            var tex_none = -1;
-            for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
-                var mesh_data = Game.meshes[index];
+                    
+                    self.root.Dispose();
+                });
                 
-                for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
-                    var shape = mesh_data.collision_shapes[i];
-                    switch (shape.type) {
-                        case MeshCollisionShapes.BOX:
-                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
-                            vertex_submit(Stuff.graphics.centered_cube, pr_trianglelist, tex_none);
-                            break;
-                        case MeshCollisionShapes.CAPSULE:
-                            // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
-                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
-                            vertex_submit(Stuff.graphics.centered_capsule, pr_trianglelist, tex_none);
-                            break;
-                        case MeshCollisionShapes.SPHERE:
-                            matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
-                            vertex_submit(Stuff.graphics.centered_sphere, pr_trianglelist, tex_none);
-                            break;
+                dg.mesh = mesh;
+            }))
+                .SetRefresh(function(data) {
+                    if ((data != undefined) && (array_length(data) == 1)) {
+                        self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").At(real(data[0])).submeshes) > 1);
+                    } else {
+                        self.SetInteractive(false);
                     }
+                })
+                .SetTooltip("Separate the selected 3D meshes into individual models.")
+                .SetID("SEPARATE SUBMESHES"),
+            #endregion
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformation"),
+            #region basic transformation
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Position:", string(Settings.mesh.draw_position.x), "x", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_position.x = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_position.x));
+                })
+                .SetID("MESH POSITION X")
+                .SetNext("MESH POSITION Y").SetPrevious("MESH SCALE Z"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_position.y), "", "y", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_position.y = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_position.y));
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH POSITION Y")
+                .SetNext("MESH POSITION Z").SetPrevious("MESH POSITION X"),
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_position.z), "", "z", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_position.z = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_position.z));
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH POSITION Z")
+                .SetNext("MESH ROTATE X").SetPrevious("MESH POSITION Y"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Rotation:", string(Settings.mesh.draw_rotation.x), "x", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_rotation.x = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_rotation.x));
+                })
+                .SetID("MESH ROTATE X")
+                .SetNext("MESH ROTATE Y").SetPrevious("MESH POSITION Z"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_rotation.y), "", "y", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_rotation.y = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_rotation.y));
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH ROTATE Y")
+                .SetNext("MESH ROTATE Z").SetPrevious("MESH ROTATE X"),
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_rotation.z), "", "z", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_rotation.z = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_rotation.z));
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH ROTATE Z")
+                .SetNext("MESH SCALE X").SetPrevious("MESH ROTATE Y"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2, element_height, "Scale:", string(Settings.mesh.draw_scale.x), "x", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_scale.x = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_scale.x));
+                })
+                .SetID("MESH SCALE X")
+                .SetNext("MESH SCALE Y").SetPrevious("MESH ROTATE Z"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_scale.y), "", "y", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_scale.y = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_scale.y));
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH SCALE Y")
+                .SetNext("MESH SCALE Z").SetPrevious("MESH SCALE X"),
+            (new EmuInput(col2x + element_width * 3 / 4, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_scale.z), "", "z", 10, E_InputTypes.REAL, function() {
+                Settings.mesh.draw_scale.z = real(self.value);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetValue(string(Settings.mesh.draw_scale.z));
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH SCALE Z")
+                .SetNext("MESH POSITION X").SetPrevious("MESH SCALE Y"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Bake Transformation", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                
+                // expensive operation, don't do unless you have to
+                if (Settings.mesh.draw_position.x == 0 &&
+                    Settings.mesh.draw_position.y == 0 &&
+                    Settings.mesh.draw_position.z == 0 &&
+                    Settings.mesh.draw_rotation.x == 0 &&
+                    Settings.mesh.draw_rotation.y == 0 &&
+                    Settings.mesh.draw_rotation.z == 0 &&
+                    Settings.mesh.draw_scale.x == 1 &&
+                    Settings.mesh.draw_scale.y == 1 &&
+                    Settings.mesh.draw_scale.z == 1) return;
+                
+                var dg = emu_dialog_confirm(self.root, "Would you like to apply the transformation to " + (array_length(indices) == 1 ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
+                    var indices = self.root.indices;
+                    __meshops_transform_set_matrix(
+                        Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z,
+                        Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z,
+                        Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z
+                    );
+                    for (var i = 0, n = array_length(indices); i < n; i++) {
+                        self.root.list[real(indices[i])].ActionTransform();
+                    }
+                    batch_again();
+                    Stuff.mesh.ResetTransform();
+                    self.root.Dispose();
+                });
+                
+                dg.indices = indices;
+                dg.list = self.root.root.GetMeshType();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Apply the preview transformation to the selected meshes. Useful for converting between different world spaces.")
+                .SetID("BAKE TRANSFORMATION"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Reset Transformation", function() {
+                Stuff.mesh.ResetTransform();
+            }))
+                .SetTooltip("Reset the transform used in the preview.")
+                .SetID("RESET TRANSFORMATION"),
+            #endregion
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Operations"),
+            #region other operations
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Rotate Up Axis", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionRotateUpAxis();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/")
+                .SetID("ROTATE UP AXIS"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Rotate (Swap Hnd.)", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionRotateUpAxis();
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorX();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/")
+                .SetID("ROTATE AND SWAP"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 3, element_height, "Mirror X", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorX();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Mirror the selected meshes over the X axis. Triangle vertex order will not be changed.")
+                .SetID("MIRROR X"),
+            (new EmuButton(col2x + element_width / 3, EMU_INLINE, element_width / 3, element_height, "Mirror Y", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorY();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Mirror the selected meshes over the Y axis. Triangle vertex order will not be changed.")
+                .SetID("MIRROR Y"),
+            (new EmuButton(col2x + element_width * 2 / 3, EMU_INLINE, element_width / 3, element_height, "Mirror Z", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionMirrorZ();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Mirror the selected meshes over the Z axis. Triangle vertex order will not be changed.")
+                .SetID("MIRROR Z"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Flip Texture Horiz.", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionFlipTexU();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("I don't actually know why you would need to do this, but...")
+                .SetID("MIRROR TEX U"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Flip Texture Vertically", function() {
+                var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.root.GetSibling("MESH LIST").At(real(indices[i])).ActionFlipTexV();
+                }
+                batch_again();
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.")
+                .SetID("MIRROR TEX V"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Materials", function() {
+                dialog_create_mesh_material_settings(self.root.root.GetMeshType(), self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Set some material properties used by the selected meshes. Right now I've only implemented the base (diffuse) texture but I'd like to get around to the rest later.")
+                .SetID("MATERIALS"),
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Submeshes", function() {
+                dialog_create_mesh_submesh(self.root.GetSibling("MESH LIST").GetSelectedItem());
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data)  == 1);
+                })
+                .SetTooltip("View and manage mesh submeshes.")
+                .SetID("SUBMESHES"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "More...", function() {
+                dialog_create_mesh_other_settings(self.root.root.GetMeshType(), self.root.GetSibling("MESH LIST").GetAllSelectedIndices());
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data != undefined && array_length(data) > 0);
+                })
+                .SetTooltip("Other misc operations you amy want to do on a mesh.")
+                .SetID("OTHER TOOLS"),
+            #endregion
+            #region viewer
+            (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function() {
+                Stuff.mesh.camera.Update();
+                if (keyboard_check_pressed(vk_mesh_editor_overlay_text_toggle)) {
+                    Settings.mesh.draw_3d_view_overlay_text = !Settings.mesh.draw_3d_view_overlay_text;
+                }
+                if (keyboard_check(ord("Q"))) Settings.mesh.draw_light_direction++;
+                if (keyboard_check(ord("E"))) Settings.mesh.draw_light_direction--;
+            }, emu_null, emu_null))
+                .SetID("3D VIEW"),
+            (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
+                var dialog = new EmuDialog(32 + 320 + 32, 608, "Mesh viewer settings");
+                dialog.root = self;
+                dialog.active_shade = 0;
+                dialog.x = 320;
+                dialog.y = 120;
+                
+                var col1x = 32;
+                var col_width = 320;
+                
+                dialog.AddContent([
+                    #region column 1
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw textures?", Settings.mesh.draw_textures, function() {
+                        Settings.mesh.draw_textures = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the meshes in the preview window using a texture."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw vertex colors?", Settings.mesh.draw_vertex_colors, function() {
+                        Settings.mesh.draw_vertex_colors = self.value;
+                    }))
+                        .SetTooltip("Whether or not to colorize the verties of meshes."),
+                    new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
+                    (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 1, true, Settings.mesh.wireframe_alpha, function() {
+                        Settings.mesh.wireframe_alpha = self.value;
+                    }))
+                        .SetTooltip("Draw a wireframe over the 3D mesh. Turn this off if it gets annoying."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw lighting?", Settings.mesh.draw_lighting, function() {
+                        Settings.mesh.draw_lighting = self.value;
+                    }))
+                        .SetTooltip("Whether or not to lighting should be enabled."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw backfaces?", Settings.mesh.draw_back_faces, function() {
+                        Settings.mesh.draw_back_faces = self.value;
+                    }))
+                        .SetTooltip("For backface culling."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw 3D axes?", Settings.mesh.draw_axes, function() {
+                        Settings.mesh.draw_axes = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the red, green, and blue axes in the 3D view."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw grid?", Settings.mesh.draw_grid, function() {
+                        Settings.mesh.draw_grid = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane."),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw physical bounds?", Settings.mesh.draw_physical_bounds, function() {
+                        Settings.mesh.draw_physical_bounds = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
+                ]);
+                
+                if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+                    dialog.AddContent([
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw reflections?", Settings.mesh.draw_reflections, function() {
+                            Settings.mesh.draw_reflections = self.value;
+                        }))
+                            .SetTooltip("If you have a reflection mesh set up, you may draw it, as well."),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
+                            Settings.mesh.draw_collision = self.value;
+                        }))
+                            .SetTooltip("Whether or not to show collision shapes associated with meshes."),
+                    ]);
+                    dialog.height += 96;
                 }
                 
-                if (++n > limit) break;
-            }
-            
-            surface_reset_target();
-            matrix_set(matrix_world, matrix_build_identity());
-            shader_set(shd_outline);
-            shader_set_uniform_f(shader_get_uniform(shd_outline, "outline_color"), colour_get_red(c_lime) / 0xff, colour_get_green(c_lime) / 0xff, colour_get_blue(c_lime) / 0xff);
-            draw_clear_alpha(c_black, 0);
-            draw_surface(surface.mask_surface, 0, 0);
-            shader_reset();
-        }, function() { }, c_black, id);
-        element.mask_surface = surface_create(element.width, element.height);
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        var yy_base_rs = yy;
-        #region options
-        element = create_checkbox(c3x, yy, "Draw filled meshes?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_meshes = checkbox.value;
-        }, mode.draw_meshes, id);
-        element.tooltip = "Draw the filled part of the 3D meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c3x, yy, "Draw wireframes?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_wireframes = checkbox.value;
-        }, mode.draw_wireframes, id);
-        element.tooltip = "Draw a wireframe over the 3D mesh. Turn this off if it gets annoying.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c3x, yy, "Draw reflections?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_reflections = checkbox.value;
-        }, mode.draw_wireframes, id);
-        element.tooltip = "If you have a reflection mesh set up, you may draw it, as well.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_button(c3x, yy, "Object Materials...", ew, eh, fa_center, function(button) {
-            if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
-            dialog_create_mesh_material_settings(button, button.root.mesh_list.selected_entries);
-        }, id);
-        element.tooltip = "Set the textures used by the selected meshes. Only the base texture is available for now; I may implement the others later.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base_rs;
-        
-        element = create_checkbox(c4x, yy, "Show Textures?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_textures = checkbox.value;
-        }, mode.draw_textures, id);
-        element.tooltip = "Whether or not to draw the meshes in the preview window using a texture.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c4x, yy, "Show Lighting?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_lighting = checkbox.value;
-        }, mode.draw_lighting, id);
-        element.tooltip = "Whether or not to lighting should be enabled.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c4x, yy, "Show Back Faces?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_back_faces = checkbox.value;
-        }, mode.draw_back_faces, id);
-        element.tooltip = "For backface culling.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        yy = yy_base_rs;
-        
-        element = create_checkbox(c5x, yy, "Show Grid?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_grid = checkbox.value;
-        }, mode.draw_grid, id);
-        element.tooltip = "Whether or not to draw the tile grid on the Z = 0 plane.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c5x, yy, "Show Axes?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_axes = checkbox.value;
-        }, mode.draw_axes, id);
-        element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
-        element = create_checkbox(c5x, yy, "Show collision?", ew * 0.75, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_collision = checkbox.value;
-        }, mode.draw_collision, id);
-        element.tooltip = "Whether or not to show collision shapes associated with meshes.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        #endregion
-        return id;
-    }
+                dialog.AddContent([
+                    (new EmuButton(col1x, EMU_AUTO, col_width, 32, "[c_aqua]Reset", function() {
+                        Settings.mesh.draw_position = MESH_DEF_VIEW_DRAW_POSITION;
+                        Settings.mesh.draw_rotation = MESH_DEF_VIEW_DRAW_ROTATION;
+                        Settings.mesh.draw_scale = MESH_DEF_VIEW_DRAW_SCALE;
+                        Settings.mesh.draw_textures = MESH_DEF_VIEW_DRAW_TEXTURES;
+                        Settings.mesh.draw_vertex_colors = MESH_DEF_VIEW_DRAW_VERTEX_COLORS;
+                        Settings.mesh.draw_physical_bounds = MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS;
+                        Settings.mesh.draw_lighting = MESH_DEF_VIEW_DRAW_LIGHTING; 
+                        Settings.mesh.draw_back_faces = MESH_DEF_VIEW_DRAW_BACK_FACES;
+                        Settings.mesh.draw_reflections = MESH_DEF_VIEW_DRAW_REFLECTIONS;
+                        Settings.mesh.draw_collision = MESH_DEF_VIEW_DRAW_COLLISION;
+                        Settings.mesh.draw_axes = MESH_DEF_VIEW_DRAW_AXES;
+                        Settings.mesh.draw_light_direction = MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION;
+                        Settings.mesh.draw_grid = MESH_DEF_VIEW_DRAW_GRID;
+                        Settings.mesh.wireframe_alpha = MESH_DEF_VIEW_WIREFRAME_ALPHA;
+                        var xx = self.root.x;
+                        var yy = self.root.y;
+                        self.root.Close();
+                        var dialog = self.root.root.callback();
+                        dialog.contents_interactive = true;
+                        dialog.x = xx;
+                        dialog.y = yy;
+                    }))
+                    #endregion
+                ]).AddDefaultCloseButton();
+            }))
+                .SetTooltip("Some options relating to the 3D view above.")
+                .SetID("VIEWER SETTINGS"),
+            #endregion
+        ])
+            .SetID("INFO")
+    ]);
+    
+    return container.Refresh();
 }

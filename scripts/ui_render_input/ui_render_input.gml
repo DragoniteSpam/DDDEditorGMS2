@@ -144,7 +144,7 @@ function ui_render_input(input, xx, yy) {
             }
         }
         // activation
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, input.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds) {
             if (Controller.release_left) {
                 keyboard_string = input.value;
@@ -157,7 +157,7 @@ function ui_render_input(input, xx, yy) {
     surface_reset_target();
     #endregion
     
-    draw_surface(input.surface, vx1, vy1)
+    draw_surface(input.surface, vx1, vy1);
     draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, true);
     
     #region next and previous

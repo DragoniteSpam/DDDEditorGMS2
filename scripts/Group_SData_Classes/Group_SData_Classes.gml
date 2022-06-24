@@ -11,7 +11,7 @@ function DataClass(source) : SData(source) constructor {
         NO_LOCALIZE_SUMMARY = 0x040000,
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.type);
         buffer_write(buffer, buffer_u32, array_length(self.properties));
@@ -33,14 +33,99 @@ function DataClass(source) : SData(source) constructor {
     
     static RemoveProperty = function(property) {
         var index = array_search(self.properties, property);
+        if (index == -1) return;
         array_delete(self.properties, index, 1);
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
             array_delete(self.instances[i].values, index, 1);
         }
     };
     
-    static AddInstance = function(inst, position = array_length(self.instances)) {
-        array_insert(self.instances, position, inst);
+    static MovePropertyUp = function(property) {
+        var index = array_search(self.properties, property);
+        if (index < 1) return;
+        
+        var t = self.properties[index];
+        self.properties[index] = self.properties[index - 1];
+        self.properties[index - 1] = t;
+        for (var i = 0, n = array_length(self.instances); i < n; i++) {
+            var instance = self.instances[i];
+            var t = instance.values[index];
+            instance.values[index] = instance.values[index - 1];
+            instance.values[index - 1] = t;
+        }
+    };
+    
+    static MovePropertyDown = function(property) {
+        var index = array_search(self.properties, property);
+        if (index == -1 || index == array_length(self.properties) - 1) return;
+        
+        var t = self.properties[index];
+        self.properties[index] = self.properties[index + 1];
+        self.properties[index + 1] = t;
+        for (var i = 0, n = array_length(self.instances); i < n; i++) {
+            var instance = self.instances[i];
+            var t = instance.values[index];
+            instance.values[index] = instance.values[index + 1];
+            instance.values[index + 1] = t;
+        }
+    };
+    
+    static AddInstance = function(instance, position = array_length(self.instances)) {
+        if (!instance) {
+            instance = new DataInstance(self.name + string(array_length(self.instances)));
+            instance.parent = self.GUID;
+            
+            for (var i = 0; i < array_length(self.properties); i++) {
+                var property = self.properties[i];
+                switch (property.type) {
+                    case DataTypes.INT:
+                    case DataTypes.COLOR:
+                        array_push(instance.values, [property.default_int]);
+                        break;
+                    case DataTypes.FLOAT:
+                        array_push(instance.values, [property.default_real]);
+                        break;
+                    case DataTypes.ASSET_FLAG:
+                        array_push(instance.values, [0]);
+                        break;
+                    case DataTypes.ENUM:
+                    case DataTypes.DATA:
+                    case DataTypes.MESH:
+                    case DataTypes.MESH_AUTOTILE:
+                    case DataTypes.IMG_TEXTURE:
+                    case DataTypes.IMG_BATTLER:
+                    case DataTypes.IMG_OVERWORLD:
+                    case DataTypes.IMG_PARTICLE:
+                    case DataTypes.IMG_UI:
+                    case DataTypes.IMG_ETC:
+                    case DataTypes.IMG_SKYBOX:
+                    case DataTypes.IMG_TILE_ANIMATION:
+                    case DataTypes.AUDIO_BGM:
+                    case DataTypes.AUDIO_SE:
+                    case DataTypes.ANIMATION:
+                    case DataTypes.MAP:
+                    case DataTypes.EVENT:
+                        array_push(instance.values, [NULL]);
+                        break;
+                    case DataTypes.STRING:
+                        array_push(instance.values, [property.default_string]);
+                        break;
+                    case DataTypes.BOOL:
+                        array_push(instance.values, [!!property.default_int]);
+                        break;
+                    case DataTypes.CODE:
+                        array_push(instance.values, [property.default_code]);
+                        break;
+                    case DataTypes.TILE:
+                    case DataTypes.ENTITY:
+                        instance.Destroy();
+                        not_yet_implemented();
+                        break;
+                }
+            }
+        }
+        
+        array_insert(self.instances, position, instance);
     };
     
     static RemoveInstance = function(inst) {
@@ -84,7 +169,7 @@ function DataProperty(source, parent) : SData(source) constructor {
     self.default_string = "";
     self.default_code = "";
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         // DON'T call the inherited ExportBase()!
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_datatype, self.GUID);
@@ -127,7 +212,13 @@ function DataInstance(source) : SData(source) constructor {
     self.parent = NULL;
     self.values = [];
     
-    static Export = function(buffer) {
+    enum DataInstanceFlags {
+        NO_LOCALIZE         = 0x010000,
+        DEFAULT_VALUE       = 0x020000,
+        SEPARATOR_VALUE     = 0x040000,
+    }
+    
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         var class = guid_get(self.parent);
         for (var i = 0; i < array_length(class.properties); i++) {

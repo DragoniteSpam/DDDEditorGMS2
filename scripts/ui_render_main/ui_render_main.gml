@@ -1,15 +1,8 @@
 function ui_render_main(ui) {
-    var camera = view_get_camera(view_current);
-    var ui_x = camera_get_view_x(camera);
-    var ui_y = camera_get_view_x(camera);
-    var ui_width = camera_get_view_width(camera);
-    var ui_height = camera_get_view_height(camera);
+    var ui_width = window_get_width();
+    var ui_height = window_get_height();
 
-    camera_set_view_mat(camera, matrix_build_lookat(ui_x + ui_width / 2, ui_y + ui_height / 2, -16000,  ui_x + ui_width / 2, ui_y + ui_height / 2, 0, 0, 1, 0));
-    camera_set_proj_mat(camera, matrix_build_projection_ortho(ui_width, ui_height, CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(camera);
-
-    draw_clear(c_white);
+    draw_clear(EMU_COLOR_BACK);
     draw_set_color(c_black);
     draw_set_font(FDefault);
     draw_set_valign(fa_middle);
@@ -19,7 +12,7 @@ function ui_render_main(ui) {
     // UI elements throw them in UIMain.contents
     ui_render(ui, 0, 0);
 
-    var xx = ui_x + 32;
+    var xx = 32;
     var yy = ui.home_row_y;
 
     var x1 = xx;
@@ -40,7 +33,7 @@ function ui_render_main(ui) {
     for (var i = 0; i < ds_list_size(ui.tabs); i++) {
         if (i != ui.active_tab.home_row) {
             trow = ui.tabs[| i];
-            xx = ui_x + 32;
+            xx = 32;
             yy = yy - ui.element_height;
             ww = ui.GetLegalWidth() / ds_list_size(trow);
             for (var j = 0; j < ds_list_size(trow); j++) {

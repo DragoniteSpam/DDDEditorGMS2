@@ -50,7 +50,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
     var active = picker.interactive && dialog_is_active(picker.root);
     
     if (active) {
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds) {
             if (Controller.release_left) {
                 ui_activate(picker);
@@ -141,7 +141,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
     }
     
     if (active) {
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds && Controller.press_left) {
             picker.selecting_color = true;
         }
@@ -198,7 +198,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
     var h = vy2 - vy1;
     
     if (active) {
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds && Controller.press_left) {
             picker.selecting_axis = true;
         }
@@ -213,7 +213,8 @@ function ui_render_color_picker_input(picker, xx, yy) {
         shader_set(shd_basic_colors);
     }
     
-    var c = Stuff.color_channels[picker.axis_channel];
+    static color_channels = [0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000];
+    var c = color_channels[picker.axis_channel];
     draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c, c, false);
     draw_rectangle(vx1, vy1, vx2, vy2, true);
     shader_reset();
@@ -250,7 +251,7 @@ function ui_render_color_picker_input(picker, xx, yy) {
         var h = vy2 - vy1;
         
         if (active) {
-            var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+            var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
             if (inbounds && Controller.press_left) {
                 picker.selecting_alpha = true;
             }

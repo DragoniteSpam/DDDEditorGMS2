@@ -1,48 +1,43 @@
 attribute vec3 in_Position;
-attribute vec3 in_Normal;
 
-varying vec3 v_vWorldPosition;
+varying float v_FragDistance;
+varying vec4 v_WorldPosition;
+varying vec3 v_Barycentric;
+varying vec2 v_Texcoord;
 
-//#pragma include("lighting.v.xsh")
-/// https://github.com/GameMakerDiscord/Xpanda
+uniform float u_TerrainScale;
+uniform vec2 u_TerrainSizeV;
+uniform vec2 u_TextureTileSize;
 
-varying vec3 v_LightWorldPosition;
+uniform mat4 u_LightVP;
 
-void CommonLightSetup();
-
-void CommonLightSetup() {
-    v_LightWorldPosition = (gm_Matrices[MATRIX_WORLD] * vec4(in_Position, 1)).xyz;
-}
-// include("lighting.v.xsh")
-#pragma include("fog.v.xsh")
-/// https://github.com/GameMakerDiscord/Xpanda
-
-varying vec3 v_FogCameraRelativePosition;
-
-void CommonFogSetup();
-
-void CommonFogSetup() {
-    v_FogCameraRelativePosition = (gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1)).xyz;
-}
-// include("fog.v.xsh")
-
-varying vec4 v_barycentric;
+varying float v_LightDistance;
+varying vec2 v_ShadowTexcoord;
 
 void main() {
-    CommonLightSetup();
-    CommonFogSetup();
+    v_WorldPosition = vec4(floor(in_Position.xy), in_Position.z, 1);
+    v_WorldPosition.z *= u_TerrainScale;
+    v_FragDistance = length((gm_Matrices[MATRIX_WORLD_VIEW] * v_WorldPosition).xyz);
     
-    v_vWorldPosition = vec3(floor(in_Position.xy), in_Position.z);
-    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(v_vWorldPosition, 1);
+    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * v_WorldPosition;
     
     float f = fract(in_Position.x) * 8.0;
-    v_barycentric = vec4(
-        // xyz
+    v_Barycentric = vec3(
         1.0 - min(abs(1.0 - f), 1.0),
         1.0 - min(abs(2.0 - f), 1.0),
-        1.0 - min(abs(4.0 - f), 1.0),
-        // gl.z / gl.w would be nice but it's easier to do this with world space distance
-        length(gm_Matrices[MATRIX_WORLD_VIEW] * vec4(v_vWorldPosition, 1)) / 128.0
+        1.0 - min(abs(4.0 - f), 1.0)
     );
     
+    // the triangle internal texture offset gets squeezed into the fractional part of the Y coordinate, also
+	//  - (U + tile size) coordinate: 0.25
+	//  - (V + tile size) coordinate: 0.125
+	v_Texcoord = floor(vec2(fract(in_Position.y * 2.0), fract(in_Position.y * 4.0)) * 2.0) / u_TextureTileSize;
+	// get rid of the one pixel seam at the edge of tiles
+	v_Texcoord -= (1.0 / u_TerrainSizeV) * ceil(v_Texcoord);
+    /*
+    vec4 screenSpace = u_LightVP * v_WorldPosition;
+    
+    v_LightDistance = screenSpace.z / screenSpace.w;
+    v_ShadowTexcoord = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
+    */
 }

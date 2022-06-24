@@ -1,4 +1,4 @@
-#region array stuff
+#region array stuff - please don't delete these, even if you find that they're not used anywhere
 function array_to_list(array) {
     var list = ds_list_create();
     for (var i = 0; i < array_length(array); i++) {
@@ -6,6 +6,24 @@ function array_to_list(array) {
     }
     
     return list;
+}
+
+function array_to_map(array) {
+    var results = { };
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        results[$ string(i)] = array[i];
+    }
+    return results;
+}
+
+function array_values_to_map(array) {
+    var results = { };
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (!variable_struct_exists(results, string(array[i]))) {
+            results[$ string(array[i])] = i;
+        }
+    }
+    return results;
 }
 
 function array_clear(array, value) {
@@ -113,6 +131,16 @@ function array_clear_4d(array, value = 0) {
     }
 }
 
+function array_filter(array, f) {
+    var selected_elements = [];
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (f(array[i])) {
+            array_push(selected_elements, array[i]);
+        }
+    }
+    return selected_elements;
+}
+
 function array_resize_2d(array, x, y) {
     array_resize(array, x);
     for (var i = 0; i < array_length(array); i++) {
@@ -163,6 +191,29 @@ function array_sort_internal(array) {
         return a.internal_name > b.internal_name;
     });
 }
+
+function array_search_guid(array, guid) {
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (array[i].GUID == guid) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function array_search_internal_name(array, name) {
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        if (array[i].internal_name == name) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function random_element_from_array(array) {
+    if (array_length(array) == 0) return undefined;
+    return array[irandom(array_length(array) - 1)];
+}
 #endregion
 
 #region buffer stuff
@@ -174,6 +225,29 @@ function buffer_get_pixel(surface, buffer, x, y) {
     var offset = (y * sw + x) * 4;
     
     return buffer_peek(buffer, offset, buffer_u32) >> 8;
+}
+
+function buffer_sample(buffer, u, v, w, h, type = buffer_u32) {
+    return buffer_sample_pixel(buffer, u * w, v * h, w, h, type);
+}
+
+function buffer_sample_pixel(buffer, x, y, w, h, type = buffer_u32) {
+    // might implement texture wrapping some other day but right now i dont feel like it
+    x = clamp(x, 0, w - 1);
+    y = clamp(y, 0, h - 1);
+    var address_ul = (floor(x) + floor(y) * w) * buffer_sizeof(type);
+    var address_ur = (ceil(x) + floor(y) * w) * buffer_sizeof(type);
+    var address_ll = (floor(x) + ceil(y) * w) * buffer_sizeof(type);
+    var address_lr = (ceil(x) + ceil(y) * w) * buffer_sizeof(type);
+    var horizontal_lerp = frac(x);
+    var vertical_lerp = frac(y);
+    var value_ul = buffer_peek(buffer, address_ul, type);
+    var value_ur = buffer_peek(buffer, address_ur, type);
+    var value_ll = buffer_peek(buffer, address_ll, type);
+    var value_lr = buffer_peek(buffer, address_lr, type);
+    var value_l = lerp(value_ul, value_ll, vertical_lerp);
+    var value_r = lerp(value_ur, value_lr, vertical_lerp);
+    return lerp(value_l, value_r, horizontal_lerp);
 }
 
 function buffer_read_buffer(source) {
@@ -218,6 +292,14 @@ function buffer_write_buffer(to, from) {
     buffer_seek(to, buffer_seek_relative, size);
 }
 
+// this is like buffer_write_buffer but it doesnt write the length or seek
+// to the new position
+function buffer_append_buffer(to, from) {
+    var buffer_end = buffer_get_size(to);
+    buffer_resize(to, buffer_get_size(to) + buffer_get_size(from));
+    buffer_copy(from, 0, buffer_get_size(from), to, buffer_end);
+}
+
 function buffer_write_vertex_buffer(buffer, vbuff_data) {
     var formatted = meshops_vertex_formatted(vbuff_data, Game.meta.export.vertex_format);
     buffer_write_buffer(buffer, formatted);
@@ -242,7 +324,7 @@ function buffer_write_sprite(buffer, sprite) {
     buffer_delete(sbuffer);
 }
 
-function buffer_clone(buffer, type, alignment) {
+function buffer_clone(buffer, type = buffer_get_type(buffer), alignment = buffer_get_alignment(buffer)) {
     var new_buffer = buffer_create(buffer_get_size(buffer), type, alignment);
     buffer_copy(buffer, 0, buffer_get_size(buffer), new_buffer, 0);
     return new_buffer;
@@ -267,7 +349,7 @@ function buffer_dotobj_to_standard(poly_list) {
     var format_code = poly_list[eDotDaePolyList.FormatCode];
     var raw = buffer_create_from_vertex_buffer(source, buffer_fixed, 1);
     var vbuff = vertex_create_buffer();
-    vertex_begin(vbuff, Stuff.graphics.vertex_format);
+    vertex_begin(vbuff, Stuff.graphics.format);
     
     if (format_code & DOTDAE_FORMAT_J) {
         repeat (vertex_get_number(source)) {
@@ -338,61 +420,21 @@ function ds_list_clear_instances(list) {
     return n;
 }
 
-function ds_list_clear_disposable(list) {
-    // this was implemented some time into the project. there are probably
-    // a couple destroy events that could use this but don't.
-    var n = ds_list_size(list);
-    
-    for (var i = 0; i < n; i++) {
-        var what = list[| i];
-        if (what) what.Destroy();
-    }
-    
-    ds_list_clear(list);
-    
-    return n;
-}
-
-function ds_list_clone(source) {
-    // this doesn't really do anything special, it just makes ds_list_copy
-    // slightly shorter
-    
-    var list = ds_list_create();
-    ds_list_copy(list, source);
-    
-    return list;
-}
-
 function ds_list_destroy_instances(list) {
     ds_list_clear_instances(list);
     ds_list_destroy(list);
 }
 
-function ds_list_destroy_instances_indirect(list) {
-    // because there are some instances which automatically remove themselves
-    // from the list that you want to pass to this script, and doing this the
-    // easy way will cause the program to break
-    var n = ds_list_size(list);
-    var pending = ds_list_create();
-    ds_list_copy(pending, list);
-    for (var i = 0; i < ds_list_size(pending); i++) {
-        instance_activate_object(pending[| i]);
-        instance_destroy(pending[| i]);
+function ds_list_filter(list, f) {
+    var selected_elements = [];
+    for (var i = 0, n = ds_list_size(list); i < n; i++) {
+        if (f(list[| i])) {
+            array_push(selected_elements, list[| i]);
+        }
     }
-    ds_list_destroy(pending);
-    ds_list_destroy(list);
-    
-    return n;
+    return selected_elements;
 }
 
-function ds_list_pop(list) {
-    // for when you want to be using a stack, but need to
-    // do stuff with it that you need a list for.
-    var n = ds_list_size(list) - 1;
-    var value = list[| n];
-    ds_list_delete(list, n);
-    return value;
-}
 /// @param list
 /// @param [value-get]
 /// @param [l]
@@ -404,52 +446,52 @@ function ds_list_sort_fast() {
     var l = (argument_count > 2) ? argument[2] : 0;
     var r = (argument_count > 3) ? argument[3] : ds_list_size(list) - 1;
     
+    static merge = function(list, l, m, r, value) {
+        var n1 = m - l + 1;
+        var n2 = r - m;
+        var lt = ds_list_create();
+        var rt = ds_list_create();
+        
+        for (var i = 0; i < n1; i++) {
+            // this should technically be a ds_list_add but whatever
+            lt[| i] = list[| l +i ];
+        }
+        for (var j = 0; j < n2; j++) {
+            // ditto
+            rt[| j] = list[| m + j + 1];
+        }
+        
+        var i = 0;
+        var j = 0;
+        var k = l;
+        
+        while (i < n1 && j < n2) {
+            if (value(lt, i) <= value(rt, j)) {
+                list[| k++] = lt[| i++];
+            } else {
+                list[| k++] = rt[| j++];
+            }
+        }
+        
+        while (i < n1) {
+            list[| k++] = lt[| i++];
+        }
+        while (j < n2) {
+            list[| k++] = rt[| j++];
+        }
+        
+        ds_list_destroy(lt);
+        ds_list_destroy(rt);
+    }
+    
     if (l < r) {
         var m = (l + r) div 2;
         ds_list_sort_fast(list, value, l, m);
         ds_list_sort_fast(list, value, m + 1, r);
-        ds_list_sort_fast__merge(list, l, m, r, value);
+        merge(list, l, m, r, value);
     }
     
     return list;
-}
-
-function ds_list_sort_fast__merge(list, l, m, r, value) {
-    var n1 = m - l + 1;
-    var n2 = r - m;
-    var lt = ds_list_create();
-    var rt = ds_list_create();
-    
-    for (var i = 0; i < n1; i++) {
-        // this should technically be a ds_list_add but whatever
-        lt[| i] = list[| l +i ];
-    }
-    for (var j = 0; j < n2; j++) {
-        // ditto
-        rt[| j] = list[| m + j + 1];
-    }
-    
-    var i = 0;
-    var j = 0;
-    var k = l;
-    
-    while (i < n1 && j < n2) {
-        if (value(lt, i) <= value(rt, j)) {
-            list[| k++] = lt[| i++];
-        } else {
-            list[| k++] = rt[| j++];
-        }
-    }
-    
-    while (i < n1) {
-        list[| k++] = lt[| i++];
-    }
-    while (j < n2) {
-        list[| k++] = rt[| j++];
-    }
-    
-    ds_list_destroy(lt);
-    ds_list_destroy(rt);
 }
 
 /// @param list
@@ -494,21 +536,12 @@ function ds_list_top(list) {
 }
 #endregion
 
-#region ds_map stuff
-function ds_map_to_array(map) {
-    var array = array_create(ds_map_size(map));
-    var index = 0;
-    for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
-        array[index++] = i;
+#region ds queue stuff
+function ds_queue_concatenate(queue, character = " ") {
+    var result = "";
+    while (!ds_queue_empty(queue)) {
+        result += ds_queue_dequeue(queue) + (ds_queue_empty(queue) ? "" : character);
     }
-    return array;
-}
-
-function ds_map_to_list(map) {
-    var list = ds_list_create();
-    for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
-        ds_list_add(list, i);
-    }
-    return list;
+    return result;
 }
 #endregion

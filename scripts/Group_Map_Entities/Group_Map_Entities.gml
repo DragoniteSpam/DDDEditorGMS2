@@ -107,14 +107,16 @@ function Entity(source) constructor {
         buffer_write_file(json_stringify(self.CreateJSON()), directory);
     };
     
-    static ExportBase = function(buffer) {
+    self.ExportBase = function(buffer) {
+        buffer_write(buffer, buffer_u32, self.is_static);
+        
         if (self.is_static) return false;
         
         buffer_write(buffer, buffer_u32, self.etype);
         buffer_write(buffer, buffer_string, self.name);
-        buffer_write(buffer, buffer_u32, self.xx);
-        buffer_write(buffer, buffer_u32, self.yy);
-        buffer_write(buffer, buffer_u32, self.zz);
+        buffer_write(buffer, buffer_f32, self.xx);
+        buffer_write(buffer, buffer_f32, self.yy);
+        buffer_write(buffer, buffer_f32, self.zz);
         buffer_write(buffer, buffer_datatype, self.REFID);
         
         buffer_write(buffer, buffer_field, pack(
@@ -144,7 +146,7 @@ function Entity(source) constructor {
         buffer_write(buffer, buffer_u8, self.autonomous_movement_frequency);
         buffer_write(buffer, buffer_u8, self.autonomous_movement_route);
         
-        buffer_write(buffer, buffer_u8, array_length(self.movement_routes));
+        buffer_write(buffer, buffer_u32, array_length(self.movement_routes));
         for (var i = 0; i < array_length(self.movement_routes); i++) {
             self.movement_routes[i].Export(buffer);
         }
@@ -236,6 +238,27 @@ function Entity(source) constructor {
         self.DestroyBase();
     };
     
+    static GetTransform = function() {
+        return matrix_build(
+            (self.xx + self.off_xx) * TILE_WIDTH,
+            (self.yy + self.off_yy) * TILE_HEIGHT,
+            (self.zz + self.off_zz) * TILE_DEPTH,
+            self.rot_xx, self.rot_yy, self.rot_zz,
+            self.scale_xx, self.scale_yy, self.scale_zz
+        );
+    };
+    
+    static GetTransformReflected = function() {
+        var water = Stuff.map.active_map.water_level;
+        return matrix_build(
+            (self.xx + self.off_xx) * TILE_WIDTH,
+            (self.yy + self.off_yy) * TILE_HEIGHT,
+            (water - (self.zz + self.off_zz - water)) * TILE_DEPTH,
+            self.rot_xx, self.rot_yy, self.rot_zz,
+            self.scale_xx, self.scale_yy, self.scale_zz
+        );
+    };
+    
     if (is_struct(source)) {
         self.name = source.name;
         refid_set(self, source.refid);
@@ -301,7 +324,36 @@ function EntityEffect(source) : Entity(source) constructor {
     // editor properties
     self.slot = MapCellContents.EFFECT;
     self.batchable = false;
-    static render = render_effect;
+    
+    static render = function() {
+        var mode = Stuff.map;
+        var camera = camera_get_active();
+        var com_offset = 18;
+        
+        var world_x = (self.xx + self.off_xx) * TILE_WIDTH;
+        var world_y = (self.yy + self.off_yy) * TILE_HEIGHT;
+        var world_z = (self.zz + self.off_zz) * TILE_DEPTH;
+        
+        var position = mode.camera.GetScreenSpace(world_x, world_y, world_z);
+        var dist = mode.camera.DistanceTo(world_x, world_y, world_z);
+        var f = min(dist / 160, 2.5);
+        Stuff.graphics.DrawAxesTranslation(world_x, world_y, world_z, 0, 0, 0, f, f, f);
+        
+        render_effect_add_sprite(spr_star, position, new Vector2(0, 0));
+        
+        if (self.com_light) {
+            render_effect_add_sprite(self.com_light.sprite, position, new Vector2(-com_offset, com_offset));
+            self.com_light.Render();
+        }
+        if (self.com_particle) {
+            render_effect_add_sprite(self.com_particle.sprite, position, new Vector2(0, com_offset));
+            self.com_particle.Render();
+        }
+        if (self.com_audio) {
+            render_effect_add_sprite(self.com_audio.sprite, position, new Vector2(com_offset, com_offset));
+            self.com_audio.Render();
+        }
+    };
     
     // components
     self.com_light = undefined;
@@ -309,27 +361,29 @@ function EntityEffect(source) : Entity(source) constructor {
     self.com_audio = undefined;
     self.com_marker = -1;
     
-    static Export = function(buffer) {
-        self.ExportBase(buffer);
+    self.Export = function(buffer) {
+        if (!self.ExportBase(buffer)) return false;
+        
         if (self.com_light) {
             self.com_light.Export(buffer);
         } else {
-            buffer_write(buffer, buffer_u8, LightTypes.NONE);
+            buffer_write(buffer, buffer_u32, LightTypes.NONE);
         }
         
         if (self.com_particle) {
             self.com_particle.Export(buffer);
         } else {
-            buffer_write(buffer, buffer_u8, 0);
+            buffer_write(buffer, buffer_u32, 0);
         }
         
         if (self.com_audio) {
             self.com_audio.Export(buffer);
         } else {
-            buffer_write(buffer, buffer_u8, 0);
+            buffer_write(buffer, buffer_u32, 0);
         }
         buffer_write(buffer, buffer_s32, self.com_marker);
-        return 1;
+        
+        return true;
     };
     
     static CreateJSONEffect = function() {
@@ -348,8 +402,6 @@ function EntityEffect(source) : Entity(source) constructor {
     static CreateJSON = function() {
         return self.CreateJSONEffect();
     };
-    
-    self.axis_over = CollisionSpecialValues.NONE;
     
     static DestroyEffect = function() {
         var map = Stuff.map.active_map;
@@ -374,7 +426,7 @@ function EntityEffect(source) : Entity(source) constructor {
         if (light == pointer_null) light = undefined;
         if (particle == pointer_null) particle = undefined;
         if (audio == pointer_null) audio = undefined;
-        self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
+        self.com_light = light ? (new global.light_type_constructors[light.specific.type](self, light)) : undefined;
         self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
         self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
         self.com_marker = source.effects.com[$ "marker"] ?? -1;
@@ -387,7 +439,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.etype = ETypes.ENTITY_MESH;
     self.etype_flags = ETypeFlags.ENTITY_MESH;
     
-    self.is_static = true;
+    self.is_static = mesh ? !!(mesh.flags & MeshFlags.AUTO_STATIC) : false;
     
     self.mesh = NULL;
     self.mesh_submesh = NULL;                                                   // proto-GUID
@@ -397,21 +449,68 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     self.animation_speed = 0;
     self.animation_end_action = AnimationEndActions.LOOP;
     
+    // someday it would be nice to make this a Material but i dont have time
+    // to do that right now
+    self.texture = NULL;                                                        // GUID
+    
     // editor properties
     self.slot = MapCellContents.MESH;
     self.rotateable = true;
     self.offsettable = true;
     self.scalable = true;
     
-    static batch = batch_mesh;
-    static render = render_mesh;
+    self.batch = method(self, batch_mesh);
     
-    static get_bounding_box = function() {
-        var mesh_data = guid_get(self.mesh);
-        return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
+    self.render = function(entity) {
+        var mesh = guid_get(entity.mesh);
+        if (mesh && entity.GetVertexBuffer()) {
+            switch (mesh.type) {
+                case MeshTypes.RAW:
+                    var mesh = guid_get(entity.mesh);
+                    matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+                    graphics_set_material(entity.GetSubmesh());
+                    var tex = entity.GetTexture();
+                    vertex_submit(entity.GetVertexBuffer(), pr_trianglelist, tex);
+                    
+                    if (Stuff.map.active_map.reflections_enabled) {
+                        var water = Stuff.map.active_map.water_level;
+                        var offset = (water - (entity.zz + entity.off_zz - water)) * TILE_DEPTH;
+                        matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, offset, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+                        
+                        var reflect = entity.GetReflectVertexBuffer();
+                        if (reflect) {
+                            vertex_submit(reflect, pr_trianglelist, tex);
+                        }
+                    }
+                    
+                    matrix_set(matrix_world, matrix_build_identity());
+                    break;
+                case MeshTypes.SMF: break;
+            }
+        } else {
+            matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
+            vertex_submit(Stuff.graphics.mesh_missing, pr_trianglelist, -1);
+            matrix_set(matrix_world, matrix_build_identity());
+        }
     };
     
-    static SetMesh = function(mesh, submesh = undefined) {
+    self.get_bounding_box = function() {
+        var mesh_data = guid_get(self.mesh);
+        if (mesh_data.use_independent_bounds) {
+            return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
+        } else {
+            return new BoundingBox(
+                self.xx + mesh_data.xmin / TILE_WIDTH,
+                self.yy + mesh_data.ymin / TILE_HEIGHT,
+                self.zz + mesh_data.zmin / TILE_DEPTH,
+                self.xx + mesh_data.xmax / TILE_WIDTH,
+                self.yy + mesh_data.ymax / TILE_HEIGHT,
+                self.zz + mesh_data.zmax / TILE_DEPTH
+            );
+        }
+    };
+    
+    self.SetMesh = function(mesh, submesh = undefined) {
         self.mesh_submesh = NULL;
         self.is_static = false;
         self.batchable = false;
@@ -422,7 +521,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
             switch (mesh.type) {
                 case MeshTypes.RAW:
                     self.mesh_submesh = submesh ?? mesh.first_proto_guid;
-                    self.is_static = true;
+                    self.is_static = !!(mesh.flags & MeshFlags.AUTO_STATIC);
                     self.batchable = true;
                     self.SetStatic = function(state) { self.is_static = state; };
                     break;
@@ -438,54 +537,58 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     
     self.SetMesh(mesh);
     
-    static GetBuffer = function() {
+    self.GetBuffer = function() {
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.buffer : undefined;
+    };
+    
+    self.GetSubmesh = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this
         // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
+        var mesh_data = guid_get(self.mesh);
         if (!mesh_data) return undefined;
         if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].buffer : undefined;
+        return mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)];
     };
     
-    static GetVertexBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].vbuffer : undefined;
+    self.GetVertexBuffer = function() {
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.vbuffer : undefined;
     };
     
-    static GetReflectBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_buffer : undefined;
+    self.GetReflectBuffer = function() {
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.reflect_buffer : undefined;
     };
     
-    static GetReflectVertexBuffer = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_vbuffer : undefined;
+    self.GetReflectVertexBuffer = function() {
+        var submesh = self.GetSubmesh();
+        return submesh ? submesh.reflect_vbuffer : undefined;
     };
     
-    static GetTexture = function() {
-        // the lookup for an entity's exact mesh is now somewhat complicated, so this
-        // script is here to make yoru life easier
-        var mesh_data = guid_get(mesh);
-        var def_texture = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
-        return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
+    self.GetTexture = function() {
+        if (!Settings.view.texture) return -1;
+        
+        var own_texture = guid_get(self.texture);
+        if (own_texture) {
+            return sprite_get_texture(own_texture.picture, 0);
+        }
+        
+        var submesh = self.GetSubmesh();
+        if (submesh && guid_get(submesh.tex_base)) {
+            return sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
+        }
+        
+        return -1;
     };
     
-    static Export = function(buffer) {
-        if (!self.ExportBase(buffer)) return 0;
+    self.Export = function(buffer) {
+        if (!self.ExportBase(buffer)) return false;
+        
         buffer_write(buffer, buffer_datatype, self.mesh);
         buffer_write(buffer, buffer_datatype, self.mesh_submesh);
+        buffer_write(buffer, buffer_datatype, self.texture);
+        // we may export other material data too eventually
         buffer_write(buffer, buffer_field, pack(
             self.animated
         ));
@@ -494,7 +597,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         buffer_write(buffer, buffer_f32, self.animation_speed);
         buffer_write(buffer, buffer_u8, self.animation_end_action);
         
-        return 1;
+        return true;
     };
     
     static CreateJSONMesh = function() {
@@ -502,6 +605,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         json.mesh = {
             mesh: self.mesh,
             submesh: self.mesh_submesh,
+            texture: self.texture,
             animation: {
                 animated: self.animated,
                 index: self.animation_index,
@@ -520,11 +624,14 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     if (is_struct(source)) {
         self.mesh = source.mesh.mesh;
         self.mesh_submesh = source.mesh.submesh;
+        self.texture = source.mesh[$ "texture"] ?? NULL;
         self.animated = source.mesh.animation.animated;
         self.animation_index = source.mesh.animation.index;
         self.animation_type = source.mesh.animation.type;
         self.animation_speed = source.mesh.animation.speed;
         self.animation_end_action = source.mesh.animation.end_action;
+        
+        self.is_static = !!(guid_get(self.mesh).flags & MeshFlags.AUTO_STATIC);
     }
 }
 
@@ -538,7 +645,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     self.autotile_id = Settings.selection.mesh_autotile_type;                   // autotile asset
     
     static AutotileUniqueIdentifier = function() {
-        return self.autotile_id + ":" + string(global.at_map[$ self.terrain_id]) + ":" + string(self.terrain_type);
+        return self.autotile_id + ":" + string(get_index_from_autotile_mask(self.terrain_id)) + ":" + string(self.terrain_type);
     };
     
     // editor properties
@@ -548,7 +655,23 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     self.scalable = false;
     
     static batch = batch_mesh_autotile;
-    static render = render_mesh_autotile;
+    static render = function(mesh_autotile) {
+        var mapping = get_index_from_autotile_mask(mesh_autotile.terrain_id);
+        
+        var at = guid_get(mesh_autotile.autotile_id);
+        var vbuffer = at ? at.layers[mesh_autotile.terrain_type].tiles[mapping].vbuffer : Stuff.graphics.missing_autotile;
+        if (!vbuffer) vbuffer = Stuff.graphics.missing_autotile;
+        
+        matrix_set(matrix_world, matrix_build(mesh_autotile.xx * TILE_WIDTH, mesh_autotile.yy * TILE_HEIGHT, mesh_autotile.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1));
+        graphics_set_material();
+        
+        if (Settings.view.entities) {
+            var tex = Settings.view.texture ? sprite_get_texture(MAP_ACTIVE_TILESET.picture, 0) : -1;
+            vertex_submit(vbuffer, pr_trianglelist, tex);
+        }
+        
+        matrix_set(matrix_world, matrix_build_identity());
+    };
     
     self.get_bounding_box = function() {
         return new BoundingBox(self.xx, self.yy, self.zz, self.xx + 1, self.yy + 1, self.zz + 1);
@@ -562,7 +685,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     // these things can't *not* be static
     static SetStatic = function(state) { };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         return 0;
     };
     
@@ -623,16 +746,19 @@ function EntityPawn(source) : Entity(source) constructor {
     
         var index = self.map_direction * data.hframes + floor(self.frame);
     
-        transform_set(self.xx * TILE_WIDTH, self.yy * TILE_HEIGHT, self.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+        matrix_set(matrix_world, matrix_build(self.xx * TILE_WIDTH, self.yy * TILE_HEIGHT, self.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1));
+        graphics_set_material();
         vertex_submit(data ? data.npc_frames[index] : Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(data ? data.picture : spr_pawn_missing, 0));
         matrix_set(matrix_world, matrix_build_identity());
     };
     
-    static Export = function(buffer) {
-        self.ExportBase(buffer);
+    self.Export = function(buffer) {
+        if (!self.ExportBase(buffer)) return false;
+        
         buffer_write(buffer, buffer_u8, self.map_direction);
         buffer_write(buffer, buffer_datatype, self.overworld_sprite);
-        return 1;
+        
+        return true;
     };
     
     // pawns can't be static
@@ -689,7 +815,7 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
         var th = TILE_HEIGHT;
         
         self.vbuffer = vertex_create_buffer();
-        vertex_begin(self.vbuffer, Stuff.graphics.vertex_format);
+        vertex_begin(self.vbuffer, Stuff.graphics.format);
         vertex_point_complete(self.vbuffer, 0, 0, 0, 0, 0, 1, texx1, texy1, self.tile_color, self.tile_alpha);
         vertex_point_complete(self.vbuffer, tw, 0, 0, 0, 0, 1, texx2, texy1, self.tile_color, self.tile_alpha);
         vertex_point_complete(self.vbuffer, tw, th, 0, 0, 0, 1, texx2, texy2, self.tile_color, self.tile_alpha);
@@ -711,9 +837,23 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     self.slot = MapCellContents.TILE;
     
     static batch = batch_tile;
-    static render = render_tile;
+    static render = function(entity) {
+        var xx = tile.xx * TILE_WIDTH;
+        var yy = tile.yy * TILE_HEIGHT;
+        var zz = tile.zz * TILE_DEPTH;
+        
+        var ts = MAP_ACTIVE_TILESET;
+        
+        if (Settings.view.entities) {
+            var tex = Settings.view.texture ? sprite_get_texture(ts.picture, 0) : -1;
+            matrix_set(matrix_world, matrix_build(xx, yy, zz, 0, 0, 0, 1, 1, 1));
+            graphics_set_material();
+            vertex_submit(tile.vbuffer, pr_trianglelist, tex);
+            matrix_set(matrix_world, matrix_build_identity());
+        }
+    };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         return 0;
     };
     

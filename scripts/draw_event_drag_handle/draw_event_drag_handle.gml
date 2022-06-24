@@ -18,15 +18,15 @@ function draw_event_drag_handle(argument0, argument1, argument2, argument3, argu
 
     if (!dialog_exists()) {
         // i don't like this but it works
-        if (mouse_within_rectangle_adjusted(x1, y1, x2, y2) || node.dragging) {
+        if (mouse_within_rectangle(x1, y1, x2, y2) || node.dragging) {
             if (Controller.press_left) {
-                node.offset_x = mouse_x_view - node.x;
-                node.offset_y = mouse_y_view - node.y;
+                node.offset_x = mouse_x - node.x;
+                node.offset_y = mouse_y - node.y;
                 node.dragging = true;
             } else if (Controller.mouse_left) {
                 if (node.dragging) {
-                    node.x = mouse_x_view - node.offset_x;
-                    node.y = mouse_y_view - node.offset_y;
+                    node.x = mouse_x - node.offset_x;
+                    node.y = mouse_y - node.offset_y;
                 }
             } else {
                 node.offset_x = -1;

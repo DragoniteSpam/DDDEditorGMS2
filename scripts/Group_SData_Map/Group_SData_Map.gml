@@ -14,6 +14,7 @@ function DataMap(source, directory) : SData(source) constructor {
     self.yy = 64;
     self.zz = 8;
     self.tileset = NULL;                                                        // GUID
+    self.water_texture = NULL;                                                  // GUID
     self.fog_start = 1024;                                                      // float
     self.fog_end = 3072;                                                        // float
     self.fog_enabled = true;                                                    // bool
@@ -32,6 +33,11 @@ function DataMap(source, directory) : SData(source) constructor {
     self.skybox = NULL;                                                         // GUID
     self.chunk_size = 32;                                                       // int
     
+    self.terrain = {
+        id: NULL,                                                               // GUID
+        scale: 1,                                                               // float
+    };
+    
     self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);               // 3D flag array
     self.lights = array_create(MAX_LIGHTS, NULL);                               // GUID array
     self.discovery = 0;                                                         // index
@@ -45,7 +51,12 @@ function DataMap(source, directory) : SData(source) constructor {
         size: 0,
     };
     
-    static Add = function(entity, x = entity.xx, y = entity.yy, z = entity/zz, is_temp = false, add_to_lists = true) {
+    self.Add = function(entity, x = entity.xx, y = entity.yy, z = entity.zz, is_temp = false, add_to_lists = true) {
+        if (!self.on_grid) {
+            self.AddOffGrid(entity, x, y, z);
+            return;
+        }
+        
         // Does not check to see if the specified coordinates are in bounds.
         // You are responsible for that.
         
@@ -67,7 +78,7 @@ function DataMap(source, directory) : SData(source) constructor {
             // be because it's a temporary instance, or perhaps it's already in the map and you're
             // just trying to move it
             if (!is_temp && add_to_lists) {
-                var list = entity.batchable ? self.contents.batch_in_the_future : self.contents.dynamic;
+                var list = (entity.batchable && MAP_BATCH_MESH_ENABLED) ? self.contents.batch_in_the_future : self.contents.dynamic;
                 // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
                 if (entity.etype == ETypes.ENTITY_MESH && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
                     list = self.contents.dynamic;
@@ -76,19 +87,34 @@ function DataMap(source, directory) : SData(source) constructor {
                 ds_list_add(list, entity);
             }
         } else {
-            safa_delete(entity);
+            selection_delete(entity);
         }
     };
     
-    static FreeAt = function(x, y, z, slot) {
+    self.AddOffGrid = function(entity, x = entity.xx, y = entity.yy, z = entity.zz) {
+        entity.xx = x;
+        entity.yy = y;
+        entity.zz = z;
+        
+        ds_list_add(self.contents.all_entities, entity);
+        var list = (entity.batchable && MAP_BATCH_MESH_ENABLED) ? self.contents.batch_in_the_future : self.contents.dynamic;
+        // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
+        if (entity.etype == ETypes.ENTITY_MESH && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
+            list = self.contents.dynamic;
+        }
+        
+        ds_list_add(list, entity);
+    };
+    
+    self.FreeAt = function(x, y, z, slot) {
         return !self.contents.map_grid[x][y][z][slot];
     };
     
-    static Get = function(x, y, z) {
+    self.Get = function(x, y, z) {
         return self.contents.map_grid[x][y][z];
     };
     
-    static GetMeshAutotileData = function(x, y, z) {
+    self.GetMeshAutotileData = function(x, y, z) {
         if (!is_clamped(x, 0, self.xx - 1) || !is_clamped(y, 0, self.yy - 1) || !is_clamped(z, 0, self.zz - 1)) return false;
         
         var what = self.contents.map_grid[x][y][z][MapCellContents.MESH];
@@ -104,15 +130,15 @@ function DataMap(source, directory) : SData(source) constructor {
         return result;
     };
     
-    static GetFlag = function(x, y, z) {
+    self.GetFlag = function(x, y, z) {
         return self.grid_flags[x][y][z];
     };
     
-    static SetFlag = function(x, y, z, flag) {
+    self.SetFlag = function(x, y, z, flag) {
         self.grid_flags[@ x][@ y][@ z] = flag;
     };
     
-    static SetSize = function(x, y, z) {
+    self.SetSize = function(x, y, z) {
         self.xx = x;
         self.yy = y;
         self.zz = z;
@@ -122,7 +148,7 @@ function DataMap(source, directory) : SData(source) constructor {
             for (var i = 0; i < ds_list_size(self.contents.all_entities); i++) {
                 var thing = self.contents.all_entities[| i];
                 if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
-                    safa_delete(thing);
+                    selection_delete(thing);
                 }
             }
             
@@ -136,12 +162,12 @@ function DataMap(source, directory) : SData(source) constructor {
             Game.meta.start.z = min(Game.meta.start.z, z - 1);
         }
         
-        Stuff.map.ui.element_entity_pos_x.value_upper = x - 1;
-        Stuff.map.ui.element_entity_pos_y.value_upper = y - 1;
-        Stuff.map.ui.element_entity_pos_z.value_upper = z - 1;
+        Stuff.map.ui.SearchID("ENTITY POSITION X").SetRealNumberBounds(0, x - 1);
+        Stuff.map.ui.SearchID("ENTITY POSITION Y").SetRealNumberBounds(0, y - 1);
+        Stuff.map.ui.SearchID("ENTITY POSITION Z").SetRealNumberBounds(0, z - 1);
     };
     
-    static Move = function(entity, x, y, z, mark_changed = true) {
+    self.Move = function(entity, x, y, z, mark_changed = true) {
         if (self.FreeAt(x, y, z, entity.slot)) {
             self.Remove(entity);
             self.Add(entity, x, y, z, false, false);
@@ -151,14 +177,14 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
-    static Remove = function(entity) {
+    self.Remove = function(entity) {
         var cell = self.contents.map_grid[entity.xx][entity.yy][entity.zz];
         if (cell[entity.slot] == entity) {
             cell[@ entity.slot] = undefined;
         }
     };
     
-    static Load = function() {
+    self.Load = function() {
         if (Stuff.map.active_map) Stuff.map.active_map.Close();
         Stuff.map.active_map = self;
         
@@ -182,21 +208,21 @@ function DataMap(source, directory) : SData(source) constructor {
             #region batched stuff
             try {
                 self.contents.frozen_data = buffer_load(directory + "frozen.vbuff");
-                self.contents.frozen = vertex_create_buffer_from_buffer(self.contents.frozen_data, Stuff.graphics.vertex_format);
+                self.contents.frozen = vertex_create_buffer_from_buffer(self.contents.frozen_data, Stuff.graphics.format);
             } catch (e) {
                 wtf("Unable to load frozen vertex buffer data - " + self.name);
             }
             
             try {
                 self.contents.reflect_frozen_data = buffer_load(directory + "frozen.reflect");
-                self.contents.reflect_frozen = vertex_create_buffer_from_buffer(self.contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+                self.contents.reflect_frozen = vertex_create_buffer_from_buffer(self.contents.reflect_frozen_data, Stuff.graphics.format);
             } catch (e) {
                 wtf("Unable to load frozen reflection buffer data - " + self.name);
             }
             
             try {
                 self.contents.water_data = buffer_load(directory + "water.vbuff");
-                self.contents.water = vertex_create_buffer_from_buffer(self.contents.water_data, Stuff.graphics.vertex_format);
+                self.contents.water = vertex_create_buffer_from_buffer(self.contents.water_data, Stuff.graphics.format);
             } catch (e) {
                 wtf("Unable to load water buffer data - " + self.name);
             }
@@ -206,16 +232,18 @@ function DataMap(source, directory) : SData(source) constructor {
             var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
             for (var i = 0; i < array_length(entity_data.entities); i++) {
                 var ref_data = entity_data.entities[i];
-                var entity = new global.etype_meta[ref_data.type].constructor(ref_data);
+                var entity = new global.etype_meta[ref_data.type].ctor(ref_data);
                 self.Add(entity, entity.xx, entity.yy, entity.zz);
             }
             #endregion
         } catch (e) {
             
         }
+        
+        Stuff.map.ui.Refresh();
     };
     
-    static SaveUnloaded = function(directory) {
+    self.SaveUnloaded = function(directory) {
         var new_directory = directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         var old_directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         if (!directory_exists(old_directory)) return;
@@ -232,7 +260,7 @@ function DataMap(source, directory) : SData(source) constructor {
         }
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.xx);
         buffer_write(buffer, buffer_u32, self.yy);
@@ -243,6 +271,7 @@ function DataMap(source, directory) : SData(source) constructor {
         buffer_write(buffer, buffer_u64, self.export.size);
         
         buffer_write(buffer, buffer_datatype, self.tileset);
+        buffer_write(buffer, buffer_datatype, self.water_texture);
         buffer_write(buffer, buffer_f32, self.fog_start);
         buffer_write(buffer, buffer_f32, self.fog_end);
         buffer_write(buffer, buffer_u32, self.fog_colour);
@@ -279,9 +308,12 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_u8, data.type);
             buffer_write(buffer, Stuff.data_type_meta[data.type].buffer_type, data.value);
         }
+        
+        buffer_write(buffer, buffer_datatype, self.terrain.id);
+        buffer_write(buffer, buffer_f32, self.terrain.scale);
     };
     
-    static GetFusedChunks = function(chunk_size, max_x, max_y) {
+    self.GetFusedChunks = function(chunk_size, max_x, max_y) {
         static chunk_buffer = function(records, buffer, chunk_size, max_x, max_y, buffer_name) {
             static master_chunk_class = function(coords) constructor {
                 self.coords = coords;
@@ -314,7 +346,7 @@ function DataMap(source, directory) : SData(source) constructor {
         return records;
     };
     
-    static ExportMapContents = function(buffer, index) {
+    self.ExportMapContents = function(buffer, index) {
         if (!self.contents) self.Load();
         
         self.export.index = index;
@@ -331,7 +363,7 @@ function DataMap(source, directory) : SData(source) constructor {
         #endregion
         
         #region frozen chunks
-        var chunks = self.GetFusedChunks(Game.meta.grid.chunk_size, (self.xx div Game.meta.grid.chunk_size) - 1, (self.yy div Game.meta.grid.chunk_size) - 1);
+        var chunks = self.GetFusedChunks(self.chunk_size, (self.xx div Game.meta.grid.chunk_size) - 1, (self.yy div Game.meta.grid.chunk_size) - 1);
         var keys = variable_struct_get_names(chunks);
         buffer_write(buffer, buffer_u32, array_length(keys));
         
@@ -372,14 +404,14 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_bool, chunk.raw != -1);
             if (chunk.raw != -1) {
                 buffer_write_vertex_buffer(buffer, chunk.raw);
+                vertex_delete_buffer(chunk.raw);
             }
-            vertex_delete_buffer(chunk.raw);
             
             buffer_write(buffer, buffer_bool, chunk.raw_reflected != -1);
             if (chunk.raw_reflected != -1) {
                 buffer_write_vertex_buffer(buffer, chunk.raw_reflected);
+                vertex_delete_buffer(chunk.raw_reflected);
             }
-            vertex_delete_buffer(chunk.raw_reflected);
         }
         #endregion
         
@@ -406,7 +438,7 @@ function DataMap(source, directory) : SData(source) constructor {
         wtf("   Map \"" + self.name + "\" saved to file index " + string(self.export.index) + " at address " + string(self.export.address) + " (" + string(self.export.size) + " bytes)");
     };
     
-    static SaveAsset = function(directory) {
+    self.SaveAsset = function(directory) {
         if (!self.contents) {
             self.SaveUnloaded(directory);
             return;
@@ -447,7 +479,7 @@ function DataMap(source, directory) : SData(source) constructor {
         #endregion
     };
     
-    static CreateJSONMap = function() {
+    self.CreateJSONMap = function() {
         var json = self.CreateJSONBase();
         json.xx = self.xx;
         json.yy = self.yy;
@@ -455,6 +487,7 @@ function DataMap(source, directory) : SData(source) constructor {
         json.tiled_map_id = self.tiled_map_id;
         json.on_grid = self.on_grid;
         json.tileset = self.tileset;
+        json.water_texture = self.water_texture;
         json.fog_start = self.fog_start;
         json.fog_end = self.fog_end;
         json.fog_enabled = self.fog_enabled;
@@ -477,14 +510,18 @@ function DataMap(source, directory) : SData(source) constructor {
         json.code = self.code;
         json.generic_data = self.generic_data;
         json.grid_flags = self.grid_flags;
+        json.terrain = {
+            id: self.terrain.id,
+            scale: self.terrain.scale,
+        };
         return json;
     };
     
-    static CreateJSON = function() {
+    self.CreateJSON = function() {
         return self.CreateJSONMap();
     };
     
-    static Close = function() {
+    self.Close = function() {
         if (self.contents) self.contents.Destroy();
         if (self.data_buffer) buffer_delete(self.data_buffer);
         if (self.preview) buffer_delete(self.preview);
@@ -492,10 +529,25 @@ function DataMap(source, directory) : SData(source) constructor {
         self.contents = undefined;
     };
     
-    static Destroy = function() {
+    self.Destroy = function() {
         self.Close();
         array_delete(Game.maps, array_search(Game.maps, self), 1);
     };
+    
+    #region Editor stuff
+    self.DrawWater = function(set_lights = true) {
+        if (!self.draw_water) return;
+        if (!self.contents.water) return;
+        if (!Settings.view.water) return;
+        
+        wireframe_enable(Settings.view.wireframe, 512);
+        
+        matrix_set(matrix_world, matrix_build_identity());
+        var tex = Settings.view.texture ? (self.water_texture == NULL ? -1 : sprite_get_texture(guid_get(self.water_texture).picture, 0)) : -1;
+        vertex_submit(self.contents.water, pr_trianglelist, tex);
+        wireframe_disable();
+    };
+    #endregion
     
     if (is_struct(source)) {
         self.SetSize(source.xx, source.yy, source.zz);
@@ -521,17 +573,13 @@ function DataMap(source, directory) : SData(source) constructor {
         self.discovery = source.discovery;
         self.code = source.code;
         self.generic_data = source.generic_data;
-        try {
-            self.chunk_size = source.chunk_size;
-        } catch (e) {
-            try { self.chunk_size = source.map_chunk_size; } catch (e) { }
+        self.chunk_size = source.chunk_size;
+        self.grid_flags = source.grid_flags;
+        self.lights = source.lights;
+        self.water_texture = source[$ "water_texture"] ?? NULL;
+        if (source[$ "terrain"] != undefined) {
+            self.terrain.id = source.terrain.id;
+            self.terrain.scale = source.terrain.scale;
         }
-        try {
-            self.grid_flags = source.grid_flags;
-        } catch (e) {
-            // just in case
-            self.SetSize(source.xx, source.yy, source.zz);
-        }
-        try { self.lights = source.lights; } catch (e) { }
     }
 }

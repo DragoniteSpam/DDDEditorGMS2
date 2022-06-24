@@ -1,15 +1,13 @@
 {
   "ConfigValues": {
-    "Terrain": {"option_windows_display_name":"DDD Terrain Editor","option_windows_description_info":"Deform 3D terrain","option_windows_icon":"icons/icon.ico",},
-    "particle": {"option_windows_display_name":"DDD Particle Forge","option_windows_icon":"${project_dir}\\\\options\\\\windows\\\\icons\\\\icon.ico","option_windows_description_info":"Preview GameMaker particle systems",},
+    "Terrain": {"option_windows_display_name":"DDD Editor","option_windows_description_info":"A collection of tools for use with making games","option_windows_icon":"icons/icon.ico",},
     "spart": {"option_windows_display_name":"Sparticle Editor","option_windows_description_info":"Preview Snidr's 3D Particle System",},
-    "scribble": {"option_windows_display_name":"Scribble Preview","option_windows_description_info":"Preview text effects as rendered by Scribble",},
     "doodle": {"option_windows_display_name":"DDD Doodle","option_windows_description_info":"A little drawing program, or something",},
     "mesh": {"option_windows_display_name":"DDD Mesh Converter","option_windows_icon":"${options_dir}\\\\windows\\\\mesh\\\\icons\\\\icon.ico","option_windows_description_info":"Convert and process 3D objects for use in GameMaker",},
   },
   "option_windows_display_name": "DDD Editor",
   "option_windows_executable_name": "ddd",
-  "option_windows_version": "2022.0.1.63",
+  "option_windows_version": "2022.0.3.82",
   "option_windows_company_info": "",
   "option_windows_product_info": "DDD Game Tools",
   "option_windows_copyright_info": "(c) 2018 - whatever year it is now, Michael Peng",

@@ -1,12 +1,4 @@
-/// @param UIThing
-/// @param EventNode
-/// @param data-index
-function omu_event_attain_map_data(argument0, argument1, argument2) {
-
-    var thing = argument0;
-    var event_node = argument1;
-    var data_index = argument2;
-
+function omu_event_attain_map_data(thing, event_node, data_index) {
     if (Stuff.map.active_map.data_buffer) buffer_delete(Stuff.map.active_map.data_buffer);
     Stuff.map.active_map.data_buffer = serialize_save_current_map();
 
@@ -77,7 +69,7 @@ function omu_event_attain_map_data(argument0, argument1, argument2) {
     dg.el_input_z = el_input_z;
 
     var el_direction = create_radio_array(16, yy, "Direction", ew, eh, uivc_list_event_attain_transfer_direction, custom_data_direction[0], dg);
-    create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
+    create_radio_array_options(el_direction, global.rpg_maker_directions);
     dg.el_direction = el_direction;
     yy += el_direction.GetHeight() + spacing;
 
@@ -114,3 +106,4 @@ function omu_event_attain_map_data(argument0, argument1, argument2) {
 
 
 }
+

@@ -2,7 +2,6 @@ function DataImage(source) : SData(source) constructor {
     self.texture_exclude = false;
     
     self.picture = -1;
-    self.picture_with_frames = -1;
     self.npc_frames = [];
     
     self.width = -1;
@@ -35,7 +34,7 @@ function DataImage(source) : SData(source) constructor {
         self.source_filename = source.source_filename;
     }
     
-    static LoadAsset = function(directory) {
+    self.LoadAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         if (file_exists(directory + guid + ".png")) {
@@ -43,22 +42,22 @@ function DataImage(source) : SData(source) constructor {
         } else {
             self.picture = sprite_duplicate(b_tileset_magenta);
         }
-        if (file_exists(directory + guid + "_strip" + string(self.hframes) + ".png")) {
-            self.picture_with_frames = sprite_add(directory + guid + ".png", -1, false, false, 0, 0);
-        } else {
-            self.picture_with_frames = sprite_duplicate(b_tileset_magenta);
-        }
         data_image_npc_frames(self);
     };
     
-    static SaveAsset = function(directory) {
+    self.Reload = function() {
+        if (!file_exists(self.source_filename)) return;
+        sprite_delete(self.picture);
+        self.picture = sprite_add(self.source_filename, 0, false, false, 0, 0);
+    };
+    
+    self.SaveAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         if (sprite_exists(self.picture)) sprite_save(self.picture, 0, directory + guid + ".png");
-        if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
     };
     
-    static ExportImage = function(buffer, include_image) {
+    self.ExportImage = function(buffer, include_image) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.width);
         buffer_write(buffer, buffer_u16, self.height);
@@ -77,8 +76,33 @@ function DataImage(source) : SData(source) constructor {
         buffer_write(buffer, buffer_f32, self.packed.h);
     };
     
-    static Export = function(buffer, include_image = true) {
+    self.SaveToFile = function(filename) {
+        sprite_save(self.picture, 0, filename);
+    };
+    
+    self.Export = function(buffer, include_image = true) {
         self.ExportImage(buffer, include_image);
+    };
+    
+    self.Resize = function(w, h) {
+        w = clamp(w, 1, 0x4000);
+        h = clamp(h, 1, 0x4000);
+        var surface = surface_create(w, h);
+        surface_set_target(surface);
+        draw_clear_alpha(c_black, 0);
+        gpu_set_blendmode(bm_add);
+        gpu_set_blendenable(false);
+        draw_sprite_stretched(self.picture, 0, 0, 0, w, h);
+        gpu_set_blendmode(bm_normal);
+        gpu_set_blendenable(true);
+        surface_reset_target();
+        sprite_delete(self.picture);
+        self.picture = sprite_create_from_surface(surface, 0, 0, w, h, false, false, 0, 0);
+        surface_free(surface);
+        self.width = w;
+        self.height = h;
+        self.vframes = 1;
+        self.hframes = 1;
     };
     
     // we dont have a SaveJSON here because we're literally just saving the
@@ -88,7 +112,6 @@ function DataImage(source) : SData(source) constructor {
     self.Destroy = function() {
         self.baseDestroy();
         if (self.picture) sprite_delete(self.picture);
-        if (self.picture_with_frames) sprite_delete(self.picture_with_frames);
         
         for (var i = 0; i < array_length(self.npc_frames); i++) {
             vertex_delete_buffer(self.npc_frames[i]);
@@ -107,7 +130,7 @@ function DataImageTileset(source = undefined) : DataImage(source) constructor {
         };
     }
     
-    static ExportTileset = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportImage(buffer, true);
         var w = array_length(self.image_flags);
         var h = array_length(self.image_flags[0]);
@@ -120,11 +143,7 @@ function DataImageTileset(source = undefined) : DataImage(source) constructor {
         }
     };
     
-    static Export = function(buffer) {
-        self.ExportTileset(buffer);
-    };
-    
-    static Import = function(filename) {
+    self.Import = function(filename) {
         self.name = filename_change_ext(filename_name(filename), "");
         self.source_filename = filename;
         

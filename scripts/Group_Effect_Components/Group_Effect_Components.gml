@@ -22,14 +22,25 @@ function Component(parent, source = undefined) constructor {
         return self.CreateJSONComponent();
     };
     
-    static ExportBase = function(buffer) {
+    self.ExportBase = function(buffer) {
         buffer_write(buffer, buffer_u32, self.type);
         buffer_write(buffer, buffer_string, self.script_call);
     };
 }
 
 function ComponentPointLight(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = render_effect_light_point;
+    self.Render = function() {
+        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+            var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
+            var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
+            var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
+            Stuff.graphics.DrawAxesRotation(
+                world_x, world_y, world_z, 0, 0, 0,
+                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16
+            );
+        }
+    };
+    
     self.sprite = spr_light_point;
     self.type = LightTypes.POINT;
     self.label_colour = c_blue;
@@ -39,13 +50,14 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
     self.light_radius = 255;
     
     if (is_struct(source)) {
-        self.light_colour = source.light.color;
-        self.light_radius = source.light.radius;
+        self.light_colour = source.specific.color;
+        self.light_radius = source.specific.radius;
     }
     
     static CreateJSONPointLight = function() {
         var json = self.CreateJSONComponent();
-        json.light = {
+        json.specific = {
+            type: self.type,
             color: self.light_colour,
             radius: self.light_radius,
         };
@@ -56,7 +68,7 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
         return self.CreateJSONPointLight();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_radius);
@@ -64,7 +76,18 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
 }
 
 function ComponentSpotLight(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = render_effect_light_spot;
+    self.Render = function() {
+        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+            var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
+            var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
+            var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
+            Stuff.graphics.DrawAxesRotation(
+                world_x, world_y, world_z, 0, 0, 0,
+                self.light_radius / 16, self.light_radius / 16, self.light_radius / 16
+            );
+        }
+    };
+    
     self.sprite = spr_light_point;
     self.type = LightTypes.SPOT;
     self.label_colour = c_orange;
@@ -79,18 +102,19 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
     self.light_dz = -1;
     
     if (is_struct(source)) {
-        self.light_colour = source.light.color;
-        self.light_radius = source.light.radius;
-        self.light_cutoff_outer = source.light.cutoff_outer;
-        self.light_cutoff_inner = source.light.cutoff_inner;
-        self.light_dx = source.light.dx;
-        self.light_dy = source.light.dy;
-        self.light_dz = source.light.dz;
+        self.light_colour = source.specific.color;
+        self.light_radius = source.specific.radius;
+        self.light_cutoff_outer = source.specific.cutoff_outer;
+        self.light_cutoff_inner = source.specific.cutoff_inner;
+        self.light_dx = source.specific.dx;
+        self.light_dy = source.specific.dy;
+        self.light_dz = source.specific.dz;
     }
     
     static CreateJSONSpotLight = function() {
         var json = self.CreateJSONComponent();
-        json.light = {
+        json.specific = {
+            type: self.type,
             color: self.light_colour,
             radius: self.light_radius,
             cutoff_outer: self.light_cutoff_outer,
@@ -106,20 +130,28 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
         return self.CreateJSONSpotLight();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_radius);
         buffer_write(buffer, buffer_u32, self.light_cutoff_outer);
         buffer_write(buffer, buffer_u32, self.light_cutoff_inner);
         buffer_write(buffer, buffer_f32, self.light_dx);
-        buffer_write(buffer, buffer_u32, self.light_dy);
+        buffer_write(buffer, buffer_f32, self.light_dy);
         buffer_write(buffer, buffer_f32, self.light_dz);
     };
 }
 
 function ComponentDirectionalLight(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = render_effect_light_direction;
+    self.Render = function() {
+        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+            var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
+            var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
+            var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
+            Stuff.graphics.DrawAxesRotation(world_x, world_y, world_z, 0, 0, 0, 1, 1, 1);
+        }
+    };
+    
     self.sprite = spr_light_direction;
     self.type = LightTypes.DIRECTIONAL;
     self.label_colour = c_green;
@@ -131,15 +163,16 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
     self.light_colour = c_white;
     
     if (is_struct(source)) {
-        self.light_colour = source.light.color;
-        self.light_dx = source.light.dx;
-        self.light_dy = source.light.dy;
-        self.light_dz = source.light.dz;
+        self.light_colour = source.specific.color;
+        self.light_dx = source.specific.dx;
+        self.light_dy = source.specific.dy;
+        self.light_dz = source.specific.dz;
     }
     
     static CreateJSONDirectionalLight = function() {
         var json = self.CreateJSONComponent();
-        json.light = {
+        json.specific = {
+            type: self.type,
             color: self.light_colour,
             dx: self.light_dx,
             dy: self.light_dy,
@@ -152,17 +185,17 @@ function ComponentDirectionalLight(parent, source = undefined) : Component(paren
         return self.CreateJSONDirectionalLight();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, self.light_colour);
         buffer_write(buffer, buffer_f32, self.light_dx);
-        buffer_write(buffer, buffer_u32, self.light_dy);
+        buffer_write(buffer, buffer_f32, self.light_dy);
         buffer_write(buffer, buffer_f32, self.light_dz);
     };
 }
 
 function ComponentParticle(parent, source = undefined) : Component(parent, source) constructor {
-    self.render = null;
+    self.Render = null;
     self.sprite = spr_light_direction;
     
     // specific
@@ -184,7 +217,7 @@ function ComponentParticle(parent, source = undefined) : Component(parent, sourc
         return self.CreateJSONParticle();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_datatype, self.particle_guid);
     };
@@ -213,7 +246,7 @@ function ComponentAudio(parent, source = undefined) : Component(parent, source) 
         return self.CreateJSONAudio();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_datatype, self.audio_guid);
     };

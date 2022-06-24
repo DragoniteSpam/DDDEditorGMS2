@@ -1,4 +1,6 @@
-function tileset_create(filename) {
+function tileset_create(filename, name = undefined) {
+    // these are expensive, so if you've already got the same image loaded into
+    // the editor, just return a reference to that instead
     var file_hash = "";
     if (file_exists(filename)) {
         file_hash = md5_file(filename);
@@ -13,6 +15,7 @@ function tileset_create(filename) {
     // don't instantiate these outside of this script (or the project loading script)
     var ts = new DataImageTileset();
     ts.Import(filename);
+    if (name != undefined) ts.name = name;
     array_push(Game.graphics.tilesets, ts);
     return ts;
 }

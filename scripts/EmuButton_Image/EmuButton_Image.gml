@@ -16,14 +16,19 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
         v: fa_middle,
     };
     
-    self.color_hover = EMU_COLOR_HOVER;
-    self.color_back = EMU_COLOR_BACK;
-    self.color_disabled = EMU_COLOR_DISABLED;
+    self.color_hover = function() { return EMU_COLOR_HOVER; };
+    self.color_back = function() { return EMU_COLOR_BACK; };
+    self.color_disabled = function() { return EMU_COLOR_DISABLED; };
     
     self.checker_background = false;
     
     self._surface = noone;
     self._index = index;
+    
+    static SetDisabledColor = function(f) {
+        self.color_disabled = method(self, f);
+        return self;
+    };
     
     static SetAlignment = function(h, v) {
         self.alignment = h;
@@ -34,6 +39,11 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
     static SetImageAlignment = function(h, v) {
         self.image_align.h = h;
         self.image_align.v = v;
+        return self;
+    };
+    
+    static SetAllowShrink = function(allow) {
+        self.allow_shrink = allow;
         return self;
     };
     
@@ -61,7 +71,7 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
         
         surface_set_target(_surface);
         draw_clear_alpha(c_black, 0);
-        draw_sprite_stretched_ext(sprite_nineslice, 1, 0, 0, width, height, color_back, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 1, 0, 0, width, height, self.color_back(), 1);
         if (self.checker_background) drawCheckerbox(0, 0, self.width - 1, self.height - 1);
         if (sprite_exists(sprite)) {
             // to make things easier for ourselves just assume the sprite is to
@@ -71,7 +81,15 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
                 if (self.allow_shrink) {
                     scale = min(self.width / sprite_get_width(sprite), self.height / sprite_get_height(sprite));
                 }
-                draw_sprite_ext(sprite, self._index, self.width / 2, self.height / 2, scale, scale, 0, blend, alpha);
+                var sprite_x = self.width / 2;
+                var sprite_y = self.height / 2;
+                if (self.image_align.h == fa_left) {
+                    sprite_x = 0;
+                }
+                if (self.image_align.v == fa_top) {
+                    sprite_y = 0;
+                }
+                draw_sprite_ext(sprite, self._index, sprite_x, sprite_y, scale, scale, 0, blend, alpha);
             } else {
                 var sprite_x = 0;
                 var sprite_y = 0;
@@ -89,9 +107,11 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
             }
         }
         
-        scribble_set_box_align(alignment, valignment);
-        scribble_set_wrap(width, height);
-        scribble_draw(width div 2, height div 2, text);
+        scribble(self.text)
+            .align(self.alignment, self.valignment)
+            .wrap(self.width, self.height)
+            .draw(width div 2, height div 2);
+        
         surface_reset_target();
         #endregion
         
@@ -104,9 +124,9 @@ function EmuButtonImage(x, y, w, h, sprite, index, blend, alpha, scale_to_fit, c
             callback();
         }
         
-        var back_color = getMouseHover(x1, y1, x2, y2) ? color_hover : (GetInteractive() ? color_back : color_disabled);
+        var back_color = getMouseHover(x1, y1, x2, y2) ? self.color_hover() : (self.GetInteractive() ? self.color_back() : self.color_disabled());
         draw_surface_ext(_surface, x1, y1, 1, 1, 0, back_color, 1);
-        draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, y2 - y1, color, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, y2 - y1, self.color(), 1);
     }
     
     Destroy = function() {

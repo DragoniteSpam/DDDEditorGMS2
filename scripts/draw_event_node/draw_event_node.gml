@@ -7,8 +7,6 @@ function draw_event_node(node) {
     var x2 = x1;
     var y2 = y1;
     
-    var camera = view_get_camera(view_current);
-    
     var entry_height = 4 * 16 + 32;
     var entry_offset = 16;
     var eh = 32;
@@ -28,7 +26,7 @@ function draw_event_node(node) {
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             y2 = y1 + entrypoint_height;
             
-            if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            if (node_on_screen(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(c_ev_init);
                 draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
                 draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
@@ -47,7 +45,7 @@ function draw_event_node(node) {
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             y2 = y1 + max(24 + 32 + array_length(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
-            if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            if (node_on_screen(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(c_ev_comment);
                 draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
                 draw_roundrect_colour(x1, y1, x2, y2, c_ev_comment, c_ev_comment, false);
@@ -55,7 +53,7 @@ function draw_event_node(node) {
                 draw_event_node_title(node, c);
                 
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
-                if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
+                if (mouse_within_rectangle(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
                         if (Controller.release_left && !Stuff.event.canvas_active_node) {
@@ -78,7 +76,7 @@ function draw_event_node(node) {
             // each entry won't have more than four lines
             y2 = y1 + max(24 + 32 + array_length(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
-            if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            if (node_on_screen(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(c_ev_basic);
                 draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
                 draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
@@ -94,7 +92,7 @@ function draw_event_node(node) {
                 
                 for (var i = 0; i < array_length(node.data); i++) {
                     draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
-                    if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
+                    if (mouse_within_rectangle(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                         if (!dialog_exists()) {
                             if (Controller.release_left && !Stuff.event.canvas_active_node) {
@@ -134,7 +132,7 @@ function draw_event_node(node) {
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             y2 = y1 + max(24 + 64 + (eh + rh + 1) * size + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
-            if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            if (node_on_screen(view_current, x1, y1, x2, y2)) {
                 var ncolor = c_ev_basic;
                 var c = colour_mute(ncolor);
                 draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
@@ -176,7 +174,7 @@ function draw_event_node(node) {
                     list_type[@ i] = radio.value;
                     
                     if (!dialog_exists()) {
-                        if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
+                        if (mouse_within_rectangle(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
                             draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
                             if (Controller.release_left) {
                                 switch (list_type[i]) {
@@ -199,7 +197,7 @@ function draw_event_node(node) {
                             var index = list_index[i];
                             if (index > -1) {
                                 var switch_data = Game.vars.switches[index];
-                                str = "Switch " + switch_data.name + " is " + Stuff.on_off[list_value[i]];
+                                str = "Switch " + switch_data.name + " is " + (list_value[i] ? "On" : "Off");
                             } else {
                                 str = "Switch data not set";
                             }
@@ -216,7 +214,7 @@ function draw_event_node(node) {
                         case ConditionBasicTypes.SELF_SWITCH:
                             var index = list_index[i];
                             if (index > -1) {
-                                str = "Self switch " + chr(ord("A") + index) + " is " + Stuff.on_off[list_value[i]];
+                                str = "Self switch " + chr(ord("A") + index) + " is " + (list_value[i] ? "On" : "Off");
                             } else {
                                 str = "Self switch data not set";
                             }
@@ -260,7 +258,7 @@ function draw_event_node(node) {
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             y2 = y1 + max(24 + 32 + eh * (size + 1) + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
-            if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            if (node_on_screen(view_current, x1, y1, x2, y2)) {
                 var ncolor = c_ev_basic;
                 var c = colour_mute(ncolor);
                 draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
@@ -284,7 +282,7 @@ function draw_event_node(node) {
                     
                     var text = node.data[i];
                     
-                    if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
+                    if (mouse_within_rectangle(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                         if (!dialog_exists()) {
                             if (Controller.release_left && !Stuff.event.canvas_active_node) {
@@ -353,7 +351,7 @@ function draw_event_node(node) {
                 }
             }
             
-            if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            if (node_on_screen(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(ncolor);
                 draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
                 draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
@@ -407,7 +405,7 @@ function draw_event_node(node) {
                     
                     draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                     if (!dialog_exists()) {
-                        if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
+                        if (mouse_within_rectangle(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                             draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                             if (Controller.release_left && !Stuff.event.canvas_active_node) {
                                 var attainment = type.data_attainment;
@@ -547,7 +545,7 @@ function draw_event_node(node) {
                                 break;
                             case DataTypes.BOOL:
                                 message = message + "(boolean): ";
-                                output_string = Stuff.tf[custom_data_list[0]];
+                                output_string = (custom_data_list[0] ? "True" : "False");
                                 break;
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
@@ -850,7 +848,7 @@ function draw_event_node(node) {
                 var contacted_node = undefined;
                 for (var i = 0; i < array_length(Stuff.event.active.nodes); i++) {
                     var test = Stuff.event.active.nodes[i];
-                    if (mouse_within_rectangle_adjusted(test.x, test.y, test.x + EVENT_NODE_CONTACT_WIDTH, test.y + EVENT_NODE_CONTACT_HEIGHT)) {
+                    if (mouse_within_rectangle(test.x, test.y, test.x + EVENT_NODE_CONTACT_WIDTH, test.y + EVENT_NODE_CONTACT_HEIGHT)) {
                         contacted_node = test;
                         break;
                     }

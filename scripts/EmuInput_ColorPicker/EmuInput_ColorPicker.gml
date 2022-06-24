@@ -14,14 +14,19 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
     self._value_x2 = self.width;
     self._value_y2 = self.height;
     
-    self.color_back = EMU_COLOR_BACK;
+    self.color_back = function() { return EMU_COLOR_BACK; };
     
-    SetAlphaUsed = function(_alpha_used) {
+    self.SetActiveShade = function(value) {
+        self.active_shade = value;
+        return self;
+    };
+    
+    self.SetAlphaUsed = function(_alpha_used) {
         _allow_alpha = _alpha_used;
         return self;
     }
     
-    SetInputBoxPosition = function(_vx1, _vy1, _vx2, _vy2) {
+    self.SetInputBoxPosition = function(_vx1, _vy1, _vx2, _vy2) {
         _value_x1 = _vx1;
         _value_y1 = _vy1;
         _value_x2 = _vx2;
@@ -48,14 +53,15 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
         var tx = getTextX(x1);
         var ty = getTextY(y1);
         
-        scribble_set_box_align(fa_left, fa_middle);
-        scribble_set_wrap(width, height);
-        scribble_draw(tx, ty, text);
+        scribble(self.text)
+            .align(fa_left, fa_middle)
+            .wrap(self.width, self.height)
+            .draw(tx, ty);
         
-        draw_sprite_stretched_ext(sprite_nineslice, 1, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, color_back, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 1, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, self.color_back(), 1);
         drawCheckerbox(vx1 + 2, vy1 + 2, (vx2 - vx1) - 4, (vy2 - vy1) - 4);
         draw_sprite_stretched_ext(sprite_nineslice, 1, vx1 + 2, vy1 + 2, vx2 - vx1 - 2, vy2 - vy1 - 2, value, _allow_alpha ? (((value & 0xff000000) >> 24) / 0xff) : 1);
-        draw_sprite_stretched_ext(sprite_nineslice, 0, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, color, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 0, vx1 + 1, vy1 + 1, vx2 - vx1 - 1, vy2 - vy1 - 1, self.color(), 1);
         
         if (GetInteractive()) {
             if (getMouseHover(vx1, vy1, vx2, vy2)) {
@@ -63,6 +69,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                     Activate();
                     var dialog = new EmuDialog(480, 400, "Pick a color");
                     dialog.base_color_element = self;
+                    dialog.active_shade = self.active_shade;
                     
                     var ew = 256;
                     var eh = 32;
@@ -142,6 +149,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             var x2 = x1 + width;
                             var y2 = y1 + height;
                             var buckets = all_colors ? 255 : 8;
+                            var cc = self.color();
                             
                             var color_initial = value;
                             var alpha_initial = alpha;
@@ -205,7 +213,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             shader_set_uniform_f(shader_get_uniform(shd_emu_color_buckets, "buckets"), buckets);
                             draw_rectangle_colour(vx1, vy1, vx2, vy2, c1, c2, c3, c4, false);
                             shader_reset();
-                            draw_rectangle_colour(vx1, vy1, vx2, vy2, color, color, color, color, true);
+                            draw_rectangle_colour(vx1, vy1, vx2, vy2, cc, cc, cc, cc, true);
 
                             gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color);
                             var chx = vx1 + axis_w * w;
@@ -259,15 +267,15 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             draw_set_alpha(alpha);
                             draw_rectangle_colour(vx1, vy1, vx2, vy2, value, value, value, value, false);
                             draw_set_alpha(1);
-                            draw_rectangle_colour(vx1, vy1, vx2, vy2, color, color, color, color, true);
+                            draw_rectangle_colour(vx1, vy1, vx2, vy2, cc, cc, cc, cc, true);
                             #endregion
                             
                             #region alpha
-                            if (_allow_alpha) {
-                                vx1 = x1 + alpha_x;
-                                vy1 = y1 + alpha_y;
-                                vx2 = vx1 + _main_size;
-                                vy2 = vy1 + _alpha_height;
+                            if (self._allow_alpha) {
+                                vx1 = x1 + self.alpha_x;
+                                vy1 = y1 + self.alpha_y;
+                                vx2 = vx1 + self._main_size;
+                                vy2 = vy1 + self._alpha_height;
                                 var w = vx2 - vx1;
                                 var h = vy2 - vy1;
                                 
@@ -282,7 +290,9 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                                     _selecting_alpha = getMouseHold(0, 0, window_get_width(), window_get_height());
                                 }
                                 
-                                scribble_draw(getTextX(x + base_x), floor(mean(vy1, vy2)), "A:");
+                                scribble("A:")
+                                    .draw(getTextX(x + base_x), floor(mean(vy1, vy2)));
+                                
                                 drawCheckerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 0.4, 0.4);
                                 draw_primitive_begin(pr_trianglelist);
                                 draw_vertex_colour(vx1, vy1, value, 0);

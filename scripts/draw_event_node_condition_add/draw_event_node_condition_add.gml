@@ -10,7 +10,7 @@ function draw_event_node_condition_add(argument0, argument1, argument2) {
     draw_sprite(spr_plus_minus, 0, xx, yy);
 
     var tolerance = 8;
-    if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+    if (mouse_within_rectangle(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
         draw_sprite(spr_plus_minus, 1, xx, yy);
         draw_tooltip(xx, yy + 16, "Add Data");
         if (Controller.release_left) {

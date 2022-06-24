@@ -1,5 +1,5 @@
 function project_load(id) {
-    var t0 = get_timer();
+    debug_timer_start();
     
     #region helper functions
     static project_load_data = function(filename) {
@@ -11,7 +11,7 @@ function project_load(id) {
             array_push(Game.data, new DataClass(data[i]));
         }
         
-        if (Stuff.data.ui) Stuff.data.ui.el_master.entries = Game.data;
+        Stuff.data.ui.Refresh();
     };
     
     static project_load_global = function(filename) {
@@ -27,9 +27,10 @@ function project_load(id) {
             if (!is_numeric(Game.meta.export.locations[i])) Game.meta.export.locations[i] = 0;
         }
         
-        Game.meta.export[$ "vertex_format"] ??= DEFAULT_VERTEX_FORMAT;
+        Game.meta.export[$ "vertex_format"] ??= VertexFormatData.STANDARD;
         Game.meta.export[$ "flags"] ??= 0;
         Game.vars[$ "effect_markers"] ??= 0;
+        Game.meta.extra[$ "mesh_use_independent_bounds_default"] ??= false;
     };
     
     static project_load_images = function(filename, directory) {
@@ -109,11 +110,20 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var meshes = json.meshes;
+        var terrain = json[$ "terrain"];
         
         for (var i = 0; i < array_length(meshes); i++) {
             var mesh = new DataMesh(meshes[i]);
             mesh.LoadAsset(directory);
             array_push(Game.meshes, mesh);
+        }
+        
+        if (terrain != undefined) {
+            for (var i = 0; i < array_length(terrain); i++) {
+                var mesh = new DataMesh(terrain[i]);
+                mesh.LoadAsset(directory);
+                array_push(Game.mesh_terrain, mesh);
+            }
         }
     };
     
@@ -163,6 +173,8 @@ function project_load(id) {
         var custom = json.custom;
         var prefabs = json.prefabs;
         
+        array_resize(Game.events.events, 0);
+        
         for (var i = 0; i < array_length(custom); i++) {
             array_push(Game.events.custom, new DataEventNodeCustom(custom[i]));
         }
@@ -179,6 +191,7 @@ function project_load(id) {
         var version = json.version;
         var maps = json.maps;
         
+        array_resize(Game.maps, 0);
         for (var i = 0; i < array_length(maps); i++) {
             array_push(Game.maps, new DataMap(maps[i], directory));
         }
@@ -231,8 +244,10 @@ function project_load(id) {
     try {
         Game.maps[0].Load();
     } catch (e) {
-        show_debug_message("Error loading primary map (is there one?)");
+        show_debug_message("Error loading primary map (is there one?): " + e.message);
     }
     
-    wtf("Loading took " + string((get_timer() - t0) / 1000) + " ms");
+    Stuff.mesh.ui.Refresh();
+    
+    Stuff.AddStatusMessage("Loading project \"" + Stuff.save_name + "\" took " + debug_timer_finish());
 }

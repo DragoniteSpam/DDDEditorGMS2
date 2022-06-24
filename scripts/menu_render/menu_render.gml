@@ -15,7 +15,7 @@ function menu_render(menu, x1, y1) {
     if (!menu.invisible) {
         // click on the header
         if (mouse_within_rectangle(x1, y1, x2, y2)) {
-            draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
+            draw_rectangle_colour(x1, y1, x2, y2, EMU_COLOR_HOVER, EMU_COLOR_HOVER, EMU_COLOR_HOVER, EMU_COLOR_HOVER, false);
             if (!dialog_exists() && Controller.press_left) {
                 Controller.press_left = false;
                 menu_activate(menu);
@@ -26,11 +26,11 @@ function menu_render(menu, x1, y1) {
     }
     
     if (menu_is_active(menu)) {
-        var separation = 16;
+        var separation = 20;
         var ww = separation * 2;
         for (var i = 0; i < ds_list_size(menu.contents); i++) {
             var ew = string_width(string(menu.contents[| i].text));
-            if (menu.contents[| i].expandable) ew = ew + 16;
+            if (menu.contents[| i].expandable) ew += separation;
             ww = max(ww, ew + separation * 2);
         }
         // todo limit hh and add a scroll bar if it flows offscreen
@@ -44,7 +44,7 @@ function menu_render(menu, x1, y1) {
             yy = CH - hh;
         }
         
-        draw_rectangle_colour(xx, yy, xx + ww, yy + hh, c_white, c_white, c_white, c_white, false);
+        draw_rectangle_colour(xx, yy, xx + ww, yy + hh, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
         
         for (var i = 0; i < ds_list_size(menu.contents); i++) {
             var thing = menu.contents[| i];
@@ -61,8 +61,8 @@ function menu_render(menu, x1, y1) {
             }
         }
         
-        draw_line_colour(xx, yy, xx, yy + hh, c_black, c_black);
-        draw_line_colour(xx + ww, yy, xx + ww, yy + hh, c_black, c_black);
-        draw_line_colour(xx, yy + hh, xx + ww, yy + hh, c_black, c_black);
+        draw_line_colour(xx, yy, xx, yy + hh, EMU_COLOR_DEFAULT, EMU_COLOR_DEFAULT);
+        draw_line_colour(xx + ww, yy, xx + ww, yy + hh, EMU_COLOR_DEFAULT, EMU_COLOR_DEFAULT);
+        draw_line_colour(xx, yy + hh, xx + ww, yy + hh, EMU_COLOR_DEFAULT, EMU_COLOR_DEFAULT);
     }
 }

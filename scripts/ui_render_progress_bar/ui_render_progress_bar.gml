@@ -29,7 +29,7 @@ function ui_render_progress_bar(argument0, argument1, argument2) {
     draw_sprite(spr_slider, 0, bar_x, mid_yy);
 
     if (bar.interactive && dialog_is_active(bar.root)) {
-        var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, bar.adjust_view);
+        var inbounds = mouse_within_rectangle(x1, y1, x2, y2);
     
         if (inbounds) {
             if (Controller.press_left) {
@@ -39,7 +39,7 @@ function ui_render_progress_bar(argument0, argument1, argument2) {
         }
     
         if (Controller.mouse_left && bar.clicked) {
-            bar.value = clamp((mouse_x_view - x1) / (x2 - x1), 0, 1);
+            bar.value = clamp((mouse_x - x1) / (x2 - x1), 0, 1);
             ui_activate(bar);
             bar.onvaluechange(bar);
         } else {

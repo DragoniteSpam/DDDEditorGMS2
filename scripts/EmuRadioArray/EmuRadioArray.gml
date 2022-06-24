@@ -51,9 +51,10 @@ function EmuRadioArray(x, y, w, h, text, value, callback) : EmuCallback(x, y, w,
             ShowTooltip();
         }
         
-        scribble_set_wrap(width, height);
-        scribble_set_box_align(fa_left, fa_middle);
-        scribble_draw(tx, ty, text);
+        scribble(self.text)
+            .wrap(self.width, self.height)
+            .align(fa_left, fa_middle)
+            .draw(tx, ty);
         
         renderContents(x1, y1);
     }
@@ -62,8 +63,8 @@ function EmuRadioArray(x, y, w, h, text, value, callback) : EmuCallback(x, y, w,
         self.text = text;
         self.value = value;
         
-        self.color_active = EMU_COLOR_RADIO_ACTIVE;
-        self.color_back = EMU_COLOR_BACK;
+        self.color_active = function() { return EMU_COLOR_RADIO_ACTIVE; };
+        self.color_back = function() { return EMU_COLOR_BACK; };
         
         self.sprite_radio = spr_emu_radio;
         
@@ -87,20 +88,21 @@ function EmuRadioArray(x, y, w, h, text, value, callback) : EmuCallback(x, y, w,
                 root.callback();
             }
             
-            draw_sprite_ext(sprite_radio, 2, tx + offset, ty, 1, 1, 0, color_back, 1);
-            draw_sprite_ext(sprite_radio, 1, tx + offset, ty, 1, 1, 0, color, 1);
-            draw_sprite_ext(sprite_radio, 0, tx + offset, ty, 1, 1, 0, color, 1);
+            draw_sprite_ext(sprite_radio, 2, tx + offset, ty, 1, 1, 0, self.color_back(), 1);
+            draw_sprite_ext(sprite_radio, 1, tx + offset, ty, 1, 1, 0, self.color(), 1);
+            draw_sprite_ext(sprite_radio, 0, tx + offset, ty, 1, 1, 0, self.color(), 1);
             if (value == root.value) {
-                draw_sprite_ext(sprite_radio, 3, tx + offset, ty, 1, 1, 0, color_active, GetInteractive());
+                draw_sprite_ext(sprite_radio, 3, tx + offset, ty, 1, 1, 0, self.color_active(), GetInteractive());
             }
             
-            scribble_set_box_align(fa_left, fa_center);
-            scribble_set_wrap(width, height);
-            scribble_draw(tx + offset + sprite_get_width(sprite_radio), ty, text);
+            scribble(self.text)
+                .align(fa_left, fa_center)
+                .wrap(self.width, self.height)
+                .draw(tx + self.offset + sprite_get_width(self.sprite_radio), ty);
         }
         
         GetInteractive = function() {
-            return enabled && interactive && root.interactive && root.isActiveDialog();
+            return enabled && interactive && root.interactive && root.isActiveDialog() && (!self.root.root || self.root.root.contents_interactive);
         }
     }
 }

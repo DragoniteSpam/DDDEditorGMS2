@@ -18,8 +18,8 @@ function batch_again(batch = undefined) {
     if (ds_list_size(list_instances) > 0) {
         batch.vertex = vertex_create_buffer();
         batch.reflect_vertex = vertex_create_buffer();
-        vertex_begin(batch.vertex, Stuff.graphics.vertex_format);
-        vertex_begin(batch.reflect_vertex, Stuff.graphics.vertex_format);
+        vertex_begin(batch.vertex, Stuff.graphics.format);
+        vertex_begin(batch.reflect_vertex, Stuff.graphics.format);
         
         for (var i = 0; i < ds_list_size(list_instances); i++) {
             list_instances[| i].batch(batch.vertex, batch.reflect_vertex, list_instances[| i]);

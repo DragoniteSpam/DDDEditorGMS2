@@ -13,7 +13,7 @@
   "bbox_bottom": 255,
   "HTile": false,
   "VTile": false,
-  "For3D": false,
+  "For3D": true,
   "width": 256,
   "height": 256,
   "textureGroupId": {
@@ -27,6 +27,12 @@
     {"compositeImage":{"FrameId":{"name":"444ed23c-9497-42bc-81ae-8b013595ea97","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"444ed23c-9497-42bc-81ae-8b013595ea97","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"LayerId":{"name":"f7117528-7ee9-46f1-a4f1-22da137098fa","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_terrain_gen_drago","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","name":"444ed23c-9497-42bc-81ae-8b013595ea97","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"8ea39d15-866f-4ac1-bd73-a6bf97dfc688","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"8ea39d15-866f-4ac1-bd73-a6bf97dfc688","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"LayerId":{"name":"f7117528-7ee9-46f1-a4f1-22da137098fa","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_terrain_gen_drago","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","name":"8ea39d15-866f-4ac1-bd73-a6bf97dfc688","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"873706d2-4d6a-4298-aa29-c936c85668c8","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"873706d2-4d6a-4298-aa29-c936c85668c8","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"LayerId":{"name":"f7117528-7ee9-46f1-a4f1-22da137098fa","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_terrain_gen_drago","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","name":"873706d2-4d6a-4298-aa29-c936c85668c8","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_terrain_gen_drago","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},
@@ -36,12 +42,14 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 3.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"21582f36-9f02-4911-8425-f9a83936275d","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"444ed23c-9497-42bc-81ae-8b013595ea97","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"90ec5674-58de-470c-9e00-4ad3bbf7ca9e","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"8ea39d15-866f-4ac1-bd73-a6bf97dfc688","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"4855ea0a-04fb-4859-8a01-25a990776ee9","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"873706d2-4d6a-4298-aa29-c936c85668c8","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -59,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_drago","path":"sprites/spr_terrain_gen_drago/spr_terrain_gen_drago.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_drago",
     "tags": [],
     "resourceType": "GMSequence",

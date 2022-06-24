@@ -15,7 +15,7 @@ function ui_render_surface_control_mesh_collision(argument0, argument1, argument
     var translation_rate = 1;
     var scale_rate = 1.01;
 
-    if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
+    if (mouse_within_rectangle(x1, y1, x2, y2)) {
         // this is the same set of controls as in control_3d_preview
         if (keyboard_check(vk_shift)) {
             if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {

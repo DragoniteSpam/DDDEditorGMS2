@@ -1,140 +1,141 @@
 #extension GL_OES_standard_derivatives : enable
 
-varying vec3 v_vWorldPosition;
+varying float v_FragDistance;
+varying vec4 v_WorldPosition;
+varying vec3 v_Barycentric;
+varying vec2 v_Texcoord;
 
-uniform vec2 terrainSize;
-uniform vec2 mouse;
-uniform float mouseRadius;
+uniform vec3 u_LightAmbientColor;
+uniform vec4 u_LightDirection;
+uniform vec4 u_LightDirectionSecondary;
+uniform sampler2D s_ShadingGradient;
 
-uniform sampler2D texColor;
-const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
-
-#pragma include("lighting.f.xsh")
-/// https://github.com/GameMakerDiscord/Xpanda
-
-#define MAX_LIGHTS 8
-#define LIGHT_DIRECTIONAL 1.
-#define LIGHT_POINT 2.
-#define LIGHT_SPOT 3.
-
-varying vec3 v_LightWorldPosition;
-
-uniform vec3 lightAmbientColor;
-uniform vec4 lightData[MAX_LIGHTS * 3];
-uniform vec3 lightDayTimeColor;
-uniform vec3 lightWeatherColor;
-
-void CommonLightEvaluate(int i, inout vec4 finalColor, in vec3 normal);
-void CommonLight(inout vec4 baseColor);
-
-void CommonLight(inout vec4 baseColor) {
-    vec3 normal = cross(dFdx(v_LightWorldPosition), dFdy(v_LightWorldPosition));
-    normal = normalize(normal * sign(normal.z));
-    
-    vec4 lightColor = vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1);
-    
-    CommonLightEvaluate(0, lightColor, normal);
-    CommonLightEvaluate(1, lightColor, normal);
-    CommonLightEvaluate(2, lightColor, normal);
-    CommonLightEvaluate(3, lightColor, normal);
-    CommonLightEvaluate(4, lightColor, normal);
-    CommonLightEvaluate(5, lightColor, normal);
-    CommonLightEvaluate(6, lightColor, normal);
-    CommonLightEvaluate(7, lightColor, normal);
-    
-    baseColor *= clamp(lightColor, vec4(0), vec4(1));
-}
-
-void CommonLightEvaluate(int i, inout vec4 finalColor, in vec3 normal) {
-    vec3 lightPosition = lightData[i * 3].xyz;
-    float type = lightData[i * 3].w;
-    vec4 lightExt = lightData[i * 3 + 1];
-    vec4 lightColor = lightData[i * 3 + 2];
-    
-    if (type == LIGHT_DIRECTIONAL) {
-        // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
-        vec3 lightDir = -normalize(lightPosition);
-        finalColor += lightColor * max(dot(normal, lightDir), 0.0);
-    } else if (type == LIGHT_POINT) {
-        float range = lightExt.w;
-        // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
-        vec3 lightDir = v_LightWorldPosition - lightPosition;
-        float dist = length(lightDir);
-        float att = pow(clamp((1.0 - dist * dist / (range * range)), 0.0, 1.0), 2.0);
-        lightDir = normalize(lightDir);
-        finalColor += lightColor * max(0.0, -dot(normal, lightDir)) * att;
-    } else if (type == LIGHT_SPOT) {
-        // spot light: [x, y, z, type], [dx, dy, dz, range], [r, g, b, cutoff]
-        float range = lightExt.w;
-        vec3 sourceDir = normalize(lightExt.xyz);
-        float cutoff = lightColor.w;
-        
-        vec3 lightDir = v_LightWorldPosition - lightPosition;
-        float dist = length(lightDir);
-        lightDir = normalize(lightDir);
-        
-        float lightAngleDifference = max(dot(lightDir, sourceDir), 0.0);
-        // this is very much hard-coding the cutoff radius but i dont really feel
-        // like adding more shader attributes now
-        float epsilon = (cos(acos(cutoff) * 0.75) - cutoff);
-        float f = clamp((lightAngleDifference - cutoff) / epsilon, 0.0, 1.0);
-        float att = f * pow(clamp((1. - dist * dist / (range * range)), 0., 1.0), 2.0);
-        
-        finalColor += att * lightColor * max(0.0, -dot(normal, lightDir));
-    }
-}
-// include("lighting.f.xsh")
-#pragma include("fog.f.xsh")
-/// https://github.com/GameMakerDiscord/Xpanda
-
-varying vec3 v_FogCameraRelativePosition;
-
-uniform float fogStrength;
-uniform float fogStart;
-uniform float fogEnd;
-uniform vec3 fogColor;
-
-void CommonFog(inout vec4 baseColor);
+uniform float u_FogStrength;
+uniform float u_FogStart;
+uniform float u_FogEnd;
+uniform vec3 u_FogColor;
 
 void CommonFog(inout vec4 baseColor) {
-    float dist = length(v_FogCameraRelativePosition);
-    float f = clamp((dist - fogStart) / (fogEnd - fogStart) * fogStrength, 0.0, 1.0);
-    baseColor.rgb = mix(baseColor.rgb, fogColor, f);
+    float f = clamp((v_FragDistance - u_FogStart) / (u_FogEnd - u_FogStart) * u_FogStrength, 0.0, 1.0);
+    baseColor.rgb = mix(baseColor.rgb, u_FogColor, f);
 }
-// include("fog.f.xsh")
 
-uniform vec3 u_WireColor;
+uniform vec3 u_WaterLevels;             // end, start, strength
+uniform vec3 u_WaterColor;
+
+void WaterFog(inout vec4 baseColor) {
+    float dist_to_camera = min(v_FragDistance, 4.0);                            // ensure that there will always be a little visibility if you're right in front of something
+    float dist_below = u_WaterLevels.y - v_WorldPosition.z;
+    float fdepth = clamp(dist_below * dist_to_camera / (u_WaterLevels.y - u_WaterLevels.x), 0.0, 1.0) * u_WaterLevels.z;
+    float fdistance = clamp(sign(dist_below) * v_FragDistance / 2048.0, 0.0, 1.0) * u_WaterLevels.z;
+    baseColor.rgb = mix(baseColor.rgb, u_WaterColor, max(fdepth, fdistance));
+}
+
+uniform sampler2D u_TexLookup;
+uniform sampler2D u_TexColor;
+
+uniform vec2 u_TerrainSizeF;
+
+#define DATA_DIFFUSE                0.0
+#define DATA_POSITION               1.0
+#define DATA_NORMAL                 2.0
+#define DATA_HEIGHT                 3.0
+#define DATA_BARYCENTRIC            4.0
+
+uniform float u_OptViewData;
+
+uniform sampler2D s_DepthTexture;
+uniform float u_LightShadows;
+
+varying float v_LightDistance;
+varying vec2 v_ShadowTexcoord;
+
+const vec3 UNDO = vec3(1.0, 256.0, 65536.0) / 16777215.0 * 255.0;
+float fromDepthColor(vec4 color) {
+    return dot(color.rgb, UNDO) + color.a;
+}
+
+#region Cursor
+const vec3 CURSOR_COLOR = vec3(0.6, 0, 0);
+
+uniform vec4 u_Mouse;           // x, y, radius, strength
+uniform sampler2D u_CursorTexture;
+
+void DrawCursor(inout vec3 base, vec2 position) {
+    vec2 cursorStart = u_Mouse.xy - u_Mouse.z;
+    vec2 cursorEnd = u_Mouse.xy + u_Mouse.z;
+    vec2 cursorUVSource = (position - cursorStart) / (cursorEnd - cursorStart);
+    vec2 cursorUV = clamp((position - cursorStart) / (cursorEnd - cursorStart), vec2(0), vec2(1));
+    vec4 cursorSample = texture2D(u_CursorTexture, cursorUV);
+    float cursorDiff = 1.0 - min(ceil(distance(cursorUV, cursorUVSource)), 1.0);
+    base = mix(base, CURSOR_COLOR, cursorSample.r * cursorSample.a * u_Mouse.w * cursorDiff);
+}
+#endregion
+
+#region Wireframe
 uniform float u_WireThickness;
-varying vec4 v_barycentric;
+uniform float u_WireDistance;
+uniform vec3 u_WireColor;
+uniform float u_WireAlpha;
 
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
     return min(min(a3.x, a3.y), a3.z);
 }
 
-uniform vec3 u_WaterLevels;             // start, end, strength
-uniform vec3 u_WaterColor;
-
-void waterFog(inout vec4 baseColor) {
-    float dist_to_camera = min(v_barycentric.w, 1.0);
-    float dist_below = u_WaterLevels.y - v_vWorldPosition.z;
-    float f = clamp(dist_below * dist_to_camera * u_WaterLevels.z / (u_WaterLevels.y - u_WaterLevels.x), 0.0, 1.0);
-    baseColor.rgb = mix(baseColor.rgb, u_WaterColor, f);
+void DrawWireframe(inout vec4 color) {
+    float factor = (1.0 - wireEdgeFactor(v_Barycentric, u_WireThickness)) / (v_FragDistance / u_WireDistance);
+    color.rgb = mix(color.rgb, u_WireColor, u_WireAlpha * factor);
+    color.a = mix(color.a, 1.0, u_WireAlpha * factor * 4.0);
 }
+#endregion
 
 void main() {
-    vec4 color = vec4(texture2D(texColor, v_vWorldPosition.xy / terrainSize).rgb, 1) * texture2D(gm_BaseTexture, v_vWorldPosition.xy / terrainSize);
+    vec3 normal = normalize(cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz)));
+    float NdotL = clamp(dot(normal, u_LightDirection.xyz) * u_LightDirection.w, 0.0, 1.0);
+    NdotL = texture2D(s_ShadingGradient, vec2(NdotL, 0)).r;
+    float NdotLSecondary = clamp(dot(normal, u_LightDirectionSecondary.xyz) * u_LightDirectionSecondary.w, 0.0, 1.0);
     
-    CommonLight(color);
-    CommonFog(color);
-    waterFog(color);
+    if (u_OptViewData == DATA_DIFFUSE) {
+        vec2 worldTextureUV = v_WorldPosition.xy / u_TerrainSizeF;
+        vec4 textureSamplerUV = texture2D(u_TexLookup, worldTextureUV);
+        vec4 sampled = texture2D(gm_BaseTexture, textureSamplerUV.rg + v_Texcoord);
+        vec4 color = vec4(texture2D(u_TexColor, worldTextureUV).rgb, 1) * sampled;
+        
+        vec3 accumulatedColor = u_LightAmbientColor + (max(0.0, NdotL) + max(0.0, NdotLSecondary));
+        color.rgb *= accumulatedColor;
+        
+        CommonFog(color);
+        WaterFog(color);
+        
+        gl_FragColor = color;
+    } else if (u_OptViewData == DATA_POSITION) {
+        gl_FragColor = vec4(v_WorldPosition.xyz / vec3(u_TerrainSizeF, 256), 1);
+    } else if (u_OptViewData == DATA_NORMAL) {
+        vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
+        normal = normalize(normal * sign(normal.z));
+        gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
+    } else if (u_OptViewData == DATA_HEIGHT) {
+        float max_height = 256.0;
+        float fd = max(min(v_WorldPosition.z / max_height, 1.0), 0.0);
+        gl_FragColor = vec4(fd, fd, fd, 1);
+    } else if (u_OptViewData == DATA_BARYCENTRIC) {
+        gl_FragColor = vec4(v_Barycentric, 1);
+    } else {
+        gl_FragColor = vec4(1);
+    }
     
-    float r = mouseRadius;
-    float dist = length(v_vWorldPosition.xy - mouse);
-    float strength = clamp(-2.0 / (r * r) * (dist + r) * (dist - r), 0.0, 1.0);
-    color = mix(color, cursorColor, strength);
+    /*if (u_LightShadows == 1.0) {
+        float depthValue = fromDepthColor(texture2D(s_DepthTexture, v_ShadowTexcoord));
+        float depth_bias = 0.005 * tan(acos(NdotL));
+        if (v_LightDistance > depthValue + depth_bias) {
+            gl_FragColor.rgb *= u_LightAmbientColor;
+        }
+    }*/
     
-    color.rgb = mix(color.rgb, u_WireColor, (1.0 - wireEdgeFactor(v_barycentric.xyz, u_WireThickness)) / v_barycentric.w);
+    DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
     
-    gl_FragColor = color;
+    if (u_WireAlpha > 0.0) {
+        DrawWireframe(gl_FragColor);
+    }
 }

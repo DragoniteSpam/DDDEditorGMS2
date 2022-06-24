@@ -28,9 +28,9 @@ function DataFile(name, compressed, critical) constructor {
     names[$ name] = self;
 }
 
-function DataValue(name) constructor {
+function DataValue(name, value = 0) constructor {
     self.name = name;
     self.type = DataTypes.INT;
     self.type_guid = NULL;
-    self.value = 0;
+    self.value = value;
 }

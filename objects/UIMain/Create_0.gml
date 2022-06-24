@@ -11,11 +11,9 @@ tabs = ds_list_create();
 active_tab = noone;
 
 GetLegalWidth = function() {
-    var camera = view_get_camera(view_hud);
-    return camera_get_view_width(camera) - 64;
+    return window_get_width() - 64;
 };
 
 GetLegalHeight = function() {
-    var camera = view_get_camera(view_hud);
-    return camera_get_view_height(camera) - self.home_row_y - 32;
+    return window_get_width() - self.home_row_y - 32;
 };

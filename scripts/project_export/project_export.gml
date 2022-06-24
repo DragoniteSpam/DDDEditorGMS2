@@ -21,6 +21,7 @@ function project_export() {
             // sign the first one
             buffer_write(buffer, buffer_string, Game.meta.project.author);
             buffer_write(buffer, buffer_string, Game.meta.project.summary);
+            buffer_write(buffer, buffer_flag, Game.meta.export.flags);
             // minus one because index zero is assumed to be the master file
             buffer_write(buffer, buffer_u8, array_length(Game.meta.export.files) - 1);
             // start at 1 because we kinda already know to load the main data file
@@ -31,7 +32,6 @@ function project_export() {
                     asset_file.critical
                 ));
             }
-            buffer_write(buffer, buffer_flag, Game.meta.export.flags);
         };
         
         var game_data_save_scripts = array_create(GameDataCategories.__COUNT);
@@ -48,7 +48,7 @@ function project_export() {
         var fn = get_save_filename_dddd(Stuff.save_name);
         
         if (string_length(fn) > 0) {
-            var t0 = get_timer();
+            debug_timer_start();
             
             var save_directory = filename_path(fn);
             var buffers = array_create(array_length(Game.meta.export.files));
@@ -56,7 +56,7 @@ function project_export() {
             var map_index = 0;
             var map_file_prefix = save_directory + filename_change_ext(filename_name(fn), "");
             var map_buffer = buffer_create(0x10000, buffer_grow, 1);
-            for (var i = 0; i < array_length(Game.maps); i++) {
+            for (var i = 0, n = array_length(Game.maps); i < n; i++) {
                 Game.maps[i].ExportMapContents(map_buffer, map_index);
                 if (buffer_tell(map_buffer) > 0x80000000) {                     // 2 GB map file size limit
                     buffer_save_ext(map_buffer, map_file_prefix + string(map_index++) + EXPORT_EXTENSION_MAP, 0, buffer_tell(map_buffer));
@@ -105,7 +105,7 @@ function project_export() {
                 buffer_delete(buffer);
             }
             
-            wtf("Export took " + string((get_timer() - t0) / 1000) + " ms");
+            Stuff.AddStatusMessage("Exporting project \"" + Stuff.save_name + "\" took " + debug_timer_finish());
         }
         
         #macro LAST_SAFE_VERSION DataVersions.V2
@@ -118,38 +118,36 @@ function project_export() {
     switch (Settings.hide_warnings[$ warn_untranslated_strings]) {
         case undefined:
             if (untranslated) {
-                var dw = 560;
-                var dh = 320;
-                var b_width = 128;
-                var b_height = 32;
-                // IF/WHEN YOU EVER CONVERT THIS TO EMU make sure you also copy the reference to the export function
-                var dg = dialog_create(dw, dh, "Hey!", dialog_default, function(button) { dialog_destroy(); }, undefined);
-                dg.fn_export = fn_export;
+                var dialog = new EmuDialog(560, 320, "Hey!");
+                dialog.function_export = fn_export;
+                dialog.contents_interactive = true;
+                var element_width = dialog.width - 64;
+                var element_height = 32;
                 
-                var el_text = create_text(32, 64, "Found " + string(untranslated) + " untranslated strings. Would you like to export the data without the text, export with the default strings, or cancel? (Exporting as-is is probably fine as long as you remember to do this later.)", dw - 64, 96, fa_left, dw - 64, dg);
-                el_text.valignment = fa_top;
-                var el_remember = create_checkbox(32, el_text.y + el_text.height + 32, "Remember this option", dw - 96, 32, null, false, dg);
-                dg.el_remember = el_remember;
-                var el_cancel = create_button(dw / 4 - b_width / 2, dh - 32 - b_height / 2, "Cancel export", b_width, b_height, fa_center, function(button) {
-                    dialog_destroy();
-                }, dg);
-                var el_confirm_as_is = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Export as-is", b_width, b_height, fa_center, function(button) {
-                    if (button.root.el_remember.value) {
-                        Settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_is;
-                    }
-                    button.root.fn_export();
-                    dialog_destroy();
-                }, dg);
-                var el_confirm_default = create_button(dw * 3 / 4 - b_width / 2, dh - 32 - b_height / 2, "Export defaults", b_width, b_height, fa_center, function(button) {
-                    if (button.root.el_remember.value) {
-                        Settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_default;
-                    }
-                    language_set_default_text();
-                    button.root.fn_export();
-                    dialog_destroy();
-                }, dg);
-                
-                ds_list_add(dg.contents, el_text, el_remember, el_cancel, el_confirm_as_is, el_confirm_default);
+                return dialog.AddContent([
+                    new EmuText(32, EMU_AUTO, element_width, 64, "Found " + string(untranslated) + " untranslated strings. Would you like to export the data without the text or export with the default strings? (Exporting as-is is probably fine as long as you remember to do this later.)"),
+                    (new EmuRadioArray(32, EMU_AUTO, element_width, element_height, "Action:", 0, emu_null))
+                        .AddOptions(["Export as is", "Export defaults"])
+                        .SetID("ACTION"),
+                    (new EmuCheckbox(32, EMU_AUTO, element_width, element_height, "Remember this choice", false, emu_null))
+                        .SetID("REMEMBER")
+                ])
+                    .AddDefaultConfirmCancelButtons("Export", function() {
+                        if (self.GetSibling("ACTION").value == 0) {
+                            if (self.GetSibling("REMEMBER").value) {
+                                Settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_is;
+                            }
+                            self.root.function_export();
+                            emu_dialog_close_auto();
+                        } else if (value == 1) {
+                            if (self.GetSibling("REMEMBER").value) {
+                                Settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_default;
+                            }
+                            language_set_default_text();
+                            self.root.function_export();
+                            emu_dialog_close_auto();
+                        }
+                    }, "Cancel", emu_dialog_close_auto);
             } else {
                 fn_export();
             }

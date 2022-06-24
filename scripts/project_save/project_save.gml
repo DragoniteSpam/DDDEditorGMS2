@@ -19,7 +19,8 @@ function project_save() {
         }
     };
     
-    var t0 = get_timer();
+    debug_timer_start();
+    
     var project_id = Game.meta.project.id + "_" + md5_string_utf8(fn);
     var folder_name = PATH_PROJECTS + project_id + "/";
     var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
@@ -90,6 +91,7 @@ function project_save() {
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
         meshes: project_write_json(Game.meshes),
+        terrain: project_write_json(Game.mesh_terrain),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshes.json");
     buffer_write_file(json_stringify({
@@ -133,13 +135,14 @@ function project_save() {
     save_assets(folder_audio_name, Game.audio.se);
     save_assets(folder_audio_name, Game.audio.bgm);
     save_assets(folder_mesh_name, Game.meshes);
+    save_assets(folder_mesh_name, Game.mesh_terrain);
     save_assets(folder_mesh_autotile_name, Game.mesh_autotiles);
     save_assets(folder_map_name, Game.maps);
     Stuff.terrain.SaveAsset(folder_terrain_name);
     
     setting_project_add(fn, project_id);
     
-    wtf("Saving took " + string((get_timer() - t0) / 1000) + " ms");
+    Stuff.AddStatusMessage("Saving project \"" + Stuff.save_name + "\" took " + debug_timer_finish());
 }
 
 enum ProjectSaveVersions {

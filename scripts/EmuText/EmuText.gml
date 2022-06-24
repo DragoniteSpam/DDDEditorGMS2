@@ -4,6 +4,11 @@ function EmuText(x, y, w, h, text) : EmuCore(x, y, w, h) constructor {
     self.text = text;
     self.get_text = function() { return self.text; };
     
+    static SetValue = function(value) {
+        self.text = value;
+        return self;
+    };
+    
     static SetTextUpdate = function(f) {
         if (f) {
             self.get_text = method(self, f);
@@ -17,7 +22,7 @@ function EmuText(x, y, w, h, text) : EmuCore(x, y, w, h) constructor {
     Render = function(base_x, base_y) {
         processAdvancement();
         
-        if (self.get_text) self.text = self.get_text();
+        if (self.get_text != undefined) self.text = self.get_text();
         
         var x1 = x + base_x;
         var y1 = y + base_y;
@@ -34,8 +39,9 @@ function EmuText(x, y, w, h, text) : EmuCore(x, y, w, h) constructor {
             }
         }
         
-        scribble_set_wrap(width, height);
-        scribble_set_box_align(alignment, valignment);
-        scribble_draw(tx, ty, self.text);
+        scribble(self.text)
+            .wrap(self.width, self.height)
+            .align(self.alignment, self.valignment)
+            .draw(tx, ty);
     }
 }

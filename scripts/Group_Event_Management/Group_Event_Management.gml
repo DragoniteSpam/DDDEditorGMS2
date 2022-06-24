@@ -1,4 +1,5 @@
-function event_create_node(event, type, xx = camera_get_view_x(view_get_camera(view_fullscreen)) + room_width / 2, yy = camera_get_view_y(view_get_camera(view_fullscreen)) + room_height / 2, custom_guid = NULL) {
+function event_create_node(event, type, xx = room_width / 2, yy = room_height / 2, custom_guid = NULL) {
+    // to do: adjust the position of new nodes based on where the camera is
     var node = new DataEventNode(undefined, event, type, custom_guid);
     node.x = xx;
     node.y = yy;
@@ -9,9 +10,6 @@ function event_create_node(event, type, xx = camera_get_view_x(view_get_camera(v
     
         // if there's a name collision, try the next number
         do {
-            // this used to be a # but that was screwing with game maker's newline thing because
-            // old game maker still used the stupid version of newlines and now that i'm on the
-            // new version i don't feel like changing it
             node.name = base_name + "$" + string(n++);
         } until (!event.name_map[$ node.name]);
 
@@ -37,12 +35,8 @@ function event_get_node_global(name) {
 function event_view_node(node) {
     // snap the view to the specified node
     // @todo scale with the window
-    var camera = view_get_camera(view_fullscreen);
-    camera_set_view_pos(camera, floor(node.x - room_width / 2), floor(node.y - room_height / 3));
+    //var camera = view_get_camera(view_fullscreen);
+    //camera_set_view_pos(camera, floor(node.x - room_width / 2), floor(node.y - room_height / 3));
+    // @todo grrr
     Stuff.event.active = node.event;
-    
-    var index = array_search(Game.events.events, node.event);
-    var event_list = Stuff.event.ui.t_events.el_event_list;
-    ui_list_deselect(event_list);
-    ui_list_select(event_list, index);
 }

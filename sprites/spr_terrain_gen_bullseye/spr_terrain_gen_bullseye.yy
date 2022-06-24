@@ -13,7 +13,7 @@
   "bbox_bottom": 255,
   "HTile": false,
   "VTile": false,
-  "For3D": false,
+  "For3D": true,
   "width": 256,
   "height": 256,
   "textureGroupId": {
@@ -27,6 +27,12 @@
     {"compositeImage":{"FrameId":{"name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"75c1d174-5391-470a-9a64-b9fcc97da9b7","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"75c1d174-5391-470a-9a64-b9fcc97da9b7","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"75c1d174-5391-470a-9a64-b9fcc97da9b7","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"da1992ed-ea4a-4f5b-bc37-ed2e2aeaf1ab","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"da1992ed-ea4a-4f5b-bc37-ed2e2aeaf1ab","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","name":"da1992ed-ea4a-4f5b-bc37-ed2e2aeaf1ab","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},
@@ -36,12 +42,14 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 3.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"27c67159-55be-48e0-a9e1-b6aae0c16da2","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"8c27661a-5b63-4a0e-b8b3-d0c7dfd4b18e","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"b93f1642-21da-4724-bf90-2e1f642d11d7","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"75c1d174-5391-470a-9a64-b9fcc97da9b7","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"ae32354a-e4d5-4768-985b-b79930994ec8","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"da1992ed-ea4a-4f5b-bc37-ed2e2aeaf1ab","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -59,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_terrain_gen_bullseye","path":"sprites/spr_terrain_gen_bullseye/spr_terrain_gen_bullseye.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_terrain_gen_bullseye",
     "tags": [],
     "resourceType": "GMSequence",

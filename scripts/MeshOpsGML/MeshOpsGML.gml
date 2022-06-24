@@ -1,3 +1,29 @@
+function meshops_get_bounds(buffer) {
+    static output = buffer_create(24, buffer_fixed, 4);
+    __meshops_get_bounds(buffer_get_address(buffer), buffer_get_address(output), buffer_get_size(buffer));
+    var data = new BoundingBox(
+        buffer_peek(output,  0, buffer_f32),
+        buffer_peek(output,  4, buffer_f32),
+        buffer_peek(output,  8, buffer_f32),
+        buffer_peek(output, 12, buffer_f32),
+        buffer_peek(output, 16, buffer_f32),
+        buffer_peek(output, 20, buffer_f32),
+    );
+    return data;
+}
+
+function meshops_chunk_settings(chunk_size, startx, starty, endx, endy) {
+    __meshops_chunk_settings(chunk_size, startx, starty, endx, endy);
+}
+
+function meshops_chunk_analyze(data, meta) {
+    __meshops_chunk_analyze(buffer_get_address(data), buffer_get_address(meta), buffer_get_size(data), buffer_get_size(meta));
+}
+
+function meshops_chunk(data, meta) {
+    __meshops_chunk(buffer_get_address(data), buffer_get_address(meta), buffer_get_size(data));
+}
+
 function meshops_export_d3d(filename, buffer) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     // estimating the number of characters it takes to represent a vertex can

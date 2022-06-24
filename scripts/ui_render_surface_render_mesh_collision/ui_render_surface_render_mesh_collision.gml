@@ -1,33 +1,24 @@
 function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     var mesh = surface.root.mesh;
-    
-    var original_state = gpu_get_state();
-    var camera = view_get_camera(view_current);
-    var active_view_mat = camera_get_view_mat(camera);
-    var active_proj_mat = camera_get_proj_mat(camera);
     draw_clear(c_black);
     
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     
-    var s = 256;
-    var fov = 45;   // meh
-    camera = view_get_camera(view_current);
-    camera_set_view_mat(camera, matrix_build_lookat(0, s, s / 2, 0, 0, 0, 0, 0, 1));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -(x2 - x1) / (y2 - y1), CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(camera);
+    var original_state = gpu_get_state();
+    
+    Stuff.mesh.camera.SetProjection();
     
     // draw the grid (any other reference points)
-    shader_set(shd_wireframe);
-    vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
+    Stuff.graphics.DrawGridCentered();
     
     // active cube
     var axx = real(surface.root.el_x_input.value);
     var ayy = real(surface.root.el_y_input.value);
     var azz = real(surface.root.el_z_input.value);
-    shader_set(shd_default_alpha);
-    shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), 1);
+    shader_set(shd_utility_alpha);
+    shader_set_uniform_f(shader_get_uniform(shd_utility_alpha, "alpha"), 1);
     matrix_set(matrix_world, matrix_build(
         Stuff.mesh_x + (axx + mesh.xmin) * TILE_WIDTH, Stuff.mesh_y + (ayy + mesh.ymin) * TILE_HEIGHT, Stuff.mesh_z + (azz + mesh.zmin) * TILE_DEPTH,
         Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot,
@@ -36,12 +27,14 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     vertex_submit(Stuff.graphics.basic_cube, pr_trianglelist, -1);
     
     // draw the mesh
-    var tex = sprite_get_texture((guid_get(mesh.tex_base) ? guid_get(mesh.tex_base) : get_active_tileset()).picture, 0);
-    shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), surface.root.el_alpha.value);
+    shader_set_uniform_f(shader_get_uniform(shd_utility_alpha, "alpha"), surface.root.el_alpha.value);
     matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot, Stuff.mesh_scale, Stuff.mesh_scale, Stuff.mesh_scale));
     switch (mesh.type) {
         case MeshTypes.RAW:
-            vertex_submit(mesh.submeshes[0].vbuffer, pr_trianglelist, tex);
+            for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
+                var tex = guid_get(mesh.submeshes[i].tex_base) ? sprite_get_texture(guid_get(mesh.submeshes[i].tex_base).picture, 0) : -1;
+                vertex_submit(mesh.submeshes[i].vbuffer, pr_trianglelist, tex);
+            }
             break;
     }
     shader_reset();

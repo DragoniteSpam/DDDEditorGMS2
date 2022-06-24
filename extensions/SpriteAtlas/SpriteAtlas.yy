@@ -62,7 +62,7 @@
   "tvosCocoaPodDependencies": "",
   "parent": {
     "name": "SpriteAtlas",
-    "path": "folders/SpriteAtlas.yy",
+    "path": "folders/Extensions/SpriteAtlas.yy",
   },
   "resourceVersion": "1.2",
   "name": "SpriteAtlas",

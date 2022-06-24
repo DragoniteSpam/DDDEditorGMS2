@@ -1,8 +1,11 @@
-// dont methodize this, as you pass it a null value to close menus
 function menu_activate(new_menu) {
     if (new_menu && !is_struct(new_menu)) new_menu = new_menu.id;
     Stuff.menu.active_element = new_menu;
     Stuff.menu.extra_element = new_menu ? Stuff.menu.extra_element : undefined;
+}
+
+function menu_close_all() {
+    menu_activate(undefined);
 }
 
 function momu_expand() {

@@ -110,6 +110,7 @@ function project_export_events(buffer) {
 
 function project_export_meshes(buffer) {
     project_export_standard(buffer, Game.meshes);
+    project_export_standard(buffer, Game.mesh_terrain);
 }
 
 function project_export_images(buffer) {

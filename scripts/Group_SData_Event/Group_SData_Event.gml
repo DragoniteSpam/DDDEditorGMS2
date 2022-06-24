@@ -10,7 +10,7 @@ function DataEvent(source) : SData(source) constructor {
         }
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         // dont export base; event graphs are only for the editor
         for (var i = 0, n = array_length(self.nodes); i < n; i++) {
             self.nodes[i].Export(buffer);
@@ -151,7 +151,7 @@ function DataEventNode(source, parent, type = EventNodeTypes.ENTRYPOINT, custom 
         self.outbound[index] = destination.GUID;
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.type);
         buffer_write(buffer, buffer_datatype, self.custom_guid);
@@ -281,7 +281,7 @@ function DataEventNodeCustom(source) : SData(source) constructor {
         return self.CreateJSONEventCustom();
     };
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u32, array_length(self.types));
         for (var i = 0; i < array_length(self.types); i++) {

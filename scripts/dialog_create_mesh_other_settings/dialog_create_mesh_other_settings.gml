@@ -1,58 +1,74 @@
-function dialog_create_mesh_other_settings(root, selection) {
+function dialog_create_mesh_other_settings(list, selection) {
     var dialog = new EmuDialog(320, 400, "Other mesh options");
-    dialog.root = root;
+    dialog.active_shade = 0;
+    dialog.list = list;
     dialog.selection = selection;
     
-    return dialog.AddContent([
+    dialog.AddContent([
         (new EmuButton(32, EMU_AUTO, 256, 32, "Normals", function() {
-            if (ds_map_empty(self.root.selection)) return;
-            dialog_create_mesh_normal_settings(self, self.root.selection);
+            dialog_create_mesh_normal_settings(self.root.list, self.root.selection);
         }))
             .SetTooltip("Adjust the vertex normals of the selected meshes."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Center", function() {
             var selection = self.root.selection;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].PositionAtCenter();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].PositionAtCenter();
             }
             batch_again();
         }))
             .SetTooltip("Set the model's origin to its average central point (on the XY plane)."),
-        (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
-            dialog_create_mesh_collision_settings(self.root, ds_map_find_first(self.root.selection));
-        }))
-            .SetTooltip("Collision shape data to go with this mesh.")
-            .SetInteractive(ds_map_size(selection) == 1),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Invert Transparency", function() {
             var selection = self.root.selection;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionInvertAlpha();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].ActionInvertAlpha();
             }
             batch_again();
         }))
             .SetTooltip("Because literally nothing is standard with the OBJ file format, sometimes the \"Tr\" material attribute is \"transparency,\" and sometimes it's \"opacity\" (1 - transparency). Click here to toggle between them."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Transparency", function() {
             var selection = self.root.selection;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionResetAlpha();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].ActionResetAlpha();
             }
             batch_again();
         }))
             .SetTooltip("Set the alpha of every vertex to 1."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Vertex Color", function() {
             var selection = self.root.selection;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionResetColour();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].ActionResetColour();
             }
             batch_again();
         }))
             .SetTooltip("Set the blending color of every vertex to white."),
-        (new EmuButton(32, EMU_AUTO, 256, 32, "Generate Reflections", function() {
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Material Color", function() {
             var selection = self.root.selection;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].GenerateReflections();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].ActionResetDiffuseMaterialColour();
             }
             batch_again();
         }))
-            .SetTooltip("Auto-generate reflections for all selected meshes and their submeshes."),
-    ]).AddDefaultCloseButton();
+            .SetTooltip("Set the diffuse color of every submesh's material to white."),
+    ]);
+    
+    if (EDITOR_BASE_MODE == ModeIDs.MAP) {
+        dialog.AddContent([
+            (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
+                if (array_length(self.root.selection) != 1) return;
+                dialog_create_mesh_collision_settings(self.root.list[self.root.selection[0]]);
+            }))
+                .SetTooltip("Collision shape data to go with this mesh.")
+                .SetInteractive(array_length(selection) == 1),
+            (new EmuButton(32, EMU_AUTO, 256, 32, "Generate Reflections", function() {
+                var selection = self.root.selection;
+                for (var i = 0, n = array_length(selection); i < n; i++) {
+                    self.root.list[real(selection[i])].GenerateReflections();
+                }
+                batch_again();
+            }))
+                .SetTooltip("Auto-generate reflections for all selected meshes and their submeshes."),
+        ]);
+    }
+    
+    return dialog.AddDefaultCloseButton();
 }

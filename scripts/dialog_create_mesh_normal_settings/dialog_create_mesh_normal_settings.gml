@@ -1,23 +1,22 @@
-function dialog_create_mesh_normal_settings(root, selection) {
-    var mode = Stuff.mesh_ed;
-    
+function dialog_create_mesh_normal_settings(list, selection) {
     var dialog = new EmuDialog(320, 240, "Normals");
-    dialog.root = root;
+    dialog.active_shade = 0;
+    dialog.list = list;
     dialog.selection = selection;
     
     return dialog.AddContent([
         (new EmuButton(32, EMU_AUTO, 256, 32, "Set Flat Normals", function() {
             var selection = self.root.selection;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionNormalsFlat();
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[real(selection[i])].ActionNormalsFlat();
             }
             batch_again();
         }))
             .SetTooltip("Set the normals of each vertex equal to the normals of their triangle."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Set Smooth Normals", function() {
             var selection = self.root.selection;
-            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[index].ActionNormalsSmooth(Settings.config.normal_threshold);
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[real(selection[i])].ActionNormalsSmooth(Settings.config.normal_threshold);
             }
             batch_again();
         }))

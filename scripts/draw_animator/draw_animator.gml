@@ -5,12 +5,7 @@ function draw_animator() {
     gpu_set_ztestenable(true);
     draw_set_color(c_white);
     
-    var camera = view_get_camera(view_current);
-    var vw = view_get_wport(view_current);
-    var vh = view_get_hport(view_current);
-    camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(camera);
+    self.camera.SetProjection();
     
     var animation = ui.active_animation;
     
@@ -29,19 +24,16 @@ function draw_animator() {
             var ksz = animation.GetValue(i, moment, KeyframeParameters.SCALE_Z);
             var kcolor = animation.GetValue(i, moment, KeyframeParameters.COLOR);
             var kalpha = animation.GetValue(i, moment, KeyframeParameters.ALPHA);
-            transform_set(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
-            // todo
-            shader_set(shd_wireframe);
-            vertex_submit(Stuff.graphics.grid_sphere, pr_linelist, -1);
+            // todo draw whatever is supposed to be drawn here
+            Stuff.graphics.DrawWireSphere(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
         }
     }
     
-    transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
-    shader_set(shd_wireframe);
-    vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
-    shader_set(shd_basic_colors);
-    vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
+    Stuff.graphics.DrawGridCentered();
+    Stuff.graphics.DrawAxesCentered();
     
     matrix_set(matrix_world, matrix_build_identity());
     shader_reset();
+    gpu_set_zwriteenable(false);
+    gpu_set_ztestenable(false);
 }

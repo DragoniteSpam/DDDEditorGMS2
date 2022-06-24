@@ -11,7 +11,7 @@ function draw_event_node_title(argument0, argument1) {
     var tolerance = 8;
 
     if (!dialog_exists() && !Stuff.event.canvas_active_node) {
-        if (mouse_within_rectangle_adjusted(x1 + tolerance, y1 + tolerance, x2 - tolerance, y2 - tolerance)) {
+        if (mouse_within_rectangle(x1 + tolerance, y1 + tolerance, x2 - tolerance, y2 - tolerance)) {
             draw_rectangle_colour(x1 + tolerance, y1 + tolerance, x2 - tolerance, y2 - tolerance, color, color, color, color, false);
         
             // i don't like this either but it also works (for now)

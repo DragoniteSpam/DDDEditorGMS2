@@ -3,7 +3,7 @@ function draw_event_node_delete(xx, yy, node) {
     
     if (!dialog_exists()) {
         var tolerance = 8;
-        if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+        if (mouse_within_rectangle(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
             draw_sprite(spr_event_delete, 1, xx, yy);
             if (Controller.release_left) {
                 var dialog = emu_dialog_confirm(undefined, "Do you actually want to delete " + node.name + "?", function() {

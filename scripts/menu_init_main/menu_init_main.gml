@@ -59,45 +59,10 @@ function menu_init_main() {
         #endregion
         
         #region data stuff
-        var md_graphics = create_menu_element("Graphics", momu_expand, menu_data, true);
-            var md_graphic_ts = create_menu_element("Textures and Tilesets", momu_graphic_tileset, md_graphics);
-            var md_graphic_at = create_menu_element("Tile Animation", not_yet_implemented, md_graphics);
-            var md_graphic_battle = create_menu_element("Battler Sprites", momu_graphic_battle, md_graphics);
-            var md_graphic_ow = create_menu_element("Overworld Sprites", momu_graphic_overworld, md_graphics);
-            var md_graphic_part = create_menu_element("Particles", momu_graphic_particle, md_graphics);
-            var md_graphic_ui = create_menu_element("User Interface", momu_graphic_ui, md_graphics);
-            var md_graphic_skybox = create_menu_element("Skyboxes", momu_graphic_skybox, md_graphics);
-            var md_graphic_etc = create_menu_element("Misc", momu_graphic_etc, md_graphics);
-            ds_list_add(md_graphics.contents,
-                md_graphic_ts,
-                md_graphic_at,
-                md_graphic_battle,
-                md_graphic_ow,
-                md_graphic_part,
-                md_graphic_ui,
-                md_graphic_skybox,
-                md_graphic_etc
-            );
-        md_graphics.interactive = MENU_EDITOR_ENABLED || MENU_EDITOR_PARTICLE_OVERRIDE;
-        md_graphic_ts.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_at.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_battle.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_ow.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_part.interactive = MENU_EDITOR_ENABLED || MENU_EDITOR_PARTICLE_OVERRIDE;
-        md_graphic_skybox.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_ui.interactive = MENU_EDITOR_ENABLED;
-        md_graphic_etc.interactive = MENU_EDITOR_ENABLED;
-        var md_audio = create_menu_element("Audio", momu_expand, menu_data, true);
-            var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
-            var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
-            ds_list_add(md_audio.contents,
-                md_aud_bgm,
-                md_aud_se
-            );
+        var md_graphics = create_menu_element("Graphics", momu_graphics_manager, menu_data);
+        var md_audio = create_menu_element("Audio", momu_audio_manager, menu_data);
         var md_mesh_at = create_menu_element("Mesh Autotiles", momu_graphic_mesh_autotiles, menu_data);
         md_audio.interactive = MENU_EDITOR_ENABLED;
-        md_aud_bgm.interactive = MENU_EDITOR_ENABLED;
-        md_aud_se.interactive = MENU_EDITOR_ENABLED;
         md_mesh_at.interactive = MENU_EDITOR_ENABLED;
         var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
         var md_reload = create_menu_element("Reload Assets...", momu_expand, menu_data, true);
@@ -116,7 +81,6 @@ function menu_init_main() {
         var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
         var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
         var md_text = create_menu_element("Language Text (F11)", momu_editor_text, menu_help);
-        var md_doodle = create_menu_element("Doodle", momu_editor_doodle, menu_help);
         md_data_types.interactive = MENU_EDITOR_ENABLED;
         md_meshes.interactive = MENU_EDITOR_ENABLED;
         md_3d.interactive = MENU_EDITOR_ENABLED;
@@ -125,7 +89,6 @@ function menu_init_main() {
         md_animation.interactive = MENU_EDITOR_ENABLED;
         md_heightmap.interactive = MENU_EDITOR_ENABLED;
         md_text.interactive = MENU_EDITOR_ENABLED;
-        md_doodle.interactive = MENU_EDITOR_ENABLED;
         ds_list_add(menu_data.contents,
             md_graphics,
             md_audio,
@@ -142,20 +105,17 @@ function menu_init_main() {
             md_heightmap,
             md_text,
             //
-            m_separator,
-            md_doodle,
+            //m_separator,
+            // uncomment this if you add other things
         );
         #endregion
         
         #region beta stuff
         var mb_no_beta = create_menu_element("(No beta features, currently)", null, menu_help);
         //
-        var md_beta_particles = create_menu_element("Particle Editor", momu_editor_particles, menu_help);
-        md_beta_particles.interactive = MENU_EDITOR_ENABLED;
         var md_beta_spart = create_menu_element("Spart demo", momu_editor_spart, menu_help);
         md_beta_spart.interactive = MENU_EDITOR_ENABLED;
         ds_list_add(menu_beta.contents,
-            md_beta_particles,
             md_beta_spart,
         );
         #endregion

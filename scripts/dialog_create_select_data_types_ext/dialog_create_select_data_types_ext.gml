@@ -1,60 +1,24 @@
-function dialog_create_select_data_types_ext(root, value, onvaluechange) {
-    var dw = 560;
-    var dh = 480;
+function dialog_create_select_data_types_ext(root, value, callback) {
+    var dialog = new EmuDialog(32 + 256 + 256 + 256, 400, "Other data types");
+    dialog.root = root;
+    var element_width = 256;
+    var element_height = 32;
     
-    var dg = dialog_create(dw, dh, "Other Data Types", dialog_default, dialog_destroy, root);
+    var col1 = 32;
     
-    var columns = 2;
-    var spacing = 16;
-    var ew = dw / columns - spacing * 2;
-    var eh = 24;
+    var image_purpleish = "[d#" + string(c_purple_dragon) + "]";
     
-    var c2 = dw / columns;
-    
-    var b_width = 128;
-    var b_height = 32;
-    
-    var n_slots = 14;
-    
-    var yy = 64;
-    
-    var offset = DataTypes.AUDIO_BGM;
-    
-    var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, onvaluechange, value, dg);
-    create_radio_array_options(el_list, [
-        "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
-        "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite",
-        "Particle", "UI image", "Misc. image", "Event", "Skybox", "Mesh Autotile", "Asset Flag",
-    ]);
-    
-    el_list.contents[| DataTypes.AUDIO_BGM].color = c_green;
-    el_list.contents[| DataTypes.AUDIO_SE].color = c_green;
-    el_list.contents[| DataTypes.IMG_BATTLER].color = c_purple;
-    el_list.contents[| DataTypes.IMG_ETC].color = c_purple;
-    el_list.contents[| DataTypes.IMG_OVERWORLD].color = c_purple;
-    el_list.contents[| DataTypes.IMG_PARTICLE].color = c_purple;
-    el_list.contents[| DataTypes.IMG_TEXTURE].color = c_purple;
-    el_list.contents[| DataTypes.IMG_UI].color = c_purple;
-    el_list.contents[| DataTypes.IMG_SKYBOX].color = c_purple;
-    el_list.contents[| DataTypes.MESH].color = c_blue;
-    el_list.contents[| DataTypes.TILE].color = c_blue;
-    el_list.contents[| DataTypes.IMG_TILE_ANIMATION].color = c_blue;
-    el_list.contents[| DataTypes.MAP].color = c_blue;
-    el_list.contents[| DataTypes.ENTITY].color = c_blue;
-    el_list.contents[| DataTypes.ANIMATION].color = c_blue;
-    el_list.contents[| DataTypes.IMG_SKYBOX].color = c_purple;
-    el_list.contents[| DataTypes.MESH_AUTOTILE].color = c_blue;
-    
-    create_radio_array_option_column(el_list, 13, c2 + 32);
-    
-    dg.el_list = el_list;
-    
-    var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dialog_destroy, dg, fa_center);
-    
-    ds_list_add(dg.contents,
-        el_list,
-        el_confirm
-    );
-    
-    return dg;
+    return dialog.AddContent([
+        (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "All data types:", value, callback))
+            .AddOptions([
+                "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color",
+                "[c_aqua]Mesh", image_purpleish + "Tileset", "[c_aqua]Tile", "[c_aqua]Autotile",
+                "[c_lime]Audio (BGM)", "[c_lime]Audio (SE)",
+                "[c_aqua]Animation", "[c_aqua]Entity (RefID)", "[c_aqua]Map", image_purpleish + "Battler sprite",
+                image_purpleish + "Overworld sprite", image_purpleish + "Particle", image_purpleish + "UI image",
+                image_purpleish + "Misc. image", image_purpleish + "Event", image_purpleish + "Skybox",
+                "[c_aqua]Mesh Autotile", image_purpleish + "Asset Flag",
+            ])
+            .SetColumns(9, element_width)
+    ]).AddDefaultCloseButton();
 }

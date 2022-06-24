@@ -35,35 +35,6 @@ function validate_int(str) {
     return true;
 }
 
-function validate_int_create_map_size(str, input) {
-    var str_x = input.root.el_x.value;
-    var str_y = input.root.el_y.value;
-    var str_z = input.root.el_z.value;
-    if (!validate_int(str_x)) return false;
-    if (!validate_int(str_y)) return false;
-    if (!validate_int(str_z)) return false;
-    var value_x = real(str_x);
-    var value_y = real(str_y);
-    var value_z = real(str_z);
-    var volume = (value_x * value_y * value_z);
-    return is_clamped(volume, 1, MAP_VOLUME_LIMIT);
-}
-
-function validate_int_map_size_x(str) {
-    if (!validate_int(str)) return false;
-    return (real(str) * Stuff.map.active_map.yy * Stuff.map.active_map.zz) <= MAP_VOLUME_LIMIT;
-}
-
-function validate_int_map_size_y(str) {
-    if (!validate_int(str)) return false;
-    return (real(str) * Stuff.map.active_map.xx * Stuff.map.active_map.zz) <= MAP_VOLUME_LIMIT;
-}
-
-function validate_int_map_size_z(str) {
-    if (!validate_int(str)) return false;
-    return (real(str) * Stuff.map.active_map.yy * Stuff.map.active_map.xx) <= MAP_VOLUME_LIMIT;
-}
-
 function validate_string(str) {
     return true;
 }

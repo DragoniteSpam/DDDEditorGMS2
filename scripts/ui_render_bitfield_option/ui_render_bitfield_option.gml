@@ -20,7 +20,7 @@ function ui_render_bitfield_option(argument0, argument1, argument2) {
     draw_rectangle_colour(x1 + 1, y1 + 1, x2 - 1, y2 - 1, c_black, c_black, c_black, c_black, true);
 
     if (bitfield.interactive && dialog_is_active(bitfield.root.root)) {
-        var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, bitfield.adjust_view);
+        var inbounds = mouse_within_rectangle(x1, y1, x2, y2);
         if (inbounds) {
             if (Controller.release_left) {
                 ui_activate(bitfield);

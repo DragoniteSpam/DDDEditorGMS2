@@ -1,5 +1,10 @@
 /// @description setup
 
+if ((display_get_width() < 1600 || display_get_height() < 900) && !file_exists(".display")) {
+    show_message("Your primary display seems to be smaller than 1600x900. The program will still work but you might find the UI has issues. I want to address this someday, but for now it's not a top priority.");
+    file_touch(".display");
+}
+
 #region basic setup
 
 randomize();
@@ -8,6 +13,7 @@ randomize();
 if (!directory_exists(PATH_TEMP)) directory_create(PATH_TEMP);
 if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
 if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
+if (!directory_exists(PATH_TERRAIN)) directory_create(PATH_TERRAIN);
 
 dt = 0;
 time = 0;
@@ -23,19 +29,12 @@ enum ModeIDs {
     DATA,
     ANIMATION,
     TERRAIN,
-    SCRIBBLE,
     SPART,
-    DOODLE,
-    PARTICLE,
     MESH,
     TEXT,
 }
 
-tf = ["False", "True"];
-on_off = ["Off", "On"];
-color_channels = [0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000];
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];
-color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
 direction_lookup = [270, 180, 0, 90];
 
 // these are constants but we're allowed to change them here
@@ -53,22 +52,32 @@ files_dropped = [];
 #region user settings
 save_name = "game";
 
+all_projects = { projects: [] };
 try {
     all_projects = json_parse(file_get_contents("projects.json"));
 } catch (e) {
     all_projects = { projects: [] };
 }
 
-alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
+self.SaveSettings = function() {
+    for (var i = 0, n = ds_list_size(all_modes); i < n; i++) {
+        all_modes[| i].Save();
+    }
+    
+    buffer_write_file(json_stringify(Settings), FILE_SETTINGS);
+};
+
+time_source_start(time_source_create(time_source_game, 10, time_source_units_seconds, function() {
+    Stuff.SaveSettings();
+}, [], -1));
 #endregion
 
 #region initialize standalone systems
-scribble_init("data/fonts", "FDefault", false);
-scribble_set_starting_format("FDefault", c_black, fa_left);
-scribble_add_font("FDefault");
-scribble_add_font("FDefault20");
-scribble_add_font("FDefaultBold");
-scribble_add_font("FDefaultItalic");
+
+buffer_text_init(false);
+scribble_font_set_default("FDefault");
+scribble_font_bake_outline_8dir_2px("FDefault", "FDefaultOutline", c_black, true);
+
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
 wtf("re-add nik's version of fmod audio eventually");
@@ -82,19 +91,15 @@ all_modes = ds_list_create();
 graphics = new EditorGraphics();
 graphics.Init();
 // various types of editors
-map = instance_create_depth(0, 0, 0, EditorModeMap);
-data = instance_create_depth(0, 0, 0, EditorModeData);
-event = instance_create_depth(0, 0, 0, EditorModeEvent);
-animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
-terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
-mesh_ed = instance_create_depth(0, 0, 0, EditorModeMeshes);
-spart = instance_create_depth(0, 0, 0, EditorModeSpart);
-doodle = instance_create_depth(0, 0, 0, EditorModeDoodle);
-particle = instance_create_depth(0, 0, 0, EditorModeParticle);
+map = new EditorModeMap();
+data = new EditorModeData();
+event = new EditorModeEvent();
+animation = new EditorModeAnimation();
+terrain = new EditorModeTerrain();
+mesh = new EditorModeMesh();
+spart = new EditorModeSpart();
 text = new EditorModeText();
 menu = RIBBON_MENU();
-
-instance_deactivate_object(EditorMode);
 
 self.graphics.RecreateGrids();
 instance_deactivate_object(UIThing);
@@ -136,10 +141,11 @@ default_pawn.hframes = 4;
 default_pawn.vframes = 4;
 default_pawn.aframes = 0;
 default_pawn.aspeed = 0;
-default_pawn.picture_with_frames = -1;
 data_image_npc_frames(default_pawn);
 
-tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
+if (LOAD_DEFAULT_TILESET) {
+    tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
+}
 #endregion
 
 #region data types
@@ -194,7 +200,7 @@ data_type_meta = [
     
     new data_type_class(05, "Data",             NULL,       buffer_datatype),
     new data_type_class(06, "Code",             "",         buffer_string),
-    new data_type_class(07, "Color",            0x000000,   buffer_u32),
+    new data_type_class(07, "Color",            0xff000000, buffer_u32),
     new data_type_class(08, "Mesh",             NULL,       buffer_datatype),
     new data_type_class(09, "Image: Texture",   NULL,       buffer_datatype),
     
@@ -213,7 +219,7 @@ data_type_meta = [
     new data_type_class(20, "Image: UI",        NULL,       buffer_datatype),
     new data_type_class(21, "Image: Misc",      NULL,       buffer_datatype),
     new data_type_class(22, "Event",            NULL,       buffer_datatype),
-    new data_type_class(23, "Image: SKybox",    NULL,       buffer_datatype),
+    new data_type_class(23, "Image: Skybox",    NULL,       buffer_datatype),
     new data_type_class(24, "Mesh Autotile",    NULL,       buffer_datatype),
     
     new data_type_class(25, "Asset Flag",       0,          buffer_flag),
@@ -229,45 +235,64 @@ data_type_meta = [
  *           - GameDataCategories
  *           - entry in dialog_create_settings_data_asset_files (with color)
  *  2. case in omu_data_list_add
- *  3. case in uivc_list_data_list_select
- *  4. case in draw_event_node
+ *  3. case in draw_event_node
  *          - in four different switch statements (can that be simplified?)
- *  5. case in ui_init_game_data_activate (the big one)
- *  6. case in ui_init_game_data_refresh - in two different switch statements
- *  7. case in dialog_create_data_instance_property_list - in two different switch statemetns
- *  9. case in serialize_save_data_instances
- *          and the equivalent in the game
- *  10. case in serialize_save_events
- *          and the equivalent in the game
- *  11. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
- *  12. case in draw_active_event
- *  13. case in uimu_data_add_data
- *  14. case in dialog_entity_data_enable_by_type
- *  15. case in serialize_save_entity
- *          and the equivalent in the game
- *  16. case in serialize_save_map_contents_meta
- *          and the equivalent in the game
- *  17. Stuff.Create - game data location and game data save scripts
- *  18. enum DataVersions - you most likely will need a new data version to handle the new data
- *  19. loading data in the game - read the data out
+ *  4. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
+ *  5. case in draw_active_event
+ *  6. case in uimu_data_add_data
+ *  7. Stuff.Create - game data location and game data save scripts
+ *  8. enum DataVersions - you most likely will need a new data version to handle the new data
+ *  9. loading data in the game - read the data out
  */
 #endregion
 
+#region status messages
+status_messages = [];
+// commenting with the word "notification" here so you find it in case you try to search for it
+AddStatusMessage = function(text) {
+    static statusMessage = function(text) constructor {
+        self.text = scribble(text)
+            .starting_format("FDefaultOutline", c_white)
+            .align(fa_left, fa_top)
+            .wrap(window_get_width() - 64, 32);
+        self.duration = 15;
+        self.x = 32;
+        self.y = 48;
+        
+        static Update = function(target_y) {
+            self.y = lerp(self.y, target_y, 0.1);
+            self.duration -= game_get_speed(gamespeed_microseconds) / 10000000;
+            return self.duration > 0;
+        };
+        
+        static Render = function() {
+            self.text
+                .blend(c_white, min(1, self.duration))
+                .draw(self.x, self.y);
+        };
+    };
+    
+    array_insert(Stuff.status_messages, 0, new statusMessage(text));
+}
+#endregion
+
+// this is used mostly for the screen-space UI drawing
+base_camera = new Camera(window_get_width() / 2, window_get_height() / 2, 100, window_get_width() / 2, window_get_height() / 2, 100, 0, -1, 0, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
+    
+});
+
 // default editor mode
 switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
-    case ModeIDs.MAP: editor_mode_3d(); break;
-    case ModeIDs.EVENT: editor_mode_event(); break;
-    case ModeIDs.DATA: editor_mode_data(); break;
-    case ModeIDs.ANIMATION: editor_mode_animation(); break;
-    case ModeIDs.TERRAIN: editor_mode_heightmap(); break;
-    case ModeIDs.SCRIBBLE: editor_mode_scribble(); break;
-    case ModeIDs.SPART: editor_mode_spart(); break;
-    case ModeIDs.DOODLE: editor_mode_doodle(); break;
-    case ModeIDs.PARTICLE: editor_mode_particle(); break;
-    case ModeIDs.MESH: editor_mode_meshes(); break;
-    case ModeIDs.TEXT: editor_mode_text(); break;
+    case ModeIDs.MAP: Stuff.map.SetMode(); break;
+    case ModeIDs.EVENT: Stuff.event.SetMode(); break;
+    case ModeIDs.DATA: Stuff.data.SetMode(); break;
+    case ModeIDs.ANIMATION: Stuff.animation.SetMode(); break;
+    case ModeIDs.TERRAIN: Stuff.terrain.SetMode(); break;
+    case ModeIDs.SPART: Stuff.spart.SetMode(); break;
+    case ModeIDs.MESH: Stuff.mesh.SetMode(); break;
+    case ModeIDs.TEXT: Stuff.text.SetMode(); break;
 }
 
 if (PROJECT_MENU_ENABLED) {
-    dialog_create_project_list(noone);
+    dialog_create_project_list();
 }

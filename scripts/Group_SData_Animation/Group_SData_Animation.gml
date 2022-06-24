@@ -21,7 +21,7 @@ function DataAnimation(source) : SData(source) constructor {
         self.layers[0].is_actor = true;
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, self.frames_per_second);
         buffer_write(buffer, buffer_u16, self.moments);
@@ -188,7 +188,7 @@ function DataAnimationLayer(animation, source) constructor {
         self.name = source;
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         
         buffer_write(buffer, buffer_field, pack(
@@ -311,13 +311,13 @@ function DataAnimationLayer(animation, source) constructor {
         var value_next = (kf_next ? kf_next.Get(param) : (self.animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.GetBaseValue(param) : 0);
         var moment_previous = kf_previous ? kf_previous.moment : 0;
         var moment_next = kf_next ? kf_next.moment : self.animation.moments;
-        var f = normalize(moment, moment_previous, moment_next);
+        var f = adjust_range(moment, moment_previous, moment_next);
         
         if (kf_current && kf_current.HasParameterTween(param)) return value_now;
         
         // only need to check for previous keyframe because if there is no next keyframe, the "next"
         // value will be the same as previous and tweening will just output the same value anyway
-        return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.GetParameterTween(param) : AnimationTweens.NONE);
+        return ease(value_previous, value_next, f, kf_previous ? kf_previous.GetParameterTween(param) : Easings.NONE);
     };
 }
 
@@ -377,20 +377,20 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
     
     // tweens
     self.tween = {
-        x: AnimationTweens.NONE,
-        y: AnimationTweens.NONE,
-        z: AnimationTweens.NONE,
-        xrot: AnimationTweens.NONE,
-        yrot: AnimationTweens.NONE,
-        zrot: AnimationTweens.NONE,
-        xscale: AnimationTweens.NONE,
-        yscale: AnimationTweens.NONE,
-        zscale: AnimationTweens.NONE,
-        color: AnimationTweens.NONE,
-        alpha: AnimationTweens.NONE,
-        r: AnimationTweens.NONE,
-        g: AnimationTweens.NONE,
-        b: AnimationTweens.NONE,
+        x: Easings.NONE,
+        y: Easings.NONE,
+        z: Easings.NONE,
+        xrot: Easings.NONE,
+        yrot: Easings.NONE,
+        zrot: Easings.NONE,
+        xscale: Easings.NONE,
+        yscale: Easings.NONE,
+        zscale: Easings.NONE,
+        color: Easings.NONE,
+        alpha: Easings.NONE,
+        r: Easings.NONE,
+        g: Easings.NONE,
+        b: Easings.NONE,
     };
     
     if (source) {
@@ -416,7 +416,7 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
         self.tween = source.tween;
     }
     
-    static Export = function(buffer) {
+    self.Export = function(buffer) {
         buffer_write(buffer, buffer_s32, self.relative);
         buffer_write(buffer, buffer_f32, self.x);
         buffer_write(buffer, buffer_f32, self.y);
@@ -493,7 +493,7 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
     
     static GetParameterTween = function(param) {
         var tween = self.tween[$ property_map[$ param]];
-        return tween != AnimationTweens.NONE && tween != AnimationTweens.IGNORE;
+        return tween != Easings.NONE;
     };
     
     static SetParameterTween = function(param, value) {
@@ -501,7 +501,7 @@ function DataAnimationKeyframe(layer, moment, source = undefined) constructor {
     };
     
     static HasParameterTween = function(param) {
-        return self.tween[$ property_map[$ param]] != AnimationTweens.IGNORE;
+        return self.tween[$ property_map[$ param]] != Easings.NONE;
     };
 }
 

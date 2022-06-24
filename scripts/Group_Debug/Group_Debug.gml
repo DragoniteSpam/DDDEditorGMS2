@@ -3,13 +3,14 @@ function debug_timer_start() {
 }
 
 function debug_timer_finish() {
-    __debug_time_manage("finish");
+    return __debug_time_manage("finish");
 }
 
 function __debug_time_manage(action) {
     static t = undefined;
     switch (action) {
         case "start": t = get_timer(); break;
-        case "finish": if (t != undefined) wtf(string((get_timer() - t) / 1000) + " ms");
+        case "finish": if (t != undefined) return string((get_timer() - t) / 1000) + " ms";
     }
+    return "";
 }

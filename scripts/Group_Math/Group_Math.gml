@@ -25,7 +25,7 @@ function bezier_point(t, p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y) {
     px +=        ttt * p3x; //fourth term
     py +=        ttt * p3y;
     
-    return [px, py];
+    return new Vector2(px, py);
 }
 
 function ceil_ext(value, to) {
@@ -85,9 +85,8 @@ function is_clamped(n, a, b) {
     return clamp(n, a, b) == n;
 }
 
-// These arguments are in the backwards order
-function normalize(n, mn, mx, omin = 0, omax = 1) {
-    gml_pragma("forceinline");
+// formerly "normalize" but that was kinda wrong
+function adjust_range(n, mn, mx, omin = 0, omax = 1) {
     if (mn == mx && mn == n) return mn;
     return mn + ((n - omin) / (omax - omin)) * (mx - mn);
 }
@@ -98,4 +97,16 @@ function number_max_digits(n) {
 
 function round_ext(value, to) {
     return round(value / to) * to;
+}
+
+function round_power_of_two(n) {
+    return power(2, round(log2(n)));
+}
+
+function floor_power_of_two(n) {
+    return power(2, floor(log2(n)));
+}
+
+function ceil_power_of_two(n) {
+    return power(2, ceil(log2(n)));
 }

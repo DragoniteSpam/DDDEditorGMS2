@@ -12,7 +12,7 @@ function draw_event_node_choice_remove(argument0, argument1, argument2, argument
     draw_sprite(spr_plus_minus, 2, xx, yy);
 
     var tolerance = 8;
-    if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+    if (mouse_within_rectangle(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
         draw_sprite(spr_plus_minus, 3, xx, yy);
         draw_tooltip(xx, yy + 16, "Delete Option");
         if (Controller.release_left) {

@@ -1,524 +1,497 @@
 function ui_init_event(mode) {
-    with (instance_create_depth(0, 0, 0, UIMain)) {
-        t_events = create_tab("Events", 0, id);
-        t_list = create_tab("Node List", 0, id);
-        t_custom = create_tab("Custom", 0, id);
-        t_action1 = create_tab("Actions1", 1, id);
-        t_action2 = create_tab("Actions2", 1, id);
-        
-        var tr = ds_list_create();
-        ds_list_add(tr, t_events, t_list, t_custom);
-        
-        ds_list_add(tabs, tr);
-        
-        tr = ds_list_create();
-        ds_list_add(tr, t_action1, t_action2);
-        
-        ds_list_add(tabs, tr);
-        
-        active_tab = t_list;
-        
-        // there is only enough space for one column
-        
-        var element;
-        var spacing = 16;
-        var list_entry_height = 24;
-        var legal_x = 32;
-        var legal_y = 128;
-        var element_width = view_hud_width_event - 112;
-        // element_height is an object variable that's already been defined
-        
-        #region event list
-        var yy = legal_y;
-        
-        element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, list_entry_height, 24, function(list) {
-            Stuff.event.active = Game.events.events[ui_list_selection(list)];
-        }, false, t_events, Game.events.events);
-        element.tooltip = "All of the event graphs currently defined. Middle-click the list to sort it alphabetically.";
-        element.entries_are = ListEntries.INSTANCES;
-        element.onmiddleclick = function(list) {
-            ui_list_deselect(list);
-            array_sort_name(Game.events.events);
-            for (var i = 0; i < array_length(Game.events.events); i++) {
-                if (Game.events.events[i] == Stuff.event.active) {
-                    ui_list_select(list, i, true);
-                    break;
+    var hud_width = 320;
+    var hud_height = window_get_height();
+    var col1x = 16;
+    var col_width = hud_width - 32;
+    var col_height = 32;
+    
+    var container = new EmuCore(window_get_width() - hud_width, 0, hud_width, hud_height);
+    var tab_group = new EmuTabGroup(0, EMU_AUTO, hud_width, hud_height, 2, col_height);
+    
+    tab_group.AddTabs(0, [
+        (new EmuTab("Events")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, col_width, col_height, "Events:", col_height, 19, function() {
+                if (self.GetSelection() + 1) {
+                    Stuff.event.active = Game.events.events[self.GetSelection()];
+                    self.root.root.SearchID("NODE LIST").SetList(Game.events.events[self.GetSelection()].nodes);
+                    self.GetSibling("EVENT RENAME").SetValue(Stuff.event.active.name);
                 }
-            }
-        };
-        ui_list_select(element, 0);
-        ds_list_add(t_events.contents, element);
-        
-        t_events.el_event_list = element;
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_center, function(button) {
-            array_push(Game.events.events, new DataEvent("Event$" + string(array_length(Game.events.events))));
-        }, t_events);
-        element.tooltip = "Add a new event graph. Sequences can link to nodes on other graphs if you need to, but for organizational purposes you most likely want to keep them separate.";
-        ds_list_add(t_events.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, function(button) {
-            var selection = ui_list_selection(button.root.el_event_list);
-            if (selection + 1) {
-                dialog_create_event_rename(Game.events.events[selection]);
-            }
-        }, t_events);
-        element.tooltip = "Rename this event. Names do not have to be unique, but if you give more than one event the same name things will probably become confusing very quickly.";
-        ds_list_add(t_events.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, function(button) {
-            var index = ui_list_selection(button.root.el_event_list);
-            if (index + 1 && array_length(Game.events.events) > 1) {
-                if (array_length(Game.events.events) == 1) {
-                    emu_dialog_notice("Can't delete the only event!");
-                } else {
-                    dialog_create_event_delete(Game.events.events[index], button.root);
+            }))
+                .SetTooltip("All of the event graphs currently defined. Middle-click the list to sort it alphabetically.")
+                .SetList(Game.events.events)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetCallbackMiddle(function() {
+                    self.Deselect();
+                    array_sort_name(Game.events.events);
+                    for (var i = 0; i < array_length(Game.events.events); i++) {
+                        if (Game.events.events[i] == Stuff.event.active) {
+                            self.Select(i, true);
+                            break;
+                        }
+                    }
+                })
+                .SetID("EVENT LIST"),
+            (new EmuInput(col1x, EMU_AUTO, col_width, col_height, "Name: ", "", "event name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                var index = self.GetSibling("EVENT LIST").GetSelection();
+                if (index + 1 && string_length(self.value) > 0) {
+                    Game.events.events[index].name = self.value;
                 }
-            }
-        }, t_events);
-        element.tooltip = "Delete this event graph. Anything referencing any of the nodes on the graph will no longer work.";
-        ds_list_add(t_events.contents, element);
-        
-        yy += element_height + spacing;
-        #endregion
-        
-        #region node list
-        yy = legal_y;
-        
-        element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, list_entry_height, 22, function(list) {
-            event_view_node(Stuff.event.active.nodes[ui_list_selection(list)]);
-        }, false, t_list, noone);
-        element.tooltip = "This is a list of all of the nodes on this event graph. Click on one to jump to its position. Middle-click the list to sort it alphabetically.";
-        element.entries_are = ListEntries.INSTANCES;
-        element.render = ui_render_list_event_node;
-        element.onmiddleclick = function(list) {
-            var selection = ui_list_selection(list);
-            ui_list_deselect(list);
-            var event = Stuff.event.active;
-            var selected_node = (selection + 1) ? event.nodes[selection] : noone;
-            array_sort_name(event.nodes);
-        
-            for (var i = 0; i < array_length(event.nodes); i++) {
-                if (event.nodes[i] == selected_node) {
-                    ui_list_select(list, i, true);
-                    break;
+            }))
+                .SetTooltip("Rename this event. Names do not have to be unique, but if you give more than one event the same name things will probably become confusing very quickly.")
+                .SetID("EVENT RENAME"),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Add Event", function() {
+                array_push(Game.events.events, new DataEvent("Event$" + string(array_length(Game.events.events))));
+            }))
+                .SetTooltip("Add a new event graph. Sequences can link to nodes on other graphs if you need to, but for organizational purposes you most likely want to keep them separate.")
+                .SetID("EVENT ADD"),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Delete Event", function() {
+                var index = self.GetSibling("EVENT LIST").GetSelection();
+                if (index + 1 && array_length(Game.events.events) > 1) {
+                    if (array_length(Game.events.events) == 1) {
+                        emu_dialog_notice("Can't delete the only event!");
+                    } else {
+                        var dialog = emu_dialog_confirm(self, "Are you sure you want to delete " + Game.events.events[index].name + "?", function() {
+                            Stuff.event.active.Destroy();
+                            var event_list = self.root.root.GetSibling("EVENT LIST");
+                            array_delete(Game.events.events, self.root.event_index, 1);
+                            var selection = event_list.GetSelection();
+                            event_list.Deselect();
+                            event_list.Select(max(0, self.root.event_index - 1), true);
+                            emu_dialog_close_auto();
+                        });
+                        dialog.event_index = index;
+                    }
                 }
-            }
-        };
-        ds_list_add(t_list.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Entrypoint", element_width, element_height, fa_center, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.ENTRYPOINT);
-        }, t_list);
-        element.tooltip = "Add an entrypoint node.";
-        ds_list_add(t_list.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Text Node", element_width, element_height, fa_center, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.TEXT);
-        }, t_list);
-        element.tooltip = "Add a message text node.";
-        ds_list_add(t_list.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_center, function(button) {
-            dialog_create_add_custom_node(noone);
-        }, t_list);
-        element.tooltip = "Add a custom-defined node.";
-        ds_list_add(t_list.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_center, function(button) {
-            dialog_create_add_prefab_node(noone);
-        }, t_list);
-        element.tooltip = "Add a prefab node.";
-        ds_list_add(t_list.contents, element);
-        #endregion
-        
-        #region custom nodes
-        yy = legal_y;
-        
-        el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, list_entry_height, 10, null, false, t_custom, Game.events.custom);
-        el_list_custom.tooltip = "Any event you want that's specific to your game's data (for example, anything pertaining to Inventory) can be made from a custom event.\n\nYou can attach your own data types and even outbound nodes to custom events.";
-        el_list_custom.entries_are = ListEntries.INSTANCES;
-        el_list_custom.colorized = false;
-        el_list_custom.ondoubleclick = function(button) {
-            var selection = ui_list_selection(button.root.root.el_list_custom);
-            if (selection + 1) {
-                dialog_create_event_custom(button.root);
-            }
-        };
-        el_list_custom.onmiddleclick = function(list) {
-            var selection = Game.events.custom[ui_list_selection(list)];
-            ui_list_deselect(list);
-            array_sort_name(Game.events.custom);
-        
-            for (var i = 0; i < array_length(Game.events.custom); i++) {
-                if (Game.events.custom[i] == selection) {
-                    ui_list_select(list, i, true);
-                    break;
-                }
-            }
-        };
-        ds_list_add(t_custom.contents, el_list_custom);
-        
-        yy += el_list_custom.GetHeight() + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Add", element_width, element_height, fa_center, function(button) {
-            array_push(Game.events.custom, new DataEventNodeCustom("CustomNode" + string(array_length(Game.events.custom))));
-        }, t_custom);
-        element.tooltip = "Create a new custom event node.";
-        ds_list_add(t_custom.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, function(button) {
-            var index = ui_list_selection(button.root.root.el_list_custom);
-            if (index + 1) {
-                dialog_create_event_custom_delete(Game.events.custom[index], button.root);
-            }
-        }, t_custom);
-        element.tooltip = "Delete the selected custom event node. Any existing nodes based on the node you delete will also be deleted, and may leave gaps in the sequences that use them.";
-        ds_list_add(t_custom.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Edit", element_width, element_height, fa_center, function(button) {
-            var selection = ui_list_selection(button.root.root.el_list_custom);
-            if (selection + 1) {
-                dialog_create_event_custom(button.root);
-            }
-        }, t_custom);
-        element.tooltip = "Edit the properties of the selected custom event node.";
-        ds_list_add(t_custom.contents, element);
-        
-        yy += element_height + spacing;
-        
-        el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, list_entry_height, 8, null, false, t_custom, Game.events.prefabs);
-        el_list_prefabs.tooltip = "If you have a particular event with particular data you invoke often, such as a certain line of text or custom event node, you may wish to save it as a prefab so you can add it with all of its attributes already defined.\n\nTo create one, click the Save Prefab icon on the top of an existing event node.";
-        el_list_prefabs.entries_are = ListEntries.INSTANCES;
-        el_list_prefabs.colorized = false;
-        el_list_prefabs.onmiddleclick = function(list) {
-            var selection = Game.events.prefabs[ui_list_selection(list)];
-            ui_list_deselect(list);
-            array_sort_name(Game.events.prefabs);
+            }))
+                .SetTooltip("Delete this event graph. Anything referencing any of the nodes on the graph will no longer work.")
+                .SetID("EVENT DELETE"),
             
-            for (var i = 0; i < array_length(Game.events.prefabs); i++) {
-                if (Game.events.prefabs[i] == selection) {
-                    ui_list_select(list, i, true);
-                    break;
+        
+        
+        ])
+            .SetID("EVENTS"),
+        (new EmuTab("Nodes")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, col_width, col_height, "Event nodes:", col_height, 20, function() {
+                if (self.GetSelection() + 1) {
+                    event_view_node(Stuff.event.active.nodes[self.GetSelection()]);
                 }
-            }
-        };
-        ds_list_add(t_custom.contents, el_list_prefabs);
-        
-        yy += el_list_prefabs.GetHeight() + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, not_yet_implemented, t_custom);
-        element.tooltip = "Rename the selected prefab.";
-        ds_list_add(t_custom.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, not_yet_implemented, t_custom);
-        element.tooltip = "Delete the selected prefab. Existing nodes derived from it will still exist, but the prefab link will be broken.";
-        ds_list_add(t_custom.contents, element);
-        #endregion
-        
-        #region event list 1
-        yy = legal_y;
-        
-        element = create_button(legal_x + spacing, yy, "Entrypoint", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.ENTRYPOINT);
-        }, t_action1);
-        element.tooltip = "A cutscene entrypoint. Entrypoints are for marking the beginning of cutscene sequences.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height + spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Message", element_width, element_height, fa_left, element_width, t_action1);
-        ds_list_add(t_action1.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Show Text", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.TEXT);
-        }, t_action1);
-        element.tooltip = "Display text to the user. You may wish to format the text using Scribble.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element.tooltip = "Show a list of choices. The player may select one, or optionally cancel. Each choice may have its own outbound node.";
-        element = create_button(legal_x + spacing, yy, "Show Choices", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SHOW_CHOICES);
-        }, t_action1);
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Input Text", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.INPUT_TEXT);
-        }, t_action1);
-        element.tooltip = "Prompt the player to enter text via the keyboard.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Show Scrolling Text", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SHOW_SCROLLING_TEXT);
-        }, t_action1);
-        element.tooltip = "Show a text crawl. I don't expect anyone to use this, but I wanted to include it anyway.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Data", element_width, element_height, fa_left, element_width, t_action1);
-        ds_list_add(t_action1.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Control Switches", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SWITCHES);
-        }, t_action1);
-        element.tooltip = "Set the value of one of the game's global boolean variables. Useful if you need a quick-and-easy way to enable or disable things.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Control Variables", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_VARIABLES);
-        }, t_action1);
-        element.tooltip = "Set the value of one of the game's global variables.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Control Self Switches", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SELF_SWITCHES);
-        }, t_action1);
-        element.tooltip = "Set the value of an entity's instance boolean variables.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Control Self Variables", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SELF_VARIABLES);
-        }, t_action1);
-        element.tooltip = "Set the value of an entity's instance variables.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Control Timer", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_TIME);
-        }, t_action1);
-        element.tooltip = "Control a timer. The timer may count down until zero, or count up like a stopwatch.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Deactivate This Event Page", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.DEACTIVATE_EVENT);
-        }, t_action1);
-        element.tooltip = "Disable the calling event page (if the cutscene sequence was initiated by one) so that it will no longer activate.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Flow Control", element_width, element_height, fa_left, element_width, t_action1);
-        ds_list_add(t_action1.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Conditional Branch", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.CONDITIONAL);
-        }, t_action1);
-        element.tooltip = "Continue to a different outbound node based on some criteria.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Comment", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.COMMENT);
-        }, t_action1);
-        element.tooltip = "Show a comment on the event graph. Comments have no affect on game logic and are only there for the developer's benefit.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Timing", element_width, element_height, fa_left, element_width, t_action1);
-        ds_list_add(t_action1.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Wait", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.WAIT);
-        }, t_action1);
-        element.tooltip = "Wait for a specified amount of time, and then continue.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Schedule Event", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SCHEDULE_EVENT);
-        }, t_action1);
-        element.tooltip = "Schedule another event to happen after a certain amount of time. (The current event will not be interrupted.)";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Movement", element_width, element_height, fa_left, element_width, t_action1);
-        ds_list_add(t_action1.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Transfer Player", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.TRANSFER_PLAYER);
-        }, t_action1);
-        element.tooltip = "Move the player to another location on the map (or on a different map).";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, not_yet_implemented, t_action1);
-        element.tooltip = "Move an entity who isn't the player to another location on the map.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Scroll Map", element_width, element_height, fa_left, not_yet_implemented, t_action1);
-        element.tooltip = "Move the game camera to focus on another area of the map.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Set Movement Route", element_width, element_height, fa_left, not_yet_implemented, t_action1);
-        element.tooltip = "Define a movement sequence for the player or another entity on the map.";
-        ds_list_add(t_action1.contents, element);
-        yy += element_height;
-        #endregion
-        
-        #region event list 2
-        yy = legal_y;
-        
-        element = create_text(legal_x + spacing, yy, "Entity", element_width, element_height, fa_left, element_width, t_action2);
-        ds_list_add(t_action2.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Set Entity Sprite", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_SPRITE);
-        }, t_action2);
-        element.tooltip = "Change a Pawn entity's sprite.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Set Entity Mesh", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_MESH);
-        }, t_action2);
-        element.tooltip = "Change a Mesh entity's mesh.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Set Mesh Animation Data", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SET_MESH_ANIMATION);
-        }, t_action2);
-        element.tooltip = "Change a Mesh entity's animation data.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Screen", element_width, element_height, fa_left, element_width, t_action2);
-        ds_list_add(t_action2.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Tint Screen", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.TINT_SCREEN);
-        }, t_action2);
-        element.tooltip = "Change the tinting applied to the screen.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Shake Screen", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SHAKE_SCREEN);
-        }, t_action2);
-        element.tooltip = "Cause the game camera to shake.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Audio", element_width, element_height, fa_left, element_width, t_action2);
-        ds_list_add(t_action2.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Play BGM", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.PLAY_BGM);
-        }, t_action2);
-        element.tooltip = "Set a piece of background music to play. Music already playing will be suspended.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Fade BGM", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.FADE_BGM);
-        }, t_action2);
-        element.tooltip = "Set a piece of background music to change its volume over time.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Resume Automatic BGM", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.RESUME_BGM);
-        }, t_action2);
-        element.tooltip = "Resume the suspended background music. Other music will be stopped.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Play SE", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.PLAY_SE);
-        }, t_action2);
-        element.tooltip = "Play a sound effect.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Stop All SE", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.STOP_SE);
-        }, t_action2);
-        element.tooltip = "Cancel all currently playing sound effects.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Scene", element_width, element_height, fa_left, element_width, t_action2);
-        ds_list_add(t_action2.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
-        element.tooltip = "Exit the game to the title screen.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Map", element_width, element_height, fa_left, element_width, t_action2);
-        ds_list_add(t_action2.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Change Map Display Name", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_DISPLAY_NAME);
-        }, t_action2);
-        element.tooltip = "Change the name of the map, as visible to the player. (This will not affect the map's internal name.)";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, not_yet_implemented, t_action2);
-        element.tooltip = "Change the tileset used by the map. This may cause a temporary hiccup if large images need to be loaded or unloaded from memory.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Change Map Battle Scene", element_width, element_height, fa_left, not_yet_implemented, t_action2);
-        element.tooltip = "Change the battle scene associated with the map.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Change Map Skybox", element_width, element_height, fa_left, not_yet_implemented, t_action2);
-        element.tooltip = "Change the skybox used by the map.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        
-        yy += spacing;
-        
-        element = create_text(legal_x + spacing, yy, "Advanced", element_width, element_height, fa_left, element_width, t_action2);
-        ds_list_add(t_action2.contents, element);
-        yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Script", element_width, element_height, fa_left, function(button) {
-            event_create_node(Stuff.event.active, EventNodeTypes.SCRIPT);
-        }, t_action2);
-        element.tooltip = "Invoke a piece of Lua code. Errors in Lua code may cause unpredictable behavior, or crash the game; use carefully.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented, t_action2);
-        element.tooltip = "Advanced audio controls (using the FMOD audio interface).";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, function(button) {
-            dialog_create_add_custom_node(noone);
-        }, t_action2);
-        element.tooltip = "Insert a custom-defined event node.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, function(button) {
-            dialog_create_add_prefab_node(noone);
-        }, t_action2);
-        element.tooltip = "Insert a prefab event node.";
-        ds_list_add(t_action2.contents, element);
-        yy += element_height;
-        #endregion
-        
-        return id;
-    }
+            }))
+                .SetVacantText("No nodes in this graph!")
+                .SetTooltip("This is a list of all of the nodes on this event graph. Click on one to jump to its position. Middle-click the list to sort it alphabetically.")
+                .SetList(Game.events.events[0].nodes)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetCallbackMiddle(function() {
+                    var selection = self.GetSelection();
+                    self.Deselect();
+                    var event = Stuff.event.active;
+                    var selected_node = (selection + 1) ? event.nodes[selection] : undefined;
+                    array_sort_name(event.nodes);
+                
+                    for (var i = 0, n = array_length(event.nodes); i < n; i++) {
+                        if (event.nodes[i] == selected_node) {
+                            self.Select(i, true);
+                            break;
+                        }
+                    }
+                })
+                .SetID("NODE LIST"),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Add Entrypoint", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.ENTRYPOINT);
+            }))
+                .SetTooltip("Add an entrypoint node."),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Add Text Node", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.TEXT);
+            }))
+                .SetTooltip("Add a text node."),
+        ])
+            .SetID("NODES"),
+    ]);
+    
+    tab_group.AddTabs(1, [
+        (new EmuTab("Custom")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, col_width, col_height, "Custom Nodes", col_height, 8, function() {
+                
+            }))
+                .SetList(Game.events.custom)
+                .SetID("CUSTOM NODES LIST")
+                .SetVacantText("no custom nodes")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetCallbackDouble(function() {
+                    var selection = self.GetSelection();
+                    if (selection + 1) {
+                        show_message("todo");
+                    }
+                })
+                .SetCallbackMiddle(function() {
+                    var selection = Game.events.custom[self.GetSelection()];
+                    ui_list_deselect(list);
+                    array_sort_name(Game.events.custom);
+                
+                    for (var i = 0; i < array_length(Game.events.custom); i++) {
+                        if (Game.events.custom[i] == selection) {
+                            self.Select(i, true);
+                            break;
+                        }
+                    }
+                })
+                .SetTooltip("Any event you want that's specific to your game's data (for example, anything pertaining to Inventory) can be made from a custom event.\n\nYou can attach your own data types and even outbound nodes to custom events."),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Add", function() {
+                array_push(Game.events.custom, new DataEventNodeCustom("CustomNode" + string(array_length(Game.events.custom))));
+            }))
+                .SetTooltip("Create a new custom event node."),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Delete", function() {
+                var index = self.GetSibling("CUSTOM NODES LIST").GetSelection();
+                if (index + 1) {
+                    var custom = Game.events.custom[index];
+                    // count the number of nodes to be deleted
+                    var n_events = 0;
+                    var n_nodes = 0;
+                    for (var i = 0; i < array_length(Game.events.events); i++) {
+                        var event = Game.events.events[i];
+                        var this_event = false;
+                        for (var j = 0; j < array_length(event.nodes); j++) {
+                            if (event.nodes[j].custom_guid == custom.GUID) {
+                                n_nodes++;
+                                if (!this_event) {
+                                    this_event = true;
+                                    n_events++;
+                                }
+                            }
+                        }
+                    }
+                    
+                    var text = "Are you sure you want to delete " + custom.name + "?";
+                    if (n_nodes > 0) {
+                        text += " This will also delete " + string(n_nodes) + " " + ((n_nodes > 1) ? "nodes" : "node") + " in " + string(n_events) + " " + ((n_events > 1) ? "events" : "event") + " and may cause event logic to no longer work properly.";
+                    }
+                    
+                    emu_dialog_confirm(self.GetSibling("CUSTOM NODES LIST"), text, function() {
+                        var custom = Game.events.custom[self.root.GetSelection()];
+                        array_delete(Game.events.custom, self.root.GetSelection(), 1);
+                        self.root.Deselect();
+                    
+                        for (var i = 0, n = array_length(Game.events.events); i < n; i++) {
+                            var event = Game.events.events[i];
+                            for (var j = array_length(event.nodes) - 1; j >= 0; j--) {
+                                if (event.nodes[j].custom_guid == custom.GUID) {
+                                    event.nodes[j].Destroy();
+                                }
+                            }
+                        }
+                        
+                        custom.Destroy();
+                        self.root.Dispose();
+                    });
+                }
+            }))
+                .SetTooltip("Delete the selected custom event node. Any existing nodes based on the node you delete will also be deleted, and may leave gaps in the sequences that use them."),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Edit", function() {
+                var index = self.GetSibling("CUSTOM NODES LIST").GetSelection();
+                if (index + 1) {
+                    dialog_create_event_custom(self.root);
+                }
+            }))
+                .SetTooltip("Edit the properties of the selected custom event node."),
+            
+            
+            (new EmuList(col1x, EMU_AUTO, col_width, col_height, "Prefab Nodes", col_height, 6, function() {
+                var selection = self.GetSelection();
+                if (selection + 1) {
+                    self.GetSibling("PREFAB RENAME").SetValue(Game.events.prefabs[selection].name);
+                }
+            }))
+                .SetList(Game.events.prefabs)
+                .SetID("PREFAB LIST")
+                .SetVacantText("no prefab nodes")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetCallbackMiddle(function() {
+                    var selection = Game.events.prefabs[self.GetSelection()];
+                    ui_list_deselect(list);
+                    array_sort_name(Game.events.prefabs);
+                
+                    for (var i = 0; i < array_length(Game.events.prefabs); i++) {
+                        if (Game.events.prefabs[i] == selection) {
+                            self.Select(i, true);
+                            break;
+                        }
+                    }
+                })
+                .SetTooltip("Prefab events which can be used as templates for other events."),
+            (new EmuInput(col1x, EMU_AUTO, col_width, col_height, "Name: ", "", "prefab name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                var index = self.GetSibling("PREFAB LIST").GetSelection();
+                if (index + 1 && string_length(self.value) > 0) {
+                    Game.events.prefabs[index].name = self.value;
+                }
+            }))
+                .SetTooltip("Rename this event. Names do not have to be unique, but if you give more than one event the same name things will probably become confusing very quickly.")
+                .SetID("PREFAB RENAME"),
+            (new EmuButton(col1x, EMU_AUTO, col_width, col_height, "Delete", function() {
+                var index = self.GetSibling("PREFAB LIST").GetSelection();
+                if (index + 1) {
+                    var prefab = Game.events.prefabs[index];
+                    // count the number of nodes to be deleted
+                    var n_events = 0;
+                    var n_nodes = 0;
+                    for (var i = 0; i < array_length(Game.events.events); i++) {
+                        var event = Game.events.events[i];
+                        var this_event = false;
+                        for (var j = 0; j < array_length(event.nodes); j++) {
+                            if (event.nodes[j].prefab_guid == prefab.GUID) {
+                                n_nodes++;
+                                if (!this_event) {
+                                    this_event = true;
+                                    n_events++;
+                                }
+                            }
+                        }
+                    }
+                    
+                    var text = "Are you sure you want to delete " + prefab.name + "?";
+                    if (n_nodes > 0) {
+                        text += " This will also detach " + string(n_nodes) + " " + ((n_nodes > 1) ? "prefab nodes" : "prefab node") + " in " + string(n_events) + " " + ((n_events > 1) ? "events" : "event") + ".";
+                    }
+                    
+                    emu_dialog_confirm(self.GetSibling("PREFAB LIST"), text, function() {
+                        var prefab = Game.events.prefabs[self.root.GetSelection()];
+                        array_delete(Game.events.prefabs, self.root.GetSelection(), 1);
+                        self.root.Deselect();
+                    
+                        for (var i = 0, n = array_length(Game.events.events); i < n; i++) {
+                            var event = Game.events.events[i];
+                            for (var j = array_length(event.nodes) - 1; j >= 0; j--) {
+                                if (event.nodes[j].prefab_guid == prefab.GUID) {
+                                    event.nodes[j].prefab_guid = NULL;
+                                }
+                            }
+                        }
+                        
+                        self.root.Dispose();
+                    });
+                }
+            }))
+                .SetTooltip("Delete the selected prefab node. Any existing nodes based on the prefab will still exist, but will no longer be tied to the prefab."),
+        ])
+            .SetID("CUSTOM"),
+        (new EmuTab("Actions A")).AddContent([
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]General"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Entrypoint", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.ENTRYPOINT);
+            }))
+                .SetTooltip("A cutscene entrypoint. Entrypoints are for marking the beginning of cutscene sequences."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Message", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.TEXT);
+            }))
+                .SetTooltip("Display text to the user. You may wish to format the text using Scribble."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Show Choices", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SHOW_CHOICES);
+            }))
+                .SetTooltip("Show a list of choices. The player may select one, or optionally cancel. Each choice may have its own outbound node"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Input Text", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.INPUT_TEXT);
+            }))
+                .SetTooltip("Prompt the player to enter text via the keyboard."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Show Scrolling Text", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SHOW_SCROLLING_TEXT);
+            }))
+                .SetTooltip("Show a text crawl. I don't expect anyone to use this, but I wanted to include it anyway because it's part of the RPG Maker event library."),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Data"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Switches", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_VARIABLES);
+            }))
+                .SetTooltip("Set the value of one of the game's global variables. Useful if you need a quick-and-easy way to control game data."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Switches", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SWITCHES);
+            }))
+                .SetTooltip("Set the value of one of the game's global boolean variables. Useful if you need a quick-and-easy way to enable or disable things."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Self Variable", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SELF_VARIABLES);
+            }))
+                .SetTooltip("Set the value of an entity's instance boolean variables."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Self Switch", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_SELF_SWITCHES);
+            }))
+                .SetTooltip("Set the value of an entity's instance variables."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Control Timer", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CONTROL_TIME);
+            }))
+                .SetTooltip("Control a timer. The timer may count down until zero, or count up like a stopwatch."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Deactivate Event Page", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.DEACTIVATE_EVENT);
+            }))
+                .SetTooltip("Disable the calling event page (if the cutscene sequence was initiated by one) so that it will no longer activate."),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Flow Control"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Conditional Branch", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CONDITIONAL);
+            }))
+                .SetTooltip("Continue to a different outbound node based on some criteria."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Comment", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.COMMENT);
+            }))
+                .SetTooltip("Show a comment on the event graph. Comments have no affect on game logic and are only there for the developer's benefit."),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Timing"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Wait", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.WAIT);
+            }))
+                .SetTooltip("Wait for a specified amount of time, and then continue."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Schedule Event", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SCHEDULE_EVENT);
+            }))
+                .SetTooltip("Schedule another event to happen after a certain amount of time. (The current event will not be interrupted.)"),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Movement"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Transfer Player", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.TRANSFER_PLAYER);
+            }))
+                .SetTooltip("Move the player to another location on the map (or on a different map)."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Entity Location", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_LOCATION);
+            }))
+                .SetTooltip("Move an entity who isn't the player to another location on the map."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Scroll Map", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SCROLL_MAP);
+            }))
+                .SetTooltip("Move the game camera to focus on another area of the map."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Movement Route", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SET_MOVEMENT_ROUTE);
+            }))
+                .SetTooltip("Define a movement sequence for the player or another entity on the map."),
+        ])
+            .SetID("ACTIONS A"),
+        (new EmuTab("Actions B")).AddContent([
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Entity"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Entity Sprite", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_SPRITE);
+            }))
+                .SetTooltip("Change a Pawn entity's sprite."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Entity Mesh", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SET_ENTITY_MESH);
+            }))
+                .SetTooltip("Change a Mesh entity's mesh."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Set Mesh Animation Data", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SET_MESH_ANIMATION);
+            }))
+                .SetTooltip("Change a Mesh entity's animation data."),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Screen"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Tint Screen", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.TINT_SCREEN);
+            }))
+                .SetTooltip("Change the tinting applied to the screen."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Shake Screen", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SHAKE_SCREEN);
+            }))
+                .SetTooltip("Cause the game camera to shake."),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Audio"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Play BGM", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.PLAY_BGM);
+            }))
+                .SetTooltip("Set a piece of background music to play. Music already playing will be suspended."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Fade/Stop BGM", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.FADE_BGM);
+            }))
+                .SetTooltip("Set a piece of background music to change its volume over time, and/or stop."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Resume Automatic BGM", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.RESUME_BGM);
+            }))
+                .SetTooltip("Resume the suspended background music. Other music will be stopped."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Play Effect", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.PLAY_SE);
+            }))
+                .SetTooltip("Play a sound effect."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Stop All Effects", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.STOP_SE);
+            }))
+                .SetTooltip("Cancel all currently playing sound effects."),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Scene and Map"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Return to Title Screen", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.RETURN_TO_TITLE);
+            }))
+                .SetTooltip("Exit the game to the title screen."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Display Name", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_DISPLAY_NAME);
+            }))
+                .SetTooltip("Change the name of the map, as visible to the player. (This will not affect the map's internal name.)"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Tileset", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_TILESET);
+            }))
+                .SetTooltip("Change the tileset used by the map. This may cause a temporary hiccup if large images need to be loaded or unloaded from memory."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Battle Scene", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_BATTLE_SCENE);
+            }))
+                .SetTooltip("Change the battle scene associated with the map."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Change Map Skybox", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.CHANGE_MAP_SKYBOX);
+            }))
+                .SetTooltip("Change the skybox used by the map."),
+            new EmuText(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "[c_aqua]Advanced"),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Script", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.SCRIPT);
+            }))
+                .SetTooltip("Invoke a piece of custom code. Errors in the code code may cause unpredictable behavior, or crash the game; use carefully."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Audio Controls", function() {
+                event_create_node(Stuff.event.active, EventNodeTypes.AUDIO_CONTORLS);
+            }))
+                .SetTooltip("Advanced audio controls (using the FMOD audio interface)."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Custom", function() {
+                var dialog = new EmuDialog(400, 640, "Add Custom Event Node");
+                
+                dialog.AddContent([
+                    (new EmuList(32, EMU_AUTO, 336, 32, "Available nodes:", 32, 16, function() {
+                        
+                    }))
+                        .SetCallbackDouble(function() {
+                            var selection = self.GetSelection();
+                            if (selection + 1) {
+                                event_create_node(Stuff.event.active, EventNodeTypes.CUSTOM, undefined, undefined, Game.events.custom[selection].GUID);
+                                self.root.Dispose();
+                            }
+                        })
+                        .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                        .SetList(Game.events.custom)
+                        .SetID("LIST")
+                ]).AddDefaultConfirmCancelButtons("Add", function() {
+                    self.GetSibling("LIST").callback_double();
+                    self.root.Dispose();
+                }, "Cancel", emu_dialog_close_auto);
+            }))
+                .SetTooltip("Insert a custom event node."),
+            (new EmuButton(col1x, EMU_AUTO_NO_SPACING, col_width, col_height, "Prefab", function() {
+                var dialog = new EmuDialog(400, 640, "Add Prefab Node");
+                
+                dialog.AddContent([
+                    (new EmuList(32, EMU_AUTO, 336, 32, "Available prefabs:", 32, 16, function() {
+                        
+                    }))
+                        .SetCallbackDouble(function() {
+                            var selection = self.GetSelection();
+                            
+                            if (selection + 1) {
+                                var prefab = Game.events.prefabs[selection];
+                                var instantiated = event_create_node(Stuff.event.active, prefab.type, undefined, undefined, prefab.custom_guid);
+                                // when the node is named normally the $number is appended before the event is added to the
+                                // list; in this case it's already in the list and you're renaming it, so the number you want
+                                // is length minus one
+                                instantiated.Rename(prefab.name + "$" + string(array_length(Stuff.event.active.nodes) - 1));
+                                instantiated.prefab_guid = prefab.GUID;
+                                instantiated.data = array_clone(prefab.data);
+                                instantiated.custom_data = json_parse(json_stringify(prefab.custom_data));
+                                self.root.Dispose();
+                            }
+                        })
+                        .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                        .SetList(Game.events.prefabs)
+                        .SetID("LIST")
+                ]).AddDefaultConfirmCancelButtons("Add", function() {
+                    self.GetSibling("LIST").callback_double();
+                    self.root.Dispose();
+                }, "Cancel", emu_dialog_close_auto);
+            }))
+                .SetTooltip("Insert a prefab event node."),
+        ])
+            .SetID("ACTIONS B"),
+    ]);
+    
+    tab_group.RequestActivateTab(tab_group.GetTabByID("NODES"));
+    
+    container.AddContent(tab_group);
+    
+    return container;
 }

@@ -1,6 +1,6 @@
 function draw_bezier(x1, y1, x2, y2) {
     // assumes the anchor points are in the middle: (meanx, y1) and (meanx, y2)
-    var p1 = [argument0, argument1];
+    var p1 = new Vector2(x1, y1);
     var p2 = p1;
     
     var xa = mean(x1, x2);
@@ -11,28 +11,11 @@ function draw_bezier(x1, y1, x2, y2) {
     for (var i = 0; i < Settings.config.bezier_precision; i++) {
         p1 = p2;
         p2 = bezier_point((i + 1) / Settings.config.bezier_precision, x1, y1, xa, ya, xb, yb, x2, y2);
-        draw_line(p1[vec3.xx], p1[vec3.yy], p2[vec3.xx], p2[vec3.yy]);
+        draw_line(p1.x, p1.y, p2.x, p2.y);
     }
 }
 
-/// @param x
-/// @param y
-/// @param width
-/// @param height
-/// @param [xscale]
-/// @param [yscale]
-/// @param [color]
-/// @param [alpha]
-function draw_checkerbox() {
-    var xx = argument[0];
-    var yy = argument[1];
-    var width = argument[2];
-    var height = argument[3];
-    var xscale = (argument_count > 4) ? argument[4] : 1;
-    var yscale = (argument_count > 5) ? argument[5] : 1;
-    var color = (argument_count > 6) ? argument[6] : c_white;
-    var alpha = (argument_count > 7) ? argument[7] : 1;
-    
+function draw_checkerbox(xx, yy, width, height, xscale = 1, yscale = 1, color = c_white, alpha = 1) {
     var s = sprite_get_width(b_tileset_checkers);
     var xcount = width / s * xscale;
     var ycount = height / s * yscale;
@@ -71,4 +54,14 @@ function draw_tooltip(x, y, text) {
     draw_set_halign(halign);
     draw_set_valign(valign);
     draw_set_font(font);
+}
+function surface_rebuild(original, w, h) {
+    if (!surface_exists(original)) return surface_create(w, h);
+    
+    if (surface_get_width(original) != w || surface_get_height(original) != h) {
+        surface_free(original);
+        return surface_create(w, h);
+    }
+    
+    return original;
 }

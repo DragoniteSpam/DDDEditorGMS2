@@ -1,6 +1,6 @@
 function DataMeshAutotile(source) : SData(source) constructor {
     static MeshAutotileLayer = function() constructor {
-        static MeshVertexBufferData = function(buffer, vbuffer) constructor {
+        static MeshVertexBufferData = function(buffer) constructor {
             self.buffer = undefined;
             self.vbuffer = undefined;
             self.reflect_buffer = undefined;
@@ -12,8 +12,8 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 // not all of these may exist
                 if (file_exists(filename + ".vertex")) self.buffer = buffer_load(filename + ".vertex");
                 if (file_exists(filename + ".reflect")) self.reflect_buffer = buffer_load(filename + ".reflect");
-                try { self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format); } catch (e) { }
-                try { self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format); } catch (e) { }
+                try { self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format); } catch (e) { }
+                try { self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format); } catch (e) { }
             };
             
             static SaveAsset = function(filename) {
@@ -21,23 +21,27 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 if (self.reflect_buffer) buffer_save(self.reflect_buffer, filename + ".reflect");
             };
             
-            static Set = function(buffer, vbuffer) {
+            static Set = function(buffer) {
+                static format = Stuff.graphics.format;
                 self.DestroyUpright();
                 self.buffer = buffer;
-                self.vbuffer = vbuffer;
+                if (buffer != undefined)
+                    self.vbuffer = vertex_create_buffer_from_buffer(buffer, format);
             };
             
-            static SetReflect = function(buffer, vbuffer) {
+            static SetReflect = function(buffer) {
+                static format = Stuff.graphics.format;
                 self.DestroyReflect();
                 self.reflect_buffer = buffer;
-                self.reflect_vbuffer = vbuffer;
+                if (buffer != undefined)
+                    self.reflect_vbuffer = vertex_create_buffer_from_buffer(buffer, format);
             };
             
             static AutoReflect = function() {
                 if (!self.buffer) return false;
                 self.DestroyReflect();
-                self.reflect_vbuffer = vertex_to_reflect(self.buffer);
-                self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
+                self.reflect_buffer = vertex_to_reflect_buffer(self.buffer);
+                self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format);
                 return true;
             };
             
@@ -64,12 +68,12 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 return valid;
             };
             
-            self.Set(buffer, vbuffer);
+            self.Set(buffer);
         };
         
         self.tiles = array_create(AUTOTILE_COUNT);
         for (var i = 0; i < AUTOTILE_COUNT; i++) {
-            self.tiles[i] = new MeshVertexBufferData(undefined, undefined);
+            self.tiles[i] = new MeshVertexBufferData(undefined);
         }
         
         self.Destroy = function() {

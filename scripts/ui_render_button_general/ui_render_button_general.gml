@@ -4,7 +4,7 @@ function ui_render_button_general(x1, y1, x2, y2, tx, ty, text, halign, valign, 
     draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
     
     if (interactive) {
-        var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, thing.adjust_view);
+        var inbounds = mouse_within_rectangle(x1, y1, x2, y2);
         if (inbounds) {
             draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
             if (Controller.release_left) {

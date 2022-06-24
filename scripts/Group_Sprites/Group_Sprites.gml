@@ -1,6 +1,8 @@
 #macro sprite_save sprite_save_fixed
 #macro __sprite_add_old sprite_add
 #macro sprite_add sprite_add_fixed
+#macro sprite_delete sprite_delete_ext
+#macro __sprite_delete_old sprite_delete
 
 function sprite_add_fixed(filename, imagenum, removeback, smooth, xorig, yorig) {
     var sprite = __sprite_add_old(filename, imagenum, false, false, xorig, yorig);
@@ -33,6 +35,13 @@ function sprite_save_fixed(sprite, subimg, path) {
     surface_free(t);
 }
 
+function sprite_delete_ext(sprite) {
+    for (var i = 0, n = sprite_get_number(sprite); i < n; i++) {
+        sprite_sample_remove_from_cache(sprite, i);
+    }
+    __sprite_delete_old(sprite);
+}
+
 function sprite_to_buffer(sprite, subimg) {
     // by yellowafterlife
     var surface = sprite_to_surface(sprite, subimg);
@@ -52,7 +61,10 @@ function sprite_from_buffer(buffer, w, h) {
 
 function sprite_to_surface(sprite, subimg) {
     // https://www.yoyogames.com/blog/60/alpha-and-surfaces
+    var dd = surface_get_depth_disable();
+    surface_depth_disable(true);
     var t = surface_create(sprite_get_width(sprite), sprite_get_height(sprite));
+    surface_depth_disable(dd);
     surface_set_target(t);
     draw_clear_alpha(c_black, 0);
     gpu_set_blendmode(bm_add);
@@ -131,7 +143,7 @@ function sprite_get_cropped_dimensions(sprite, subimage = 0, cutoff = 0) {
     }
     buffer_delete(buffer);
     
-    return new vec2(ww, hh);
+    return new Vector2(ww, hh);
 }
 
 function sprite_remove_transparent_color(sprite, color = 0xff00ff) {
@@ -172,6 +184,9 @@ function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
             }
             variable_struct_remove(cache, sprite_id);
             return;
+        case "buffer":
+            sprite_sample(sprite, index, 0, 0);     // ensure that it exists in the cache
+            return cache[$ sprite_id];
     }
     
     if (buffer == undefined) {
@@ -179,13 +194,29 @@ function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
         cache[$ sprite_id] = buffer;
     }
     
+    return sprite_sample_buffer_pixel(buffer, x, y, sprite_get_width(sprite), sprite_get_height(sprite));
+}
+
+function sprite_sample_remove_from_cache(sprite, index) {
+    sprite_sample_pixel(sprite, index, 0, 0, "remove");
+}
+
+function sprite_sample_get_buffer(sprite, index) {
+    return sprite_sample_pixel(sprite, index, 0, 0, "buffer");
+}
+
+function sprite_sample_buffer(buffer, u, v, w, h) {
+    return sprite_sample_buffer_pixel(buffer, u * w, v * h, w, h);
+}
+
+function sprite_sample_buffer_pixel(buffer, x, y, w, h) {
     // might implement texture wrapping some other day but right now i dont feel like it
-    x = clamp(x, 0, sprite_get_width(sprite) - 1);
-    y = clamp(y, 0, sprite_get_height(sprite) - 1);
-    var address_ul = (floor(x) + floor(y) * sprite_get_width(sprite)) * 4;
-    var address_ur = (ceil(x) + floor(y) * sprite_get_width(sprite)) * 4;
-    var address_ll = (floor(x) + ceil(y) * sprite_get_width(sprite)) * 4;
-    var address_lr = (ceil(x) + ceil(y) * sprite_get_width(sprite)) * 4;
+    x = clamp(x, 0, w - 1);
+    y = clamp(y, 0, h - 1);
+    var address_ul = (floor(x) + floor(y) * w) * 4;
+    var address_ur = (ceil(x) + floor(y) * w) * 4;
+    var address_ll = (floor(x) + ceil(y) * w) * 4;
+    var address_lr = (ceil(x) + ceil(y) * w) * 4;
     var horizontal_lerp = frac(x);
     var vertical_lerp = frac(y);
     var colour_ul = buffer_peek(buffer, address_ul, buffer_u32);
@@ -195,8 +226,4 @@ function sprite_sample_pixel(sprite, index, x, y, cmd = "") {
     var colour_l = merge_colour_ds(colour_ul, colour_ll, vertical_lerp);
     var colour_r = merge_colour_ds(colour_ur, colour_lr, vertical_lerp);
     return merge_colour_ds(colour_l, colour_r, horizontal_lerp);
-}
-
-function sprite_sample_remove_from_cache(sprite, index) {
-    sprite_sample_pixel(sprite, index, 0, 0, "remove");
 }

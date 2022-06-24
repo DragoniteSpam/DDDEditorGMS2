@@ -7,9 +7,9 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
     self.valignment = fa_middle;
     self.sprite_nineslice = spr_emu_nineslice_tab;
     
-    self.color_hover = EMU_COLOR_HOVER;
-    self.color_back = EMU_COLOR_BACK;
-    self.color_disabled = EMU_COLOR_DISABLED;
+    self.color_hover = function() { return EMU_COLOR_HOVER; };
+    self.color_back = function() { return EMU_COLOR_BACK; };
+    self.color_disabled = function() { return EMU_COLOR_DISABLED; };
     
     self._row = 0;
     self._index = 0;
@@ -18,7 +18,14 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
     self._header_width = 0;
     self._header_height = 0;
     
+    self._on_click = function() { };
+    
     self._override_root_check = true;
+    
+    static SetOnClick = function(f) {
+        self._on_click = method(self, f);
+        return self;
+    };
     
     Render = function(base_x, base_y) {
         processAdvancement();
@@ -40,21 +47,20 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
         
         if (getMouseReleased(hx1, hy1, hx2, hy2)) {
             Activate();
+            self._on_click();
             root.RequestActivateTab(self);
         }
         
-        if (isActiveTab() || root._active_tab && (root._active_tab._row != _row)) {
-            var index = 0;
-        } else {
-            var index = 2;
-        }
+        var index = (isActiveTab() || root._active_tab && (root._active_tab._row != _row)) ? 0 : 2;
         
-        var back_color = getMouseHover(hx1, hy1, hx2, hy2) ? color_hover : (GetInteractive() ? color_back : color_disabled);
+        var back_color = getMouseHover(hx1, hy1, hx2, hy2) ? self.color_hover() : (self.GetInteractive() ? self.color_back() : self.color_disabled());
         draw_sprite_stretched_ext(sprite_nineslice, 1, hx1, hy1, hx2 - hx1, hy2 - hy1, back_color, 1);
-        draw_sprite_stretched_ext(sprite_nineslice, index, hx1, hy1, hx2 - hx1, hy2 - hy1, color, 1);
-        scribble_set_box_align(alignment, valignment);
-        scribble_set_wrap(_header_width, _header_height);
-        scribble_draw(floor(mean(hx1, hx2)), floor(mean(hy1, hy2)), text);
+        draw_sprite_stretched_ext(sprite_nineslice, index, hx1, hy1, hx2 - hx1, hy2 - hy1, self.color(), 1);
+        
+        scribble(self.text)
+            .align(self.alignment, self.valignment)
+            .wrap(self._header_width, self._header_height)
+            .draw(floor(mean(hx1, hx2)), floor(mean(hy1, hy2)));
         #endregion
         
         if (isActiveTab()) {
@@ -67,10 +73,6 @@ function EmuTab(name) : EmuCore(0, 0, 0, 0) constructor {
     // keyboard input
     isActiveTab = function() {
         return (root._active_tab == self);
-    }
-    
-    RequestActivate = function() {
-        root.RequestActivateTab(self);
     }
     
     GetInteractive = function() {

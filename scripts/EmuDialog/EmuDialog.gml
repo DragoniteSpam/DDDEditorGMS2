@@ -7,6 +7,8 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
     
     SetCallback(function() { Close(); });
     
+    self.contents_interactive = false;
+    
     var size = ds_list_size(EmuOverlay._contents);
     x = 64 * (size + 1);
     y = 64 * (size + 1);
@@ -18,7 +20,7 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
     
     self.changed = false;
     self.sprite_close = spr_emu_close;
-    self.color_back = EMU_COLOR_BACK;
+    self.color_back = function() { return EMU_COLOR_BACK; };
     
     self._header_height = 32;
     self._click_x = -1;
@@ -110,15 +112,16 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
             drawn_dialog_shade_time = current_time;
         }
         
-        draw_sprite_stretched_ext(sprite_nineslice, 1, x1, y1, x2 - x1, y2 - y1, color_back, 1);
-        draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, y2 - y1, color, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 1, x1, y1, x2 - x1, y2 - y1, self.color_back(), 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, y2 - y1, self.color(), 1);
         var ch = merge_colour(EMU_COLOR_WINDOWSKIN, EMU_DIALOG_SHADE_COLOR, active ? 0 : 0.5);
         draw_sprite_stretched_ext(sprite_nineslice, 1, x1, y1, x2 - x1, _header_height, ch, 1);
-        draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, _header_height, color, 1);
+        draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, _header_height, self.color(), 1);
         
-        scribble_set_box_align(fa_left, fa_middle);
-        scribble_set_wrap(width, _header_height);
-        scribble_draw(tx, ty, text);
+        scribble(self.text)
+            .align(fa_left, fa_middle)
+            .wrap(self.width, self._header_height)
+            .draw(tx, ty);
         
         if (close_button) {
             draw_sprite(sprite_close, cbi, cbx1, cby1);
@@ -131,6 +134,10 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
         if (kill) {
             callback();
         }
+        
+        if (device_mouse_check_button_released(0, mb_left)) {
+            self.contents_interactive = true;
+        }
     }
     
     // Override this function for dialogs
@@ -140,16 +147,16 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
     
     static AddDefaultCloseButton = function(name = "Close", callback = function() { self.root.Dispose(); }) {
         return self.AddContent([new EmuButton(self.width / 2 - EMU_DEFAULT_CLOSE_BUTTON_WIDTH / 2, self.height - 48, EMU_DEFAULT_CLOSE_BUTTON_WIDTH, EMU_DEFAULT_CLOSE_BUTTON_HEIGHT, name, callback)]);
-    }
+    };
     
     static AddDefaultConfirmCancelButtons = function(confirm_name, confirm_callback, cancel_name, cancel_callback) {
         return self.AddContent([
             new EmuButton(self.width / 2 - EMU_DEFAULT_CLOSE_BUTTON_WIDTH - 16, self.height - 48, EMU_DEFAULT_CLOSE_BUTTON_WIDTH, EMU_DEFAULT_CLOSE_BUTTON_HEIGHT, confirm_name, confirm_callback),
             new EmuButton(self.width / 2 + 16, self.height - 48, EMU_DEFAULT_CLOSE_BUTTON_WIDTH, EMU_DEFAULT_CLOSE_BUTTON_HEIGHT, cancel_name, cancel_callback)
         ]);
-    }
+    };
 }
 
 function emu_dialog_close_auto() {
-    root.Dispose();
+    self.root.Dispose();
 }

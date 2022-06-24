@@ -1,1427 +1,1346 @@
 function ui_init_main(mode) {
-    with (instance_create_depth(0, 0, 0, UIMain)) {
-        
-        #region setup
-        // it would be best if you don't ask to access these later but if you need to these are just
-        // object variables so you can look them up
-        t_general = create_tab("General", 0, id);
-        t_stats = create_tab("Stats", 0, id);
-        t_maps = create_tab("Maps", 0, id);
-        
-        t_p_tile_editor = create_tab("Tile Ed.", 1, id);
-        t_p_tile_animation_editor = create_tab("Tile Anim. Ed.", 1, id);
-        t_p_mesh_editor = create_tab("Mesh Ed.", 1, id);
-        t_p_other_editor = create_tab("Other Ed.", 1, id);
-        
-        t_p_entity = create_tab("Entity", 2, id);
-        t_p_tile = create_tab("Tile", 2, id);
-        t_p_mesh = create_tab("Mesh", 2, id);
-        t_p_pawn = create_tab("Pawn", 2, id);
-        t_p_effect = create_tab("Effect", 2, id);
-        t_p_other = create_tab("Other", 2, id);
-        
-        // the game will crash if you create a tab row with zero width.
-        var tr_general = ds_list_create();
-        ds_list_add(tr_general, t_general, t_stats, t_maps);
-        var tr_editor = ds_list_create();
-        ds_list_add(tr_editor, t_p_tile_editor, t_p_tile_animation_editor, t_p_mesh_editor, t_p_other_editor);
-        var tr_world = ds_list_create();
-        ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_pawn, t_p_effect, t_p_other);
-        
-        ds_list_add(tabs, tr_general, tr_editor, tr_world);
-        
-        active_tab = t_general;
-        #endregion
-        
-        // don't try to make three columns. the math has been hard-coded
-        // for two. everything will go very badly if you try three or more.
-        var element;
-        var spacing = 16;
-        var legal_x = 32;
-        var legal_y = home_row_y + 32;
-        var legal_width = self.GetLegalWidth();
-        var col_width = legal_width / 2 - spacing * 1.5;
-        var col1_x = legal_x + spacing;
-        var col2_x = legal_x + col_width + spacing * 2;
-        
-        var vx1 = col_width / 2;
-        var vy1 = 0;
-        var vx2 = col_width;
-        var vy2 = vy1 + 24;
-        
-        var button_width = 128;
-        
-        #region tab: general
-        var yy = legal_y + spacing;
-        
-        element = create_radio_array(col1_x, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Settings.selection.mode, t_general);
-        create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_checkbox(col1_x, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Settings.selection.addition, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Settings.selection.fill_type, t_general);
-        create_radio_array_options(element, ["Tile", "Animated Tile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(col1_x, yy, "Fill Selection (Space)", col_width, element_height, fa_center, uimu_selection_fill, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Delete Selection (Delete)", col_width, element_height, fa_center, uimu_selection_delete, t_general);
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        var s = 16;
-        
-        element = (new EmuBitfield(col1_x, yy, col_width, element_height, Settings.selection.mask, function() {
-            Settings.selection.mask = self.value;
-        }))
-        .SetOrientation(E_BitfieldOrientations.VERTICAL)
-        .SetFixedSpacing(element_height)
-        .AddOptions(["Tile", "Mesh", "Pawn", "Effect", "All", "None"]);
-        
-        element._contents[| 0].SetEval(function() {
-            return Settings.selection.mask & 0x02;
-        });
-        element._contents[| 0].SetCallback(function() {
-            Settings.selection.mask ^= 0x02;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 1].SetEval(function() {
-            return Settings.selection.mask & 0x08;
-        });
-        element._contents[| 1].SetCallback(function() {
-            Settings.selection.mask ^= 0x08;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 2].SetEval(function() {
-            return Settings.selection.mask & 0x10;
-        });
-        element._contents[| 2].SetCallback(function() {
-            Settings.selection.mask ^= 0x10;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 3].SetEval(function() {
-            return Settings.selection.mask & 0x20;
-        });
-        element._contents[| 3].SetCallback(function() {
-            Settings.selection.mask ^= 0x20;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 4].SetEval(function() {
-            return Settings.selection.mask == 0xffffffff;
-        });
-        element._contents[| 4].SetCallback(function() {
-            Settings.selection.mask = 0xffffffff;
-            self.root.value = Settings.selection.mask;
-        });
-        element._contents[| 5].SetEval(function() {
-            return Settings.selection.mask == 0;
-        });
-        element._contents[| 5].SetCallback(function() {
-            Settings.selection.mask = 0;
-            self.root.value = Settings.selection.mask;
-        });
-        
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.height + spacing;
-        
-        // second column
-        
-        yy = legal_y + spacing;
-
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "3D View", Settings.view.threed, function() {
-            Settings.view.threed = self.value;
-        });
-        element.tooltip = "View the map in 2D, or in 3D.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Wireframes", Settings.view.wireframe, function() {
-            Settings.view.wireframe = self.value;
-        });
-        element.tooltip = "Whether or not you want to view the wireframes to go with visual data.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Grid and Markers", Settings.view.grid, function() {
-            Settings.view.grid = self.value;
-        });
-        element.tooltip = "Whether or not you want to view the cell grid and grid axes.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Texture", Settings.view.texture, function() {
-            Settings.view.texture = self.value;
-        });
-        element.tooltip = "Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Entities", Settings.view.entities, function() {
-            Settings.view.entities = self.value;
-        });
-        element.tooltip = "Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Backfaces", Settings.view.backface, function() {
-            Settings.view.backface = self.value;
-        });
-        element.tooltip = "Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Zones", Settings.view.zones, function() {
-            Settings.view.zones = self.value;
-        });
-        element.tooltip = "Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Lighting", Settings.view.lighting, function() {
-            Settings.view.lighting = self.value;
-        });
-        element.tooltip = "See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
-        ds_list_add(t_general.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Gizmos", Settings.view.gizmos, function() {
-            Settings.view.gizmos = self.value;
-        });
-        element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
-        t_general.AddContent(element);
-        
-        yy += element.GetHeight() + spacing;
-        #endregion
-        
-        #region tab: stats
-        yy = legal_y + spacing;
-        
-        // if you really want the color-coded entities, maybe make the entry color feature a script instead 
-        // of just a list of colors - later, though
-        element_all_entities = create_list(col1_x, yy, "All Entities", "<No entities>", col_width, element_height, 28, uivc_list_all_entities, true, t_stats, noone);
-        element_all_entities.render = ui_render_list_all_entities;
-        element_all_entities.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_stats.contents, element_all_entities);
-        
-        // second column
-        
-        yy = legal_y + spacing;
-        
-        element = create_text(col2_x, yy, "Entity Stats", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        var stat_x = col2_x + col_width * 3 / 4;
-        
-        element = create_text(col2_x, yy, "Total Entities:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(ds_list_size(Stuff.map.active_map.contents.all_entities));
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "     Static:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population_static);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Solid:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "     Tiles:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Autotiles:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE_ANIMATED]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Meshes:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_MESH]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Pawns:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_PAWN]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     Effects:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_EFFECT]);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Frozen terrain data:", col_width, element_height, fa_left, col_width, t_stats);
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing / 2;
-        
-        element = create_text(col2_x, yy, "     - triangles", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE / 3) : "-") + " triangles)";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "     - vertices", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE) : "-") + " vertices)";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    " + ((size > 1) ? string_comma(ceil(size >> 10)) : "-") + " kb";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height;
-        
-        element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
-            text.text = "    (" + ((size > 1) ? string(size) : "-") + " bytes)";
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_stats.contents, element);
-        
-        yy += element.height + spacing / 2;
-        #endregion
-        
-        #region tab: map
-        yy = legal_y + spacing;
-        
-        var f_map_open = function(element) {
-            var list = element.root.el_map_list;
-            var index = ui_list_selection(list);
-            var map = Game.maps[index];
-            if (map != Stuff.map.active_map) {
-                emu_dialog_confirm(undefined, "Would you like to load the map " + map.name + "? Any unsaved changes will be lost!", function() {
-                    selection_clear();
-                    self.root.map.Load();
-                    self.root.Dispose();
-                }).map = map;
-            }
-        };
-        
-        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, function(list) {
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                var what = list.entries[selection];
-                list.root.el_name.interactive = true;
-                ui_input_set_value(list.root.el_name, what.name);
-                list.root.el_internal_name.interactive = true;
-                ui_input_set_value(list.root.el_internal_name, what.internal_name);
-                list.root.el_summary.interactive = true;
-                ui_input_set_value(list.root.el_summary, what.summary);
-                // resizing a map checks if any entities will be deleted and warns you if any
-                // will; maps that are not loaded do not have a list of their entities on hand,
-                // and trying to check this is not worth the trouble
-                list.root.el_dim_x.interactive = (what == Stuff.map.active_map);
-                ui_input_set_value(list.root.el_dim_x, string(what.xx));
-                list.root.el_dim_y.interactive = (what == Stuff.map.active_map);
-                ui_input_set_value(list.root.el_dim_y, string(what.yy));
-                list.root.el_dim_z.interactive = (what == Stuff.map.active_map);
-                ui_input_set_value(list.root.el_dim_z, string(what.zz));
-                list.root.el_other.interactive = true;
-            } else {
-                list.root.el_name.interactive = false;
-                list.root.el_internal_name.interactive = false;
-                list.root.el_summary.interactive = false;
-                list.root.el_dim_x.interactive = false;
-                list.root.el_dim_y.interactive = false;
-                list.root.el_dim_z.interactive = false;
-                list.root.el_other.interactive = false;
-            }
-        }, false, t_maps, Game.maps);
-        element.tooltip = "This is a list of all the maps currently in the game.";
-        element.render_colors = method(element, function(list, index) {
-            return (Game.meta.start.map == list.entries[index].GUID) ? c_blue : c_black;
-        });
-        element.colorize = true;
-        element.ondoubleclick = method(element, f_map_open);
-        element.entries_are = ListEntries.INSTANCES;
-        t_maps.el_map_list = element;
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, function(button) {
-            dialog_create_new_map(noone);
-        }, t_maps);
-        element.tooltip = "Add a map. You can have up to " + string(0xffff) + " maps in the game. I seriously doubt anyone will need anywhere near that many.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Delete Map", col_width, element_height, fa_center, function(button) {
-            var list = button.root.el_map_list;
-            var index = ui_list_selection(list);
-            var map = Game.maps[index];
-            if (map == Stuff.map.active_map) {
-                emu_dialog_notice("Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.");
-            } else {
-                map.Destroy();
-                ui_list_deselect(button.root.el_map_list);
-                ui_list_select(button.root.el_map_list, array_search(Game.maps, Stuff.map.active_map));
-            }
-        }, t_maps);
-        element.tooltip = "Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, f_map_open, t_maps);
-        element.tooltip = "Open the currently selected map for editing. Double-clicking it in the list will have the same effect.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, function(button) {
-            var list = button.root.el_map_list;
-            var index = ui_list_selection(list);
-            Game.meta.start.map = list.entries[index].GUID;
-        }, t_maps);
-        element.tooltip = "Designate the currently selected map as the first one entered when the game starts. What this means to your game is up to you.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Import Tiled", col_width, element_height, fa_center, function(button) {
-            import_map_tiled(true);
-        }, t_maps);
-        element.tooltip = "Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy = legal_y + spacing;
-        
-        element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var selection = ui_list_selection(input.root.el_map_list);
-            if (selection + 1) {
-                Game.maps[selection].name = input.value;
-            }
-        }, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The name of the map, as it appears to the player.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_name = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Internal name:", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var selection = ui_list_selection(input.root.el_map_list);
-            if (selection + 1) {
-                internal_name_set(Game.maps[selection], input.value);
-            }
-        }, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_internal_name = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Summary:", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var selection = ui_list_selection(input.root.el_map_list);
-            if (selection + 1) {
-                Game.maps[selection].summary = input.value;
-            }
-        }, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
-        element.tooltip = "A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_summary = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Dimensions", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "64", "width", validate_int_map_size_x, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The width of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
-        element.require_enter = true;
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_dim_x = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "64", "height", validate_int_map_size_y, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The height of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
-        element.require_enter = true;
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_dim_y = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "8", "depth", validate_int_map_size_z, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-        element.tooltip = "The depth of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
-        element.require_enter = true;
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_dim_z = element;
-        
-        yy += element.height + spacing * 3;
-        
-        element = create_text(col2_x, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing * 3;
-        
-        element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, dialog_create_map_generic_data, t_maps);
-        element.tooltip = "You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_other = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy,  "Advanced", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
-        element.tooltip = "I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_other = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, function() {
-            emu_dialog_notice("This has not yet been implemented!");
-        }, t_maps);
-        element.tooltip = "Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution.";
-        element.inheritRender = element.render;
-        element.render = function(button, x, y) {
-            var selection = ui_list_selection(button.root.el_map_list);
-            button.interactive = (selection + 1 && Game.maps[selection] == Stuff.map.active_map);
-            button.inheritRender(button, x, y);
-        };
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Clear Frozen Data", col_width, element_height, fa_center, function(button) {
-            emu_dialog_confirm(button, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
-                Stuff.map.active_map.contents.ClearFrozenData();
-                self.root.Dispose();
-            });
-        }, t_maps);
-        element.inheritRender = element.render;
-        element.render = function(button, x, y) {
-            var selection = ui_list_selection(button.root.el_map_list);
-            button.interactive = (selection + 1 && Game.maps[selection] == Stuff.map.active_map);
-            button.inheritRender(button, x, y);
-        };
-        element.tooltip = "Clear the frozen vertex buffer data. There is no way to get it back. Use with caution.";
-        ds_list_add(t_maps.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
-        
-        #region tab: entity
-        yy = legal_y + spacing;
-        
-        draw_set_font(FDefault);
-        var max_characters = 32;
-        vx2 = vx1 + 288;
-        
-        element_entity_name = create_input(col1_x, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "Helpful if unique", validate_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_name);
-        element_entity_name.interactive = false;
-        
-        vx2 = col_width;
-        yy += element_entity_name.height + spacing;
-        
-        element = create_text(col1_x, yy, "Basic Properties", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element_entity_type = create_text(col1_x, yy, "Type:", col_width, element_height, fa_left, col_width, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_type);
-        
-        yy += element_entity_type.height + spacing;
-        
-        element_entity_static = create_checkbox(col1_x, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_static);
-        element_entity_static.interactive = false;
-        
-        yy += element_entity_static.height + spacing;
-        
-        var n = 6;
-        
-        element_entity_events = create_list(col1_x, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
-        element_entity_events.colorize = false;
-        element_entity_events.render = ui_render_list_entity_events;
-        element_entity_events.entries_are = ListEntries.INSTANCES;
-        element_entity_events.ondoubleclick = omu_entity_event_page;
-        ds_list_add(t_p_entity.contents, element_entity_events);
-        element_entity_events.interactive = false;
-        
-        yy += element_entity_events.GetHeight() + spacing;
-        
-        element_entity_event_edit = create_button(col1_x, yy, "Edit Event Page", col_width, element_height, fa_center, omu_entity_event_page, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_event_edit);
-        element_entity_event_edit.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element_entity_event_add = create_button(col1_x, yy, "Add Event Page", col_width, element_height, fa_center, omu_entity_add_event, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_event_add);
-        element_entity_event_add.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element_entity_event_remove = create_button(col1_x, yy, "Delete Event Page", col_width, element_height, fa_center, omu_entity_remove_event, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_event_remove);
-        element_entity_event_remove.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col1_x, yy, "Options", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element_entity_option_direction_fix = create_checkbox(col1_x, yy, "Direction Fix", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].direction_fix = checkbox.value;
-            }
-        }, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_direction_fix);
-        element_entity_option_direction_fix.interactive = false;
-        
-        yy += element_entity_option_direction_fix.height;
-        
-        element_entity_option_always_update = create_checkbox(col1_x, yy, "Always Update?", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].always_update = checkbox.value;
-            }
-        }, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_always_update);
-        element_entity_option_always_update.interactive = false;
-        
-        yy += element_entity_option_always_update.height;
-        
-        element_entity_option_preserve = create_checkbox(col1_x, yy, "Preserve?", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].preserve_on_save = checkbox.value;
-            }
-        }, false, t_p_entity);
-        element_entity_option_preserve.tooltip = "Whether or not the state of the entity is saved when the map is exited, the game is closed, etc.";
-        ds_list_add(t_p_entity.contents, element_entity_option_preserve);
-        element_entity_option_preserve.interactive = false;
-        
-        yy += element_entity_option_preserve.height;
-        
-        element_entity_option_reflect = create_checkbox(col1_x, yy, "Cast Reflection?", col_width, element_height, function(checkbox) {
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].reflect = checkbox.value;
-            }
-        }, false, t_p_entity);
-        element_entity_option_reflect.tooltip = "Whether or not the entity should show a reflection in water.";
-        ds_list_add(t_p_entity.contents, element_entity_option_reflect);
-        element_entity_option_reflect.interactive = false;
-        
-        yy += element_entity_option_reflect.height + spacing;
-        
-        element_entity_generic = create_button(col1_x, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_generic);
-        element_entity_generic.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element_entity_option_autonomous_movement = create_button(col1_x, yy, "Autonomous Movement", col_width, element_height, fa_center, omu_entity_autonomous_movement, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_autonomous_movement);
-        element_entity_option_autonomous_movement.interactive = false;
-        
-        yy += element_entity_option_autonomous_movement.height + spacing;
-        
-        // second column
-        
-        yy = legal_y + spacing + element_entity_name.height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Position", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_pos_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_pos_x, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_pos_x);
-        element_entity_pos_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_pos_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_pos_y, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_pos_y);
-        element_entity_pos_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_pos_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_pos_z, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_pos_z);
-        element_entity_pos_z.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Position Offset", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_offset_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_off_x, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_offset_x);
-        element_entity_offset_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_offset_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_off_y, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_offset_y);
-        element_entity_offset_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_offset_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_off_z, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_offset_z);
-        element_entity_offset_z.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Rotation", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_rot_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_rotate_x, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_rot_x);
-        element_entity_rot_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_rot_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_rotate_y, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_rot_y);
-        element_entity_rot_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_rot_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_rotate_z, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_rot_z);
-        element_entity_rot_z.interactive = false;
-        
-        yy += element_height + spacing;
-        
-        element = create_text(col2_x, yy, "Transform: Scale", col_width, element_height, fa_left, col_width, t_p_entity);
-        element.color = c_blue;
-        ds_list_add(t_p_entity.contents, element);
-        
-        yy += element_height + spacing;
-        
-        element_entity_scale_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_scale_x, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_scale_x);
-        element_entity_scale_x.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_scale_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_scale_y, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_scale_y);
-        element_entity_scale_y.interactive = false;
-        
-        yy += element_height + spacing / 2;
-        
-        element_entity_scale_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_scale_z, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_scale_z);
-        element_entity_scale_z.interactive = false;
-        
-        yy += element_height + spacing;
-        #endregion
-        
-        #region tab: entity: mesh
-        yy = legal_y + spacing;
-        
-        element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, function(list) {
-            var mesh = Game.meshes[ui_list_selection(list)];
-            // this assumes that every selected entity is already an instance of Mesh
-            var entities = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(entities); i++) {
-                // if the mesh changes, you should probably also reset the proto guid
-                var changed = guid_get(entities[| i].mesh) != mesh;
-                entities[| i].SetMesh(mesh, changed ? mesh.first_proto_guid : entities[| i].mesh_submesh);
-            }
-            batch_again(undefined);
-            Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
-            ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
-            ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh, mesh.first_proto_guid), true);
-        }, false, t_p_mesh, Game.meshes);
-        element_entity_mesh_list.allow_deselect = false;
-        element_entity_mesh_list.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
-        element_entity_mesh_list.interactive = false;
-        
-        yy += element_entity_mesh_list.GetHeight() + spacing;
-        
-        element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<choose a single mesh>", col_width, element_height, 10, function(list) {
-            var entities = Stuff.map.selected_entities;
-            var mesh_data = guid_get(entities[| 0].mesh);
-            var submesh = mesh_data.submeshes[ui_list_selection(list)].proto_guid;
-            for (var i = 0; i < ds_list_size(entities); i++) {
-                entities[| i].mesh_submesh = submesh;
-            }
-            batch_again(undefined);
-        }, false, t_p_mesh, noone);
-        element_entity_mesh_submesh.allow_deselect = false;
-        element_entity_mesh_submesh.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_submesh);
-        element_entity_mesh_submesh.interactive = false;
-        
-        yy += element_entity_mesh_submesh.GetHeight() + spacing;
-        
-        yy = legal_y + spacing;
-            
-        element_entity_mesh_autotile_data = create_button(col2_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, function(button) {
-            dialog_create_entity_mesh_autotile_properties(button);
-        }, t_p_mesh);
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
-        element_entity_mesh_autotile_data.interactive = false;
-        
-        yy += element_entity_mesh_autotile_data.height + spacing;
-        
-        element_entity_mesh_animated = create_checkbox(col2_x, yy, "Animated", col_width, element_height, function(checkbox) {
-            // this assumes that every selected entity is already an instance of Mesh
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].animated = checkbox.value;
-            }
-        }, false, t_p_mesh);
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
-        element_entity_mesh_animated.interactive = false;
-        
-        yy += element_entity_mesh_animated.height + spacing;
-        
-        element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, function(input) {
-            // this assumes that every selected entity is already an instance of Mesh
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].animation_speed = real(input.value);
-            }
-        }, 1, "-60 to 60", validate_int, -60, 60, 3, vx1, vy1, vx2, vy2, t_p_mesh);
-        element_entity_mesh_animation_speed.tooltip = "The number of complete animation frames per second. (Animations will not be previewed in the editor.)";
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_speed);
-        element_entity_mesh_animation_speed.interactive = false;
-        
-        yy += element_entity_mesh_animation_speed.height + spacing;
-        
-        element_entity_mesh_animation_end_action = create_radio_array(col2_x, yy, "End Action:", col_width, element_height, function(radio) {
-            // this assumes that every selected entity is already an instance of Mesh
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].animation_end_action = radio.value;
-            }
-        }, 0, t_p_mesh);
-        create_radio_array_options(element_entity_mesh_animation_end_action, ["Stop", "Loop", "Reverse"]);
-        element_entity_mesh_animation_end_action.tooltip = "The number of complete animation cycles per second";
-        ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_end_action);
-        element_entity_mesh_animation_end_action.interactive = false;
-        
-        yy += element_entity_mesh_animation_end_action.GetHeight() + spacing;
-        #endregion
-        
-        #region tab: entity: pawn
-        yy = legal_y + spacing;
-        
-        element_entity_pawn_frame = create_input(col1_x, yy, "Frame:", col_width, element_height, function(input) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var list = Stuff.map.selected_entities;
-            var conversion = real(thing.value);
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].frame = conversion;
-            }
-        }, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
-        
-        yy += element_entity_pawn_frame.height + spacing;
-        
-        element_entity_pawn_direction = create_radio_array(col1_x, yy, "Direction", col_width, element_height, function(radio) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].map_direction = radio.value;
-            }
-        }, 0, t_p_pawn);
-        create_radio_array_options(element_entity_pawn_direction, ["Down", "Left", "Right", "Up"]);
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_direction);
-        
-        yy += element_entity_pawn_direction.GetHeight() + spacing;
-        
-        element_entity_pawn_animating = create_checkbox(col1_x, yy, "Animating", col_width, element_height, function(checkbox) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var list = Stuff.map.selected_entities;
-            for (var i = 0; i < ds_list_size(list); i++) {
-                list[| i].is_animating = checkbox.value;
-            }
-        }, false, t_p_pawn);
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_animating);
-        
-        yy += element_entity_pawn_animating.height + spacing;
-        
-        element_entity_pawn_sprite = create_list(col1_x, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, function(list) {
-            // this assumes that every selected entity is already an instance of Pawn
-            var entities = Stuff.map.selected_entities;
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                for (var i = 0; i < ds_list_size(entities); i++) {
-                    entities[| i].overworld_sprite = Game.graphics.overworlds[selection].GUID;
-                }
-            }
-        }, false, t_p_pawn, Game.graphics.overworlds);
-        element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
-        
-        yy += element_entity_pawn_sprite.GetHeight() + spacing;
-        #endregion
-        
-        #region tab: entity: effect
-        yy = legal_y + spacing;
-        
-        element = create_text(col1_x, yy, "Effect Components", col_width, element_height, fa_left, col_width, t_p_effect);
-        ds_list_add(t_p_effect.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element_effect_com_light = create_button(col1_x, yy, "Light", col_width, element_height, fa_center, function(button) {
-            dialog_create_entity_effect_com_lighting(button);
-        }, t_p_effect);
-        element_effect_com_light.interactive = false;
-        ds_list_add(t_p_effect.contents, element_effect_com_light);
-        
-        yy += element_effect_com_light.height + spacing;
-        
-        element_effect_com_particle = create_button(col1_x, yy, "Particle", col_width, element_height, fa_center, null, t_p_effect);
-        element_effect_com_particle.interactive = false;
-        ds_list_add(t_p_effect.contents, element_effect_com_particle);
-        
-        yy += element_effect_com_particle.height + spacing;
-        
-        element_effect_com_audio = create_button(col1_x, yy, "Audio", col_width, element_height, fa_center, null, t_p_effect);
-        element_effect_com_audio.interactive = false;
-        ds_list_add(t_p_effect.contents, element_effect_com_audio);
-        
-        yy += element_effect_com_audio.height + spacing;
-        
-        element_effect_com_marker = create_button(col1_x, yy, "Markers", col_width, element_height, fa_center, function(button) {
-            dialog_create_entity_effect_com_markers(button);
-        }, t_p_effect);
-        element_effect_com_marker.interactive = false;
-        ds_list_add(t_p_effect.contents, element_effect_com_marker);
-        
-        yy += element_effect_com_marker.height + spacing;
-        #endregion
-        
-        #region tab: entity: other
-        yy = legal_y + spacing;
-        
-        element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other);
-        ds_list_add(t_p_other.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other);
-        element.tooltip = "If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.";
-        element.interactive = false;
-        ds_list_add(t_p_other.contents, element);
-        t_p_other.el_zone_data = element;
-        
-        yy += element.height + spacing;
-        #endregion
-        
-        #region tab: general: tiles
-        
-        yy = legal_y + spacing;
-        
-        element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, function(button) {
-            var dg = dialog_create_manager_graphic_tileset(button);
-            dg.el_confirm.onmouseup = function(button) {
-                var selection = ui_list_selection(button.root.el_list);
-                if(selection + 1) {
-                    Stuff.map.active_map.tileset = Game.graphics.tilesets[selection].GUID;
-                }
-                dmu_dialog_commit(button);
-            };
-        }, t_p_tile_editor);
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        element = create_button(col1_x + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, function(button) {
-            var fn = get_open_filename_image();
-            if (file_exists(fn)) {
-                var picture = sprite_add(fn, 0, false, false, 0, 0);
-                var ts = get_active_tileset();
-                sprite_delete(ts.picture);
-                ts.picture = picture;
-            }
-        }, t_p_tile_editor);
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        element = create_button(col1_x + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, function(button) {
-            var fn = get_save_filename_image("output.png");
-            if (fn != "") {
-                sprite_save(get_active_tileset().picture, 0, fn);
-            }
-        }, t_p_tile_editor);
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_tile_selector(col1_x, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, function(selector, tx, ty) {
-            Stuff.map.selection_fill_tile_x = tx;
-            Stuff.map.selection_fill_tile_y = ty;
-            selector.tile_x = tx;
-            selector.tile_y = ty;
-        }, function(selector, tx, ty) {
-            var ts = get_active_tileset();
-        }, t_p_tile_editor);
-        element.tile_x = mode.selection_fill_tile_x;
-        element.tile_y = mode.selection_fill_tile_y;
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        yy += element.height + spacing;
-        var yy_aftergrid = yy;
-        
-        element = create_text(col1_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
-        element.render = method(element, function(text, x, y) {
-            text.text = "Tile Properties: " + string(Stuff.map.selection_fill_tile_x) + ", " + string(Stuff.map.selection_fill_tile_y);
-            ui_render_text(text, x, y);
-        });
-        ds_list_add(t_p_tile_editor.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
-        
-        #region tab: general: meshes
-        yy = legal_y + spacing;
-        
-        // this is an object variable
-        element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, function(list) {
-            Stuff.map.selection_fill_mesh = ui_list_selection(list);
-            uivc_select_mesh_refresh(Stuff.map.selection_fill_mesh);
-        }, false, t_p_mesh_editor, Game.meshes);
-        element_mesh_list.entries_are = ListEntries.SCRIPT;
-        element_mesh_list.colorize = true;
-        element_mesh_list.render = method(element_mesh_list, function(list, x, y) {
-            var oldtext = list.text;
-            list.text = list.text + string(array_length(list.entries));
-            ui_render_list(list, x, y);
-            list.text = oldtext;
-        });
-        element_mesh_list.render_colors = method(element_mesh_list, function(list, index) {
-            var mesh = list.entries[index];
-            for (var i = 0; i < array_length(mesh.submeshes); i++) {
-                if (!mesh.submeshes[i].buffer) return c_red;
-            }
-            switch (mesh.type) {
-                case MeshTypes.RAW: return c_black;
-                case MeshTypes.SMF: return c_blue;
-            }
-            return c_black;
-        });
-        element_mesh_list.ondoubleclick = method(element_mesh_list, function(list) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) dialog_create_mesh_advanced(undefined, data);
-        });
-        element_mesh_list.evaluate_text = method(element_mesh_list, function(list, index) {
-            var mesh = list.entries[index];
-            var prefix = "";
-            if (mesh.flags & MeshFlags.PARTICLE) {
-                prefix += "p";
-            }
-            if (mesh.flags & MeshFlags.SILHOUETTE) {
-                prefix += "s";
-            }
-            for (var i = 0; i < array_length(mesh.submeshes); i++) {
-                if (mesh.submeshes[i].reflect_buffer) {
-                    prefix += "r";
-                    break;
-                }
-            }
-            if (string_length(prefix) > 0) {
-                prefix = "(" + prefix + ")";
-            }
-            return prefix + mesh.name;
-        });
-        element_mesh_list.tooltip = "All meshes available. Legend:\n - RED meshes have one or more submeshes with no vertex buffer associated with it\n - BLUE meshes are SMF meshes, and may have special animations or materials\n - Meshes marked with \"p\" represent particles\n - Meshes marked with \"r\" have one or more reflection meshes associated with them";
-        ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
-        
-        yy += element_mesh_list.GetHeight() + spacing;
-        
-        element = create_button(col1_x, yy, "Import", col_width, element_height, fa_center, function(button) {
-            var fn = get_open_filename_mesh();
-            if (file_exists(fn)) {
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, undefined); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                }
-            }
-        }, t_p_mesh_editor);
-        element.file_dropper_action = function(element, files) {
-            var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".smf", ".dae"]);
-            for (var i = 0; i < array_length(filtered_list); i++) {
-                var fn = filtered_list[i];
-                switch (filename_ext(fn)) {
-                    case ".obj": import_obj(fn, true); break;
-                    case ".d3d": case ".gmmod": import_d3d(fn, true); break;
-                    case ".smf": break;
-                    case ".dae": import_dae(fn); break;
-                }
-            }
-        };
-        element.tooltip = "Imports a 3D model. The texture coordinates will automatically be scaled on importing; to override this, press the Control key.";
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) data.Destroy();
-            batch_again();
-        }, t_p_mesh_editor);
-        element.color = c_red;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy = legal_y + spacing;
-        
-        element = create_text(col2_x, yy, "Mesh Properties", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                data.name = input.value;
-            }
-        }, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        t_p_mesh_editor.mesh_name = element;
-        
-        yy += t_p_mesh_editor.mesh_name.height + spacing;
-        
-        element = create_text(col2_x, yy, "Internal Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                internal_name_set(data, input.value);
-            }
-        }, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        t_p_mesh_editor.mesh_name_internal = element;
-        
-        yy += t_p_mesh_editor.mesh_name_internal.height + spacing;
-        
-        s = 10;
-        
-        var bounds_x = col2_x;
-        var bounds_x_2 = bounds_x + col_width / 2;
-        
-        element = create_text(bounds_x, yy, "Bounds", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.xmin;
-                data.xmin = real(input.value);
-                if (old_value != data.xmin) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.xmin = element;
-        
-        element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.xmax;
-                data.xmax = real(input.value);
-                if (old_value != data.xmax) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.xmax = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.ymin;
-                data.ymin = real(input.value);
-                if (old_value != data.ymin) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.ymin = element;
-        
-        element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.ymax;
-                data.ymax = real(input.value);
-                if (old_value != data.ymax) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.ymax = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.zmin;
-                data.zmin = real(input.value);
-                if (old_value != data.zmin) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.zmin = element;
-        
-        element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, function(input) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var old_value = data.zmax;
-                data.zmax = real(input.value);
-                if (old_value != data.zmax) {
-                    data_mesh_recalculate_bounds(data);
-                }
-            }
-        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        t_p_mesh_editor.zmax = element;
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Flag Data", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                dialog_create_mesh_collision_data(noone, data);
-            }
-        }, t_p_tile_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) dialog_create_mesh_advanced(undefined, data);
-        }, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_text(col2_x, yy, "General Mesh Things", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, function(button) {
-            var data = Game.meshes[Stuff.map.selection_fill_mesh];
-            if (data) {
-                var fn = get_save_filename_mesh("");
-                if (string_length(fn) > 0) {
-                    switch (filename_ext(fn)) {
-                        case ".obj": export_obj(fn, data); break;
-                        case ".d3d": case ".gmmod": export_d3d(fn, data); break;
-                    }
-                }
-            }
-        }, t_p_mesh_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
+    var hud_start_x = 1080;
+    var hud_start_y = 0;
+    var hud_width = room_width - hud_start_x;
+    var hud_height = room_height;
+    var col1x = 16;
+    var col2x = hud_width / 2 + 16;
+    var element_width = hud_width / 2 - 32;
+    var element_height = 32;
     
-        #region tab: general: tile animation
-        yy = legal_y + spacing;
+    var container = new EmuCore(0, 0, hud_width, hud_height);
+    var tab_group = new EmuTabGroup(hud_start_x, EMU_BASE, hud_width, hud_height, 3, element_height - 4);
+    
+    var f_map_open = function() {
+        var index = self.GetSibling("MAP LIST").GetSelection();
+        if (index < 0) return;
+        var map = Game.maps[index];
+        if (map == Stuff.map.active_map) return;
         
-        element = create_list(col1_x, yy, "Animated Tiles: ", "<something is wrong>", col_width, element_height, 28, null, false, t_p_tile_animation_editor);
-        element.entries_are = ListEntries.GUIDS;
-        element.numbered = true;
-        ds_list_add(t_p_tile_animation_editor.contents, element);
-        
-        t_p_tile_animation_editor.element_list = element;
-        
-        element = create_text(col2_x, yy, "Animated Tile Properties", col_width, element_height, fa_left, col_width, t_p_tile_animation_editor);
-        element.color = c_blue;
-        ds_list_add(t_p_tile_animation_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_image_button(col2_x, yy, "Select", noone, col_width, element_height, fa_center, null, t_p_tile_animation_editor);
-        ds_list_add(t_p_tile_animation_editor.contents, element);
-        
-        yy += element.height + spacing;
-        #endregion
-        
-        #region tab: general: other
-        yy = legal_y + spacing;
-        
-        element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, function(list) {
-            Settings.selection.zone_type = ui_list_selection(list);
-        }, false, t_p_other_editor);
-        element.colorize = false;
-        element.allow_deselect = false;
-        ui_list_select(element, Settings.selection.zone_type);
-        create_list_entries(element, ["Camera Zone"], ["Light Zone"], ["Flag Zone"]);
-        ds_list_add(t_p_other_editor.contents, element);
-        t_p_other_editor.el_zone_type = element;
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", col_width, element_height, 8, function(list) {
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                Settings.selection.mesh_autotile_type = list.entries[selection].GUID;
-            } else {
-                Settings.selection.mesh_autotile_type = NULL;
+        emu_dialog_confirm(undefined, "Would you like to load the map " + map.name + "? Any unsaved changes will be lost!", function() {
+            selection_clear();
+            self.root.map.Load();
+            self.root.Dispose();
+        }).map = map;
+    };
+    
+    var f_event_page_open = function() {
+        var selection = self.GetSibling("ENTITY EVENT PAGES").GetSelection();
+        if (selection == -1) return;
+        dialog_create_entity_event_page(Stuff.map.selected_entities[| 0].object_events[selection]);
+    };
+    
+    #region general
+    tab_group.AddTabs(0, [
+        (new EmuTab("General")).AddContent([
+            #region column 1
+            (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Selection mode:", Settings.selection.mode, function() {
+                Settings.selection.mode = self.value;
+            }))
+                .AddOptions(["Single", "Rectangle"])
+                .SetID("SELECTION MODE"),
+            (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Additive selection?", Settings.selection.addition, function() {
+                Settings.selection.addition = self.value;
+            }))
+                .SetID("SELECTION ADDITIVE"),
+            (new EmuRadioArray(col1x, EMU_AUTO, element_width, element_height, "Fill type:", Settings.selection.fill_type, function() {
+                Settings.selection.fill_type = self.value;
+            }))
+                .AddOptions(["Tile", "Animated tile", "Mesh", "Pawn", "Effect", "Mesh autotile", "Zone"])
+                .SetID("SELECTION FILL"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Fill selection...", function() {
+                sa_fill();
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete selection...", function() {
+                sa_delete();
+            })),
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "Selection mask:"),
+            (new EmuBitfield(col1x, EMU_AUTO, element_width, element_height, Settings.selection.mask, function() {
+                Settings.selection.mask = self.value;
+            }))
+                .AddOptions([
+                    new EmuBitfieldOption("Tile", ETypeFlags.ENTITY_TILE_ANIMATED & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
+                    new EmuBitfieldOption("Mesh", ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
+                    new EmuBitfieldOption("Pawn", ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
+                    new EmuBitfieldOption("Effect", ETypeFlags.ENTITY_EFFECT & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_toggle, emu_bitfield_option_eval_includes),
+                    new EmuBitfieldOption("All", (ETypeFlags.ENTITY_TILE_ANIMATED | ETypeFlags.ENTITY_MESH | ETypeFlags.ENTITY_PAWN | ETypeFlags.ENTITY_EFFECT) & ~ETypeFlags.ENTITY, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
+                    new EmuBitfieldOption("None", 0x0, emu_bitfield_option_callback_exact, emu_bitfield_option_eval_exact),
+                ])
+                .SetOrientation(E_BitfieldOrientations.VERTICAL)
+                .SetFixedSpacing(24)
+                .SetID("SELECTION MASK"),
+            #endregion
+            #region column 2
+            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Viewer settings:"),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "3D View", Settings.view.threed, function() {
+                Settings.view.threed = self.value;
+            }))
+                .SetTooltip("View the map in 2D, or in 3D."),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Wireframe alpha:"),
+            (new EmuProgressBar(col2x, EMU_AUTO, element_width, element_height, 8, 0, 1, true, Settings.view.wireframe, function() {
+                Settings.view.wireframe = self.value;
+            }))
+                .SetTooltip("The transparency of the wireframes drawn over objects in the world."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Grid and Markers", Settings.view.grid, function() {
+                Settings.view.grid = self.value;
+            }))
+                .SetTooltip("Whether or not you want to view the cell grid and grid axes."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Vertex Colors", Settings.view.vertex_colors, function() {
+                Settings.view.vertex_colors = self.value;
+            }))
+                .SetTooltip("Whether or not to view vertex colors in the editor."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Texture", Settings.view.texture, function() {
+                Settings.view.texture = self.value;
+            }))
+                .SetTooltip("Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Entities", Settings.view.entities, function() {
+                Settings.view.entities = self.value;
+            }))
+                .SetTooltip("Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Frozen Data", Settings.view.frozen, function() {
+                Settings.view.frozen = self.value;
+            }))
+                .SetTooltip("Whether or not frozen vertex data (static level geometry) should be visible."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Water", Settings.view.water, function() {
+                Settings.view.water = self.value;
+            }))
+                .SetTooltip("Whether or not water should be visible."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Backfaces", Settings.view.backface, function() {
+                Settings.view.backface = self.value;
+            }))
+                .SetTooltip("Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Zones", Settings.view.zones, function() {
+                Settings.view.zones = self.value;
+            }))
+                .SetTooltip("Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Lighting", Settings.view.lighting, function() {
+                Settings.view.lighting = self.value;
+            }))
+                .SetTooltip("See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled."),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "View Gizmos", Settings.view.gizmos, function() {
+                Settings.view.gizmos = self.value;
+            }))
+                .SetTooltip("The helpful frames you see around light sources and other effects and that sort of thing."),
+            #endregion
+        ])
+            .SetID("GENERAL"),
+        (new EmuTab("Stats")).AddContent([
+            #region column 1
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "All Entities:", element_height, 22, function() {
+                selection_clear();
+                
+                Settings.selection.mask = 0;
+                self.ForEachSelection(function(index) {
+                    var entity = Stuff.map.active_map.contents.all_entities[| index];
+                    Settings.selection.mask |= entity.etype_flags;
+                    var selection = new SelectionSingle(entity.xx, entity.yy, entity.zz);
+                });
+                
+                sa_process_selection();
+            }))
+                .SetUpdate(function() {
+                    self.SetList(Stuff.map.active_map.contents.all_entities);
+                })
+                .SetVacantText("no entities in this map")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetID("ALL ENTITIES"),
+            #endregion
+            #region column 2
+            (new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Entity Stats")),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height * 5, "    Entities:"))
+                .SetTextUpdate(function() {
+                    var stats = Stuff.map.active_map.contents.stats;
+                    return "    Entities:  " + string(stats.GetEntityCount()) + "\n" +
+                        "    Static: N/A" + "\n" +
+                        "    Solid: N/A" + "\n" +
+                        "    Tiles: N/A" + "\n" +
+                        "    Autotiles: N/A" + "\n" +
+                        "    Meshes: N/A" + "\n" +
+                        "    Pawns: N/A" + "\n" +
+                        "    Effects: N/A";
+                }),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Vertex Data")),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height * 2, "    Storage:\n    Vertices:\n    Triangles:"))
+                .SetTextUpdate(function() {
+                    var stats = Stuff.map.active_map.contents.stats;
+                    var size = stats.GetVertexByteCount();
+                    return "    Storage: " + ((size < 1024) ? (string_comma(size) + " bytes") : (string_comma(size >> 10) + " kilobytes")) + "\n" +
+                        "    Vertices: " + string_comma(string(stats.GetVertexCount())) + "\n" +
+                        "    Triangles: " + string_comma(stats.GetVertexTriangleCount());
+                }),
+            #endregion
+        ])
+            .SetID("STATS"),
+        (new EmuTab("Map")).AddContent([
+            #region column 1
+            (new EmuList(col1x, EMU_BASE, element_width, element_height, "Maps:", element_height, 15, function() {
+            }))
+                .SetVacantText("no maps (how?!)")
+                .SetTooltip("This is a list of all the maps currently in the game")
+                .SetList(Game.maps)
+                .SetListColors(emu_color_maps)
+                .SetCallbackDouble(f_map_open)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetID("MAP LIST"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "New Map", function() {
+                var dialog = new EmuDialog(32 + 320 + 32, 480, "New Map");
+                
+                var col1 = 32;
+                var element_width = 320;
+                var element_height = 32;
+                
+                dialog.AddContent([
+                    (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Name:", "Map " + string(array_length(Game.maps) + 1), "The name of the map", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() { }))
+                        .SetID("NAME"),
+                    (new EmuInput(col1, EMU_AUTO, element_width, element_height, "    Width (X):", "160", "The width of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                        .SetID("X"),
+                    (new EmuInput(col1, EMU_AUTO, element_width, element_height, "    Height (Y):", "160", "The height of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                        .SetID("Y"),
+                    (new EmuInput(col1, EMU_AUTO, element_width, element_height, "    Depth (Z):", "8", "The depth of the map", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(1, MAP_AXIS_LIMIT)
+                        .SetID("Z"),
+                    (new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "Aligned to grid?", true, function() { }))
+                        .SetID("GRID"),
+                    (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Chunk size:", string(Game.meta.grid.chunk_size), "The size of each chunk of the map; chunks outside of the camera's view will not be updated or rendered (although their contents will continue to exist).", VISIBLE_NAME_LENGTH, E_InputTypes.INT, function() { }))
+                        .SetRealNumberBounds(6, MAP_AXIS_LIMIT)
+                        .SetID("CHUNK"),
+                ]).AddDefaultConfirmCancelButtons("Create", function() {
+                    // automatically pushed onto the list
+                    var map = new DataMap(self.GetSibling("NAME").value, "");
+                    array_push(Game.maps, map);
+                    map.SetSize(real(self.GetSibling("X").value), real(self.GetSibling("Y").value), real(self.GetSibling("Z").value));
+                    map.on_grid = self.GetSibling("GRID").value;
+                    map.light_ambient_colour = Game.meta.lighting.ambient;
+                    map.chunk_size = real(self.GetSibling("CHUNK").value);
+                    self.root.Dispose();
+                }, "Cancel", emu_dialog_close_auto);
+            }))
+                .SetTooltip("Add a map"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete Map", function() {
+                var index = self.GetSibling("MAP LIST").GetSelection();
+                if (index < 0) return;
+                
+                var map = Game.maps[index];
+                if (map == Stuff.map.active_map) {
+                    emu_dialog_notice("Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.");
+                } else {
+                    map.Destroy();
+                    ui_list_deselect(button.root.el_map_list);
+                    ui_list_select(button.root.el_map_list, array_search(Game.maps, Stuff.map.active_map));
+                }
+            }))
+                .SetTooltip("Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; once you delete a map, you're not getting it back."),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Open Map", f_map_open))
+                .SetTooltip("Open the currently selected map for editing. Alternatively, you can double-click on a list entry to open it."),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Make Starting Map", function() {
+                var index = self.GetSibling("MAP LIST").GetSelection();
+                if (index < 0) return;
+                Game.meta.start.map = Game.maps[index].GUID;
+            }))
+                .SetTooltip("Designate the currently selected map as the first one entered when the game starts. (What this means to your game is up to you.)"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Import Tiled", function() {
+                import_map_tiled();
+            }))
+                .SetTooltip("Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities."),
+            #endregion
+            #region column 2
+            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]This Map"),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Name"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", "map name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                Stuff.map.active_map.name = self.value;
+            }))
+                .SetTooltip("The name of the map, as it appears to the player.")
+                .SetID("MAP DATA NAME")
+                .SetInputBoxPosition(0, 0),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Internal name"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", "map internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+                internal_name_set(Stuff.map.active_map, self.value);
+            }))
+                .SetTooltip("The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.")
+                .SetID("MAP DATA INTERNAL NAME")
+                .SetInputBoxPosition(0, 0),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "Summary"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", "map summary", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                Stuff.map.active_map.summary = self.value;
+            }))
+                .SetTooltip("A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.")
+                .SetID("MAP DATA SUMMARY")
+                .SetInputBoxPosition(0, 0),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Width (X):", "64", "map width", 10, E_InputTypes.INT, emu_null))
+                .SetTooltip("The width of the map, in tiles.")
+                .SetID("MAP DATA SIZE X")
+                .SetRealNumberBounds(1, MAP_AXIS_LIMIT),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Width (Y):", "64", "map height", 10, E_InputTypes.INT, emu_null))
+                .SetTooltip("The height of the map, in tiles.")
+                .SetID("MAP DATA SIZE Y")
+                .SetRealNumberBounds(1, MAP_AXIS_LIMIT),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Width (Z):", "8", "map depth", 10, E_InputTypes.INT, emu_null))
+                .SetTooltip("The depth of the map, in tiles.")
+                .SetID("MAP DATA SIZE Z")
+                .SetRealNumberBounds(1, MAP_AXIS_LIMIT),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Resize...", function() {
+                var xnew = real(self.GetSibling("MAP DATA SIZE X"));
+                var ynew = real(self.GetSibling("MAP DATA SIZE Y"));
+                var znew = real(self.GetSibling("MAP DATA SIZE Z"));
+                var map = Stuff.map.active_map;
+                if (xnew == map.xx && ynew == map.yy && znew == map.zz) return;
+                if (xnew * ynew * znew >= MAP_VOLUME_LIMIT) {
+                    emu_dialog_notice("maps aren't allowed to be larger than " + string(MAP_VOLUME_LIMIT) + " in total volume");
+                }
+                
+                var clear = true;
+                for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
+                    var entity = map.contents.all_entities[| i];
+                    clear &= (entity.xx >= xnew) || (entity.yy >= ynew) || (entity.zz >= znew);
+                }
+                
+                if (clear) {
+                    map.SetSize(xnew, ynew, znew);
+                } else {
+                    var dialog = emu_dialog_confirm(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", function() {
+                        self.root.map.SetSize(self.root.xx, self.root.yy, self.root.zz);
+                        self.root.Dispose();
+                    });
+                    dialog.map = map;
+                    dialog.xx = xnew;
+                    dialog.yy = ynew;
+                    dialog.zz = znew;
+                }
+            }))
+                .SetTooltip("Shrinking a map may result in entities being deleted."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Generic Data", function() {
+                emu_dialog_generic_variables(Stuff.map.active_map.generic_data);
+            }))
+                .SetTooltip("You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Advanced", function() {
+                dialog_create_map_advanced();
+            }))
+                .SetTooltip("I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Terrain", function() {
+                dialog_create_map_terrain();
+            }))
+                .SetTooltip("Stuff relating specifically to map terrain."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Freeze Selected Objects", function() {
+                emu_dialog_notice("This has not yet been implemented!");
+            }))
+                .SetTooltip("Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Clear Frozen Data", function() {
+                emu_dialog_confirm(undefined, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
+                    Stuff.map.active_map.contents.ClearFrozenData();
+                    self.root.Dispose();
+                });
+            }))
+                .SetTooltip("Clear the frozen vertex buffer data. There is no way to get it back. Use with caution."),
+            #endregion
+        ])
+            .SetID("MAP")
+    ]);
+    #endregion
+    
+    #region inspector
+    tab_group.AddTabs(1, [
+        (new EmuTab("Entity")).AddContent([
+            #region column 1
+            new EmuText(col1x, EMU_BASE, element_width, element_height, "[c_aqua]Entity Properties"),
+            (new EmuInput(col1x, EMU_AUTO, element_width, element_height, "", "", "entity name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.name = data.value;
+                }, { value: self.value });
+            }))
+                .SetTooltip("It can be helpful for the entity names to be unique, although they don't have to be.")
+                .SetID("ENTITY NAME")
+                .SetInputBoxPosition(0, 0)
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "name") ? sel[| 0].name : "*");
+                    }
+                }),
+            (new EmuText(col1x, EMU_AUTO, element_width, element_height, "Type: N/A"))
+                .SetID("ENTITY TYPE")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetValue("Type: N/A");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue("Type: " + (map_selection_like_property(sel, "etype") ? global.etype_meta[sel[| 0].etype].name : "(multiple)"));
+                    }
+                }),
+            (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Static?", false, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.SetStatic(data.value);
+                }, { value: self.value });
+            }))
+                .SetID("ENTITY STATIC")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "is_static") ? sel[| 0].is_static : 2);
+                    }
+                }),
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Events"),
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Event Pages", element_height, 4, emu_null))
+                .SetVacantText("no events")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetCallbackDouble(f_event_page_open)
+                .SetID("ENTITY EVENT PAGES")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) != 1) {
+                        self.SetInteractive(false);
+                        self.SetList([]);
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetList(sel[| 0].object_events);
+                    }
+                }),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Add", function() {
+                var list = Stuff.map.selected_entities;
+                if (ds_list_size(list) != 1) return;
+                array_push(list[| 0].object_events, new InstantiatedEvent("Event Page " + string(array_length(list[| 0].object_events))));
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Delete", function() {
+                var list = Stuff.map.selected_entities;
+                if (ds_list_size(list) != 1) return;
+                
+                var index = self.GetSibling("ENTITY EVENT PAGES").GetSelection();
+                if (index + 1) {
+                    var dialog = emu_dialog_confirm(self, "Are you sure you want to delete the event page \"" + list[| 0].object_events[index].name + "?\"", function() {
+                        array_delete(self.root.entity.object_events, self.root.index, 1);
+                        self.root.list.Deselect();
+                        self.root.Dispose();
+                    });
+                    dialog.entity = list[| 0];
+                    dialog.index = index;
+                    dialog.list = self.GetSibling("ENTITY EVENT PAGES");
+                }
+            })),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Edit", f_event_page_open)),
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Stuff"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Generic Data", function() {
+                emu_dialog_generic_variables(ds_list_find_value(Stuff.map.selected_entities, 0).generic_data);
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && ds_list_size(sel) == 1);
+                }),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Autonomous Movement", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                dialog_create_entity_autonomous_movement();
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && ds_list_size(sel) == 1);
+                }),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Options", function() {
+                var selection = selection_all();
+                
+                var dialog = new EmuDialog(320, 480, "Entity Options");
+                
+                var col1x = 32;
+                var col2x = dialog.width / 2;
+                var element_width = dialog.height / 2 - 64;
+                var element_height = 32;
+                
+                // i have no idea why gamemaker doesnt like this all of the sudden
+                var df_state = map_selection_like_property(selection, "direction_fix") ? ds_list_find_value(selection, 0).direction_fix : 2;
+                var au_state = map_selection_like_property(selection, "always_update") ? ds_list_find_value(selection, 0).always_update : 2;
+                var preserve_state = map_selection_like_property(selection, "preserve_on_save") ? ds_list_find_value(selection, 0).preserve_on_save : 2;
+                var reflect_state = map_selection_like_property(selection, "reflect") ? ds_list_find_value(selection, 0).reflect : 2;
+                
+                dialog.AddContent([
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Direction Fix", df_state, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.direction_fix = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetID("ENTITY OPTION DIRECTION FIX"),
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Always Update", au_state, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.always_update = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetID("ENTITY OPTION ALWAYS UPDATE"),
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Preserve", preserve_state, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.preserve_on_save = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetTooltip("Whether or not the state of the entity is saved when the map is exited, the game is closed, etc.")
+                        .SetID("ENTITY OPTION PRESERVE"),
+                    (new EmuCheckbox(col1x, EMU_AUTO, element_width, element_height, "Cast Reflection", reflect_state, function() {
+                        map_foreach_selected(function(entity, data) {
+                            entity.reflect = data.value;
+                        }, { value: self.value });
+                    }))
+                        .SetTooltip("Whether or not the entity should show a reflection in water.")
+                        .SetID("ENTITY OPTION REFLECT"),
+                ])
+                    .AddDefaultCloseButton();
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && ds_list_size(sel) >= 1);
+                }),
+            #endregion
+            #region column 2
+            new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Transform"),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Position X:", "0", "cell", 10, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.translateable) {
+                        Stuff.map.active_map.Move(entity, data.value, entity.yy, entity.zz);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRequireConfirm(true)
+                .SetID("ENTITY POSITION X")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "xx") ? sel[| 0].xx : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "cell", 10, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.translateable) {
+                        Stuff.map.active_map.Move(entity, entity.xx, data.value, entity.zz);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRequireConfirm(true)
+                .SetID("ENTITY POSITION Y")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "yy") ? sel[| 0].yy : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "cell", 10, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.translateable) {
+                        Stuff.map.active_map.Move(entity, entity.xx, entity.yy, data.value);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRequireConfirm(true)
+                .SetID("ENTITY POSITION Z")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "zz") ? sel[| 0].zz : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Offset X:", "0", "cell", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_xx = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0, 1)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY OFFSET X")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "off_xx") ? sel[| 0].off_xx : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "cell", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_yy = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0, 1)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY OFFSET Y")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "off_yy") ? sel[| 0].off_yy : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "cell", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_zz = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0, 1)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY OFFSET Z")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "off_zz") ? sel[| 0].off_zz : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Rotation X:", "0", "degrees", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.rotateable) {
+                        entity.rot_xx = real(self.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0, 360)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION X")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "rot_xx") ? sel[| 0].rot_xx : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "0", "degrees", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_yy = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0, 360)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION Y")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "rot_yy") ? sel[| 0].rot_yy : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "0", "degrees", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.offsettable) {
+                        entity.off_zz = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0, 360)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY ROTATION Z")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "rot_zz") ? sel[| 0].rot_zz : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Scale X:", "1", "x", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.scalable) {
+                        entity.scale_xx = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0.01, 100)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY SCALE X")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "scale_xx") ? sel[| 0].scale_xx : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Y:", "1", "x", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.scalable) {
+                        entity.scale_yy = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0.01, 100)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY SCALE Y")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "scale_yy") ? sel[| 0].scale_yy : "");
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "    Z:", "1", "x", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    if (entity.scalable) {
+                        entity.scale_zz = real(data.value);
+                        editor_map_mark_changed(entity);
+                    }
+                }, { value: real(self.value) });
+            }))
+                .SetRealNumberBounds(0.01, 100)
+                .SetRequireConfirm(true)
+                .SetID("ENTITY SCALE Z")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        self.SetInteractive(true);
+                        self.SetValue(map_selection_like_property(sel, "scale_zz") ? sel[| 0].scale_zz : "");
+                    }
+                }),
+            #endregion
+        ])
+            .SetID("ENTITY"),
+        (new EmuTab("Mesh")).AddContent([
+            #region column 1
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes", element_height, 22, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var closure = { value: mesh, changed: false, };
+                map_foreach_selected(function(entity, closure) {
+                    closure.changed |= entity.mesh != closure.value;
+                    entity.SetMesh(closure.value, closure.changed ? closure.value.first_proto_guid : entity.mesh_submesh);
+                }, closure, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
+                
+                if (closure.changed)
+                    batch_again();
+                
+                var submesh_list = self.GetSibling("ENTITY MESH SUBMESH");
+                submesh_list.Deselect();
+                submesh_list.SetList(mesh.submeshes);
+                submesh_list.Select(proto_guid_get(mesh, mesh.first_proto_guid), true);
+            }))
+                .SetVacantText("no meshes")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetList(Game.meshes)
+                .SetListColors(emu_color_meshes)
+                .SetID("ENTITY MESH MESH")
+                .SetRefresh(function(sel) {
+                    self.Deselect();
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                    } else {
+                        self.SetInteractive(true);
+                        var common = map_selection_like_property(sel, "mesh", ETypeFlags.ENTITY_MESH);
+                        if (common) self.Select(array_search(Game.meshes, guid_get(common.value)), true);
+                    }
+                }),
+            #endregion
+            #region column 2
+            (new EmuList(col2x, EMU_BASE, element_width, element_height, "Submeshes", element_height, 8, function() {
+                if (!self.GetSibling("ENTITY MESH MESH")) return;
+                var mesh_index = self.GetSibling("ENTITY MESH MESH").GetSelection();
+                if (mesh_index == -1) return;
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                var submesh = Game.meshes[mesh_index].submeshes[index].proto_guid;
+                var closure = { value: submesh, changed: false };
+                map_foreach_selected(function(entity, closure) {
+                    closure.changed |= entity.mesh_submesh != closure.value;
+                    entity.mesh_submesh = closure.value;
+                }, closure, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
+                
+                if (closure.changed)
+                    batch_again();
+            }))
+                .SetVacantText("no meshes")
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetID("ENTITY MESH SUBMESH")
+                .SetRefresh(function(sel) {
+                    self.Deselect();
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                    } else {
+                        self.SetInteractive(true);
+                        var common = map_selection_like_property(sel, "mesh", ETypeFlags.ENTITY_MESH);
+                        if (!common) return;
+                        
+                        var mesh = guid_get(common.value);
+                        common = map_selection_like_property(sel, "mesh_submesh", ETypeFlags.ENTITY_MESH);
+                        if (common) self.Select(proto_guid_get(mesh, common.value), true);
+                    }
+                }),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Animation"),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animated", false, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.animated = data.value;
+                }, { value: self.value }, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
+            }))
+                .SetID("ENTITY MESH ANIMATED")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(0);
+                    } else {
+                        var common = map_selection_like_property(sel, "animated", ETypeFlags.ENTITY_MESH);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "Anim. Speed:", "0", "frames per second", 4, E_InputTypes.REAL, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.animation_speed = data.value;
+                }, { value: real(self.value) }, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
+            }))
+                .SetID("ENTITY MESH ANIMATION SPEED")
+                .SetTooltip("The number of complete animation frames per second. (Animations will not be previewed in the editor.)")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        var common = map_selection_like_property(sel, "animation_speed", ETypeFlags.ENTITY_MESH);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
+            (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "End action:", 0, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.animation_end_action = data.value;
+                }, { value: self.value }, ETypeFlags.ENTITY_MESH & ~ETypeFlags.ENTITY);
+            }))
+                .AddOptions(["Stop", "Loop", "Reverse"])
+                .SetID("ENTITY MESH ANIMATION END ACTION")
+                .SetTooltip("What do at the end of an animation cycle.")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(-1);
+                    } else {
+                        var common = map_selection_like_property(sel, "animation_end_action", ETypeFlags.ENTITY_MESH);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
+            new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Other Stuff"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Mesh Autotile Data", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                dialog_create_entity_mesh_autotile_properties();
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_MESH_AUTO));
+                }),
+            #endregion
+        ])
+            .SetID("ENTITY MESH"),
+        (new EmuTab("Pawn")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Overworld Sprite", element_height, 22, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                
+                map_foreach_selected(function(entity, data) {
+                    entity.overworld_sprite = data.value;
+                }, { value: Game.graphics.overworlds[index].GUID }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
+            }))
+                .SetList(Game.graphics.overworlds)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetID("ENTITY PAWN SPRITE")
+                .SetRefresh(function(sel) {
+                    self.Deselect();
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                    } else {
+                        var common = map_selection_like_property(sel, "overworld_sprite", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        if (common) self.Select(array_search(Game.graphics.overworlds, guid_get(common.value)), true);
+                    }
+                }),
+            (new EmuInput(col2x, EMU_BASE, element_width, element_height, "Frame", "0", "of animation", 4, E_InputTypes.INT, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.frame = real(data.value);
+                }, { value: real(self.value) }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
+            }))
+                .SetID("ENTITY PAWN FRAME")
+                .SetTooltip("The frame of the pawn's animation to show.")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue("");
+                    } else {
+                        var common = map_selection_like_property(sel, "frame", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
+            (new EmuRadioArray(col2x, EMU_AUTO, element_width, element_height, "Direction:", 0, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.map_direction = data.value;
+                }, { value: self.value }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
+            }))
+                .AddOptions(array_clone(global.rpg_maker_directions))
+                .SetID("ENTITY PAWN DIRECTION")
+                .SetTooltip("The direction you want this pawn to face on the map.")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(-1);
+                    } else {
+                        var common = map_selection_like_property(sel, "map_direction", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Animating", false, function() {
+                map_foreach_selected(function(entity, data) {
+                    entity.is_animating = data.value;
+                }, { value: self.value }, ETypeFlags.ENTITY_PAWN & ~ETypeFlags.ENTITY);
+            }))
+                .SetID("ENTITY PAWN ANIMATING")
+                .SetRefresh(function(sel) {
+                    if (sel == undefined || ds_list_size(sel) == 0) {
+                        self.SetInteractive(false);
+                        self.SetValue(false);
+                    } else {
+                        var common = map_selection_like_property(sel, "is_animating", ETypeFlags.ENTITY_PAWN);
+                        self.SetInteractive(true);
+                        self.SetValue(common ? common.value : 2);
+                    }
+                }),
+        ])
+            .SetID("ENTITY PAWN"),
+        (new EmuTab("Effect")).AddContent([
+            new EmuText(col1x, EMU_AUTO, element_width, element_height, "[c_aqua]Effect Components"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Light", function() {
+                dialog_create_entity_effect_com_lighting();
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                }),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Particle", function() {
+                // later
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                }),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Audio", function() {
+                // later
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                }),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Markers", function() {
+                dialog_create_entity_effect_com_markers();
+            }))
+                .SetRefresh(function(sel) {
+                    self.SetInteractive(sel != undefined && map_selection_like_type(sel, ETypeFlags.ENTITY_EFFECT));
+                }),
+        ])
+            .SetID("ENTITY EFFECT"),
+        (new EmuTab("Other")).AddContent([
+            new EmuText(col1x, EMU_AUTO, hud_width, element_height, "[c_aqua]This doesn't really fit anywhere else"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Zone data", function() {
+                if (ds_list_size(Stuff.map.selected_entities) != 1) return;
+                // this behavior will be dependent on the zone type
+            }))
+                .SetRefresh(function() {
+                    var zone = Stuff.map.selected_zone;
+                    self.SetInteractive(!!zone);
+                    if (!zone) return;
+                    self.SetCallback(zone.EditScript);
+                    self.text = "Data: " + zone.name;
+                })
+                .SetTooltip("If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.")
+                .SetID("ZONE DATA"),
+        ])
+            .SetID("ENTITY OTHER"),
+    ]);
+    #endregion
+    
+    #region world
+    tab_group.AddTabs(2, [
+        (new EmuTab("Mesh Settings")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Meshes:", element_height, 21, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                self.root.Refresh();
+            }))
+                .SetList(Game.meshes)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetUpdate(function() {
+                    self.text = "Meshes: " + string(array_length(Game.meshes));
+                })
+                .SetListColors(emu_color_meshes)
+                .SetCallbackDouble(function() {
+                    var index = self.GetSelection();
+                    if(index == -1) return;
+                    dialog_create_mesh_submesh(Game.meshes[index]);
+                })
+                .SetTooltip("All meshes available. Legend:\n - RED meshes have one or more submeshes with no vertex buffer associated with it\n - BLUE meshes are SMF meshes, and may have special animations or materials\n - Meshes marked with \"p\" represent particles\n - Meshes marked with \"r\" have one or more reflection meshes associated with them")
+                .SetID("MESH LIST"),
+            (new EmuButton(col1x, EMU_AUTO, element_width, element_height, "Go to Mesh manager", function() {
+                momu_meshes();
+            }))
+                .SetTooltip("Go to the Mesh management window."),
+            (new EmuText(col2x, EMU_BASE, element_width, element_height, "[c_aqua]Basic mesh properties")),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Name:")),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", string(VISIBLE_NAME_LENGTH) + " chars", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                Game.meshes[index].name = self.value;
+            }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].name);
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH NAME"),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Internal name:")),
+            (new EmuInput(col2x, EMU_AUTO, element_width, element_height, "", "", string(INTERNAL_NAME_LENGTH) + " chars", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                internal_name_set(Game.meshes[index], self.value);
+            }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].internal_name);
+                })
+                .SetInputBoxPosition(0, 0)
+                .SetID("MESH INTERNAL NAME"),
+            (new EmuCheckbox(col2x, EMU_AUTO, element_width, element_height, "Use independent bounds?", false, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                Game.meshes[index].use_independent_bounds = self.value;
+                self.root.Refresh();
+            }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].use_independent_bounds);
+                })
+                .SetID("MESH INDEPENDENT BOUNDS"),
+            (new EmuText(col2x, EMU_AUTO, element_width, element_height, "Bounds:")),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "x1:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.xmin;
+                mesh.xmin = real(self.value);
+                if (old_value != mesh.xmin) {
+                    mesh.RecalculateBounds();
+                }
+            }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].xmin);
+                    self.SetInteractive(Game.meshes[index].use_independent_bounds);
+                })
+                .SetInteractive(false)
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS XMIN"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "x2:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.xmax;
+                mesh.xmax = real(self.value);
+                if (old_value != mesh.xmax) mesh.RecalculateBounds();
+            }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].xmax);
+                    self.SetInteractive(Game.meshes[index].use_independent_bounds);
+                })
+                .SetInteractive(false)
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS XMAX"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "y1:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.ymin;
+                mesh.ymin = real(self.value);
+                if (old_value != mesh.ymin) mesh.RecalculateBounds();
+            }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].ymin);
+                    self.SetInteractive(Game.meshes[index].use_independent_bounds);
+                })
+                .SetInteractive(false)
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS YMIN"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "y2:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.ymax;
+                mesh.ymax = real(self.value);
+                if (old_value != mesh.ymax) mesh.RecalculateBounds();
+            }))
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].ymax);
+                    self.SetInteractive(Game.meshes[index].use_independent_bounds);
+                })
+                .SetInteractive(false)
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS YMAX"),
+            (new EmuInput(col2x, EMU_AUTO, element_width / 2 - 8, element_height, "z1:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.zmin;
+                mesh.zmin = real(self.value);
+                if (old_value != mesh.zmin) mesh.RecalculateBounds();
+                self.root.Refresh();
+            }))
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].zmin);
+                    self.SetInteractive(Game.meshes[index].use_independent_bounds);
+                })
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS ZMIN"),
+            (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 2 - 8, element_height, "z2:", "", "", 4, E_InputTypes.INT, function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if (index == -1) return;
+                
+                var mesh = Game.meshes[index];
+                var old_value = mesh.zmax;
+                mesh.zmax = real(self.value);
+                if (old_value != mesh.zmax) mesh.RecalculateBounds();
+                self.root.Refresh();
+            }))
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetValue(Game.meshes[index].zmax);
+                    self.SetInteractive(Game.meshes[index].use_independent_bounds);
+                })
+                .SetRealNumberBounds(-100, 100)
+                .SetID("MESH BOUNDS ZMAX"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Auto Calculate Bounds", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                Game.meshes[index].AutoCalculateBounds();
+                self.root.Refresh();
+            }))
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    var index = self.GetSibling("MESH LIST").GetSelection();
+                    if (index == -1) return;
+                    self.SetInteractive(Game.meshes[index].use_independent_bounds);
+                })
+                .SetTooltip("Automatically calculate the bounds of a mesh. Rounds to the nearest 32, eg [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].")
+                .SetID("AUTO CALCULATE BOUNDS"),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Flag Data", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                dialog_create_mesh_collision_data(Game.meshes[index]);
+            }))
+                .SetRefresh(function() {
+                    var mesh = self.GetSibling("MESH LIST").GetSelectedItem();
+                    self.SetInteractive(!!mesh);
+                    if (!mesh) return;
+                    var ww = mesh.xmax - mesh.xmin;
+                    var hh = mesh.ymax - mesh.ymin;
+                    var dd = mesh.zmax - mesh.zmin;
+                    if (ww * hh * dd == 0) {
+                        self.SetInteractive(false);
+                    }
+                })
+                .SetID("MESH FLAGS")
+                .SetTooltip("Go to the Mesh management window."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Submeshes", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                dialog_create_mesh_submesh(Game.meshes[index]);
+            }))
+                .SetTooltip("View and manage mesh submeshes."),
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Advanced", function() {
+                var index = self.GetSibling("MESH LIST").GetSelection();
+                if(index == -1) return;
+                dialog_create_mesh_other_settings(self.GetSibling("MESH LIST").GetAllSelectedIndices());
+            }))
+                .SetTooltip("General Mesh properties."),
+        ])
+            .SetID("PLACEMENT MESHES"),
+        (new EmuTab("Tile Settings")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Primary map tileset:", element_height, 8, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                Stuff.map.active_map.tileset = Game.graphics.tilesets[index].GUID;
+            }))
+                .SetRefresh(function() {
+                    if (!Stuff.map.active_map) return;
+                    for (var i = 0, n = array_length(Game.graphics.tilesets); i < n; i++) {
+                        if (Game.graphics.tilesets[i].GUID == Stuff.map.active_map.tileset) {
+                            self.Select(i);
+                            break;
+                        }
+                    }
+                })
+                .SetList(Game.graphics.tilesets)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+            (new EmuList(col2x, EMU_INLINE, element_width, element_height, "Water tileset:", element_height, 8, function() {
+                var index = self.GetSelection();
+                if (index == -1) return;
+                Stuff.map.active_map.water_texture = Game.graphics.tilesets[index].GUID;
+            }))
+                .SetRefresh(function() {
+                    if (!Stuff.map.active_map) return;
+                    for (var i = 0, n = array_length(Game.graphics.tilesets); i < n; i++) {
+                        if (Game.graphics.tilesets[i].GUID == Stuff.map.active_map.water_texture) {
+                            self.Select(i);
+                            break;
+                        }
+                    }
+                })
+                .SetList(Game.graphics.tilesets)
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS),
+            (new EmuRenderSurface(col1x, EMU_AUTO, hud_width - 64, hud_width - 64, function(mx, my) {
+                var image = (Stuff.map.active_map.tileset != NULL) ? guid_get(Stuff.map.active_map.tileset).picture : Game.graphics.tilesets[0].picture;
+                
+                self.drawCheckerbox(0, 0, self.width, self.height);
+                draw_sprite(image, 0, self.offset_x, self.offset_y);
+                
+                var bs = Stuff.map.selection_fill_tile_size;
+                draw_set_alpha(min(bs / 8, 1));
+                for (var i = self.offset_x % bs; i < self.width; i += bs) {
+                    draw_line_colour(i, 0, i, self.height, c_dkgray, c_dkgray);
+                }
+                for (var i = self.offset_y % bs; i < self.height; i += bs) {
+                    draw_line_colour(0, i, self.width, i, c_dkgray, c_dkgray);
+                }
+                draw_set_alpha(1);
+                
+                var tx = Stuff.map.selection_fill_tile_x + self.offset_x;
+                var ty = Stuff.map.selection_fill_tile_y + self.offset_y;
+                draw_sprite_stretched(spr_terrain_texture_selection, 0, tx, ty, Stuff.map.selection_fill_tile_size, Stuff.map.selection_fill_tile_size);
+                draw_rectangle_colour(1, 1, self.width - 2, self.height - 2, c_black, c_black, c_black, c_black, true);
+                
+                if (mouse_check_button(mb_middle)) {
+                    draw_sprite(spr_scroll, 0, mx, my);
+                }
+            }, function(mx, my) {
+                var image = (Stuff.map.active_map.tileset != NULL) ? guid_get(Stuff.map.active_map.tileset).picture : Game.graphics.tilesets[0].picture;
+                
+                if (!ds_list_empty(EmuOverlay._contents)) return;
+                if (!(is_clamped(mx, -16, self.width + 16) && is_clamped(my, -16, self.height + 16))) return;
+                
+                var bs = Stuff.map.selection_fill_tile_size;
+                var tx = bs * ((mx - self.offset_x) div bs);
+                var ty = bs * ((my - self.offset_y) div bs);
+                tx = clamp(tx, 0, sprite_get_width(image) - bs);
+                ty = clamp(ty, 0, sprite_get_height(image) - bs);
+                if (mouse_check_button(mb_left)) {
+                    Stuff.map.selection_fill_tile_x = tx;
+                    Stuff.map.selection_fill_tile_y = ty;
+                }
+                if (mouse_check_button_pressed(mb_middle)) {
+                    self.mx = mx;
+                    self.my = my;
+                } else if (mouse_check_button(mb_middle)) {
+                    self.offset_x = clamp(self.offset_x + (mx - self.mx), min(0, self.width - sprite_get_width(image)), 0);
+                    self.offset_y = clamp(self.offset_y + (my - self.my), min(0, self.height - sprite_get_height(image)), 0);
+                    self.mx = mx;
+                    self.my = my;
+                }
+            }, function() {
+                self.mx = -1;
+                self.my = -1;
+                self.offset_x = 0;
+                self.offset_y = 0;
+            }, null))
+        ])
+            .SetID("PLACEMENT TILES"),
+        (new EmuTab("Anim. Settings")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Animated tiles:", element_height, 22, function() {
+                // i'm sure i'll figure out what goes here eventually
+            })),
+        ])
+            .SetID("PLACEMENT TILE ANIMATION"),
+        (new EmuTab("Misc. Settings")).AddContent([
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Zone type:", element_height, 8, function() {
+                Settings.selection.zone_type = self.GetSelection();
+            }))
+                .SetAllowDeselect(false)
+                .SetList(["Camera Zone", "Light Zone", "Flag Zone"])
+                .Select(0)
+                .SetID("ZONE TYPE"),
+            (new EmuList(col1x, EMU_AUTO, element_width, element_height, "Mesh autotile type:", element_height, 8, function() {
+                var selection = self.GetSelection();
+                if (selection + 1) {
+                    Settings.selection.mesh_autotile_type =Game.mesh_autotiles[selection].GUID;
+                } else {
+                    Settings.selection.mesh_autotile_type = NULL;
+                }
+            }))
+                .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+                .SetList(Game.mesh_autotiles),
+        ])
+            .SetID("PLACEMENT OTHER"),
+    ]);
+    #endregion
+    
+    tab_group.RequestActivateTab(tab_group.GetTabByID("GENERAL"));
+    
+    container.AddContent([
+        (new EmuRenderSurface(0, 0, CW, CH, function() {
+            Stuff.map.DrawEditor();
+        }, function(mx, my) {
+            if (mx >= 0 && my >= 0 && mx < self.width && my < self.height) {
+                Stuff.map.camera.Update();
             }
-        }, false, t_p_other_editor, Game.mesh_autotiles);
-        element.entries_are = ListEntries.INSTANCES;
-        ds_list_add(t_p_other_editor.contents, element);
-        t_p_other_editor.el_mesh_autotile_type = element;
-        
-        yy += element.GetHeight() + spacing;
-        
-        element = create_checkbox(col1_x, yy, "Click to Drag", col_width, element_height, null, false, t_p_other_editor);
-        // if this is ever implemented properly, reactivate this
-        element.interactive = false;
-        t_p_other_editor.el_click_to_drag = element;
-        ds_list_add(t_p_other_editor.contents, element);
-        #endregion
-        
-        return id;
-    }
+        }, function() {
+            // create
+        }, function() {
+            // destroy
+        }))
+            .SetID("3D VIEW"),
+        tab_group
+    ]);
+    
+    return container;
 }

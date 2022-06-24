@@ -1,22 +1,33 @@
 // Emu (c) 2020 @dragonitespam
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Emu/wiki
-// !
-//scribble_init("emu", "fnt_emu_default");
 
 #region some macros which you may want to set
-#macro EMU_COLOR_BACK                                                           0xffffff
-#macro EMU_COLOR_DEFAULT                                                        0x000000
-#macro EMU_COLOR_DISABLED                                                       0xe0e0e0
-#macro EMU_COLOR_HELP_TEXT                                                      0x404040
-#macro EMU_COLOR_HOVER                                                          0xffe5ce
-#macro EMU_COLOR_INPUT_REJECT                                                   0x0000ff
-#macro EMU_COLOR_INPUT_WARN                                                     0x3399ff
-#macro EMU_COLOR_LIST_TEXT                                                      0x000000
-#macro EMU_COLOR_PROGRESS_BAR                                                   0xff9900
-#macro EMU_COLOR_RADIO_ACTIVE                                                   0x009900
-#macro EMU_COLOR_SELECTED                                                       0xffb8ac
 // !
-#macro EMU_COLOR_WINDOWSKIN                                                     Settings.config.color
+#macro EMU_COLOR_BACK                                                           Settings.colors.back
+// !
+#macro EMU_COLOR_DEFAULT                                                        Settings.colors.def
+// !
+#macro EMU_COLOR_TEXT                                                           Settings.colors.text
+// !
+#macro EMU_COLOR_DISABLED                                                       Settings.colors.disabled
+// !
+#macro EMU_COLOR_HELP_TEXT                                                      Settings.colors.help_text
+// !
+#macro EMU_COLOR_HOVER                                                          Settings.colors.hover
+// !
+#macro EMU_COLOR_INPUT_REJECT                                                   Settings.colors.input_reject
+// !
+#macro EMU_COLOR_INPUT_WARN                                                     Settings.colors.input_warn
+// !
+#macro EMU_COLOR_LIST_TEXT                                                      Settings.colors.list_text
+// !
+#macro EMU_COLOR_PROGRESS_BAR                                                   Settings.colors.progress_bar
+// !
+#macro EMU_COLOR_RADIO_ACTIVE                                                   Settings.colors.radio_active
+// !
+#macro EMU_COLOR_SELECTED                                                       Settings.colors.sel
+// !
+#macro EMU_COLOR_WINDOWSKIN                                                     Settings.colors.primary
 
 // !
 #macro EMU_DIALOG_SHADE_ALPHA                                                   Settings.config.focus_alpha
@@ -39,12 +50,15 @@
 #macro EMU_AUTO                                                                 ptr(0)
 #macro EMU_INLINE                                                               ptr(1)
 #macro EMU_BASE                                                                 ptr(2)
+#macro EMU_AUTO_NO_SPACING                                                      ptr(3)
+
 #macro EmuOverlay                                                               (_emu_get_overlay())
 
 function _emu_get_overlay() {
     static _overlay = new EmuCore(0, 0, window_get_width(), window_get_height());
     return _overlay;
 }
+
 #macro EmuActiveElement (_emu_active_element())
 
 function _emu_active_element() { 
@@ -55,18 +69,3 @@ function _emu_active_element() {
     return _active;
 }
 #endregion
-
-// dark mode colors (later)
-/*
-#macro EMU_COLOR_BACK                                                           0x1f1f1f
-#macro EMU_COLOR_DEFAULT                                                        0xffffff
-#macro EMU_COLOR_DISABLED                                                       0x4f4f4f
-#macro EMU_COLOR_HELP_TEXT                                                      0x606060
-#macro EMU_COLOR_HOVER                                                          0x4f4f4f
-#macro EMU_COLOR_INPUT_REJECT                                                   0x2f2fff
-#macro EMU_COLOR_INPUT_WARN                                                     0x3399ff
-#macro EMU_COLOR_LIST_TEXT                                                      0xffffff
-#macro EMU_COLOR_PROGRESS_BAR                                                   0xff9900
-#macro EMU_COLOR_RADIO_ACTIVE                                                   0x009900
-#macro EMU_COLOR_SELECTED                                                       0x4f4f4f
-*/

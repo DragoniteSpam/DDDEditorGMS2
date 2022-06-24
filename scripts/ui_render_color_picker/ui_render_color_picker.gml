@@ -31,7 +31,7 @@ function ui_render_color_picker(picker, xx, yy) {
     draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, true);
     
     if (picker.interactive && dialog_is_active(picker.root)) {
-        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
+        var inbounds = mouse_within_rectangle(vx1, vy1, vx2, vy2);
         if (inbounds) {
             if (Controller.release_left) {
                 ui_activate(picker);

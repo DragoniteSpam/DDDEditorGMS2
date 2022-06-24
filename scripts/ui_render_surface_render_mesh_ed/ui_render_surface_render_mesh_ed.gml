@@ -1,38 +1,30 @@
-function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
-    var mode = Stuff.mesh_ed;
-    var mesh_list = surface.root.mesh_list;
-    var sw = surface_get_width(surface.surface);
-    var sh = surface_get_height(surface.surface);
+function ui_render_surface_render_mesh_ed(mx, my) {
     draw_clear(c_black);
     
-    var cam = camera_get_active();
-    camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
-    camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -sw / sh, CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(cam);
+    var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+    
+    Stuff.mesh.camera.SetProjection();
     
     gpu_set_ztestenable(true);
     gpu_set_zwriteenable(true);
+    gpu_set_texrepeat(true);
     
-    matrix_set(matrix_world, matrix_build_identity());
-    shader_set(shd_wireframe);
-    if (mode.draw_grid) vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
-    shader_set(shd_basic_colors);
-    if (mode.draw_axes) vertex_submit(Stuff.graphics.axes_center, pr_trianglelist, -1);
+    if (Settings.mesh.draw_grid) Stuff.graphics.DrawGridCentered();
+    if (Settings.mesh.draw_axes) Stuff.graphics.DrawAxes();
     
     shader_set(shd_ddd);
     
     #region light stuff
-    var light_data = array_create(MAX_LIGHTS * 12);
-    array_clear(light_data, 0);
-    var ambient = mode.draw_lighting ? c_gray : c_white;
+    var light_data = array_create(MAX_LIGHTS * 12, 0);
+    var ambient = Settings.mesh.draw_lighting ? c_dkgray : c_white;
     
-    light_data[0] = dcos(mode.draw_light_direction);
-    light_data[1] = -dsin(mode.draw_light_direction);
+    light_data[0] = dcos(Settings.mesh.draw_light_direction);
+    light_data[1] = -dsin(Settings.mesh.draw_light_direction);
     light_data[2] = -1;  // this feels upside-down
     light_data[3] = LightTypes.DIRECTIONAL;
-    light_data[8] = 1;
-    light_data[9] = 1;
-    light_data[10] = 1;
+    light_data[8] = 0.9;
+    light_data[9] = 0.9;
+    light_data[10] = 0.9;
     
     var time_color = c_white;
     var weather_color = c_white;
@@ -45,100 +37,131 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStrength"), 0);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), CAMERA_ZFAR * 2);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
+    
+    shader_set_uniform_f(shader_get_uniform(shd_ddd, "u_DrawVertexColors"), Settings.mesh.draw_vertex_colors);
     #endregion
     
-    // so that gmedit stops yelling at me
-    var tex_none = -1;
+    wireframe_enable(Settings.mesh.wireframe_alpha);
     
-    gpu_set_cullmode(Stuff.mesh_ed.draw_back_faces ? cull_noculling : cull_counterclockwise);
-    transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
-    var n = 0;
-    var limit = 10;
-    var def_tex = sprite_get_texture(get_active_tileset().picture, 0);
-    for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
-        var mesh_data = Game.meshes[index];
+    gpu_set_cullmode(Settings.mesh.draw_back_faces ? cull_noculling : cull_counterclockwise);
+    var mat_translate = matrix_build(Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z, 0, 0, 0, 1, 1, 1);
+    var mat_rotate = matrix_build(0, 0, 0, Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z, 1, 1, 1);
+    var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z,);
+    var mat_transform = matrix_multiply(matrix_multiply(mat_scale, mat_rotate), mat_translate);
+    matrix_set(matrix_world, mat_transform);
+    
+    var rendered_count = 0;
+    var limit = 24;
+    for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+        var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
         switch (mesh_data.type) {
             case MeshTypes.RAW:
-                var this_tex = -1;
-                if (mesh_data.tex_base != NULL && mode.draw_textures) {
-                    this_tex = guid_get(mesh_data.tex_base) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_tex;
-                }
                 for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
-                    var vbuffer = mesh_data.submeshes[sm_index].vbuffer;
-                    var reflect_vbuffer = mesh_data.submeshes[sm_index].reflect_vbuffer;
-                    if (mode.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, this_tex);
-                    if (mode.draw_reflections && mode.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
-                    if (mode.draw_wireframes) {
-                        shader_set(shd_terrain_wire);
-                        vertex_submit(vbuffer, pr_linelist, -1);
-                        if (mode.draw_reflections && reflect_vbuffer) {
-                            vertex_submit(reflect_vbuffer, pr_linelist, -1);
-                        }
-                        shader_reset();
-                    }
-                    
-                    if (mode.draw_collision) {
-                        shader_set(shd_wireframe);
-                        for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
-                            var shape = mesh_data.collision_shapes[i];
-                            switch (shape.type) {
-                                case MeshCollisionShapes.BOX:
-                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z));
-                                    vertex_submit(Stuff.graphics.wire_box, pr_linelist, tex_none);
-                                    break;
-                                case MeshCollisionShapes.CAPSULE:
-                                    // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
-                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length));
-                                    vertex_submit(Stuff.graphics.wire_capsule, pr_linelist, tex_none);
-                                    break;
-                                case MeshCollisionShapes.SPHERE:
-                                    matrix_set(matrix_world, matrix_build(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius));
-                                    vertex_submit(Stuff.graphics.wire_sphere, pr_linelist, tex_none);
-                                    break;
-                            }
-                        }
+                    var submesh = mesh_data.submeshes[sm_index];
+                    if (!submesh.editor_visible) continue;
                         
-                        matrix_set(matrix_world, matrix_build_identity());
-                        shader_set(shd_ddd);
+                    if (Stuff.mesh.GetHighlightedSubmesh(submesh)) {
+                        wireframe_enable(1, 512, c_aqua, 0.5);
                     }
+                        
+                    graphics_set_material(submesh);
+                        
+                    var submesh_tex = -1;
+                    if (Settings.mesh.draw_textures) {
+                        if (guid_get(submesh.tex_base)) {
+                            submesh_tex = sprite_get_texture(guid_get(submesh.tex_base).picture, 0);
+                        } else if (submesh.tex_base != NULL) {
+                            submesh_tex = TEX_MISSING;
+                        }
+                    }
+                    if (submesh.vbuffer) vertex_submit(submesh.vbuffer, pr_trianglelist, submesh_tex);
+                    if (Settings.mesh.draw_reflections && submesh.reflect_vbuffer) vertex_submit(submesh.reflect_vbuffer, pr_trianglelist, submesh_tex);
+                        
+                    wireframe_enable(Settings.mesh.wireframe_alpha);
                 }
                 break;
         }
-        if (++n > limit) break;
+        
+        if (++rendered_count > limit) break;
     }
     
-    matrix_set(matrix_world, matrix_build_identity());
+    if (Settings.mesh.draw_collision) {
+        var rendered_count = 0;
+        for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+            var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
+            for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
+                var shape = mesh_data.collision_shapes[i];
+                switch (shape.type) {
+                    case MeshCollisionShapes.BOX:
+                        Stuff.graphics.DrawWireBox(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.scale.x, shape.scale.y, shape.scale.z);
+                        break;
+                    case MeshCollisionShapes.CAPSULE:
+                        // the capsule transformation isn't perfect but honestly i dont know if i can be bothered to do it right
+                        Stuff.graphics.DrawWireCapsule(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length);
+                        break;
+                    case MeshCollisionShapes.SPHERE:
+                        Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius);
+                        break;
+                }
+            }
+            
+            if (++rendered_count > limit) break;
+        }
+    }
+    
+    if (Settings.mesh.draw_physical_bounds) {
+        var rendered_count = 0;
+        for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
+            var mesh = self.root.GetSibling("MESH LIST").At(real(indices[index]));
+            var bounds = mesh.physical_bounds;
+            var point_000 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y1, bounds.z1);
+            var point_001 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y1, bounds.z2);
+            var point_010 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y2, bounds.z1);
+            var point_011 = matrix_transform_vertex(mat_transform, bounds.x1, bounds.y2, bounds.z2);
+            var point_100 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y1, bounds.z1);
+            var point_101 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y1, bounds.z2);
+            var point_110 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y2, bounds.z1);
+            var point_111 = matrix_transform_vertex(mat_transform, bounds.x2, bounds.y2, bounds.z2);
+            var bounds_x1 = min(point_000[0], point_001[0], point_010[0], point_011[0], point_100[0], point_101[0], point_110[0], point_111[0]);
+            var bounds_y1 = min(point_000[1], point_001[1], point_010[1], point_011[1], point_100[1], point_101[1], point_110[1], point_111[1]);
+            var bounds_z1 = min(point_000[2], point_001[2], point_010[2], point_011[2], point_100[2], point_101[2], point_110[2], point_111[2]);
+            var bounds_x2 = max(point_000[0], point_001[0], point_010[0], point_011[0], point_100[0], point_101[0], point_110[0], point_111[0]);
+            var bounds_y2 = max(point_000[1], point_001[1], point_010[1], point_011[1], point_100[1], point_101[1], point_110[1], point_111[1]);
+            var bounds_z2 = max(point_000[2], point_001[2], point_010[2], point_011[2], point_100[2], point_101[2], point_110[2], point_111[2]);
+            Stuff.graphics.DrawWireBox(
+                mean(bounds_x1, bounds_x2), mean(bounds_y1, bounds_y2), mean(bounds_z1, bounds_z2),
+                0, 0, 0,
+                abs(bounds_x2 - bounds_x1), abs(bounds_y2 - bounds_y1), abs(bounds_z2 - bounds_z1),
+                c_red
+            );
+        }
+    }
+    
     shader_reset();
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);
-    gpu_set_cullmode(cull_noculling);
     
     #region draw the overlay
-    var cwidth = camera_get_view_width(cam);
-    var cheight = camera_get_view_height(cam);
-    camera_set_view_mat(cam, matrix_build_lookat(cwidth / 2, cheight / 2, 16000,  cwidth / 2, cheight / 2, -16000, 0, 1, 0));
-    camera_set_proj_mat(cam, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
-    camera_apply(cam);
+    Stuff.mesh.camera.SetProjectionGUI();
     
-    scribble_set_wrap(-1, -1);
-    scribble_set_box_align(fa_left, fa_top);
-    scribble_draw(20, 20, "[c_white]Use WASD to fly around, and hold the middle mouse button to aim the camera");
-    scribble_draw(20, 40, "[c_white]Use Q and E to rotate the light source");
-    
-    // this is like draw_camera_controls_overlay but different enough that i
-    // don't want to generic-ize it
-    var iconx = 32;
-    var icony = sh - 32;
-    var iconlength = 16;
-    
-    var inbounds = mouse_within_rectangle_view(iconx - iconlength + x1, icony - iconlength + y1, iconx + iconlength + x1, icony + iconlength + y1);
-    var c = inbounds ? c_ui_select : c_white;
-    draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength, c, c, false);
-    draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength, icony + iconlength, c_black, c_black, true);
-    draw_sprite(spr_camera_icons, 2, iconx - sprite_get_width(spr_camera_icons) / 2, icony - sprite_get_height(spr_camera_icons) / 2);
-    
-    if ((inbounds && Controller.release_left) || keyboard_check(vk_f1)) {
-        mode.ResetCamera();
+    if (Settings.mesh.draw_3d_view_overlay_text) {
+        scribble("[FDefaultOutline][c_white]Use WASD to fly around, Shift to move faster, and the")
+            .align(fa_left, fa_top)
+            .wrap(-1, -1)
+            .draw(20, 20);
+        scribble("[FDefaultOutline][c_white]middle mouse button to aim the camera")
+            .align(fa_left, fa_top)
+            .wrap(-1, -1)
+            .draw(20, 40);
+        scribble("[FDefaultOutline][c_white]Use Q and E to rotate the light source")
+            .align(fa_left, fa_top)
+            .wrap(-1, -1)
+            .draw(20, 60);
     }
+    
+    // i legitimately dont know why the vertical offset here needs to be 32 and not self.y
+    editor_gui_button(spr_camera_icons, 2, 16, self.height - 48, self.x, 32, null, function() {
+        Stuff.mesh.camera.Reset();
+    });
     #endregion
 }
