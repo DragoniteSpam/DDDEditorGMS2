@@ -51,7 +51,7 @@ function dialog_create_mesh_other_settings(list, selection) {
             .SetTooltip("Set the diffuse color of every submesh's material to white."),
     ]);
     
-    if (EDITOR_BASE_MODE == ModeIDs.MAP) {
+    if (IS_DEFAULT_MODE) {
         dialog.AddContent([
             (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
                 if (array_length(self.root.selection) != 1) return;

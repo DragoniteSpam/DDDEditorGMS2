@@ -40,7 +40,7 @@ function get_open_filename_image() {
 }
 
 function get_open_filename_mesh() {
-    var filter = (EDITOR_BASE_MODE != ModeIDs.MESH) ?
+    var filter = !IS_MESH_MODE ?
         "Any valid mesh file|*.d3d;*.gmmod;*.obj;*.mtl;*.dae;*.smf;|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj;*.mtl|Collada models|*.dae" :
         "Any valid mesh file|*.d3d;*.gmmod;*.obj;*.mtl;|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj;*.mtl";
     return __get_open_filename_general(filter, "", Settings.location.mesh, "Select a 3D model file", function(directory) {

@@ -106,7 +106,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         self.stats.triangles = 0;
         
         // you only get the keyboard shortcuts if we're running under the terrain config
-        if (EDITOR_BASE_MODE == ModeIDs.TERRAIN) {
+        if (IS_TERRAIN_MODE) {
             if (keyboard_check(vk_control)) {
                 if (keyboard_check_pressed(ord("S"))) {
                     momu_terrain_save();

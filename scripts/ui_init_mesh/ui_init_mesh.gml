@@ -19,7 +19,7 @@ function ui_init_mesh(mode) {
             debug_timer_start();
             var filter_array = [".d3d", ".gmmod", ".obj", ".mtl", ".png", ".bmp", ".jpg", ".jpeg"];
             // we can add these back in later when they're working
-            if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+            if (!IS_MESH_MODE) {
                 array_push(filter_array, ".dae", ".smf");
             }
             var filtered_list = self.Filter(files, filter_array);
@@ -61,7 +61,7 @@ function ui_init_mesh(mode) {
                 Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
             }
         }),
-        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, (EDITOR_BASE_MODE != ModeIDs.MESH) ? 22 : 24, function() {
+        (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, (!IS_MESH_MODE) ? 22 : 24, function() {
             self.GetSibling("INFO").Refresh(self.GetAllSelectedIndices());
         }))
             .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
@@ -114,7 +114,7 @@ function ui_init_mesh(mode) {
         }))
             .AddOptions(["Standard", "Terrain"])
             .SetColumns(1, element_width / 2)
-            .SetEnabled(EDITOR_BASE_MODE != ModeIDs.MESH)
+            .SetEnabled(!IS_MESH_MODE)
             .SetID("LIST TYPE"),
         (new EmuCore(0, 0, hud_width, hud_height)).AddContent([
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Essentials"),
@@ -591,7 +591,7 @@ function ui_init_mesh(mode) {
                         .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
                 ]);
                 
-                if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+                if (!IS_MESH_MODE) {
                     dialog.AddContent([
                         (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw reflections?", Settings.mesh.draw_reflections, function() {
                             Settings.mesh.draw_reflections = self.value;

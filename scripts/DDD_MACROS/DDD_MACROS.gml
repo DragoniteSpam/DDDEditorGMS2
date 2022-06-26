@@ -3,6 +3,12 @@
 #macro Terrain:EDITOR_BASE_MODE             ModeIDs.TERRAIN
 #macro spart:EDITOR_BASE_MODE               ModeIDs.SPART
 #macro mesh:EDITOR_BASE_MODE                ModeIDs.MESH
+
+#macro IS_DEFAULT_MODE                      (EDITOR_BASE_MODE == ModeIDs.MAP)
+#macro IS_MESH_MODE                         (EDITOR_BASE_MODE == ModeIDs.MESH)
+#macro IS_TERRAIN_MODE                      (EDITOR_BASE_MODE == ModeIDs.TERRAIN)
+#macro IS_SPART_MODE                        (EDITOR_BASE_MODE == ModeIDs.SPART)
+
 // standalone tools will not have the rest of the program enabled
 #macro EDITOR_FORCE_SINGLE_MODE             false
 #macro spart:EDITOR_FORCE_SINGLE_MODE       true
