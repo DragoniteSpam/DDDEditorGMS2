@@ -198,6 +198,15 @@ function DataMesh(source) : SData(source) constructor {
         });
     };
     
+    self.ActionBakeDiffuseMaterialColor = function() {
+        if (self.type == MeshTypes.SMF) return;
+        // cant do the foreach here because each baking needs knowledge of the
+        // submesh's diffuse material color anyway
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            self.submeshes[i].BakeDiffuseColor();
+        }
+    };
+    
     self.ActionResetAlpha = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {

@@ -148,7 +148,7 @@ function MeshSubmesh(source) constructor {
     static ImportReflection = function() {
         var data = import_3d_model_generic(get_open_filename_mesh(), true);
         if (data == undefined) return;
-        internalDeleteReflect();
+        self.internalDeleteReflect();
         self.reflect_buffer = data[0].buffer;
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(data[0].buffer, Stuff.graphics.format);
         vertex_freeze(self.reflect_vbuffer);
@@ -156,7 +156,7 @@ function MeshSubmesh(source) constructor {
     
     static GenerateReflections = function() {
         if (!self.buffer) return;
-        internalDeleteReflect();
+        self.internalDeleteReflect();
         self.reflect_buffer = vertex_to_reflect_buffer(self.buffer);
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.format);
         vertex_freeze(self.reflect_vbuffer);
