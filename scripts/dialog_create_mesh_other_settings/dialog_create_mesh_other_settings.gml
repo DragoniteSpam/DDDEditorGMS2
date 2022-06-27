@@ -1,5 +1,5 @@
 function dialog_create_mesh_other_settings(list, selection) {
-    var dialog = new EmuDialog(320, 400, "Other mesh options");
+    var dialog = new EmuDialog(320, 512, "Other mesh options");
     dialog.active_shade = 0;
     dialog.list = list;
     dialog.selection = selection;
@@ -41,6 +41,14 @@ function dialog_create_mesh_other_settings(list, selection) {
             batch_again();
         }))
             .SetTooltip("Set the blending color of every vertex to white."),
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Bake Material Color", function() {
+            var selection = self.root.selection;
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].ActionBakeDiffuseMaterialColor();
+            }
+            batch_again();
+        }))
+            .SetTooltip("Blend the material diffuse color of every submesh into the vertex color."),
         (new EmuButton(32, EMU_AUTO, 256, 32, "Reset Material Color", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
