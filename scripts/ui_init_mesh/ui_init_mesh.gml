@@ -236,7 +236,7 @@ function ui_init_mesh(mode) {
                 .SetTooltip("Define the vertex format used for exporting vertex buffers"),
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Combine Submeshes", function() {
                 var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
-                wtf(array_length(meshes))
+                
                 var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + ((array_length(meshes) == 1) ? meshes[0].name : "the selected submeshes") + "?", function() {
                     debug_timer_start();
                     
@@ -264,6 +264,7 @@ function ui_init_mesh(mode) {
                     Stuff.AddStatusMessage("Combining the submesh took " + debug_timer_finish());
                     self.root.Dispose();
                     Stuff.mesh.ui.SearchID("COMBINE SUBMESHES").Refresh(Stuff.mesh.ui.SearchID("MESH LIST").GetAllSelectedIndices());
+                    Stuff.mesh.ui.SearchID("SEPARATE SUBMESHES").Refresh(Stuff.mesh.ui.SearchID("MESH LIST").GetAllSelectedIndices());
                 });
                 
                 dg.meshes = meshes;
@@ -281,28 +282,39 @@ function ui_init_mesh(mode) {
                 .SetTooltip("Combine the submeshes of the selected 3D meshes.")
                 .SetID("COMBINE SUBMESHES"),
             (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Separate Submeshes", function() {
-                var mesh = self.root.GetSibling("MESH LIST").GetSelectedItem();
+                var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
                 
-                var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + mesh.name + "?", function() {
-                    var mesh = self.root.mesh;
-                    
-                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
-                        var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
-                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
-                        new_mesh.CopyPropertiesFrom(mesh);
-                        array_push(self.root.GetMeshType(), new_mesh);
+                var dg = emu_dialog_confirm(self.root, "Would you like to separate the submeshes in " + ((array_length(meshes) == 1) ? meshes[0].name : "the selected submeshes") + "?", function() {
+                    for (var i = 0, n = array_length(self.root.meshes); i < n; i++) {
+                        var mesh = self.root.meshes[i];
+                        if (array_length(mesh.submeshes) == 1) continue;
+                        // if you wanted to separate the submeshes without
+                        // keeping the original you could literally just
+                        // move the submesh objects around, but i'd like to
+                        // keep the originals
+                        for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                            var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(j, " ", 3));
+                            var submesh = new_mesh.AddSubmesh(mesh.submeshes[j].Clone());
+                            new_mesh.CopyPropertiesFrom(mesh);
+                            array_push(Stuff.mesh.ui.GetMeshType(), new_mesh);
+                        }
                     }
                     
                     self.root.Dispose();
+                    Stuff.mesh.ui.SearchID("COMBINE SUBMESHES").Refresh(Stuff.mesh.ui.SearchID("MESH LIST").GetAllSelectedIndices());
+                    Stuff.mesh.ui.SearchID("SEPARATE SUBMESHES").Refresh(Stuff.mesh.ui.SearchID("MESH LIST").GetAllSelectedIndices());
                 });
                 
-                dg.mesh = mesh;
+                dg.meshes = meshes;
             }))
                 .SetRefresh(function(data) {
-                    if ((data != undefined) && (array_length(data) == 1)) {
-                        self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").At(real(data[0])).submeshes) > 1);
-                    } else {
-                        self.SetInteractive(false);
+                    self.SetInteractive(false);
+                    if (data == undefined) return;
+                    for (var i = 0, n = array_length(data); i < n; i++) {
+                        if (array_length(self.root.GetSibling("MESH LIST").At(real(data[0])).submeshes) > 1) {
+                            self.SetInteractive(true);
+                            return;
+                        }
                     }
                 })
                 .SetTooltip("Separate the selected 3D meshes into individual models.")
