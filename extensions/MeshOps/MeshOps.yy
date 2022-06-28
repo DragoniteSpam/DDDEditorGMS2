@@ -182,6 +182,16 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"meshops_multiply_colour","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_normals_smooth_multi_prepare","kind":1,"help":"meshops_set_normals_smooth_multi_prepare()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_prepare","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_normals_smooth_multi_calculate","kind":1,"help":"__meshops_set_normals_smooth_multi_calculate(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_calculate","tags":[],"resourceType":"GMExtensionFunction",},
+        {"externalName":"meshops_set_normals_smooth_multi_finalize","kind":1,"help":"__meshops_set_normals_smooth_multi_finalize(data, length, threshold)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_finalize","tags":[],"resourceType":"GMExtensionFunction",},
       ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
@@ -214,6 +224,9 @@
         {"name":"meshops_reverse","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_multiply_color","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_multiply_colour","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_set_normals_smooth_multi_prepare","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_set_normals_smooth_multi_calculate","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"__meshops_set_normals_smooth_multi_finalize","path":"extensions/MeshOps/MeshOps.yy",},
       ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
   ],
   "classname": "",
