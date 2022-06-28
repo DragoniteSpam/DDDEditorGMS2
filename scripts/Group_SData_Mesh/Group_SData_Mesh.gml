@@ -244,9 +244,24 @@ function DataMesh(source) : SData(source) constructor {
     
     self.ActionNormalsSmooth = function(threshold) {
         if (self.type == MeshTypes.SMF) return;
-        self.foreachSubmeshBufferParam(function(buffer, threshold) {
-            meshops_set_normals_smooth(buffer_get_address(buffer), buffer_get_size(buffer), dcos(threshold));
-        }, threshold);
+        if (self.terrain_data) {
+            var buffers = array_create(array_length(self.submeshes));
+            var reflections = array_create(array_length(self.submeshes));
+            for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+                buffers[i] = self.submeshes[i].buffer;
+                reflections[i] = self.submeshes[i].reflect_buffer;
+            }
+            meshops_set_normals_smooth_multi(buffers, threshold);
+            meshops_set_normals_smooth_multi(reflections, threshold);
+            for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+                if (self.submeshes[i].buffer) self.submeshes[i].internalSetVertexBuffer();
+                if (self.submeshes[i].reflect_buffer) self.submeshes[i].internalSetReflectVertexBuffer();
+            }
+        } else {
+            self.foreachSubmeshBufferParam(function(buffer, threshold) {
+                meshops_set_normals_smooth(buffer_get_address(buffer), buffer_get_size(buffer), dcos(threshold));
+            }, threshold);
+        }
     };
     #endregion
     
