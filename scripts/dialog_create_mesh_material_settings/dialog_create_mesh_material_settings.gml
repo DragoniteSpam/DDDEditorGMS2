@@ -120,7 +120,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     var tab_specular = new EmuTab("Specular Map").SetInteractive(false);
     var tab_alpha = new EmuTab("Alpha Map").SetInteractive(false);
     var tab_bump = new EmuTab("Bump Map").SetInteractive(false);
-    var tab_displacement = new EmuTab("Displacement Map").SetInteractive(false);
+    var tab_displacement = new EmuTab("Displacement Map");
     var tab_stencil = new EmuTab("Stencil Map").SetInteractive(false);
     
     var tabs = new EmuTabGroup(default_mesh_tex_only ? col1 : col2, EMU_BASE, ew + 32 + 32, dg.height - 128, !IS_MESH_MODE ? 2 : 1, eh);
