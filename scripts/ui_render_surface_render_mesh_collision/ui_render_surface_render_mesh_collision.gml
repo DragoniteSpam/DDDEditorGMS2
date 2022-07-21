@@ -6,8 +6,6 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     gpu_set_ztestenable(true);
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     
-    var original_state = gpu_get_state();
-    
     Stuff.mesh.camera.SetProjection();
     
     // draw the grid (any other reference points)
@@ -65,10 +63,5 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
     shader_reset();
     
-    camera_set_view_mat(camera, active_view_mat);
-    camera_set_proj_mat(camera, active_proj_mat);
-    camera_apply(camera);
-    gpu_set_state(original_state);
-    ds_map_destroy(original_state);
     matrix_set(matrix_world, matrix_build_identity());
 }
