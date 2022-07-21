@@ -87,7 +87,7 @@ function import_d3d(filename) {
             case 7: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); nx[vc] = file_text_read_real(f); ny[vc] = file_text_read_real(f); nz[vc] = file_text_read_real(f); color[vc] = file_text_read_real(f); alpha[vc] = file_text_read_real(f); file_text_readln(f); break;
             case 8: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); nx[vc] = file_text_read_real(f); ny[vc] = file_text_read_real(f); nz[vc] = file_text_read_real(f); xtex[vc] = file_text_read_real(f); ytex[vc] = file_text_read_real(f); file_text_readln(f); break;
             case 9: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); nx[vc] = file_text_read_real(f); ny[vc] = file_text_read_real(f); nz[vc] = file_text_read_real(f); xtex[vc] = file_text_read_real(f); ytex[vc] = file_text_read_real(f); color[vc] = file_text_read_real(f); alpha[vc] = file_text_read_real(f); file_text_readln(f); break;
-            default: wtf("Unsupported structure in " + fn + ", skipping. Please convert your primitive shapes into triangles. Thank."); file_text_readln(f); continue;
+            default: wtf("Unsupported structure in " + filename + ", skipping. Please convert your primitive shapes into triangles. Thank."); file_text_readln(f); continue;
         }
         
         // the texture pages are 4k, so this is four pixels squared
@@ -188,7 +188,9 @@ function import_obj(fn, squash = false) {
     var line_number = 0;
     
     static buffer_attribute_type = buffer_f32;
+    static color_attribute_type = buffer_u32;
     static buffer_attribute_size = buffer_sizeof(buffer_attribute_type);
+    static color_attribute_size = buffer_sizeof(color_attribute_type);
     
     static v_x = buffer_create(1000, buffer_grow, buffer_attribute_size);
     static v_y = buffer_create(1000, buffer_grow, buffer_attribute_size);
@@ -198,6 +200,7 @@ function import_obj(fn, squash = false) {
     static v_nz = buffer_create(1000, buffer_grow, buffer_attribute_size);
     static v_xtex = buffer_create(1000, buffer_grow, buffer_attribute_size);
     static v_ytex = buffer_create(1000, buffer_grow, buffer_attribute_size);
+    static v_color = buffer_create(1000, buffer_grow, buffer_attribute_size);
     buffer_seek(v_x, buffer_seek_start, 0);
     buffer_seek(v_y, buffer_seek_start, 0);
     buffer_seek(v_z, buffer_seek_start, 0);
@@ -206,6 +209,7 @@ function import_obj(fn, squash = false) {
     buffer_seek(v_nz, buffer_seek_start, 0);
     buffer_seek(v_xtex, buffer_seek_start, 0);
     buffer_seek(v_ytex, buffer_seek_start, 0);
+    buffer_seek(v_color, buffer_seek_start, 0);
     
     static face_attribute_type = buffer_f32;
     
@@ -222,6 +226,7 @@ function import_obj(fn, squash = false) {
     static nz = [0, 0, 0];
     static xtex = [0, 0, 0];
     static ytex = [0, 0, 0];
+    static color = [0, 0, 0];
     
     var first_line_read = false;
     var is_blender = false;
@@ -252,6 +257,16 @@ function import_obj(fn, squash = false) {
                         buffer_write(v_x, buffer_attribute_type, real(ds_queue_dequeue(q)));
                         buffer_write(v_y, buffer_attribute_type, real(ds_queue_dequeue(q)));
                         buffer_write(v_z, buffer_attribute_type, real(ds_queue_dequeue(q)));
+                        // the unofficial "vertex color" spec involves sticking
+                        // three rgb color values after the position
+                        if (ds_queue_size(q) >= 3) {
+                            var crr = floor(real(ds_queue_dequeue(q)) * 0xff);
+                            var cgg = floor(real(ds_queue_dequeue(q)) * 0xff) << 8;
+                            var cbb = floor(real(ds_queue_dequeue(q)) * 0xff) << 16;
+                            buffer_write(v_color, color_attribute_type, 0xff000000 | cbb | cgg | crr);
+                        } else {
+                            buffer_write(v_color, color_attribute_type, 0xffffffff);
+                        }
                     } else {
                         throw { message: "Malformed vertex found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
                     }
@@ -297,6 +312,7 @@ function import_obj(fn, squash = false) {
                                     nz[i] = 1;
                                     xtex[i] = 0;
                                     ytex[i] = 0;
+                                    color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
                                     break;
                                 case 2:
                                     var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -309,6 +325,7 @@ function import_obj(fn, squash = false) {
                                     nx[i] = 0;
                                     ny[i] = 0;
                                     nz[i] = 1;
+                                    color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
                                     break;
                                 case 3:
                                     var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -325,6 +342,7 @@ function import_obj(fn, squash = false) {
                                     nz[i] = buffer_peek(v_nz, buffer_attribute_size * normal, buffer_attribute_type);
                                     xtex[i] = (tex == -1) ? 0 : buffer_peek(v_xtex, buffer_attribute_size * tex,  buffer_attribute_type);
                                     ytex[i] = (tex == -1) ? 0 : buffer_peek(v_ytex, buffer_attribute_size * tex,  buffer_attribute_type);
+                                    color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
                                     break;
                             }
                             ds_queue_destroy(vertex_q);
@@ -340,6 +358,7 @@ function import_obj(fn, squash = false) {
                             buffer_write(face_vertex_attributes, face_attribute_type, nz[0]);
                             buffer_write(face_vertex_attributes, face_attribute_type, xtex[0]);
                             buffer_write(face_vertex_attributes, face_attribute_type, ytex[0]);
+                            buffer_write(face_vertex_attributes, color_attribute_type, color[0]);
                             buffer_write(face_vertex_attributes, face_attribute_type, xx[i - 1]);
                             buffer_write(face_vertex_attributes, face_attribute_type, yy[i - 1]);
                             buffer_write(face_vertex_attributes, face_attribute_type, zz[i - 1]);
@@ -348,6 +367,7 @@ function import_obj(fn, squash = false) {
                             buffer_write(face_vertex_attributes, face_attribute_type, nz[i - 1]);
                             buffer_write(face_vertex_attributes, face_attribute_type, xtex[i - 1]);
                             buffer_write(face_vertex_attributes, face_attribute_type, ytex[i - 1]);
+                            buffer_write(face_vertex_attributes, color_attribute_type, color[i - 1]);
                             buffer_write(face_vertex_attributes, face_attribute_type, xx[i]);
                             buffer_write(face_vertex_attributes, face_attribute_type, yy[i]);
                             buffer_write(face_vertex_attributes, face_attribute_type, zz[i]);
@@ -356,6 +376,7 @@ function import_obj(fn, squash = false) {
                             buffer_write(face_vertex_attributes, face_attribute_type, nz[i]);
                             buffer_write(face_vertex_attributes, face_attribute_type, xtex[i]);
                             buffer_write(face_vertex_attributes, face_attribute_type, ytex[i]);
+                            buffer_write(face_vertex_attributes, color_attribute_type, color[i]);
                             ds_list_add(face_vertex_materials, active_material);
                         }
                     } else {
@@ -578,7 +599,8 @@ function import_obj(fn, squash = false) {
             var nz = buffer_read(face_vertex_attributes, face_attribute_type);
             var xtex = buffer_read(face_vertex_attributes, face_attribute_type);
             var ytex = buffer_read(face_vertex_attributes, face_attribute_type);
-            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? (1 - ytex) : ytex, c_white, 1);
+            var color = buffer_read(face_vertex_attributes, color_attribute_type)
+            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? (1 - ytex) : ytex, color & 0x00ffffff, (color >> 24) / 0xff);
         }
     }
     
