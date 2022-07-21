@@ -450,9 +450,9 @@ function import_obj(fn, squash = false) {
                             case "d":   // "dissolved" (alpha)
                                 current_material.alpha = real(ds_queue_dequeue(spl));
                                 break;
-                            case "Tr":  // "transparent" (blender thinks this should be 1 - alpha???)
+                            case "Tr":  // "transparent" (1 - alpha)
                                 if (current_material) {
-                                    current_material.alpha = is_blender ? (1 - real(ds_queue_dequeue(spl))) : real(ds_queue_dequeue(spl));
+                                    current_material.alpha = 1 - real(ds_queue_dequeue(spl));
                                 }
                                 break;
                             case "map_Kd":                  // dissolve (base) texture
