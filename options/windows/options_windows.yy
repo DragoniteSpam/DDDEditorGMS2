@@ -7,7 +7,7 @@
   },
   "option_windows_display_name": "DDD Editor",
   "option_windows_executable_name": "ddd",
-  "option_windows_version": "2022.0.4.83",
+  "option_windows_version": "2022.0.4.84",
   "option_windows_company_info": "",
   "option_windows_product_info": "DDD Game Tools",
   "option_windows_copyright_info": "(c) 2018 - whatever year it is now, Michael Peng",
