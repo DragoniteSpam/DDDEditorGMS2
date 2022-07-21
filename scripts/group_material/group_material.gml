@@ -16,6 +16,7 @@ function Material(
         tex_stencil = NULL
     ) constructor {
     
+    self.name = "Material";
     self.col_diffuse = col_diffuse;
     self.alpha = alpha;
     self.col_ambient = col_ambient;
@@ -32,6 +33,7 @@ function Material(
     self.tex_stencil = tex_stencil;
     
     if (is_struct(source)) {
+        self.name = source.name;
         self.col_diffuse = source.col_diffuse;
         self.alpha = source.alpha;
         self.col_ambient = source.col_ambient;
@@ -46,6 +48,8 @@ function Material(
         self.tex_bump = source.tex_bump;
         self.tex_displacement = source.tex_displacement;
         self.tex_stencil = source.tex_stencil;
+    } else {
+        self.name = source;
     }
     
     self.Clone = function() {
