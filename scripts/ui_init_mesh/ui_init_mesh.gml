@@ -580,36 +580,60 @@ function ui_init_mesh(mode) {
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw textures?", Settings.mesh.draw_textures, function() {
                         Settings.mesh.draw_textures = self.value;
                     }))
-                        .SetTooltip("Whether or not to draw the meshes in the preview window using a texture."),
+                        .SetTooltip("Whether or not to draw the meshes in the preview window using a texture.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_textures;
+                        }),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw vertex colors?", Settings.mesh.draw_vertex_colors, function() {
                         Settings.mesh.draw_vertex_colors = self.value;
                     }))
-                        .SetTooltip("Whether or not to colorize the verties of meshes."),
+                        .SetTooltip("Whether or not to colorize the verties of meshes.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_vertex_colors;
+                        }),
                     new EmuText(col1x, EMU_AUTO, col_width, 32, "Wireframe alpha:"),
                     (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, 0, 1, true, Settings.mesh.wireframe_alpha, function() {
                         Settings.mesh.wireframe_alpha = self.value;
                     }))
-                        .SetTooltip("Draw a wireframe over the 3D mesh. Turn this off if it gets annoying."),
+                        .SetTooltip("Draw a wireframe over the 3D mesh. Turn this off if it gets annoying.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.wireframe_alpha;
+                        }),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw lighting?", Settings.mesh.draw_lighting, function() {
                         Settings.mesh.draw_lighting = self.value;
                     }))
-                        .SetTooltip("Whether or not to lighting should be enabled."),
+                        .SetTooltip("Whether or not to lighting should be enabled.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_lighting;
+                        }),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw backfaces?", Settings.mesh.draw_back_faces, function() {
                         Settings.mesh.draw_back_faces = self.value;
                     }))
-                        .SetTooltip("For backface culling."),
+                        .SetTooltip("For backface culling.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_back_faces;
+                        }),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw 3D axes?", Settings.mesh.draw_axes, function() {
                         Settings.mesh.draw_axes = self.value;
                     }))
-                        .SetTooltip("Whether or not to draw the red, green, and blue axes in the 3D view."),
+                        .SetTooltip("Whether or not to draw the red, green, and blue axes in the 3D view.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_axes;
+                        }),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw grid?", Settings.mesh.draw_grid, function() {
                         Settings.mesh.draw_grid = self.value;
                     }))
-                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane."),
+                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_grid;
+                        }),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw physical bounds?", Settings.mesh.draw_physical_bounds, function() {
                         Settings.mesh.draw_physical_bounds = self.value;
                     }))
                         .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_physical_bounds;
+                        })
                 ]);
                 
                 if (!IS_MESH_MODE) {
@@ -617,11 +641,17 @@ function ui_init_mesh(mode) {
                         (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw reflections?", Settings.mesh.draw_reflections, function() {
                             Settings.mesh.draw_reflections = self.value;
                         }))
-                            .SetTooltip("If you have a reflection mesh set up, you may draw it, as well."),
+                            .SetTooltip("If you have a reflection mesh set up, you may draw it, as well.")
+                            .SetRefresh(function() {
+                                self.value = Settings.mesh.draw_reflections;
+                            }),
                         (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
                             Settings.mesh.draw_collision = self.value;
                         }))
-                            .SetTooltip("Whether or not to show collision shapes associated with meshes."),
+                            .SetTooltip("Whether or not to show collision shapes associated with meshes.")
+                            .SetRefresh(function() {
+                                self.value = Settings.mesh.draw_collision;
+                            }),
                     ]);
                     dialog.height += 96;
                 }
@@ -642,13 +672,7 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_light_direction = MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION;
                         Settings.mesh.draw_grid = MESH_DEF_VIEW_DRAW_GRID;
                         Settings.mesh.wireframe_alpha = MESH_DEF_VIEW_WIREFRAME_ALPHA;
-                        var xx = self.root.x;
-                        var yy = self.root.y;
-                        self.root.Close();
-                        var dialog = self.root.root.callback();
-                        dialog.contents_interactive = true;
-                        dialog.x = xx;
-                        dialog.y = yy;
+                        self.root.Refresh();
                     }))
                     #endregion
                 ]).AddDefaultCloseButton();

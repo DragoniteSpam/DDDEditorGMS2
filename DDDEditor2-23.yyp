@@ -851,9 +851,9 @@
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"Open Sans License.txt","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.6.0.23",
+    "IDEVersion": "2022.800.0.161",
   },
-  "resourceVersion": "1.5",
+  "resourceVersion": "1.6",
   "name": "DDDEditor2-23",
   "tags": [],
   "resourceType": "GMProject",
