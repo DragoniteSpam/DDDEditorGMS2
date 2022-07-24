@@ -626,7 +626,7 @@ function import_obj(fn, squash = false) {
         for (var i = array_length(output) - 1; i >= 0; i--) {
             var submesh = output[i];
             var tell = buffer_get_size(common_data);
-            meshops_set_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
+            meshops_blend_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
             buffer_append_buffer(common_data, submesh.buffer);
             buffer_delete(submesh.buffer);
         }
@@ -641,11 +641,11 @@ function import_obj(fn, squash = false) {
             var submesh = output[i];
             if (!submesh.material.HasAnyTextures()) {
                 if (!common_data) {
-                    meshops_set_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
+                    meshops_blend_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
                     common_data = new MeshImportData(submesh.buffer, new Material("BASE MATERIAL"));
                 } else {
                     var tell = buffer_get_size(common_data.buffer);
-                    meshops_set_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
+                    meshops_blend_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
                     buffer_append_buffer(common_data.buffer, submesh.buffer);
                     buffer_resize(common_data.buffer, buffer_get_size(common_data.buffer) + buffer_get_size(submesh.buffer));
                     buffer_copy(submesh.buffer, 0, buffer_get_size(submesh.buffer), common_data.buffer, tell);
