@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "spr_terrain_gen_dot",
   "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
@@ -24,18 +27,14 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"66377d6e-ea76-4ab3-90f9-d7329ffdd7ac","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"66377d6e-ea76-4ab3-90f9-d7329ffdd7ac","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_terrain_gen_dot","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","name":"66377d6e-ea76-4ab3-90f9-d7329ffdd7ac","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"3376884b-240c-411c-87f6-29e36aed69d2","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"3376884b-240c-411c-87f6-29e36aed69d2","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_terrain_gen_dot","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","name":"3376884b-240c-411c-87f6-29e36aed69d2","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"3c611178-718e-4fc1-b9e8-2a2c621a39ac","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"3c611178-718e-4fc1-b9e8-2a2c621a39ac","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"LayerId":{"name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_terrain_gen_dot","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","name":"3c611178-718e-4fc1-b9e8-2a2c621a39ac","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"66377d6e-ea76-4ab3-90f9-d7329ffdd7ac",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3376884b-240c-411c-87f6-29e36aed69d2",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3c611178-718e-4fc1-b9e8-2a2c621a39ac",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_terrain_gen_dot","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "spr_terrain_gen_dot",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -46,11 +45,11 @@
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"80bbf897-6e61-4c90-89cc-b7797cb18a03","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"66377d6e-ea76-4ab3-90f9-d7329ffdd7ac","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"a50463d7-2190-4a25-bb59-442bd40b39e3","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"3376884b-240c-411c-87f6-29e36aed69d2","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"ebb886b4-d799-4c0c-91d9-5dcabc14ce6f","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"3c611178-718e-4fc1-b9e8-2a2c621a39ac","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -66,22 +65,13 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_terrain_gen_dot","path":"sprites/spr_terrain_gen_dot/spr_terrain_gen_dot.yy",},
-    "resourceVersion": "1.4",
-    "name": "spr_terrain_gen_dot",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"5c3ad6dc-8553-41af-8bfc-dd457c5302f2","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "Generation",
     "path": "folders/Terrain/Generation.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "spr_terrain_gen_dot",
-  "tags": [],
-  "resourceType": "GMSprite",
 }

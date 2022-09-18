@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "spr_autotile_blueprint",
   "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
@@ -24,153 +27,59 @@
   "gridX": 8,
   "gridY": 8,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"1d6ed386-5ea5-4a47-825e-6f26f5582a57","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"1d6ed386-5ea5-4a47-825e-6f26f5582a57","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"1d6ed386-5ea5-4a47-825e-6f26f5582a57","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"b7352327-ba94-47f4-beed-8bc130c8249d","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"b7352327-ba94-47f4-beed-8bc130c8249d","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"b7352327-ba94-47f4-beed-8bc130c8249d","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"37195c33-487c-4599-a295-0c83fb21c594","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"37195c33-487c-4599-a295-0c83fb21c594","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"37195c33-487c-4599-a295-0c83fb21c594","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"1304f355-4c4f-4962-9b88-78f97f928a30","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"1304f355-4c4f-4962-9b88-78f97f928a30","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"1304f355-4c4f-4962-9b88-78f97f928a30","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"8b5bbe8f-8295-4bea-b26c-429bed9fcf38","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"8b5bbe8f-8295-4bea-b26c-429bed9fcf38","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"8b5bbe8f-8295-4bea-b26c-429bed9fcf38","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"a177760a-cb49-46d0-82cc-ea504927a026","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"a177760a-cb49-46d0-82cc-ea504927a026","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"a177760a-cb49-46d0-82cc-ea504927a026","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"6e2fcb08-46e4-4130-bf78-fd7f68f63efc","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"6e2fcb08-46e4-4130-bf78-fd7f68f63efc","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"6e2fcb08-46e4-4130-bf78-fd7f68f63efc","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"7bc163c4-d508-4bd6-bfb5-80902460b3c3","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"7bc163c4-d508-4bd6-bfb5-80902460b3c3","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"7bc163c4-d508-4bd6-bfb5-80902460b3c3","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"331106b1-ebe7-42a1-a9d7-54a39b6e303c","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"331106b1-ebe7-42a1-a9d7-54a39b6e303c","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"331106b1-ebe7-42a1-a9d7-54a39b6e303c","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"6c014955-80f6-494a-9e38-0ef0eb3b324d","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"6c014955-80f6-494a-9e38-0ef0eb3b324d","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"6c014955-80f6-494a-9e38-0ef0eb3b324d","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"27ca43b9-3cd7-45bf-ad75-eb468493e425","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"27ca43b9-3cd7-45bf-ad75-eb468493e425","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"27ca43b9-3cd7-45bf-ad75-eb468493e425","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"70e51714-92bf-4e9b-8ed8-efe655ea5b04","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"70e51714-92bf-4e9b-8ed8-efe655ea5b04","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"70e51714-92bf-4e9b-8ed8-efe655ea5b04","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"5cb37f70-525c-456b-b463-cb3ea302ddc1","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"5cb37f70-525c-456b-b463-cb3ea302ddc1","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"5cb37f70-525c-456b-b463-cb3ea302ddc1","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"5eb0ae48-5429-4e57-9b43-47f851cf5347","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"5eb0ae48-5429-4e57-9b43-47f851cf5347","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"5eb0ae48-5429-4e57-9b43-47f851cf5347","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"d21b0867-a9f1-4b85-bbc5-82455d32d876","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"d21b0867-a9f1-4b85-bbc5-82455d32d876","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"d21b0867-a9f1-4b85-bbc5-82455d32d876","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"7e6e25ec-2ceb-4925-82f7-a368ab468460","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"7e6e25ec-2ceb-4925-82f7-a368ab468460","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"7e6e25ec-2ceb-4925-82f7-a368ab468460","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"a7ff0592-23e7-4fc9-b76e-ad29c59437cb","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"a7ff0592-23e7-4fc9-b76e-ad29c59437cb","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"a7ff0592-23e7-4fc9-b76e-ad29c59437cb","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"aa30d5ce-c7df-454e-9e88-f004ee6abaaf","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"aa30d5ce-c7df-454e-9e88-f004ee6abaaf","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"aa30d5ce-c7df-454e-9e88-f004ee6abaaf","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"b098c413-8c73-4391-86fe-b6d3ad86a0af","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"b098c413-8c73-4391-86fe-b6d3ad86a0af","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"b098c413-8c73-4391-86fe-b6d3ad86a0af","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"76829c19-2983-4aae-b8bf-2d54c5da0bd1","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"76829c19-2983-4aae-b8bf-2d54c5da0bd1","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"76829c19-2983-4aae-b8bf-2d54c5da0bd1","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"7fbe0df8-633e-448d-8300-f9a0a6a0acef","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"7fbe0df8-633e-448d-8300-f9a0a6a0acef","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"7fbe0df8-633e-448d-8300-f9a0a6a0acef","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"6dba2b14-0f34-4a69-8821-1541589f71a8","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"6dba2b14-0f34-4a69-8821-1541589f71a8","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"6dba2b14-0f34-4a69-8821-1541589f71a8","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"6d146873-e005-4962-b0e2-ca92521e58bd","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"6d146873-e005-4962-b0e2-ca92521e58bd","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"6d146873-e005-4962-b0e2-ca92521e58bd","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"a6b68cf8-afa0-46b9-b167-d7196bd23653","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"a6b68cf8-afa0-46b9-b167-d7196bd23653","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"a6b68cf8-afa0-46b9-b167-d7196bd23653","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"3592252b-db56-4fce-8823-c3ffd3c886f7","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"3592252b-db56-4fce-8823-c3ffd3c886f7","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"3592252b-db56-4fce-8823-c3ffd3c886f7","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"8bde83a3-9e4e-4354-ae97-c439534f0527","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"8bde83a3-9e4e-4354-ae97-c439534f0527","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"8bde83a3-9e4e-4354-ae97-c439534f0527","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"1bdd03b6-ed82-408f-90c0-986102ce7c0c","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"1bdd03b6-ed82-408f-90c0-986102ce7c0c","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"1bdd03b6-ed82-408f-90c0-986102ce7c0c","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"c19ffe7a-ce32-4d2b-b310-82a9d5d598ab","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"c19ffe7a-ce32-4d2b-b310-82a9d5d598ab","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"c19ffe7a-ce32-4d2b-b310-82a9d5d598ab","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"18f6bbe0-1d17-4f50-8a9a-3b19326516fc","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"18f6bbe0-1d17-4f50-8a9a-3b19326516fc","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"18f6bbe0-1d17-4f50-8a9a-3b19326516fc","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"5833129f-5e08-48a0-9dca-b1adef401f7e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"5833129f-5e08-48a0-9dca-b1adef401f7e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"5833129f-5e08-48a0-9dca-b1adef401f7e","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"420935f9-6f0f-406c-a202-ba6803a6db1a","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"420935f9-6f0f-406c-a202-ba6803a6db1a","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"420935f9-6f0f-406c-a202-ba6803a6db1a","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"f19c275f-55b7-4d2b-ab01-d0205bf9ccf0","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"f19c275f-55b7-4d2b-ab01-d0205bf9ccf0","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"f19c275f-55b7-4d2b-ab01-d0205bf9ccf0","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"bc8b1c8d-0a82-487e-93af-88fb226f659f","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"bc8b1c8d-0a82-487e-93af-88fb226f659f","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"bc8b1c8d-0a82-487e-93af-88fb226f659f","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"3fc78afd-b946-45cf-907d-b14acf121ae0","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"3fc78afd-b946-45cf-907d-b14acf121ae0","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"3fc78afd-b946-45cf-907d-b14acf121ae0","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"c3fc18bc-9f85-4915-a4c7-87c68a6497ec","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"c3fc18bc-9f85-4915-a4c7-87c68a6497ec","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"c3fc18bc-9f85-4915-a4c7-87c68a6497ec","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"4a7323ff-7555-4405-8c85-b29ba5d443dd","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"4a7323ff-7555-4405-8c85-b29ba5d443dd","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"4a7323ff-7555-4405-8c85-b29ba5d443dd","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"da82b5f0-32c2-4a56-86d5-5f76e6144166","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"da82b5f0-32c2-4a56-86d5-5f76e6144166","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"da82b5f0-32c2-4a56-86d5-5f76e6144166","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"23148e54-39d0-440a-bbd9-951154c6777c","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"23148e54-39d0-440a-bbd9-951154c6777c","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"23148e54-39d0-440a-bbd9-951154c6777c","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"77befab3-0269-4061-9e24-1c617c3e1f24","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"77befab3-0269-4061-9e24-1c617c3e1f24","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"77befab3-0269-4061-9e24-1c617c3e1f24","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"3c7538fb-41d2-4b9b-b735-7a479d050eaf","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"3c7538fb-41d2-4b9b-b735-7a479d050eaf","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"3c7538fb-41d2-4b9b-b735-7a479d050eaf","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"24f273d6-a4ef-4add-8922-eeea8b3ffbab","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"24f273d6-a4ef-4add-8922-eeea8b3ffbab","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"24f273d6-a4ef-4add-8922-eeea8b3ffbab","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"6f12e0db-29d0-481e-9c74-9d1937963012","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"6f12e0db-29d0-481e-9c74-9d1937963012","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"6f12e0db-29d0-481e-9c74-9d1937963012","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"bec6d1bd-67f2-4657-ab09-375a772e36d4","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"bec6d1bd-67f2-4657-ab09-375a772e36d4","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"bec6d1bd-67f2-4657-ab09-375a772e36d4","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"a70aec90-05bd-4b44-b867-63110a19d99d","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"a70aec90-05bd-4b44-b867-63110a19d99d","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"a70aec90-05bd-4b44-b867-63110a19d99d","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"069f25f6-726d-4cda-be70-03cdbf9255cf","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"069f25f6-726d-4cda-be70-03cdbf9255cf","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"069f25f6-726d-4cda-be70-03cdbf9255cf","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"7a99c8fb-0193-46e7-b8ed-3252bc0870bc","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"7a99c8fb-0193-46e7-b8ed-3252bc0870bc","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"7a99c8fb-0193-46e7-b8ed-3252bc0870bc","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"a783b5c8-d4dc-4127-a0c5-5d4df13c36ee","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"a783b5c8-d4dc-4127-a0c5-5d4df13c36ee","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"a783b5c8-d4dc-4127-a0c5-5d4df13c36ee","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"0c4b729d-78b3-4964-8102-843ced541ce2","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"0c4b729d-78b3-4964-8102-843ced541ce2","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"LayerId":{"name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","name":"0c4b729d-78b3-4964-8102-843ced541ce2","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"1d6ed386-5ea5-4a47-825e-6f26f5582a57",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b7352327-ba94-47f4-beed-8bc130c8249d",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"37195c33-487c-4599-a295-0c83fb21c594",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"1304f355-4c4f-4962-9b88-78f97f928a30",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"8b5bbe8f-8295-4bea-b26c-429bed9fcf38",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a177760a-cb49-46d0-82cc-ea504927a026",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"6e2fcb08-46e4-4130-bf78-fd7f68f63efc",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"7bc163c4-d508-4bd6-bfb5-80902460b3c3",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"331106b1-ebe7-42a1-a9d7-54a39b6e303c",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"6c014955-80f6-494a-9e38-0ef0eb3b324d",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"27ca43b9-3cd7-45bf-ad75-eb468493e425",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"70e51714-92bf-4e9b-8ed8-efe655ea5b04",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"5cb37f70-525c-456b-b463-cb3ea302ddc1",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"5eb0ae48-5429-4e57-9b43-47f851cf5347",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"d21b0867-a9f1-4b85-bbc5-82455d32d876",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"7e6e25ec-2ceb-4925-82f7-a368ab468460",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a7ff0592-23e7-4fc9-b76e-ad29c59437cb",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"aa30d5ce-c7df-454e-9e88-f004ee6abaaf",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b098c413-8c73-4391-86fe-b6d3ad86a0af",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"76829c19-2983-4aae-b8bf-2d54c5da0bd1",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"7fbe0df8-633e-448d-8300-f9a0a6a0acef",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"6dba2b14-0f34-4a69-8821-1541589f71a8",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"6d146873-e005-4962-b0e2-ca92521e58bd",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a6b68cf8-afa0-46b9-b167-d7196bd23653",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3592252b-db56-4fce-8823-c3ffd3c886f7",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"8bde83a3-9e4e-4354-ae97-c439534f0527",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"1bdd03b6-ed82-408f-90c0-986102ce7c0c",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"c19ffe7a-ce32-4d2b-b310-82a9d5d598ab",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"18f6bbe0-1d17-4f50-8a9a-3b19326516fc",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"5833129f-5e08-48a0-9dca-b1adef401f7e",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"420935f9-6f0f-406c-a202-ba6803a6db1a",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"f19c275f-55b7-4d2b-ab01-d0205bf9ccf0",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bc8b1c8d-0a82-487e-93af-88fb226f659f",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3fc78afd-b946-45cf-907d-b14acf121ae0",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"c3fc18bc-9f85-4915-a4c7-87c68a6497ec",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"4a7323ff-7555-4405-8c85-b29ba5d443dd",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"da82b5f0-32c2-4a56-86d5-5f76e6144166",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"23148e54-39d0-440a-bbd9-951154c6777c",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"77befab3-0269-4061-9e24-1c617c3e1f24",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3c7538fb-41d2-4b9b-b735-7a479d050eaf",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"24f273d6-a4ef-4add-8922-eeea8b3ffbab",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"6f12e0db-29d0-481e-9c74-9d1937963012",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bec6d1bd-67f2-4657-ab09-375a772e36d4",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a70aec90-05bd-4b44-b867-63110a19d99d",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"069f25f6-726d-4cda-be70-03cdbf9255cf",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"7a99c8fb-0193-46e7-b8ed-3252bc0870bc",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a783b5c8-d4dc-4127-a0c5-5d4df13c36ee",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"0c4b729d-78b3-4964-8102-843ced541ce2",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 15.0,
@@ -181,7 +90,7 @@
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"5696486f-a00e-409a-a59d-db15b3208bc8","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1d6ed386-5ea5-4a47-825e-6f26f5582a57","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"324c7ab1-5598-44c5-98c6-c788c32eb1ca","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b7352327-ba94-47f4-beed-8bc130c8249d","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"6a5a97fe-d56b-432e-a45e-1c7141a55f0e","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"37195c33-487c-4599-a295-0c83fb21c594","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
@@ -230,7 +139,7 @@
             {"id":"c05300c9-be19-443c-b6ab-04f82290ec82","Key":45.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"7a99c8fb-0193-46e7-b8ed-3252bc0870bc","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"73be0195-4fc2-42b0-8935-8432c8ba2c77","Key":46.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"a783b5c8-d4dc-4127-a0c5-5d4df13c36ee","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"f164297c-b46a-4db3-add0-87407bd614c4","Key":47.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0c4b729d-78b3-4964-8102-843ced541ce2","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -246,22 +155,13 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_autotile_blueprint","path":"sprites/spr_autotile_blueprint/spr_autotile_blueprint.yy",},
-    "resourceVersion": "1.4",
-    "name": "",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"1ebfe9ae-f740-4269-9e91-778da66b6e0e","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "ts",
     "path": "folders/Sprites/ts.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "spr_autotile_blueprint",
-  "tags": [],
-  "resourceType": "GMSprite",
 }
