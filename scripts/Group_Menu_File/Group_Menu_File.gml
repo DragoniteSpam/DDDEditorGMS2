@@ -23,3 +23,8 @@ function momu_settings_data() {
     menu_close_all();
     dialog_create_settings_data();
 }
+
+function momu_settings_data_mesh() {
+    menu_close_all();
+    dialog_create_settings_data_mesh();
+}
