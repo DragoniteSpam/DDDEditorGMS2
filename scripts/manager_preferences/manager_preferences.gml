@@ -5,6 +5,7 @@ function dialog_create_preferences() {
     var eh = 32;
     
     var dialog = new EmuDialog(720, 672, "Preferences");
+    dialog.contents_interactive = true;
     
     dialog.AddContent([
         (new EmuInput(c1x, EMU_AUTO, ew, eh, "Bezier precision:", Settings.config.bezier_precision, "0...16", 2, E_InputTypes.INT, function() {

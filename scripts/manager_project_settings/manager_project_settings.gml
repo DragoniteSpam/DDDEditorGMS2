@@ -1,5 +1,6 @@
 function dialog_create_settings_data() {
     var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 720, "Global Game Settings");
+    dialog.contents_interactive = true;
     var element_width = 320;
     var element_height = 32;
     
