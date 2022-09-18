@@ -189,27 +189,35 @@ function ui_init_mesh(mode) {
                 
                 var fn;
                 if (array_length(indices) == 1) {
-                    fn = get_save_filename_mesh(self.root.GetSibling("MESH LIST").At(indices[0]).name);
+                    fn = get_save_filename_mesh_full(self.root.GetSibling("MESH LIST").At(indices[0]).name);
                 } else {
-                    fn = get_save_filename_mesh("save everything here");
+                    fn = get_save_filename_mesh_full("save everything here");
                 }
                 
                 if (fn == "") return;
                 var folder = filename_path(fn);
                 
-                for (var i = 0, n = array_length(indices); i < n; i++) {
-                    var mesh = self.root.GetSibling("MESH LIST").At(indices[i]);
-                    var name = (array_length(indices) == 1) ? fn : (folder + mesh.name + filename_ext(fn));
-                    switch (mesh.type) {
-                        case MeshTypes.RAW:
-                            switch (filename_ext(fn)) {
-                                case ".obj": export_obj(name, mesh); break;
-                                case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
-                                case ".vbuff": export_vb(name, mesh, Stuff.mesh.vertex_format); break;
-                            }
-                            break;
-                        case MeshTypes.SMF:
-                            break;
+                if (filename_ext(fn) == ".derg") {
+                    var meshes = array_create(array_length(indices));
+                    for (var i = 0, n = array_length(indices); i < n; i++) {
+                        meshes[i] = self.root.GetSibling("MESH LIST").At(indices[i]);
+                    }
+                    export_derg(fn, meshes, Stuff.mesh.vertex_format);
+                } else {
+                    for (var i = 0, n = array_length(indices); i < n; i++) {
+                        var mesh = self.root.GetSibling("MESH LIST").At(indices[i]);
+                        var name = (array_length(indices) == 1) ? fn : (folder + mesh.name + filename_ext(fn));
+                        switch (mesh.type) {
+                            case MeshTypes.RAW:
+                                switch (filename_ext(fn)) {
+                                    case ".obj": export_obj(name, mesh); break;
+                                    case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
+                                    case ".vbuff": export_vb(name, mesh, Stuff.mesh.vertex_format); break;
+                                }
+                                break;
+                            case MeshTypes.SMF:
+                                break;
+                        }
                     }
                 }
             }))

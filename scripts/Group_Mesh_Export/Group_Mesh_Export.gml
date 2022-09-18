@@ -11,6 +11,10 @@ function export_vb(base_filename, mesh, format_type) {
     }
 }
 
+function export_derg(base_filename, mesh_array, format_type) {
+    
+}
+
 function export_d3d(base_filename, mesh) {
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
     
