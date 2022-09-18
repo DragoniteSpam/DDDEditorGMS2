@@ -1,5 +1,17 @@
 function EditorModeMesh() : EditorModeBase() constructor {
-    self.Update = null;
+    self.Update = function() {
+        // you only get the keyboard shortcuts if we're running penguin
+        if (IS_MESH_MODE) {
+            if (keyboard_check(vk_control)) {
+                if (keyboard_check_pressed(ord("S"))) {
+                    momu_save_data();
+                }
+                else if (keyboard_check_pressed(ord("G"))) {
+                    momu_settings_data_mesh();
+                }
+            }
+        }
+    };
     
     self.SetMode = function() {
         editor_set_mode(self, ModeIDs.MESH);
