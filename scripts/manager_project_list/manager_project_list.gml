@@ -1,4 +1,8 @@
 function dialog_create_project_list() {
+    var n_projects = array_length(Stuff.all_projects.projects);
+    
+    if (n_projects == 0) return;
+    
     var dialog = new EmuDialog(640, 512, "Projects");
     dialog.flags |= DialogFlags.NO_CLOSE_BUTTON;
     dialog.contents_interactive = true;
@@ -9,7 +13,6 @@ function dialog_create_project_list() {
     var element_height = 32;
     
     #region metadata
-    var n_projects = array_length(Stuff.all_projects.projects);
     
     for (var i = 0, n = array_length(Stuff.all_projects.projects); i < n; i++) {
         var project = Stuff.all_projects.projects[i];
