@@ -29,7 +29,7 @@
 //
 #macro PROJECT_MENU_ENABLED                 true
 #macro spart:PROJECT_MENU_ENABLED           false
-#macro mesh:PROJECT_MENU_ENABLED            false
+#macro mesh:PROJECT_MENU_ENABLED            true
 #macro Terrain:PROJECT_MENU_ENABLED         false
 //
 #macro RIBBON_MENU                          menu_init_main
