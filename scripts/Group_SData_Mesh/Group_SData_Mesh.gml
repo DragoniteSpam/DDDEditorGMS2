@@ -351,6 +351,13 @@ function DataMesh(source) : SData(source) constructor {
                         buffer_write(buffer, buffer_f32, shape.rotation.x);
                         buffer_write(buffer, buffer_f32, shape.rotation.y);
                         buffer_write(buffer, buffer_f32, shape.rotation.z);
+                        /// @todo build a proper orientation matrix here
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
                         buffer_write(buffer, buffer_f32, shape.scale.x);
                         buffer_write(buffer, buffer_f32, shape.scale.y);
                         buffer_write(buffer, buffer_f32, shape.scale.z);
@@ -359,6 +366,13 @@ function DataMesh(source) : SData(source) constructor {
                         buffer_write(buffer, buffer_f32, shape.rotation.x);
                         buffer_write(buffer, buffer_f32, shape.rotation.y);
                         buffer_write(buffer, buffer_f32, shape.rotation.z);
+                        /// @todo build a proper orientation matrix here
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
+                        buffer_write(buffer, buffer_f32, 0);
                         buffer_write(buffer, buffer_f32, shape.length);
                         buffer_write(buffer, buffer_f32, shape.radius);
                         break;
