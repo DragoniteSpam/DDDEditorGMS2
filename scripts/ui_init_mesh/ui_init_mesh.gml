@@ -568,7 +568,8 @@ function ui_init_mesh(mode) {
                 .SetID("OTHER TOOLS"),
             #endregion
             #region viewer
-            (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function() {
+            (new EmuRenderSurface(col3x, EMU_BASE, room_width - col3x - 16, room_width - col3x - 64, ui_render_surface_render_mesh_ed, function(mx, my) {
+                if (!is_clamped(mx, 0, self.width) || !is_clamped(my, 0, self.height)) return;
                 Stuff.mesh.camera.Update();
                 if (self.isActiveElement() && keyboard_check_pressed(vk_mesh_editor_overlay_text_toggle)) {
                     Settings.mesh.draw_3d_view_overlay_text = !Settings.mesh.draw_3d_view_overlay_text;
