@@ -337,7 +337,7 @@ function DataMesh(source) : SData(source) constructor {
             self.submeshes[i].Export(buffer);
         }
         
-        if (Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES) {
+        if (IS_MESH_MODE || !!(Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES)) {
             buffer_write(buffer, buffer_u32, array_length(self.collision_shapes));
             for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
                 var shape = self.collision_shapes[i];
@@ -371,8 +371,16 @@ function DataMesh(source) : SData(source) constructor {
             }
         }
         
+        var terrain_data_etc = self.terrain_data;
+        
+        if (IS_MESH_MODE) {
+            self.terrain_data = undefined;
+        }
+        
         buffer_write(buffer, buffer_bool, !!self.terrain_data);
         if (self.terrain_data) self.terrain_data.Export(buffer);
+        
+        self.terrain_data = terrain_data_etc;
     };
     
     self.CreateJSONMesh = function() {
