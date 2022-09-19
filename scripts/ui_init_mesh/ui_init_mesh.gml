@@ -202,7 +202,7 @@ function ui_init_mesh(mode) {
                     for (var i = 0, n = array_length(indices); i < n; i++) {
                         meshes[i] = self.root.GetSibling("MESH LIST").At(indices[i]);
                     }
-                    export_derg(fn, meshes, Stuff.mesh.vertex_format);
+                    export_derg(fn, meshes, IS_MESH_MODE ? Game.meta.export.vertex_format : Stuff.mesh.vertex_format);
                 } else {
                     for (var i = 0, n = array_length(indices); i < n; i++) {
                         var mesh = self.root.GetSibling("MESH LIST").At(indices[i]);
@@ -237,8 +237,12 @@ function ui_init_mesh(mode) {
     - [c_aqua]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing. (You can define a vertex format to export the model with.)")
                 .SetID("EXPORT MESH"),
             (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Vertex Format", function() {
-                emu_dialog_vertex_format(Stuff.mesh.vertex_format, function(value) {
-                    Stuff.mesh.vertex_format = value;
+                emu_dialog_vertex_format(IS_MESH_MODE ? Game.meta.export.vertex_format : Stuff.mesh.vertex_format, function(value) {
+                    if (IS_MESH_MODE) {
+                        Game.meta.export.vertex_format = value;
+                    } else {
+                        Stuff.mesh.vertex_format = value;
+                    }
                 });
             }))
                 .SetTooltip("Define the vertex format used for exporting vertex buffers"),
