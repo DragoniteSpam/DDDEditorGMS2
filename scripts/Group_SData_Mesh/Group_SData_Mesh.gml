@@ -560,6 +560,7 @@ function MeshCollisionShape() constructor {
 
 function MeshCollisionShapeBox() : MeshCollisionShape() constructor {
     self.name = "Box";
+    /// @todo make a Matrix3/Matrix4 class
     self.rotation = new Vector3(0, 0, 0);
     self.scale = new Vector3(1, 1, 1);
     self.type = MeshCollisionShapes.BOX;
@@ -573,6 +574,7 @@ function MeshCollisionShapeSphere() : MeshCollisionShape() constructor {
 
 function MeshCollisionShapeCapsule() : MeshCollisionShape() constructor {
     self.name = "Capsule";
+    /// @todo make a Matrix3/Matrix4 class
     self.rotation = new Vector3(0, 0, 0);
     self.radius = 1;
     self.length = 4;
