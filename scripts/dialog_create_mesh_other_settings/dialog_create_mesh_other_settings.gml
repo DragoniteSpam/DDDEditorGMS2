@@ -57,6 +57,14 @@ function dialog_create_mesh_other_settings(list, selection) {
             batch_again();
         }))
             .SetTooltip("Set the diffuse color of every submesh's material to white."),
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Snap to Floor", function() {
+            var selection = self.root.selection;
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].ActionFloor();
+            }
+            batch_again();
+        }))
+            .SetTooltip("Set the bottom of the mesh's physical bounds to the z = 0 plane."),
     ]);
     
     if (IS_DEFAULT_MODE) {

@@ -159,6 +159,16 @@ function DataMesh(source) : SData(source) constructor {
         self.CalculatePhysicalBounds();
     };
     
+    self.ActionFloor = function() {
+        if (self.type == MeshTypes.SMF) return;
+        __meshops_transform_set_matrix(0, 0, -self.physical_bounds.z1, 0, 0, 0, 1, 1, 1);
+        self.foreachSubmeshBufferParam(function(buffer, data) {
+            meshops_transform(buffer_get_address(buffer), buffer_get_size(buffer));
+        }, { });
+        self.physical_bounds.z2 -= self.physical_bounds.z1;
+        self.physical_bounds.z1 = 0;
+    };
+    
     self.ActionMirrorX = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
