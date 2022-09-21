@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMWindowsOptions",
+  "resourceVersion": "1.1",
+  "name": "Windows",
   "ConfigValues": {
     "Terrain": {"option_windows_display_name":"DDD Editor","option_windows_description_info":"A collection of tools for use with making games","option_windows_icon":"icons/icon.ico",},
     "spart": {"option_windows_display_name":"Sparticle Editor","option_windows_description_info":"Preview Snidr's 3D Particle System",},
@@ -7,7 +10,7 @@
   },
   "option_windows_display_name": "DDD Editor",
   "option_windows_executable_name": "ddd",
-  "option_windows_version": "2022.0.4.86",
+  "option_windows_version": "2022.0.5.87",
   "option_windows_company_info": "",
   "option_windows_product_info": "DDD Game Tools",
   "option_windows_copyright_info": "(c) 2018 - whatever year it is now, Michael Peng",
@@ -34,8 +37,4 @@
   "option_windows_enable_steam": false,
   "option_windows_disable_sandbox": true,
   "option_windows_steam_use_alternative_launcher": false,
-  "resourceVersion": "1.1",
-  "name": "Windows",
-  "tags": [],
-  "resourceType": "GMWindowsOptions",
 }
