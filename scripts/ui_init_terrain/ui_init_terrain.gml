@@ -39,15 +39,15 @@ function ui_init_terrain(mode) {
                 }))
                     .SetTooltip("View the world through an overhead camera."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Viewer Settings", function() {
-                    var dialog = new EmuDialog(640, 600, "Terrain viewer settings");
+                    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32, 720, "Terrain viewer settings");
                     dialog.root = self;
                     dialog.active_shade = 0;
-                    dialog.x = 920;
+                    dialog.x = 848;
                     dialog.y = 120;
                     
                     var col1x = 32;
-                    var col2x = 336;
-                    var col_width = 288;
+                    var col2x = 32 + 320 + 32;
+                    var col_width = 320;
                     
                     return dialog.AddContent([
                         #region column 1
@@ -82,6 +82,19 @@ function ui_init_terrain(mode) {
                             Settings.terrain.view_distance = self.value;
                         }))
                             .SetTooltip("The distance at which the terrain will switch to a lower level of detail. This can have a dramatic impact on performance."),
+                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Hightlight level surfaces?", Settings.terrain.highlight_upwards_surfaces, function() {
+                            Settings.terrain.highlight_upwards_surfaces = self.value;
+                            self.GetSibling("UPRIGHT THRESHOLD").Refresh();
+                        }))
+                            .SetTooltip(""),
+                        (new EmuInput(col1x, EMU_AUTO, col_width, 32, "    Threshold:", Settings.terrain.highlight_upwards_angle, "Degrees", 4, E_InputTypes.REAL, function() {
+                            Settings.terrain.highlight_upwards_angle = real(self.value);
+                        }))
+                            .SetRefresh(function() {
+                                self.SetInteractive(Settings.terrain.highlight_upwards_surfaces);
+                            })
+                            .SetTooltip("")
+                            .SetID("UPRIGHT THRESHOLD"),
                         #endregion
                         #region column 2
                         (new EmuRadioArray(col2x, EMU_BASE, 256, 32, "View data:", Settings.terrain.view_data, function() {
@@ -125,6 +138,8 @@ function ui_init_terrain(mode) {
                             Settings.terrain.fog_color = TERRAIN_DEF_FOG_COLOR;
                             Settings.terrain.fog_start = TERRAIN_DEF_FOG_START;
                             Settings.terrain.fog_end = TERRAIN_DEF_FOG_END;
+                            Settings.terrain.highlight_upwards_surfaces = TERRAIN_DEF_HIGHLIGHT_UPWARDS_SURFACES;
+                            Settings.terrain.highlight_upwards_angle = TERRAIN_DEF_HIGHLIGHT_UPWARDS_ANGLE;
                             var xx = self.root.x;
                             var yy = self.root.y;
                             // i'm not even sorry
@@ -135,7 +150,9 @@ function ui_init_terrain(mode) {
                             dialog.y = yy;
                         }))
                         #endregion
-                    ]).AddDefaultCloseButton();
+                    ])
+                    .Refresh()
+                    .AddDefaultCloseButton();
                 }))
                     .SetTooltip("A few settings for how the terrain is drawn."),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Brushes...", function() {

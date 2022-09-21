@@ -215,6 +215,9 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     Settings.terrain.view_distance_ortho_max = Settings.terrain[$ "view_distance_ortho_max"] ?? TERRAIN_DEF_VIEW_DISTANCE_ORTHO_MAX;
     Settings.terrain.view_distance_perspective_min = Settings.terrain[$ "view_distance_perspective_min"] ?? TERRAIN_DEF_VIEW_DISTANCE_PERSPECTIVE_MIN;
     Settings.terrain.view_distance_perspective_max = Settings.terrain[$ "view_distance_perspective_max"] ?? TERRAIN_DEF_VIEW_DISTANCE_PERSPECTIVE_MAX;
+    
+    Settings.terrain.highlight_upwards_surfaces = Settings.terrain[$ "highlight_upwards_surfaces"] ?? TERRAIN_DEF_HIGHLIGHT_UPWARDS_SURFACES;
+    Settings.terrain.highlight_upwards_angle = Settings.terrain[$ "highlight_upwards_angle"] ?? TERRAIN_DEF_HIGHLIGHT_UPWARDS_ANGLE;
     // light settings
     Settings.terrain.light_ambient_colour = Settings.terrain[$ "light_ambient_colour"] ?? TERRAIN_DEF_LIGHT_AMBIENT_COLOUR;
     Settings.terrain.light_primary_angle = Settings.terrain[$ "light_primary_angle"] ?? TERRAIN_DEF_LIGHT_PRIMARY_ANGLE;
