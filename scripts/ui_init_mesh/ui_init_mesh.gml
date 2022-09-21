@@ -340,6 +340,7 @@ function ui_init_mesh(mode) {
                 .SetRefresh(function(data) {
                     self.SetValue(string(Settings.mesh.draw_position.x));
                 })
+                .SetRealNumberBounds(-250, 250)
                 .SetID("MESH POSITION X")
                 .SetNext("MESH POSITION Y").SetPrevious("MESH SCALE Z"),
             (new EmuInput(col2x + element_width / 2, EMU_INLINE, element_width / 4, element_height, string(Settings.mesh.draw_position.y), "", "y", 10, E_InputTypes.REAL, function() {
@@ -348,6 +349,7 @@ function ui_init_mesh(mode) {
                 .SetRefresh(function(data) {
                     self.SetValue(string(Settings.mesh.draw_position.y));
                 })
+                .SetRealNumberBounds(-250, 250)
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Y")
                 .SetNext("MESH POSITION Z").SetPrevious("MESH POSITION X"),
@@ -357,6 +359,7 @@ function ui_init_mesh(mode) {
                 .SetRefresh(function(data) {
                     self.SetValue(string(Settings.mesh.draw_position.z));
                 })
+                .SetRealNumberBounds(-250, 250)
                 .SetInputBoxPosition(0, 0)
                 .SetID("MESH POSITION Z")
                 .SetNext("MESH ROTATE X").SetPrevious("MESH POSITION Y"),
