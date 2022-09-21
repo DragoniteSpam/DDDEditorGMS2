@@ -627,6 +627,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TerrainSizeF"), self.width, self.height);
         gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain, "u_TexLookup"), false);
         texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexLookup"), surface_get_texture(self.texture.surface));
+        // highlighting upwards faces
+        shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_HightlightThreshold"), Settings.terrain.highlight_upwards_surfaces ? dcos(Settings.terrain.highlight_upwards_angle) : -1);
         // other stuff
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewData"), Settings.terrain.view_data);
         
