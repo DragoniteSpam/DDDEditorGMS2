@@ -95,9 +95,26 @@ uniform float u_HightlightThreshold;
 
 const vec3 up = vec3(0, 0, 1);
 
+float Dither2x2(vec2 position) {
+    int x = int(min(mod(position.x, 6.0), 2.0));
+    int y = int(min(mod(position.y, 6.0), 2.0));
+    int index = x + y * 2;
+    float limit = 0.0;
+    
+    if (x < 8) {
+        if (index == 0) limit = 0.25;
+        if (index == 1) limit = 0.75;
+        if (index == 2) limit = 1.00;
+        if (index == 3) limit = 0.50;
+    }
+    
+    return limit;
+}
+
 void DrawUpwardHightlightDither(inout vec3 base, in vec3 norm) {
     if (dot(norm, up) > u_HightlightThreshold) {
-        base.rgb = vec3(0);
+        // the dither effect is just an inverse color
+        base.rgb = mix(base.rgb, vec3(1) - base.rgb, Dither2x2(gl_FragCoord.xy));
     }
 }
 #endregion
