@@ -1,5 +1,17 @@
 Another changelog.
 
+# Changes in 2022.0.5
+
+ - Projects can be saved and loaded
+ - Added a "snap to floor" mesh operation
+ - Added an export option to save all (selected) meshes to a single file, for fast(er) loading
+     - Meshes are exported as vertex buffers
+     - Attributes such as material settings and submesh hierarchy are preserved
+     - Can be loaded quickly with the provided Penguin scripts
+
+ - Fixed the stupid issue where transforming a mesh in particular ways screws with the normals
+ - Fixed the number bounds on the mesh transform UI (not allowing negative rotations, etc)
+
 # Changes since 2022.0.2.78
 
  - Rewrote most of the tooling from scratch in C++ to make it considerably faster
