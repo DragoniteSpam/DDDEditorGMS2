@@ -51,6 +51,7 @@
     {"id":{"name":"spr_star","path":"sprites/spr_star/spr_star.yy",},"order":3,},
     {"id":{"name":"SpriteOpsGML","path":"scripts/SpriteOpsGML/SpriteOpsGML.yy",},"order":7,},
     {"id":{"name":"spr_ring","path":"sprites/spr_ring/spr_ring.yy",},"order":30,},
+    {"id":{"name":"__penguin_classes","path":"scripts/__penguin_classes/__penguin_classes.yy",},"order":0,},
     {"id":{"name":"spr_pawn_missing","path":"sprites/spr_pawn_missing/spr_pawn_missing.yy",},"order":3,},
     {"id":{"name":"scribble_font_add_from_sprite","path":"scripts/scribble_font_add_from_sprite/scribble_font_add_from_sprite.yy",},"order":2,},
     {"id":{"name":"DDD_MACROS","path":"scripts/DDD_MACROS/DDD_MACROS.yy",},"order":0,},
@@ -218,6 +219,7 @@
     {"id":{"name":"create_render_surface","path":"scripts/create_render_surface/create_render_surface.yy",},"order":10,},
     {"id":{"name":"create_input","path":"scripts/create_input/create_input.yy",},"order":11,},
     {"id":{"name":"create_color_picker_input","path":"scripts/create_color_picker_input/create_color_picker_input.yy",},"order":12,},
+    {"id":{"name":"penguin_load","path":"scripts/penguin_load/penguin_load.yy",},"order":1,},
     {"id":{"name":"create_color_picker","path":"scripts/create_color_picker/create_color_picker.yy",},"order":13,},
     {"id":{"name":"create_progress_bar","path":"scripts/create_progress_bar/create_progress_bar.yy",},"order":14,},
     {"id":{"name":"create_bitfield_option_data","path":"scripts/create_bitfield_option_data/create_bitfield_option_data.yy",},"order":0,},
@@ -819,6 +821,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Generation","folderPath":"folders/Terrain/Generation.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Particles","folderPath":"folders/Terrain/Generation/Particles.yy","order":8,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"water","folderPath":"folders/Terrain/water.yy","order":4,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Penguin","folderPath":"folders/Penguin.yy","order":54,},
   ],
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
