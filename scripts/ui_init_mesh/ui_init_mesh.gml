@@ -186,6 +186,7 @@ function ui_init_mesh(mode) {
                 .SetID("DELETE MESH"),
             (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Export Mesh", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
+                var format = IS_MESH_MODE ? Game.meta.export.vertex_format : Stuff.mesh.vertex_format;
                 
                 var fn;
                 if (array_length(indices) == 1) {
@@ -202,7 +203,7 @@ function ui_init_mesh(mode) {
                     for (var i = 0, n = array_length(indices); i < n; i++) {
                         meshes[i] = self.root.GetSibling("MESH LIST").At(indices[i]);
                     }
-                    export_derg(fn, meshes, IS_MESH_MODE ? Game.meta.export.vertex_format : Stuff.mesh.vertex_format);
+                    export_derg(fn, meshes, format);
                 } else {
                     for (var i = 0, n = array_length(indices); i < n; i++) {
                         var mesh = self.root.GetSibling("MESH LIST").At(indices[i]);
@@ -212,7 +213,7 @@ function ui_init_mesh(mode) {
                                 switch (filename_ext(fn)) {
                                     case ".obj": export_obj(name, mesh); break;
                                     case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
-                                    case ".vbuff": export_vb(name, mesh, Stuff.mesh.vertex_format); break;
+                                    case ".vbuff": export_vb(name, mesh, format); break;
                                 }
                                 break;
                             case MeshTypes.SMF:
