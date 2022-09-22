@@ -250,11 +250,13 @@ function MeshSubmesh(source) constructor {
     self.AddBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         var new_size = buffer_get_size(raw_buffer);
+        var old_size = 0;
         if (!self.buffer) {
             self.buffer = buffer_create(new_size, buffer_grow, 1);
+        } else {
+            old_size = buffer_get_size(self.buffer);
+            buffer_resize(self.buffer, old_size + new_size);
         }
-        var old_size = buffer_get_size(self.buffer);
-        buffer_resize(self.buffer, old_size + new_size);
         buffer_copy(raw_buffer, 0, new_size, self.buffer, old_size);
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format);
         vertex_freeze(self.vbuffer);
