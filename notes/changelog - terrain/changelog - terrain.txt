@@ -1,6 +1,11 @@
 Yeah I really should get better at maintaining this. See the documentation for more details:
 https://github.com/DragoniteSpam/Documentation/wiki/TerrainOps
 
+# Changes in 2022.0.5
+
+ - Added an option to highlight upward-facing triangles to make it easier to create smooth surfaces for roads, etc
+    You can define the threshold for highlighting upward-facing triangles, in terms of degrees away from the up vector
+
 # Changes since 2022.0.2.78
 
  - Added a "Reset" button to the viewer settings dialog
