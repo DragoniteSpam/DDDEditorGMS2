@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "spr_terrain_gen_part_circle",
   "ConfigValues": {
     "Terrain": {"textureGroupId":"{\"name\":\"Default\",\"path\":\"texturegroups/Default\"}",},
   },
@@ -27,21 +30,14 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"881da805-fef6-4a98-909d-086335220c2f","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"881da805-fef6-4a98-909d-086335220c2f","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":{"name":"29cdfa95-0b6b-43c5-9ab0-4a7859ab1138","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"881da805-fef6-4a98-909d-086335220c2f","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":{"name":"19785728-b890-4380-9ef8-325c4fa425b4","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_terrain_gen_part_circle","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"881da805-fef6-4a98-909d-086335220c2f","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"31b43857-c76b-40e3-8877-0e24336fc37a","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"31b43857-c76b-40e3-8877-0e24336fc37a","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":{"name":"29cdfa95-0b6b-43c5-9ab0-4a7859ab1138","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"31b43857-c76b-40e3-8877-0e24336fc37a","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":{"name":"19785728-b890-4380-9ef8-325c4fa425b4","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_terrain_gen_part_circle","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"31b43857-c76b-40e3-8877-0e24336fc37a","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"b00c3160-afb1-477b-a1ee-9abfad67ddc6","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"b00c3160-afb1-477b-a1ee-9abfad67ddc6","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":{"name":"29cdfa95-0b6b-43c5-9ab0-4a7859ab1138","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"b00c3160-afb1-477b-a1ee-9abfad67ddc6","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"LayerId":{"name":"19785728-b890-4380-9ef8-325c4fa425b4","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_terrain_gen_part_circle","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","name":"b00c3160-afb1-477b-a1ee-9abfad67ddc6","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"881da805-fef6-4a98-909d-086335220c2f",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"31b43857-c76b-40e3-8877-0e24336fc37a",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b00c3160-afb1-477b-a1ee-9abfad67ddc6",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_terrain_gen_part_circle","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "spr_terrain_gen_part_circle",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -52,11 +48,11 @@
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"5cc38689-521c-4e61-8eb4-6a33a55b1373","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"881da805-fef6-4a98-909d-086335220c2f","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"1439f1d1-175f-42c1-a4c7-38c3f12562e1","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"31b43857-c76b-40e3-8877-0e24336fc37a","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"25b1d80f-46a1-4557-b4b0-c7768c542c10","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b00c3160-afb1-477b-a1ee-9abfad67ddc6","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -72,23 +68,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_terrain_gen_part_circle","path":"sprites/spr_terrain_gen_part_circle/spr_terrain_gen_part_circle.yy",},
-    "resourceVersion": "1.4",
-    "name": "spr_terrain_gen_part_circle",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"29cdfa95-0b6b-43c5-9ab0-4a7859ab1138","tags":[],"resourceType":"GMImageLayer",},
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 1","resourceVersion":"1.0","name":"19785728-b890-4380-9ef8-325c4fa425b4","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"29cdfa95-0b6b-43c5-9ab0-4a7859ab1138","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"19785728-b890-4380-9ef8-325c4fa425b4","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 1",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "Particles",
     "path": "folders/Terrain/Generation/Particles.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "spr_terrain_gen_part_circle",
-  "tags": [],
-  "resourceType": "GMSprite",
 }

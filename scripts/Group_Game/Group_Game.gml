@@ -5,7 +5,9 @@ enum GameExportFlags {
     COLLISION_SHAPES                = 0x0001,
 }
 
-Game = new (function() constructor {
+Game = new GameDataStructure();
+
+function GameDataStructure() constructor {
     self.meta = {
         project: {
             notes: "",
@@ -375,7 +377,7 @@ Game = new (function() constructor {
         }
         #endregion
     };
-})();
+};
 
 Identifiers = {
     guids: { },

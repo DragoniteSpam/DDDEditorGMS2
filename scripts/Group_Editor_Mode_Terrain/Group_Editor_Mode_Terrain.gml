@@ -106,7 +106,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         self.stats.triangles = 0;
         
         // you only get the keyboard shortcuts if we're running under the terrain config
-        if (EDITOR_BASE_MODE == ModeIDs.TERRAIN) {
+        if (IS_TERRAIN_MODE) {
             if (keyboard_check(vk_control)) {
                 if (keyboard_check_pressed(ord("S"))) {
                     momu_terrain_save();
@@ -215,6 +215,9 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     Settings.terrain.view_distance_ortho_max = Settings.terrain[$ "view_distance_ortho_max"] ?? TERRAIN_DEF_VIEW_DISTANCE_ORTHO_MAX;
     Settings.terrain.view_distance_perspective_min = Settings.terrain[$ "view_distance_perspective_min"] ?? TERRAIN_DEF_VIEW_DISTANCE_PERSPECTIVE_MIN;
     Settings.terrain.view_distance_perspective_max = Settings.terrain[$ "view_distance_perspective_max"] ?? TERRAIN_DEF_VIEW_DISTANCE_PERSPECTIVE_MAX;
+    
+    Settings.terrain.highlight_upwards_surfaces = Settings.terrain[$ "highlight_upwards_surfaces"] ?? TERRAIN_DEF_HIGHLIGHT_UPWARDS_SURFACES;
+    Settings.terrain.highlight_upwards_angle = Settings.terrain[$ "highlight_upwards_angle"] ?? TERRAIN_DEF_HIGHLIGHT_UPWARDS_ANGLE;
     // light settings
     Settings.terrain.light_ambient_colour = Settings.terrain[$ "light_ambient_colour"] ?? TERRAIN_DEF_LIGHT_AMBIENT_COLOUR;
     Settings.terrain.light_primary_angle = Settings.terrain[$ "light_primary_angle"] ?? TERRAIN_DEF_LIGHT_PRIMARY_ANGLE;
@@ -624,6 +627,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TerrainSizeF"), self.width, self.height);
         gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain, "u_TexLookup"), false);
         texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexLookup"), surface_get_texture(self.texture.surface));
+        // highlighting upwards faces
+        shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_HightlightThreshold"), Settings.terrain.highlight_upwards_surfaces ? dcos(Settings.terrain.highlight_upwards_angle) : -1);
         // other stuff
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_OptViewData"), Settings.terrain.view_data);
         

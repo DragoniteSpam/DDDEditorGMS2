@@ -90,6 +90,35 @@ void DrawWireframe(inout vec4 color) {
 }
 #endregion
 
+#region Highlighting upwards faces
+uniform float u_HightlightThreshold;
+
+const vec3 up = vec3(0, 0, 1);
+
+float Dither2x2(vec2 position) {
+    int x = int(min(mod(position.x, 6.0), 2.0));
+    int y = int(min(mod(position.y, 6.0), 2.0));
+    int index = x + y * 2;
+    float limit = 0.0;
+    
+    if (x < 8) {
+        if (index == 0) limit = 0.25;
+        if (index == 1) limit = 0.75;
+        if (index == 2) limit = 1.00;
+        if (index == 3) limit = 0.50;
+    }
+    
+    return limit;
+}
+
+void DrawUpwardHightlightDither(inout vec3 base, in vec3 norm) {
+    if (dot(norm, up) > u_HightlightThreshold) {
+        // the dither effect is just an inverse color
+        base.rgb = mix(base.rgb, vec3(1) - base.rgb, Dither2x2(gl_FragCoord.xy));
+    }
+}
+#endregion
+
 void main() {
     vec3 normal = normalize(cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz)));
     float NdotL = clamp(dot(normal, u_LightDirection.xyz) * u_LightDirection.w, 0.0, 1.0);
@@ -112,9 +141,8 @@ void main() {
     } else if (u_OptViewData == DATA_POSITION) {
         gl_FragColor = vec4(v_WorldPosition.xyz / vec3(u_TerrainSizeF, 256), 1);
     } else if (u_OptViewData == DATA_NORMAL) {
-        vec3 normal = cross(dFdx(v_WorldPosition.xyz), dFdy(v_WorldPosition.xyz));
-        normal = normalize(normal * sign(normal.z));
-        gl_FragColor = vec4(normal * 0.5 + 0.5, 1);
+        vec3 snormal = normalize(normal * sign(normal.z));
+        gl_FragColor = vec4(snormal * 0.5 + 0.5, 1);
     } else if (u_OptViewData == DATA_HEIGHT) {
         float max_height = 256.0;
         float fd = max(min(v_WorldPosition.z / max_height, 1.0), 0.0);
@@ -134,6 +162,10 @@ void main() {
     }*/
     
     DrawCursor(gl_FragColor.rgb, v_WorldPosition.xy);
+    
+    if (u_HightlightThreshold > 0.0) {
+        DrawUpwardHightlightDither(gl_FragColor.rgb, normal);
+    }
     
     if (u_WireAlpha > 0.0) {
         DrawWireframe(gl_FragColor);

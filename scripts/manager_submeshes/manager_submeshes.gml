@@ -8,7 +8,7 @@ function dialog_create_mesh_submesh(mesh) {
         batch_again();
     };
     
-    var dialog = new EmuDialog(32 + 320 + 32 + ((EDITOR_BASE_MODE != ModeIDs.MESH) ? (320 + 32 + 320 + 32) : 0), 688, "Submesh Options: " + mesh.name);
+    var dialog = new EmuDialog(32 + 320 + 32 + (!IS_MESH_MODE ? (320 + 32 + 320 + 32) : 0), 688, "Submesh Options: " + mesh.name);
     dialog.mesh = mesh;
     dialog.active_shade = 0;
     
@@ -112,7 +112,7 @@ function dialog_create_mesh_submesh(mesh) {
             .SetID("VISIBLE"),
         (new EmuText(col1, EMU_AUTO, element_width, element_height, ""))
             .SetRefresh(function() {
-                if (EDITOR_BASE_MODE == ModeIDs.MESH) return;
+                if (IS_MESH_MODE) return;
                 
                 var mesh = self.root.mesh;
                 var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
@@ -141,7 +141,7 @@ function dialog_create_mesh_submesh(mesh) {
         #endregion
     ]);
     
-    if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+    if (!IS_MESH_MODE) {
         dialog.AddContent([
             #region column 2 - additional stuff
             new EmuText(col2, EMU_BASE, element_width, element_height, "[c_aqua]Submesh Operations"),

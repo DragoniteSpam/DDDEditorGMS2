@@ -11,6 +11,23 @@ function export_vb(base_filename, mesh, format_type) {
     }
 }
 
+function export_derg(base_filename, mesh_array, format_type) {
+    var buffer = buffer_create(163384, buffer_grow, 1);
+    buffer_write(buffer, buffer_string, "derg");
+    buffer_write(buffer, buffer_u32, array_length(Game.graphics.tilesets));
+    for (var i = 0, n = array_length(Game.graphics.tilesets); i < n; i++) {
+        var ts = Game.graphics.tilesets[i];
+        buffer_write(buffer, buffer_string, ts.name);
+        buffer_write(buffer, buffer_datatype, ts.GUID);
+    }
+    buffer_write(buffer, buffer_u32, array_length(mesh_array));
+    for (var i = 0, n = array_length(mesh_array); i < n; i++) {
+        mesh_array[i].Export(buffer);
+    }
+    buffer_save_ext(buffer, base_filename, 0, buffer_tell(buffer));
+    buffer_delete(buffer);
+}
+
 function export_d3d(base_filename, mesh) {
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
     

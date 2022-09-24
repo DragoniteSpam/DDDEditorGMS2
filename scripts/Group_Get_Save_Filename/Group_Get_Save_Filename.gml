@@ -39,6 +39,12 @@ function get_save_filename_mesh(name, filter = "Any valid mesh|*.d3d;*.gmmod;*.o
     });
 }
 
+function get_save_filename_mesh_full(name, filter = "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff;*.derg|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff|Vertex buffer collections|*.derg") {
+    return __get_save_filename_generic(filter, name, Settings.location.mesh, "Select a mesh", function(directory) {
+        Settings.location.mesh = directory;
+    });
+}
+
 function get_save_filename_mesh_autotile(name) {
     return __get_save_filename_generic("Mesh Autotile files|*.ddd_atm", name, Settings.location.mesh, "Select a mesh autotile collection", function(directory) {
         Settings.location.mesh = directory;

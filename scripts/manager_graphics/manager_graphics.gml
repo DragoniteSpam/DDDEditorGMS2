@@ -9,7 +9,7 @@ function dialog_create_manager_graphics() {
     var col2 = 384;
     var col3 = 736;
     
-    if (EDITOR_BASE_MODE != ModeIDs.MESH) {
+    if (!IS_MESH_MODE) {
         dialog.AddContent([
             (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
                 switch (self.value) {
@@ -32,7 +32,7 @@ function dialog_create_manager_graphics() {
     }
     
     dialog.AddContent([
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, (EDITOR_BASE_MODE != ModeIDs.MESH) ? 14 : 20, function() {
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, !IS_MESH_MODE ? 14 : 20, function() {
             if (self.root) {
                 self.root.Refresh({ list: self.entries, index: self.GetSelection() });
             }

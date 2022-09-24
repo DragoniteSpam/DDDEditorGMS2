@@ -14,8 +14,9 @@ function Material(
         tex_bump = NULL,
         tex_displacement = NULL,
         tex_stencil = NULL
-    ) : SData(source) constructor {
+    ) constructor {
     
+    self.name = "Material";
     self.col_diffuse = col_diffuse;
     self.alpha = alpha;
     self.col_ambient = col_ambient;
@@ -32,6 +33,7 @@ function Material(
     self.tex_stencil = tex_stencil;
     
     if (is_struct(source)) {
+        self.name = source.name;
         self.col_diffuse = source.col_diffuse;
         self.alpha = source.alpha;
         self.col_ambient = source.col_ambient;
@@ -46,6 +48,8 @@ function Material(
         self.tex_bump = source.tex_bump;
         self.tex_displacement = source.tex_displacement;
         self.tex_stencil = source.tex_stencil;
+    } else {
+        self.name = source;
     }
     
     self.Clone = function() {
@@ -53,7 +57,7 @@ function Material(
     };
     
     self.CreateJSON = function() {
-        var json = self.CreateJSONBase();
+        var json = { };
         json.col_diffuse = self.col_diffuse;
         json.alpha = self.alpha;
         json.col_ambient = self.col_ambient;
@@ -73,12 +77,12 @@ function Material(
     };
     
     self.Export = function(buffer) {
-        self.ExportBase(buffer);
-        buffer_write(buffer, buffer_u32, self.col_diffuse | (floor(self.col_alpha * 255) << 24));
+        buffer_write(buffer, buffer_u32, self.col_diffuse | (floor(self.alpha * 255) << 24));
         buffer_write(buffer, buffer_u32, self.col_ambient);
         buffer_write(buffer, buffer_u32, self.col_specular);
         buffer_write(buffer, buffer_f32, self.col_specular_exponent);
         buffer_write(buffer, buffer_datatype, self.tex_base);
+        buffer_write(buffer, buffer_datatype, self.tex_normal);
         buffer_write(buffer, buffer_datatype, self.tex_ambient);
         buffer_write(buffer, buffer_datatype, self.tex_specular_color);
         buffer_write(buffer, buffer_datatype, self.tex_specular_highlight);

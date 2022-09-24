@@ -197,7 +197,7 @@ function Triangle() constructor {
     self.vertex[2].barycentric.z = 1;
 }
 
-function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
+function BoundingBox(x1 = 0, y1 = 0, z1 = 0, x2 = 0, y2 = 0, z2 = 0) constructor {
     self.x1 = x1;
     self.y1 = y1;
     self.z1 = z1;

@@ -62,7 +62,7 @@ function array_empty(array) {
 }
 
 function array_search(array, value) {
-    for (var i = 0; i < array_length(array); i++) {
+    for (var i = 0, n = array_length(array); i < n; i++) {
         if (array[i] == value) return i;
     }
     return -1;

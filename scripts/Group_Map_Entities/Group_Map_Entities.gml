@@ -40,6 +40,8 @@ function Entity(source) constructor {
     self.generic_data = [];
     self.is_static = false;
     
+    self.material = new Material();                                             // property override
+    
     // options
     self.direction_fix = true;
     self.always_update = false;
@@ -170,6 +172,8 @@ function Entity(source) constructor {
         }
         
         buffer_write(buffer, buffer_u8, self.slope);
+        
+        self.material.Export(buffer);
         
         return true;
     };

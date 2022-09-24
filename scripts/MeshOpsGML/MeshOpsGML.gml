@@ -53,3 +53,17 @@ function meshops_vertex_formatted(buffer, format) {
     buffer_resize(output, length);
     return output;
 }
+
+function meshops_set_normals_smooth_multi(buffers, threshold) {
+    __meshops_set_normals_smooth_multi_prepare();
+    for (var i = 0, n = array_length(buffers); i < n; i++) {
+        if (buffer_exists(buffers[i])) {
+            __meshops_set_normals_smooth_multi_calculate(buffer_get_address(buffers[i]), buffer_get_size(buffers[i]));
+        }
+    }
+    for (var i = 0, n = array_length(buffers); i < n; i++) {
+        if (buffer_exists(buffers[i])) {
+            __meshops_set_normals_smooth_multi_finalize(buffer_get_address(buffers[i]), buffer_get_size(buffers[i]), dcos(threshold));
+        }
+    }
+}

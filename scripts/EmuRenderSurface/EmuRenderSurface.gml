@@ -52,21 +52,21 @@ function EmuRenderSurface(x, y, w, h, render, step, create = function() { }, des
             surface_reset_target();
         }
         
-        if (getMouseHover(x1, y1, x2, y2)) {
-            ShowTooltip();
-            if (getMousePressed(x1, y1, x2, y2)) {
-                Activate();
+        if (self.getMouseHover(x1, y1, x2, y2)) {
+            self.ShowTooltip();
+            if (self.getMousePressed(x1, y1, x2, y2) || self.getMouseMiddlePressed(x1, y1, x2, y2) || self.GetMouseRightPressed(x1, y1, x2, y2)) {
+                self.Activate();
             }
         }
         
-        callback_step(mx, my);
+        self.callback_step(mx, my);
         
-        surface_set_target(_surface);
+        surface_set_target(self._surface);
         var camera = camera_get_active();
         var old_view_mat = camera_get_view_mat(camera);
         var old_proj_mat = camera_get_proj_mat(camera);
         var old_state = gpu_get_state();
-        callback_render(mx, my);
+        self.callback_render(mx, my);
         camera_set_view_mat(camera, old_view_mat);
         camera_set_proj_mat(camera, old_proj_mat);
         camera_apply(camera);
