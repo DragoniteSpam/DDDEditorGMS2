@@ -3,6 +3,7 @@ Another changelog.
 # Changes in 2022.0.6
 
  - Fixed "combine submeshes" prepending a bunch of empty vertices
+ - Fixed "export obj" crashing
 
 # Changes in 2022.0.5
 
