@@ -110,9 +110,10 @@ function Entity(source) constructor {
     };
     
     self.ExportBase = function(buffer) {
-        buffer_write(buffer, buffer_u32, self.is_static);
+        //buffer_write(buffer, buffer_u32, self.is_static);
+        buffer_write(buffer, buffer_u32, false);
         
-        if (self.is_static) return false;
+        //if (self.is_static) return false;
         
         buffer_write(buffer, buffer_u32, self.etype);
         buffer_write(buffer, buffer_string, self.name);
