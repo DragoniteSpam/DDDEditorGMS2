@@ -1,4 +1,4 @@
-function penguin_load(filename, vertex_format) {
+function penguin_load(filename, vertex_format, freeze = true) {
     var mesh_cache = { };
     var buffer = -1;
     
@@ -77,6 +77,9 @@ function penguin_load(filename, vertex_format) {
                     buffer_copy(buffer, buffer_tell(buffer), size, vertex_data, 0);
                     buffer_seek(buffer, buffer_seek_relative, size);
                     submesh.vbuff = vertex_create_buffer_from_buffer(vertex_data, vertex_format);
+                    if (freeze && vertex_get_number(submesh.vbuff) > 0) {
+                        vertex_freeze(submesh.vbuff);
+                    }
                     buffer_delete(vertex_data);
                 }
                 if (!!(existences & 0x1)) {
@@ -85,6 +88,9 @@ function penguin_load(filename, vertex_format) {
                     buffer_copy(buffer, buffer_tell(buffer), size, vertex_data, 0);
                     buffer_seek(buffer, buffer_seek_relative, size);
                     submesh.reflect_vbuff = vertex_create_buffer_from_buffer(vertex_data, vertex_format);
+                    if (freeze && vertex_get_number(submesh.reflect_vbuff) > 0) {
+                        vertex_freeze(submesh.reflect_vbuff);
+                    }
                     buffer_delete(vertex_data);
                 }
             }

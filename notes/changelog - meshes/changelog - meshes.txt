@@ -1,6 +1,10 @@
 Another changelog.
 
-# Changes in 2022.0.6
+# Changes in <next version>
+
+ - penguin_load: optional parameter for freezing loaded vertex buffers, defaults to true
+
+# Changes in 2022.0.5.90
 
  - Fixed "combine submeshes" prepending a bunch of empty vertices
  - Fixed "export obj" crashing
