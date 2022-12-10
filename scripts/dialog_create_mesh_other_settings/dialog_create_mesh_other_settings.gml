@@ -1,5 +1,5 @@
 function dialog_create_mesh_other_settings(list, selection) {
-    var dialog = new EmuDialog(320, 512, "Other mesh options");
+    var dialog = new EmuDialog(320, 544, "Other mesh options");
     dialog.active_shade = 0;
     dialog.list = list;
     dialog.selection = selection;
