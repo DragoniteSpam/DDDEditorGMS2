@@ -115,7 +115,7 @@ function terrainops_build_file(filename, reprocessor_function, chunk_size, expor
             // otherwise, take the raw data (containing the correct normals,
             // alignment, etc) and reprocess it into a d3d, obj, etc
             } else {
-                var reprocessed_bytes = reprocessor_function(reprocessed, raw_bytes, raw_output);
+                var reprocessed_bytes = reprocessor_function(raw_output, raw_bytes, reprocessed);
                 var output_name = fn + ((chunk_size < w || chunk_size < h) ? ("." + key + ext) : ext);
                 buffer_save_async(reprocessed, output_name, 0, reprocessed_bytes);
             }
