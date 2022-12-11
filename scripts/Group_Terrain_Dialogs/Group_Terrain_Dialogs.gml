@@ -296,7 +296,6 @@ function dialog_terrain_export() {
         (new EmuCheckbox(32, EMU_AUTO, 256, 32, "Smooth normals?", Settings.terrain.export_smooth, function() {
             Settings.terrain.export_smooth = self.value;
         }))
-            .SetInteractive(false)
             .SetTooltip("Smooth the normals of the terrain before saving it. [c_red]Warning! This can be very slow on large terrains."),
         (new EmuInput(32, EMU_AUTO, 256, 32, "Threshold:", string(Settings.terrain.export_smooth_threshold), "0...90 degrees", 4, E_InputTypes.REAL, function() {
             Settings.terrain.export_smooth_threshold = real(self.value);

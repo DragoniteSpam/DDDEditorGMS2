@@ -30,8 +30,9 @@
         {"externalName":"terrainops_build","kind":1,"help":"__terrainops_build(meta, meta_length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"__terrainops_build","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale, tex_size, color_scale, format, water_level)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__terrainops_build_settings","externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale, tex_size, color_scale, format, water_level, smooth_normals)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
             2,
             2,
             2,
