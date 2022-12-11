@@ -7,7 +7,7 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
     self.text = text;
     
     self._allow_alpha = false;
-    self.active_shade = true;
+    self.active_shade = EMU_DIALOG_SHADE_ALPHA;
     
     self._value_x1 = self.width / 2;
     self._value_y1 = 0;
