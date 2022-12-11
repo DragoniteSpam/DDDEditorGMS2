@@ -51,6 +51,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             var f = abs(mouse_vector.origin.z / mouse_vector.direction.z);
             self.cursor_position = new Vector2(mouse_vector.origin.x + mouse_vector.direction.x * f, mouse_vector.origin.y + mouse_vector.direction.y * f);
         
+            if (EmuOverlay.GetTop()) return false;
+            
             if (Controller.mouse_left) {
                 switch (Settings.terrain.mode) {
                     case TerrainModes.Z: self.EditModeZ(self.cursor_position, 1); break;
