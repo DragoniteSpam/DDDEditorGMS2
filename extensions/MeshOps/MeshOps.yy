@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMExtension",
+  "resourceVersion": "1.2",
+  "name": "MeshOps",
   "optionsFile": "options.json",
   "options": [],
   "exportToGame": true,
@@ -16,183 +19,183 @@
   "androidProps": false,
   "installdir": "",
   "files": [
-    {"filename":"MeshOperations.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"meshops_version","kind":1,"help":"meshops_version()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"meshops_version","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_init","kind":1,"help":"meshops_init(vertex_size)","hidden":false,"returnType":2,"argCount":0,"args":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"MeshOperations.dll","origname":"","init":"","final":"","kind":1,"uncompress":false,"functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_version","externalName":"meshops_version","kind":1,"help":"meshops_version()","hidden":false,"returnType":1,"argCount":0,"args":[],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_init","externalName":"meshops_init","kind":1,"help":"meshops_init(vertex_size)","hidden":false,"returnType":2,"argCount":0,"args":[
             2,
-          ],"resourceVersion":"1.0","name":"meshops_init","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_center","kind":1,"help":"meshops_transform_center(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_transform_center","externalName":"meshops_transform_center","kind":1,"help":"meshops_transform_center(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_transform_center","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform","kind":1,"help":"meshops_transform(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_transform","externalName":"meshops_transform","kind":1,"help":"meshops_transform(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_transform","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_mirror_axis_x","kind":1,"help":"meshops_mirror_axis_x(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_mirror_axis_x","externalName":"meshops_mirror_axis_x","kind":1,"help":"meshops_mirror_axis_x(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_mirror_axis_x","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_mirror_axis_y","kind":1,"help":"meshops_mirror_axis_y(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_mirror_axis_y","externalName":"meshops_mirror_axis_y","kind":1,"help":"meshops_mirror_axis_y(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_mirror_axis_y","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_mirror_axis_z","kind":1,"help":"meshops_mirror_axis_z(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_mirror_axis_z","externalName":"meshops_mirror_axis_z","kind":1,"help":"meshops_mirror_axis_z(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_mirror_axis_z","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_flip_tex_u","kind":1,"help":"meshops_flip_tex_u(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_flip_tex_u","externalName":"meshops_flip_tex_u","kind":1,"help":"meshops_flip_tex_u(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_flip_tex_u","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_flip_tex_v","kind":1,"help":"meshops_flip_tex_v(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_flip_tex_v","externalName":"meshops_flip_tex_v","kind":1,"help":"meshops_flip_tex_v(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_flip_tex_v","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_colour","kind":1,"help":"meshops_set_colour(data, length, colour)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_set_colour","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_colour","kind":1,"help":"meshops_set_color(data, length, color)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_set_colour","externalName":"meshops_set_colour","kind":1,"help":"meshops_set_colour(data, length, colour)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_set_color","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_alpha","kind":1,"help":"meshops_set_alpha(data, length, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_set_color","externalName":"meshops_set_colour","kind":1,"help":"meshops_set_color(data, length, color)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_set_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_colour_and_alpha","kind":1,"help":"meshops_set_colour_and_alpha(data, length, colour, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_set_alpha","externalName":"meshops_set_alpha","kind":1,"help":"meshops_set_alpha(data, length, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_set_colour_and_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_colour_and_alpha","kind":1,"help":"meshops_set_color_and_alpha(data, length, color, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_set_colour_and_alpha","externalName":"meshops_set_colour_and_alpha","kind":1,"help":"meshops_set_colour_and_alpha(data, length, colour, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_set_color_and_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_invert_alpha","kind":1,"help":"meshops_invert_alpha(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_invert_alpha","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_normals_flat","kind":1,"help":"meshops_set_normals_flat(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_set_normals_flat","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_rotate_up","kind":1,"help":"meshops_rotate_up(data, len)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_rotate_up","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_normals_smooth","kind":1,"help":"meshops_set_normals_smooth(data, length, threshold)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_set_normals_smooth","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_export_d3d","kind":1,"help":"_meshops_export_d3d(data, length, output)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-            1,
-          ],"resourceVersion":"1.0","name":"__meshops_export_d3d","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_vertex_formatted","kind":1,"help":"__meshops_vertex_formatted(data, out, length, format)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"__meshops_vertex_formatted","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_get_bounds","kind":1,"help":"__meshops_get_bounds(data, output, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"__meshops_get_bounds","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_chunk_settings","kind":1,"help":"__meshops_chunk_settings(chunk_size, startx, starty, endx, endy)","hidden":false,"returnType":2,"argCount":0,"args":[
-            2,
-            2,
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"__meshops_chunk_settings","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_chunk_analyze","kind":1,"help":"__meshops_chunk_analyze(data, meta, data_length, meta_length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            1,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"__meshops_chunk_analyze","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_chunk","kind":1,"help":"__meshops_chunk(data, meta, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"__meshops_chunk","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_transform_set_matrix","kind":1,"help":"__meshops_transform_set_matrix(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale)","hidden":false,"returnType":2,"argCount":0,"args":[
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"__meshops_transform_set_matrix","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_matrix_raw","kind":1,"help":"meshops_set_matrix_raw(i11, i12, i13, i14, i21, i22, i23, i24, i31, i32, i33, i34, i41, i42, i43, i44)","hidden":false,"returnType":2,"argCount":0,"args":[
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_set_matrix_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_blend_colour","kind":1,"help":"meshops_blend_colour(data, length, color, amount)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_set_color_and_alpha","externalName":"meshops_set_colour_and_alpha","kind":1,"help":"meshops_set_color_and_alpha(data, length, color, alpha)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_blend_color","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_blend_colour","kind":1,"help":"meshops_blend_colour(data, length, color, amount)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_invert_alpha","externalName":"meshops_invert_alpha","kind":1,"help":"meshops_invert_alpha(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_set_normals_flat","externalName":"meshops_set_normals_flat","kind":1,"help":"meshops_set_normals_flat(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_rotate_up","externalName":"meshops_rotate_up","kind":1,"help":"meshops_rotate_up(data, len)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_set_normals_smooth","externalName":"meshops_set_normals_smooth","kind":1,"help":"meshops_set_normals_smooth(data, length, threshold)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_export_d3d","externalName":"meshops_export_d3d","kind":1,"help":"_meshops_export_d3d(data, length, output)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            1,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_vertex_formatted","externalName":"meshops_vertex_formatted","kind":1,"help":"__meshops_vertex_formatted(data, out, length, format)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_get_bounds","externalName":"meshops_get_bounds","kind":1,"help":"__meshops_get_bounds(data, output, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_chunk_settings","externalName":"meshops_chunk_settings","kind":1,"help":"__meshops_chunk_settings(chunk_size, startx, starty, endx, endy)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_chunk_analyze","externalName":"meshops_chunk_analyze","kind":1,"help":"__meshops_chunk_analyze(data, meta, data_length, meta_length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_chunk","externalName":"meshops_chunk","kind":1,"help":"__meshops_chunk(data, meta, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            1,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_transform_set_matrix","externalName":"meshops_transform_set_matrix","kind":1,"help":"__meshops_transform_set_matrix(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_transform_set_matrix_raw","externalName":"meshops_transform_set_matrix_raw","kind":1,"help":"meshops_transform_set_matrix_raw(i11, i12, i13, i14, i21, i22, i23, i24, i31, i32, i33, i34, i41, i42, i43, i44)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_blend_color","externalName":"meshops_blend_colour","kind":1,"help":"meshops_blend_colour(data, length, color, amount)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_blend_colour","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_reverse","kind":1,"help":"meshops_reverse(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"meshops_reverse","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_color(data, length, target)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_blend_colour","externalName":"meshops_blend_colour","kind":1,"help":"meshops_blend_colour(data, length, color, amount)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_multiply_color","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_colour(data, length, target)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_reverse","externalName":"meshops_reverse","kind":1,"help":"meshops_reverse(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_multiply_color","externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_color(data, length, target)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"meshops_multiply_colour","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_normals_smooth_multi_prepare","kind":1,"help":"meshops_set_normals_smooth_multi_prepare()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_prepare","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_normals_smooth_multi_calculate","kind":1,"help":"__meshops_set_normals_smooth_multi_calculate(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
-            1,
-            2,
-          ],"resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_calculate","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"meshops_set_normals_smooth_multi_finalize","kind":1,"help":"__meshops_set_normals_smooth_multi_finalize(data, length, threshold)","hidden":false,"returnType":2,"argCount":0,"args":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_multiply_colour","externalName":"meshops_multiply_colour","kind":1,"help":"meshops_multiply_colour(data, length, target)","hidden":false,"returnType":2,"argCount":0,"args":[
             1,
             2,
             2,
-          ],"resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_finalize","tags":[],"resourceType":"GMExtensionFunction",},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_prepare","externalName":"meshops_set_normals_smooth_multi_prepare","kind":1,"help":"meshops_set_normals_smooth_multi_prepare()","hidden":false,"returnType":2,"argCount":0,"args":[],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_calculate","externalName":"meshops_set_normals_smooth_multi_calculate","kind":1,"help":"__meshops_set_normals_smooth_multi_calculate(data, length)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+          ],"documentation":"",},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__meshops_set_normals_smooth_multi_finalize","externalName":"meshops_set_normals_smooth_multi_finalize","kind":1,"help":"__meshops_set_normals_smooth_multi_finalize(data, length, threshold)","hidden":false,"returnType":2,"argCount":0,"args":[
+            1,
+            2,
+            2,
+          ],"documentation":"",},
+      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"usesRunnerInterface":false,"order":[
         {"name":"meshops_version","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_init","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_transform_center","path":"extensions/MeshOps/MeshOps.yy",},
@@ -218,7 +221,7 @@
         {"name":"__meshops_chunk_analyze","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_chunk","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_transform_set_matrix","path":"extensions/MeshOps/MeshOps.yy",},
-        {"name":"meshops_set_matrix_raw","path":"extensions/MeshOps/MeshOps.yy",},
+        {"name":"meshops_transform_set_matrix_raw","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_blend_color","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_blend_colour","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"meshops_reverse","path":"extensions/MeshOps/MeshOps.yy",},
@@ -227,7 +230,7 @@
         {"name":"__meshops_set_normals_smooth_multi_prepare","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_set_normals_smooth_multi_calculate","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_set_normals_smooth_multi_finalize","path":"extensions/MeshOps/MeshOps.yy",},
-      ],"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMExtensionFile",},
+      ],},
   ],
   "classname": "",
   "tvosclassname": null,
@@ -266,8 +269,4 @@
     "name": "Extensions",
     "path": "folders/Extensions.yy",
   },
-  "resourceVersion": "1.2",
-  "name": "MeshOps",
-  "tags": [],
-  "resourceType": "GMExtension",
 }
