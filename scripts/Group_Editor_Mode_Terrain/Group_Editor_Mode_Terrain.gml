@@ -731,7 +731,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             // didnt fail randomly
             if (vertex_get_number(vbuff) > 0) vertex_freeze(vbuff);
             var submesh = mesh_create_submesh(mesh, value.buffer, vbuff, value.name);
-            submesh.tex_base = tex_base;
+            submesh.tex_base = tex_base.GUID;
             // do other materials later, perhaps
         }
         
