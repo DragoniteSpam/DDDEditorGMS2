@@ -390,6 +390,9 @@ function dialog_terrain_export() {
         (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Use Y-up?", Settings.terrain.export_swap_zup, function() {
             Settings.terrain.export_swap_zup = self.value;
         })),
+        (new EmuCheckbox(672, EMU_AUTO, 256, 32, "    Swap handedness?", Settings.terrain.export_swap_handedness, function() {
+            Settings.terrain.export_swap_handedness = self.value;
+        })),
         (new EmuCheckbox(672, EMU_AUTO, 256, 32, "Flip vertical texture coordinate?", Settings.terrain.export_swap_uvs, function() {
             Settings.terrain.export_swap_uvs = self.value;
         })),

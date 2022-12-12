@@ -30,7 +30,8 @@
             1,
             2,
           ],"documentation":"",},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__terrainops_build_settings","externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_uv, center, density, scale, tex_size, color_scale, format, water_level, smooth_normals)","hidden":false,"returnType":2,"argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__terrainops_build_settings","externalName":"terrainops_build_settings","kind":1,"help":"__terrainops_build_settings(save_all, swap_zup, swap_handedness, swap_uv, center, density, scale, tex_size, color_scale, format, water_level, smooth_normals)","hidden":false,"returnType":2,"argCount":0,"args":[
+            2,
             2,
             2,
             2,

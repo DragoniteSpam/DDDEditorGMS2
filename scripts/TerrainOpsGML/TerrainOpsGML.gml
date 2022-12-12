@@ -68,7 +68,7 @@ function TERRAINOPS_BUILD_INTERNAL(out) {
     return __terrainops_build_internal(buffer_get_address(out));
 }
 
-function terrainops_build_file(filename, reprocessor_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale, sprite, format, water_level, smooth_normals) {
+function terrainops_build_file(filename, reprocessor_function, chunk_size, export_all, swap_zup, swap_handedness, swap_uv, export_centered, density, save_scale, sprite, format, water_level, smooth_normals) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
     static raw_output = buffer_create(1024, buffer_fixed, 1);
     static reprocessed = buffer_create(1024, buffer_fixed, 1);
@@ -90,7 +90,7 @@ function terrainops_build_file(filename, reprocessor_function, chunk_size, expor
     
     var cscalemin = min(Stuff.terrain.color.width / w, Stuff.terrain.color.height / h);
     
-    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale, (Settings.terrain.tile_brush_size - 1) / sprite_get_width(Stuff.terrain.texture_image), cscalemin, format, water_level, smooth_normals);
+    __terrainops_build_settings(export_all, swap_zup, swap_handedness, swap_uv, export_centered, density, save_scale, (Settings.terrain.tile_brush_size - 1) / sprite_get_width(Stuff.terrain.texture_image), cscalemin, format, water_level, smooth_normals);
     __terrainops_build_texture(buffer_get_address(texture_buffer));
     __terrainops_build_vertex_colour(buffer_get_address(colour_buffer));
     
