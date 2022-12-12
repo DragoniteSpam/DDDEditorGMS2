@@ -117,7 +117,7 @@ function terrainops_build_file(filename, reprocessor_function, chunk_size, expor
             } else {
                 var reprocessed_bytes = reprocessor_function(raw_output, raw_bytes, reprocessed);
                 var output_name = fn + ((chunk_size < w || chunk_size < h) ? ("." + key + ext) : ext);
-                buffer_save_async(reprocessed, output_name, 0, reprocessed_bytes);
+                buffer_save_ext(reprocessed, output_name, 0, reprocessed_bytes);
             }
         }
     }
