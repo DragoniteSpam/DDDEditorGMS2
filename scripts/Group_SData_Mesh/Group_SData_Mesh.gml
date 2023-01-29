@@ -347,51 +347,50 @@ function DataMesh(source) : SData(source) constructor {
             self.submeshes[i].Export(buffer);
         }
         
-        if (IS_MESH_MODE || !!(Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES)) {
-            buffer_write(buffer, buffer_u32, array_length(self.collision_shapes));
-            for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
-                var shape = self.collision_shapes[i];
-                buffer_write(buffer, buffer_s8, shape.type);
-                buffer_write(buffer, buffer_flag, shape.asset_flags);
-                buffer_write(buffer, buffer_f32, shape.position.x);
-                buffer_write(buffer, buffer_f32, shape.position.y);
-                buffer_write(buffer, buffer_f32, shape.position.z);
-                switch (shape.type) {
-                    case MeshCollisionShapes.BOX:
-                        buffer_write(buffer, buffer_f32, shape.rotation.x);
-                        buffer_write(buffer, buffer_f32, shape.rotation.y);
-                        buffer_write(buffer, buffer_f32, shape.rotation.z);
-                        /// @todo build a proper orientation matrix here
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, shape.scale.x);
-                        buffer_write(buffer, buffer_f32, shape.scale.y);
-                        buffer_write(buffer, buffer_f32, shape.scale.z);
-                        break;
-                    case MeshCollisionShapes.CAPSULE:
-                        buffer_write(buffer, buffer_f32, shape.rotation.x);
-                        buffer_write(buffer, buffer_f32, shape.rotation.y);
-                        buffer_write(buffer, buffer_f32, shape.rotation.z);
-                        /// @todo build a proper orientation matrix here
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, shape.length);
-                        buffer_write(buffer, buffer_f32, shape.radius);
-                        break;
-                    case MeshCollisionShapes.SPHERE:
-                        buffer_write(buffer, buffer_f32, shape.radius);
-                        break;
-                    case MeshCollisionShapes.TRIMESH:
-                        break;
-                }
+        var shape_count = (IS_MESH_MODE || !!(Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES)) ? array_length(self.collision_shapes) : 0;
+        buffer_write(buffer, buffer_u32, shape_count);
+        for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
+            var shape = self.collision_shapes[i];
+            buffer_write(buffer, buffer_s8, shape.type);
+            buffer_write(buffer, buffer_flag, shape.asset_flags);
+            buffer_write(buffer, buffer_f32, shape.position.x);
+            buffer_write(buffer, buffer_f32, shape.position.y);
+            buffer_write(buffer, buffer_f32, shape.position.z);
+            switch (shape.type) {
+                case MeshCollisionShapes.BOX:
+                    buffer_write(buffer, buffer_f32, shape.rotation.x);
+                    buffer_write(buffer, buffer_f32, shape.rotation.y);
+                    buffer_write(buffer, buffer_f32, shape.rotation.z);
+                    /// @todo build a proper orientation matrix here
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, shape.scale.x);
+                    buffer_write(buffer, buffer_f32, shape.scale.y);
+                    buffer_write(buffer, buffer_f32, shape.scale.z);
+                    break;
+                case MeshCollisionShapes.CAPSULE:
+                    buffer_write(buffer, buffer_f32, shape.rotation.x);
+                    buffer_write(buffer, buffer_f32, shape.rotation.y);
+                    buffer_write(buffer, buffer_f32, shape.rotation.z);
+                    /// @todo build a proper orientation matrix here
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, shape.length);
+                    buffer_write(buffer, buffer_f32, shape.radius);
+                    break;
+                case MeshCollisionShapes.SPHERE:
+                    buffer_write(buffer, buffer_f32, shape.radius);
+                    break;
+                case MeshCollisionShapes.TRIMESH:
+                    break;
             }
         }
         
