@@ -71,6 +71,7 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0, n = array_length(data); i < n; i++) {
             var submesh = new MeshSubmesh("Submesh" + string(array_length(self.submeshes)));
             submesh.SetBufferData(data[i].buffer);
+            submesh.path = filename;
             self.AddSubmesh(submesh);
         }
         self.CalculatePhysicalBounds();
