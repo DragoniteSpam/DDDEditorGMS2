@@ -1,8 +1,13 @@
 Another changelog.
 
-# Changes in <next version>
+# Changes in 2023.1
 
  - penguin_load: optional parameter for freezing loaded vertex buffers, defaults to true
+ - Enabled collisoin shapes in the mesh editor
+     - Currently you can define spheres and AABBs; I may or may not add more later
+     - If you're using the import scripts, they're included in those (see the documentation for the import scripts)
+ - Reload from source: meshes/submeshes remember the file they were loaded from
+     - There's a nice easy button for reloading a submesh from the source file, in case you made changes and want to update them in the game
 
 # Changes in 2022.0.5.90
 
