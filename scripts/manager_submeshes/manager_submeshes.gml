@@ -133,7 +133,7 @@ function dialog_create_mesh_submesh(mesh) {
                     self.text = filename_abbreviated(path, self.width - self.offset);
                 }
                 
-                if (!file_exists(self.text)) self.text = "[c_orange]" + self.text;
+                if (!file_exists(path)) self.text = "[c_orange]" + self.text;
                 self.SetTooltip(path);
         
             })
