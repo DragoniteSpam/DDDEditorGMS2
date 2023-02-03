@@ -16,49 +16,87 @@ function ui_init_mesh(mode) {
     
     container.AddContent([
         new EmuFileDropperListener(function(files) {
-            debug_timer_start();
+            static load_models_individually = function(file_list, combine_all) {
+                debug_timer_start();
+                // if you drag an obj and the mtl that it belongs to into the
+                // editor, you usually don't want to load it twice
+                var obj_cache = { };
+                for (var i = array_length(file_list) - 1; i >= 0; i--) {
+                    if (filename_ext(file_list[i]) == ".mtl" || filename_ext(file_list[i]) == ".obj") {
+                        if (obj_cache[$ filename_change_ext(file_list[i], "")]) {
+                            array_delete(file_list, i, 1);
+                            continue;
+                        }
+                        obj_cache[$ filename_change_ext(file_list[i], "")] = true;
+                    }
+                }
+                var first_mesh = undefined;
+                var n = 0;
+                for (var i = 0; i < array_length(file_list); i++) {
+                    // try to import the file as a 3D mesh; if that doesn't work,
+                    // import it as a texture instead
+                    switch (string_lower(filename_ext(file_list[i]))) {
+                        case ".d3d":
+                        case ".gmmod":
+                        case ".obj":
+                        case ".mtl":
+                        case ".dae":
+                        case ".smf":
+                            var mesh = import_mesh(file_list[i]);
+                            
+                            if (combine_all) {
+                                if (first_mesh) {
+                                    var submesh = mesh.submeshes[0];
+                                    array_push(first_mesh.submeshes, submesh);
+                                    mesh.submeshes = [];
+                                    mesh.Destroy();
+                                    Stuff.mesh.ui.GetChild("MESH LIST").Deselect();
+                                } else if (!first_mesh) {
+                                    first_mesh = mesh;
+                                }
+                            }
+                            n++;
+                            break;
+                        default:
+                            import_texture(file_list[i]);
+                            break;
+                    }
+                }
+                if (n > 0) {
+                    Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
+                }
+            };
+            
             var filter_array = [".d3d", ".gmmod", ".obj", ".mtl", ".png", ".bmp", ".jpg", ".jpeg"];
             // we can add these back in later when they're working
             if (!IS_MESH_MODE) {
                 array_push(filter_array, ".dae", ".smf");
             }
+            
             var filtered_list = self.Filter(files, filter_array);
-            if (array_length(filtered_list) > 0) {
+            
+            if (array_length(filtered_list) == 1) {
                 self.GetSibling("MESH LIST").Deselect();
-            }
-            // if you drag an obj and the mtl that it belongs to into the
-            // editor, you usually don't want to load it twice
-            var obj_cache = { };
-            for (var i = array_length(filtered_list) - 1; i >= 0; i--) {
-                if (filename_ext(filtered_list[i]) == ".mtl" || filename_ext(filtered_list[i]) == ".obj") {
-                    if (obj_cache[$ filename_change_ext(filtered_list[i], "")]) {
-                        array_delete(filtered_list, i, 1);
-                        continue;
+                load_models_individually(filtered_list, false);
+            } else if (array_length(filtered_list) > 1) {
+                self.GetSibling("MESH LIST").Deselect();
+                
+                // this is rather annoying
+                var dialog = emu_dialog_confirm(
+                    self, string("Would you like to import these {0} meshes invididually or as a submeshes for a single mesh?", array_length(filtered_list)),
+                    function() {
+                        self.root.load_models_individually(self.root.file_list, false);
+                        self.root.Dispose();
+                    }, , "Individually",
+                    "Combined", function() {
+                        self.root.load_models_individually(self.root.file_list, true);
+                        self.root.Dispose();
                     }
-                    obj_cache[$ filename_change_ext(filtered_list[i], "")] = true;
-                }
-            }
-            var n = 0;
-            for (var i = 0; i < array_length(filtered_list); i++) {
-                // try to import the file as a 3D mesh; if that doesn't work,
-                // import it as a texture instead
-                switch (string_lower(filename_ext(filtered_list[i]))) {
-                    case ".d3d":
-                    case ".gmmod":
-                    case ".obj":
-                    case ".mtl":
-                    case ".dae":
-                    case ".smf":
-                        import_mesh(filtered_list[i]);
-                        n++;
-                        break;
-                    default:
-                        import_texture(filtered_list[i]);
-                        break;
-                }
-            }
-            if (n > 0) {
-                Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
+                );
+                
+                dialog.load_models_individually = load_models_individually;
+                dialog.file_list = filtered_list;
+                dialog.contents_interactive = true;
             }
         }),
         (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, (!IS_MESH_MODE) ? 22 : 24, function() {
