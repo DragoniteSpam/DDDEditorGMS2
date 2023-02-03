@@ -8,7 +8,7 @@ function dialog_create_mesh_submesh(mesh) {
         batch_again();
     };
     
-    var dialog = new EmuDialog(32 + 320 + 32 + (!IS_MESH_MODE ? (320 + 32 + 320 + 32) : 0), 688, "Submesh Options: " + mesh.name);
+    var dialog = new EmuDialog(32 + 320 + 32 + (!IS_MESH_MODE ? (320 + 32 + 320 + 32) : 0), 752, "Submesh Options: " + mesh.name);
     dialog.mesh = mesh;
     dialog.active_shade = 0;
     
@@ -70,6 +70,29 @@ function dialog_create_mesh_submesh(mesh) {
         }))
             .SetTooltip("Remove the selected submesh")
             .SetID("DELETE"),
+        (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Reload from Source", function() {
+            var mesh = self.root.mesh;
+            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+            
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                mesh.submeshes[selection[i]].Reload();
+            }
+            
+            batch_again();
+        }))
+            .SetRefresh(function() {
+                var mesh = self.root.mesh;
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                self.SetInteractive(false);
+                for (var i = 0, n = array_length(selection); i < n; i++) {
+                    if (file_exists(mesh.submeshes[selection[i]].path)) {
+                        self.SetInteractive(true);
+                        return;
+                    }
+                }
+            })
+            .SetTooltip("Re-import the selected submesh from the original source (if their source file exists)")
+            .SetID("RELOAD"),
         (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Name:", "", "name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
             var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
             for (var i = 0, n = array_length(selection); i < n; i++) {
@@ -112,8 +135,6 @@ function dialog_create_mesh_submesh(mesh) {
             .SetID("VISIBLE"),
         (new EmuText(col1, EMU_AUTO, element_width, element_height, ""))
             .SetRefresh(function() {
-                if (IS_MESH_MODE) return;
-                
                 var mesh = self.root.mesh;
                 var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
                 var path = "";
@@ -144,30 +165,6 @@ function dialog_create_mesh_submesh(mesh) {
     if (!IS_MESH_MODE) {
         dialog.AddContent([
             #region column 2 - additional stuff
-            new EmuText(col2, EMU_BASE, element_width, element_height, "[c_aqua]Submesh Operations"),
-            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Reload from Source", function() {
-                var mesh = self.root.mesh;
-                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
-                
-                for (var i = 0, n = array_length(selection); i < n; i++) {
-                    mesh.submeshes[selection[i]].Reload();
-                }
-                
-                batch_again();
-            }))
-                .SetRefresh(function() {
-                    var mesh = self.root.mesh;
-                    var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
-                    self.SetInteractive(false);
-                    for (var i = 0, n = array_length(selection); i < n; i++) {
-                        if (mesh.submeshes[selection[i]].path != "") {
-                            self.SetInteractive(true);
-                            return;
-                        }
-                    }
-                })
-                .SetTooltip("Reload selected submeshes from their source file (if their source file exists).")
-                .SetID("RELOAD"),
             (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Import Reflection...", function() {
                 var mesh = self.root.mesh;
                 var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
