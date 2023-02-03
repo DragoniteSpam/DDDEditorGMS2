@@ -10,6 +10,7 @@ function import_mesh(filename) {
     var mesh = new DataMesh(filename_change_ext(filename_name(filename), ""));
     for (var i = 0, n = array_length(data); i < n; i++) {
         var submesh = new MeshSubmesh(data[i].material.name);
+        submesh.path = filename;
         submesh.SetBufferData(data[i].buffer);
         if (array_length(data) >= 1) {
             submesh.SetMaterial(data[i].material);
