@@ -691,7 +691,14 @@ function ui_init_mesh(mode) {
                         .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
                         .SetRefresh(function() {
                             self.value = Settings.mesh.draw_physical_bounds;
-                        })
+                        }),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
+                        Settings.mesh.draw_collision = self.value;
+                    }))
+                        .SetTooltip("Whether or not to show collision shapes associated with meshes.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_collision;
+                        }),
                 ]);
                 
                 if (!IS_MESH_MODE) {
@@ -702,13 +709,6 @@ function ui_init_mesh(mode) {
                             .SetTooltip("If you have a reflection mesh set up, you may draw it, as well.")
                             .SetRefresh(function() {
                                 self.value = Settings.mesh.draw_reflections;
-                            }),
-                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
-                            Settings.mesh.draw_collision = self.value;
-                        }))
-                            .SetTooltip("Whether or not to show collision shapes associated with meshes.")
-                            .SetRefresh(function() {
-                                self.value = Settings.mesh.draw_collision;
                             }),
                     ]);
                     dialog.height += 96;

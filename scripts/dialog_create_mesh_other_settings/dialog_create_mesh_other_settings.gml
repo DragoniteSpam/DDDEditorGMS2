@@ -65,16 +65,16 @@ function dialog_create_mesh_other_settings(list, selection) {
             batch_again();
         }))
             .SetTooltip("Set the bottom of the mesh's physical bounds to the z = 0 plane."),
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
+            if (array_length(self.root.selection) != 1) return;
+            dialog_create_mesh_collision_settings(self.root.list[self.root.selection[0]]);
+        }))
+            .SetTooltip("Collision shape data to go with this mesh.")
+            .SetInteractive(array_length(selection) == 1),
     ]);
     
     if (IS_DEFAULT_MODE) {
         dialog.AddContent([
-            (new EmuButton(32, EMU_AUTO, 256, 32, "Collision shapes", function() {
-                if (array_length(self.root.selection) != 1) return;
-                dialog_create_mesh_collision_settings(self.root.list[self.root.selection[0]]);
-            }))
-                .SetTooltip("Collision shape data to go with this mesh.")
-                .SetInteractive(array_length(selection) == 1),
             (new EmuButton(32, EMU_AUTO, 256, 32, "Generate Reflections", function() {
                 var selection = self.root.selection;
                 for (var i = 0, n = array_length(selection); i < n; i++) {
