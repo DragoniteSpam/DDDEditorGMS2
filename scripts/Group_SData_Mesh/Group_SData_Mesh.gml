@@ -348,7 +348,7 @@ function DataMesh(source) : SData(source) constructor {
             self.submeshes[i].Export(buffer);
         }
         
-        var shape_count = (IS_MESH_MODE || !!(Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES)) ? array_length(self.collision_shapes) : 0;
+        var shape_count = array_length(self.collision_shapes);
         buffer_write(buffer, buffer_u32, shape_count);
         for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
             var shape = self.collision_shapes[i];
