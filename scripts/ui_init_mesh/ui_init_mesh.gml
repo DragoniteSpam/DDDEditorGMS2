@@ -42,18 +42,14 @@ function ui_init_mesh(mode) {
                         case ".mtl":
                         case ".dae":
                         case ".smf":
-                            var mesh = import_mesh(file_list[i]);
-                            
                             if (combine_all) {
                                 if (first_mesh) {
-                                    var submesh = mesh.submeshes[0];
-                                    array_push(first_mesh.submeshes, submesh);
-                                    mesh.submeshes = [];
-                                    mesh.Destroy();
-                                    Stuff.mesh.ui.GetChild("MESH LIST").Deselect();
-                                } else if (!first_mesh) {
-                                    first_mesh = mesh;
+                                    first_mesh.AddSubmeshFromFile(file_list[i]);
+                                } else {
+                                    first_mesh = import_mesh(file_list[i]);
                                 }
+                            } else {
+                                import_mesh(file_list[i])
                             }
                             n++;
                             break;
