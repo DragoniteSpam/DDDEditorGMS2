@@ -62,7 +62,7 @@ function dialog_create_manager_graphics() {
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Delete Image", function() {
             var image = self.GetSibling("LIST").GetSelectedItem();
             self.GetSibling("LIST").Deselect();
-            array_delete(self.root.graphics_list, array_search(self.root.graphics_list, image), 1);
+            array_delete(self.root.graphics_list, array_get_index(self.root.graphics_list, image), 1);
             image.Destroy();
             self.root.Refresh({ list: self.root.graphics_list, index: self.GetSibling("LIST").GetSelection() });
         }))

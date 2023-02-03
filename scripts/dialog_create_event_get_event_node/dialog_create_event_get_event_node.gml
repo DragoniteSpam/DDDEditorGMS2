@@ -44,7 +44,7 @@ function dialog_create_event_get_event_node(argument0) {
                 ds_list_add(el_list.entries, event.nodes[i]);
             }
         }
-        ui_list_select(el_list, array_search(event.nodes, node.outbound[index]));
+        ui_list_select(el_list, array_get_index(event.nodes, node.outbound[index]));
         el_list.entries_are = ListEntries.INSTANCES;
         el_list.colorize = false;
         dg.el_list = el_list;

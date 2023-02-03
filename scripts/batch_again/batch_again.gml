@@ -34,6 +34,6 @@ function batch_again(batch = undefined) {
     } else {
         // empty batch lists should be deleted, for obvious reasons
         ds_list_destroy(list_instances);
-        array_delete(map.batches, array_search(map.batches, batch), 1);
+        array_delete(map.batches, array_get_index(map.batches, batch), 1);
     }
 }

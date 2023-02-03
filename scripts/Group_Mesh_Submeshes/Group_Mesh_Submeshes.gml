@@ -184,7 +184,7 @@ function MeshSubmesh(source) constructor {
             return;
         }
         
-        var index = array_search(self.owner.submeshes, self);
+        var index = array_get_index(self.owner.submeshes, self);
         if (index < array_length(data)) {
             self.SetBufferData(data[index].buffer);
         }

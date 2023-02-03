@@ -18,7 +18,7 @@ function emu_dialog_generic_variables(list) {
                 var selection = self.GetSelectedItem();
                 array_sort_name(self.root.list);
                 if (!selection) return;
-                self.Select(array_search(self.root.list, selection), true);
+                self.Select(array_get_index(self.root.list, selection), true);
             })
             .SetID("LIST"),
         (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Add Value", function() {
@@ -178,85 +178,85 @@ function emu_dialog_generic_variables(list) {
                     case DataTypes.MESH:
                         self.SetList(Game.meshes);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.meshes, value), true);
+                        self.Select(array_get_index(Game.meshes, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.MESH_AUTOTILE:
                         self.SetList(Game.mesh_autotiles);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.mesh_autotiles, value), true);
+                        self.Select(array_get_index(Game.mesh_autotiles, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_TEXTURE:
                         self.SetList(Game.graphics.tilesets);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.tilesets, value), true);
+                        self.Select(array_get_index(Game.graphics.tilesets, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_TILE_ANIMATION:
                         self.SetList(Game.graphics.tile_animations);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.tile_animations, value), true);
+                        self.Select(array_get_index(Game.graphics.tile_animations, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_BATTLER:
                         self.SetList(Game.graphics.battlers);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.battlers, value), true);
+                        self.Select(array_get_index(Game.graphics.battlers, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_OVERWORLD:
                         self.SetList(Game.graphics.overworlds);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.overworlds, value), true);
+                        self.Select(array_get_index(Game.graphics.overworlds, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_PARTICLE:
                         self.SetList(Game.graphics.particles);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.particles, value), true);
+                        self.Select(array_get_index(Game.graphics.particles, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_UI:
                         self.SetList(Game.graphics.ui);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.ui, value), true);
+                        self.Select(array_get_index(Game.graphics.ui, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_ETC:
                         self.SetList(Game.graphics.etc);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.etc, value), true);
+                        self.Select(array_get_index(Game.graphics.etc, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.IMG_SKYBOX:
                         self.SetList(Game.graphics.skybox);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.graphics.skybox, value), true);
+                        self.Select(array_get_index(Game.graphics.skybox, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.AUDIO_BGM:
                         self.SetList(Game.audio.bgm);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.audio.bgm, value), true);
+                        self.Select(array_get_index(Game.audio.bgm, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.AUDIO_SE:
                         self.SetList(Game.audio.se);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.audio.se, value), true);
+                        self.Select(array_get_index(Game.audio.se, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.ANIMATION:
                         self.SetList(Game.animations);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.animations, value), true);
+                        self.Select(array_get_index(Game.animations, value), true);
                         self.enabled = true;
                         break;
                     case DataTypes.MAP:
                         self.SetList(Game.maps);
                         self.SetInteractive(true);
-                        self.Select(array_search(Game.maps, value), true);
+                        self.Select(array_get_index(Game.maps, value), true);
                         self.enabled = true;
                         break;
                 }
@@ -299,7 +299,7 @@ function emu_dialog_generic_variables(list) {
                         return element.type == DataTypes.ENUM;
                     }));
                     self.SetList(filtered);
-                    self.Select(array_search(filtered, guid_get(selection.type_guid)), true);
+                    self.Select(array_get_index(filtered, guid_get(selection.type_guid)), true);
                 }
             })
             .SetID("TYPE GUID"),
@@ -317,11 +317,11 @@ function emu_dialog_generic_variables(list) {
                 
                 if (type.type == DataTypes.DATA) {
                     self.SetList(type.instances);
-                    self.Select(array_search(type.instances, guid_get(selection.value)), true);
+                    self.Select(array_get_index(type.instances, guid_get(selection.value)), true);
                     self.SetEnabled(true);
                 } else {
                     self.SetList(type.properties);
-                    self.Select(array_search(type.properties, guid_get(selection.value)), true);
+                    self.Select(array_get_index(type.properties, guid_get(selection.value)), true);
                     self.SetEnabled(true);
                 }
             })

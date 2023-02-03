@@ -107,7 +107,7 @@ function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     
     static Destroy = function() {
         var map_contents = Stuff.map.active_map.contents;
-        array_delete(map_contents.all_zones, array_search(map_contents.all_zones, self), 1);
+        array_delete(map_contents.all_zones, array_get_index(map_contents.all_zones, self), 1);
     };
     
     if (is_struct(source)) {
@@ -312,7 +312,7 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
                 var all_lights = self.GetSibling("ALL LIGHTS");
                 all_lights.Deselect();
                 if (selection != -1) {
-                    all_lights.Select(array_search(all_lights.entries, self.GetSelectedItem()));
+                    all_lights.Select(array_get_index(all_lights.entries, self.GetSelectedItem()));
                 }
                 self.root.Refresh();
             }))

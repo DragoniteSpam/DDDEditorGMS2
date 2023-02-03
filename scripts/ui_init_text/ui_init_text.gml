@@ -73,7 +73,7 @@ function ui_init_text() {
             if (array_length(Game.languages.names) >= 255) return;
             var n = 0;
             for (var i = array_length(Game.languages.names); i < 1000; i++) {
-                if (!(array_search(Game.languages.names, "Language" + string(i)) + 1)) {
+                if (!(array_get_index(Game.languages.names, "Language" + string(i)) + 1)) {
                     language_add("Language" + string(i));
                     break;
                 }

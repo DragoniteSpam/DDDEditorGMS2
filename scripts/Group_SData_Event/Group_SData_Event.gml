@@ -236,7 +236,7 @@ function DataEventNode(source, parent, type = EventNodeTypes.ENTRYPOINT, custom 
             }
             
             // remove from event's master list of nodes and registered names
-            array_delete(self.event.nodes, array_search(self.event.nodes, self), 1);
+            array_delete(self.event.nodes, array_get_index(self.event.nodes, self), 1);
             variable_struct_remove(self.event.name_map, self.name);
         }
         

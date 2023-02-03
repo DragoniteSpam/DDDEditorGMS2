@@ -47,7 +47,7 @@ function dialog_create_manager_audio() {
         (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Delete Audio", function() {
             var audio = self.GetSibling("LIST").GetSelectedItem();
             self.GetSibling("LIST").Deselect();
-            array_delete(self.root.audio_list, array_search(self.root.audio_list, audio), 1);
+            array_delete(self.root.audio_list, array_get_index(self.root.audio_list, audio), 1);
             audio.Destroy();
             self.root.Refresh({ list: self.root.audio_list, index: self.GetSibling("LIST").GetSelection() });
         }))

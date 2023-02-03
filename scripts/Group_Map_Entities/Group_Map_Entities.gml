@@ -412,7 +412,7 @@ function EntityEffect(source) : Entity(source) constructor {
         var map = Stuff.map.active_map;
         var map_contents = map.contents;
         
-        var light_index = array_search(map.lights, self.REFID);
+        var light_index = array_get_index(map.lights, self.REFID);
         if (light_index != -1) {
             map.lights[@ light_index] = NULL;
         }

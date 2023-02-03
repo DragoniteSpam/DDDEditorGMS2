@@ -531,7 +531,7 @@ function DataMap(source, directory) : SData(source) constructor {
     
     self.Destroy = function() {
         self.Close();
-        array_delete(Game.maps, array_search(Game.maps, self), 1);
+        array_delete(Game.maps, array_get_index(Game.maps, self), 1);
     };
     
     #region Editor stuff

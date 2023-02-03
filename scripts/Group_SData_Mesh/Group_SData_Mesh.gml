@@ -457,11 +457,11 @@ function DataMesh(source) : SData(source) constructor {
             }
         }
         
-        var list_index = array_search(Game.meshes, self);
+        var list_index = array_get_index(Game.meshes, self);
         if (list_index != -1) {
             array_delete(Game.meshes, list_index, 1);
         } else {
-            list_index = array_search(Game.mesh_terrain, self);
+            list_index = array_get_index(Game.mesh_terrain, self);
             array_delete(Game.mesh_terrain, list_index, 1);
         }
     };

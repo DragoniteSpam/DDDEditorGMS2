@@ -61,13 +61,6 @@ function array_empty(array) {
     return array_length(array) == 0;
 }
 
-function array_search(array, value) {
-    for (var i = 0, n = array_length(array); i < n; i++) {
-        if (array[i] == value) return i;
-    }
-    return -1;
-}
-
 function array_create_2d(x, y, value = 0) {
     var arr = array_create(x);
     for (var i = 0; i < x; i++) {
