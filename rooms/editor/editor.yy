@@ -1,42 +1,25 @@
 {
-  "isDnd": false,
-  "volume": 1.0,
-  "parentRoom": null,
-  "views": [
-    {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1600,"hview":900,"xport":0,"yport":0,"wport":1600,"hport":900,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-    {"inherit":false,"visible":true,"xview":0,"yview":0,"wview":1080,"hview":900,"xport":0,"yport":0,"wport":1080,"hport":900,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-    {"inherit":false,"visible":true,"xview":0,"yview":0,"wview":1600,"hview":900,"xport":0,"yport":0,"wport":1600,"hport":900,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-    {"inherit":false,"visible":true,"xview":0,"yview":0,"wview":520,"hview":900,"xport":1080,"yport":0,"wport":520,"hport":900,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-    {"inherit":false,"visible":false,"xview":160,"yview":160,"wview":760,"hview":580,"xport":160,"yport":160,"wport":760,"hport":580,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-    {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1024,"hview":768,"xport":0,"yport":0,"wport":1024,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-    {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1024,"hview":768,"xport":0,"yport":0,"wport":1024,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-    {"inherit":false,"visible":true,"xview":0,"yview":0,"wview":1600,"hview":900,"xport":0,"yport":0,"wport":1600,"hport":900,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
-  ],
-  "layers": [
-    {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"Stuff","path":"objects/Stuff/Stuff.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":0.0,"resourceVersion":"1.0","name":"inst_240D5E82","tags":[],"resourceType":"GMRInstance",},
-      ],"visible":true,"depth":0,"userdefinedDepth":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],"resourceVersion":"1.0","name":"Compatibility_Instances_Depth_0","tags":[],"resourceType":"GMRInstanceLayer",},
-  ],
-  "inheritLayers": false,
+  "resourceType": "GMRoom",
+  "resourceVersion": "1.0",
+  "name": "editor",
   "creationCodeFile": "RoomCreationCode.gml",
   "inheritCode": false,
+  "inheritCreationOrder": false,
+  "inheritLayers": false,
   "instanceCreationOrder": [
     {"name":"inst_240D5E82","path":"rooms/editor/editor.yy",},
   ],
-  "inheritCreationOrder": false,
-  "sequenceId": null,
-  "roomSettings": {
-    "inheritRoomSettings": false,
-    "Width": 1600,
-    "Height": 900,
-    "persistent": false,
+  "isDnd": false,
+  "layers": [
+    {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Compatibility_Instances_Depth_0","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_240D5E82","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Stuff","path":"objects/Stuff/Stuff.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
+      ],"layers":[],"properties":[],"userdefinedDepth":true,"visible":true,},
+  ],
+  "parent": {
+    "name": "DDDEditor2-23",
+    "path": "DDDEditor2-23.yyp",
   },
-  "viewSettings": {
-    "inheritViewSettings": false,
-    "enableViews": false,
-    "clearViewBackground": false,
-    "clearDisplayBuffer": true,
-  },
+  "parentRoom": null,
   "physicsSettings": {
     "inheritPhysicsSettings": false,
     "PhysicsWorld": false,
@@ -44,12 +27,28 @@
     "PhysicsWorldGravityY": 10.0,
     "PhysicsWorldPixToMetres": 0.1,
   },
-  "parent": {
-    "name": "DDDEditor2-23",
-    "path": "DDDEditor2-23.yyp",
+  "roomSettings": {
+    "Height": 900,
+    "inheritRoomSettings": false,
+    "persistent": false,
+    "Width": 1600,
   },
-  "resourceVersion": "1.0",
-  "name": "editor",
-  "tags": [],
-  "resourceType": "GMRoom",
+  "sequenceId": null,
+  "views": [
+    {"hborder":32,"hport":900,"hspeed":-1,"hview":900,"inherit":false,"objectId":null,"vborder":32,"visible":false,"vspeed":-1,"wport":1600,"wview":1600,"xport":0,"xview":0,"yport":0,"yview":0,},
+    {"hborder":32,"hport":900,"hspeed":-1,"hview":900,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1080,"wview":1080,"xport":0,"xview":0,"yport":0,"yview":0,},
+    {"hborder":32,"hport":900,"hspeed":-1,"hview":900,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1600,"wview":1600,"xport":0,"xview":0,"yport":0,"yview":0,},
+    {"hborder":32,"hport":900,"hspeed":-1,"hview":900,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":520,"wview":520,"xport":1080,"xview":0,"yport":0,"yview":0,},
+    {"hborder":32,"hport":580,"hspeed":-1,"hview":580,"inherit":false,"objectId":null,"vborder":32,"visible":false,"vspeed":-1,"wport":760,"wview":760,"xport":160,"xview":160,"yport":160,"yview":160,},
+    {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":false,"vspeed":-1,"wport":1024,"wview":1024,"xport":0,"xview":0,"yport":0,"yview":0,},
+    {"hborder":32,"hport":768,"hspeed":-1,"hview":768,"inherit":false,"objectId":null,"vborder":32,"visible":false,"vspeed":-1,"wport":1024,"wview":1024,"xport":0,"xview":0,"yport":0,"yview":0,},
+    {"hborder":32,"hport":900,"hspeed":-1,"hview":900,"inherit":false,"objectId":null,"vborder":32,"visible":true,"vspeed":-1,"wport":1600,"wview":1600,"xport":0,"xview":0,"yport":0,"yview":0,},
+  ],
+  "viewSettings": {
+    "clearDisplayBuffer": true,
+    "clearViewBackground": false,
+    "enableViews": false,
+    "inheritViewSettings": false,
+  },
+  "volume": 1.0,
 }

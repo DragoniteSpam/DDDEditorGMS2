@@ -1,12 +1,11 @@
 {
-  "isDnD": false,
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "Group_SData",
   "isCompatibility": false,
+  "isDnD": false,
   "parent": {
     "name": "SData",
     "path": "folders/Game data/SData.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "Group_SData",
-  "tags": [],
-  "resourceType": "GMScript",
 }

@@ -1,11 +1,10 @@
 {
-  "type": 1,
+  "resourceType": "GMShader",
+  "resourceVersion": "1.0",
+  "name": "sh_spart_sec",
   "parent": {
     "name": "Shaders",
     "path": "folders/Extensions/sPart/Shaders.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "sh_spart_sec",
-  "tags": [],
-  "resourceType": "GMShader",
+  "type": 1,
 }

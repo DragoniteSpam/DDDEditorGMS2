@@ -1,12 +1,11 @@
 {
-  "isDnD": false,
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "ui_render_render_surface",
   "isCompatibility": false,
+  "isDnD": false,
   "parent": {
     "name": "rendering",
     "path": "folders/Scripts/ui stuff/rendering.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ui_render_render_surface",
-  "tags": [],
-  "resourceType": "GMScript",
 }
