@@ -1,9 +1,6 @@
 {
   "resourceType": "GMExtensionConfigSet",
   "configurables": null,
-  "extensionId": {
-    "name": "DragoExt",
-    "path": "extensions/DragoExt/DragoExt.yy"
-  },
+  "extensionId": null,
   "resourceVersion": "1.0"
 }

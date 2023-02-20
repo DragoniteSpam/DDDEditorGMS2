@@ -1,9 +1,6 @@
 {
   "resourceType": "GMExtensionConfigSet",
   "configurables": null,
-  "extensionId": {
-    "name": "MacawDLL",
-    "path": "extensions/MacawDLL/MacawDLL.yy"
-  },
+  "extensionId": null,
   "resourceVersion": "1.0"
 }

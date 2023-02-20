@@ -1,9 +1,6 @@
 {
   "resourceType": "GMExtensionConfigSet",
   "configurables": null,
-  "extensionId": {
-    "name": "SpriteOps",
-    "path": "extensions/SpriteOps/SpriteOps.yy"
-  },
+  "extensionId": null,
   "resourceVersion": "1.0"
 }
