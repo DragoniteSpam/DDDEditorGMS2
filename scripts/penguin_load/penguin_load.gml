@@ -98,7 +98,7 @@ function penguin_load(filename, vertex_format, freeze = true) {
             var shape_count = buffer_read(buffer, buffer_u32);
             penguin.collision_shapes = array_create(shape_count);
             
-            for (var i = 0; i < shape_count; i++) {
+            for (var j = 0; j < shape_count; j++) {
                 var type = buffer_read(buffer, buffer_s8);
                 buffer_read(buffer, buffer_u64);                // flag
                 var shape = undefined;
@@ -154,7 +154,7 @@ function penguin_load(filename, vertex_format, freeze = true) {
                         break;
                 }
                 
-                penguin.collision_shapes[i] = shape;
+                penguin.collision_shapes[j] = shape;
             }
             
             buffer_read(buffer, buffer_bool);               // terrain data - always 0 for .derg files
