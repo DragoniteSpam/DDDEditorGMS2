@@ -186,8 +186,9 @@ function import_obj(fn, squash = false) {
     var active_material = new Material(base_name + "_BaseMaterial");
     var base_material = active_material;
     
-    var f = file_text_open_read(fn);
-    var line_number = 0;
+    var buffer = buffer_load(fn);
+    var lines = string_split(buffer_read(buffer, buffer_text), "\n", true);
+    buffer_delete(buffer);
     
     static buffer_attribute_type = buffer_f32;
     static color_attribute_type = buffer_u32;
@@ -234,19 +235,14 @@ function import_obj(fn, squash = false) {
     var is_blender = false;
     
     #region parse the obj file
-    while (!file_text_eof(f)) {
-        line_number++;
-        var str = string_trim(file_text_read_string(f));
+    for (var line_index = 0, line_count = array_length(lines); line_index < line_count; line_index++) {
+        var str = string_trim(lines[line_index]);
         
         if (!first_line_read) {
             is_blender = (string_count("Blender", str) > 0);
             first_line_read = true;
         }
         var line = string_split(str, " ", true);
-        file_text_readln(f);
-        
-        if (array_empty(line))
-            continue;
         
         if (!string_starts_with(line[0], "#")) {
             switch (line[0]) {
@@ -550,7 +546,6 @@ function import_obj(fn, squash = false) {
             }
         }
     }
-    file_text_close(f);
     #endregion
     
     var face_count = ds_list_size(face_vertex_materials);
