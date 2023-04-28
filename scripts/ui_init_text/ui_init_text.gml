@@ -269,12 +269,12 @@ function ui_init_text() {
                         }
                         break;
                     case ".csv":
-                        var lines = split(lang_input, "\n", false, false);
-                        var rows = array_create(ds_queue_size(lines));
+                        var lines = string_split(lang_input, "\n", false);
+                        var rows = array_create(array_length(lines));
                         var row_index = 0;
                         // "split" doesn't quite do it here
-                        while (!ds_queue_empty(lines)) {
-                            var line = ds_queue_dequeue(lines);
+                        for (var i = 0, n = array_length(lines); i < n; i++) {
+                            var line = lines[i];
                             var row_data = [];
                             rows[row_index++] = row_data;
                             var block = "";
