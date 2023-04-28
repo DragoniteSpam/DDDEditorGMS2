@@ -12,8 +12,10 @@ function export_vb(base_filename, mesh, format_type) {
 }
 
 function export_derg(base_filename, mesh_array, format_type) {
+    static VERSION = 1;
     var buffer = buffer_create(163384, buffer_grow, 1);
-    buffer_write(buffer, buffer_string, "derg");
+    buffer_write(buffer, buffer_string, "dergxmachina");
+    buffer_write(buffer, buffer_u64, VERSION);
     buffer_write(buffer, buffer_u32, array_length(Game.graphics.tilesets));
     for (var i = 0, n = array_length(Game.graphics.tilesets); i < n; i++) {
         var ts = Game.graphics.tilesets[i];
