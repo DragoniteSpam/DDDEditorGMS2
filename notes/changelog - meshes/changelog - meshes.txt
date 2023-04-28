@@ -2,12 +2,16 @@ Another changelog.
 
 # Changes in 2023.1
 
- - penguin_load: optional parameter for freezing loaded vertex buffers, defaults to true
- - Enabled collisoin shapes in the mesh editor
+ - penguin_load
+     - Optional parameter for freezing loaded vertex buffers, defaults to true
+     - You can now load some of the basic collision shapes (see below)
+ - Enabled collision shapes in the mesh editor
      - Currently you can define spheres and AABBs; I may or may not add more later
      - If you're using the import scripts, they're included in those (see the documentation for the import scripts)
  - Reload from source: meshes/submeshes remember the file they were loaded from
      - There's a nice easy button for reloading a submesh from the source file, in case you made changes and want to update them in the game
+ - Replaced a few functions that now have built-in versions (string splitting, etc), which gives a minor speed boost in some places
+     - Actually, obj importing has been sped up by quite a lot; however, there have been a lot of changes, and while I've made sure a few basic test shapes still work, if any obj files that used to work now fail, let me know
 
 # Changes in 2022.0.5.90
 
