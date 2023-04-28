@@ -29,17 +29,6 @@ function string_filename(str) {
     return str;
 }
 
-function string_hash_simple(str) {
-    var n = 0;
-    
-    for (var i = 0; i < string_byte_length(str); i++) {
-        n += (string_byte_at(str, i) << (i % 16));
-        n |= 0x100000000;
-    }
-    
-    return n;
-}
-
 /// @param value
 /// @param [pad=0]
 function string_hex(value) {
@@ -75,26 +64,6 @@ function string_pad() {
     }
     
     return value;
-}
-
-function string_strip(str) {
-    var start_index = 1;
-    var end_index = 1;
-    for (var i = 1; i <= string_length(str); i++) {
-        var c = string_char_at(str, i);
-        if (c != "" && c != "\n" && c != "\r" && c != "\t") {
-            start_index = i;
-            break;
-        }
-    }
-    for (var i = string_length(str); i > 0; i--) {
-        var c = string_char_at(str, i);
-        if (c != "" && c != "\n" && c != "\r" && c != "\t") {
-            end_index = i;
-            break;
-        }
-    }
-    return string_copy(str, start_index, end_index - start_index + 1);
 }
 
 /// @param string

@@ -235,7 +235,7 @@ function import_obj(fn, squash = false) {
     #region parse the obj file
     while (!file_text_eof(f)) {
         line_number++;
-        var str = string_strip(file_text_read_string(f));
+        var str = string_trim(file_text_read_string(f));
         
         if (!first_line_read) {
             is_blender = (string_count("Blender", str) > 0);
