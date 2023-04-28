@@ -78,8 +78,39 @@ function ui_render_color_picker_input(picker, xx, yy) {
                 picker.value_text = string_copy(picker.value_text, 1, 6);
             }
             
+            // nowadays i'd just use the pointer hack, but i'll keep this here
+            // because it's the only place where the old hex function was still
+            // in use - and this code is almost never used anymore anyway
+            static old_hex_converter = function(str) {
+                var result = 0;
+                
+                // special unicode values
+                static ZERO = ord("0");
+                static NINE = ord("9");
+                static A = ord("A");
+                static F = ord("F");
+                
+                for (var i = 1; i <= string_length(str); i++) {
+                    var c = ord(string_char_at(string_upper(str), i));
+                    // you could also multiply by 16 but you get more nerd points for bitshifts
+                    result = result << 4;
+                    // if the character is a number or letter, add the value
+                    // it represents to the total
+                    if (c >= ZERO && c <= NINE) {
+                        result = result + (c - ZERO);
+                    } else if (c >= A && c <= F) {
+                        result = result + (c - A + 10);
+                    // otherwise complain
+                    } else {
+                        throw "bad input for hex(str): " + str;
+                    }
+                }
+                
+                return result;
+            };
+            
             if (validate_hex(picker.value_text) && string_length(picker.value_text) == 6) {
-                picker.value = colour_reverse(hex(picker.value_text));
+                picker.value = colour_reverse(old_hex_converter(picker.value_text));
                 
                 var rr = picker.value & 0x0000ff;
                 var gg = (picker.value & 0x00ff00) >> 8;
