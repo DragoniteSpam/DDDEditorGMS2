@@ -80,7 +80,7 @@ function dialog_create_mesh_collision_settings(mesh) {
                         self.GetSibling("TRANS X"). SetValue(shape.position.x);
                         self.GetSibling("TRANS Y"). SetValue(shape.position.y);
                         self.GetSibling("TRANS Z"). SetValue(shape.position.z);
-                        self.GetSibling("RADIUS").  SetValue(shape.radius);
+                        self.GetSibling("RADIUS").  SetValue(shape.diameter / 2);
                         self.GetSibling("FROM BOUNDS").SetInteractive(true);
                         break;
                     case MeshCollisionShapes.TRIMESH:
@@ -147,7 +147,7 @@ function dialog_create_mesh_collision_settings(mesh) {
                     // not sure if simply touching the inside of one axis
                     // would be preferable, though
                     var diagonal = point_distance_3d(bounds.x1, bounds.y1, bounds.z1, bounds.x2, bounds.y2, bounds.z2);
-                    shape.radius = diagonal;
+                    shape.diameter = diagonal / 2;
                     break;
             }
             self.GetSibling("LIST").callback();
@@ -213,7 +213,7 @@ function dialog_create_mesh_collision_settings(mesh) {
             .SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Other"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    Radius:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].radius = real(self.value);
+            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].diameter = real(self.value) * 2;
         }))
             .SetRealNumberBounds(0.001, 9999)
             .SetID("RADIUS")

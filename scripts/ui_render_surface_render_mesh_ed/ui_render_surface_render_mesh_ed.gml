@@ -100,7 +100,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                         Stuff.graphics.DrawWireCapsule(shape.position.x, shape.position.y, shape.position.z, shape.rotation.x, shape.rotation.y, shape.rotation.z, shape.radius, shape.radius, shape.length);
                         break;
                     case MeshCollisionShapes.SPHERE:
-                        Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.radius, shape.radius, shape.radius);
+                        Stuff.graphics.DrawWireSphere(shape.position.x, shape.position.y, shape.position.z, 0, 0, 0, shape.diameter, shape.diameter, shape.diameter);
                         break;
                 }
             }

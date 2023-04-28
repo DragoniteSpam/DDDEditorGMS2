@@ -370,9 +370,9 @@ function DataMesh(source) : SData(source) constructor {
                     buffer_write(buffer, buffer_f32, transform[8]);
                     buffer_write(buffer, buffer_f32, transform[9]);
                     buffer_write(buffer, buffer_f32, transform[10]);
-                    buffer_write(buffer, buffer_f32, shape.scale.x);
-                    buffer_write(buffer, buffer_f32, shape.scale.y);
-                    buffer_write(buffer, buffer_f32, shape.scale.z);
+                    buffer_write(buffer, buffer_f32, shape.scale.x / 2);
+                    buffer_write(buffer, buffer_f32, shape.scale.y / 2);
+                    buffer_write(buffer, buffer_f32, shape.scale.z / 2);
                     break;
                 case MeshCollisionShapes.CAPSULE:
                     buffer_write(buffer, buffer_f32, shape.rotation.x);
@@ -389,7 +389,7 @@ function DataMesh(source) : SData(source) constructor {
                     buffer_write(buffer, buffer_f32, shape.radius);
                     break;
                 case MeshCollisionShapes.SPHERE:
-                    buffer_write(buffer, buffer_f32, shape.radius);
+                    buffer_write(buffer, buffer_f32, shape.diameter / 2);
                     break;
                 case MeshCollisionShapes.TRIMESH:
                     break;
@@ -534,6 +534,13 @@ function DataMesh(source) : SData(source) constructor {
         
         try {
             self.collision_shapes = source.collision_shapes;
+            // updated variable name - it really should be the diameter though
+            for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
+                if (self.collision_shapes[i].type == MeshCollisionShapes.SPHERE) {
+                    if (variable_struct_exists(self.collision_shapes[i], "radius"))
+                        self.collision_shapes[i].diameter = self.collision_shapes[i].radius;
+                }
+            }
         } catch (e) {
             self.collision_shapes = [];
         }
@@ -579,7 +586,7 @@ function MeshCollisionShapeBox() : MeshCollisionShape() constructor {
 
 function MeshCollisionShapeSphere() : MeshCollisionShape() constructor {
     self.name = "Sphere";
-    self.radius = 1;
+    self.diameter = 1;
     self.type = MeshCollisionShapes.SPHERE;
 }
 
