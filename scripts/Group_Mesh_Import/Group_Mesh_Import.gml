@@ -35,6 +35,7 @@ function import_3d_model_generic(filename, squash = false) {
         }
     } catch (e) {
         Stuff.AddStatusMessage("Could not load the file: [c_orange]" + e.message);
+        show_debug_message(json_stringify(e, true));
     }
     return undefined;
 }
@@ -247,21 +248,16 @@ function import_obj(fn, squash = false) {
         if (array_empty(line))
             continue;
         
-        var word = line[0];
-        // comments don't have to be single characters
-        if (!string_starts_with(word, "#")) {
-            switch (word) {
+        if (!string_starts_with(line[0], "#")) {
+            switch (line[0]) {
                 case "v":
                     buffer_write(v_x, buffer_attribute_type, real(line[1]));
                     buffer_write(v_y, buffer_attribute_type, real(line[2]));
                     buffer_write(v_z, buffer_attribute_type, real(line[3]));
                     // the unofficial "vertex color" spec involves sticking
                     // three rgb color values after the position
-                    if (array_length(line) >= 4) {
-                        var crr = floor(real(line[4]) * 0xff);
-                        var cgg = floor(real(line[5]) * 0xff) << 8;
-                        var cbb = floor(real(line[6]) * 0xff) << 16;
-                        buffer_write(v_color, color_attribute_type, 0xff000000 | cbb | cgg | crr);
+                    if (array_length(line) > 4) {
+                        buffer_write(v_color, color_attribute_type, 0xff000000 | make_colour_rgb(floor(real(line[4])), floor(real(line[5])), floor(real(line[6]))));
                     } else {
                         buffer_write(v_color, color_attribute_type, 0xffffffff);
                     }
@@ -286,8 +282,10 @@ function import_obj(fn, squash = false) {
                     break;
                 case "f":
                     #region face data
+                    /// @todo array_shift will replace this 
+                    array_delete(line, 0, 1);
                     var s = array_length(line);
-                    for (var i = 1; i < s; i++) {
+                    for (var i = 0; i < s; i++) {
                         var vertex_tokens = string_split(line[i], "/", false);
                         switch (array_length(vertex_tokens)) {
                             case 1:
