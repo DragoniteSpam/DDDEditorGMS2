@@ -360,16 +360,16 @@ function DataMesh(source) : SData(source) constructor {
             buffer_write(buffer, buffer_f32, shape.position.z);
             switch (shape.type) {
                 case MeshCollisionShapes.BOX:
-                    buffer_write(buffer, buffer_f32, shape.rotation.x);
-                    buffer_write(buffer, buffer_f32, shape.rotation.y);
-                    buffer_write(buffer, buffer_f32, shape.rotation.z);
-                    /// @todo build a proper orientation matrix here
-                    buffer_write(buffer, buffer_f32, 0);
-                    buffer_write(buffer, buffer_f32, 0);
-                    buffer_write(buffer, buffer_f32, 0);
-                    buffer_write(buffer, buffer_f32, 0);
-                    buffer_write(buffer, buffer_f32, 0);
-                    buffer_write(buffer, buffer_f32, 0);
+                    var transform = matrix_build(0, 0, 0, shape.rotation.x, shape.rotation.y, shape.rotation.z, 1, 1, 1);
+                    buffer_write(buffer, buffer_f32, transform[0]);
+                    buffer_write(buffer, buffer_f32, transform[1]);
+                    buffer_write(buffer, buffer_f32, transform[2]);
+                    buffer_write(buffer, buffer_f32, transform[4]);
+                    buffer_write(buffer, buffer_f32, transform[5]);
+                    buffer_write(buffer, buffer_f32, transform[6]);
+                    buffer_write(buffer, buffer_f32, transform[8]);
+                    buffer_write(buffer, buffer_f32, transform[9]);
+                    buffer_write(buffer, buffer_f32, transform[10]);
                     buffer_write(buffer, buffer_f32, shape.scale.x);
                     buffer_write(buffer, buffer_f32, shape.scale.y);
                     buffer_write(buffer, buffer_f32, shape.scale.z);
