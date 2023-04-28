@@ -571,7 +571,7 @@ function MeshCollisionShape() constructor {
 
 function MeshCollisionShapeBox() : MeshCollisionShape() constructor {
     self.name = "Box";
-    /// @todo make a Matrix3/Matrix4 class
+    // this is translated into a 3x3 orientation matrix when it's written out
     self.rotation = new Vector3(0, 0, 0);
     self.scale = new Vector3(1, 1, 1);
     self.type = MeshCollisionShapes.BOX;

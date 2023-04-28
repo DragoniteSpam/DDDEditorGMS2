@@ -29,6 +29,7 @@ function dialog_create_mesh_collision_settings(mesh) {
                 self.GetSibling("SCALE Z").SetInteractive(false);
                 self.GetSibling("RADIUS").SetInteractive(false);
                 self.GetSibling("LENGTH").SetInteractive(false);
+                self.GetSibling("FROM BOUNDS").SetInteractive(false);
                 
                 switch (shape.type) {
                     case MeshCollisionShapes.BOX:
@@ -50,6 +51,7 @@ function dialog_create_mesh_collision_settings(mesh) {
                         self.GetSibling("SCALE X"). SetValue(shape.scale.x);
                         self.GetSibling("SCALE Y"). SetValue(shape.scale.y);
                         self.GetSibling("SCALE Z"). SetValue(shape.scale.z);
+                        self.GetSibling("FROM BOUNDS").SetInteractive(true);
                         break;
                     case MeshCollisionShapes.CAPSULE:
                         self.GetSibling("TRANS X"). SetInteractive(true);
@@ -68,6 +70,7 @@ function dialog_create_mesh_collision_settings(mesh) {
                         self.GetSibling("ROT Z").   SetValue(shape.rotation.z);
                         self.GetSibling("RADIUS").  SetValue(shape.radius);
                         self.GetSibling("LENGTH").  SetValue(shape.length);
+                        self.GetSibling("FROM BOUNDS").SetInteractive(false);
                         break;
                     case MeshCollisionShapes.SPHERE:
                         self.GetSibling("TRANS X"). SetInteractive(true);
@@ -78,8 +81,10 @@ function dialog_create_mesh_collision_settings(mesh) {
                         self.GetSibling("TRANS Y"). SetValue(shape.position.y);
                         self.GetSibling("TRANS Z"). SetValue(shape.position.z);
                         self.GetSibling("RADIUS").  SetValue(shape.radius);
+                        self.GetSibling("FROM BOUNDS").SetInteractive(true);
                         break;
                     case MeshCollisionShapes.TRIMESH:
+                        self.GetSibling("FROM BOUNDS").SetInteractive(false);
                         break;
                 }
             }
@@ -120,7 +125,35 @@ function dialog_create_mesh_collision_settings(mesh) {
         }))
             .SetID("NAME"),
         // column 2
-        new EmuText(c2x, 32, 256, 32, "[c_aqua]Shape controls"),
+        new EmuButton(c2x, 32, 256, 32, "From Bounding Box", function() {
+            var mesh = self.root.mesh;
+            var bounds = mesh.physical_bounds;
+            var shape = mesh.collision_shapes[self.GetSibling("LIST").GetSelection()];
+            
+            switch (shape.type) {
+                case MeshCollisionShapes.BOX:
+                    shape.position.x = mean(bounds.x1, bounds.x2);
+                    shape.position.y = mean(bounds.y1, bounds.y2);
+                    shape.position.z = mean(bounds.z1, bounds.z2);
+                    shape.scale.x = abs(bounds.x2 - bounds.x1);
+                    shape.scale.y = abs(bounds.y2 - bounds.y1);
+                    shape.scale.z = abs(bounds.z2 - bounds.z1);
+                    break;
+                case MeshCollisionShapes.SPHERE:
+                    shape.position.x = mean(bounds.x1, bounds.x2);
+                    shape.position.y = mean(bounds.y1, bounds.y2);
+                    shape.position.z = mean(bounds.z1, bounds.z2);
+                    // the sphere is going to circumscribe the bounding box -
+                    // not sure if simply touching the inside of one axis
+                    // would be preferable, though
+                    var diagonal = point_distance_3d(bounds.x1, bounds.y1, bounds.z1, bounds.x2, bounds.y2, bounds.z2);
+                    shape.radius = diagonal;
+                    break;
+            }
+            self.GetSibling("LIST").callback();
+        })
+            .SetID("FROM BOUNDS")
+            .SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Translation"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].position.x = real(self.value);
@@ -179,13 +212,13 @@ function dialog_create_mesh_collision_settings(mesh) {
             .SetID("SCALE Z")
             .SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Other"),
-        (new EmuInput(c2x, EMU_AUTO, 256, 24, "Radius:", "", "", 6, E_InputTypes.REAL, function() {
+        (new EmuInput(c2x, EMU_AUTO, 256, 24, "    Radius:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].radius = real(self.value);
         }))
             .SetRealNumberBounds(0.001, 9999)
             .SetID("RADIUS")
             .SetInteractive(false),
-        (new EmuInput(c2x, EMU_AUTO, 256, 24, "Length:", "", "", 6, E_InputTypes.REAL, function() {
+        (new EmuInput(c2x, EMU_AUTO, 256, 24, "    Length:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].length = real(self.value);
         }))
             .SetRealNumberBounds(0.001, 9999)
