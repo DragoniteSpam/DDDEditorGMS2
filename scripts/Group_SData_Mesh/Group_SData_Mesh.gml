@@ -353,6 +353,7 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
             var shape = self.collision_shapes[i];
             buffer_write(buffer, buffer_s8, shape.type);
+            buffer_write(buffer, buffer_string, shape.name);
             buffer_write(buffer, buffer_flag, shape.asset_flags);
             buffer_write(buffer, buffer_f32, shape.position.x);
             buffer_write(buffer, buffer_f32, shape.position.y);
