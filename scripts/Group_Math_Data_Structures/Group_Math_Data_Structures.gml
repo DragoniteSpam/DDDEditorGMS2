@@ -197,6 +197,18 @@ function random_element_from_array(array) {
     if (array_length(array) == 0) return undefined;
     return array[irandom(array_length(array) - 1)];
 }
+
+function array_join(array, separator = " ") {
+    static buffer_concat = buffer_create(1000, buffer_grow, 1);
+    buffer_seek(buffer_concat, buffer_seek_start, 0);
+    for (var i = 0, n = array_length(array); i < n; i++) {
+        buffer_write(buffer_concat, buffer_text, array[i]);
+        if (i < array_length(array) - 1)
+            buffer_write(buffer_concat, buffer_text, separator);
+    }
+    buffer_write(buffer_concat, buffer_u8, 0);
+    return buffer_peek(buffer_concat, 0, buffer_text);
+}
 #endregion
 
 #region buffer stuff
@@ -430,15 +442,5 @@ function ds_list_top(list) {
     // for when you want to be using a stack, but need to
     // do stuff with it that you need a list for.
     return list[| ds_list_size(list) - 1];
-}
-#endregion
-
-#region ds queue stuff
-function ds_queue_concatenate(queue, character = " ") {
-    var result = "";
-    while (!ds_queue_empty(queue)) {
-        result += ds_queue_dequeue(queue) + (ds_queue_empty(queue) ? "" : character);
-    }
-    return result;
 }
 #endregion
