@@ -268,8 +268,7 @@ function import_obj(fn, squash = false) {
                     buffer_write(v_nz, buffer_attribute_type, real(line[3]));
                     break;
                 case "usemtl":
-                    /// @todo array_shift will replace this 
-                    array_delete(line, 0, 1);
+                    array_shift(line, 0, 1);
                     active_material = materials[$ array_join(line)] ?? base_material;
                     break;
                 case "usemap":
@@ -278,8 +277,7 @@ function import_obj(fn, squash = false) {
                     break;
                 case "f":
                     #region face data
-                    /// @todo array_shift will replace this 
-                    array_delete(line, 0, 1);
+                    array_shift(line);
                     var s = array_length(line);
                     for (var i = 0; i < s; i++) {
                         var vertex_tokens = string_split(line[i], "/", false);
@@ -366,8 +364,7 @@ function import_obj(fn, squash = false) {
                     break;
                 case "mtllib":  // specify the mtllib file
                     #region mtl data
-                    /// @todo array_shift will replace this 
-                    array_delete(line, 0, 1);
+                    array_shift(line);
                     var material_file_name = array_join(line);
                     
                     if (material_cache[$ material_file_name]) {
@@ -393,8 +390,7 @@ function import_obj(fn, squash = false) {
                         var material_tokens = string_split(line, " ", true);
                         switch (material_tokens[0]) {
                             case "newmtl":
-                                /// @todo array_shift will replace this 
-                                array_delete(material_tokens, 0, 1);
+                                array_shift(material_tokens);
                                 var name = array_join(material_tokens);
                                 current_material = new Material(name)
                                 materials[$ name] = current_material;
@@ -449,8 +445,7 @@ function import_obj(fn, squash = false) {
                             case "map_Kn":                  // normal map texture
                             case "norm":
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
@@ -459,8 +454,7 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_Ka":                  // ambient texture
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
@@ -469,8 +463,7 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_Ks":                  // specular color texture
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
@@ -479,8 +472,7 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_Ns":                  // specular highlight texture
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
@@ -489,8 +481,7 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_d":                   // alpha texture
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
@@ -500,8 +491,7 @@ function import_obj(fn, squash = false) {
                             case "map_bump":                // bump texture
                             case "bump":
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
@@ -510,8 +500,7 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "disp":                    // displacement texture
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
@@ -520,8 +509,7 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "decal":                   // stencil decal texture
                                 if (current_material) {
-                                    /// @todo array_shift will replace this 
-                                    array_delete(material_tokens, 0, 1);
+                                    array_shift(material_tokens);
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
