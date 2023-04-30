@@ -268,7 +268,7 @@ function import_obj(fn, squash = false) {
                     buffer_write(v_nz, buffer_attribute_type, real(line[3]));
                     break;
                 case "usemtl":
-                    array_shift(line, 0, 1);
+                    array_shift(line);
                     active_material = materials[$ array_join(line)] ?? base_material;
                     break;
                 case "usemap":

@@ -180,19 +180,15 @@ function ui_init_mesh(mode) {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
-                    var selection = { };
+                    static selection = ds_map_create();
+                    ds_map_clear(selection);
                     
                     for (var i = 0, n = array_length(self.root.indices); i < n; i++) {
-                        // this is fine
-                        variable_struct_set(selection, string(ptr(self.root.type[self.root.indices[i]])), true);
-                        // this errors
-                        //selection[$ "!" + string(ptr(self.root.type[self.root.indices[i]]))] = true;
+                        selection[? ptr(self.root.type[self.root.indices[i]])] = true;
                     }
                     
                     for (var i = array_length(self.root.type) - 1; i >= 0; i--) {
-                        // gamemaker why are you like this
-                        //if (selection[$ "!" + string(ptr(self.root.type[i]))]) {
-                        if (variable_struct_exists(selection, string(ptr(self.root.type[i])))) {
+                        if (selection[? ptr(self.root.type[i])]) {
                             self.root.type[i].Destroy();
                         }
                     }
@@ -201,7 +197,6 @@ function ui_init_mesh(mode) {
                     self.root.Dispose();
                     //Stuff.mesh.ResetTransform();
                     Stuff.mesh.ui.GetChild("MESH LIST").Deselect();
-                    batch_again();
                 });
                 
                 dg.indices = indices;
