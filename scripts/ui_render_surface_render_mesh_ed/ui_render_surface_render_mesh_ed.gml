@@ -59,13 +59,13 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                 for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
                     var submesh = mesh_data.submeshes[sm_index];
                     if (!submesh.editor_visible) continue;
-                        
+                    
                     if (Stuff.mesh.GetHighlightedSubmesh(submesh)) {
                         wireframe_enable(1, 512, c_aqua, 0.5);
                     }
-                        
+                    
                     graphics_set_material(submesh);
-                        
+                    
                     var submesh_tex = -1;
                     if (Settings.mesh.draw_textures) {
                         if (guid_get(submesh.tex_base)) {
@@ -76,7 +76,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
                     }
                     if (submesh.vbuffer) vertex_submit(submesh.vbuffer, pr_trianglelist, submesh_tex);
                     if (Settings.mesh.draw_reflections && submesh.reflect_vbuffer) vertex_submit(submesh.reflect_vbuffer, pr_trianglelist, submesh_tex);
-                        
+                    
                     wireframe_enable(Settings.mesh.wireframe_alpha);
                 }
                 break;

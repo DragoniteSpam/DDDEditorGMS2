@@ -77,7 +77,11 @@ function EditorGraphics() constructor {
     };
     
     self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1, color = c_wireframe_mesh_col_box) {
-        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, xs, ys, zs);
+        var mat_rot = matrix_multiply(mat_scale, matrix_build(0, 0, 0, xr, yr, zr, 1, 1, 1));
+        var mat = matrix_multiply(mat_rot, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+        var mat_source = matrix_get(matrix_world);
+        matrix_set(matrix_world, matrix_multiply(mat_source, mat));
         var shader = shader_current();
         var cull = gpu_get_cullmode();
         gpu_set_cullmode(cull_noculling);
@@ -85,13 +89,16 @@ function EditorGraphics() constructor {
         wireframe_enable(1, 1000000, color);
         vertex_submit(self.wire_box, pr_trianglelist, -1);
         wireframe_disable();
-        matrix_set(matrix_world, matrix_build_identity());
+        matrix_set(matrix_world, mat_source);
         shader_set(shader);
         gpu_set_cullmode(cull);
     };
     
     self.DrawWireCapsule = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1, color = c_wireframe_mesh_col_capsule) {
-        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, xs, ys, zs);
+        var mat_rot = matrix_multiply(mat_scale, matrix_build(0, 0, 0, xr, yr, zr, 1, 1, 1));
+        var mat = matrix_multiply(mat_rot, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+        var mat_source = matrix_get(matrix_world);
         var shader = shader_current();
         var cull = gpu_get_cullmode();
         gpu_set_cullmode(cull_noculling);
@@ -99,13 +106,16 @@ function EditorGraphics() constructor {
         wireframe_enable(1, 1000000, color);
         vertex_submit(self.wire_capsule, pr_trianglelist, -1);
         wireframe_disable();
-        matrix_set(matrix_world, matrix_build_identity());
+        matrix_set(matrix_world, mat_source);
         shader_set(shader);
         gpu_set_cullmode(cull);
     };
     
     self.DrawWireSphere = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1, color = c_wireframe_mesh_col_sphere) {
-        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+        var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, xs, ys, zs);
+        var mat_rot = matrix_multiply(mat_scale, matrix_build(0, 0, 0, xr, yr, zr, 1, 1, 1));
+        var mat = matrix_multiply(mat_rot, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+        var mat_source = matrix_get(matrix_world);
         var shader = shader_current();
         var cull = gpu_get_cullmode();
         gpu_set_cullmode(cull_noculling);
@@ -113,7 +123,7 @@ function EditorGraphics() constructor {
         wireframe_enable(1, 1000000, color);
         vertex_submit(self.wire_sphere, pr_trianglelist, -1);
         wireframe_disable();
-        matrix_set(matrix_world, matrix_build_identity());
+        matrix_set(matrix_world, mat_source);
         shader_set(shader);
         gpu_set_cullmode(cull);
     };
