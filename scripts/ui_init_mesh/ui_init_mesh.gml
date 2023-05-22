@@ -180,17 +180,11 @@ function ui_init_mesh(mode) {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
-                    static selection = ds_map_create();
-                    ds_map_clear(selection);
+                    var type = self.root.type;
+                    var selection = self.root.indices;
                     
-                    for (var i = 0, n = array_length(self.root.indices); i < n; i++) {
-                        selection[? ptr(self.root.type[self.root.indices[i]])] = true;
-                    }
-                    
-                    for (var i = array_length(self.root.type) - 1; i >= 0; i--) {
-                        if (selection[? ptr(self.root.type[i])]) {
-                            self.root.type[i].Destroy();
-                        }
+                    for (var i = array_length(selection) - 1; i >= 0; i--) {
+                        type[selection[i]].Destroy();
                     }
                     
                     batch_again();
