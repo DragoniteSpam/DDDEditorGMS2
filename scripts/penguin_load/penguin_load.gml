@@ -1,18 +1,29 @@
-function penguin_load(filename, vertex_format) {
+function penguin_load(filename, vertex_format, freeze = true) {
+    static HEADER_PRERELEASE = "derg";
+    static HEADER_FINAL = "dergxmachina";
+    
+    static VERSION_PRERELEASE           = 0;
+    static VERSION_INITIAL_RELEASE      = 1;
+    
     var mesh_cache = { };
     var buffer = -1;
+    var version = VERSION_PRERELEASE;
     
     try {
         buffer = buffer_load(filename);
         var header = buffer_read(buffer, buffer_string);
         
-        if (header != "derg") {
+        if (header != HEADER_PRERELEASE && header != HEADER_FINAL) {
             throw {
                 message: "Bad file header",
-                longMessage: "Expected 'derg', got: " + header,
+                longMessage: string("Expected '{0}' or '{1}', got: {2}", HEADER_PRERELEASE, HEADER_FINAL, header),
                 stacktrace: debug_get_callstack(),
-                script: derg_load,
+                script: penguin_load,
             };
+        }
+        
+        if (header == HEADER_FINAL) {
+            version = buffer_read(buffer, buffer_u64);
         }
         
         var textures = { };
@@ -77,6 +88,9 @@ function penguin_load(filename, vertex_format) {
                     buffer_copy(buffer, buffer_tell(buffer), size, vertex_data, 0);
                     buffer_seek(buffer, buffer_seek_relative, size);
                     submesh.vbuff = vertex_create_buffer_from_buffer(vertex_data, vertex_format);
+                    if (freeze && vertex_get_number(submesh.vbuff) > 0) {
+                        vertex_freeze(submesh.vbuff);
+                    }
                     buffer_delete(vertex_data);
                 }
                 if (!!(existences & 0x1)) {
@@ -85,6 +99,9 @@ function penguin_load(filename, vertex_format) {
                     buffer_copy(buffer, buffer_tell(buffer), size, vertex_data, 0);
                     buffer_seek(buffer, buffer_seek_relative, size);
                     submesh.reflect_vbuff = vertex_create_buffer_from_buffer(vertex_data, vertex_format);
+                    if (freeze && vertex_get_number(submesh.reflect_vbuff) > 0) {
+                        vertex_freeze(submesh.reflect_vbuff);
+                    }
                     buffer_delete(vertex_data);
                 }
             }
@@ -92,10 +109,13 @@ function penguin_load(filename, vertex_format) {
             var shape_count = buffer_read(buffer, buffer_u32);
             penguin.collision_shapes = array_create(shape_count);
             
-            repeat (shape_count) {
+            for (var j = 0; j < shape_count; j++) {
                 var type = buffer_read(buffer, buffer_s8);
+                var shape_name = "Shape";
+                if (version >= VERSION_INITIAL_RELEASE)
+                    shape_name = buffer_read(buffer, buffer_string);
                 buffer_read(buffer, buffer_u64);                // flag
-                var shape;
+                var shape = undefined;
                 
                 switch (type) {
                     case 0:
@@ -147,6 +167,9 @@ function penguin_load(filename, vertex_format) {
                         shape.position.z = buffer_read(buffer, buffer_f32);
                         break;
                 }
+                
+                shape.name = shape_name;
+                penguin.collision_shapes[j] = shape;
             }
             
             buffer_read(buffer, buffer_bool);               // terrain data - always 0 for .derg files

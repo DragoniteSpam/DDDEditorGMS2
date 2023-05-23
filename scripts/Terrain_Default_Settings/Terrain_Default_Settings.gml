@@ -14,6 +14,7 @@
 #macro TERRAIN_DEF_EXPORT_ALL                       true
 #macro TERRAIN_DEF_EXPORT_SWAP_UVS                  false
 #macro TERRAIN_DEF_EXPORT_SWAP_ZUP                  false
+#macro TERRAIN_DEF_EXPORT_SWAP_HANDEDNESS           false
 #macro TERRAIN_DEF_EXPORT_CENTERED                  false
 #macro TERRAIN_DEF_EXPORT_CHUNK_SIZE                64
 #macro TERRAIN_DEF_EXPORT_SMOOTH                    false

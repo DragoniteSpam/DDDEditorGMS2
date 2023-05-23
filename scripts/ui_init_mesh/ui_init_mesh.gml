@@ -16,49 +16,83 @@ function ui_init_mesh(mode) {
     
     container.AddContent([
         new EmuFileDropperListener(function(files) {
-            debug_timer_start();
+            static load_models_individually = function(file_list, combine_all) {
+                debug_timer_start();
+                // if you drag an obj and the mtl that it belongs to into the
+                // editor, you usually don't want to load it twice
+                var obj_cache = { };
+                for (var i = array_length(file_list) - 1; i >= 0; i--) {
+                    if (filename_ext(file_list[i]) == ".mtl" || filename_ext(file_list[i]) == ".obj") {
+                        if (obj_cache[$ filename_change_ext(file_list[i], "")]) {
+                            array_delete(file_list, i, 1);
+                            continue;
+                        }
+                        obj_cache[$ filename_change_ext(file_list[i], "")] = true;
+                    }
+                }
+                var first_mesh = undefined;
+                var n = 0;
+                for (var i = 0; i < array_length(file_list); i++) {
+                    // try to import the file as a 3D mesh; if that doesn't work,
+                    // import it as a texture instead
+                    switch (string_lower(filename_ext(file_list[i]))) {
+                        case ".d3d":
+                        case ".gmmod":
+                        case ".obj":
+                        case ".mtl":
+                        case ".dae":
+                        case ".smf":
+                            if (combine_all) {
+                                if (first_mesh) {
+                                    first_mesh.AddSubmeshFromFile(file_list[i]);
+                                } else {
+                                    first_mesh = import_mesh(file_list[i]);
+                                }
+                            } else {
+                                import_mesh(file_list[i])
+                            }
+                            n++;
+                            break;
+                        default:
+                            import_texture(file_list[i]);
+                            break;
+                    }
+                }
+                if (n > 0) {
+                    Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
+                }
+            };
+            
             var filter_array = [".d3d", ".gmmod", ".obj", ".mtl", ".png", ".bmp", ".jpg", ".jpeg"];
             // we can add these back in later when they're working
             if (!IS_MESH_MODE) {
                 array_push(filter_array, ".dae", ".smf");
             }
+            
             var filtered_list = self.Filter(files, filter_array);
-            if (array_length(filtered_list) > 0) {
+            
+            if (array_length(filtered_list) == 1) {
                 self.GetSibling("MESH LIST").Deselect();
-            }
-            // if you drag an obj and the mtl that it belongs to into the
-            // editor, you usually don't want to load it twice
-            var obj_cache = { };
-            for (var i = array_length(filtered_list) - 1; i >= 0; i--) {
-                if (filename_ext(filtered_list[i]) == ".mtl" || filename_ext(filtered_list[i]) == ".obj") {
-                    if (obj_cache[$ filename_change_ext(filtered_list[i], "")]) {
-                        array_delete(filtered_list, i, 1);
-                        continue;
+                load_models_individually(filtered_list, false);
+            } else if (array_length(filtered_list) > 1) {
+                self.GetSibling("MESH LIST").Deselect();
+                
+                // this is rather annoying
+                var dialog = emu_dialog_confirm(
+                    self, string("Would you like to import these {0} meshes invididually or as a submeshes for a single mesh?", array_length(filtered_list)),
+                    function() {
+                        self.root.load_models_individually(self.root.file_list, false);
+                        self.root.Dispose();
+                    }, , "Individually",
+                    "Combined", function() {
+                        self.root.load_models_individually(self.root.file_list, true);
+                        self.root.Dispose();
                     }
-                    obj_cache[$ filename_change_ext(filtered_list[i], "")] = true;
-                }
-            }
-            var n = 0;
-            for (var i = 0; i < array_length(filtered_list); i++) {
-                // try to import the file as a 3D mesh; if that doesn't work,
-                // import it as a texture instead
-                switch (string_lower(filename_ext(filtered_list[i]))) {
-                    case ".d3d":
-                    case ".gmmod":
-                    case ".obj":
-                    case ".mtl":
-                    case ".dae":
-                    case ".smf":
-                        import_mesh(filtered_list[i]);
-                        n++;
-                        break;
-                    default:
-                        import_texture(filtered_list[i]);
-                        break;
-                }
-            }
-            if (n > 0) {
-                Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
+                );
+                
+                dialog.load_models_individually = load_models_individually;
+                dialog.file_list = filtered_list;
+                dialog.contents_interactive = true;
             }
         }),
         (new EmuList(col1x, EMU_BASE, element_width, element_height, "Meshes:", element_height, (!IS_MESH_MODE) ? 22 : 24, function() {
@@ -146,28 +180,17 @@ function ui_init_mesh(mode) {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
-                    var selection = { };
+                    var type = self.root.type;
+                    var selection = self.root.indices;
                     
-                    for (var i = 0, n = array_length(self.root.indices); i < n; i++) {
-                        // this is fine
-                        variable_struct_set(selection, string(ptr(self.root.type[self.root.indices[i]])), true);
-                        // this errors
-                        //selection[$ "!" + string(ptr(self.root.type[self.root.indices[i]]))] = true;
-                    }
-                    
-                    for (var i = array_length(self.root.type) - 1; i >= 0; i--) {
-                        // gamemaker why are you like this
-                        //if (selection[$ "!" + string(ptr(self.root.type[i]))]) {
-                        if (variable_struct_exists(selection, string(ptr(self.root.type[i])))) {
-                            self.root.type[i].Destroy();
-                        }
+                    for (var i = array_length(selection) - 1; i >= 0; i--) {
+                        type[selection[i]].Destroy();
                     }
                     
                     batch_again();
                     self.root.Dispose();
                     //Stuff.mesh.ResetTransform();
                     Stuff.mesh.ui.GetChild("MESH LIST").Deselect();
-                    batch_again();
                 });
                 
                 dg.indices = indices;
@@ -653,7 +676,14 @@ function ui_init_mesh(mode) {
                         .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
                         .SetRefresh(function() {
                             self.value = Settings.mesh.draw_physical_bounds;
-                        })
+                        }),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
+                        Settings.mesh.draw_collision = self.value;
+                    }))
+                        .SetTooltip("Whether or not to show collision shapes associated with meshes.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_collision;
+                        }),
                 ]);
                 
                 if (!IS_MESH_MODE) {
@@ -664,13 +694,6 @@ function ui_init_mesh(mode) {
                             .SetTooltip("If you have a reflection mesh set up, you may draw it, as well.")
                             .SetRefresh(function() {
                                 self.value = Settings.mesh.draw_reflections;
-                            }),
-                        (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
-                            Settings.mesh.draw_collision = self.value;
-                        }))
-                            .SetTooltip("Whether or not to show collision shapes associated with meshes.")
-                            .SetRefresh(function() {
-                                self.value = Settings.mesh.draw_collision;
                             }),
                     ]);
                     dialog.height += 96;

@@ -30,7 +30,7 @@ function Component(parent, source = undefined) constructor {
 
 function ComponentPointLight(parent, source = undefined) : Component(parent, source) constructor {
     self.Render = function() {
-        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+        if (array_get_index(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
             var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
             var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
             var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
@@ -77,7 +77,7 @@ function ComponentPointLight(parent, source = undefined) : Component(parent, sou
 
 function ComponentSpotLight(parent, source = undefined) : Component(parent, source) constructor {
     self.Render = function() {
-        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+        if (array_get_index(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
             var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
             var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
             var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;
@@ -144,7 +144,7 @@ function ComponentSpotLight(parent, source = undefined) : Component(parent, sour
 
 function ComponentDirectionalLight(parent, source = undefined) : Component(parent, source) constructor {
     self.Render = function() {
-        if (array_search(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
+        if (array_get_index(Stuff.map.active_map.lights, self.parent.REFID) != -1) {
             var world_x = (self.parent.xx + self.parent.off_xx) * TILE_WIDTH;
             var world_y = (self.parent.yy + self.parent.off_yy) * TILE_HEIGHT;
             var world_z = (self.parent.zz + self.parent.off_zz) * TILE_DEPTH;

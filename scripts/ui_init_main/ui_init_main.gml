@@ -228,7 +228,7 @@ function ui_init_main(mode) {
                 } else {
                     map.Destroy();
                     ui_list_deselect(button.root.el_map_list);
-                    ui_list_select(button.root.el_map_list, array_search(Game.maps, Stuff.map.active_map));
+                    ui_list_select(button.root.el_map_list, array_get_index(Game.maps, Stuff.map.active_map));
                 }
             }))
                 .SetTooltip("Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; once you delete a map, you're not getting it back."),
@@ -757,7 +757,7 @@ function ui_init_main(mode) {
                     } else {
                         self.SetInteractive(true);
                         var common = map_selection_like_property(sel, "mesh", ETypeFlags.ENTITY_MESH);
-                        if (common) self.Select(array_search(Game.meshes, guid_get(common.value)), true);
+                        if (common) self.Select(array_get_index(Game.meshes, guid_get(common.value)), true);
                     }
                 }),
             #endregion
@@ -878,7 +878,7 @@ function ui_init_main(mode) {
                     } else {
                         var common = map_selection_like_property(sel, "overworld_sprite", ETypeFlags.ENTITY_PAWN);
                         self.SetInteractive(true);
-                        if (common) self.Select(array_search(Game.graphics.overworlds, guid_get(common.value)), true);
+                        if (common) self.Select(array_get_index(Game.graphics.overworlds, guid_get(common.value)), true);
                     }
                 }),
             (new EmuInput(col2x, EMU_BASE, element_width, element_height, "Frame", "0", "of animation", 4, E_InputTypes.INT, function() {

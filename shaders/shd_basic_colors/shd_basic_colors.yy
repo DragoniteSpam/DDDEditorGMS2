@@ -1,11 +1,10 @@
 {
-  "type": 1,
+  "resourceType": "GMShader",
+  "resourceVersion": "1.0",
+  "name": "shd_basic_colors",
   "parent": {
     "name": "Utility",
     "path": "folders/Shaders/Utility.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "shd_basic_colors",
-  "tags": [],
-  "resourceType": "GMShader",
+  "type": 1,
 }

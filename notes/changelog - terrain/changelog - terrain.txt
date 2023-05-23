@@ -1,6 +1,17 @@
 Yeah I really should get better at maintaining this. See the documentation for more details:
 https://github.com/DragoniteSpam/Documentation/wiki/TerrainOps
 
+# Changes in <new version>
+
+ - The cursor flashes a little faster, I found it got lost sometimes at a period of two seconds
+
+# Changes in 2022.12
+
+ - Can export smooth normals
+ - Changed the way the terrain models are generated to make them more consistent across all export options
+ - Importing a new texture won't automatically erase the existing texture
+ - Maximum chunk size is now 1024
+
 # Changes in 2022.0.5
 
  - Added an option to highlight upward-facing triangles to make it easier to create smooth surfaces for roads, etc

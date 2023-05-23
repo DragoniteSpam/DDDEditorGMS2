@@ -74,7 +74,7 @@ function vertex_to_reflect_buffer(buffer) {
     // this is the most expensive part of the operation so don't do it unless
     // it would actually accomplish anything
     if (!matrix_is_identity(t)) {
-        meshops_set_matrix_raw(t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[13], t[14], t[15]);
+        meshops_transform_set_matrix_raw(t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[13], t[14], t[15]);
         meshops_transform(buffer_get_address(new_buffer), buffer_get_size(new_buffer));
     }
     

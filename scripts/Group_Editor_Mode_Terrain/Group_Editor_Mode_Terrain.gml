@@ -51,6 +51,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             var f = abs(mouse_vector.origin.z / mouse_vector.direction.z);
             self.cursor_position = new Vector2(mouse_vector.origin.x + mouse_vector.direction.x * f, mouse_vector.origin.y + mouse_vector.direction.y * f);
         
+            if (EmuOverlay.GetTop()) return false;
+            
             if (Controller.mouse_left) {
                 switch (Settings.terrain.mode) {
                     case TerrainModes.Z: self.EditModeZ(self.cursor_position, 1); break;
@@ -185,6 +187,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     Settings.terrain.export_all = Settings.terrain[$ "export_all"] ?? TERRAIN_DEF_EXPORT_ALL;
     Settings.terrain.export_swap_uvs = Settings.terrain[$ "export_swap_uvs"] ?? TERRAIN_DEF_EXPORT_SWAP_UVS;
     Settings.terrain.export_swap_zup = Settings.terrain[$ "export_swap_zup"] ?? TERRAIN_DEF_EXPORT_SWAP_ZUP;
+    Settings.terrain.export_swap_handedness = Settings.terrain[$ "export_swap_handedness"] ?? TERRAIN_DEF_EXPORT_SWAP_HANDEDNESS;
     Settings.terrain.export_centered = Settings.terrain[$ "export_centered"] ?? TERRAIN_DEF_EXPORT_CENTERED;
     Settings.terrain.export_chunk_size = Settings.terrain[$ "export_chunk_size"] ?? TERRAIN_DEF_EXPORT_CHUNK_SIZE;
     Settings.terrain.export_smooth = Settings.terrain[$ "export_smooth"] ?? TERRAIN_DEF_EXPORT_SMOOTH;
@@ -716,7 +719,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     #region Export methods
     self.AddToProject = function(name = "Terrain", density = 1, chunk_size = 0) {
         // ignore the export scale here; terrains attached to maps have their own scaling settings
-        var results = terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, 1, self.texture_image, VertexFormatData.FULL, Settings.terrain.water_level);
+        var results = terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_handedness, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, 1, self.texture_image, VertexFormatData.FULL, Settings.terrain.water_level, Settings.terrain.export_smooth);
         
         sprite_save(self.texture_image, 0, PATH_TEMP + "terrain_texture.png");
         var tex_base = tileset_create(PATH_TEMP + "terrain_texture.png");
@@ -731,7 +734,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             // didnt fail randomly
             if (vertex_get_number(vbuff) > 0) vertex_freeze(vbuff);
             var submesh = mesh_create_submesh(mesh, value.buffer, vbuff, value.name);
-            submesh.tex_base = tex_base;
+            submesh.tex_base = tex_base.GUID;
             // do other materials later, perhaps
         }
         
@@ -741,16 +744,16 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     
     self.ExportD3D = function(filename, density = 1, chunk_size = 0) {
-        terrainops_build_file(filename, TERRAINOPS_BUILD_D3D, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, undefined, Settings.terrain.water_level);
+        terrainops_build_file(filename, TERRAINOPS_BUILD_D3D, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_handedness, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, undefined, Settings.terrain.water_level, Settings.terrain.export_smooth);
     };
     
     self.ExportOBJ = function(filename, density = 1, chunk_size = 0) {
-        terrainops_build_file(filename, TERRAINOPS_BUILD_OBJ, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, undefined, Settings.terrain.water_level);
+        terrainops_build_file(filename, TERRAINOPS_BUILD_OBJ, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_handedness, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, undefined, Settings.terrain.water_level, Settings.terrain.export_smooth);
         terrainops_build_mtl(filename);
     };
     
     self.ExportVbuff = function(filename, density = 1, chunk_size = 0) {
-        terrainops_build_file(filename, TERRAINOPS_BUILD_VBUFF, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, Settings.terrain.output_vertex_format, Settings.terrain.water_level);
+        terrainops_build_file(filename, TERRAINOPS_BUILD_VBUFF, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_handedness, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, Settings.terrain.save_scale, self.texture_image, Settings.terrain.output_vertex_format, Settings.terrain.water_level, Settings.terrain.export_smooth);
     };
     
     self.ExportHeightmap = function(filename) {

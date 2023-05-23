@@ -103,7 +103,7 @@ function dialog_create_map_advanced() {
                     var all_lights = self.GetSibling("ALL LIGHTS");
                     all_lights.Deselect();
                     if (selection != -1) {
-                        all_lights.Select(array_search(all_lights.entries, self.GetSelectedItem()));
+                        all_lights.Select(array_get_index(all_lights.entries, self.GetSelectedItem()));
                     }
                     self.root.Refresh();
                 }))
@@ -161,7 +161,7 @@ function dialog_create_map_advanced() {
             self.root.map.skybox = selection ? selection.GUID : NULL;
         }))
             .SetList(Game.graphics.skybox)
-            .Select(array_search(Game.graphics.tilesets, guid_get(map.skybox)))
+            .Select(array_get_index(Game.graphics.tilesets, guid_get(map.skybox)))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("The skybox to be used by the map. Deselect to clear."),
         (new EmuList(col2, EMU_AUTO, element_width, element_height, "Water texture:", element_height, 8, function() {
@@ -170,7 +170,7 @@ function dialog_create_map_advanced() {
             self.root.map.water_texture = selection ? selection.GUID : NULL;
         }))
             .SetList(Game.graphics.tilesets)
-            .Select(array_search(Game.graphics.tilesets, guid_get(map.water_texture)))
+            .Select(array_get_index(Game.graphics.tilesets, guid_get(map.water_texture)))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("The water texture to be used by the map. Deselect to clear."),
         (new EmuInput(col3, EMU_BASE, element_width, element_height, "Chunk size:", map.chunk_size, "in cells", 5, E_InputTypes.INT, function() {
@@ -242,7 +242,7 @@ function dialog_create_map_terrain() {
                     self.root.root.root.Refresh();
                 }))
                     .SetList(Game.mesh_terrain)
-                    .Select(array_search(Game.mesh_terrain, guid_get(map.terrain.id)))
+                    .Select(array_get_index(Game.mesh_terrain, guid_get(map.terrain.id)))
                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
                     .SetTooltip("The terrain model associated with this map."),
                 (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Scale:", string(map.terrain.scale), "The terrain scale", 2, E_InputTypes.INT, function() {
@@ -484,7 +484,7 @@ function dialog_create_map_terrain() {
                         var choice = self.GetSibling("CHOICES").GetSelectedItem();
                         if (choice) {
                             self.Deselect();
-                            self.Select(array_search(Game.meshes, guid_get(choice.mesh)));
+                            self.Select(array_get_index(Game.meshes, guid_get(choice.mesh)));
                         }
                     })
                     .SetList(Game.meshes)
@@ -814,7 +814,7 @@ function dialog_create_map_terrain() {
                                 var selection = self.GetSibling("TEXTURES").GetSelectedItem();
                                 if (selection != undefined) {
                                     self.Deselect();
-                                    self.Select(array_search(Game.graphics.tilesets, guid_get(selection)));
+                                    self.Select(array_get_index(Game.graphics.tilesets, guid_get(selection)));
                                 }
                             })
                             .SetEntryTypes(E_ListEntryTypes.STRUCTS)

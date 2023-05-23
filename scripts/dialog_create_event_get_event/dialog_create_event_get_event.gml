@@ -36,7 +36,7 @@ function dialog_create_event_get_event(argument0, argument1, argument2, argument
 
     var current = guid_get(dg.node.custom_data[dg.index][multi_index]);
     if (current) {
-        ui_list_select(el_list, array_search(Game.events.events, current.event));
+        ui_list_select(el_list, array_get_index(Game.events.events, current.event));
     }
 
     var b_width = 128;

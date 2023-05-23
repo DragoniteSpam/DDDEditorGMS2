@@ -165,7 +165,7 @@ function emu_dialog_get_event(default_entrypoint, callback, data) {
         }))
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetList(Game.events.events)
-            .Select(array_search(Game.events.events, default_entrypoint ? default_entrypoint.event : undefined))
+            .Select(array_get_index(Game.events.events, default_entrypoint ? default_entrypoint.event : undefined))
             .SetID("LIST")
             .SetTooltip("Select an event graph."),
         (new EmuList(col2, EMU_BASE, 320, 32, "Entrypoint:", 32, 16, function() {
@@ -174,7 +174,7 @@ function emu_dialog_get_event(default_entrypoint, callback, data) {
             // ...
         }))
             .SetList(default_entrypoint ? default_entrypoint.event.nodes : [])
-            .Select(default_entrypoint ? array_search(default_entrypoint.event.nodes, default_entrypoint) : -1)
+            .Select(default_entrypoint ? array_get_index(default_entrypoint.event.nodes, default_entrypoint) : -1)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetRefresh(function(data) {
                 self.Deselect();

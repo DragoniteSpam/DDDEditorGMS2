@@ -54,7 +54,7 @@ function ui_render_input(input, xx, yy) {
         draw_set_font(FDefaultItalic);
     }
     
-    var display_text = value + (ui_is_active(input) && (floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
+    var display_text = value + (ui_is_active(input) && (floor((current_time * 0.0025) % 2) == 0) ? "|" : "");
     if (input.multi_line) {
         // i guess you could draw this in a single-line box too, but it would be pretty cramped
         #region the "how many characters remaining" counter

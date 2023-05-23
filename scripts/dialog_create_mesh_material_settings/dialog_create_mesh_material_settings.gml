@@ -15,7 +15,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             }
         }
         
-        return array_search(Game.graphics.tilesets, target);
+        return array_get_index(Game.graphics.tilesets, target);
     };
     
     static find_common_value = function(list, selected_things, accessor) {
@@ -39,7 +39,7 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     static find_common_tileset_index_submesh = function(submesh, accessor) {
         var data = guid_get(accessor(submesh));
         if (!data) return -1;
-        return array_search(Game.graphics.tilesets, data);
+        return array_get_index(Game.graphics.tilesets, data);
     };
     
     static find_common_value_submesh = function(submesh, accessor) {

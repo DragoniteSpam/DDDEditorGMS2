@@ -71,6 +71,7 @@ function DataMesh(source) : SData(source) constructor {
         for (var i = 0, n = array_length(data); i < n; i++) {
             var submesh = new MeshSubmesh("Submesh" + string(array_length(self.submeshes)));
             submesh.SetBufferData(data[i].buffer);
+            submesh.path = filename;
             self.AddSubmesh(submesh);
         }
         self.CalculatePhysicalBounds();
@@ -347,51 +348,51 @@ function DataMesh(source) : SData(source) constructor {
             self.submeshes[i].Export(buffer);
         }
         
-        if (IS_MESH_MODE || !!(Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES)) {
-            buffer_write(buffer, buffer_u32, array_length(self.collision_shapes));
-            for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
-                var shape = self.collision_shapes[i];
-                buffer_write(buffer, buffer_s8, shape.type);
-                buffer_write(buffer, buffer_flag, shape.asset_flags);
-                buffer_write(buffer, buffer_f32, shape.position.x);
-                buffer_write(buffer, buffer_f32, shape.position.y);
-                buffer_write(buffer, buffer_f32, shape.position.z);
-                switch (shape.type) {
-                    case MeshCollisionShapes.BOX:
-                        buffer_write(buffer, buffer_f32, shape.rotation.x);
-                        buffer_write(buffer, buffer_f32, shape.rotation.y);
-                        buffer_write(buffer, buffer_f32, shape.rotation.z);
-                        /// @todo build a proper orientation matrix here
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, shape.scale.x);
-                        buffer_write(buffer, buffer_f32, shape.scale.y);
-                        buffer_write(buffer, buffer_f32, shape.scale.z);
-                        break;
-                    case MeshCollisionShapes.CAPSULE:
-                        buffer_write(buffer, buffer_f32, shape.rotation.x);
-                        buffer_write(buffer, buffer_f32, shape.rotation.y);
-                        buffer_write(buffer, buffer_f32, shape.rotation.z);
-                        /// @todo build a proper orientation matrix here
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, 0);
-                        buffer_write(buffer, buffer_f32, shape.length);
-                        buffer_write(buffer, buffer_f32, shape.radius);
-                        break;
-                    case MeshCollisionShapes.SPHERE:
-                        buffer_write(buffer, buffer_f32, shape.radius);
-                        break;
-                    case MeshCollisionShapes.TRIMESH:
-                        break;
-                }
+        var shape_count = array_length(self.collision_shapes);
+        buffer_write(buffer, buffer_u32, shape_count);
+        for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
+            var shape = self.collision_shapes[i];
+            buffer_write(buffer, buffer_s8, shape.type);
+            buffer_write(buffer, buffer_string, shape.name);
+            buffer_write(buffer, buffer_flag, shape.asset_flags);
+            buffer_write(buffer, buffer_f32, shape.position.x);
+            buffer_write(buffer, buffer_f32, shape.position.y);
+            buffer_write(buffer, buffer_f32, shape.position.z);
+            switch (shape.type) {
+                case MeshCollisionShapes.BOX:
+                    var transform = matrix_build(0, 0, 0, -shape.rotation.x, -shape.rotation.y, -shape.rotation.z, 1, 1, 1);
+                    buffer_write(buffer, buffer_f32, transform[0]);
+                    buffer_write(buffer, buffer_f32, transform[1]);
+                    buffer_write(buffer, buffer_f32, transform[2]);
+                    buffer_write(buffer, buffer_f32, transform[4]);
+                    buffer_write(buffer, buffer_f32, transform[5]);
+                    buffer_write(buffer, buffer_f32, transform[6]);
+                    buffer_write(buffer, buffer_f32, transform[8]);
+                    buffer_write(buffer, buffer_f32, transform[9]);
+                    buffer_write(buffer, buffer_f32, transform[10]);
+                    buffer_write(buffer, buffer_f32, shape.scale.x / 2);
+                    buffer_write(buffer, buffer_f32, shape.scale.y / 2);
+                    buffer_write(buffer, buffer_f32, shape.scale.z / 2);
+                    break;
+                case MeshCollisionShapes.CAPSULE:
+                    buffer_write(buffer, buffer_f32, shape.rotation.x);
+                    buffer_write(buffer, buffer_f32, shape.rotation.y);
+                    buffer_write(buffer, buffer_f32, shape.rotation.z);
+                    /// @todo build a proper orientation matrix here
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, 0);
+                    buffer_write(buffer, buffer_f32, shape.length);
+                    buffer_write(buffer, buffer_f32, shape.radius);
+                    break;
+                case MeshCollisionShapes.SPHERE:
+                    buffer_write(buffer, buffer_f32, shape.diameter / 2);
+                    break;
+                case MeshCollisionShapes.TRIMESH:
+                    break;
             }
         }
         
@@ -457,11 +458,11 @@ function DataMesh(source) : SData(source) constructor {
             }
         }
         
-        var list_index = array_search(Game.meshes, self);
+        var list_index = array_get_index(Game.meshes, self);
         if (list_index != -1) {
             array_delete(Game.meshes, list_index, 1);
         } else {
-            list_index = array_search(Game.mesh_terrain, self);
+            list_index = array_get_index(Game.mesh_terrain, self);
             array_delete(Game.mesh_terrain, list_index, 1);
         }
     };
@@ -533,6 +534,13 @@ function DataMesh(source) : SData(source) constructor {
         
         try {
             self.collision_shapes = source.collision_shapes;
+            // updated variable name - it really should be the diameter though
+            for (var i = 0, n = array_length(self.collision_shapes); i < n; i++) {
+                if (self.collision_shapes[i].type == MeshCollisionShapes.SPHERE) {
+                    if (variable_struct_exists(self.collision_shapes[i], "radius"))
+                        self.collision_shapes[i].diameter = self.collision_shapes[i].radius;
+                }
+            }
         } catch (e) {
             self.collision_shapes = [];
         }
@@ -570,7 +578,7 @@ function MeshCollisionShape() constructor {
 
 function MeshCollisionShapeBox() : MeshCollisionShape() constructor {
     self.name = "Box";
-    /// @todo make a Matrix3/Matrix4 class
+    // this is translated into a 3x3 orientation matrix when it's written out
     self.rotation = new Vector3(0, 0, 0);
     self.scale = new Vector3(1, 1, 1);
     self.type = MeshCollisionShapes.BOX;
@@ -578,7 +586,7 @@ function MeshCollisionShapeBox() : MeshCollisionShape() constructor {
 
 function MeshCollisionShapeSphere() : MeshCollisionShape() constructor {
     self.name = "Sphere";
-    self.radius = 1;
+    self.diameter = 1;
     self.type = MeshCollisionShapes.SPHERE;
 }
 

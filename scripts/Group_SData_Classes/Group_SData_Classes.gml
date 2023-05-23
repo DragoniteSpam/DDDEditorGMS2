@@ -32,7 +32,7 @@ function DataClass(source) : SData(source) constructor {
     };
     
     static RemoveProperty = function(property) {
-        var index = array_search(self.properties, property);
+        var index = array_get_index(self.properties, property);
         if (index == -1) return;
         array_delete(self.properties, index, 1);
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
@@ -41,7 +41,7 @@ function DataClass(source) : SData(source) constructor {
     };
     
     static MovePropertyUp = function(property) {
-        var index = array_search(self.properties, property);
+        var index = array_get_index(self.properties, property);
         if (index < 1) return;
         
         var t = self.properties[index];
@@ -56,7 +56,7 @@ function DataClass(source) : SData(source) constructor {
     };
     
     static MovePropertyDown = function(property) {
-        var index = array_search(self.properties, property);
+        var index = array_get_index(self.properties, property);
         if (index == -1 || index == array_length(self.properties) - 1) return;
         
         var t = self.properties[index];
@@ -129,12 +129,12 @@ function DataClass(source) : SData(source) constructor {
     };
     
     static RemoveInstance = function(inst) {
-        var index = array_search(self.instances, inst);
+        var index = array_get_index(self.instances, inst);
         array_delete(self.instances, index, 1);
     };
     
     static Destroy = function() {
-        array_delete(Game.data, array_search(Game.data, self), 1);
+        array_delete(Game.data, array_get_index(Game.data, self), 1);
         self.DestroyBase();
     };
     

@@ -348,8 +348,8 @@ function ui_init_terrain(mode) {
                             Settings.terrain.tile_brush_x = 0;
                             Settings.terrain.tile_brush_y = 0;
                             Settings.terrain.tile_brush_size = 32;
-                            var color_code = Stuff.terrain.GetTextureColorCode();
-                            Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+                            //var color_code = Stuff.terrain.GetTextureColorCode();
+                            //Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                             self.GetSibling("TEXTURE_RESOLUTION").SetValue(string(Settings.terrain.tile_brush_size));
                             self.GetSibling("TEXTURE_PICKER").offset_x = 0;
                             self.GetSibling("TEXTURE_PICKER").offset_y = 0;

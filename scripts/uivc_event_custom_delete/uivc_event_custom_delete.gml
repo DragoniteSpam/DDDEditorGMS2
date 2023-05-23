@@ -3,7 +3,7 @@ function uivc_event_custom_delete(argument0) {
 
     var button = argument0;
     var custom = button.root.custom;
-    var index = array_search(Game.events.custom, custom);
+    var index = array_get_index(Game.events.custom, custom);
 
     array_delete(Game.events.custom, index, 1);
     ui_list_deselect(button.root.root.root.el_list_custom);

@@ -17,7 +17,7 @@ function language_add(name) {
 
 function language_remove(name) {
     if (array_length(Game.languages.names) == 0) return;
-    var index = array_search(Game.languages.names, name);
+    var index = array_get_index(Game.languages.names, name);
     if (index + 1) {
         array_delete(Game.languages.names, index, 1);
         variable_struct_remove(Game.languages.text, name);

@@ -27,13 +27,13 @@ function dialog_create_settings_data() {
             Game.meta.grid.snap = self.value;
         }))
             .SetTooltip("Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells"),
-        (new EmuCheckbox(col2, EMU_INLINE, element_width, element_height, "Export mesh collision shapes", Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES, function() {
+        /*(new EmuCheckbox(col2, EMU_INLINE, element_width, element_height, "Export mesh collision shapes", Game.meta.export.flags & GameExportFlags.COLLISION_SHAPES, function() {
             Game.meta.export.flags &= ~GameExportFlags.COLLISION_SHAPES;
             if (self.value) {
                 Game.meta.export.flags |= GameExportFlags.COLLISION_SHAPES;
             }
         }))
-            .SetTooltip("Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells"),
+            .SetTooltip("Whether or not you want collision shapes to be exported with meshes"),*/
         #endregion
         #region Graphical stuff
         new EmuText(col1, EMU_AUTO, element_width, element_height, "[c_aqua]Graphical Settings"),

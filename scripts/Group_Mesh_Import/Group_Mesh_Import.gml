@@ -10,6 +10,7 @@ function import_mesh(filename) {
     var mesh = new DataMesh(filename_change_ext(filename_name(filename), ""));
     for (var i = 0, n = array_length(data); i < n; i++) {
         var submesh = new MeshSubmesh(data[i].material.name);
+        submesh.path = filename;
         submesh.SetBufferData(data[i].buffer);
         if (array_length(data) >= 1) {
             submesh.SetMaterial(data[i].material);
@@ -34,6 +35,7 @@ function import_3d_model_generic(filename, squash = false) {
         }
     } catch (e) {
         Stuff.AddStatusMessage("Could not load the file: [c_orange]" + e.message);
+        show_debug_message(json_stringify(e, true));
     }
     return undefined;
 }
@@ -184,8 +186,9 @@ function import_obj(fn, squash = false) {
     var active_material = new Material(base_name + "_BaseMaterial");
     var base_material = active_material;
     
-    var f = file_text_open_read(fn);
-    var line_number = 0;
+    var buffer = buffer_load(fn);
+    var lines = string_split(buffer_read(buffer, buffer_text), "\n", true);
+    buffer_delete(buffer);
     
     static buffer_attribute_type = buffer_f32;
     static color_attribute_type = buffer_u32;
@@ -232,64 +235,42 @@ function import_obj(fn, squash = false) {
     var is_blender = false;
     
     #region parse the obj file
-    while (!file_text_eof(f)) {
-        line_number++;
-        var str = string_strip(file_text_read_string(f));
+    for (var line_index = 0, line_count = array_length(lines); line_index < line_count; line_index++) {
+        var str = string_trim(lines[line_index]);
+        if (str == "") continue;
         
         if (!first_line_read) {
             is_blender = (string_count("Blender", str) > 0);
             first_line_read = true;
         }
-        var q = split(str, " ", false, false);
-        file_text_readln(f);
+        var line = string_split(str, " ", true);
         
-        if (ds_queue_size(q) == 0) {
-            ds_queue_destroy(q);
-            continue;
-        }
-        
-        var word = ds_queue_dequeue(q);
-        // comments don't have to be single characters
-        if (string_char_at(word, 1) != "#") {
-            switch (word) {
+        if (!string_starts_with(line[0], "#")) {
+            switch (line[0]) {
                 case "v":
-                    if (ds_queue_size(q) >= 3) {
-                        buffer_write(v_x, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                        buffer_write(v_y, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                        buffer_write(v_z, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                        // the unofficial "vertex color" spec involves sticking
-                        // three rgb color values after the position
-                        if (ds_queue_size(q) >= 3) {
-                            var crr = floor(real(ds_queue_dequeue(q)) * 0xff);
-                            var cgg = floor(real(ds_queue_dequeue(q)) * 0xff) << 8;
-                            var cbb = floor(real(ds_queue_dequeue(q)) * 0xff) << 16;
-                            buffer_write(v_color, color_attribute_type, 0xff000000 | cbb | cgg | crr);
-                        } else {
-                            buffer_write(v_color, color_attribute_type, 0xffffffff);
-                        }
+                    buffer_write(v_x, buffer_attribute_type, real(line[1]));
+                    buffer_write(v_y, buffer_attribute_type, real(line[2]));
+                    buffer_write(v_z, buffer_attribute_type, real(line[3]));
+                    // the unofficial "vertex color" spec involves sticking
+                    // three rgb color values after the position
+                    if (array_length(line) > 4) {
+                        buffer_write(v_color, color_attribute_type, 0xff000000 | make_colour_rgb(floor(real(line[4])), floor(real(line[5])), floor(real(line[6]))));
                     } else {
-                        throw { message: "Malformed vertex found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
+                        buffer_write(v_color, color_attribute_type, 0xffffffff);
                     }
                     break;
                 case "vt":
-                    if (ds_queue_size(q) >= 2) {
-                        buffer_write(v_xtex, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                        buffer_write(v_ytex, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                    } else {
-                        throw { message: "Malformed vertex texture found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
-                    }
+                    buffer_write(v_xtex, buffer_attribute_type, real(line[1]));
+                    buffer_write(v_ytex, buffer_attribute_type, real(line[2]));
                     break;
                 case "vn":
-                    if (ds_queue_size(q) >= 3) {
-                        buffer_write(v_nx, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                        buffer_write(v_ny, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                        buffer_write(v_nz, buffer_attribute_type, real(ds_queue_dequeue(q)));
-                    } else {
-                        throw { message: "Malformed vertex normal found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
-                    }
+                    buffer_write(v_nx, buffer_attribute_type, real(line[1]));
+                    buffer_write(v_ny, buffer_attribute_type, real(line[2]));
+                    buffer_write(v_nz, buffer_attribute_type, real(line[3]));
                     break;
                 case "usemtl":
-                    active_material = materials[$ ds_queue_concatenate(q)] ?? base_material;
+                    array_shift(line);
+                    active_material = materials[$ array_join(line)] ?? base_material;
                     break;
                 case "usemap":
                     // this would specifically fetch a texture map but i'd
@@ -297,90 +278,86 @@ function import_obj(fn, squash = false) {
                     break;
                 case "f":
                     #region face data
-                    if (ds_queue_size(q) >= 3) {
-                        var s = ds_queue_size(q);
-                        for (var i = 0; i < s; i++) {
-                            var vertex_q = split(ds_queue_dequeue(q), "/", false, true);
-                            switch (ds_queue_size(vertex_q)) {
-                                case 1:
-                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;    // each of these are -1 because they start indexing from 1 instead of 0. Why? because the obj file format sucks.
-                                    xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
-                                    yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
-                                    zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
-                                    nx[i] = 0;
-                                    ny[i] = 0;
-                                    nz[i] = 1;
-                                    xtex[i] = 0;
-                                    ytex[i] = 0;
-                                    color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
-                                    break;
-                                case 2:
-                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;
-                                    var tex = real(ds_queue_dequeue(vertex_q)) - 1;
-                                    xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
-                                    yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
-                                    zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
-                                    xtex[i] = buffer_peek(v_xtex, buffer_attribute_size * tex, buffer_attribute_type);
-                                    ytex[i] = buffer_peek(v_ytex, buffer_attribute_size * tex, buffer_attribute_type);
-                                    nx[i] = 0;
-                                    ny[i] = 0;
-                                    nz[i] = 1;
-                                    color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
-                                    break;
-                                case 3:
-                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;
-                                    // if the vt term is blank (v//vn), that is
-                                    // not the same as having just two terms (v/vt)
-                                    var middle_term = ds_queue_dequeue(vertex_q);
-                                    var tex = (middle_term == "") ? -1 : (real(middle_term) - 1);
-                                    var normal = real(ds_queue_dequeue(vertex_q)) - 1;
-                                    xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
-                                    yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
-                                    zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
-                                    nx[i] = buffer_peek(v_nx, buffer_attribute_size * normal, buffer_attribute_type);
-                                    ny[i] = buffer_peek(v_ny, buffer_attribute_size * normal, buffer_attribute_type);
-                                    nz[i] = buffer_peek(v_nz, buffer_attribute_size * normal, buffer_attribute_type);
-                                    xtex[i] = (tex == -1) ? 0 : buffer_peek(v_xtex, buffer_attribute_size * tex,  buffer_attribute_type);
-                                    ytex[i] = (tex == -1) ? 0 : buffer_peek(v_ytex, buffer_attribute_size * tex,  buffer_attribute_type);
-                                    color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
-                                    break;
-                            }
-                            ds_queue_destroy(vertex_q);
+                    array_shift(line);
+                    var s = array_length(line);
+                    for (var i = 0; i < s; i++) {
+                        var vertex_tokens = string_split(line[i], "/", false);
+                        switch (array_length(vertex_tokens)) {
+                            case 1:
+                                var vert = real(vertex_tokens[0]) - 1;    // each of these are -1 because they start indexing from 1 instead of 0. Why? because the obj file format sucks.
+                                xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
+                                yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
+                                zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
+                                nx[i] = 0;
+                                ny[i] = 0;
+                                nz[i] = 1;
+                                xtex[i] = 0;
+                                ytex[i] = 0;
+                                color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
+                                break;
+                            case 2:
+                                var vert = real(vertex_tokens[0]) - 1;
+                                var tex = real(vertex_tokens[1]) - 1;
+                                xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
+                                yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
+                                zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
+                                xtex[i] = buffer_peek(v_xtex, buffer_attribute_size * tex, buffer_attribute_type);
+                                ytex[i] = buffer_peek(v_ytex, buffer_attribute_size * tex, buffer_attribute_type);
+                                nx[i] = 0;
+                                ny[i] = 0;
+                                nz[i] = 1;
+                                color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
+                                break;
+                            case 3:
+                                var vert = real(vertex_tokens[0]) - 1;
+                                // if the vt term is blank (v//vn), that is
+                                // not the same as having just two terms (v/vt)
+                                var middle_term = vertex_tokens[1];
+                                var tex = (middle_term == "") ? -1 : (real(middle_term) - 1);
+                                var normal = real(vertex_tokens[2]) - 1;
+                                xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
+                                yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
+                                zz[i] = buffer_peek(v_z, buffer_attribute_size * vert, buffer_attribute_type);
+                                nx[i] = buffer_peek(v_nx, buffer_attribute_size * normal, buffer_attribute_type);
+                                ny[i] = buffer_peek(v_ny, buffer_attribute_size * normal, buffer_attribute_type);
+                                nz[i] = buffer_peek(v_nz, buffer_attribute_size * normal, buffer_attribute_type);
+                                xtex[i] = (tex == -1) ? 0 : buffer_peek(v_xtex, buffer_attribute_size * tex,  buffer_attribute_type);
+                                ytex[i] = (tex == -1) ? 0 : buffer_peek(v_ytex, buffer_attribute_size * tex,  buffer_attribute_type);
+                                color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
+                                break;
                         }
+                    }
                         
-                        // faces are triangle fans
-                        for (var i = 2; i < s; i++) {
-                            buffer_write(face_vertex_attributes, face_attribute_type, xx[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, yy[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, zz[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nx[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ny[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nz[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[0]);
-                            buffer_write(face_vertex_attributes, color_attribute_type, color[0]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, xx[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, yy[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, zz[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nx[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ny[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nz[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[i - 1]);
-                            buffer_write(face_vertex_attributes, color_attribute_type, color[i - 1]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, xx[i]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, yy[i]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, zz[i]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nx[i]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ny[i]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, nz[i]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, xtex[i]);
-                            buffer_write(face_vertex_attributes, face_attribute_type, ytex[i]);
-                            buffer_write(face_vertex_attributes, color_attribute_type, color[i]);
-                            ds_list_add(face_vertex_materials, active_material);
-                        }
-                    } else {
-                        throw { message: "Malformed face found in " + filename_name(fn) + " (line " + string(line_number) + ")" };
+                    // faces are triangle fans
+                    for (var i = 2; i < s; i++) {
+                        buffer_write(face_vertex_attributes, face_attribute_type, xx[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, yy[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, zz[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, nx[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, ny[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, nz[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, xtex[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, ytex[0]);
+                        buffer_write(face_vertex_attributes, color_attribute_type, color[0]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, xx[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, yy[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, zz[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, nx[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, ny[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, nz[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, xtex[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, ytex[i - 1]);
+                        buffer_write(face_vertex_attributes, color_attribute_type, color[i - 1]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, xx[i]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, yy[i]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, zz[i]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, nx[i]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, ny[i]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, nz[i]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, xtex[i]);
+                        buffer_write(face_vertex_attributes, face_attribute_type, ytex[i]);
+                        buffer_write(face_vertex_attributes, color_attribute_type, color[i]);
+                        ds_list_add(face_vertex_materials, active_material);
                     }
                     #endregion
                     break;
@@ -388,7 +365,8 @@ function import_obj(fn, squash = false) {
                     break;
                 case "mtllib":  // specify the mtllib file
                     #region mtl data
-                    var material_file_name = ds_queue_concatenate(q);
+                    array_shift(line);
+                    var material_file_name = array_join(line);
                     
                     if (material_cache[$ material_file_name]) {
                         var keys = variable_struct_get_names(material_cache[$ material_file_name]);
@@ -410,54 +388,61 @@ function import_obj(fn, squash = false) {
                     while (!file_text_eof(matfile)) {
                         var line = file_text_read_string(matfile);
                         file_text_readln(matfile);
-                        var spl = split(line, " ");
-                        switch (ds_queue_dequeue(spl)) {
+                        if (line == "") continue;
+                        
+                        var material_tokens = string_split(line, " ", true);
+                        switch (material_tokens[0]) {
                             case "newmtl":
-                                var name = ds_queue_concatenate(spl);
+                                array_shift(material_tokens);
+                                var name = array_join(material_tokens);
                                 current_material = new Material(name)
                                 materials[$ name] = current_material;
                                 from_file[$ name] = current_material;
                                 break;
                             case "Kd":  // Diffuse color (the color we're concerned with)
                                 if (current_material) {
-                                    var cr = real(ds_queue_dequeue(spl)) * 255;
-                                    var cg = real(ds_queue_dequeue(spl)) * 255;
-                                    var cb = real(ds_queue_dequeue(spl)) * 255;
+                                    var cr = real(material_tokens[1]) * 255;
+                                    var cg = real(material_tokens[2]) * 255;
+                                    var cb = real(material_tokens[3]) * 255;
                                     current_material.col_diffuse = make_colour_rgb(cr, cg, cb);
                                 }
                                 break;
                             case "Ka":  // Ambient color
                                 if (current_material) {
-                                    var cr = real(ds_queue_dequeue(spl)) * 255;
-                                    var cg = real(ds_queue_dequeue(spl)) * 255;
-                                    var cb = real(ds_queue_dequeue(spl)) * 255;
+                                    var cr = real(material_tokens[1]) * 255;
+                                    var cg = real(material_tokens[2]) * 255;
+                                    var cb = real(material_tokens[3]) * 255;
                                     current_material.col_ambient = make_colour_rgb(cr, cg, cb);
                                 }
                                 break;
                             case "Ks":  // Specular color
                                 if (current_material) {
-                                    var cr = real(ds_queue_dequeue(spl)) * 255;
-                                    var cg = real(ds_queue_dequeue(spl)) * 255;
-                                    var cb = real(ds_queue_dequeue(spl)) * 255;
+                                    var cr = real(material_tokens[1]) * 255;
+                                    var cg = real(material_tokens[2]) * 255;
+                                    var cb = real(material_tokens[3]) * 255;
                                     current_material.col_specular = make_colour_rgb(cr, cg, cb);
                                 }
                                 break;
                             case "Ns":  // Specular exponent
                                 if (current_material) {
-                                    current_material.col_specular_exponent = real(ds_queue_dequeue(spl));
+                                    current_material.col_specular_exponent = real(material_tokens[1]);
                                 }
                                 break;
                             case "d":   // "dissolved" (alpha)
-                                current_material.alpha = real(ds_queue_dequeue(spl));
-                                break;
-                            case "Tr":  // "transparent" (1 - alpha)
+                            case "Tr":
                                 if (current_material) {
-                                    current_material.alpha = 1 - real(ds_queue_dequeue(spl));
+                                    // why can we never agree on this
+                                    if (material_tokens[0] == "Tr" && is_blender) {
+                                        current_material.alpha = 1 - real(material_tokens[1]);
+                                    } else {
+                                        current_material.alpha = real(material_tokens[1]);
+                                    }
                                 }
                                 break;
                             case "map_Kd":                  // dissolve (base) texture
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens)
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -467,7 +452,8 @@ function import_obj(fn, squash = false) {
                             case "map_Kn":                  // normal map texture
                             case "norm":
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_normal = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -475,7 +461,8 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_Ka":                  // ambient texture
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_ambient = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -483,7 +470,8 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_Ks":                  // specular color texture
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_specular_color = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -491,7 +479,8 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_Ns":                  // specular highlight texture
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_specular_highlight = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -499,7 +488,8 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_d":                   // alpha texture
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_alpha = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -508,7 +498,8 @@ function import_obj(fn, squash = false) {
                             case "map_bump":                // bump texture
                             case "bump":
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_bump = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -516,7 +507,8 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "disp":                    // displacement texture
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_displace = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -524,7 +516,8 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "decal":                   // stencil decal texture
                                 if (current_material) {
-                                    var texfn = ds_queue_concatenate(spl);
+                                    array_shift(material_tokens);
+                                    var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     current_material.tex_decal = tileset_create(texfn, filename_name(texfn)).GUID;
@@ -533,7 +526,6 @@ function import_obj(fn, squash = false) {
                             default:    // There are way more attributes available than I'm going to use later - maybe
                                 break;
                         }
-                        ds_queue_destroy(spl);
                     }
                     
                     file_text_close(matfile);
@@ -548,9 +540,7 @@ function import_obj(fn, squash = false) {
                     break;
             }
         }
-        ds_queue_destroy(q);
     }
-    file_text_close(f);
     #endregion
     
     var face_count = ds_list_size(face_vertex_materials);
@@ -605,7 +595,7 @@ function import_obj(fn, squash = false) {
     }
     
     if (max_alpha < 0.05 && !warn_invisible) {
-        emu_dialog_notice("All of the materials in this model have a very low alpha. If this is intentional, you can ignore this message. If this is otherwise due to a quirk of the tool used to create it, you can go into Materials and correct the transparency of each submesh as needed.");
+        emu_dialog_notice("All of the materials in this model have a very low alpha. If this is intentional, you can ignore this message. If this is otherwise due to a quirk of the tool used to create it, you can go into Materials and correct the transparency of each material's diffuse color as needed.");
         warn_invisible = true;
     }
     

@@ -327,46 +327,4 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
     self.GetWorldSpace = function(x, y) {
         return screen_to_world(x, y, self.view_mat, self.proj_mat, self.get_width(), self.get_height());
     };
-    
-    self.GetFrustum = function() {
-        var inverse_view = matrix_inverse(self.view_mat);
-        var inverse_proj = matrix_inverse(self.proj_mat);
-        var ndc_corner_ltn = new Vector4(-1, -1, -1, 1);
-        var ndc_corner_rtn = new Vector4( 1, -1, -1, 1);
-        var ndc_corner_lbn = new Vector4(-1,  1, -1, 1);
-        var ndc_corner_rbn = new Vector4( 1,  1, -1, 1);
-        var ndc_corner_ltf = new Vector4(-1, -1, 1, 1);
-        var ndc_corner_rtf = new Vector4( 1, -1, 1, 1);
-        var ndc_corner_lbf = new Vector4(-1,  1, 1, 1);
-        var ndc_corner_rbf = new Vector4( 1,  1, 1, 1);
-        
-        var view_corner_ltn_h = matrix_multiply_vec4(ndc_corner_ltn, inverse_proj);
-        var view_corner_rtn_h = matrix_multiply_vec4(ndc_corner_rtn, inverse_proj);
-        var view_corner_lbn_h = matrix_multiply_vec4(ndc_corner_lbn, inverse_proj);
-        var view_corner_rbn_h = matrix_multiply_vec4(ndc_corner_rbn, inverse_proj);
-        var view_corner_ltf_h = matrix_multiply_vec4(ndc_corner_ltf, inverse_proj);
-        var view_corner_rtf_h = matrix_multiply_vec4(ndc_corner_rtf, inverse_proj);
-        var view_corner_lbf_h = matrix_multiply_vec4(ndc_corner_lbf, inverse_proj);
-        var view_corner_rbf_h = matrix_multiply_vec4(ndc_corner_rbf, inverse_proj);
-        
-        var view_corner_ltn = view_corner_ltn_h.Mul(1 / view_corner_ltn_h.w);
-        var view_corner_rtn = view_corner_rtn_h.Mul(1 / view_corner_rtn_h.w);
-        var view_corner_lbn = view_corner_lbn_h.Mul(1 / view_corner_lbn_h.w);
-        var view_corner_rbn = view_corner_rbn_h.Mul(1 / view_corner_rbn_h.w);
-        var view_corner_ltf = view_corner_ltf_h.Mul(1 / view_corner_ltf_h.w);
-        var view_corner_rtf = view_corner_rtf_h.Mul(1 / view_corner_rtf_h.w);
-        var view_corner_lbf = view_corner_lbf_h.Mul(1 / view_corner_lbf_h.w);
-        var view_corner_rbf = view_corner_rbf_h.Mul(1 / view_corner_rbf_h.w);
-        
-        return {
-            ltn: matrix_multiply_vec4(view_corner_ltn, inverse_view),
-            rtn: matrix_multiply_vec4(view_corner_rtn, inverse_view),
-            lbn: matrix_multiply_vec4(view_corner_lbn, inverse_view),
-            rbn: matrix_multiply_vec4(view_corner_rbn, inverse_view),
-            ltf: matrix_multiply_vec4(view_corner_ltf, inverse_view),
-            rtf: matrix_multiply_vec4(view_corner_rtf, inverse_view),
-            lbf: matrix_multiply_vec4(view_corner_lbf, inverse_view),
-            rbf: matrix_multiply_vec4(view_corner_rbf, inverse_view),
-        };
-    };
 }

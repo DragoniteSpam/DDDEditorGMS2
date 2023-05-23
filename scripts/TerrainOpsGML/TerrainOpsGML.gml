@@ -52,32 +52,36 @@ function terrainops_flatten(data, vertex_data, height) {
     __terrainops_flatten(height);
 }
 
-function TERRAINOPS_BUILD_D3D(out) {
-    return __terrainops_build_d3d(buffer_get_address(out));
+function TERRAINOPS_BUILD_D3D(raw, length, out) {
+    return __terrainops_build_d3d(buffer_get_address(raw), length, buffer_get_address(out));
 }
 
-function TERRAINOPS_BUILD_OBJ(out) {
-    return __terrainops_build_obj(buffer_get_address(out));
+function TERRAINOPS_BUILD_OBJ(raw, length, out) {
+    return __terrainops_build_obj(buffer_get_address(raw), length, buffer_get_address(out));
 }
 
-function TERRAINOPS_BUILD_VBUFF(out) {
-    return __terrainops_build_vbuff(buffer_get_address(out));
+function TERRAINOPS_BUILD_VBUFF(raw, length, out) {
+    return __terrainops_build_vbuff(buffer_get_address(raw), length, buffer_get_address(out));
 }
 
 function TERRAINOPS_BUILD_INTERNAL(out) {
-    return __terrainops_build_vbuff(buffer_get_address(out));
+    return __terrainops_build_internal(buffer_get_address(out));
 }
 
-function terrainops_build_file(filename, builder_function, chunk_size, export_all, swap_zup, swap_uv, export_centered, density, save_scale, sprite, format = VertexFormatData.STANDARD, water_level = 0) {
+function terrainops_build_file(filename, reprocessor_function, chunk_size, export_all, swap_zup, swap_handedness, swap_uv, export_centered, density, save_scale, sprite, format, water_level, smooth_normals) {
     // we'll estimate a max of 144 characters per line, plus a kilobyte overhead
-    static output = buffer_create(1024, buffer_fixed, 1);
+    static raw_output = buffer_create(1024, buffer_fixed, 1);
+    static reprocessed = buffer_create(1024, buffer_fixed, 1);
     
     var w = Stuff.terrain.width;
     var h = Stuff.terrain.height;
     if (chunk_size == 0) chunk_size = min(1024, max(w, h));
-    buffer_resize(output, max(buffer_get_size(output), 1024 + 144 * 6 * chunk_size * chunk_size));
-    buffer_poke(output, 0, buffer_u32, 0);
-    buffer_poke(output, buffer_get_size(output) - 4, buffer_u32, 0);
+    buffer_resize(raw_output, max(buffer_get_size(raw_output), 1024 + 144 * 6 * chunk_size * chunk_size));
+    buffer_poke(raw_output, 0, buffer_u32, 0);
+    buffer_poke(raw_output, buffer_get_size(raw_output) - 4, buffer_u32, 0);
+    buffer_resize(reprocessed, max(buffer_get_size(reprocessed), 1024 + 144 * 6 * chunk_size * chunk_size));
+    buffer_poke(reprocessed, 0, buffer_u32, 0);
+    buffer_poke(reprocessed, buffer_get_size(reprocessed) - 4, buffer_u32, 0);
     
     var fn = filename_change_ext(filename, "");
     var ext = filename_ext(filename);
@@ -86,29 +90,34 @@ function terrainops_build_file(filename, builder_function, chunk_size, export_al
     
     var cscalemin = min(Stuff.terrain.color.width / w, Stuff.terrain.color.height / h);
     
-    __terrainops_build_settings(export_all, swap_zup, swap_uv, export_centered, density, save_scale, (Settings.terrain.tile_brush_size - 1) / sprite_get_width(Stuff.terrain.texture_image), cscalemin, format, water_level);
+    __terrainops_build_settings(export_all, swap_zup, swap_handedness, swap_uv, export_centered, density, save_scale, (Settings.terrain.tile_brush_size - 1) / sprite_get_width(Stuff.terrain.texture_image), cscalemin, format, water_level, smooth_normals);
     __terrainops_build_texture(buffer_get_address(texture_buffer));
     __terrainops_build_vertex_colour(buffer_get_address(colour_buffer));
     
-    var results = (builder_function == TERRAINOPS_BUILD_INTERNAL) ? [] : undefined;
+    var results = (reprocessor_function == TERRAINOPS_BUILD_INTERNAL) ? [] : undefined;
     
     for (var i = 0; i < w ; i += chunk_size) {
         for (var j = 0; j < h; j += chunk_size) {
             __terrainops_build_bounds(i, j, i + chunk_size, j + chunk_size);
-            var bytes = builder_function(output);
+            var raw_bytes = TERRAINOPS_BUILD_INTERNAL(raw_output);
             var key = string(i div chunk_size) + "_" + string(j div chunk_size);
-            if (builder_function == TERRAINOPS_BUILD_INTERNAL) {
+            
+            // if you're going to add it to the project, don't re-process the raw data
+            if (reprocessor_function == TERRAINOPS_BUILD_INTERNAL) {
                 var data = {
                     x: i,
                     y: j,
-                    name: key,
-                    buffer: buffer_create(bytes, buffer_fixed, 1),
+                    name: "Chunk " + key,
+                    buffer: buffer_create(raw_bytes, buffer_fixed, 1),
                 };
                 array_push(results, data);
-                buffer_copy(output, 0, bytes, data.buffer, 0);
+                buffer_copy(raw_output, 0, raw_bytes, data.buffer, 0);
+            // otherwise, take the raw data (containing the correct normals,
+            // alignment, etc) and reprocess it into a d3d, obj, etc
             } else {
+                var reprocessed_bytes = reprocessor_function(raw_output, raw_bytes, reprocessed);
                 var output_name = fn + ((chunk_size < w || chunk_size < h) ? ("." + key + ext) : ext);
-                buffer_save_async(output, output_name, 0, bytes);
+                buffer_save_ext(reprocessed, output_name, 0, reprocessed_bytes);
             }
         }
     }

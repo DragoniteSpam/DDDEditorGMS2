@@ -1,11 +1,10 @@
 {
-  "type": 1,
+  "resourceType": "GMShader",
+  "resourceVersion": "1.0",
+  "name": "shd_utility_wireframe",
   "parent": {
     "name": "Wireframe",
     "path": "folders/Shaders/Utility/Wireframe.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "shd_utility_wireframe",
-  "tags": [],
-  "resourceType": "GMShader",
+  "type": 1,
 }

@@ -150,7 +150,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         draw_clear(GetInteractive() ? self.color_back (): self.color_disabled());
         surface_reset_target();
         
-        var display_text = _working_value + (isActiveElement() && (floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
+        var display_text = _working_value + (isActiveElement() && (floor((current_time * 0.0025) % 2) == 0) ? "|" : "");
         
         if (_multi_line) {
             // i guess you could draw this in a single-line box too, but it would be pretty cramped

@@ -110,9 +110,10 @@ function Entity(source) constructor {
     };
     
     self.ExportBase = function(buffer) {
-        buffer_write(buffer, buffer_u32, self.is_static);
+        //buffer_write(buffer, buffer_u32, self.is_static);
+        buffer_write(buffer, buffer_u32, false);
         
-        if (self.is_static) return false;
+        //if (self.is_static) return false;
         
         buffer_write(buffer, buffer_u32, self.etype);
         buffer_write(buffer, buffer_string, self.name);
@@ -411,7 +412,7 @@ function EntityEffect(source) : Entity(source) constructor {
         var map = Stuff.map.active_map;
         var map_contents = map.contents;
         
-        var light_index = array_search(map.lights, self.REFID);
+        var light_index = array_get_index(map.lights, self.REFID);
         if (light_index != -1) {
             map.lights[@ light_index] = NULL;
         }

@@ -42,7 +42,7 @@ function dialog_create_data_types() {
                 }
                 
                 self.Deselect();
-                self.Select(array_search(Game.data, selection), true);
+                self.Select(array_get_index(Game.data, selection), true);
             })
             .SetListColors(function(index) {
                 return (self.At(index).type == DataTypes.ENUM) ? c_aqua : c_white;

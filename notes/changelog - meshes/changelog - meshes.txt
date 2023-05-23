@@ -1,8 +1,30 @@
 Another changelog.
 
-# Changes in 2022.0.6
+# Changes in 2023.2
+
+ - penguin_load
+     - Optional parameter for freezing loaded vertex buffers, defaults to true
+     - You can now load some of the basic collision shapes (see below)
+ - Enabled collision shapes in the mesh editor
+     - Currently you can define spheres and AABBs; I may or may not add more later
+     - If you're using the import scripts, they're included in those (see the documentation for the import scripts)
+ - Reload from source: meshes/submeshes remember the file they were loaded from
+     - There's a nice easy button for reloading a submesh from the source file, in case you made changes and want to update them in the game
+ - Replaced a few functions that now have built-in versions (string splitting, etc), which gives a minor speed boost in some places
+     - Actually, obj importing has been sped up by quite a lot; however, there have been a lot of changes, and while I've made sure a few basic test shapes still work, if any obj files that used to work now fail, let me know
+ - Fixed the axis colors (red = x, green = y, z = blue) so that they're in line with the colors pretty much everyone else uses
+ - The cursor flashes a little faster, I found it got lost sometimes at a period of two seconds
+
+ - Removed a few crashes, mostly related to deleting meshes from a project
+
+To do:
+
+ - Operations affecting meshes such as transformations, mirror, scale, etc should also affect their collision shapes
+
+# Changes in 2022.0.5.90
 
  - Fixed "combine submeshes" prepending a bunch of empty vertices
+ - Fixed "export obj" crashing
 
 # Changes in 2022.0.5
 

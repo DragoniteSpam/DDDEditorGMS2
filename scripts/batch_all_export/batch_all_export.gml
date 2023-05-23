@@ -8,6 +8,7 @@ function batch_all_export(map, chunk_size) {
     for (var index = 0; index < ds_list_size(contents.all_entities); index++) {
         var thing = contents.all_entities[| index];
         if (!thing.is_static) continue;
+        continue;
         
         var bounds = thing.get_bounding_box().Chunk(chunk_size);
         for (var i = bounds.x1; i <= bounds.x2; i++) {
