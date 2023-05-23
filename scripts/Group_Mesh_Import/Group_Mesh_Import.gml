@@ -441,6 +441,7 @@ function import_obj(fn, squash = false) {
                                 break;
                             case "map_Kd":                  // dissolve (base) texture
                                 if (current_material) {
+                                    array_shift(material_tokens)
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
