@@ -17,6 +17,10 @@ Another changelog.
 
  - Removed a few crashes, mostly related to deleting meshes from a project
 
+To do:
+
+ - Operations affecting meshes such as transformations, mirror, scale, etc should also affect their collision shapes
+
 # Changes in 2022.0.5.90
 
  - Fixed "combine submeshes" prepending a bunch of empty vertices
