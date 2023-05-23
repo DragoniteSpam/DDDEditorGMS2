@@ -81,7 +81,7 @@ function EditorGraphics() constructor {
         var mat_rot = matrix_multiply(mat_scale, matrix_build(0, 0, 0, xr, yr, zr, 1, 1, 1));
         var mat = matrix_multiply(mat_rot, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
         var mat_source = matrix_get(matrix_world);
-        matrix_set(matrix_world, matrix_multiply(mat_source, mat));
+        matrix_set(matrix_world, matrix_multiply(mat, mat_source));
         var shader = shader_current();
         var cull = gpu_get_cullmode();
         gpu_set_cullmode(cull_noculling);
@@ -99,6 +99,7 @@ function EditorGraphics() constructor {
         var mat_rot = matrix_multiply(mat_scale, matrix_build(0, 0, 0, xr, yr, zr, 1, 1, 1));
         var mat = matrix_multiply(mat_rot, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
         var mat_source = matrix_get(matrix_world);
+        matrix_set(matrix_world, matrix_multiply(mat, mat_source));
         var shader = shader_current();
         var cull = gpu_get_cullmode();
         gpu_set_cullmode(cull_noculling);
@@ -116,6 +117,7 @@ function EditorGraphics() constructor {
         var mat_rot = matrix_multiply(mat_scale, matrix_build(0, 0, 0, xr, yr, zr, 1, 1, 1));
         var mat = matrix_multiply(mat_rot, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
         var mat_source = matrix_get(matrix_world);
+        matrix_set(matrix_world, matrix_multiply(mat, mat_source));
         var shader = shader_current();
         var cull = gpu_get_cullmode();
         gpu_set_cullmode(cull_noculling);
