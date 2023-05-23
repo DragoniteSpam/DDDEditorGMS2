@@ -12,6 +12,10 @@ Another changelog.
      - There's a nice easy button for reloading a submesh from the source file, in case you made changes and want to update them in the game
  - Replaced a few functions that now have built-in versions (string splitting, etc), which gives a minor speed boost in some places
      - Actually, obj importing has been sped up by quite a lot; however, there have been a lot of changes, and while I've made sure a few basic test shapes still work, if any obj files that used to work now fail, let me know
+ - Fixed the axis colors (red = x, green = y, z = blue) so that they're in line with the colors pretty much everyone else uses
+ - The cursor flashes a little faster, I found it got lost sometimes at a period of two seconds
+
+ - Removed a few crashes, mostly related to deleting meshes from a project
 
 # Changes in 2022.0.5.90
 

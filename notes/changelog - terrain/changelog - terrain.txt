@@ -1,6 +1,10 @@
 Yeah I really should get better at maintaining this. See the documentation for more details:
 https://github.com/DragoniteSpam/Documentation/wiki/TerrainOps
 
+# Changes in <new version>
+
+ - The cursor flashes a little faster, I found it got lost sometimes at a period of two seconds
+
 # Changes in 2022.12
 
  - Can export smooth normals
