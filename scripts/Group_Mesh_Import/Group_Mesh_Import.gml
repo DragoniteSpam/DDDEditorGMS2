@@ -426,11 +426,14 @@ function import_obj(fn, squash = false) {
                                 }
                                 break;
                             case "d":   // "dissolved" (alpha)
-                                current_material.alpha = real(material_tokens[1]);
-                                break;
-                            case "Tr":  // "transparent" (1 - alpha)
+                            case "Tr":
                                 if (current_material) {
-                                    current_material.alpha = 1 - real(material_tokens[1]);
+                                    // why can we never agree on this
+                                    if (material_tokens[0] == "Tr" && is_blender) {
+                                        current_material.alpha = 1 - real(material_tokens[1]);
+                                    } else {
+                                        current_material.alpha = real(material_tokens[1]);
+                                    }
                                 }
                                 break;
                             case "map_Kd":                  // dissolve (base) texture
@@ -588,7 +591,7 @@ function import_obj(fn, squash = false) {
     }
     
     if (max_alpha < 0.05 && !warn_invisible) {
-        emu_dialog_notice("All of the materials in this model have a very low alpha. If this is intentional, you can ignore this message. If this is otherwise due to a quirk of the tool used to create it, you can go into Materials and correct the transparency of each submesh as needed.");
+        emu_dialog_notice("All of the materials in this model have a very low alpha. If this is intentional, you can ignore this message. If this is otherwise due to a quirk of the tool used to create it, you can go into Materials and correct the transparency of each material's diffuse color as needed.");
         warn_invisible = true;
     }
     

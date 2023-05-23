@@ -1,6 +1,6 @@
 Another changelog.
 
-# Changes in 2023.1
+# Changes in 2023.2
 
  - penguin_load
      - Optional parameter for freezing loaded vertex buffers, defaults to true
