@@ -360,7 +360,7 @@ function DataMesh(source) : SData(source) constructor {
             buffer_write(buffer, buffer_f32, shape.position.z);
             switch (shape.type) {
                 case MeshCollisionShapes.BOX:
-                    var transform = matrix_build(0, 0, 0, shape.rotation.x, shape.rotation.y, shape.rotation.z, 1, 1, 1);
+                    var transform = matrix_build(0, 0, 0, -shape.rotation.x, -shape.rotation.y, -shape.rotation.z, 1, 1, 1);
                     buffer_write(buffer, buffer_f32, transform[0]);
                     buffer_write(buffer, buffer_f32, transform[1]);
                     buffer_write(buffer, buffer_f32, transform[2]);
