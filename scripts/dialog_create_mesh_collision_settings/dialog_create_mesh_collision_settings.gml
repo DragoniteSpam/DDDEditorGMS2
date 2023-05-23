@@ -158,18 +158,24 @@ function dialog_create_mesh_collision_settings(mesh) {
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].position.x = real(self.value);
         }))
+            .SetNext("TRANS Y")
+            .SetPrevious("TRANS Z")
             .SetRealNumberBounds(-9999, 9999)
             .SetID("TRANS X")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].position.y = real(self.value);
         }))
+            .SetNext("TRANS Z")
+            .SetPrevious("TRANS X")
             .SetRealNumberBounds(-9999, 9999)
             .SetID("TRANS Y")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].position.z = real(self.value);
         }))
+            .SetNext("TRANS X")
+            .SetPrevious("TRANS Y")
             .SetRealNumberBounds(-9999, 9999)
             .SetID("TRANS Z")
             .SetInteractive(false),
@@ -177,18 +183,24 @@ function dialog_create_mesh_collision_settings(mesh) {
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].rotation.x = real(self.value);
         }))
+            .SetNext("ROT Y")
+            .SetPrevious("ROT Z")
             .SetRealNumberBounds(0, 360)
             .SetID("ROT X")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].rotation.y = real(self.value);
         }))
+            .SetNext("ROT Z")
+            .SetPrevious("ROT X")
             .SetRealNumberBounds(0, 360)
             .SetID("ROT Y")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].rotation.z = real(self.value);
         }))
+            .SetNext("ROT X")
+            .SetPrevious("ROT Y")
             .SetRealNumberBounds(0, 360)
             .SetID("ROT Z")
             .SetInteractive(false),
@@ -196,18 +208,24 @@ function dialog_create_mesh_collision_settings(mesh) {
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    x:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].scale.x = real(self.value);
         }))
+            .SetNext("SCALE Y")
+            .SetPrevious("SCALE Z")
             .SetRealNumberBounds(0.001, 9999)
             .SetID("SCALE X")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    y:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].scale.y = real(self.value);
         }))
+            .SetNext("SCALE Z")
+            .SetPrevious("SCALE X")
             .SetRealNumberBounds(0.001, 9999)
             .SetID("SCALE Y")
             .SetInteractive(false),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    z:", "", "", 6, E_InputTypes.REAL, function() {
             self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].scale.z = real(self.value);
         }))
+            .SetNext("SCALE X")
+            .SetPrevious("SCALE Y")
             .SetRealNumberBounds(0.001, 9999)
             .SetID("SCALE Z")
             .SetInteractive(false),
