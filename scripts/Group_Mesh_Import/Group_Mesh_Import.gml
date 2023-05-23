@@ -237,6 +237,7 @@ function import_obj(fn, squash = false) {
     #region parse the obj file
     for (var line_index = 0, line_count = array_length(lines); line_index < line_count; line_index++) {
         var str = string_trim(lines[line_index]);
+        if (str == "") continue;
         
         if (!first_line_read) {
             is_blender = (string_count("Blender", str) > 0);
@@ -387,6 +388,8 @@ function import_obj(fn, squash = false) {
                     while (!file_text_eof(matfile)) {
                         var line = file_text_read_string(matfile);
                         file_text_readln(matfile);
+                        if (line == "") continue;
+                        
                         var material_tokens = string_split(line, " ", true);
                         switch (material_tokens[0]) {
                             case "newmtl":
