@@ -27,6 +27,7 @@ function EditorGraphics() constructor {
         
         meshops_init(self.format_size);
         show_debug_message("MeshOps version: " + string(meshops_version()));
+        show_debug_message("AssOps version: " + string(assops_version()));
         
         vertex_format_begin();
         vertex_format_add_position_3d();
