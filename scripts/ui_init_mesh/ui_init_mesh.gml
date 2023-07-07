@@ -36,12 +36,7 @@ function ui_init_mesh(mode) {
                     // try to import the file as a 3D mesh; if that doesn't work,
                     // import it as a texture instead
                     switch (string_lower(filename_ext(file_list[i]))) {
-                        case ".d3d":
-                        case ".gmmod":
-                        case ".obj":
-                        case ".mtl":
-                        case ".dae":
-                        case ".smf":
+                        case ".d3d": case ".gmmod": case ".obj": case ".mtl":
                             if (combine_all) {
                                 if (first_mesh) {
                                     first_mesh.AddSubmeshFromFile(file_list[i]);
@@ -53,6 +48,8 @@ function ui_init_mesh(mode) {
                             }
                             n++;
                             break;
+                        case ".dae": case ".smf": case ".fbx": case ".3ds": case ".gltf": case ".glb": case ".ply": case ".plyb":
+                            break;
                         default:
                             import_texture(file_list[i]);
                             break;
@@ -63,11 +60,7 @@ function ui_init_mesh(mode) {
                 }
             };
             
-            var filter_array = [".d3d", ".gmmod", ".obj", ".mtl", ".png", ".bmp", ".jpg", ".jpeg"];
-            // we can add these back in later when they're working
-            if (!IS_MESH_MODE) {
-                array_push(filter_array, ".dae", ".smf");
-            }
+            static filter_array = [".d3d", ".gmmod", ".obj", ".mtl", ".png", ".bmp", ".jpg", ".jpeg", ".fbx", ".dae", ".gltf", ".glb", ".3ds", ".ply", ".plyb"/*, ".smf"*/];
             
             var filtered_list = self.Filter(files, filter_array);
             

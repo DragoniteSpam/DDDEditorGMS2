@@ -31,7 +31,15 @@ function import_3d_model_generic(filename, squash = false) {
             case ".mtl": return import_obj(filename_change_ext(filename, ".obj"), squash);
             case ".obj": return import_obj(filename, squash);
             case ".d3d": case ".gmmod": return import_d3d(filename);
-            case ".smf": 
+            case ".smf": return undefined;
+            
+            case ".fbx": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
+            case ".3ds": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
+            case ".dae": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
+            case ".gltf": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
+            case ".glb": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
+            case ".ply": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
+            case ".plyb": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
         }
     } catch (e) {
         Stuff.AddStatusMessage("Could not load the file: [c_orange]" + e.message);
