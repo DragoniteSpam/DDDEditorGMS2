@@ -56,6 +56,7 @@ function ui_init_mesh(mode) {
                             break;
                     }
                 }
+                assimp_convert_all_obj();
                 if (n > 0) {
                     Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
                 }

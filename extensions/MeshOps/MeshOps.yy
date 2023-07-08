@@ -236,6 +236,7 @@
             1,
             1,
           ],"documentation":"","externalName":"add_file","help":"assops_add_file(input_filename, output_filename)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assimp_convert_all_obj","argCount":0,"args":[],"documentation":"","externalName":"convert_all_obj","help":"assimp_convert_all_obj","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"assimp-vc143-mt.dll","final":"","functions":[],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],
