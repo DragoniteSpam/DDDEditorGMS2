@@ -33,19 +33,26 @@ function import_3d_model_generic(filename, squash = false) {
             case ".d3d": case ".gmmod": return import_d3d(filename);
             case ".smf": return undefined;
             
-            case ".fbx": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
-            case ".3ds": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
-            case ".dae": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
-            case ".gltf": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
-            case ".glb": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
-            case ".ply": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
-            case ".plyb": assops_convert_obj(filename, filename_change_ext(filename, ".obj")); return undefined;
+            case ".fbx": import_3d_exotic(filename); return undefined;
+            case ".3ds": import_3d_exotic(filename); return undefined;
+            case ".dae": import_3d_exotic(filename); return undefined;
+            case ".gltf": import_3d_exotic(filename); return undefined;
+            case ".glb": import_3d_exotic(filename); return undefined;
+            case ".ply": import_3d_exotic(filename); return undefined;
+            case ".plyb": import_3d_exotic(filename); return undefined;
         }
     } catch (e) {
         Stuff.AddStatusMessage("Could not load the file: [c_orange]" + e.message);
         show_debug_message(json_stringify(e, true));
     }
     return undefined;
+}
+
+function import_3d_exotic(filename) {
+    if (!directory_exists(PATH_ASSIMP_CONVERSION)) directory_create(PATH_ASSIMP_CONVERSION);
+    var hash = sha1_string_utf8(filename);
+    var output_filename = PROJECT_PATH_ROOT + PATH_ASSIMP_CONVERSION + "/" + hash + ".obj";
+    assops_add_file(filename, output_filename);
 }
 
 function import_d3d(filename) {

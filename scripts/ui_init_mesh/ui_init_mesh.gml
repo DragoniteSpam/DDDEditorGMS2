@@ -49,6 +49,7 @@ function ui_init_mesh(mode) {
                             n++;
                             break;
                         case ".dae": case ".smf": case ".fbx": case ".3ds": case ".gltf": case ".glb": case ".ply": case ".plyb":
+                            import_3d_exotic(file_list[i]);
                             break;
                         default:
                             import_texture(file_list[i]);

@@ -232,10 +232,10 @@
       ],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"AssimpOperations.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_version","argCount":0,"args":[],"documentation":"","externalName":"version","help":"assops_version()","hidden":false,"kind":1,"returnType":1,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_test_convert_fbx","argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_add_file","argCount":0,"args":[
             1,
             1,
-          ],"documentation":"","externalName":"test_convert_fbx","help":"assops_test_convert_fbx(input, output)","hidden":false,"kind":1,"returnType":2,},
+          ],"documentation":"","externalName":"add_file","help":"assops_add_file(input_filename, output_filename)","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"assimp-vc143-mt.dll","final":"","functions":[],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],

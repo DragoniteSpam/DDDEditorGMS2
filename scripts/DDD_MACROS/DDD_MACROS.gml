@@ -89,6 +89,7 @@
 #macro PATH_TEMP                            "temp/"                             // local storage - no leading punctuation - used for opening files
 #macro PATH_AUDIO                           "audio/"                            // local storage - no leading punctuation - used for opening files
 #macro PATH_TERRAIN                         "terrain/"
+#macro PATH_ASSIMP_CONVERSION               "temp/assimp"                       // local storage - assimp may put temporary files here
 #macro MAP_ACTIVE_TILESET                   (guid_get(Stuff.map.active_map.tileset) ?? Game.graphics.tilesets[0])
 #macro TEXTURE_WIDTH                        sprite_get_width(MAP_ACTIVE_TILESET.picture)
 #macro TEXTURE_HEIGHT                       sprite_get_height(MAP_ACTIVE_TILESET.picture)
