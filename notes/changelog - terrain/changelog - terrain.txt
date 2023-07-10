@@ -4,6 +4,7 @@ https://github.com/DragoniteSpam/Documentation/wiki/TerrainOps
 # Changes in <new version>
 
  - The cursor flashes a little faster, I found it got lost sometimes at a period of two seconds
+ - Updated Scribble to 8.7
 
 # Changes in 2022.12
 

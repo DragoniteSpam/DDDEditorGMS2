@@ -9,6 +9,8 @@ Another changelog.
          - Performance could be better
          - This is the full list of 3D file formats that assimp can understand: https://assimp-docs.readthedocs.io/en/latest/usage/use_the_lib.html#exporting-models
             I've only implemented the most common ones in GML. If you need one that's not there for some reason, I'll add it
+ - Updated Scribble to 8.7
+ - The text cursor flashes a little faster, I found it got lost sometimes at a period of two seconds
 
 # Changes in 2023.2
 
