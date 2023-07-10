@@ -5,14 +5,21 @@
 function __scribble_class_font(_name, _glyph_count, _msdf) constructor
 {
     __name = _name;
-    global.__scribble_font_data[? _name] = self;
+    
+    static _font_data_map = __scribble_get_font_data_map();
+    _font_data_map[? _name] = self;
     
     __glyph_data_grid = ds_grid_create(_glyph_count, SCRIBBLE_GLYPH.__SIZE);
     __glyphs_map = ds_map_create();
+    __kerning_map = ds_map_create();
     
-    __msdf         = _msdf;
-    __msdf_pxrange = undefined;
-    __superfont    = false;
+    __is_krutidev = false;
+    
+    __msdf          = _msdf;
+    __msdf_pxrange  = undefined;
+    __superfont     = false;
+    __runtime       = false;
+    __source_sprite = undefined;
     
     __scale  = 1.0;
     __height = 0; //*Not* the raw height. This value is changed by scribble_font_scale()
@@ -22,7 +29,7 @@ function __scribble_class_font(_name, _glyph_count, _msdf) constructor
     __style_italic      = undefined;
     __style_bold_italic = undefined;
     
-    static __copy_to = function(_target)
+    static __copy_to = function(_target, _copy_styles)
     {
         var _names = variable_struct_get_names(self);
         var _i = 0;
@@ -37,7 +44,7 @@ function __scribble_class_font(_name, _glyph_count, _msdf) constructor
             {
                 ds_grid_copy(_target.__glyph_data_grid, __glyph_data_grid);
             }
-            else if ((_name != "__name") && (_name != "__style_regular") && (_name != "__style_bold") && (_name != "__style_italic") && (_name != "__style_bold_italic"))
+            else if ((_name != "__name") && (_copy_styles || ((_name != "__style_regular") && (_name != "__style_bold") && (_name != "__style_italic") && (_name != "__style_bold_italic"))))
             {
                 variable_struct_set(_target, _name, variable_struct_get(self, _name));
             }
@@ -64,12 +71,20 @@ function __scribble_class_font(_name, _glyph_count, _msdf) constructor
         __height = 0;
     }
     
-    //Unused as of 2021-11-11. Not sure how many problems this would cause if it was enabled
     static __destroy = function()
     {
         if (__SCRIBBLE_DEBUG) __scribble_trace("Destroying font \"", __name, "\"");
+        
         ds_map_destroy(__glyphs_map);
         ds_grid_destroy(__glyph_data_grid);
-        ds_map_delete(global.__scribble_font_data, name);
+        
+        static _font_data_map = __scribble_get_font_data_map();
+        ds_map_delete(_font_data_map, __name);
+        
+        if (__source_sprite != undefined)
+        {
+            sprite_delete(__source_sprite);
+            __source_sprite = undefined;
+        }
     }
 }

@@ -1,6 +1,6 @@
-function __scribble_system_glyph_data()
+function __scribble_get_glyph_data()
 {
-    global.__scribble_glyph_data = {
+    static _struct = {
         __bidi_map   : ds_map_create(),
         __mirror_map : ds_map_create(),
         
@@ -17,7 +17,14 @@ function __scribble_system_glyph_data()
         __thai_top_map            : ds_map_create(),
         __thai_lower_map          : ds_map_create(),
         __thai_upper_map          : ds_map_create(),
-    }
+    };
+    
+    return _struct;
+}
+
+function __scribble_glyph_data_initialize()
+{
+    var _data_struct = __scribble_get_glyph_data();
     
     
     
@@ -28,12 +35,14 @@ function __scribble_system_glyph_data()
         WHITESPACE = 0, //Must be 0 for the sake of __scribble_gen_6_finalize_bidi()
         SYMBOL     = 1, //Must be 1 for the sake of __scribble_gen_6_finalize_bidi()
         ISOLATED,       //More of a layout property - .ISOLATED words get converted to .L2R when building words
+        ISOLATED_CJK,
         L2R,
+        L2R_DEVANAGARI,
         R2L,
         R2L_ARABIC, //Cursive. Animation indexes are calculated per word
     }
     
-    var _map = global.__scribble_glyph_data.__bidi_map;
+    var _map = _data_struct.__bidi_map;
     _map[? __SCRIBBLE_GLYPH_SPRITE ] = __SCRIBBLE_BIDI.SYMBOL;
     _map[? __SCRIBBLE_GLYPH_SURFACE] = __SCRIBBLE_BIDI.SYMBOL;
     for(var _i = 0x0000; _i <= 0x0009; _i++) _map[? _i] = __SCRIBBLE_BIDI.SYMBOL;
@@ -71,8 +80,11 @@ function __scribble_system_glyph_data()
     _map[? ord(".") ] = __SCRIBBLE_BIDI.SYMBOL;
     _map[? ord("/") ] = __SCRIBBLE_BIDI.SYMBOL;
     _map[? ord(":") ] = __SCRIBBLE_BIDI.SYMBOL;
+    _map[? ord("-") ] = __SCRIBBLE_BIDI.SYMBOL;
     
     //More control characters
+    _map[? $200E] = __SCRIBBLE_BIDI.L2R; //Left-to-right mark
+    _map[? $200F] = __SCRIBBLE_BIDI.R2L; //Right-to-left mark
     _map[? $2066] = __SCRIBBLE_BIDI.WHITESPACE;
     _map[? $2067] = __SCRIBBLE_BIDI.WHITESPACE;
     _map[? $2068] = __SCRIBBLE_BIDI.WHITESPACE;
@@ -89,13 +101,14 @@ function __scribble_system_glyph_data()
     _map[? $066C] = __SCRIBBLE_BIDI.R2L; //Arabic thousands separator
     for(var _i = 0x0590; _i <= 0x05FF; _i++) _map[? _i] = __SCRIBBLE_BIDI.R2L; //Hebrew block
     for(var _i = 0x0600; _i <= 0x06FF; _i++) _map[? _i] = __SCRIBBLE_BIDI.R2L_ARABIC; //Arabic block
+    for(var _i = 0x0900; _i <= 0x097F; _i++) _map[? _i] = __SCRIBBLE_BIDI.L2R_DEVANAGARI; //Hindi block
     for(var _i = 0xFB50; _i <= 0xFDFF; _i++) _map[? _i] = __SCRIBBLE_BIDI.R2L_ARABIC; //Arabic presentation forms A
     for(var _i = 0xFE70; _i <= 0xFEFF; _i++) _map[? _i] = __SCRIBBLE_BIDI.R2L_ARABIC; //Arabic presentation forms B
     
     
     
     //As per https://www.unicode.org/Public/UCD/latest/ucd/BidiMirroring.txt
-    var _map = global.__scribble_glyph_data.__mirror_map;
+    var _map = _data_struct.__mirror_map;
     _map[? ord("(")] = ord(")");
     _map[? ord(")")] = ord("(");
     _map[? ord("<")] = ord(">");
@@ -111,10 +124,16 @@ function __scribble_system_glyph_data()
     
     #region Arabic Presentation Forms
     
-    var _map_i = global.__scribble_glyph_data.__arabic_isolated_map;
-    var _map_a = global.__scribble_glyph_data.__arabic_initial_map;
-    var _map_b = global.__scribble_glyph_data.__arabic_medial_map;
-    var _map_c = global.__scribble_glyph_data.__arabic_final_map;
+    var _map_i = _data_struct.__arabic_isolated_map;
+    var _map_a = _data_struct.__arabic_initial_map;
+    var _map_b = _data_struct.__arabic_medial_map;
+    var _map_c = _data_struct.__arabic_final_map;
+    
+    //Hamza
+    _map_i[? 0x0621] = 0xFE80; //Isolated
+    _map_c[? 0x0621] = 0xFE80; //Final
+    _map_b[? 0x0621] = 0xFE80; //Medial
+    _map_a[? 0x0621] = 0xFE80; //Initial
     
     //Alef with madda above
     _map_i[? 0x0622] = 0xFE81; //Isolated
@@ -266,6 +285,12 @@ function __scribble_system_glyph_data()
     _map_b[? 0x063A] = 0xFED0; //Medial
     _map_a[? 0x063A] = 0xFECF; //Initial
     
+    //Tatweel - Elongation symbol
+    _map_i[? 0x0640] = 0x0640; //Isolated
+    _map_c[? 0x0640] = 0x0640; //Final
+    _map_b[? 0x0640] = 0x0640; //Medial
+    _map_a[? 0x0640] = 0x0640; //Initial
+    
     //Feh
     _map_i[? 0x0641] = 0xFED1; //Isolated
     _map_c[? 0x0641] = 0xFED2; //Final
@@ -372,12 +397,12 @@ function __scribble_system_glyph_data()
     
     #region Arabic join direction
     
-    var _map_prev = global.__scribble_glyph_data.__arabic_join_prev_map;
-    var _map_next = global.__scribble_glyph_data.__arabic_join_next_map;
-    var _map_i    = global.__scribble_glyph_data.__arabic_isolated_map;
-    var _map_a    = global.__scribble_glyph_data.__arabic_initial_map;
-    var _map_b    = global.__scribble_glyph_data.__arabic_medial_map;
-    var _map_c    = global.__scribble_glyph_data.__arabic_final_map;
+    var _map_prev = _data_struct.__arabic_join_prev_map;
+    var _map_next = _data_struct.__arabic_join_next_map;
+    var _map_i    = _data_struct.__arabic_isolated_map;
+    var _map_a    = _data_struct.__arabic_initial_map;
+    var _map_b    = _data_struct.__arabic_medial_map;
+    var _map_c    = _data_struct.__arabic_final_map;
     
     var _arabic_array = ds_map_keys_to_array(_map_i);
     var _i = 0;
@@ -394,41 +419,45 @@ function __scribble_system_glyph_data()
         ++_i;
     }
     
+    //Tatweel can always connect in both directions
+    _map_prev[? 0x640] = true;
+    _map_next[? 0x640] = true;
+    
     #endregion
     
     
     
     #region Thai
     
-    var _map = global.__scribble_glyph_data.__thai_base_map;
+    var _map = _data_struct.__thai_base_map;
     for(var _i = 0x0E01; _i <= 0x0E2F; _i++) _map[? _i] = true;
     _map[? 0x0E30] = true;
     _map[? 0x0E40] = true;
     _map[? 0x0E41] = true;
     
-    var _map = global.__scribble_glyph_data.__thai_base_descender_map;
+    var _map = _data_struct.__thai_base_descender_map;
     _map[? 0x0E0E] = true;
     _map[? 0x0E0F] = true;
     
-    var _map = global.__scribble_glyph_data.__thai_base_ascender_map;
+    var _map = _data_struct.__thai_base_ascender_map;
     _map[? 0x0E1B] = true;
     _map[? 0x0E1D] = true;
     _map[? 0x0E1F] = true;
     _map[? 0x0E2C] = true;
     
-    var _map = global.__scribble_glyph_data.__thai_top_map;
+    var _map = _data_struct.__thai_top_map;
     _map[? 0x0E48] = true;
     _map[? 0x0E49] = true;
     _map[? 0x0E4A] = true;
     _map[? 0x0E4B] = true;
     _map[? 0x0E4C] = true;
     
-    var _map = global.__scribble_glyph_data.__thai_lower_map;
+    var _map = _data_struct.__thai_lower_map;
     _map[? 0x0E38] = true;
     _map[? 0x0E39] = true;
     _map[? 0x0E3A] = true;
     
-    var _map = global.__scribble_glyph_data.__thai_upper_map;
+    var _map = _data_struct.__thai_upper_map;
     _map[? 0x0E31] = true;
     _map[? 0x0E34] = true;
     _map[? 0x0E35] = true;
