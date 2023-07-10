@@ -1,5 +1,5 @@
 // Generated from: http://web.archive.org/web/20210303185939/https://www.computerhope.com/htmcolor.htm
-#macro c_black                          0x000000
+//#macro c_black                          0x000000
 #macro c_night                          0x0a090c
 #macro c_gunmetal                       0x39352c
 #macro c_midnight                       0x171b2b
@@ -17,7 +17,7 @@
 #macro c_ash_gray                       0x626366
 #macro c_cloudy_gray                    0x68696d
 #macro c_smokey_gray                    0x6d6e72
-#macro c_gray                           0x6e6f73
+//#macro c_gray                           0x6e6f73
 #macro c_granite                        0x7c7e83
 #macro c_battleship_gray                0x828484
 #macro c_gray_cloud                     0xb4b6b6
@@ -108,7 +108,7 @@
 #macro c_greenish_blue                  0x7e7d30
 #macro c_grayish_turquoise              0x7e7d5e
 #macro c_beetle_green                   0x7e784c
-#macro c_teal                           0x808000
+//#macro c_teal                           0x808000
 #macro c_sea_green                      0x75894e
 #macro c_camouflage_green               0x6b8678
 #macro c_sage_green                     0x798b84
@@ -147,7 +147,7 @@
 #macro c_stoplight_go_green             0x64e957
 #macro c_algae_green                    0x86e964
 #macro c_jade_green                     0x6efb5e
-#macro c_green                          0x00ff00
+//#macro c_green                          0x00ff00
 #macro c_emerald_green                  0x17fb5f
 #macro c_lawn_green                     0x17f787
 #macro c_chartreuse                     0x17fb8a
@@ -161,7 +161,7 @@
 #macro c_goldenrod                      0x74daed
 #macro c_harvest_gold                   0x75e2ed
 #macro c_sun_yellow                     0x7ce8ff
-#macro c_yellow                         0x00ffff
+//#macro c_yellow                         0x00ffff
 #macro c_corn_yellow                    0x80f3ff
 #macro c_parchment                      0xc2ffff
 #macro c_cream                          0xccffff
@@ -236,7 +236,7 @@
 #macro c_bean_red                       0x595df7
 #macro c_valentine_red                  0x5154e5
 #macro c_shocking_orange                0x3c5be5
-#macro c_red                            0x0000ff
+//#macro c_red                            0x0000ff
 #macro c_scarlet                        0x0024ff
 #macro c_ruby_red                       0x1722f6
 #macro c_ferrari_red                    0x1a0df7
@@ -256,7 +256,7 @@
 #macro c_sienna                         0x17418a
 #macro c_sangria                        0x17387e
 #macro c_firebrick                      0x170580
-#macro c_maroon                         0x410581
+//#macro c_maroon                         0x410581
 #macro c_plum_pie                       0x41057d
 #macro c_velvet_maroon                  0x4d357e
 #macro c_plum_velvet                    0x52057d
@@ -317,7 +317,7 @@
 #macro c_violet                         0xc9388d
 #macro c_purple_sage_bush               0xc75d7a
 #macro c_lovely_purple                  0xec387f
-#macro c_purple                         0xef358e
+//#macro c_purple                         0xef358e
 #macro c_aztech_purple                  0xff3b89
 #macro c_medium_purple                  0xd76784
 #macro c_jasmine_purple                 0xec3ba2
@@ -340,4 +340,4 @@
 #macro c_pearl                          0xf4eefd
 #macro c_seashell                       0xeef5ff
 #macro c_milk_white                     0xfffcfe
-#macro c_white                          0xffffff
+//#macro c_white                          0xffffff
