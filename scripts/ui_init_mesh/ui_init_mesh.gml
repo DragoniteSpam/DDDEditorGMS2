@@ -230,6 +230,14 @@ function ui_init_mesh(mode) {
                                     case ".obj": export_obj(name, mesh); break;
                                     case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
                                     case ".vbuff": export_vb(name, mesh, format); break;
+                                    case ".fbx": export_fbx(name, mesh); break;
+                                    case ".dae": export_dae(name, mesh); break;
+                                    case ".3ds": export_3ds(name, mesh); break;
+                                    case ".gltf": export_gltf(name, mesh); break;
+                                    case ".glb": export_glb(name, mesh); break;
+                                    case ".stl": export_stl(name, mesh); break;
+                                    case ".ply": export_ply(name, mesh); break;
+                                    case ".plyb": export_plyb(name, mesh); break;
                                 }
                                 break;
                             case MeshTypes.SMF:
