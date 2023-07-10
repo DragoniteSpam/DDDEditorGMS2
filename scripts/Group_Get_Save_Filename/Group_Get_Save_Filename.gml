@@ -33,13 +33,13 @@ function get_save_filename_gml(name) {
     });
 }
 
-function get_save_filename_mesh(name, filter = "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff") {
+function get_save_filename_mesh(name, filter = "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff;*.fbx;*.dae;*.3ds;*.gltf;*.glb;*.ply;*.plyb;*.stl|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff|Filmbox (.fbx)|*.fbx|Collada (.dae)|*.dae|3DS Max (.3ds)|*.3ds|GLTF and GLB|*.gltf;*.glb|Polygon File Format (.ply, .plyb)|*.ply;*.plyb") {
     return __get_save_filename_generic(filter, name, Settings.location.mesh, "Select a mesh", function(directory) {
         Settings.location.mesh = directory;
     });
 }
 
-function get_save_filename_mesh_full(name, filter = "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff;*.derg|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff|Vertex buffer collections|*.derg") {
+function get_save_filename_mesh_full(name, filter = "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff;*.derg;*.fbx;*.dae;*.3ds;*.gltf;*.glb;*.ply;*.plyb;*.stl|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff|Vertex buffer collections|*.derg|Filmbox (.fbx)|*.fbx|Collada (.dae)|*.dae|3DS Max (.3ds)|*.3ds|GLTF and GLB|*.gltf;*.glb|Polygon File Format (.ply, .plyb)|*.ply;*.plyb") {
     return __get_save_filename_generic(filter, name, Settings.location.mesh, "Select a mesh", function(directory) {
         Settings.location.mesh = directory;
     });
