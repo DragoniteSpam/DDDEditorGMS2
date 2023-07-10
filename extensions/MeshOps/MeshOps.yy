@@ -232,11 +232,38 @@
       ],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"AssimpOperations.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_version","argCount":0,"args":[],"documentation":"","externalName":"version","help":"assops_version()","hidden":false,"kind":1,"returnType":1,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_add_file","argCount":0,"args":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_obj","argCount":0,"args":[
             1,
             1,
-          ],"documentation":"","externalName":"add_file","help":"assops_add_file(input_filename, output_filename)","hidden":false,"kind":1,"returnType":2,},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assimp_convert_all_obj","argCount":0,"args":[],"documentation":"","externalName":"convert_all_obj","help":"assimp_convert_all_obj","hidden":false,"kind":1,"returnType":2,},
+          ],"documentation":"","externalName":"convert_obj","help":"convert_obj(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_fbx","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_fbx","help":"convert_fbx(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_gltf","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_gltf","help":"convert_glft(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_glb","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_glb","help":"convert_glb(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_stl","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_stl","help":"convert_stl(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_dae","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_dae","help":"convert_dae(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_ply","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_ply","help":"convert_ply(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"convert_plyb","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_plyb","help":"convert_plyb(input, output)","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"assimp-vc143-mt.dll","final":"","functions":[],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],
