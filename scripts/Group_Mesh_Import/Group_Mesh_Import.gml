@@ -44,27 +44,7 @@ function import_3d_model_generic(filename, squash = false) {
 }
 
 function import_mesh_exotic(filename) {
-    //static output_buffer = buffer_create(1, buffer_grow, 1);
-    
     if (!directory_exists(PATH_ASSIMP_CONVERSION)) directory_create(PATH_ASSIMP_CONVERSION);
-    //var hash = sha1_string_utf8(filename);
-    //var output_filename = PROJECT_PATH_ROOT + PATH_ASSIMP_CONVERSION + "/" + hash + ".obj";
-    //assops_add_file(filename, output_filename);
-    
-    //buffer_seek(output_buffer, buffer_seek_start, 0);
-    //buffer_write(output_buffer, buffer_text, json_stringify({
-        //source_filename: filename,
-        //output_filename: output_filename
-    //}));
-    //buffer_save(output_buffer, output_filename + ".log");
-    
-    enum EAssimpActions {
-        LOAD_INDIVIDUAL,
-        LOAD_COMBINED,
-        RELOAD_SINGLE_SUBMESH,
-        RELOAD_ALL_SUBMESH,
-        RELOAD_ALL
-    }
     
     var output_filename = PROJECT_PATH_ROOT + PATH_ASSIMP_CONVERSION + "/assops.obj";
     assops_convert_obj(filename, output_filename);
