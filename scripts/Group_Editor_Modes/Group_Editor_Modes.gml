@@ -1,4 +1,6 @@
 function EditorModeMesh() : EditorModeBase() constructor {
+    static conversion_queue = ds_queue_create();
+    
     self.Update = function() {
         // you only get the keyboard shortcuts if we're running penguin
         if (IS_MESH_MODE) {

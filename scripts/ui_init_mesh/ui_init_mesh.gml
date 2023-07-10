@@ -37,6 +37,7 @@ function ui_init_mesh(mode) {
                     // import it as a texture instead
                     switch (string_lower(filename_ext(file_list[i]))) {
                         case ".d3d": case ".gmmod": case ".obj": case ".mtl":
+                        case ".dae": case ".smf": case ".fbx": case ".3ds": case ".gltf": case ".glb": case ".ply": case ".plyb":
                             if (combine_all) {
                                 if (first_mesh) {
                                     first_mesh.AddSubmeshFromFile(file_list[i]);
@@ -48,15 +49,12 @@ function ui_init_mesh(mode) {
                             }
                             n++;
                             break;
-                        case ".dae": case ".smf": case ".fbx": case ".3ds": case ".gltf": case ".glb": case ".ply": case ".plyb":
-                            import_3d_exotic(file_list[i]);
-                            break;
                         default:
                             import_texture(file_list[i]);
                             break;
                     }
                 }
-                assimp_convert_all_obj();
+                //assimp_convert_all_obj();
                 if (n > 0) {
                     Stuff.AddStatusMessage("Importing " + string(n) + " meshes took " + debug_timer_finish());
                 }
