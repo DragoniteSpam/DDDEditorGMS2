@@ -46,9 +46,9 @@ function import_3d_model_generic(filename, squash = false) {
 function import_mesh_exotic(filename) {
     if (!directory_exists(PATH_ASSIMP_CONVERSION)) directory_create(PATH_ASSIMP_CONVERSION);
     
-    var output_filename = PROJECT_PATH_ROOT + PATH_ASSIMP_CONVERSION + "/assops.obj";
-    assops_convert_obj(filename, output_filename);
-    return import_obj(output_filename);
+    var temp_filename = PROJECT_PATH_ROOT + PATH_ASSIMP_CONVERSION + "/assops.obj";
+    assops_convert_obj(filename, temp_filename);
+    return import_obj(temp_filename);
 }
 
 function import_d3d(filename) {
