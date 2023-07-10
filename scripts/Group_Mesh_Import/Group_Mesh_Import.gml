@@ -168,23 +168,6 @@ function import_d3d(filename) {
     return [new MeshImportData(data, new Material(filename_name(filename_change_ext(filename, "")) + "_Material"))];
 }
 
-function import_dae(filename, adjust_uvs = true) {
-    var container = dotdae_model_load_file(filename, adjust_uvs, false);
-    
-    var base_name = filename_change_ext(filename_name(filename), "");
-    var mesh = new DataMesh(base_name);
-    array_push(Game.meshes, mesh);
-    
-    var geometry = container[eDotDae.GeometryList];
-    var mesh_array = geometry[| 0][eDotDaeGeometry.MeshArray];
-    var vbuff_array = mesh_array[0][eDotDaeMesh.VertexBufferArray];
-    
-    for (var i = 0; i < array_length(vbuff_array); i++) {
-        var poly_list = vbuff_array[i];
-        /// @todo ...
-    }
-}
-
 function import_obj(fn, squash = false) {
     static warn_invisible = false;
     

@@ -339,59 +339,6 @@ function buffer_read_file(filename) {
     return str;
 }
 
-function buffer_dotobj_to_standard(poly_list) {
-    var source = poly_list[eDotDaePolyList.VertexBuffer];
-    var format_code = poly_list[eDotDaePolyList.FormatCode];
-    var raw = buffer_create_from_vertex_buffer(source, buffer_fixed, 1);
-    var vbuff = vertex_create_buffer();
-    vertex_begin(vbuff, Stuff.graphics.format);
-    
-    if (format_code & DOTDAE_FORMAT_J) {
-        repeat (vertex_get_number(source)) {
-            var xx = buffer_read(raw, buffer_f32);
-            var yy = buffer_read(raw, buffer_f32);
-            var zz = buffer_read(raw, buffer_f32);
-            var nx = buffer_read(raw, buffer_f32);
-            var ny = buffer_read(raw, buffer_f32);
-            var nz = buffer_read(raw, buffer_f32);
-            var c = buffer_read(raw, buffer_u32);
-            var xt = buffer_read(raw, buffer_f32);
-            var yt = buffer_read(raw, buffer_f32);
-            
-            buffer_seek(raw, buffer_seek_relative, 32);
-            
-            vertex_position_3d(vbuff, xx, yy, zz);
-            vertex_normal(vbuff, nx, ny, nz);
-            vertex_texcoord(vbuff, xt, yt);
-            vertex_colour(vbuff, c & 0x00ffffff, (c >> 24) / 0xff);
-        }
-    } else {
-        //repeat (vertex_get_number(source)) {
-        repeat (buffer_get_size(raw) / 36) {
-            var xx = buffer_read(raw, buffer_f32);
-            var yy = buffer_read(raw, buffer_f32);
-            var zz = buffer_read(raw, buffer_f32);
-            var nx = buffer_read(raw, buffer_f32);
-            var ny = buffer_read(raw, buffer_f32);
-            var nz = buffer_read(raw, buffer_f32);
-            var c = buffer_read(raw, buffer_u32);
-            var xt = buffer_read(raw, buffer_f32);
-            var yt = buffer_read(raw, buffer_f32);
-            
-            vertex_position_3d(vbuff, xx, yy, zz);
-            vertex_normal(vbuff, nx, ny, nz);
-            vertex_texcoord(vbuff, xt, yt);
-            vertex_colour(vbuff, c & 0x00ffffff, (c >> 24) / 0xff);
-        }
-    }
-    
-    vertex_end(vbuff);
-    buffer_delete(raw);
-    
-    return vbuff;
-}
-#endregion
-
 #region ds_list stuff
 function ds_list_clear_instances(list) {
     // this was implemented some time into the project. there are probably

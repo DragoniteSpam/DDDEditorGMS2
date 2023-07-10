@@ -78,8 +78,6 @@ buffer_text_init(false);
 scribble_font_set_default("FDefault");
 scribble_font_bake_outline_8dir_2px("FDefault", "FDefaultOutline", c_black, true);
 
-//dotdae_init();
-wtf("re-add the dotdae thing eventually");
 wtf("re-add nik's version of fmod audio eventually");
 #endregion
 
