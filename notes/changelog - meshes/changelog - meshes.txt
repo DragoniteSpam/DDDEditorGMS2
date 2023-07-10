@@ -1,5 +1,15 @@
 Another changelog.
 
+# Changes in 2023.3
+
+ - We can now import (and export) fbx, dae, 3ds, gltf/b, stl, and ply/b 3D files, courtesy of the Open Asset Importer Library
+     - At the moment the feature is pretty patchy:
+         - Importing is mostly limited to static meshes, which means no animations will be loaded from file formats that support them
+         - Materials may work, but it's not always able to find the corresponding texture files
+         - Performance could be better
+         - This is the full list of 3D file formats that assimp can understand: https://assimp-docs.readthedocs.io/en/latest/usage/use_the_lib.html#exporting-models
+            I've only implemented the most common ones in GML. If you need one that's not there for some reason, I'll add it
+
 # Changes in 2023.2
 
  - penguin_load
