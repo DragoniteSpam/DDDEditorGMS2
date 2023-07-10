@@ -264,6 +264,10 @@
             1,
             1,
           ],"documentation":"","externalName":"convert_plyb","help":"assops_convert_plyb(input, output)","hidden":false,"kind":1,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_convert_3ds","argCount":0,"args":[
+            1,
+            1,
+          ],"documentation":"","externalName":"convert_3ds","help":"assops_convert_3ds(input, output)","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"assimp-vc143-mt.dll","final":"","functions":[],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],
