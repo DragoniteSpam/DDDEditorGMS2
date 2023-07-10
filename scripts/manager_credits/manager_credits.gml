@@ -7,10 +7,10 @@ function dialog_create_credits() {
     
     var bw = 216;
     
-    var dialog = new EmuDialog(960, 512, "Credits");
+    var dialog = new EmuDialog(960, 560, "Credits");
     
     dialog.AddContent([
-        new EmuText(cx, EMU_AUTO, cw, 40, "[FDefault20][c_aqua]DDD Game Editor"),
+        new EmuText(cx, EMU_AUTO, cw, 40, "[FDefault20][c_aqua]DDD Game Tools"),
         
         #region me
         new EmuText(cx, EMU_AUTO, dw - cx * 2, ch, "Author: @DragoniteSpam, who is shamelessly plugging some of his own extensions:"),
@@ -38,7 +38,7 @@ function dialog_create_credits() {
         #endregion
         
         #region extensions
-        new EmuText(cx, EMU_AUTO, cw, ch, "[c_aqua]Some additional GameMaker extensions were used:"),
+        new EmuText(cx, EMU_AUTO, cw, ch, $"[#{string_copy(string(ptr(scribble_rgb_to_bgr(c_saffron))), 11, 6)}]Some additional GameMaker extensions were used:"),
         // scribble
         new EmuButton(cx, EMU_AUTO, bw, ch, "Github", function() {
             url_open("https://github.com/JujuAdams/scribble");
@@ -59,6 +59,11 @@ function dialog_create_credits() {
             url_open("https://github.com/GameMakerDiscord/Xpanda/");
         }),
         new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_aqua]Xpanda,[] shader management by kraifpatrik"),
+        // assimp
+        new EmuButton(cx, EMU_AUTO, bw, ch, "Github", function() {
+            url_open("https://github.com/assimp/assimp");
+        }),
+        new EmuText(cx + 224, EMU_INLINE, cw, ch, "[c_aqua]Assimp,[] the Open Asset Importer Library"),
         #endregion
     ]).AddDefaultCloseButton();
     
