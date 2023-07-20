@@ -439,7 +439,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_base = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             // there are other PBR attributes but this is the one i care most about now
@@ -450,7 +452,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_normal = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_normal = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             case "map_Ka":                  // ambient texture
@@ -459,7 +463,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_ambient = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_ambient = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             case "map_Ks":                  // specular color texture
@@ -468,7 +474,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_specular_color = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_specular_color = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             case "map_Ns":                  // specular highlight texture
@@ -477,7 +485,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_specular_highlight = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_specular_highlight = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             case "map_d":                   // alpha texture
@@ -486,7 +496,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_alpha = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_alpha = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             case "map_bump":                // bump texture
@@ -496,7 +508,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_bump = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_bump = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             case "disp":                    // displacement texture
@@ -505,7 +519,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_displace = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_displace = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             case "decal":                   // stencil decal texture
@@ -514,7 +530,9 @@ function import_obj(fn, squash = false) {
                                     var texfn = array_join(material_tokens);
                                     texfn = string_replace_all(texfn, "\\\\", "/");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    current_material.tex_decal = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    if (file_exists(texfn)) {
+                                        current_material.tex_decal = tileset_create(texfn, filename_name(texfn)).GUID;
+                                    }
                                 }
                                 break;
                             default:    // There are way more attributes available than I'm going to use later - maybe

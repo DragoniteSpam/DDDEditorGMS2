@@ -1,5 +1,9 @@
 Another changelog.
 
+# Changes in 2023.4
+
+ - Importing multiple models with missing texture files wont add a billion copies of the magenta texture
+
 # Changes in 2023.3
 
  - We can now import (and export) fbx, dae, 3ds, gltf/b, stl, and ply/b 3D files, courtesy of the Open Asset Importer Library
