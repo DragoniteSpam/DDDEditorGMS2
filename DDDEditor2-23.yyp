@@ -169,7 +169,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.6.0.89",
+    "IDEVersion": "2023.8.0.98",
   },
   "resources": [
     {"id":{"name":"shd_utility_banding","path":"shaders/shd_utility_banding/shd_utility_banding.yy",},},
@@ -863,6 +863,7 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"editor","path":"rooms/editor/editor.yy",},},
   ],
+  "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","ConfigValues":{"Terrain":{"groupParent":"null",},},"directory":"","groupParent":null,"isScaled":false,"loadType":"default","mipsToGenerate":0,"targets":-1,},
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"scribble","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
