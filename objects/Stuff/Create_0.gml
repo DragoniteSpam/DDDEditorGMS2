@@ -291,6 +291,7 @@ switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
     case ModeIDs.SPART: Stuff.spart.SetMode(); break;
     case ModeIDs.MESH: Stuff.mesh.SetMode(); break;
     case ModeIDs.TEXT: Stuff.text.SetMode(); break;
+    case ModeIDs.VOXELISH: Stuff.voxelish.SetMode(); break;
 }
 
 if (PROJECT_MENU_ENABLED) {

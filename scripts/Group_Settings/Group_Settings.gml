@@ -125,6 +125,13 @@ Settings.mesh[$ "combine_obj_submeshes"] ??=                                    
 Settings.mesh[$ "draw_3d_view_overlay_text"] ??=                                MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT;
 Settings.mesh[$ "fuse_textureless_materials"] ??=                               MESH_DEF_FUSE_TEXTURELESS_MATERIALS;
 
+Settings[$ "voxelish"] ??=                                                      { };
+Settings.voxelish[$ "orthographic"] ??=                                         VOXELISH_DEF_ORTHO_CAMERA;
+Settings.voxelish[$ "view_skybox"] ??=                                          VOXELISH_DEF_VIEW_SKYBOX;
+
+#macro VOXELISH_DEF_ORTHO_CAMERA                                                false
+#macro VOXELISH_DEF_VIEW_SKYBOX                                                 true
+
 #macro MESH_DEF_VIEW_DRAW_POSITION                                              new Vector3(0, 0, 0)
 #macro MESH_DEF_VIEW_DRAW_ROTATION                                              new Vector3(0, 0, 0)
 #macro MESH_DEF_VIEW_DRAW_SCALE                                                 new Vector3(1, 1, 1)
