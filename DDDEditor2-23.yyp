@@ -489,6 +489,7 @@
     {"id":{"name":"dialog_create_event_node_meshes","path":"scripts/dialog_create_event_node_meshes/dialog_create_event_node_meshes.yy",},},
     {"id":{"name":"__scribble_config_colours","path":"scripts/__scribble_config_colours/__scribble_config_colours.yy",},},
     {"id":{"name":"dialog_create_event_custom","path":"scripts/dialog_create_event_custom/dialog_create_event_custom.yy",},},
+    {"id":{"name":"Group_Editor_Mode_Voxelish","path":"scripts/Group_Editor_Mode_Voxelish/Group_Editor_Mode_Voxelish.yy",},},
     {"id":{"name":"dialog_create_event_save_prefab","path":"scripts/dialog_create_event_save_prefab/dialog_create_event_save_prefab.yy",},},
     {"id":{"name":"dialog_create_event_node_custom_data","path":"scripts/dialog_create_event_node_custom_data/dialog_create_event_node_custom_data.yy",},},
     {"id":{"name":"__scribble_class_null_element","path":"scripts/__scribble_class_null_element/__scribble_class_null_element.yy",},},

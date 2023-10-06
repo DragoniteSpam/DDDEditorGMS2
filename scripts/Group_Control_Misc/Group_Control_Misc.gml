@@ -58,4 +58,7 @@ function control_global() {
     if (keyboard_check_pressed(vk_f11)) {
         Stuff.text.SetMode();
     }
+    if (keyboard_check_pressed(vk_f12)) {
+        Stuff.voxelish.SetMode();
+    }
 }

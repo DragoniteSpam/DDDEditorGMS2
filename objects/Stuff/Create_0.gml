@@ -97,6 +97,7 @@ terrain = new EditorModeTerrain();
 mesh = new EditorModeMesh();
 spart = new EditorModeSpart();
 text = new EditorModeText();
+voxelish = new EditorModeVoxelish();
 menu = RIBBON_MENU();
 
 self.graphics.RecreateGrids();
