@@ -169,7 +169,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.0.98",
+    "IDEVersion": "2023.8.2.105",
   },
   "resources": [
     {"id":{"name":"shd_utility_banding","path":"shaders/shd_utility_banding/shd_utility_banding.yy",},},
