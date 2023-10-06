@@ -32,6 +32,7 @@ enum ModeIDs {
     SPART,
     MESH,
     TEXT,
+    VOXELISH
 }
 
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];

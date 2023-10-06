@@ -81,7 +81,7 @@ function menu_init_main() {
         var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
         var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
         var md_text = create_menu_element("Language Text (F11)", momu_editor_text, menu_help);
-        var md_voxelish = create_menu_element("Voxelish Editor (F12)", momu_editor_text, menu_help);
+        var md_voxelish = create_menu_element("Voxelish Editor (F12)", momu_editor_voxelish, menu_help);
         md_data_types.interactive = MENU_EDITOR_ENABLED;
         md_meshes.interactive = MENU_EDITOR_ENABLED;
         md_3d.interactive = MENU_EDITOR_ENABLED;

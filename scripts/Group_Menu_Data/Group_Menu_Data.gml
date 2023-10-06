@@ -49,6 +49,11 @@ function momu_editor_text() {
     menu_close_all();
 }
 
+function momu_editor_voxelish() {
+    Stuff.voxelish.SetMode();
+    menu_close_all();
+}
+
 function momu_editor_spart() {
     Stuff.spart.SetMode();
     menu_close_all();

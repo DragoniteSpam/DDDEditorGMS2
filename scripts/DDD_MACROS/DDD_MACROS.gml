@@ -3,21 +3,25 @@
 #macro Terrain:EDITOR_BASE_MODE             ModeIDs.TERRAIN
 #macro spart:EDITOR_BASE_MODE               ModeIDs.SPART
 #macro mesh:EDITOR_BASE_MODE                ModeIDs.MESH
+#macro voxelish:EDITOR_BASE_MODE            ModeIDs.MESH
 
 #macro IS_DEFAULT_MODE                      (EDITOR_BASE_MODE == ModeIDs.MAP)
 #macro IS_MESH_MODE                         (EDITOR_BASE_MODE == ModeIDs.MESH)
 #macro IS_TERRAIN_MODE                      (EDITOR_BASE_MODE == ModeIDs.TERRAIN)
 #macro IS_SPART_MODE                        (EDITOR_BASE_MODE == ModeIDs.SPART)
+#macro IS_VOXELISH_MODE                     (EDITOR_BASE_MODE == ModeIDs.VOXELISH)
 
 // standalone tools will not have the rest of the program enabled
 #macro EDITOR_FORCE_SINGLE_MODE             false
 #macro spart:EDITOR_FORCE_SINGLE_MODE       true
 #macro mesh:EDITOR_FORCE_SINGLE_MODE        true
+#macro voxelish:EDITOR_FORCE_SINGLE_MODE    true
 #macro Terrain:EDITOR_FORCE_SINGLE_MODE     true
 //
 #macro MENU_EDITOR_ENABLED                  true
 #macro spart:MENU_EDITOR_ENABLED            false
 #macro mesh:MENU_EDITOR_ENABLED             false
+#macro voxelish:MENU_EDITOR_ENABLED         false
 //
 #macro MENU_EDITOR_PARTICLE_OVERRIDE        false
 #macro spart:MENU_EDITOR_PARTICLE_OVERRIDE  true
@@ -25,15 +29,18 @@
 #macro GLOBAL_CONTORLS_ENABLED              true
 #macro spart:GLOBAL_CONTORLS_ENABLED        false
 #macro mesh:GLOBAL_CONTORLS_ENABLED         false
+#macro voxelish:GLOBAL_CONTORLS_ENABLED     false
 #macro Terrain:GLOBAL_CONTORLS_ENABLED      false
 //
 #macro PROJECT_MENU_ENABLED                 true
 #macro spart:PROJECT_MENU_ENABLED           false
 #macro mesh:PROJECT_MENU_ENABLED            true
+#macro voxelish:PROJECT_MENU_ENABLED        false
 #macro Terrain:PROJECT_MENU_ENABLED         false
 //
 #macro RIBBON_MENU                          menu_init_main
 #macro mesh:RIBBON_MENU                     menu_init_mesh
+#macro voxelish:RIBBON_MENU                 menu_init_mesh
 #macro Terrain:RIBBON_MENU                  menu_init_terrain
 //
 #macro TERRAIN_MODE                         false
@@ -42,6 +49,7 @@
 #macro DEFAULT_TILESET                      "b_tileset_overworld_0.png"
 #macro LOAD_DEFAULT_TILESET                 true
 #macro mesh:LOAD_DEFAULT_TILESET            false
+#macro voxelish:LOAD_DEFAULT_TILESET        false
 
 // game maker
 #macro wtf                                  show_debug_message

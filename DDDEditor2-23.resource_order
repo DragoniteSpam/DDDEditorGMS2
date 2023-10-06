@@ -416,6 +416,7 @@
     {"name":"TerrainOpsGML","order":5,"path":"scripts/TerrainOpsGML/TerrainOpsGML.yy",},
     {"name":"Group_Color","order":16,"path":"scripts/Group_Color/Group_Color.yy",},
     {"name":"dialog_create_event_node_rename","order":44,"path":"scripts/dialog_create_event_node_rename/dialog_create_event_node_rename.yy",},
+    {"name":"ui_init_voxelish","order":14,"path":"scripts/ui_init_voxelish/ui_init_voxelish.yy",},
     {"name":"carton_add","order":1,"path":"scripts/carton_add/carton_add.yy",},
     {"name":"dialog_create_event_condition_switch","order":1,"path":"scripts/dialog_create_event_condition_switch/dialog_create_event_condition_switch.yy",},
     {"name":"omu_event_attain_self_switch_data","order":2,"path":"scripts/omu_event_attain_self_switch_data/omu_event_attain_self_switch_data.yy",},
