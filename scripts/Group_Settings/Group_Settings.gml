@@ -39,6 +39,7 @@ try {
         map: { },
         animation: { },
         terrain: { },
+        voxelish: { },
         event: { },
         data: { },
         config: { },
@@ -73,6 +74,7 @@ Settings[$ "location"] ??=                                                      
 Settings.location[$ "ddd"] ??=                                                  "";
 Settings.location[$ "mesh"] ??=                                                 "";
 Settings.location[$ "terrain"] ??=                                              "";
+Settings.location[$ "voxelish"] ??=                                             "";
 Settings.location[$ "image"] ??=                                                "";
 Settings.location[$ "gml"] ??=                                                  "";
 Settings.location[$ "audio"] ??=                                                "";

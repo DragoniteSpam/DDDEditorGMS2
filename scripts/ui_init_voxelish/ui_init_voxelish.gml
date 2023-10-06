@@ -10,6 +10,21 @@ function ui_init_voxelish(mode) {
     var container = new EmuCore(0, 0, hud_width, hud_height);
     
     container.AddContent([
+        (new EmuRenderSurface(0, 0, CW, CH, function(mx, my) {
+            // draw
+        }, function(mx, my) {
+            if (mx < 0 || my < 0 || mx >= self.width || my >= self.height) return;
+            if (Settings.terrain.orthographic) {
+                Stuff.voxelish.camera.UpdateOrtho();
+            } else {
+                Stuff.voxelish.camera.Update();
+            }
+        }, function() {
+            // create
+        }, function() {
+            // destroy
+        }))
+            .SetID("VOXELISH VIEWPORT"),
     ]);
     
     return container;

@@ -160,6 +160,7 @@
 #macro PROJECT_PATH_MESH                    "mesh"
 #macro PROJECT_PATH_MESH_AUTOTILE           "autotile"
 #macro PROJECT_PATH_TERRAIN                 "terrain"
+#macro PROJECT_PATH_VOXELISH                "voxelish"
 
 // RefID prefixes
 #macro REFID_PLAYER                                                             "$"
