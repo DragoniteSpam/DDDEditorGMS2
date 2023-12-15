@@ -47,6 +47,13 @@ function mesh_combine_all(meshes_array) {
         combine_submesh.owner = mesh;
         array_push(mesh.submeshes, combine_submesh);
         mesh.first_proto_guid = combine_submesh.proto_guid;
+        
+        if (remap_needed) {
+            var new_diffuse_texture = tileset_create_internal(remapped_texture_data.atlas, $"{mesh.name}!tex_diffuse");
+            combine_submesh.tex_base = new_diffuse_texture.GUID;
+        } else {
+            combine_submesh.tex_base = mesh.submeshes[0].tex_base;
+        }
     }
     
     batch_again();
