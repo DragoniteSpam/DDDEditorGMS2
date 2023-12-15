@@ -49,7 +49,7 @@ function DataClass(source) : SData(source) constructor {
         self.properties[index - 1] = t;
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
             var instance = self.instances[i];
-            var t = instance.values[index];
+            t = instance.values[index];
             instance.values[index] = instance.values[index - 1];
             instance.values[index - 1] = t;
         }
@@ -64,7 +64,7 @@ function DataClass(source) : SData(source) constructor {
         self.properties[index + 1] = t;
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
             var instance = self.instances[i];
-            var t = instance.values[index];
+            t = instance.values[index];
             instance.values[index] = instance.values[index + 1];
             instance.values[index + 1] = t;
         }

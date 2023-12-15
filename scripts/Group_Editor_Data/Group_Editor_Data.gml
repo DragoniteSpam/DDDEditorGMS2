@@ -289,7 +289,7 @@ function EditorModeData() : EditorModeBase() constructor {
                     column.RemoveContent(element);
                     if (element_header) column.RemoveContent(element_header);
                     
-                    var column = new EmuCore(col_width * col_index++, 0, col_width, col_height);
+                    column = new EmuCore(col_width * col_index++, 0, col_width, col_height);
                     container.AddContent(column);
                     
                     if (element_header) {

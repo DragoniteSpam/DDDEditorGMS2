@@ -1,6 +1,7 @@
 function batch_mesh(vbuff, reflect, mesh, entity) {
+    var data;
     try {
-        var data = guid_get(mesh.mesh); // lol
+        data = guid_get(mesh.mesh); // lol
     } catch (e) {
         show_message("entity not found - " + entity);
         throw e;

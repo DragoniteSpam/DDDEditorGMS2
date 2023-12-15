@@ -192,7 +192,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
             draw_set_valign(fa_top);
             draw_set_font(self.input_font());
             var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
-            var vty = vy1 + offset;
+            vty = vy1 + offset;
             draw_text_ext_colour(vtx - vx1, min(vty - vy1, hh - spacing - sh), display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
         } else {
             draw_set_halign(fa_left);
@@ -274,7 +274,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         #endregion
         
         draw_surface(_surface, vx1, vy1);
-        var c = self.color();
+        c = self.color();
         draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c, c, true);
     }
     

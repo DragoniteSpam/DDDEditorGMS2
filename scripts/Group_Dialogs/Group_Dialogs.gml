@@ -102,13 +102,13 @@ function dialog_default(dialog) {
     }
     
     // re-set these in case you dragged the window around, in which case they got moved
-    var x1 = dialog.x;
-    var y1 = dialog.y;
-    var x2 = x1 + dialog.width;
-    var y2 = y1 + dialog.height;
+    x1 = dialog.x;
+    y1 = dialog.y;
+    x2 = x1 + dialog.width;
+    y2 = y1 + dialog.height;
     
-    var tx = x1 + 32;
-    var ty = y1 + header_height / 2;
+    tx = x1 + 32;
+    ty = y1 + header_height / 2;
     
     if (active && dialog.active_shade && !Stuff.drawn_dialog_shade) {
         draw_set_alpha(Settings.config.focus_alpha);
@@ -155,7 +155,7 @@ function dialog_default(dialog) {
     
     // the x button/escape key does not commit changes
     if (kill && dialog.close) {
-        dialog.close(dialog);
+        dialog.close();
     }
 }
 

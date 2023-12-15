@@ -249,6 +249,7 @@ data_type_meta = [
 #region status messages
 status_messages = [];
 // commenting with the word "notification" here so you find it in case you try to search for it
+/// @param {string} text
 AddStatusMessage = function(text) {
     static statusMessage = function(text) constructor {
         self.text = scribble(text)

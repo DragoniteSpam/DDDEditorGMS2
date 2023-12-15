@@ -471,7 +471,6 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         if (mesh && entity.GetVertexBuffer()) {
             switch (mesh.type) {
                 case MeshTypes.RAW:
-                    var mesh = guid_get(entity.mesh);
                     matrix_set(matrix_world, matrix_build((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, entity.rot_xx, entity.rot_yy, entity.rot_zz, entity.scale_xx, entity.scale_yy, entity.scale_zz));
                     graphics_set_material(entity.GetSubmesh());
                     var tex = entity.GetTexture();

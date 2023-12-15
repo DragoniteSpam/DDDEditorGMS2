@@ -74,10 +74,10 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                     var ew = 256;
                     var eh = 32;
                     
-                    var vx1 = 120;
-                    var vy1 = 0;
-                    var vx2 = ew;
-                    var vy2 = eh;
+                    vx1 = 120;
+                    vy1 = 0;
+                    vx2 = ew;
+                    vy2 = eh;
                     
                     var yy = 64;
                     var spacing = 16;
@@ -166,24 +166,25 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             var colour_replace_green = function(original, value) { return (value << 8) | (original & 0xff00ff); }
                             var colour_replace_blue = function(original, value) { return (value << 16) | (original & 0x00ffff); }
                             
+                            var c1, c2, c3, c4;
                             switch (axis_channel) {
                                 case EmuColorChannels.R:
-                                    var c2 = colour_replace_red(c_white, axis_value * 0xff);
-                                    var c1 = colour_replace_green(c2, 0);
-                                    var c3 = colour_replace_blue(c2, 0);
-                                    var c4 = axis_value * 0xff;
+                                    c2 = colour_replace_red(c_white, axis_value * 0xff);
+                                    c1 = colour_replace_green(c2, 0);
+                                    c3 = colour_replace_blue(c2, 0);
+                                    c4 = axis_value * 0xff;
                                     break;
                                 case EmuColorChannels.G:
-                                    var c2 = colour_replace_green(c_white, axis_value * 0xff);
-                                    var c1 = colour_replace_blue(c2, 0);
-                                    var c3 = colour_replace_red(c2, 0);
-                                    var c4 = (axis_value * 0xff) << 8;
+                                    c2 = colour_replace_green(c_white, axis_value * 0xff);
+                                    c1 = colour_replace_blue(c2, 0);
+                                    c3 = colour_replace_red(c2, 0);
+                                    c4 = (axis_value * 0xff) << 8;
                                     break;
                                 case EmuColorChannels.B:
-                                    var c2 = colour_replace_blue(c_white, axis_value * 0xff);
-                                    var c1 = colour_replace_red(c2, 0);
-                                    var c3 = colour_replace_green(c2, 0);
-                                    var c4 = (axis_value * 0xff) << 16;
+                                    c2 = colour_replace_blue(c_white, axis_value * 0xff);
+                                    c1 = colour_replace_red(c2, 0);
+                                    c3 = colour_replace_green(c2, 0);
+                                    c4 = (axis_value * 0xff) << 16;
                                     break;
                             }
                             
@@ -227,8 +228,8 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             vy1 = y1 + _axis_y;
                             vx2 = vx1 + _axis_width;
                             vy2 = vy1 + _main_size;
-                            var w = vx2 - vx1;
-                            var h = vy2 - vy1;
+                            w = vx2 - vx1;
+                            h = vy2 - vy1;
                             
                             if (getMouseHover(vx1, vy1, vx2, vy2)) {
                                 if (getMousePressed(vx1, vy1, vx2, vy2)) {
@@ -260,8 +261,8 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                             vy1 = y1 + _output_y;
                             vx2 = vx1 + _main_size;
                             vy2 = vy1 + _output_height;
-                            var w = vx2 - vx1;
-                            var h = vy2 - vy1;
+                            w = vx2 - vx1;
+                            h = vy2 - vy1;
                             
                             drawCheckerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 0.4, 0.4);
                             draw_set_alpha(alpha);
@@ -276,8 +277,8 @@ function EmuColorPicker(x, y, w, h, text, value, callback) : EmuCallback(x, y, w
                                 vy1 = y1 + self.alpha_y;
                                 vx2 = vx1 + self._main_size;
                                 vy2 = vy1 + self._alpha_height;
-                                var w = vx2 - vx1;
-                                var h = vy2 - vy1;
+                                w = vx2 - vx1;
+                                h = vy2 - vy1;
                                 
                                 if (getMouseHover(vx1, vy1, vx2, vy2)) {
                                     if (getMousePressed(vx1, vy1, vx2, vy2)) {

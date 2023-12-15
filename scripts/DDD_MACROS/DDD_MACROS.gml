@@ -61,7 +61,7 @@
 // game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
 // "78" and "9c" but buffer_read is little endian so they'll be in reverse order
 #macro MAGIC_ZLIB_HEADER 0x9c78
-#macro LAST_SAFE_RELEASE                    "2019.4.1.19";
+#macro LAST_SAFE_RELEASE                    "2019.4.1.19"
 #macro DEFAULT_FROZEN_BUFFER_SIZE           1
 
 #macro AUTOTILE_COUNT                       48

@@ -304,7 +304,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     self.GetTerrainBufferPosition = function(index) {
         return new Vector2(
             index div ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE),
-            index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE),
+            index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)
         );
     };
     
@@ -420,16 +420,17 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         var carton = carton_load(filename, false);
         // cartons go into the buffer in order but
         for(var i = 0, n = carton_count(carton); i < n; i++) {
+            var data, json;
             switch (carton_get_metadata(carton, i)) {
                 case "header":
-                    var data = carton_get_buffer(carton, i);
-                    var json = json_parse(buffer_read(data, buffer_text));
+                    data = carton_get_buffer(carton, i);
+                    json = json_parse(buffer_read(data, buffer_text));
                     self.width = json.width;
                     self.height = json.height;
                     buffer_delete(data);
                     break;
                 case "height":
-                    var data = carton_get_buffer(carton, i);
+                    data = carton_get_buffer(carton, i);
                     if (buffer_exists(self.height_data)) buffer_delete(self.height_data);
                     self.height_data = data;
                     terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
@@ -443,12 +444,12 @@ function EditorModeTerrain() : EditorModeBase() constructor {
                     self.texture.Reset(self.width, self.height);
                     break;
                 case "color":
-                    var data = carton_get_buffer(carton, i);
+                    data = carton_get_buffer(carton, i);
                     self.color.SetBuffer(data);
                     buffer_delete(data);
                     break;
                 case "texture":
-                    var data = carton_get_buffer(carton, i);
+                    data = carton_get_buffer(carton, i);
                     self.texture.SetBuffer(data);
                     buffer_delete(data);
                     break;
