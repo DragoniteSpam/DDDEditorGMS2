@@ -163,4 +163,13 @@ function DataImageTileset(source = undefined) : DataImage(source) constructor {
         self.vframes = self.height div TILE_HEIGHT;
         self.image_flags = array_create_2d(self.hframes, self.vframes, 0);
     };
+    
+    self.SetFromInternal = function(sprite) {
+        self.picture = sprite;
+        self.width = sprite_get_width(self.picture);
+        self.height = sprite_get_height(self.picture);
+        self.hframes = self.width div TILE_WIDTH;
+        self.vframes = self.height div TILE_HEIGHT;
+        self.image_flags = array_create_2d(self.hframes, self.vframes, 0);
+    };
 };

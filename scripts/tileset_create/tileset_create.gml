@@ -19,3 +19,12 @@ function tileset_create(filename, name = undefined) {
     array_push(Game.graphics.tilesets, ts);
     return ts;
 }
+
+function tileset_create_internal(sprite, name) {
+    // don't instantiate these outside of this script (or the project loading script)
+    var ts = new DataImageTileset();
+    ts.SetFromInternal(sprite);
+    ts.name = name;
+    array_push(Game.graphics.tilesets, ts);
+    return ts;
+}
