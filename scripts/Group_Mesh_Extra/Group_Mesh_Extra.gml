@@ -5,13 +5,41 @@ function mesh_combine_all(meshes_array) {
         var mesh = meshes_array[i];
         if (array_length(mesh.submeshes) == 1) continue;
         
+        var unique_textures = { };
+        var unique_textures_for_atlasing = [ ];
+        for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+            var tex = guid_get(mesh.submeshes[j].tex_base);
+            if (tex == undefined) continue;
+            if (unique_textures[$ tex] == undefined) {
+                unique_textures[$ tex] = { };
+                array_push(unique_textures_for_atlasing, tex.picture);
+            }
+        }
+        
+        var remap_needed = array_length(unique_textures_for_atlasing) > 1;
+        var remapped_texture_data = undefined;
+        
+        if (remap_needed) {
+            remapped_texture_data = sprite_atlas_pack_dll(unique_textures_for_atlasing, 2, true);
+            for (var j = 0, n2 = array_length(remapped_texture_data.uvs); j < n2; j++) {
+                unique_textures[$ remapped_texture_data.uvs[j].sprite] = j;
+            }
+        }
+        
         var old_submesh_list = mesh.submeshes;
         mesh.submeshes = [];
         mesh.proto_guids = { };
         var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
         
         for (var j = 0, n2 = array_length(old_submesh_list); j < n2; j++) {
-            combine_submesh.AddBufferData(old_submesh_list[j].buffer);
+            var submesh = old_submesh_list[j];
+            var tex = guid_get(submesh.tex_base);
+            if (remap_needed && tex != undefined) {
+                var texture_data = remapped_texture_data.uvs[unique_textures[$ tex.picture]];
+                combine_submesh.AddBufferData(submesh.buffer, texture_data);
+            } else {
+                combine_submesh.AddBufferData(submesh.buffer);
+            }
             old_submesh_list[j].Destroy();
         }
         

@@ -247,7 +247,7 @@ function MeshSubmesh(source) constructor {
     
     // Appends vertex data onto the end of an existing buffer; this is mostly
     // used with the "combine submeshes" option in the Mesh editor
-    self.AddBufferData = function(raw_buffer) {
+    self.AddBufferData = function(raw_buffer, remapped_uvs = undefined) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         var new_size = buffer_get_size(raw_buffer);
         var old_size = 0;
