@@ -18,7 +18,7 @@
   "exportToGame": true,
   "extensionVersion": "0.0.1",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"SpriteAtlas.dll","final":"","functions":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"SpriteAtlas.dll","constants":[],"copyToTargets":-1,"filename":"SpriteAtlas.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__sprite_atlas_version","argCount":0,"args":[],"documentation":"","externalName":"sprite_atlas_version","help":"__sprite_atlas_version()","hidden":false,"kind":1,"returnType":1,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__sprite_atlas_pack","argCount":0,"args":[
             1,

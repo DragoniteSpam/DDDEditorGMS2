@@ -18,7 +18,7 @@
   "exportToGame": true,
   "extensionVersion": "0.0.1",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"drago.dll","constants":[
         {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"WINDOW_NEVERMIND","hidden":false,"value":"0",},
         {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"WINDOW_CLOSE","hidden":false,"value":"1",},
       ],"copyToTargets":-1,"filename":"drago.dll","final":"","functions":[

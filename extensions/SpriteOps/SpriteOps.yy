@@ -18,7 +18,7 @@
   "exportToGame": true,
   "extensionVersion": "0.0.1",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"SpriteOperations.dll","final":"","functions":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"SpriteOperations.dll","constants":[],"copyToTargets":-1,"filename":"SpriteOperations.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"spriteops_version","argCount":0,"args":[],"documentation":"","externalName":"spriteops_version","help":"spriteops_version()","hidden":false,"kind":1,"returnType":1,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__spriteops_set_alpha","argCount":0,"args":[
             1,

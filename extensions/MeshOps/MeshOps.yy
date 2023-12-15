@@ -18,7 +18,7 @@
   "exportToGame": true,
   "extensionVersion": "0.0.1",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"MeshOperations.dll","final":"","functions":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"MeshOperations.dll","constants":[],"copyToTargets":-1,"filename":"MeshOperations.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_version","argCount":0,"args":[],"documentation":"","externalName":"meshops_version","help":"meshops_version()","hidden":false,"kind":1,"returnType":1,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"meshops_init","argCount":0,"args":[
             2,
@@ -230,7 +230,7 @@
         {"name":"__meshops_set_normals_smooth_multi_calculate","path":"extensions/MeshOps/MeshOps.yy",},
         {"name":"__meshops_set_normals_smooth_multi_finalize","path":"extensions/MeshOps/MeshOps.yy",},
       ],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"AssimpOperations.dll","final":"","functions":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"AssimpOperations.dll","constants":[],"copyToTargets":-1,"filename":"AssimpOperations.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_version","argCount":0,"args":[],"documentation":"","externalName":"version","help":"assops_version()","hidden":false,"kind":1,"returnType":1,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"assops_convert_obj","argCount":0,"args":[
             1,
@@ -269,7 +269,7 @@
             1,
           ],"documentation":"","externalName":"convert_3ds","help":"assops_convert_3ds(input, output)","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"assimp-vc143-mt.dll","final":"","functions":[],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"assimp-vc143-mt.dll","constants":[],"copyToTargets":-1,"filename":"assimp-vc143-mt.dll","final":"","functions":[],"init":"","kind":1,"order":[],"origname":"","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject": "",
   "hasConvertedCodeInjection": true,
