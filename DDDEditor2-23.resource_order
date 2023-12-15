@@ -359,6 +359,7 @@
     {"name":"__buffer_text_config","order":2,"path":"scripts/__buffer_text_config/__buffer_text_config.yy",},
     {"name":"emu_dialog_generic_variables","order":2,"path":"scripts/emu_dialog_generic_variables/emu_dialog_generic_variables.yy",},
     {"name":"Manager_Project_Asset_Flags","order":9,"path":"scripts/Manager_Project_Asset_Flags/Manager_Project_Asset_Flags.yy",},
+    {"name":"Group_Mesh_Extra","order":18,"path":"scripts/Group_Mesh_Extra/Group_Mesh_Extra.yy",},
     {"name":"foreach","order":9,"path":"scripts/foreach/foreach.yy",},
     {"name":"Manager_Entity_Event_Page","order":4,"path":"scripts/Manager_Entity_Event_Page/Manager_Entity_Event_Page.yy",},
     {"name":"Manager_Entity_Mesh_Autotiles","order":13,"path":"scripts/Manager_Entity_Mesh_Autotiles/Manager_Entity_Mesh_Autotiles.yy",},

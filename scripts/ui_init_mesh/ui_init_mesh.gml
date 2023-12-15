@@ -275,30 +275,7 @@ function ui_init_mesh(mode) {
                 var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + ((array_length(meshes) == 1) ? meshes[0].name : "the selected submeshes") + "?", function() {
-                    debug_timer_start();
-                    
-                    for (var i = 0, n = array_length(self.root.meshes); i < n; i++) {
-                        var mesh = self.root.meshes[i];
-                        if (array_length(mesh.submeshes) == 1) continue;
-                        
-                        var old_submesh_list = mesh.submeshes;
-                        mesh.submeshes = [];
-                        mesh.proto_guids = { };
-                        var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
-                        
-                        for (var j = 0, n2 = array_length(old_submesh_list); j < n2; j++) {
-                            combine_submesh.AddBufferData(old_submesh_list[j].buffer);
-                            old_submesh_list[j].Destroy();
-                        }
-                        
-                        combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
-                        combine_submesh.owner = mesh;
-                        array_push(mesh.submeshes, combine_submesh);
-                        mesh.first_proto_guid = combine_submesh.proto_guid;
-                    }
-                    
-                    batch_again();
-                    Stuff.AddStatusMessage("Combining the submesh took " + debug_timer_finish());
+                    mesh_combine_all(self.root.meshes);
                     self.root.Dispose();
                     Stuff.mesh.ui.SearchID("COMBINE SUBMESHES").Refresh(Stuff.mesh.ui.SearchID("MESH LIST").GetAllSelectedIndices());
                     Stuff.mesh.ui.SearchID("SEPARATE SUBMESHES").Refresh(Stuff.mesh.ui.SearchID("MESH LIST").GetAllSelectedIndices());

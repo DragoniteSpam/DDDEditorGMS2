@@ -447,6 +447,7 @@
     {"id":{"name":"__buffer_text_config","path":"scripts/__buffer_text_config/__buffer_text_config.yy",},},
     {"id":{"name":"emu_dialog_generic_variables","path":"scripts/emu_dialog_generic_variables/emu_dialog_generic_variables.yy",},},
     {"id":{"name":"Manager_Project_Asset_Flags","path":"scripts/Manager_Project_Asset_Flags/Manager_Project_Asset_Flags.yy",},},
+    {"id":{"name":"Group_Mesh_Extra","path":"scripts/Group_Mesh_Extra/Group_Mesh_Extra.yy",},},
     {"id":{"name":"Group_Emu_Shortcut_Dialogs","path":"scripts/Group_Emu_Shortcut_Dialogs/Group_Emu_Shortcut_Dialogs.yy",},},
     {"id":{"name":"foreach","path":"scripts/foreach/foreach.yy",},},
     {"id":{"name":"Manager_Entity_Event_Page","path":"scripts/Manager_Entity_Event_Page/Manager_Entity_Event_Page.yy",},},
