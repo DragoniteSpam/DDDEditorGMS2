@@ -1,6 +1,6 @@
 #macro SPRITE_ATLAS_DLL "SpriteAtlas.dll"
 #macro SPRITE_ATLAS_CALLTYPE dll_cdecl
-#macro SPRITE_ATLAS_VERSION "1.0.1"
+#macro SPRITE_ATLAS_VERSION "1.1.0"
 
 function __spal__setup(data_buffer, sprite_array, padding) {
     var n = array_length(sprite_array);

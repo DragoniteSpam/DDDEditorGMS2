@@ -23,7 +23,8 @@
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"__sprite_atlas_pack","argCount":0,"args":[
             1,
             2,
-          ],"documentation":"","externalName":"sprite_atlas_pack","help":"__sprite_atlas_pack(data, length)","hidden":false,"kind":1,"returnType":2,},
+            2,
+          ],"documentation":"","externalName":"sprite_atlas_pack","help":"__sprite_atlas_pack(data, length, interval_size)","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[
         {"name":"__sprite_atlas_version","path":"extensions/SpriteAtlas/SpriteAtlas.yy",},
         {"name":"__sprite_atlas_pack","path":"extensions/SpriteAtlas/SpriteAtlas.yy",},
