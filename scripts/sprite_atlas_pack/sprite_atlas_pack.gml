@@ -24,7 +24,7 @@ function sprite_atlas_pack(sprite_array, padding, stride = 4) {
         var xx = 0;
         repeat (maxx / stride) {
             var yy = 0;
-            repeat (maxx / stride) {
+            repeat (maxy / stride) {
                 var is_free = true;
                 
                 var owplusstep = buffer_peek(data_buffer, index + SpritePackData.W, buffer_s32) + stride;

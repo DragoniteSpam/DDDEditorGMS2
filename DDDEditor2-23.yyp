@@ -48,6 +48,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sPart","folderPath":"folders/Extensions/sPart/Scripts/sPart.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Shaders","folderPath":"folders/Extensions/sPart/Shaders.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"WIP","folderPath":"folders/Extensions/sPart/WIP.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"SpriteAtlas","folderPath":"folders/Extensions/SpriteAtlas.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Game data","folderPath":"folders/Game data.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Entities","folderPath":"folders/Game data/Entities.yy",},
@@ -140,7 +141,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Generation","folderPath":"folders/Terrain/Generation.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Particles","folderPath":"folders/Terrain/Generation/Particles.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"water","folderPath":"folders/Terrain/water.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"SpriteAtlas","folderPath":"folders/Extensions/SpriteAtlas.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"axes_centered.vbuff","CopyToMask":-1,"filePath":"datafiles/data/basic",},

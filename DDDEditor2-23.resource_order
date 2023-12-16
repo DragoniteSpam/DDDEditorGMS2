@@ -31,6 +31,7 @@
     {"name":"sPart","order":1,"path":"folders/Extensions/sPart/Scripts/sPart.yy",},
     {"name":"Shaders","order":3,"path":"folders/Extensions/sPart/Shaders.yy",},
     {"name":"WIP","order":4,"path":"folders/Extensions/sPart/WIP.yy",},
+    {"name":"SpriteAtlas","order":17,"path":"folders/Extensions/SpriteAtlas.yy",},
     {"name":"Fonts","order":25,"path":"folders/Fonts.yy",},
     {"name":"Game data","order":31,"path":"folders/Game data.yy",},
     {"name":"Entities","order":17,"path":"folders/Game data/Entities.yy",},
@@ -115,7 +116,6 @@
     {"name":"Generation","order":2,"path":"folders/Terrain/Generation.yy",},
     {"name":"Particles","order":8,"path":"folders/Terrain/Generation/Particles.yy",},
     {"name":"water","order":4,"path":"folders/Terrain/water.yy",},
-    {"name":"SpriteAtlas","order":17,"path":"folders/Extensions/SpriteAtlas.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"buffer_text_writeln","order":12,"path":"scripts/buffer_text_writeln/buffer_text_writeln.yy",},
