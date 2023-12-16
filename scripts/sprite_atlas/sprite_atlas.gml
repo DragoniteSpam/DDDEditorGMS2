@@ -40,12 +40,6 @@ function __spal__setup(data_buffer, sprite_array, padding) {
 }
 
 function __spal__cleanup(data_buffer, sprite_lookup, padding, maxx, maxy) {
-    static sprite_pack_data_x = 0;
-    static sprite_pack_data_y = 4;
-    static sprite_pack_data_w = 8;
-    static sprite_pack_data_h = 12;
-    static sprite_pack_data_size = 16;
-    
     maxx = 1 << ceil(log2(maxx));
     maxy = 1 << ceil(log2(maxy));
     
@@ -69,8 +63,8 @@ function __spal__cleanup(data_buffer, sprite_lookup, padding, maxx, maxy) {
         var sprite = sprite_lookup[@ index].spr;
         var sub = sprite_lookup[index].index;
         var i = index++ * 16;
-        var xx = buffer_peek(data_buffer, i + sprite_pack_data_x, buffer_s32);
-        var yy = buffer_peek(data_buffer, i + sprite_pack_data_y, buffer_s32);
+        var xx = buffer_peek(data_buffer, i + SpritePackData.X, buffer_s32);
+        var yy = buffer_peek(data_buffer, i + SpritePackData.Y, buffer_s32);
         if (padding > 0) {
             draw_sprite_general(sprite, sub, 0, 0, sprite_get_width(sprite), 1, xx + padding, yy, 1, padding, 0, c_white, c_white, c_white, c_white, 1);
             draw_sprite_general(sprite, sub, 0, 0, 1, sprite_get_height(sprite), xx, yy + padding, padding, 1, 0, c_white, c_white, c_white, c_white, 1);
@@ -91,10 +85,10 @@ function __spal__cleanup(data_buffer, sprite_lookup, padding, maxx, maxy) {
     repeat (n) {
         var data = sprite_lookup[i];
         output_coordinates[i] = {
-            x: buffer_peek(data_buffer, i * sprite_pack_data_size + sprite_pack_data_x, buffer_s32) + padding,
-            y: buffer_peek(data_buffer, i * sprite_pack_data_size + sprite_pack_data_y, buffer_s32) + padding,
-            w: buffer_peek(data_buffer, i * sprite_pack_data_size + sprite_pack_data_w, buffer_s32) - 2 * padding,
-            h: buffer_peek(data_buffer, i * sprite_pack_data_size + sprite_pack_data_h, buffer_s32) - 2 * padding,
+            x: buffer_peek(data_buffer, i * SpritePackData.SIZE + SpritePackData.X, buffer_s32) + padding,
+            y: buffer_peek(data_buffer, i * SpritePackData.SIZE + SpritePackData.Y, buffer_s32) + padding,
+            w: buffer_peek(data_buffer, i * SpritePackData.SIZE + SpritePackData.W, buffer_s32) - 2 * padding,
+            h: buffer_peek(data_buffer, i * SpritePackData.SIZE + SpritePackData.H, buffer_s32) - 2 * padding,
             sprite: data.spr,
             subimage: data.index
         };
