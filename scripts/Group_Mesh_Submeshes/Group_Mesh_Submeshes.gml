@@ -249,15 +249,29 @@ function MeshSubmesh(source) constructor {
     // used with the "combine submeshes" option in the Mesh editor
     self.AddBufferData = function(raw_buffer, remapped_uvs = undefined) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
-        var new_size = buffer_get_size(raw_buffer);
-        var old_size = 0;
+        var incoming_size = buffer_get_size(raw_buffer);
+        var current_size = 0;
         if (!self.buffer) {
-            self.buffer = buffer_create(new_size, buffer_grow, 1);
+            self.buffer = buffer_create(incoming_size, buffer_grow, 1);
         } else {
-            old_size = buffer_get_size(self.buffer);
-            buffer_resize(self.buffer, old_size + new_size);
+            current_size = buffer_get_size(self.buffer);
+            buffer_resize(self.buffer, current_size + incoming_size);
         }
-        buffer_copy(raw_buffer, 0, new_size, self.buffer, old_size);
+        buffer_copy(raw_buffer, 0, incoming_size, self.buffer, current_size);
+        
+        if (remapped_uvs != undefined) {
+            meshops_transform_uvs(
+                self.buffer,
+                current_size,
+                incoming_size,
+                0, 0, 1, 1,
+                remapped_uvs.x,
+                remapped_uvs.y,
+                remapped_uvs.x + remapped_uvs.w,
+                remapped_uvs.y + remapped_uvs.h
+            );
+        }
+        
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.format);
         vertex_freeze(self.vbuffer);
         

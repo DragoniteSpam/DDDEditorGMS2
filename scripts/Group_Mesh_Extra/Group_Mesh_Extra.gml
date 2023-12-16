@@ -20,9 +20,16 @@ function mesh_combine_all(meshes_array) {
         var remapped_texture_data = undefined;
         
         if (remap_needed) {
-            remapped_texture_data = sprite_atlas_pack_dll(unique_textures_for_atlasing, 2, true);
+            remapped_texture_data = sprite_atlas_pack_dll(unique_textures_for_atlasing, 1, true);
+            var ww = sprite_get_width(remapped_texture_data.atlas);
+            var hh = sprite_get_height(remapped_texture_data.atlas);
             for (var j = 0, n2 = array_length(remapped_texture_data.uvs); j < n2; j++) {
-                unique_textures[$ remapped_texture_data.uvs[j].sprite] = j;
+                var uvs = remapped_texture_data.uvs[j];
+                uvs.x /= ww;
+                uvs.y /= hh;
+                uvs.w /= ww;
+                uvs.h /= hh;
+                unique_textures[$ uvs.sprite] = j;
             }
         }
         

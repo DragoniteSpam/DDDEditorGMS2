@@ -2,7 +2,7 @@
 #macro SPRITE_ATLAS_CALLTYPE dll_cdecl
 #macro SPRITE_ATLAS_VERSION "1.0.1"
 
-function __spal__setup(data_buffer, sprite_array, padding, extra_buffer) {
+function __spal__setup(data_buffer, sprite_array, padding) {
     var n = array_length(sprite_array);
     var sprite_lookup = [];
     
@@ -13,7 +13,7 @@ function __spal__setup(data_buffer, sprite_array, padding, extra_buffer) {
     var i = 0;
     var count = 0;
     repeat (n) {
-        var sprite = sprite_array[@ i];
+        var sprite = sprite_array[i];
         var sub = sprite_get_number(sprite);
         var j = 0;
         repeat (sub) {
@@ -31,9 +31,10 @@ function __spal__setup(data_buffer, sprite_array, padding, extra_buffer) {
         i++;
     }
     
-    repeat (extra_buffer) {
-        buffer_write(data_buffer, buffer_s32, 0);
-    }
+    // final width
+    buffer_write(data_buffer, buffer_s32, 0);
+    // final height
+    buffer_write(data_buffer, buffer_s32, 0);
     
     return sprite_lookup;
 }
@@ -89,7 +90,7 @@ function __spal__cleanup(data_buffer, sprite_lookup, padding, borders, maxx, max
             w: buffer_peek(data_buffer, i * SpritePackData.SIZE + SpritePackData.W, buffer_s32) - 2 * padding - 1,
             h: buffer_peek(data_buffer, i * SpritePackData.SIZE + SpritePackData.H, buffer_s32) - 2 * padding - 1,
             sprite: data.spr,
-            subimage: data.index,
+            subimage: data.index
         };
         i++;
     }

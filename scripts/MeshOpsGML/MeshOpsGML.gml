@@ -54,6 +54,11 @@ function meshops_vertex_formatted(buffer, format) {
     return output;
 }
 
+function meshops_transform_uvs(buffer, offset, length, start1x, start1y, start2x, start2y, end1x, end1y, end2x, end2y) {
+    __meshops_transform_set_uvs(start1x, start1y, start2x, start2y, end1x, end1y, end2x, end2y);
+    __meshops_transform_uvs(buffer_get_address(buffer), offset / 4, length / 4);
+}
+
 function meshops_set_normals_smooth_multi(buffers, threshold) {
     __meshops_set_normals_smooth_multi_prepare();
     for (var i = 0, n = array_length(buffers); i < n; i++) {
