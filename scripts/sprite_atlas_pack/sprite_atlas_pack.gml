@@ -10,7 +10,7 @@ function sprite_atlas_pack(sprite_array, padding, borders) {
     };
     
     var data_buffer = buffer_create(array_length(sprite_array) << 4, buffer_grow, 4);
-    var sprite_lookup = __spal__setup(data_buffer, sprite_array, padding, 0);
+    var sprite_lookup = __spal__setup(data_buffer, sprite_array, padding);
     var n = array_length(sprite_lookup);
     
     var maxx = 0;
