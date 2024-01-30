@@ -122,6 +122,7 @@ Settings.mesh[$ "wireframe_alpha"] ??=                                          
 Settings.mesh[$ "reflect_settings"] ??=                                         MESH_DEF_REFLECT_SETTINGS;
 Settings.mesh[$ "reflect_color"] ??=                                            MESH_DEF_REFLECT_COLOR;
 Settings.mesh[$ "combine_obj_submeshes"] ??=                                    MESH_DEF_COMBINE_OBJ_SUBMESHES;
+Settings.mesh[$ "combine_force_po2"] ??=                                        MESH_DEF_COMBINE_FORCE_PO2;
 Settings.mesh[$ "draw_3d_view_overlay_text"] ??=                                MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT;
 Settings.mesh[$ "fuse_textureless_materials"] ??=                               MESH_DEF_FUSE_TEXTURELESS_MATERIALS;
 
@@ -149,6 +150,7 @@ Settings.voxelish[$ "view_skybox"] ??=                                          
 #macro MESH_DEF_REFLECT_SETTINGS                                                (MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE)
 #macro MESH_DEF_REFLECT_COLOR                                                   0x7fff6600
 #macro MESH_DEF_COMBINE_OBJ_SUBMESHES                                           true
+#macro MESH_DEF_COMBINE_FORCE_PO2                                               false
 #macro MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT                                       true
 #macro MESH_DEF_FUSE_TEXTURELESS_MATERIALS                                      true
 #macro vk_mesh_editor_overlay_text_toggle                                       ord("O")

@@ -79,7 +79,7 @@ function project_export_atlas(buffer, list) {
         for (var i = 0; i < array_length(compilation); i++) {
             compilation[i] = list[i].picture;
         }
-        var packed = sprite_atlas_pack_dll(compilation, 2, true);
+        var packed = sprite_atlas_pack_dll(compilation, 2, 4/*, force po2 setting*/);
         var w = sprite_get_width(packed.atlas);
         var h = sprite_get_height(packed.atlas);
         for (var i = 0; i < array_length(compilation); i++) {

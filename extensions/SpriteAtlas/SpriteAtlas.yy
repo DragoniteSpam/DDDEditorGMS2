@@ -24,7 +24,8 @@
             1,
             2,
             2,
-          ],"documentation":"","externalName":"sprite_atlas_pack","help":"__sprite_atlas_pack(data, length, interval_size)","hidden":false,"kind":1,"returnType":2,},
+            2,
+          ],"documentation":"","externalName":"sprite_atlas_pack","help":"__sprite_atlas_pack(data, length, interval_size, force_po2)","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[
         {"name":"__sprite_atlas_version","path":"extensions/SpriteAtlas/SpriteAtlas.yy",},
         {"name":"__sprite_atlas_pack","path":"extensions/SpriteAtlas/SpriteAtlas.yy",},

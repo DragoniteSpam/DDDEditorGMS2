@@ -20,7 +20,7 @@ function mesh_combine_all(meshes_array) {
         var remapped_texture_data = undefined;
         
         if (remap_needed) {
-            remapped_texture_data = sprite_atlas_pack_dll(unique_textures_for_atlasing, 2);
+            remapped_texture_data = sprite_atlas_pack_dll(unique_textures_for_atlasing, 2, 4, Settings.mesh.combine_force_po2);
             var ww = sprite_get_width(remapped_texture_data.atlas);
             var hh = sprite_get_height(remapped_texture_data.atlas);
             for (var j = 0, n2 = array_length(remapped_texture_data.uvs); j < n2; j++) {

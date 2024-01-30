@@ -111,6 +111,10 @@ function dialog_create_preferences() {
             Settings.mesh.combine_obj_submeshes = self.value;
         }))
             .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material?"),
+        (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Force texture powers of 2?", Settings.mesh.combine_force_po2, function() {
+            Settings.mesh.combine_force_po2 = self.value;
+        }))
+            .SetTooltip("When you combine a submesh, should its atlased texture be forced to a power of 2 in size?"),
         (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Show status messages?", Settings.config.show_status_messages, function() {
             Settings.config.show_status_messages = self.value;
         }))

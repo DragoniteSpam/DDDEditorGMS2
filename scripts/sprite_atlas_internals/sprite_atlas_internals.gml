@@ -40,9 +40,6 @@ function __spal__setup(data_buffer, sprite_array, padding) {
 }
 
 function __spal__cleanup(data_buffer, sprite_lookup, padding, maxx, maxy) {
-    maxx = 1 << ceil(log2(maxx));
-    maxy = 1 << ceil(log2(maxy));
-    
     static warned = false;
     if (max(maxx, maxy) > 0x4000 && !warned) {
         warned = true;
