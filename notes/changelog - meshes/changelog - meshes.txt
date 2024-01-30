@@ -1,5 +1,9 @@
 Another changelog.
 
+# Changes in 2024.1
+
+ - Combining submeshes will also combine their textures (yay)
+
 # Changes in 2023.4
 
  - Importing multiple models with missing texture files wont add a billion copies of the magenta texture
