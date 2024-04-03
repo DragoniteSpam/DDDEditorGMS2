@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "penguin_load",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Penguin",
-    "path": "folders/Penguin.yy",
+  "$GMScript":"",
+  "%Name":"penguin_load",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"penguin_load",
+  "parent":{
+    "name":"Penguin",
+    "path":"folders/Penguin.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

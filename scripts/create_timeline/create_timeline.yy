@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "create_timeline",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "special",
-    "path": "folders/Scripts/ui stuff/creation/special.yy",
+  "$GMScript":"",
+  "%Name":"create_timeline",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_timeline",
+  "parent":{
+    "name":"special",
+    "path":"folders/Scripts/ui stuff/creation/special.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

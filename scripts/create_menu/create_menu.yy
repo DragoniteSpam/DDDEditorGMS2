@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "create_menu",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "creation",
-    "path": "folders/Scripts/ui stuff/menu/creation.yy",
+  "$GMScript":"",
+  "%Name":"create_menu",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_menu",
+  "parent":{
+    "name":"creation",
+    "path":"folders/Scripts/ui stuff/menu/creation.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

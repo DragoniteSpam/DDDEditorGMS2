@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_SData_Map",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "SData",
-    "path": "folders/Game data/SData.yy",
+  "$GMScript":"",
+  "%Name":"Group_SData_Map",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_SData_Map",
+  "parent":{
+    "name":"SData",
+    "path":"folders/Game data/SData.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

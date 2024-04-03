@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "snap_to_gml",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "GML",
-    "path": "folders/Extensions/SNAP/GML.yy",
+  "$GMScript":"",
+  "%Name":"snap_to_gml",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"snap_to_gml",
+  "parent":{
+    "name":"GML",
+    "path":"folders/Extensions/SNAP/GML.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

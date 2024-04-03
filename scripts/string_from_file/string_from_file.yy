@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "string_from_file",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "SNAP",
-    "path": "folders/Extensions/SNAP.yy",
+  "$GMScript":"",
+  "%Name":"string_from_file",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"string_from_file",
+  "parent":{
+    "name":"SNAP",
+    "path":"folders/Extensions/SNAP.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

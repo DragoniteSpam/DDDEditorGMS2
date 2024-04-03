@@ -1,10 +1,12 @@
 {
-  "resourceType": "GMShader",
-  "resourceVersion": "1.0",
-  "name": "shd_scene_depth",
-  "parent": {
-    "name": "Shading",
-    "path": "folders/Shading.yy",
+  "$GMShader":"",
+  "%Name":"shd_scene_depth",
+  "name":"shd_scene_depth",
+  "parent":{
+    "name":"Shading",
+    "path":"folders/Shading.yy",
   },
-  "type": 1,
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
 }

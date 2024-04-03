@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Combine_Channels",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Combine Channels",
-    "path": "folders/Shaders/Utility/Combine Channels.yy",
+  "$GMScript":"",
+  "%Name":"Group_Combine_Channels",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Combine_Channels",
+  "parent":{
+    "name":"Combine Channels",
+    "path":"folders/Shaders/Utility/Combine Channels.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

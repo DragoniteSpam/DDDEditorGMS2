@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "uivc_animation_keyframe_function",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "keyframe data",
-    "path": "folders/Scripts/ui stuff/on value change and general interaction/animations/keyframe data.yy",
+  "$GMScript":"",
+  "%Name":"uivc_animation_keyframe_function",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"uivc_animation_keyframe_function",
+  "parent":{
+    "name":"keyframe data",
+    "path":"folders/Scripts/ui stuff/on value change and general interaction/animations/keyframe data.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

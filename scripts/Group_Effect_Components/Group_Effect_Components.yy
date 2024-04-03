@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Effect_Components",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Entities",
-    "path": "folders/Game data/Entities.yy",
+  "$GMScript":"",
+  "%Name":"Group_Effect_Components",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Effect_Components",
+  "parent":{
+    "name":"Entities",
+    "path":"folders/Game data/Entities.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

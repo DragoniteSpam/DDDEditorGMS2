@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Banding",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Banding",
-    "path": "folders/Shaders/Utility/Banding.yy",
+  "$GMScript":"",
+  "%Name":"Group_Banding",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Banding",
+  "parent":{
+    "name":"Banding",
+    "path":"folders/Shaders/Utility/Banding.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,10 +1,12 @@
 {
-  "resourceType": "GMShader",
-  "resourceVersion": "1.0",
-  "name": "shd_utility_banding",
-  "parent": {
-    "name": "Banding",
-    "path": "folders/Shaders/Utility/Banding.yy",
+  "$GMShader":"",
+  "%Name":"shd_utility_banding",
+  "name":"shd_utility_banding",
+  "parent":{
+    "name":"Banding",
+    "path":"folders/Shaders/Utility/Banding.yy",
   },
-  "type": 1,
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
 }

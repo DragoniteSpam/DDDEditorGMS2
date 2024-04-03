@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Vertex_Building",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Graphics",
-    "path": "folders/Scripts/Graphics.yy",
+  "$GMScript":"",
+  "%Name":"Group_Vertex_Building",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Vertex_Building",
+  "parent":{
+    "name":"Graphics",
+    "path":"folders/Scripts/Graphics.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

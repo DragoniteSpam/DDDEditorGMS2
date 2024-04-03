@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Language",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Language",
-    "path": "folders/Language.yy",
+  "$GMScript":"",
+  "%Name":"Group_Language",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Language",
+  "parent":{
+    "name":"Language",
+    "path":"folders/Language.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Menu_Right_Click",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "onmouseup",
-    "path": "folders/Scripts/ui stuff/menu/onmouseup.yy",
+  "$GMScript":"",
+  "%Name":"Group_Menu_Right_Click",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Menu_Right_Click",
+  "parent":{
+    "name":"onmouseup",
+    "path":"folders/Scripts/ui stuff/menu/onmouseup.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

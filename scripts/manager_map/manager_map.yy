@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "manager_map",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Emu Implementation",
-    "path": "folders/Emu Implementation.yy",
+  "$GMScript":"",
+  "%Name":"manager_map",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"manager_map",
+  "parent":{
+    "name":"Emu Implementation",
+    "path":"folders/Emu Implementation.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

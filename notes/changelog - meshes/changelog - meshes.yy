@@ -1,9 +1,11 @@
 {
-  "resourceType": "GMNotes",
-  "resourceVersion": "1.1",
-  "name": "Changelog - Meshes",
-  "parent": {
-    "name": "Changelogs",
-    "path": "folders/Changelogs.yy",
+  "$GMNotes":"",
+  "%Name":"Changelog - Meshes",
+  "name":"Changelog - Meshes",
+  "parent":{
+    "name":"Changelogs",
+    "path":"folders/Changelogs.yy",
   },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
 }

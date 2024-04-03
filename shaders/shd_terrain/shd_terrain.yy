@@ -1,10 +1,12 @@
 {
-  "resourceType": "GMShader",
-  "resourceVersion": "1.0",
-  "name": "shd_terrain",
-  "parent": {
-    "name": "Terrain",
-    "path": "folders/Terrain.yy",
+  "$GMShader":"",
+  "%Name":"shd_terrain",
+  "name":"shd_terrain",
+  "parent":{
+    "name":"Terrain",
+    "path":"folders/Terrain.yy",
   },
-  "type": 1,
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
 }

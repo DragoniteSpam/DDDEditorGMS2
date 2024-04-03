@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "snap_deep_copy",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "SNAP",
-    "path": "folders/Extensions/SNAP.yy",
+  "$GMScript":"",
+  "%Name":"snap_deep_copy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"snap_deep_copy",
+  "parent":{
+    "name":"SNAP",
+    "path":"folders/Extensions/SNAP.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Terrain_Dialogs",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Terrain",
-    "path": "folders/Terrain.yy",
+  "$GMScript":"",
+  "%Name":"Group_Terrain_Dialogs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Terrain_Dialogs",
+  "parent":{
+    "name":"Terrain",
+    "path":"folders/Terrain.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

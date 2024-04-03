@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Graphics",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Graphics",
-    "path": "folders/Scripts/Graphics.yy",
+  "$GMScript":"",
+  "%Name":"Group_Graphics",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Graphics",
+  "parent":{
+    "name":"Graphics",
+    "path":"folders/Scripts/Graphics.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Map_Help",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Maps",
-    "path": "folders/Maps.yy",
+  "$GMScript":"",
+  "%Name":"Group_Map_Help",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Map_Help",
+  "parent":{
+    "name":"Maps",
+    "path":"folders/Maps.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

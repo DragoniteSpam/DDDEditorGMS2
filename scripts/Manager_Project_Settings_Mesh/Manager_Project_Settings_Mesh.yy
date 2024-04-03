@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Manager_Project_Settings_Mesh",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Emu Implementation",
-    "path": "folders/Emu Implementation.yy",
+  "$GMScript":"",
+  "%Name":"Manager_Project_Settings_Mesh",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Manager_Project_Settings_Mesh",
+  "parent":{
+    "name":"Emu Implementation",
+    "path":"folders/Emu Implementation.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

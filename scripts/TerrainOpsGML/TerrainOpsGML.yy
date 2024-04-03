@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "TerrainOpsGML",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Extensions",
-    "path": "folders/Extensions.yy",
+  "$GMScript":"",
+  "%Name":"TerrainOpsGML",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"TerrainOpsGML",
+  "parent":{
+    "name":"Extensions",
+    "path":"folders/Extensions.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "entity_mesh_autotile_check_changes",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "mesh",
-    "path": "folders/Scripts/entity/mesh.yy",
+  "$GMScript":"",
+  "%Name":"entity_mesh_autotile_check_changes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"entity_mesh_autotile_check_changes",
+  "parent":{
+    "name":"mesh",
+    "path":"folders/Scripts/entity/mesh.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

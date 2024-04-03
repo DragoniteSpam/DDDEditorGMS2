@@ -1,10 +1,12 @@
 {
-  "resourceType": "GMShader",
-  "resourceVersion": "1.0",
-  "name": "shd_utility_combine_channels",
-  "parent": {
-    "name": "Combine Channels",
-    "path": "folders/Shaders/Utility/Combine Channels.yy",
+  "$GMShader":"",
+  "%Name":"shd_utility_combine_channels",
+  "name":"shd_utility_combine_channels",
+  "parent":{
+    "name":"Combine Channels",
+    "path":"folders/Shaders/Utility/Combine Channels.yy",
   },
-  "type": 1,
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
 }

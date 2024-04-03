@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "draw_animator",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "views",
-    "path": "folders/Scripts/Graphics/views.yy",
+  "$GMScript":"",
+  "%Name":"draw_animator",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_animator",
+  "parent":{
+    "name":"views",
+    "path":"folders/Scripts/Graphics/views.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

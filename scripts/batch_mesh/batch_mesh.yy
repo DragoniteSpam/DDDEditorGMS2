@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "batch_mesh",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "batching",
-    "path": "folders/Scripts/Graphics/batching.yy",
+  "$GMScript":"",
+  "%Name":"batch_mesh",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"batch_mesh",
+  "parent":{
+    "name":"batching",
+    "path":"folders/Scripts/Graphics/batching.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

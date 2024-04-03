@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "get_autotile_id",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "misc code",
-    "path": "folders/Scripts/misc code.yy",
+  "$GMScript":"",
+  "%Name":"get_autotile_id",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_autotile_id",
+  "parent":{
+    "name":"misc code",
+    "path":"folders/Scripts/misc code.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

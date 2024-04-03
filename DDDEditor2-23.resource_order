@@ -1,5 +1,5 @@
 {
-  "FolderOrderSettings": [
+  "FolderOrderSettings":[
     {"name":"Changelogs","order":52,"path":"folders/Changelogs.yy",},
     {"name":"Data","order":44,"path":"folders/Data.yy",},
     {"name":"Editor","order":37,"path":"folders/Editor.yy",},
@@ -117,7 +117,7 @@
     {"name":"Particles","order":8,"path":"folders/Terrain/Generation/Particles.yy",},
     {"name":"water","order":4,"path":"folders/Terrain/water.yy",},
   ],
-  "ResourceOrderSettings": [
+  "ResourceOrderSettings":[
     {"name":"buffer_text_writeln","order":12,"path":"scripts/buffer_text_writeln/buffer_text_writeln.yy",},
     {"name":"b_tileset_magenta","order":1,"path":"sprites/b_tileset_magenta/b_tileset_magenta.yy",},
     {"name":"Group_Manage_Audio","order":10,"path":"scripts/Group_Manage_Audio/Group_Manage_Audio.yy",},

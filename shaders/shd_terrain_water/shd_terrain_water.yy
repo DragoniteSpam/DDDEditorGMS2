@@ -1,10 +1,12 @@
 {
-  "resourceType": "GMShader",
-  "resourceVersion": "1.0",
-  "name": "shd_terrain_water",
-  "parent": {
-    "name": "water",
-    "path": "folders/Terrain/water.yy",
+  "$GMShader":"",
+  "%Name":"shd_terrain_water",
+  "name":"shd_terrain_water",
+  "parent":{
+    "name":"water",
+    "path":"folders/Terrain/water.yy",
   },
-  "type": 1,
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
 }

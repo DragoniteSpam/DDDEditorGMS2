@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "dialog_create_mesh_collision_settings",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "meshes",
-    "path": "folders/Scripts/ui stuff/onmouseup/meshes.yy",
+  "$GMScript":"",
+  "%Name":"dialog_create_mesh_collision_settings",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dialog_create_mesh_collision_settings",
+  "parent":{
+    "name":"meshes",
+    "path":"folders/Scripts/ui stuff/onmouseup/meshes.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

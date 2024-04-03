@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "sprite_atlas_internals",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "SpriteAtlas",
-    "path": "folders/Extensions/SpriteAtlas.yy",
+  "$GMScript":"",
+  "%Name":"sprite_atlas_internals",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sprite_atlas_internals",
+  "parent":{
+    "name":"SpriteAtlas",
+    "path":"folders/Extensions/SpriteAtlas.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

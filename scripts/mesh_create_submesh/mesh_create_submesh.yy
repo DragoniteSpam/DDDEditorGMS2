@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "mesh_create_submesh",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "mesh",
-    "path": "folders/Scripts/entity/mesh.yy",
+  "$GMScript":"",
+  "%Name":"mesh_create_submesh",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"mesh_create_submesh",
+  "parent":{
+    "name":"mesh",
+    "path":"folders/Scripts/entity/mesh.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

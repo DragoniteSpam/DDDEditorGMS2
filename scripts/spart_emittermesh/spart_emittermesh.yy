@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "spart_emittermesh",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "WIP",
-    "path": "folders/Extensions/sPart/WIP.yy",
+  "$GMScript":"",
+  "%Name":"spart_emittermesh",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"spart_emittermesh",
+  "parent":{
+    "name":"WIP",
+    "path":"folders/Extensions/sPart/WIP.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

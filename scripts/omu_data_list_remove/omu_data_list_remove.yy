@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "omu_data_list_remove",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "data etc",
-    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  "$GMScript":"",
+  "%Name":"omu_data_list_remove",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"omu_data_list_remove",
+  "parent":{
+    "name":"data etc",
+    "path":"folders/Scripts/ui stuff/onmouseup/data etc.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

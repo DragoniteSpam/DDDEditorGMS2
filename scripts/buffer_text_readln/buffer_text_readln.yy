@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "buffer_text_readln",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Library",
-    "path": "folders/Extensions/buffer_text/Library.yy",
+  "$GMScript":"",
+  "%Name":"buffer_text_readln",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"buffer_text_readln",
+  "parent":{
+    "name":"Library",
+    "path":"folders/Extensions/buffer_text/Library.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

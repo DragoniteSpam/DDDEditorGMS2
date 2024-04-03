@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Phoenix",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Phoenix",
-    "path": "folders/Extensions/Phoenix.yy",
+  "$GMScript":"",
+  "%Name":"Phoenix",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Phoenix",
+  "parent":{
+    "name":"Phoenix",
+    "path":"folders/Extensions/Phoenix.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
