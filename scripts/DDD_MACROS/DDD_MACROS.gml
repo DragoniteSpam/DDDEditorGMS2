@@ -3,7 +3,7 @@
 #macro Terrain:EDITOR_BASE_MODE             ModeIDs.TERRAIN
 #macro spart:EDITOR_BASE_MODE               ModeIDs.SPART
 #macro mesh:EDITOR_BASE_MODE                ModeIDs.MESH
-#macro voxelish:EDITOR_BASE_MODE            ModeIDs.MESH
+#macro voxelish:EDITOR_BASE_MODE            ModeIDs.VOXELISH
 
 #macro IS_DEFAULT_MODE                      (EDITOR_BASE_MODE == ModeIDs.MAP)
 #macro IS_MESH_MODE                         (EDITOR_BASE_MODE == ModeIDs.MESH)

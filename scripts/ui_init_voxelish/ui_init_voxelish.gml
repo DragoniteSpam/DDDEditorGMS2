@@ -11,6 +11,7 @@ function ui_init_voxelish(mode) {
     
     container.AddContent([
         (new EmuRenderSurface(0, 0, CW, CH, function(mx, my) {
+            Stuff.voxelish.DrawTerrain();
             // draw
         }, function(mx, my) {
             if (mx < 0 || my < 0 || mx >= self.width || my >= self.height) return;

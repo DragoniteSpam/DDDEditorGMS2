@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"Group_Editor_Modes",
+  "%Name":"Group_Editor_Mode_Mesh",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Group_Editor_Modes",
+  "name":"Group_Editor_Mode_Mesh",
   "parent":{
     "name":"Modes",
     "path":"folders/Editor/Modes.yy",

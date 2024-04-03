@@ -617,7 +617,7 @@
     {"name":"ui_list_colors","order":18,"path":"scripts/ui_list_colors/ui_list_colors.yy",},
     {"name":"scribble_font_bake_outline_8dir_2px","order":2,"path":"scripts/scribble_font_bake_outline_8dir_2px/scribble_font_bake_outline_8dir_2px.yy",},
     {"name":"ui_render_list_timeline","order":19,"path":"scripts/ui_render_list_timeline/ui_render_list_timeline.yy",},
-    {"name":"Group_Editor_Modes","order":1,"path":"scripts/Group_Editor_Modes/Group_Editor_Modes.yy",},
+    {"name":"Group_Editor_Mode_Mesh","order":1,"path":"scripts/Group_Editor_Mode_Mesh/Group_Editor_Mode_Mesh.yy",},
     {"name":"ui_render_tab","order":20,"path":"scripts/ui_render_tab/ui_render_tab.yy",},
     {"name":"ui_render_text","order":21,"path":"scripts/ui_render_text/ui_render_text.yy",},
     {"name":"ui_render_radio_option_text","order":22,"path":"scripts/ui_render_radio_option_text/ui_render_radio_option_text.yy",},

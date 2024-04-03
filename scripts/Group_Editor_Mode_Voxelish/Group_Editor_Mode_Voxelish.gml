@@ -24,6 +24,57 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
     self.camera.SetCenter(self.ui.SearchID("VOXELISH VIEWPORT").width / 2, self.ui.SearchID("VOXELISH VIEWPORT").height / 2);
     self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.default_skybox);
     
+    self.mouse_interaction = function(mouse_vector) {
+        self.cursor_position = undefined;
+        
+        if (mouse_vector.direction.z < mouse_vector.origin.z) {
+            var f = abs(mouse_vector.origin.z / mouse_vector.direction.z);
+            self.cursor_position = new Vector2(mouse_vector.origin.x + mouse_vector.direction.x * f, mouse_vector.origin.y + mouse_vector.direction.y * f);
+            
+            if (EmuOverlay.GetTop()) return false;
+            
+            if (Controller.mouse_left) {
+                switch (Settings.terrain.mode) {
+                    case TerrainModes.Z: self.EditModeZ(self.cursor_position, 1); break;
+                    case TerrainModes.TEXTURE: self.EditModeTexture(self.cursor_position); break;
+                    case TerrainModes.COLOR: self.EditModeColor(self.cursor_position); break;
+                }
+            }
+            
+            if (Controller.mouse_right) {
+                switch (Settings.terrain.mode) {
+                    case TerrainModes.Z: self.EditModeZ(self.cursor_position, -1); break;
+                    case TerrainModes.TEXTURE: self.EditModeTexture(self.cursor_position); break;
+                    case TerrainModes.COLOR: self.EditModeColor(self.cursor_position); break;
+                }
+            }
+            
+            if (Controller.release_right) {
+                switch (Settings.terrain.mode) {
+                    case TerrainModes.Z: break;
+                    case TerrainModes.TEXTURE: self.texture.Finish(); break;
+                    case TerrainModes.COLOR: self.color.Finish(); break;
+                }
+            }
+            
+            if (Controller.release_left) {
+                switch (Settings.terrain.mode) {
+                    case TerrainModes.Z: break;
+                    case TerrainModes.TEXTURE: self.texture.Finish(); break;
+                    case TerrainModes.COLOR: self.color.Finish(); break;
+                }
+            }
+        }
+        
+        if (keyboard_check_pressed(vk_space)) {
+            
+        }
+        
+        if (keyboard_check_pressed(vk_delete)) {
+            
+        }
+    }
+    
     self.SetMode = function() {
         editor_set_mode(self, ModeIDs.VOXELISH);
     };
@@ -56,5 +107,22 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
             self.camera.SetProjection();
         }
         
+        if (Settings.terrain.view_axes) {
+            Stuff.graphics.DrawAxes();
+        }
+        
+        
+        if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
+        
+        gpu_set_ztestenable(false);
+        gpu_set_zwriteenable(false);
+        gpu_set_cullmode(cull_noculling);
+        
+        // overlay stuff
+        self.camera.SetProjectionGUI();
+        
+        editor_gui_button(spr_camera_icons, 2, 16, window_get_height() - 48, 0, 0, null, function() {
+            self.camera.Reset();
+        });
     };
 }

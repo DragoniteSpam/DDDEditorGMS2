@@ -828,7 +828,3 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     self.mode_id = ModeIDs.TERRAIN;
 }
-
-
-
-

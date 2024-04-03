@@ -735,7 +735,7 @@
     {"id":{"name":"ui_list_colors","path":"scripts/ui_list_colors/ui_list_colors.yy",},},
     {"id":{"name":"scribble_font_bake_outline_8dir_2px","path":"scripts/scribble_font_bake_outline_8dir_2px/scribble_font_bake_outline_8dir_2px.yy",},},
     {"id":{"name":"ui_render_list_timeline","path":"scripts/ui_render_list_timeline/ui_render_list_timeline.yy",},},
-    {"id":{"name":"Group_Editor_Modes","path":"scripts/Group_Editor_Modes/Group_Editor_Modes.yy",},},
+    {"id":{"name":"Group_Editor_Mode_Mesh","path":"scripts/Group_Editor_Mode_Mesh/Group_Editor_Mode_Mesh.yy",},},
     {"id":{"name":"ui_render_tab","path":"scripts/ui_render_tab/ui_render_tab.yy",},},
     {"id":{"name":"ui_render_text","path":"scripts/ui_render_text/ui_render_text.yy",},},
     {"id":{"name":"Phoenix","path":"scripts/Phoenix/Phoenix.yy",},},
