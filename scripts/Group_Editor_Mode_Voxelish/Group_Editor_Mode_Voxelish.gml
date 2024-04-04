@@ -111,7 +111,7 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
             Stuff.graphics.DrawAxes();
         }
         
-        if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
+        if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, 1024, 1024);
         
         gpu_set_ztestenable(false);
         gpu_set_zwriteenable(false);

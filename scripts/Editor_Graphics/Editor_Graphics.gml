@@ -16,7 +16,7 @@ function EditorGraphics() constructor {
         vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);      // bitangent vectors
         vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);      // barycentric coordinates
         self.format = vertex_format_end();
-        self.format_size = vertex_format_get_info().stride;
+        self.format_size = vertex_format_get_info(self.format).stride;
         
         meshops_init(self.format_size);
         show_debug_message("MeshOps version: " + string(meshops_version()));
@@ -132,7 +132,7 @@ function EditorGraphics() constructor {
         shader_set(shader);
     };
     
-    self.DrawMapGrid = function(x = 0, y = 0, z = 0) {
+    self.DrawMapGrid = function(x, y, z, w, h) {
         matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
         var shader = shader_current();
         shader_set(shd_utility_lines_procedural);
@@ -140,7 +140,7 @@ function EditorGraphics() constructor {
         shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridSize"), TILE_WIDTH, TILE_HEIGHT);
         shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridThickness"), 1);
         shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridColor"), 0, 0, 0);
-        draw_sprite_stretched(spr_pixel, 0, 0, 0, 1024, 1024);
+        draw_sprite_stretched(spr_pixel, 0, 0, 0, w, h);
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);
     };
