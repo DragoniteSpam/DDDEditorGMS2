@@ -1,15 +1,44 @@
 function EditorModeVoxelish() : EditorModeBase() constructor {
     debug_timer_start();
     
+    enum EVoxelCellData {
+        EMPTY,
+        DEFAULT
+    }
+    
     static voxelish_constructor = function() constructor {
-        self.width = 64;
-        self.height = 64;
-        self.depth = 8;
+        self.width = 16;
+        self.height = 16;
+        self.depth = 4;
+        
+        self.content = self.CreateContent();
         
         static Resize = function(w, h, d) {
             self.width = w;
             self.height = h;
             self.depth = d;
+            
+            array_foreach(self.content, function(i) {
+                array_foreach(i, function(j) {
+                    array_resize(j, self.depth);
+                });
+            });
+        };
+        
+        static CreateContent = function() {
+            return array_create_ext(self.width, function(i) {
+                return array_create_ext(self.height, function(j) {
+                    return array_create(self.depth, EVoxelCellData.EMPTY);
+                });
+            });
+        };
+        
+        static Set = function(x, y, z, value) {
+            self.content[x][y][z] = value;
+        };
+        
+        static Get = function(x, y, z) {
+            return self.content[x][y][z];
         };
     };
     
@@ -41,6 +70,10 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
             self.cursor_position = new Vector2(mouse_vector.origin.x + mouse_vector.direction.x * f, mouse_vector.origin.y + mouse_vector.direction.y * f);
             
             if (EmuOverlay.GetTop()) return false;
+            
+            if (Controller.mouse_left) {
+                self.model.Set(self.cursor_position.x div TILE_WIDTH, self.cursor_position.y div TILE_HEIGHT, 0, EVoxelCellData.DEFAULT);
+            }
             /*
             if (Controller.mouse_left) {
                 switch (Settings.terrain.mode) {
@@ -121,6 +154,19 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
         }
         
         Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, self.model.width * TILE_WIDTH, self.model.height * TILE_HEIGHT, self.cursor_position);
+        
+        for (var i = 0; i < self.model.width; i++) {
+            for (var j = 0; j < self.model.height; j++) {
+                for (var k = 0; k < self.model.depth; k++) {
+                    if (self.model.Get(i, j, k) != EVoxelCellData.EMPTY) {
+                        matrix_set(matrix_world, matrix_build(i * 32, j * 32, k * 32, 0, 0, 0, 1, 1, 1));
+                        vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
+                    }
+                }
+            }
+        }
+        
+        matrix_set(matrix_world, matrix_build_identity());
         
         gpu_set_ztestenable(false);
         gpu_set_zwriteenable(false);
