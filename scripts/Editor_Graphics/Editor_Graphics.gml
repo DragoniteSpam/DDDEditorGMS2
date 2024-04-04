@@ -8,22 +8,15 @@ function EditorGraphics() constructor {
         gpu_set_tex_repeat(true);
         
         vertex_format_begin();
-        self.format_size = 0;
         vertex_format_add_position_3d();
-        self.format_size += 12;
         vertex_format_add_normal();
-        self.format_size += 12;
         vertex_format_add_texcoord();
-        self.format_size += 8;
         vertex_format_add_colour();
-        self.format_size += 4;
         vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);      // tangent vectors
-        self.format_size += 12;
         vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);      // bitangent vectors
-        self.format_size += 12;
         vertex_format_add_custom(vertex_type_float3, vertex_usage_colour);      // barycentric coordinates
-        self.format_size += 12;                                                 // should be 72
         self.format = vertex_format_end();
+        self.format_size = vertex_format_get_info().stride;
         
         meshops_init(self.format_size);
         show_debug_message("MeshOps version: " + string(meshops_version()));
@@ -143,6 +136,7 @@ function EditorGraphics() constructor {
         matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
         var shader = shader_current();
         shader_set(shd_utility_lines_procedural);
+        // we could make these all settings later but idk if i feel like it really
         shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridSize"), TILE_WIDTH, TILE_HEIGHT);
         shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridThickness"), 1);
         shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridColor"), 0, 0, 0);
