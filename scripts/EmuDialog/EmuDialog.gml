@@ -135,7 +135,7 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
             callback();
         }
         
-        if (device_mouse_check_button_released(0, mb_left)) {
+        if (device_mouse_check_button_released(0, mb_left) || keyboard_check_pressed(vk_enter)) {
             self.contents_interactive = true;
         }
     }

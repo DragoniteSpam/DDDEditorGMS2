@@ -4,6 +4,13 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
     static voxelish_constructor = function() constructor {
         self.width = 64;
         self.height = 64;
+        self.depth = 8;
+        
+        static Resize = function(w, h, d) {
+            self.width = w;
+            self.height = h;
+            self.depth = d;
+        };
     };
     
     self.model = new self.voxelish_constructor();
@@ -111,7 +118,7 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
             Stuff.graphics.DrawAxes();
         }
         
-        if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, 1024, 1024);
+        if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, self.model.width * TILE_WIDTH, self.model.height * TILE_HEIGHT);
         
         gpu_set_ztestenable(false);
         gpu_set_zwriteenable(false);
