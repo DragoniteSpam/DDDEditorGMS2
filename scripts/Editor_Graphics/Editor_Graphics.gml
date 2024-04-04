@@ -73,7 +73,6 @@ function EditorGraphics() constructor {
         self.mesh_missing = vertex_load("data/basic/missing.vbuff", self.format_pntcb);
         self.missing_autotile = vertex_load("data/basic/missing_autotile.vbuff", self.format_pntcb);
         
-        self.grid_map = undefined;
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
     };
     
@@ -140,11 +139,14 @@ function EditorGraphics() constructor {
         shader_set(shader);
     };
     
-    self.DrawMapGrid = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
-        matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
+    self.DrawMapGrid = function(x = 0, y = 0, z = 0) {
+        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
         var shader = shader_current();
-        shader_set(shd_utility_lines);
-        vertex_submit(self.grid_map, pr_linelist, -1);
+        shader_set(shd_utility_lines_procedural);
+        shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridSize"), TILE_WIDTH, TILE_HEIGHT);
+        shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridThickness"), 1);
+        shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridColor"), 0, 0, 0);
+        draw_sprite_stretched(spr_pixel, 0, 0, 0, 1024, 1024);
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);
     };
@@ -192,35 +194,5 @@ function EditorGraphics() constructor {
         vertex_submit(self.basic_cage, pr_trianglelist, -1);
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);
-    };
-    
-    self.RecreateGrids = function() {
-        var map = Stuff.map.active_map;
-        var map_contents = map.contents;
-        
-        if (self.grid_map) vertex_delete_buffer(self.grid_map);
-        self.grid_map = vertex_create_buffer();
-        vertex_begin(self.grid_map, self.format_pc);
-        
-        for (var i = 0; i <= map.xx; i++) {
-            var xx = i * TILE_WIDTH;
-            var yy = map.yy * TILE_HEIGHT;
-            vertex_position_3d(self.grid_map, xx, 0, 0);
-            vertex_colour(self.grid_map, c_white, 1);
-            vertex_position_3d(self.grid_map, xx, yy, 0);
-            vertex_colour(self.grid_map, c_white, 1);
-        }
-        
-        for (var i = 0; i <= map.yy; i++) {
-            var xx = map.xx * TILE_HEIGHT;
-            var yy = i * TILE_WIDTH;
-            vertex_position_3d(self.grid_map, 0, yy, 0);
-            vertex_colour(self.grid_map, c_white, 1);
-            vertex_position_3d(self.grid_map, xx, yy, 0);
-            vertex_colour(self.grid_map, c_white, 1);
-        }
-        
-        vertex_end(self.grid_map);
-        vertex_freeze(self.grid_map);
     };
 }

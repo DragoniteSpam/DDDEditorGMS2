@@ -101,7 +101,6 @@ text = new EditorModeText();
 voxelish = new EditorModeVoxelish();
 menu = RIBBON_MENU();
 
-self.graphics.RecreateGrids();
 instance_deactivate_object(UIThing);
 #endregion
 

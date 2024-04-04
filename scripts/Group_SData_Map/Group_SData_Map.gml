@@ -152,7 +152,6 @@ function DataMap(source, directory) : SData(source) constructor {
                 }
             }
             
-            Stuff.graphics.RecreateGrids();
             array_resize_4d(self.contents.map_grid, x, y, z, MapCellContents._COUNT);
         }
         
@@ -189,9 +188,7 @@ function DataMap(source, directory) : SData(source) constructor {
         Stuff.map.active_map = self;
         
         self.contents = new MapContents(self);
-        
-        Stuff.graphics.RecreateGrids();
-        
+         
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         
         // these are several reasons this may not work, such as the map having
