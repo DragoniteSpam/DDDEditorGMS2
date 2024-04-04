@@ -1,7 +1,7 @@
 {
   "$GMShader":"",
-  "%Name":"shd_utility_lines_procedural",
-  "name":"shd_utility_lines_procedural",
+  "%Name":"shd_utility_grid",
+  "name":"shd_utility_grid",
   "parent":{
     "name":"Utility",
     "path":"folders/Shaders/Utility.yy",

@@ -126,20 +126,41 @@ function EditorGraphics() constructor {
     self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         var shader = shader_current();
-        shader_set(shd_utility_lines);
+        shader_set(shd_utility_grid);
         vertex_submit(self.grid_centered, pr_linelist, -1);
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);
     };
     
-    self.DrawMapGrid = function(x, y, z, w, h) {
-        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+    self.DrawMapGrid = function(x, y, z, w, h, cursor_position = undefined) {
         var shader = shader_current();
-        shader_set(shd_utility_lines_procedural);
+        static u_grid_size = shader_get_uniform(shd_utility_grid, "u_GridSize");
+        static u_grid_thickness = shader_get_uniform(shd_utility_grid, "u_GridThickness");
+        static u_grid_color = shader_get_uniform(shd_utility_grid, "u_GridColor");
+        
+        static u_cursor_enabled = shader_get_uniform(shd_utility_grid, "u_CursorEnabled");
+        static u_cursor_position = shader_get_uniform(shd_utility_grid, "u_CursorPosition");
+        static u_cursor_affect_half_size = shader_get_uniform(shd_utility_grid, "u_CursorAffectHalfSize");
+        
+        matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
+        shader_set(shd_utility_grid);
         // we could make these all settings later but idk if i feel like it really
-        shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridSize"), TILE_WIDTH, TILE_HEIGHT);
-        shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridThickness"), 1);
-        shader_set_uniform_f(shader_get_uniform(shd_utility_lines_procedural, "u_GridColor"), 0, 0, 0);
+        shader_set_uniform_f(u_grid_size, TILE_WIDTH, TILE_HEIGHT);
+        shader_set_uniform_f(u_grid_thickness, 1);
+        shader_set_uniform_f(u_grid_color, 0, 0, 0);
+        
+        if (cursor_position == undefined) {
+            shader_set_uniform_f(u_cursor_enabled, 0);
+        } else {
+            var px = ((cursor_position.x div TILE_WIDTH) + 0.5) * TILE_WIDTH;
+            var py = ((cursor_position.y div TILE_HEIGHT) + 0.5) * TILE_HEIGHT;
+            //var pz = ((cursor_position.z div TILE_DEPTH) + 0.5) * TILE_DEPTH;
+            var pz = 0.5 * TILE_DEPTH;
+            shader_set_uniform_f(u_cursor_enabled, 1);
+            shader_set_uniform_f(u_cursor_position, px, py, pz);
+            // not sure if there'll be a reason to change this later or not
+            shader_set_uniform_f(u_cursor_affect_half_size, TILE_WIDTH / 2, TILE_HEIGHT / 2, TILE_DEPTH / 2);
+        }
         draw_sprite_stretched(spr_pixel, 0, 0, 0, w, h);
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);

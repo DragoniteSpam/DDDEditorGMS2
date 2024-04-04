@@ -31,6 +31,8 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
     self.camera.SetCenter(self.ui.SearchID("VOXELISH VIEWPORT").width / 2, self.ui.SearchID("VOXELISH VIEWPORT").height / 2);
     self.camera.SetSkybox(Stuff.graphics.skybox_base, Stuff.graphics.default_skybox);
     
+    self.cursor_position = undefined;
+    
     self.mouse_interaction = function(mouse_vector) {
         self.cursor_position = undefined;
         
@@ -39,7 +41,7 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
             self.cursor_position = new Vector2(mouse_vector.origin.x + mouse_vector.direction.x * f, mouse_vector.origin.y + mouse_vector.direction.y * f);
             
             if (EmuOverlay.GetTop()) return false;
-            
+            /*
             if (Controller.mouse_left) {
                 switch (Settings.terrain.mode) {
                     case TerrainModes.Z: self.EditModeZ(self.cursor_position, 1); break;
@@ -70,7 +72,7 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
                     case TerrainModes.TEXTURE: self.texture.Finish(); break;
                     case TerrainModes.COLOR: self.color.Finish(); break;
                 }
-            }
+            }*/
         }
         
         if (keyboard_check_pressed(vk_space)) {
@@ -118,7 +120,7 @@ function EditorModeVoxelish() : EditorModeBase() constructor {
             Stuff.graphics.DrawAxes();
         }
         
-        if (Settings.view.grid) Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, self.model.width * TILE_WIDTH, self.model.height * TILE_HEIGHT);
+        Stuff.graphics.DrawMapGrid(0, 0, 0 * TILE_DEPTH + 0.5, self.model.width * TILE_WIDTH, self.model.height * TILE_HEIGHT, self.cursor_position);
         
         gpu_set_ztestenable(false);
         gpu_set_zwriteenable(false);
