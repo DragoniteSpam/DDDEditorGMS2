@@ -132,7 +132,7 @@ function EditorGraphics() constructor {
         shader_set(shader);
     };
     
-    self.DrawMapGrid = function(x, y, z, w, h, cursor_position = undefined) {
+    self.DrawMapGrid = function(x, y, z, w, h, cursor_position = undefined, tile_width = TILE_WIDTH, tile_height = TILE_HEIGHT, tile_depth = TILE_DEPTH, colour = c_black, thickness = 1) {
         var shader = shader_current();
         static u_grid_size = shader_get_uniform(shd_utility_grid, "u_GridSize");
         static u_grid_thickness = shader_get_uniform(shd_utility_grid, "u_GridThickness");
@@ -144,22 +144,21 @@ function EditorGraphics() constructor {
         
         matrix_set(matrix_world, matrix_build(x, y, z, 0, 0, 0, 1, 1, 1));
         shader_set(shd_utility_grid);
-        // we could make these all settings later but idk if i feel like it really
-        shader_set_uniform_f(u_grid_size, TILE_WIDTH, TILE_HEIGHT);
-        shader_set_uniform_f(u_grid_thickness, 1);
-        shader_set_uniform_f(u_grid_color, 0, 0, 0);
+        shader_set_uniform_f(u_grid_size, tile_width, tile_height);
+        shader_set_uniform_f(u_grid_thickness, thickness);
+        shader_set_uniform_f(u_grid_color, colour_get_red(colour) / 0xff, colour_get_green(colour) / 0xff, colour_get_blue(colour) / 0xff);
         
         if (cursor_position == undefined) {
             shader_set_uniform_f(u_cursor_enabled, 0);
         } else {
-            var px = ((cursor_position.x div TILE_WIDTH) + 0.5) * TILE_WIDTH;
-            var py = ((cursor_position.y div TILE_HEIGHT) + 0.5) * TILE_HEIGHT;
-            //var pz = ((cursor_position.z div TILE_DEPTH) + 0.5) * TILE_DEPTH;
-            var pz = 0.5 * TILE_DEPTH;
+            var px = ((cursor_position.x div tile_width) + 0.5) * tile_width;
+            var py = ((cursor_position.y div tile_height) + 0.5) * tile_height;
+            //var pz = ((cursor_position.z div tile_depth) + 0.5) * tile_depth;
+            var pz = 0.5 * tile_depth;
             shader_set_uniform_f(u_cursor_enabled, 1);
             shader_set_uniform_f(u_cursor_position, px, py, pz);
             // not sure if there'll be a reason to change this later or not
-            shader_set_uniform_f(u_cursor_affect_half_size, TILE_WIDTH / 2, TILE_HEIGHT / 2, TILE_DEPTH / 2);
+            shader_set_uniform_f(u_cursor_affect_half_size, tile_width / 2, tile_height / 2, tile_depth / 2);
         }
         draw_sprite_stretched(spr_pixel, 0, 0, 0, w, h);
         matrix_set(matrix_world, matrix_build_identity());
