@@ -42,25 +42,33 @@ function dialog_create_manager_mesh_autotile() {
                 if (selection) {
                     self.SetValue(selection.name);
                 }
-            }),
-        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Internal name:", "", "autotile internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITSANDUNDERSCORES, function() {
-            var selection = self.GetSibling("LIST").GetSelectedItem();
-            if (!internal_name_get(self.value)) {
-                internal_name_set(selection, self.value);
-            }
-        }))
-            .SetColorText(function() {
-                var internal_name_value = internal_name_get(self.value);
-                return internal_name_value ? (internal_name_value == self.GetSibling("LIST").GetSelectedItem() ? EMU_COLOR_TEXT : EMU_COLOR_INPUT_WARN) : EMU_COLOR_INPUT_WARN;
             })
-            .SetInteractive(false)
-            .SetRefresh(function() {
+    ]);
+    
+    if (!IS_VOXELISH_MODE) {
+        dialog.AddContent([
+            (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Internal name:", "", "autotile internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITSANDUNDERSCORES, function() {
                 var selection = self.GetSibling("LIST").GetSelectedItem();
-                self.SetInteractive(!!selection);
-                if (selection) {
-                    self.SetValue(selection.internal_name);
+                if (!internal_name_get(self.value)) {
+                    internal_name_set(selection, self.value);
                 }
-            }),
+            }))
+                .SetColorText(function() {
+                    var internal_name_value = internal_name_get(self.value);
+                    return internal_name_value ? (internal_name_value == self.GetSibling("LIST").GetSelectedItem() ? EMU_COLOR_TEXT : EMU_COLOR_INPUT_WARN) : EMU_COLOR_INPUT_WARN;
+                })
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    var selection = self.GetSibling("LIST").GetSelectedItem();
+                    self.SetInteractive(!!selection);
+                    if (selection) {
+                        self.SetValue(selection.internal_name);
+                    }
+                })
+        ]);
+    }
+    
+    dialog.AddContent([
         (new EmuRadioArray(col2, EMU_AUTO, element_width, element_height, "Layer:", 0, function() {
             self.root.Refresh();
         }))
@@ -69,20 +77,28 @@ function dialog_create_manager_mesh_autotile() {
             .SetRefresh(function() {
                 self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
             })
-            .SetID("LAYER"),
-        (new EmuRadioArray(col2, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
-            self.root.Refresh();
-        }))
-            .AddOptions(["Upright", "Reflected"])
-            .SetInteractive(false)
-            .SetRefresh(function() {
-                self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
-            })
-            .SetID("TYPE"),
+            .SetID("LAYER")
+    ]);
+    
+    if (!IS_VOXELISH_MODE) {
+        dialog.AddContent([
+            (new EmuRadioArray(col2, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
+                self.root.Refresh();
+            }))
+                .AddOptions(["Upright", "Reflected"])
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
+                })
+                .SetID("TYPE")
+        ]);
+    }
+    
+    dialog.AddContent([
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Import Layer", function() {
             var autotile = self.GetSibling("LIST").GetSelectedItem();
             var layer_index = self.GetSibling("LAYER").value;
-            var type = self.GetSibling("TYPE").value
+            var type = self.GetSibling("TYPE") ? self.GetSibling("TYPE").value : 0;
             
             var root = filename_dir(get_open_filename_mesh_d3d()) + "/";
             var at_layer = autotile.layers[layer_index];
@@ -111,7 +127,9 @@ function dialog_create_manager_mesh_autotile() {
                 }
             }
             
-            entity_mesh_autotile_check_changes(changes);
+            if (!IS_VOXELISH_MODE) {
+                entity_mesh_autotile_check_changes(changes);
+            }
             if (failures > 0) {
                 emu_dialog_notice("Unable to import " + string(failures) + " of " + string(file_count) + " attempted files.");
             }
@@ -125,7 +143,7 @@ function dialog_create_manager_mesh_autotile() {
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Export Layer", function() {
             var autotile = self.GetSibling("LIST").GetSelectedItem();
             var layer_index = self.GetSibling("LAYER").value;
-            if (!autotiles) return;
+            if (!autotile) return;
             
             var folder = filename_path(get_save_filename_mesh("save destination", "Game Maker model files|*.d3d;*.gmmod"));
             if (folder != "") {
@@ -143,52 +161,60 @@ function dialog_create_manager_mesh_autotile() {
             .SetInteractive(false)
             .SetRefresh(function() {
                 self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
-            }),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto Reflections (Layer)", function() {
-            var autotile = self.GetSibling("LIST").GetSelectedItem();
-            var layer_index = self.GetSibling("LAYER").value;
-            if (!autotiles) return;
+            })
+    ]);
+    
+    if (!IS_VOXELISH_MODE) {
+        dialog.AddContent([
+            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto Reflections (Layer)", function() {
+                var autotile = self.GetSibling("LIST").GetSelectedItem();
+                var layer_index = self.GetSibling("LAYER").value;
+                if (!autotiles) return;
             
-            var changes = { };
-            var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
+                var changes = { };
+                var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
             
-            for (var i = 0; i < AUTOTILE_COUNT; i++) {
-                if (autotile.layers[layer_index].tiles[i].AutoReflect()) {
-                    changes[$ change_prefix + string(i)] = true;
-                }
-            }
-            
-            entity_mesh_autotile_check_changes(changes);
-            self.root.Refresh();
-        }))
-            .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
-            .SetInteractive(false)
-            .SetRefresh(function() {
-                self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
-            }),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto Reflections (All)", function() {
-            var autotile = self.GetSibling("LIST").GetSelectedItem();
-            var layer_index = self.GetSibling("LAYER").value;
-            if (!autotiles) return;
-            
-            var changes = { };
-            for (var i = 0; i < array_length(autotile.layers); i++) {
-                var change_prefix = autotile.GUID + ":" + string(i) + ":";
-                for (var j = 0; j < AUTOTILE_COUNT; j++) {
-                    if (autotile.layers[i].tiles[j].AutoReflect()) {
-                        changes[$ change_prefix + string(j)] = true;
+                for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                    if (autotile.layers[layer_index].tiles[i].AutoReflect()) {
+                        changes[$ change_prefix + string(i)] = true;
                     }
                 }
-            }
             
-            entity_mesh_autotile_check_changes(changes);
-            self.root.Refresh();
-        }))
-            .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
-            .SetInteractive(false)
-            .SetRefresh(function() {
-                self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
-            }),
+                entity_mesh_autotile_check_changes(changes);
+                self.root.Refresh();
+            }))
+                .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
+                }),
+            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto Reflections (All)", function() {
+                var autotile = self.GetSibling("LIST").GetSelectedItem();
+                var layer_index = self.GetSibling("LAYER").value;
+                if (!autotiles) return;
+            
+                var changes = { };
+                for (var i = 0; i < array_length(autotile.layers); i++) {
+                    var change_prefix = autotile.GUID + ":" + string(i) + ":";
+                    for (var j = 0; j < AUTOTILE_COUNT; j++) {
+                        if (autotile.layers[i].tiles[j].AutoReflect()) {
+                            changes[$ change_prefix + string(j)] = true;
+                        }
+                    }
+                }
+            
+                entity_mesh_autotile_check_changes(changes);
+                self.root.Refresh();
+            }))
+                .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
+                })
+        ]);
+    }
+    
+    dialog.AddContent([
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Clear Layer", function() {
             var autotile = self.GetSibling("LIST").GetSelectedItem();
             var layer_index = self.GetSibling("LAYER").value;
@@ -217,10 +243,10 @@ function dialog_create_manager_mesh_autotile() {
     var columns = 6;
     for (var i = 0; i < AUTOTILE_COUNT; i++) {
         var button = new EmuButtonImage(col3 + (i % columns) * (element_width / columns), (i == 0) ? EMU_BASE : ((i % columns == 0) ? EMU_AUTO : EMU_INLINE),
-                 element_width / columns, element_width / columns, spr_autotile_blueprint, i, c_white, 1, true, string(i), function() {
+                 element_width / columns, element_width / columns, spr_autotile_blueprint, i, c_white, 1, true, /*string(i), */function() {
             var autotile = self.GetSibling("LIST").GetSelectedItem();
             var layer_index = self.GetSibling("LAYER").value;
-            var type = self.GetSibling("TYPE").value;
+            var type = self.GetSibling("TYPE") ? self.GetSibling("TYPE").value : 0;
             var tile_data = autotile.layers[layer_index].tiles[self.index];
             
             var fn = get_open_filename_mesh_d3d();
@@ -254,7 +280,7 @@ function dialog_create_manager_mesh_autotile() {
                 self.SetInteractive(!!autotile);
                 if (autotile) {
                     var layer_index = self.GetSibling("LAYER").value;
-                    var type = self.GetSibling("TYPE").value;
+                    var type = self.GetSibling("TYPE") ? self.GetSibling("TYPE").value : 0;
                     var at_layer = autotile.layers[layer_index];
                     if (type == 0) {
                         self.text = (!!at_layer.tiles[self.index].buffer) ? string(self.index) : "[c_red]" + string(self.index);

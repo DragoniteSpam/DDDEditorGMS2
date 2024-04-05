@@ -693,6 +693,7 @@
     {"name":"spr_light_direction","order":2,"path":"sprites/spr_light_direction/spr_light_direction.yy",},
     {"name":"spr_light_spot","order":1,"path":"sprites/spr_light_spot/spr_light_spot.yy",},
     {"name":"spr_pawn_missing","order":3,"path":"sprites/spr_pawn_missing/spr_pawn_missing.yy",},
+    {"name":"spr_pixel","order":11,"path":"sprites/spr_pixel/spr_pixel.yy",},
     {"name":"spr_play_controls","order":20,"path":"sprites/spr_play_controls/spr_play_controls.yy",},
     {"name":"spr_plus_minus_button","order":1,"path":"sprites/spr_plus_minus_button/spr_plus_minus_button.yy",},
     {"name":"spr_plus_minus","order":9,"path":"sprites/spr_plus_minus/spr_plus_minus.yy",},
@@ -727,6 +728,5 @@
     {"name":"spr_timeline_keyframe_tween","order":7,"path":"sprites/spr_timeline_keyframe_tween/spr_timeline_keyframe_tween.yy",},
     {"name":"spr_timeline_keyframe","order":6,"path":"sprites/spr_timeline_keyframe/spr_timeline_keyframe.yy",},
     {"name":"spr_vertical_bar","order":28,"path":"sprites/spr_vertical_bar/spr_vertical_bar.yy",},
-    {"name":"spr_pixel","order":11,"path":"sprites/spr_pixel/spr_pixel.yy",},
   ],
 }

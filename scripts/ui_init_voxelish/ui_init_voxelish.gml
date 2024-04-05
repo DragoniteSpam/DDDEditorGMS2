@@ -82,6 +82,9 @@ function ui_init_voxelish(mode) {
                     Settings.voxelish.orthographic = self.value;
                 }))
                     .SetTooltip("View the world through an overhead camera."),
+                new EmuButton(col1x, EMU_AUTO, col_width, 32, "Autotile meshes", function() {
+                    dialog_create_manager_mesh_autotile();
+                })
             ]),
             (new EmuTab("Rendering")).AddContent([
             ]),

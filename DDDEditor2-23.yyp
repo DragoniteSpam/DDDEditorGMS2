@@ -827,6 +827,7 @@
     {"id":{"name":"spr_light_point","path":"sprites/spr_light_point/spr_light_point.yy",},},
     {"id":{"name":"spr_light_spot","path":"sprites/spr_light_spot/spr_light_spot.yy",},},
     {"id":{"name":"spr_pawn_missing","path":"sprites/spr_pawn_missing/spr_pawn_missing.yy",},},
+    {"id":{"name":"spr_pixel","path":"sprites/spr_pixel/spr_pixel.yy",},},
     {"id":{"name":"spr_play_controls","path":"sprites/spr_play_controls/spr_play_controls.yy",},},
     {"id":{"name":"spr_plus_minus_button","path":"sprites/spr_plus_minus_button/spr_plus_minus_button.yy",},},
     {"id":{"name":"spr_plus_minus","path":"sprites/spr_plus_minus/spr_plus_minus.yy",},},
@@ -863,7 +864,6 @@
     {"id":{"name":"spr_timeline_keyframe_tween","path":"sprites/spr_timeline_keyframe_tween/spr_timeline_keyframe_tween.yy",},},
     {"id":{"name":"spr_timeline_keyframe","path":"sprites/spr_timeline_keyframe/spr_timeline_keyframe.yy",},},
     {"id":{"name":"spr_vertical_bar","path":"sprites/spr_vertical_bar/spr_vertical_bar.yy",},},
-    {"id":{"name":"spr_pixel","path":"sprites/spr_pixel/spr_pixel.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
@@ -876,8 +876,20 @@
         "Terrain":{
           "groupParent":"null",
         },
+        "voxelish":{
+          "groupParent":"null",
+          "compressFormat":"bz2",
+          "loadType":"default",
+        },
       },"customOptions":"","directory":"","groupParent":null,"isScaled":false,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"scribble","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"scribble","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
-    {"$GMTextureGroup":"","%Name":"terraingen","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"terraingen","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"terraingen","autocrop":true,"border":2,"compressFormat":"bz2","ConfigValues":{
+        "voxelish":{
+          "groupParent":"null",
+          "compressFormat":"bz2",
+          "loadType":"default",
+          "targets":"-1",
+        },
+      },"customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"terraingen","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
   ],
 }
