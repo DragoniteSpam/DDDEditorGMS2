@@ -1,11 +1,12 @@
 function dialog_create_manager_mesh_autotile() {
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32, 720, "Data: Mesh Autotile");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32 + 400 + 32, 720, "Data: Mesh Autotile");
     var element_width = 320;
     var element_height = 32;
     
     var col1 = 32;
     var col2 = 32 + 320 + 32;
     var col3 = 32 + 320 + 32 + 320 + 32;
+    var col4 = 32 + 320 + 32 + 320 + 32 + 320 + 32;
     
     dialog.AddContent([
         #region column 1
@@ -294,7 +295,28 @@ function dialog_create_manager_mesh_autotile() {
         dialog.AddContent([button]);
     }
     
-    return dialog.AddContent([
+    dialog.AddContent([
+        new EmuRenderSurface(col4, EMU_BASE, 400, 640, function() {
+            draw_clear(c_black);
+            matrix_set(matrix_world, matrix_build_identity());
+            self.camera.SetProjection();
+            Stuff.graphics.DrawMapGrid(-160, -160, 0, 320, 320, undefined, 8, 8, 8, c_white, 0.25);
+            Stuff.graphics.DrawAxes();
+        }, function() {
+            if (self.camera.center.x == undefined || self.camera.center.y == undefined) {
+                self.camera.SetCenter(self.x + self.width div 2, self.y + self.height div 2);
+            }
+            self.camera.Update(true);
+        }, function() {
+            self.camera = new Camera(128, 128, 128, 0, 0, 0, 0, 0, 1, 60, 1, 1000, function() {
+                
+            });
+            self.camera.SetViewportAspect(function() { return 400; }, function() { return 640; });
+            self.camera.SetCenter(undefined, undefined);
+        })
+    ]);
+    
+    dialog.AddContent([
         (new EmuFileDropperListener(function(files) {
             var autotile = self.GetSibling("LIST").GetSelectedItem();
             var layer_index = self.GetSibling("LAYER").value;
@@ -333,4 +355,6 @@ function dialog_create_manager_mesh_autotile() {
             self.root.Refresh();
         })),
     ]).AddDefaultCloseButton();
+    
+    return dialog;
 }

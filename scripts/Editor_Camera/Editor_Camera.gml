@@ -73,9 +73,9 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         return sprite;
     };
     
-    self.Update = function() {
+    self.Update = function(disregard_surface_overlays = false) {
         if (self.view_mat == undefined || self.proj_mat == undefined) return;
-        if (EmuOverlay.GetTop() || !ds_list_empty(Stuff.dialogs)) return;
+        if (!disregard_surface_overlays && (EmuOverlay.GetTop() || !ds_list_empty(Stuff.dialogs))) return;
         
         self.running = self.run_enabled && keyboard_check(vk_shift);
         self.run_fov_active = lerp(self.run_fov_active, self.running ? self.run_fov : 1, 0.05);
