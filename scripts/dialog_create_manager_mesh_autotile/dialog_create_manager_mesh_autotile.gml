@@ -302,6 +302,59 @@ function dialog_create_manager_mesh_autotile() {
             self.camera.SetProjection();
             Stuff.graphics.DrawMapGrid(-160, -160, 0, 320, 320, undefined, 8, 8, 8, c_white, 0.25);
             Stuff.graphics.DrawAxes();
+            
+            var autotile = self.GetSibling("LIST").GetSelectedItem();
+            var layer_index = self.GetSibling("LAYER").value;
+            var type = self.GetSibling("TYPE") ? self.GetSibling("TYPE").value : 0;
+            if (!autotile) return;
+            var tiles = autotile.layers[layer_index].tiles;
+            
+            static draw_tile_at = function(x, y, z, tile_data) {
+                if (tile_data.vbuffer == undefined) return;
+                static transform = matrix_build_identity();
+                transform[12] = x * TILE_WIDTH;
+                transform[13] = y * TILE_HEIGHT;
+                transform[14] = z * TILE_DEPTH;
+                matrix_set(matrix_world, transform);
+                vertex_submit(tile_data.vbuffer, pr_trianglelist, -1);
+            };
+            
+            draw_tile_at(0, -3, 0, tiles[34]);
+            draw_tile_at(0, -2, 0, tiles[36]);
+            draw_tile_at(0, -1, 0, tiles[ 7]);
+            draw_tile_at(1, -3, 0, tiles[42]);
+            draw_tile_at(1, -2, 0, tiles[46]);
+            draw_tile_at(1, -1, 0, tiles[12]);
+            draw_tile_at(2, -3, 0, tiles[26]);
+            draw_tile_at(2, -2, 0, tiles[28]);
+            draw_tile_at(2, -1, 0, tiles[ 4]);
+            
+            draw_tile_at(0, 0, 0, tiles[18]);
+            draw_tile_at(1, 0, 0, tiles[15]);
+            draw_tile_at(0, 1, 0, tiles[ 6]);
+            draw_tile_at(1, 1, 0, tiles[ 3]);
+            
+            draw_tile_at(-2, 0, 0, tiles[13]);
+            draw_tile_at(-3, 1, 0, tiles[ 5]);
+            draw_tile_at(-2, 1, 0, tiles[22]);
+            draw_tile_at(-1, 1, 0, tiles[ 2]);
+            draw_tile_at(-2, 2, 0, tiles[ 1]);
+            
+            draw_tile_at(-3, -4, 0, tiles[34]);
+            draw_tile_at(-2, -4, 0, tiles[26]);
+            draw_tile_at(-4, -3, 0, tiles[34]);
+            draw_tile_at(-3, -3, 0, tiles[45]);
+            draw_tile_at(-2, -3, 0, tiles[44]);
+            draw_tile_at(-1, -3, 0, tiles[26]);
+            draw_tile_at(-4, -2, 0, tiles[ 7]);
+            draw_tile_at(-3, -2, 0, tiles[41]);
+            draw_tile_at(-2, -2, 0, tiles[33]);
+            draw_tile_at(-1, -2, 0, tiles[ 4]);
+            draw_tile_at(-3, -1, 0, tiles[ 7]);
+            draw_tile_at(-2, -1, 0, tiles[ 4]);
+            
+            matrix_set(matrix_world, matrix_build_identity());
+            shader_reset();
         }, function() {
             if (self.camera.center.x == undefined || self.camera.center.y == undefined) {
                 self.camera.SetCenter(self.x + self.width div 2, self.y + self.height div 2);
@@ -320,7 +373,7 @@ function dialog_create_manager_mesh_autotile() {
         (new EmuFileDropperListener(function(files) {
             var autotile = self.GetSibling("LIST").GetSelectedItem();
             var layer_index = self.GetSibling("LAYER").value;
-            var type = self.GetSibling("TYPE").value;
+            var type = self.GetSibling("TYPE") ? self.GetSibling("TYPE").value : 0;
             if (!autotile) return;
             
             var at_layer = autotile.layers[layer_index];
