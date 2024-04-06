@@ -1,5 +1,5 @@
 function dialog_create_manager_mesh_autotile() {
-    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32 + 400 + 32, 720, "Data: Mesh Autotile");
+    var dialog = new EmuDialog(32 + 320 + 32 + 320 + 32 + 320 + 32 + 400 + 32, 752, "Data: Mesh Autotile");
     var element_width = 320;
     var element_height = 32;
     
@@ -10,7 +10,7 @@ function dialog_create_manager_mesh_autotile() {
     
     dialog.AddContent([
         #region column 1
-        (new EmuList(col1, EMU_BASE, element_width, element_height, "All Mesh Autotiles:", element_height, 16, function() {
+        (new EmuList(col1, EMU_BASE, element_width, element_height, "All Mesh Autotiles:", element_height, 14, function() {
             if (!self.root) return;
             self.root.Refresh();
         }))
@@ -32,6 +32,59 @@ function dialog_create_manager_mesh_autotile() {
                 self.SetInteractive(self.GetSibling("LIST").GetSelection() != -1);
             }),
         #endregion
+    ]);
+    
+    if (!IS_VOXELISH_MODE) {
+        dialog.AddContent([
+            (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Auto Reflections (Layer)", function() {
+                var autotile = self.GetSibling("LIST").GetSelectedItem();
+                var layer_index = self.GetSibling("LAYER").value;
+                if (!autotiles) return;
+            
+                var changes = { };
+                var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
+            
+                for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                    if (autotile.layers[layer_index].tiles[i].AutoReflect()) {
+                        changes[$ change_prefix + string(i)] = true;
+                    }
+                }
+            
+                entity_mesh_autotile_check_changes(changes);
+                self.root.Refresh();
+            }))
+                .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
+                }),
+            (new EmuButton(col1, EMU_AUTO, element_width, element_height, "Auto Reflections (All)", function() {
+                var autotile = self.GetSibling("LIST").GetSelectedItem();
+                var layer_index = self.GetSibling("LAYER").value;
+                if (!autotiles) return;
+            
+                var changes = { };
+                for (var i = 0; i < array_length(autotile.layers); i++) {
+                    var change_prefix = autotile.GUID + ":" + string(i) + ":";
+                    for (var j = 0; j < AUTOTILE_COUNT; j++) {
+                        if (autotile.layers[i].tiles[j].AutoReflect()) {
+                            changes[$ change_prefix + string(j)] = true;
+                        }
+                    }
+                }
+            
+                entity_mesh_autotile_check_changes(changes);
+                self.root.Refresh();
+            }))
+                .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
+                .SetInteractive(false)
+                .SetRefresh(function() {
+                    self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
+                })
+        ]);
+    }
+    
+    dialog.AddContent([
         #region column 2
         (new EmuInput(col2, EMU_BASE, element_width, element_height, "Name:", "", "autotile name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
             self.GetSibling("LIST").GetSelectedItem().name = self.value;
@@ -74,6 +127,7 @@ function dialog_create_manager_mesh_autotile() {
             self.root.Refresh();
         }))
             .AddOptions(["Top", "Middle", "Base", "Slope"])
+            .SetColumns(2, element_width / 2)
             .SetInteractive(false)
             .SetRefresh(function() {
                 self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
@@ -87,6 +141,7 @@ function dialog_create_manager_mesh_autotile() {
                 self.root.Refresh();
             }))
                 .AddOptions(["Upright", "Reflected"])
+                .SetColumns(1, element_width / 2)
                 .SetInteractive(false)
                 .SetRefresh(function() {
                     self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
@@ -165,56 +220,6 @@ function dialog_create_manager_mesh_autotile() {
             })
     ]);
     
-    if (!IS_VOXELISH_MODE) {
-        dialog.AddContent([
-            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto Reflections (Layer)", function() {
-                var autotile = self.GetSibling("LIST").GetSelectedItem();
-                var layer_index = self.GetSibling("LAYER").value;
-                if (!autotiles) return;
-            
-                var changes = { };
-                var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
-            
-                for (var i = 0; i < AUTOTILE_COUNT; i++) {
-                    if (autotile.layers[layer_index].tiles[i].AutoReflect()) {
-                        changes[$ change_prefix + string(i)] = true;
-                    }
-                }
-            
-                entity_mesh_autotile_check_changes(changes);
-                self.root.Refresh();
-            }))
-                .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
-                .SetInteractive(false)
-                .SetRefresh(function() {
-                    self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
-                }),
-            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Auto Reflections (All)", function() {
-                var autotile = self.GetSibling("LIST").GetSelectedItem();
-                var layer_index = self.GetSibling("LAYER").value;
-                if (!autotiles) return;
-            
-                var changes = { };
-                for (var i = 0; i < array_length(autotile.layers); i++) {
-                    var change_prefix = autotile.GUID + ":" + string(i) + ":";
-                    for (var j = 0; j < AUTOTILE_COUNT; j++) {
-                        if (autotile.layers[i].tiles[j].AutoReflect()) {
-                            changes[$ change_prefix + string(j)] = true;
-                        }
-                    }
-                }
-            
-                entity_mesh_autotile_check_changes(changes);
-                self.root.Refresh();
-            }))
-                .SetTooltip("Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.")
-                .SetInteractive(false)
-                .SetRefresh(function() {
-                    self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
-                })
-        ]);
-    }
-    
     dialog.AddContent([
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Clear Layer", function() {
             var autotile = self.GetSibling("LIST").GetSelectedItem();
@@ -238,6 +243,12 @@ function dialog_create_manager_mesh_autotile() {
             .SetRefresh(function() {
                 self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
             }),
+        
+        new EmuList(col2, EMU_AUTO, element_width, element_height, "Texture:", element_height, 6, function() {
+        })
+            .SetList(Game.graphics.tilesets)
+            .SetEntryTypes(E_ListEntryTypes.STRUCTS)
+            .SetID("TEXTURE")
         #endregion
     ]);
     
@@ -309,14 +320,17 @@ function dialog_create_manager_mesh_autotile() {
             if (!autotile) return;
             var tiles = autotile.layers[layer_index].tiles;
             
-            static draw_tile_at = function(x, y, z, tile_data) {
+            var selection = self.GetSibling("TEXTURE").GetSelectedItem();
+            var texture = (selection != undefined) ? sprite_get_texture(selection.picture, 0) : -1;
+            
+            static draw_tile_at = function(x, y, z, tile_data, texture_data) {
                 if (tile_data.vbuffer == undefined) return;
                 static transform = matrix_build_identity();
                 transform[12] = x * TILE_WIDTH;
                 transform[13] = y * TILE_HEIGHT;
                 transform[14] = z * TILE_DEPTH;
                 matrix_set(matrix_world, transform);
-                vertex_submit(tile_data.vbuffer, pr_trianglelist, -1);
+                vertex_submit(tile_data.vbuffer, pr_trianglelist, texture_data);
             };
             
             draw_set_lighting(true);
@@ -329,39 +343,39 @@ function dialog_create_manager_mesh_autotile() {
             gpu_set_ztestenable(true);
             gpu_set_zwriteenable(true);
             
-            draw_tile_at(0, -3, 0, tiles[34]);
-            draw_tile_at(0, -2, 0, tiles[36]);
-            draw_tile_at(0, -1, 0, tiles[ 7]);
-            draw_tile_at(1, -3, 0, tiles[42]);
-            draw_tile_at(1, -2, 0, tiles[46]);
-            draw_tile_at(1, -1, 0, tiles[12]);
-            draw_tile_at(2, -3, 0, tiles[26]);
-            draw_tile_at(2, -2, 0, tiles[28]);
-            draw_tile_at(2, -1, 0, tiles[ 4]);
+            draw_tile_at(0, -3, 0, tiles[34], texture);
+            draw_tile_at(0, -2, 0, tiles[36], texture);
+            draw_tile_at(0, -1, 0, tiles[ 7], texture);
+            draw_tile_at(1, -3, 0, tiles[42], texture);
+            draw_tile_at(1, -2, 0, tiles[46], texture);
+            draw_tile_at(1, -1, 0, tiles[12], texture);
+            draw_tile_at(2, -3, 0, tiles[26], texture);
+            draw_tile_at(2, -2, 0, tiles[28], texture);
+            draw_tile_at(2, -1, 0, tiles[ 4], texture);
             
-            draw_tile_at(0, 0, 0, tiles[18]);
-            draw_tile_at(1, 0, 0, tiles[15]);
-            draw_tile_at(0, 1, 0, tiles[ 6]);
-            draw_tile_at(1, 1, 0, tiles[ 3]);
+            draw_tile_at(0, 0, 0, tiles[18], texture);
+            draw_tile_at(1, 0, 0, tiles[15], texture);
+            draw_tile_at(0, 1, 0, tiles[ 6], texture);
+            draw_tile_at(1, 1, 0, tiles[ 3], texture);
             
-            draw_tile_at(-2, 0, 0, tiles[13]);
-            draw_tile_at(-3, 1, 0, tiles[ 5]);
-            draw_tile_at(-2, 1, 0, tiles[22]);
-            draw_tile_at(-1, 1, 0, tiles[ 2]);
-            draw_tile_at(-2, 2, 0, tiles[ 1]);
+            draw_tile_at(-2, 0, 0, tiles[13], texture);
+            draw_tile_at(-3, 1, 0, tiles[ 5], texture);
+            draw_tile_at(-2, 1, 0, tiles[22], texture);
+            draw_tile_at(-1, 1, 0, tiles[ 2], texture);
+            draw_tile_at(-2, 2, 0, tiles[ 1], texture);
             
-            draw_tile_at(-3, -4, 0, tiles[34]);
-            draw_tile_at(-2, -4, 0, tiles[26]);
-            draw_tile_at(-4, -3, 0, tiles[34]);
-            draw_tile_at(-3, -3, 0, tiles[45]);
-            draw_tile_at(-2, -3, 0, tiles[44]);
-            draw_tile_at(-1, -3, 0, tiles[26]);
-            draw_tile_at(-4, -2, 0, tiles[ 7]);
-            draw_tile_at(-3, -2, 0, tiles[41]);
-            draw_tile_at(-2, -2, 0, tiles[33]);
-            draw_tile_at(-1, -2, 0, tiles[ 4]);
-            draw_tile_at(-3, -1, 0, tiles[ 7]);
-            draw_tile_at(-2, -1, 0, tiles[ 4]);
+            draw_tile_at(-3, -4, 0, tiles[34], texture);
+            draw_tile_at(-2, -4, 0, tiles[26], texture);
+            draw_tile_at(-4, -3, 0, tiles[34], texture);
+            draw_tile_at(-3, -3, 0, tiles[45], texture);
+            draw_tile_at(-2, -3, 0, tiles[44], texture);
+            draw_tile_at(-1, -3, 0, tiles[26], texture);
+            draw_tile_at(-4, -2, 0, tiles[ 7], texture);
+            draw_tile_at(-3, -2, 0, tiles[41], texture);
+            draw_tile_at(-2, -2, 0, tiles[33], texture);
+            draw_tile_at(-1, -2, 0, tiles[ 4], texture);
+            draw_tile_at(-3, -1, 0, tiles[ 7], texture);
+            draw_tile_at(-2, -1, 0, tiles[ 4], texture);
             
             matrix_set(matrix_world, matrix_build_identity());
             gpu_set_cullmode(cull_noculling);
