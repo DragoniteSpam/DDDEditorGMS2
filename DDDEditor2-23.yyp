@@ -769,7 +769,6 @@
     {"id":{"name":"shd_bounding_box","path":"shaders/shd_bounding_box/shd_bounding_box.yy",},},
     {"id":{"name":"shd_ddd","path":"shaders/shd_ddd/shd_ddd.yy",},},
     {"id":{"name":"shd_emu_color_buckets","path":"shaders/shd_emu_color_buckets/shd_emu_color_buckets.yy",},},
-    {"id":{"name":"shd_outline","path":"shaders/shd_outline/shd_outline.yy",},},
     {"id":{"name":"shd_scene_depth","path":"shaders/shd_scene_depth/shd_scene_depth.yy",},},
     {"id":{"name":"shd_solid_color","path":"shaders/shd_solid_color/shd_solid_color.yy",},},
     {"id":{"name":"shd_terrain_paint_texture","path":"shaders/shd_terrain_paint_texture/shd_terrain_paint_texture.yy",},},
