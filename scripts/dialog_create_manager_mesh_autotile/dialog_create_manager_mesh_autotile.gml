@@ -319,6 +319,16 @@ function dialog_create_manager_mesh_autotile() {
                 vertex_submit(tile_data.vbuffer, pr_trianglelist, -1);
             };
             
+            draw_set_lighting(true);
+            draw_light_enable(0, true);
+            draw_light_define_direction(0, -1, -1, -1, c_white);
+            draw_light_enable(1, true);
+            draw_light_define_direction(1, 0, 1, 0, c_dkgray);
+            draw_light_define_ambient(#393939);
+            gpu_set_cullmode(cull_counterclockwise);
+            gpu_set_ztestenable(true);
+            gpu_set_zwriteenable(true);
+            
             draw_tile_at(0, -3, 0, tiles[34]);
             draw_tile_at(0, -2, 0, tiles[36]);
             draw_tile_at(0, -1, 0, tiles[ 7]);
@@ -354,7 +364,10 @@ function dialog_create_manager_mesh_autotile() {
             draw_tile_at(-2, -1, 0, tiles[ 4]);
             
             matrix_set(matrix_world, matrix_build_identity());
-            shader_reset();
+            gpu_set_cullmode(cull_noculling);
+            draw_set_lighting(false);
+            gpu_set_ztestenable(false);
+            gpu_set_zwriteenable(false);
         }, function() {
             if (self.camera.center.x == undefined || self.camera.center.y == undefined) {
                 self.camera.SetCenter(self.x + self.width div 2, self.y + self.height div 2);
