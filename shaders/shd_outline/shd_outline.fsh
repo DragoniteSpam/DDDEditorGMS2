@@ -1,5 +1,3 @@
-#extension GL_OES_standard_derivatives : enable
-
 varying vec2 v_vTexcoord;
 
 uniform vec3 outline_color;

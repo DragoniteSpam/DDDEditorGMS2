@@ -1,6 +1,4 @@
 // https://web.archive.org/web/20200306081453/http://codeflow.org/entries/2012/aug/02/easy-wireframe-display-with-barycentric-coordinates/
-#extension GL_OES_standard_derivatives : enable
-
 varying float v_FragDistance;
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;

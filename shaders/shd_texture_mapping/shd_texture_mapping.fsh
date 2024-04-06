@@ -1,6 +1,4 @@
 // https://web.archive.org/web/20200306081453/http://codeflow.org/entries/2012/aug/02/easy-wireframe-display-with-barycentric-coordinates/
-#extension GL_OES_standard_derivatives : enable
-
 varying vec3 v_vBarycentric;
 
 #region Wireframe

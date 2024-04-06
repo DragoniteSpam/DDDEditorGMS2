@@ -1,5 +1,3 @@
-#extension GL_OES_standard_derivatives : enable
-
 varying float v_FragDistance;
 varying vec4 v_WorldPosition;
 varying vec3 v_Barycentric;
