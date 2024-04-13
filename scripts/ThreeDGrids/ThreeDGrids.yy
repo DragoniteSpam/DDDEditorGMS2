@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ThreeDGrids",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ThreeDGrids",
+  "parent":{
+    "name":"Extensions",
+    "path":"folders/Extensions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

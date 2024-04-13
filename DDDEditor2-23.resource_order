@@ -524,6 +524,7 @@
     {"name":"scribble_typist","order":11,"path":"scripts/scribble_typist/scribble_typist.yy",},
     {"name":"scribble_typists_add_event","order":7,"path":"scripts/scribble_typists_add_event/scribble_typists_add_event.yy",},
     {"name":"scribble1","order":10,"path":"scripts/scribble1/scribble1.yy",},
+    {"name":"ThreeDGrids","order":18,"path":"scripts/ThreeDGrids/ThreeDGrids.yy",},
     {"name":"snap_deep_copy","order":10,"path":"scripts/snap_deep_copy/snap_deep_copy.yy",},
     {"name":"snap_from_ini_string","order":1,"path":"scripts/snap_from_ini_string/snap_from_ini_string.yy",},
     {"name":"snap_to_binary","order":1,"path":"scripts/snap_to_binary/snap_to_binary.yy",},
