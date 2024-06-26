@@ -169,7 +169,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.2.0.132",
+    "IDEVersion":"2024.4.1.152",
   },
   "name":"DDDEditor2-23",
   "resources":[
@@ -627,7 +627,6 @@
     {"id":{"name":"scribble_typist","path":"scripts/scribble_typist/scribble_typist.yy",},},
     {"id":{"name":"scribble_typists_add_event","path":"scripts/scribble_typists_add_event/scribble_typists_add_event.yy",},},
     {"id":{"name":"scribble1","path":"scripts/scribble1/scribble1.yy",},},
-    {"id":{"name":"ThreeDGrids","path":"scripts/ThreeDGrids/ThreeDGrids.yy",},},
     {"id":{"name":"snap_deep_copy","path":"scripts/snap_deep_copy/snap_deep_copy.yy",},},
     {"id":{"name":"snap_from_binary","path":"scripts/snap_from_binary/snap_from_binary.yy",},},
     {"id":{"name":"snap_from_csv","path":"scripts/snap_from_csv/snap_from_csv.yy",},},
@@ -663,6 +662,7 @@
     {"id":{"name":"string_width_scribble","path":"scripts/string_width_scribble/string_width_scribble.yy",},},
     {"id":{"name":"Terrain_Default_Settings","path":"scripts/Terrain_Default_Settings/Terrain_Default_Settings.yy",},},
     {"id":{"name":"TerrainOpsGML","path":"scripts/TerrainOpsGML/TerrainOpsGML.yy",},},
+    {"id":{"name":"ThreeDGrids","path":"scripts/ThreeDGrids/ThreeDGrids.yy",},},
     {"id":{"name":"tileset_create","path":"scripts/tileset_create/tileset_create.yy",},},
     {"id":{"name":"ui_activate","path":"scripts/ui_activate/ui_activate.yy",},},
     {"id":{"name":"ui_button_down_tab","path":"scripts/ui_button_down_tab/ui_button_down_tab.yy",},},
