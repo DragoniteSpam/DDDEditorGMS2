@@ -1,5 +1,5 @@
 function dialog_create_mesh_other_settings(list, selection) {
-    var dialog = new EmuDialog(320, 544, "Other mesh options");
+    var dialog = new EmuDialog(320, 592, "Other mesh options");
     dialog.active_shade = 0;
     dialog.list = list;
     dialog.selection = selection;
@@ -70,6 +70,12 @@ function dialog_create_mesh_other_settings(list, selection) {
             dialog_create_mesh_collision_settings(self.root.list[self.root.selection[0]]);
         }))
             .SetTooltip("Collision shape data to go with this mesh.")
+            .SetInteractive(array_length(selection) == 1),
+        (new EmuButton(32, EMU_AUTO, 256, 32, "Render overhead wireframe", function() {
+            if (array_length(self.root.selection) != 1) return;
+            dialog_create_mesh_render_overhead_wireframe(self.root.list[self.root.selection[0]]);
+        }))
+            .SetTooltip("Render an overhead wireframe of this mesh.")
             .SetInteractive(array_length(selection) == 1),
     ]);
     

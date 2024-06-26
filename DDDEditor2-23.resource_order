@@ -293,6 +293,7 @@
     {"name":"dialog_create_mesh_material_settings","order":39,"path":"scripts/dialog_create_mesh_material_settings/dialog_create_mesh_material_settings.yy",},
     {"name":"dialog_create_mesh_normal_settings","order":40,"path":"scripts/dialog_create_mesh_normal_settings/dialog_create_mesh_normal_settings.yy",},
     {"name":"dialog_create_mesh_other_settings","order":41,"path":"scripts/dialog_create_mesh_other_settings/dialog_create_mesh_other_settings.yy",},
+    {"name":"dialog_create_mesh_render_overhead_wireframe","order":43,"path":"scripts/dialog_create_mesh_render_overhead_wireframe/dialog_create_mesh_render_overhead_wireframe.yy",},
     {"name":"dialog_create_refid_list","order":20,"path":"scripts/dialog_create_refid_list/dialog_create_refid_list.yy",},
     {"name":"dialog_create_select_data_types_ext","order":14,"path":"scripts/dialog_create_select_data_types_ext/dialog_create_select_data_types_ext.yy",},
     {"name":"dmu_create_data_event_entrypoint_finalize","order":9,"path":"scripts/dmu_create_data_event_entrypoint_finalize/dmu_create_data_event_entrypoint_finalize.yy",},

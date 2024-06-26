@@ -367,6 +367,7 @@
     {"id":{"name":"dialog_create_mesh_material_settings","path":"scripts/dialog_create_mesh_material_settings/dialog_create_mesh_material_settings.yy",},},
     {"id":{"name":"dialog_create_mesh_normal_settings","path":"scripts/dialog_create_mesh_normal_settings/dialog_create_mesh_normal_settings.yy",},},
     {"id":{"name":"dialog_create_mesh_other_settings","path":"scripts/dialog_create_mesh_other_settings/dialog_create_mesh_other_settings.yy",},},
+    {"id":{"name":"dialog_create_mesh_render_overhead_wireframe","path":"scripts/dialog_create_mesh_render_overhead_wireframe/dialog_create_mesh_render_overhead_wireframe.yy",},},
     {"id":{"name":"dialog_create_refid_list","path":"scripts/dialog_create_refid_list/dialog_create_refid_list.yy",},},
     {"id":{"name":"dialog_create_select_data_types_ext","path":"scripts/dialog_create_select_data_types_ext/dialog_create_select_data_types_ext.yy",},},
     {"id":{"name":"dmu_create_data_event_entrypoint_finalize","path":"scripts/dmu_create_data_event_entrypoint_finalize/dmu_create_data_event_entrypoint_finalize.yy",},},
