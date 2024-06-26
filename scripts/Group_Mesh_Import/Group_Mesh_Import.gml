@@ -226,7 +226,7 @@ function import_obj(fn, squash = false) {
     static color = [0, 0, 0];
     
     var first_line_read = false;
-    var is_blender = false;
+    var needs_uvs_flipped = false;
     
     #region parse the obj file
     for (var line_index = 0, line_count = array_length(lines); line_index < line_count; line_index++) {
@@ -234,7 +234,8 @@ function import_obj(fn, squash = false) {
         if (str == "") continue;
         
         if (!first_line_read) {
-            is_blender = (string_count("Blender", str) > 0);
+            needs_uvs_flipped = (string_count("Blender", str) > 0);
+            needs_uvs_flipped |= (string_count("Blockbench", str) > 0);
             first_line_read = true;
         }
         var line = string_split(str, " ", true);
@@ -426,7 +427,7 @@ function import_obj(fn, squash = false) {
                             case "Tr":
                                 if (current_material) {
                                     // why can we never agree on this
-                                    if (material_tokens[0] == "Tr" && is_blender) {
+                                    if (material_tokens[0] == "Tr" && needs_uvs_flipped) {
                                         current_material.alpha = 1 - real(material_tokens[1]);
                                     } else {
                                         current_material.alpha = real(material_tokens[1]);
@@ -602,7 +603,7 @@ function import_obj(fn, squash = false) {
             var xtex = buffer_read(face_vertex_attributes, face_attribute_type);
             var ytex = buffer_read(face_vertex_attributes, face_attribute_type);
             var color = buffer_read(face_vertex_attributes, color_attribute_type)
-            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, is_blender ? (1 - ytex) : ytex, color & 0x00ffffff, (color >> 24) / 0xff);
+            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, needs_uvs_flipped ? (1 - ytex) : ytex, color & 0x00ffffff, (color >> 24) / 0xff);
         }
     }
     
