@@ -43,11 +43,11 @@ function ThreeDGrid(width, height, depth) {
         // to do
     };
     
-    static SetRegionGrid = function(other_grid, x1, y1, z1, x2, y2, z2, xx, yy, zz) {
+    static SetGridRegion = function(other_grid, x1, y1, z1, x2, y2, z2, xx, yy, zz) {
         // to do
     };
     
-    static SetSphereGrid = function(other_grid, x, y, z, r, xx, yy, zz) {
+    static SetGridSphere = function(other_grid, x, y, z, r, xx, yy, zz) {
         // to do
     };
     #endregion
@@ -116,7 +116,7 @@ function ThreeDGrid(width, height, depth) {
         // to do
     };
     
-    static AddSphereRegion = function(other_grid, x, y, z, r, xx, yy, zz, value) {
+    static AddGridSphere = function(other_grid, x, y, z, r, xx, yy, zz, value) {
         // to do
     };
     
@@ -160,7 +160,7 @@ function ThreeDGrid(width, height, depth) {
         // to do
     };
     
-    static LerpGridRegion = function(other_grid, x1, y1, z1, x2, y2, z2, xx1, yy1, zz, xx, yy, zz, f) {
+    static LerpGridRegion = function(other_grid, x1, y1, z1, x2, y2, z2, xx1, yy1, zz, xx, yy, f) {
         // to do
     };
     
