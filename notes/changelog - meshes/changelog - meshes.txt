@@ -1,5 +1,9 @@
 Another changelog.
 
+# Changes in 2024.2
+
+ - Added a mesh overhead wireframe render tool (I use this for making collision sprites with building footprints)
+
 # Changes in 2024.1
 
  - Combining submeshes will also combine their textures (yay)
