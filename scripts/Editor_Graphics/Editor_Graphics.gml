@@ -126,7 +126,9 @@ function EditorGraphics() constructor {
     self.DrawGridCentered = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1) {
         matrix_set(matrix_world, matrix_build(x, y, z, xr, yr, zr, xs, ys, zs));
         var shader = shader_current();
-        shader_set(shd_utility_grid);
+        // idk why this was working earlier
+        //shader_set(shd_utility_grid);
+        shader_reset();
         vertex_submit(self.grid_centered, pr_linelist, -1);
         matrix_set(matrix_world, matrix_build_identity());
         shader_set(shader);
