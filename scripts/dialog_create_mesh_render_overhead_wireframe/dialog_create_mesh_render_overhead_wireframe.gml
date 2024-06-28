@@ -115,10 +115,12 @@ function dialog_create_mesh_render_overhead_wireframe(mesh) {
         new EmuInput(c1x, 32, 320, 32, "Low cutoff:", "0", "", 6, E_InputTypes.REAL, function() {
             self.root.create_render();
         })
+            .SetRealNumberBounds(-1024, 1024)
             .SetID("CUTOFF LOW"),
         new EmuInput(c1x, EMU_AUTO, 320, 32, "High cutoff:", "32", "", 6, E_InputTypes.REAL, function() {
             self.root.create_render();
         })
+            .SetRealNumberBounds(-1024, 1024)
             .SetID("CUTOFF HIGH"),
         new EmuText(c1x, EMU_AUTO, 160, 32, "Line width:"),
         new EmuProgressBar(c1x + 160, EMU_INLINE, 160, 32, 8, 1, 9, true, 4, function() {
@@ -134,7 +136,7 @@ function dialog_create_mesh_render_overhead_wireframe(mesh) {
             self.root.create_render();
         })
             .SetID("COLOR"),
-        new EmuColorPicker(c1x, EMU_AUTO, 320, 32, "    Out of bounds:", c_gray, function() {
+        new EmuColorPicker(c1x, EMU_AUTO, 320, 32, "    Out of bounds:", c_black, function() {
             self.root.create_render();
         })
             .SetID("COLOR OOB"),
