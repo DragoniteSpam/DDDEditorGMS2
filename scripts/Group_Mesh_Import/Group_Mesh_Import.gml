@@ -594,16 +594,16 @@ function import_obj(fn, squash = false) {
         // always use the vertex color of the current material (for now)
         max_alpha = max(max_alpha, face_material.alpha);
         repeat (3) {
-            var xx = buffer_read(face_vertex_attributes, face_attribute_type);
-            var yy = buffer_read(face_vertex_attributes, face_attribute_type);
-            var zz = buffer_read(face_vertex_attributes, face_attribute_type);
-            var nx = buffer_read(face_vertex_attributes, face_attribute_type);
-            var ny = buffer_read(face_vertex_attributes, face_attribute_type);
-            var nz = buffer_read(face_vertex_attributes, face_attribute_type);
-            var xtex = buffer_read(face_vertex_attributes, face_attribute_type);
-            var ytex = buffer_read(face_vertex_attributes, face_attribute_type);
-            var color = buffer_read(face_vertex_attributes, color_attribute_type)
-            vertex_point_complete_raw(output_data.buffer, xx, yy, zz, nx, ny, nz, xtex, needs_uvs_flipped ? (1 - ytex) : ytex, color & 0x00ffffff, (color >> 24) / 0xff);
+            var vxx = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vyy = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vzz = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vnx = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vny = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vnz = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vxtex = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vytex = buffer_read(face_vertex_attributes, face_attribute_type);
+            var vcolor = buffer_read(face_vertex_attributes, color_attribute_type)
+            vertex_point_complete_raw(output_data.buffer, vxx, vyy, vzz, vnx, vny, vnz, vxtex, needs_uvs_flipped ? (1 - vytex) : vytex, vcolor & 0x00ffffff, (vcolor >> 24) / 0xff);
         }
     }
     
