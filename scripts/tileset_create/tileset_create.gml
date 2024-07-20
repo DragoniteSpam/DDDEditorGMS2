@@ -15,7 +15,6 @@ function tileset_create(filename, name = undefined) {
     // don't instantiate these outside of this script (or the project loading script)
     var ts = new DataImageTileset();
     ts.Import(filename);
-    if (name != undefined) ts.name = name;
     array_push(Game.graphics.tilesets, ts);
     return ts;
 }
