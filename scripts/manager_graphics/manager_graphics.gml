@@ -150,22 +150,30 @@ function dialog_create_manager_graphics() {
             })
             .SetInteractive(false)
             .SetTooltip("The name of the asset visible in the editor (and/or player)")
-            .SetID("NAME"),
-        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Internal name:", "", "image internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
-            var image = self.GetSibling("LIST").GetSelectedItem();
-            var already = internal_name_get(self.value);
-            if (!already || already == image) {
-                internal_name_remove(image.internal_name);
-                internal_name_set(image, self.value);
-            }
-        }))
-            .SetRefresh(function(data) {
-                self.SetInteractive(data.index != -1);
-                if (data.index == -1) return;
-                self.SetValue(data.list[data.index].internal_name);
-            })
-            .SetTooltip("The unique internal name that the game can use to identify this asset")
-            .SetID("INTERNAL NAME"),
+            .SetID("NAME")
+    ]);
+    
+    if (IS_DEFAULT_MODE) {
+        dialog.AddContent([
+            (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Internal name:", "", "image internal name", INTERNAL_NAME_LENGTH, E_InputTypes.LETTERSDIGITS, function() {
+                var image = self.GetSibling("LIST").GetSelectedItem();
+                var already = internal_name_get(self.value);
+                if (!already || already == image) {
+                    internal_name_remove(image.internal_name);
+                    internal_name_set(image, self.value);
+                }
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(data.index != -1);
+                    if (data.index == -1) return;
+                    self.SetValue(data.list[data.index].internal_name);
+                })
+                .SetTooltip("The unique internal name that the game can use to identify this asset")
+                .SetID("INTERNAL NAME"),
+        ]);
+    }
+
+    dialog.AddContent([
         new EmuText(col2, EMU_AUTO, element_width, 24, "Source file:"),
         (new EmuText(col2, EMU_AUTO, element_width, 24, "[c_orange]<no path saved>"))
             .SetRefresh(function(data) {
