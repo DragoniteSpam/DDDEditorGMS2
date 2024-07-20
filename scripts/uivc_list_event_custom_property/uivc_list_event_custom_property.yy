@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_list_event_custom_property",
   "isCompatibility":false,
   "isDnD":false,

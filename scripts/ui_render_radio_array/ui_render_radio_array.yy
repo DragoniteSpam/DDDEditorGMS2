@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_render_radio_array",
   "isCompatibility":false,
   "isDnD":false,

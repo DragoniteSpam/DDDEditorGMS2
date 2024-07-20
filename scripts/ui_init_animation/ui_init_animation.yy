@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_init_animation",
   "isCompatibility":false,
   "isDnD":false,

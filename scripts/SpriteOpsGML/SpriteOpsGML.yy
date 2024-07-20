@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"SpriteOpsGML",
   "isCompatibility":false,
   "isDnD":false,

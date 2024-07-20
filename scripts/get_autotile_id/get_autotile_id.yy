@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"get_autotile_id",
   "isCompatibility":false,
   "isDnD":false,

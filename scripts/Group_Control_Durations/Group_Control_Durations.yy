@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Control_Durations",
   "isCompatibility":false,
   "isDnD":false,

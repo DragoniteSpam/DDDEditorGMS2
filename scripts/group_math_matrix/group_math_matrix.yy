@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Math_Matrix",
   "isCompatibility":false,
   "isDnD":false,

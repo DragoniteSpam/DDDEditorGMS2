@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_data_get_event_entrypoint",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"group_wireframe",
   "isCompatibility":false,
   "isDnD":false,

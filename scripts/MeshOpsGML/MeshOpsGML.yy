@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"MeshOpsGML",
   "isCompatibility":false,
   "isDnD":false,

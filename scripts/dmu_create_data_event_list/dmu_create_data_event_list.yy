@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dmu_create_data_event_list",
   "isCompatibility":false,
   "isDnD":false,

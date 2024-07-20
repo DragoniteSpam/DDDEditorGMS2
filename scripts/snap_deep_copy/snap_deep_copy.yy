@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"snap_deep_copy",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_radio_array_option_column",
   "isCompatibility":false,
   "isDnD":false,

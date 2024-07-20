@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"entity_mesh_autotile_check_changes",
   "isCompatibility":false,
   "isDnD":false,

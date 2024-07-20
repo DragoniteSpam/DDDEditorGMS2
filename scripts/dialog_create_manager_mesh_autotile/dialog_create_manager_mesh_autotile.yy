@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_manager_mesh_autotile",
   "isCompatibility":false,
   "isDnD":false,

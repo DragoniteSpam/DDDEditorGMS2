@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"TerrainOpsGML",
   "isCompatibility":false,
   "isDnD":false,

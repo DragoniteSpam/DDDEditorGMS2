@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_SData_Image",
   "isCompatibility":false,
   "isDnD":false,

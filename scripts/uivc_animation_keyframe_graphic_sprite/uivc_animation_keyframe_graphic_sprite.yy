@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_animation_keyframe_graphic_sprite",
   "isCompatibility":false,
   "isDnD":false,

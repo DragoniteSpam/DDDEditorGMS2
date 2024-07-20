@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"mesh_create_submesh",
   "isCompatibility":false,
   "isDnD":false,

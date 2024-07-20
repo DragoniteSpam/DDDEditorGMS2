@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_mesh_other_settings",
   "isCompatibility":false,
   "isDnD":false,

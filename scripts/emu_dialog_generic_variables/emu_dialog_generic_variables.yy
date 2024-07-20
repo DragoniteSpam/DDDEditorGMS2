@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"emu_dialog_generic_variables",
   "isCompatibility":false,
   "isDnD":false,

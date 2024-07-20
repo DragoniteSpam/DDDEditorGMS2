@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Entity_Autonomous_Movement",
   "isCompatibility":false,
   "isDnD":false,

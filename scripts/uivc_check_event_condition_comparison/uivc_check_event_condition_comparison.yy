@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_check_event_condition_comparison",
   "isCompatibility":false,
   "isDnD":false,

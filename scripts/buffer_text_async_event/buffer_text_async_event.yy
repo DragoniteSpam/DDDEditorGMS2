@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"buffer_text_async_event",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ThreeDGrids",
   "isCompatibility":false,
   "isDnD":false,

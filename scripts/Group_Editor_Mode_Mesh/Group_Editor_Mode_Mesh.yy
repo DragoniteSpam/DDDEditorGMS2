@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Editor_Mode_Mesh",
   "isCompatibility":false,
   "isDnD":false,

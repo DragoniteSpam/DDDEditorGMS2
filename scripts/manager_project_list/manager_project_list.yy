@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Project_List",
   "isCompatibility":false,
   "isDnD":false,

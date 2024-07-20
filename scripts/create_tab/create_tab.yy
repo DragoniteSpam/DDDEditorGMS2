@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_tab",
   "isCompatibility":false,
   "isDnD":false,

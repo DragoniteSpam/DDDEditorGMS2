@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_condition_switch_self_data",
   "isCompatibility":false,
   "isDnD":false,

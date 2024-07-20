@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_list_event_attain_transfer_direction",
   "isCompatibility":false,
   "isDnD":false,

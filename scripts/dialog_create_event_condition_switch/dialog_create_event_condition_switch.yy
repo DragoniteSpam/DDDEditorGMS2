@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_event_condition_switch",
   "isCompatibility":false,
   "isDnD":false,

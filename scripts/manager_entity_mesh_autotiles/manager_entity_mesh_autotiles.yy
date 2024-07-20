@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Entity_Mesh_Autotiles",
   "isCompatibility":false,
   "isDnD":false,

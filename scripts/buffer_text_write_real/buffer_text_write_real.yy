@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"buffer_text_write_real",
   "isCompatibility":false,
   "isDnD":false,

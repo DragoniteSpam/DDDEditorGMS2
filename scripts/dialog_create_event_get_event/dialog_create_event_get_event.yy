@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_event_get_event",
   "isCompatibility":false,
   "isDnD":false,

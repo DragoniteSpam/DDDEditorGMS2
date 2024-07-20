@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_button_down",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_event_attain_mesh_anim_end_action",
   "isCompatibility":false,
   "isDnD":false,

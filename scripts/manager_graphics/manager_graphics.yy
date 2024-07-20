@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Graphics",
   "isCompatibility":false,
   "isDnD":false,

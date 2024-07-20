@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_is_active",
   "isCompatibility":false,
   "isDnD":false,

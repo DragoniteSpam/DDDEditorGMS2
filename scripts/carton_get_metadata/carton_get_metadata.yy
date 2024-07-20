@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"carton_get_metadata",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"__penguin_classes",
   "isCompatibility":false,
   "isDnD":false,

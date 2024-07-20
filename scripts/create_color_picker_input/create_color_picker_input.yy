@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_color_picker_input",
   "isCompatibility":false,
   "isDnD":false,

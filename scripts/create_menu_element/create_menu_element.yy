@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_menu_element",
   "isCompatibility":false,
   "isDnD":false,

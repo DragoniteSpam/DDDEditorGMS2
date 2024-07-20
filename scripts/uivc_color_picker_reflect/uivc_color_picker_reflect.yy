@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_color_picker_reflect",
   "isCompatibility":false,
   "isDnD":false,

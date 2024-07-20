@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_animation_keyframe_event",
   "isCompatibility":false,
   "isDnD":false,

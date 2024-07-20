@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_list_event_attain_input_char_limit",
   "isCompatibility":false,
   "isDnD":false,

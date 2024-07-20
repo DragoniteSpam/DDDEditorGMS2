@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"menu_init_mesh",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Emu_Shortcut_Dialogs",
   "isCompatibility":false,
   "isDnD":false,

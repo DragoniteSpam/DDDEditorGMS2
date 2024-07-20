@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Vertex_Building",
   "isCompatibility":false,
   "isDnD":false,

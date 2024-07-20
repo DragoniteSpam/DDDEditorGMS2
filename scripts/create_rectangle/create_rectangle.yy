@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_rectangle",
   "isCompatibility":false,
   "isDnD":false,

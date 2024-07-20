@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"draw_editor_animation",
   "isCompatibility":false,
   "isDnD":false,

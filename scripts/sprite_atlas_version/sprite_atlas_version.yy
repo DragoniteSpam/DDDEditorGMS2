@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"sprite_atlas_version",
   "isCompatibility":false,
   "isDnD":false,

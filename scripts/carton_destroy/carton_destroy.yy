@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"carton_destroy",
   "isCompatibility":false,
   "isDnD":false,

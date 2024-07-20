@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_animation_layer_properties",
   "isCompatibility":false,
   "isDnD":false,

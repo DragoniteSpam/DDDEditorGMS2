@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Map_Help",
   "isCompatibility":false,
   "isDnD":false,

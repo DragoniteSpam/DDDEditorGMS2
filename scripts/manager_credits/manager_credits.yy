@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Credits",
   "isCompatibility":false,
   "isDnD":false,

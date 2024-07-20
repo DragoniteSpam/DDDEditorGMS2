@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_event_condition_attain_variable_self_value",
   "isCompatibility":false,
   "isDnD":false,

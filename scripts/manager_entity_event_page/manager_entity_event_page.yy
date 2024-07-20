@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Entity_Event_Page",
   "isCompatibility":false,
   "isDnD":false,

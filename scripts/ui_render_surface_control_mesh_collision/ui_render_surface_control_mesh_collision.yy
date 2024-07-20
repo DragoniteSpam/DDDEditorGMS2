@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_render_surface_control_mesh_collision",
   "isCompatibility":false,
   "isDnD":false,

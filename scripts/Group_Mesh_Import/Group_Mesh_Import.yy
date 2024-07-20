@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Mesh_Import",
   "isCompatibility":false,
   "isDnD":false,

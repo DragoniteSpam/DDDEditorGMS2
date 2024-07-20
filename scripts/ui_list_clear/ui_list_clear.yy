@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_list_clear",
   "isCompatibility":false,
   "isDnD":false,

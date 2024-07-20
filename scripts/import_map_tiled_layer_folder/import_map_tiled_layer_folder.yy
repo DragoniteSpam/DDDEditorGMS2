@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"import_map_tiled_layer_folder",
   "isCompatibility":false,
   "isDnD":false,

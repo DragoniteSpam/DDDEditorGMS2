@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"snap_to_xml",
   "isCompatibility":false,
   "isDnD":false,

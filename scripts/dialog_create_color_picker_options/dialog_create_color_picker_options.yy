@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_color_picker_options",
   "isCompatibility":false,
   "isDnD":false,

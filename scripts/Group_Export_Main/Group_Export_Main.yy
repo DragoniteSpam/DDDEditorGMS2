@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Export_Main",
   "isCompatibility":false,
   "isDnD":false,

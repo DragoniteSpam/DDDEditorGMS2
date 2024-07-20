@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Terrain_Default_Settings",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dmu_dialog_event_set_outbound",
   "isCompatibility":false,
   "isDnD":false,

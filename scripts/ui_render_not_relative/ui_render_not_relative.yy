@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_render_not_relative",
   "isCompatibility":false,
   "isDnD":false,

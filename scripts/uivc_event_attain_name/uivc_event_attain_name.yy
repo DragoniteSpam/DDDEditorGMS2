@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_event_attain_name",
   "isCompatibility":false,
   "isDnD":false,

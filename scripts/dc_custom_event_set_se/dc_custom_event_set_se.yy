@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dc_custom_event_set_se",
   "isCompatibility":false,
   "isDnD":false,

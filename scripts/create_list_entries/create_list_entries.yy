@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_list_entries",
   "isCompatibility":false,
   "isDnD":false,

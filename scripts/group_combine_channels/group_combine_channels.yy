@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Combine_Channels",
   "isCompatibility":false,
   "isDnD":false,

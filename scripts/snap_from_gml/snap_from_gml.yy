@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"snap_from_gml",
   "isCompatibility":false,
   "isDnD":false,

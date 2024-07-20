@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Menu_Right_Click",
   "isCompatibility":false,
   "isDnD":false,

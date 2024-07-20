@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_event_custom_remove_outbound",
   "isCompatibility":false,
   "isDnD":false,

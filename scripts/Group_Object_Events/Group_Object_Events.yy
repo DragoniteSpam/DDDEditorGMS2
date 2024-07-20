@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Object_Events",
   "isCompatibility":false,
   "isDnD":false,

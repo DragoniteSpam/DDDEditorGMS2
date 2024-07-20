@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Get_Open_Filename",
   "isCompatibility":false,
   "isDnD":false,

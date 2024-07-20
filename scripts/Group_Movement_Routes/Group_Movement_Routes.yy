@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Movement_Routes",
   "isCompatibility":false,
   "isDnD":false,

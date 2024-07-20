@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"tileset_create",
   "isCompatibility":false,
   "isDnD":false,

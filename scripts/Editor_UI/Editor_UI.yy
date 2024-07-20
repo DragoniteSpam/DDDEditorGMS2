@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Editor_UI",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_render_surface",
   "isCompatibility":false,
   "isDnD":false,

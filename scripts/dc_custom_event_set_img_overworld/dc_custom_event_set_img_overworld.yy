@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dc_custom_event_set_img_overworld",
   "isCompatibility":false,
   "isDnD":false,

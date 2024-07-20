@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_mesh_render_overhead_wireframe",
   "isCompatibility":false,
   "isDnD":false,

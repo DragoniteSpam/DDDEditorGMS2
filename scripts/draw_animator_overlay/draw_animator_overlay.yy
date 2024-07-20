@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"draw_animator_overlay",
   "isCompatibility":false,
   "isDnD":false,

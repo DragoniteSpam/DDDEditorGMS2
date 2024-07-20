@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_event_attain_map_data",
   "isCompatibility":false,
   "isDnD":false,

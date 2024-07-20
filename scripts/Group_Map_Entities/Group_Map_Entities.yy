@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Map_Entities",
   "isCompatibility":false,
   "isDnD":false,

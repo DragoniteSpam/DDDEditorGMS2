@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dmu_create_event_event_entrypoint_list",
   "isCompatibility":false,
   "isDnD":false,

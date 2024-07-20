@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_event_condition_attain_variable_self_data",
   "isCompatibility":false,
   "isDnD":false,

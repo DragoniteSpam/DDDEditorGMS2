@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_event_custom_add_property",
   "isCompatibility":false,
   "isDnD":false,

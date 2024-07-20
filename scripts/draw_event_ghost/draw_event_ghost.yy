@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"draw_event_ghost",
   "isCompatibility":false,
   "isDnD":false,

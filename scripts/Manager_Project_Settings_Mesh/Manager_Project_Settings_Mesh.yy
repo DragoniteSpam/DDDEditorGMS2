@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Project_Settings_Mesh",
   "isCompatibility":false,
   "isDnD":false,

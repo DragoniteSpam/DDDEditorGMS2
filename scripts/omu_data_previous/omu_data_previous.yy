@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_data_previous",
   "isCompatibility":false,
   "isDnD":false,

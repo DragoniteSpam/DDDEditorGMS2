@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dmu_dialog_event_save_prefab",
   "isCompatibility":false,
   "isDnD":false,

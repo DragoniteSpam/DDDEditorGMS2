@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"buffer_text_open_append",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Data_General",
   "isCompatibility":false,
   "isDnD":false,

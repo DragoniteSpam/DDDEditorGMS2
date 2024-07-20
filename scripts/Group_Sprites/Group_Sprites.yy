@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Sprites",
   "isCompatibility":false,
   "isDnD":false,

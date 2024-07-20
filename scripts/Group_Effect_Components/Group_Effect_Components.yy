@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Effect_Components",
   "isCompatibility":false,
   "isDnD":false,

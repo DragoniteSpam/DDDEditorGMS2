@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_bitfield_option_data",
   "isCompatibility":false,
   "isDnD":false,

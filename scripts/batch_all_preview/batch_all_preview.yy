@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"batch_all_preview",
   "isCompatibility":false,
   "isDnD":false,

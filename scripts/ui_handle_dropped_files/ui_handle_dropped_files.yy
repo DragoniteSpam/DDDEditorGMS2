@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_handle_dropped_files",
   "isCompatibility":false,
   "isDnD":false,

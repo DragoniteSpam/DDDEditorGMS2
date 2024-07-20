@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_render_list_timeline",
   "isCompatibility":false,
   "isDnD":false,

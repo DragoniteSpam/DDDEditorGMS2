@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Terrain_Dialogs",
   "isCompatibility":false,
   "isDnD":false,

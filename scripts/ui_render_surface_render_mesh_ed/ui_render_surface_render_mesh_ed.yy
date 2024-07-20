@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ui_render_surface_render_mesh_ed",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_event_node_animation",
   "isCompatibility":false,
   "isDnD":false,

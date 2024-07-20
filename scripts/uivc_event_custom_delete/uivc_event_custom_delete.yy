@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_event_custom_delete",
   "isCompatibility":false,
   "isDnD":false,

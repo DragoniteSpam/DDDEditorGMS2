@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"draw_event_node_condition_add",
   "isCompatibility":false,
   "isDnD":false,

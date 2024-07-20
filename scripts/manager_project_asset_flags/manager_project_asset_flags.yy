@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Project_Asset_Flags",
   "isCompatibility":false,
   "isDnD":false,

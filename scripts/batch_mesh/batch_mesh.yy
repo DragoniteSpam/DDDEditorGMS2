@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"batch_mesh",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Dialogs",
   "isCompatibility":false,
   "isDnD":false,

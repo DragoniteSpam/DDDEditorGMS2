@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"penguin_load",
   "isCompatibility":false,
   "isDnD":false,

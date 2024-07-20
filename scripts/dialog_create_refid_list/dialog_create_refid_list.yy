@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_refid_list",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Movement_Route",
   "isCompatibility":false,
   "isDnD":false,

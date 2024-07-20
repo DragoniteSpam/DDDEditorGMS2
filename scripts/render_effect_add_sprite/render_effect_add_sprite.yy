@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"render_effect_add_sprite",
   "isCompatibility":false,
   "isDnD":false,

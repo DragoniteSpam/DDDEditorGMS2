@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Animation_Layers",
   "isCompatibility":false,
   "isDnD":false,

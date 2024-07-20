@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"omu_data_list_remove",
   "isCompatibility":false,
   "isDnD":false,

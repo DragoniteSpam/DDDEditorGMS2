@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_Menu_File",
   "isCompatibility":false,
   "isDnD":false,

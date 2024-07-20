@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"emu_dialog_zone_template",
   "isCompatibility":false,
   "isDnD":false,

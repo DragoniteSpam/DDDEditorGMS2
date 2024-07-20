@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"spart_debug_vbuffers",
   "isCompatibility":false,
   "isDnD":false,

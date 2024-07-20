@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Group_SData_Mesh",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"Manager_Submeshes",
   "isCompatibility":false,
   "isDnD":false,

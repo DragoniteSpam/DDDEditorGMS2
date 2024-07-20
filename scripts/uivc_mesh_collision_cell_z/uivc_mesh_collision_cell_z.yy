@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"uivc_mesh_collision_cell_z",
   "isCompatibility":false,
   "isDnD":false,

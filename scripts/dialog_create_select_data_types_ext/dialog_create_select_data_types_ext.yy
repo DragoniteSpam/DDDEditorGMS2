@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"dialog_create_select_data_types_ext",
   "isCompatibility":false,
   "isDnD":false,
