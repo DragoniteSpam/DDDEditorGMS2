@@ -255,13 +255,13 @@ AddStatusMessage = function(text) {
             .starting_format("FDefaultOutline", c_white)
             .align(fa_left, fa_top)
             .wrap(window_get_width() - 64, 32);
-        self.duration = 15;
+        self.duration = 8;
         self.x = 32;
         self.y = 48;
         
         static Update = function(target_y) {
             self.y = lerp(self.y, target_y, 0.1);
-            self.duration -= game_get_speed(gamespeed_microseconds) / 10000000;
+            self.duration -= game_get_speed(gamespeed_microseconds) / 1_000_000;
             return self.duration > 0;
         };
         
