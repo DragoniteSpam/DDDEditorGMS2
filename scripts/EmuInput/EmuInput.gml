@@ -28,8 +28,8 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     self._require_enter = false;
     self._multi_line = false;
     self._value_type = input;
-    self._value_lower = 0;
-    self._value_upper = 100;
+    self._value_lower = -infinity;
+    self._value_upper = infinity;
     
     self.strict_input = false;
     
