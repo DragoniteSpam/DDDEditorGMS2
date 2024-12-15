@@ -149,6 +149,7 @@ function dialog_create_mesh_render_overhead_wireframe(mesh) {
             }
         }),
         new EmuRenderSurface(c2x, 32, 640, 640, function() {
+            draw_clear(c_black);
             if (self.root.render == undefined) {
                 self.root.create_render();
             }
