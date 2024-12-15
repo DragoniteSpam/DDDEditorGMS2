@@ -33,7 +33,8 @@ function dialog_create_mesh_render_overhead_wireframe(mesh) {
         draw_clear_alpha(c_black, 0);
         
         var grid_size_element = self.GetChild("GRID SIZE");
-        var step = (grid_size_element.value != "") ? real(grid_size_element.value) : 0;
+        var grid_enabled_element = self.GetChild("GRID ENABLED");
+        var step = (grid_enabled_element.value && grid_size_element.value != "") ? real(grid_size_element.value) : 0;
         
         static draw_grid = function(step, xx, yy, ww, hh, a) {
             if (step > 0) {
@@ -140,7 +141,13 @@ function dialog_create_mesh_render_overhead_wireframe(mesh) {
             self.root.create_render();
         })
             .SetID("COLOR OOB"),
-        new EmuInput(c1x, EMU_AUTO, 320, 32, "Grid size:", "16", "", 3, E_InputTypes.INT, emu_null)
+        new EmuCheckbox(c1x, EMU_AUTO, 320, 32, "Draw grid?", true, function() {
+            self.root.create_render();
+        })
+            .SetID("GRID ENABLED"),
+        new EmuInput(c1x, EMU_AUTO, 320, 32, "Grid size:", "16", "", 3, E_InputTypes.INT, function() {
+            self.root.create_render();
+        })
             .SetID("GRID SIZE"),
         new EmuButton(c1x, EMU_AUTO, 320, 32, "Save", function() {
             var filename = get_save_filename("PNG files|*.png", self.root.mesh.name + "_wireframe.png");
