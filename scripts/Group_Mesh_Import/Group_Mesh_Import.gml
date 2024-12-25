@@ -46,9 +46,22 @@ function import_3d_model_generic(filename, squash = false) {
 function import_mesh_exotic(filename) {
     if (!directory_exists(PATH_ASSIMP_CONVERSION)) directory_create(PATH_ASSIMP_CONVERSION);
     
-    var temp_filename = PROJECT_PATH_ROOT + PATH_ASSIMP_CONVERSION + "/assops.obj";
+    var temp_filename = $"{PROJECT_PATH_ROOT}{PATH_ASSIMP_CONVERSION}/{md5_string_unicode(filename)}.obj";
+    var temp_filename_mtl = $"{PROJECT_PATH_ROOT}{PATH_ASSIMP_CONVERSION}/{md5_string_unicode(filename)}.mtl";
     assops_convert_obj(filename, temp_filename);
-    return import_obj(temp_filename);
+    
+    if (!file_exists(temp_filename)) {
+        // because of pop-up reasons this needs to happen after the files load
+        call_later(1, time_source_units_frames, method({ filename }, function() {
+            Stuff.AddErrorMessage($"Could not load [c_aqua]{filename_name(filename)}[/c] for some reason");
+        }));
+        return undefined;
+    }
+    
+    var obj = import_obj(temp_filename);
+    file_delete(temp_filename);
+    file_delete(temp_filename_mtl);
+    return obj;
 }
 
 function import_d3d(filename) {
