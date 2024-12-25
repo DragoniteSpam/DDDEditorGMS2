@@ -11,11 +11,13 @@ function menu_init_mesh() {
         #region file stuff
         var mf_save_data = create_menu_element("Save (Ctrl+S)", momu_save_data, menu_file);
         var mf_settings_data = create_menu_element("Global Data Settings (Ctrl+G)", momu_settings_data_mesh, menu_file);
+        var mf_errors = create_menu_element("Show Errors", momu_errors, menu_file);
         var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
         var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
         ds_list_add(menu_file.contents,
             mf_save_data,
             mf_settings_data,
+            mf_errors,
             mf_preferences,
             mf_exit
         );

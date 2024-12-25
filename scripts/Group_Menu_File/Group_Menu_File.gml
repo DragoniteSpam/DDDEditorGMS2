@@ -4,6 +4,12 @@ function momu_exit() {
     dialog.flags |= DialogFlags.IS_QUIT;
 }
 
+function momu_errors() {
+    _emu_active_element(undefined);
+    menu_close_all();
+    Stuff.ShowErrorMessages();
+}
+
 function momu_preferences() {
     _emu_active_element(undefined);
     menu_close_all();

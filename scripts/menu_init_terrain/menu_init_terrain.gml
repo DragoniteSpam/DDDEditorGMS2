@@ -14,6 +14,7 @@ function menu_init_terrain() {
             create_menu_element("Open Terrain (Ctrl + O)", momu_terrain_load, menu_file),
             create_menu_element("Export Terrain (Ctrl + E)", momu_terrain_export, menu_file),
             create_menu_element("Export Heightmap (Ctrl + Shift + E)", momu_terrain_heightmap, menu_file),
+            create_menu_element("Show Errors", momu_errors, menu_file),
             create_menu_element("Preferences", momu_preferences, menu_file),
             create_menu_element("Exit (Alt+F4)", momu_exit, menu_file),
         );

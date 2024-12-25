@@ -276,6 +276,37 @@ AddStatusMessage = function(text) {
 }
 #endregion
 
+#region error messages
+error_messages = [];
+AddErrorMessage = function(message) {
+    array_push(self.error_messages, message);
+    self.ShowErrorMessages();
+};
+
+ClearErrorMessages = function() {
+    array_resize(self.error_messages, 0);
+};
+
+ShowErrorMessages = function() {
+    if (EmuOverlay.GetChild("ERRORS")) return;
+    
+    var dialog = new EmuDialog(640, 640, "oh no!").AddContent([
+        new EmuList(16, EMU_AUTO, 640 - 16 - 16, 32, "Error log:", 32, 16, function() {
+            
+        })
+            .SetList(self.error_messages)
+            .SetID("LIST")
+    ])
+        .AddDefaultConfirmCancelButtons("Close", function() {
+            self.root.Dispose();
+        }, "Clear", function() {
+            self.GetSibling("LIST").Clear();
+        })
+        .SetID("ERRORS");
+    dialog.contents_interactive = true;
+};
+#endregion
+
 // this is used mostly for the screen-space UI drawing
 base_camera = new Camera(window_get_width() / 2, window_get_height() / 2, 100, window_get_width() / 2, window_get_height() / 2, 100, 0, -1, 0, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
     
