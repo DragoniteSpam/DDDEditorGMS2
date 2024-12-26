@@ -39,6 +39,10 @@ function EmuDialog(w, h, title) : EmuCallback(0, 0, w, h, 0, 0) constructor {
             top = EmuOverlay._contents[| ds_list_size(EmuOverlay._contents) - 1];
             top.Destroy();
             ds_list_delete(EmuOverlay._contents, ds_list_size(EmuOverlay._contents) - 1);
+            
+            if (EmuOverlay.child_ids[$ top.identifier] == top) {
+                variable_struct_remove(EmuOverlay.child_ids, top.identifier);
+            }
         } until (top == self);
     }
     
