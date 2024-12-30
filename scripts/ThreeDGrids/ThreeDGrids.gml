@@ -1,3 +1,4 @@
+// feather ignore all
 function ThreeDGrid(width, height, depth) {
     self.width = width;
     self.height = height;

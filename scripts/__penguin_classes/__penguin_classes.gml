@@ -1,3 +1,4 @@
+// feather ignore all
 function Penguin() constructor {
     self.name = "";
     self.submeshes = [];

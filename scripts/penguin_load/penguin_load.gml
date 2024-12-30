@@ -1,3 +1,4 @@
+// feather ignore all
 function penguin_load(filename, vertex_format, freeze = true) {
     static HEADER_PRERELEASE = "derg";
     static HEADER_FINAL = "dergxmachina";
