@@ -141,7 +141,7 @@ function emu_dialog_vertex_format(value, callback) {
                 if (!!(value & VertexFormatData.COLOUR)) bytes += 4;
                 if (!!(value & VertexFormatData.TANGENT)) bytes += 8;
                 if (!!(value & VertexFormatData.BITANGENT)) bytes += 8;
-                if (!!(value & VertexFormatData.BARYCENTRIC)) bytes += 8;
+                if (!!(value & VertexFormatData.BARYCENTRIC)) bytes += 12;
                 if (!!(value & VertexFormatData.SMALL_NORMAL)) bytes += 4;
                 if (!!(value & VertexFormatData.SMALL_TANGENT)) bytes += 4;
                 if (!!(value & VertexFormatData.SMALL_BITANGENT)) bytes += 4;
