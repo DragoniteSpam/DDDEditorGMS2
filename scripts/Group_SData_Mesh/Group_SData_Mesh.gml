@@ -194,6 +194,13 @@ function DataMesh(source) : SData(source) constructor {
         self.CalculatePhysicalBounds();
     };
     
+    self.ActionReverseFaces = function() {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBuffer(function(buffer) {
+            meshops_reverse(buffer_get_address(buffer), buffer_get_size(buffer));
+        });
+    };
+    
     self.ActionRotateUpAxis = function() {
         if (self.type == MeshTypes.SMF) return;
         self.foreachSubmeshBuffer(function(buffer) {
