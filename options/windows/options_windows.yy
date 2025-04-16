@@ -49,7 +49,7 @@
   "option_windows_steam_use_alternative_launcher":false,
   "option_windows_texture_page":"4096x4096",
   "option_windows_use_splash":false,
-  "option_windows_version":"2024.0.1.96",
+  "option_windows_version":"2025.0.1.97",
   "option_windows_vsync":false,
   "resourceType":"GMWindowsOptions",
   "resourceVersion":"2.0",

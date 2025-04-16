@@ -1,7 +1,8 @@
 Another changelog.
 
-# Changes in 2024.2
+# Changes in 2025.1
 
+ - Fixed broken dot product function making a bunch of different operations kind of weird
  - Added a mesh overhead wireframe render tool (I use this for making collision sprites with building footprints)
 
 # Changes in 2024.1
