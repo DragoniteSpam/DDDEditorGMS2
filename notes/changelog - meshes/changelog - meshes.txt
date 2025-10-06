@@ -1,5 +1,8 @@
 Another changelog.
 
+ - The min/max bounding box of meshes is now exported (previously these were all 0s)
+ - A recent GM update broke the way the program accesses local storage; I may have fixed at least part of it
+
 # Changes in 2025.1
 
  - Added a mesh overhead wireframe render tool (I use this for making collision sprites with building footprints)
