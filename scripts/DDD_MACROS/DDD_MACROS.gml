@@ -109,7 +109,8 @@
 
 #macro MAP_BATCH_MESH_ENABLED               false
 
-#macro FILE_SETTINGS                        "settings.json"
+#macro FILE_PROJECTS                        PROJECT_PATH_ROOT + "/projects.json"
+#macro FILE_SETTINGS                        PROJECT_PATH_ROOT + "/settings.json"
 #macro FILE_TERRAIN_TEXTURE                 PATH_TERRAIN + "tex.png"
 
 #macro PREFIX_GRAPHIC_BATTLER               "GBat"
@@ -153,7 +154,7 @@
 #macro BASE_GAME_VARIABLES                  10                                  // this also counts for switches
 #macro BASE_SELF_VARIABLES                  4                                   // this also counts for switches
 
-#macro PROJECT_PATH_ROOT                    (environment_get_variable("localappdata") + "/" + game_project_name + "/")     // in case an extension needs to see the exact path of something in local storage
+#macro PROJECT_PATH_ROOT                    (environment_get_variable("localappdata") + "/" + game_project_name + "/")
 #macro PROJECT_PATH_AUDIO                   "audio"
 #macro PROJECT_PATH_IMAGE                   "image"
 #macro PROJECT_PATH_MAP                     "map"

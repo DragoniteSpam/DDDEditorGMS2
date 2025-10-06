@@ -92,7 +92,7 @@ function dialog_create_project_list() {
                     array_delete(Stuff.all_projects.projects, self.root.project, 1);
                     self.root.root.GetSibling("LIST").Deselect();
                     directory_destroy(PATH_PROJECTS + project.name);
-                    buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
+                    buffer_write_file(json_stringify(Stuff.all_projects), FILE_PROJECTS);
                     self.root.Dispose();
                 });
                 dialog.project = selected_project;

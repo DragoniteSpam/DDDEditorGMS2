@@ -17,7 +17,7 @@ function setting_project_add(filename, id) {
     }
     
     array_push(Stuff.all_projects.projects, { name: filename_name(filename_change_ext(filename, "")), source: filename, id: id, legacy: false });
-    buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
+    buffer_write_file(json_stringify(Stuff.all_projects), PROJECT_PATH_ROOT + "/projects.json");
 }
 
 #macro Settings global.__settings

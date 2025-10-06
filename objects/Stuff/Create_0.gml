@@ -1,5 +1,9 @@
 /// @description setup
 
+if (!directory_exists(PROJECT_PATH_ROOT)) {
+    directory_create(PROJECT_PATH_ROOT);
+}
+
 if ((display_get_width() < 1600 || display_get_height() < 900) && !file_exists(".display")) {
     show_message("Your primary display seems to be smaller than 1600x900. The program will still work but you might find the UI has issues. I want to address this someday, but for now it's not a top priority.");
     file_touch(".display");
@@ -55,7 +59,7 @@ save_name = "game";
 
 all_projects = { projects: [] };
 try {
-    all_projects = json_parse(file_get_contents("projects.json"));
+    all_projects = json_parse(file_get_contents(FILE_PROJECTS));
 } catch (e) {
     all_projects = { projects: [] };
 }
