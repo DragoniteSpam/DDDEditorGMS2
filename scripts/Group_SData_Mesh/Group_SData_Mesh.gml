@@ -314,7 +314,7 @@ function DataMesh(source) : SData(source) constructor {
             var shape = self.collision_shapes[i];
             buffer_write(buffer, buffer_s8, shape.type);
             buffer_write(buffer, buffer_string, shape.name);
-            buffer_write(buffer, buffer_flag, shape.asset_flags);
+            buffer_write(buffer, buffer_flag, shape.flags);
             buffer_write(buffer, buffer_f32, shape.position.x);
             buffer_write(buffer, buffer_f32, shape.position.y);
             buffer_write(buffer, buffer_f32, shape.position.z);
@@ -491,7 +491,7 @@ function DataMesh(source) : SData(source) constructor {
 function MeshCollisionShape() constructor {
     self.name = "shape";
     self.position = new Vector3(0, 0, 0);
-    self.asset_flags = 0xffffffff;
+    self.flags = 0xffffffff;
     self.type = -1;
 }
 
