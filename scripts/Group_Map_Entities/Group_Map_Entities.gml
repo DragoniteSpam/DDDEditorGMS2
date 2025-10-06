@@ -500,18 +500,14 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     
     self.get_bounding_box = function() {
         var mesh_data = guid_get(self.mesh);
-        if (mesh_data.use_independent_bounds) {
-            return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
-        } else {
-            return new BoundingBox(
-                self.xx + mesh_data.xmin / TILE_WIDTH,
-                self.yy + mesh_data.ymin / TILE_HEIGHT,
-                self.zz + mesh_data.zmin / TILE_DEPTH,
-                self.xx + mesh_data.xmax / TILE_WIDTH,
-                self.yy + mesh_data.ymax / TILE_HEIGHT,
-                self.zz + mesh_data.zmax / TILE_DEPTH
-            );
-        }
+        return new BoundingBox(
+            self.xx + mesh_data.xmin / TILE_WIDTH,
+            self.yy + mesh_data.ymin / TILE_HEIGHT,
+            self.zz + mesh_data.zmin / TILE_DEPTH,
+            self.xx + mesh_data.xmax / TILE_WIDTH,
+            self.yy + mesh_data.ymax / TILE_HEIGHT,
+            self.zz + mesh_data.zmax / TILE_DEPTH
+        );
     };
     
     self.SetMesh = function(mesh, submesh = undefined) {

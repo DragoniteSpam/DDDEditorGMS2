@@ -303,8 +303,8 @@ function dialog_create_settings_data() {
             var col1 = 32;
     
             return dialog.AddContent([
-                new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "DataMesh: use independent bounds?", Game.meta.extra.mesh_use_independent_bounds_default, function() {
-                    Game.meta.extra.mesh_use_independent_bounds_default = self.value;
+                new EmuCheckbox(col1, EMU_AUTO, element_width, element_height, "old - removed", false, function() {
+                    
                 })
             ]).AddDefaultCloseButton();
         }))

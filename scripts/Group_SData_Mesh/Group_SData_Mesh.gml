@@ -9,18 +9,7 @@ function DataMesh(source) : SData(source) constructor {
     
     self.collision_shapes = [];
     
-    /* s */ self.xmin = 0;
-    /* s */ self.ymin = 0;
-    /* s */ self.zmin = 0;
-    /* s */ self.xmax = 1;
-    /* s */ self.ymax = 1;
-    /* s */ self.zmax = 1;
-    
-    /* s */ self.asset_flags = [[[0]]];
-    
     self.physical_bounds = new BoundingBox(0, 0, 0, 0, 0, 0);
-    
-    self.use_independent_bounds = Game.meta.extra.mesh_use_independent_bounds_default;
     
     self.texture_scale = 1;
     
@@ -28,31 +17,8 @@ function DataMesh(source) : SData(source) constructor {
     
     self.CopyPropertiesFrom = function(mesh) {
         // cshape is currently NOT copied!
-        self.xmin = mesh.xmin;
-        self.ymin = mesh.ymin;
-        self.zmin = mesh.zmin;
-        self.xmax = mesh.xmax;
-        self.ymax = mesh.ymax;
-        self.zmax = mesh.zmax;
         
         self.texture_scale = mesh.texture_scale;
-        
-        self.use_independent_bounds = mesh.use_independent_bounds;
-        
-        var hh = abs(mesh.xmax - mesh.xmin);
-        var ww = abs(mesh.ymax - mesh.ymin);
-        var dd = abs(mesh.zmax - mesh.zmin);
-        
-        self.asset_flags = array_create(hh);
-        for (var i = 0; i < hh; i++) {
-            self.asset_flags[i] = array_create(ww);
-            for (var j = 0; j < ww; j++) {
-                self.asset_flags[i][j] = array_create(dd);
-                for (var k = 0; k < dd; k++) {
-                    self.asset_flags[i][j][k] = mesh.asset_flags[i][j][k];
-                }
-            }
-        }
         
         self.collision_shapes = json_parse(json_stringify(mesh.collision_shapes));
     };
@@ -95,19 +61,6 @@ function DataMesh(source) : SData(source) constructor {
             self.physical_bounds.y2 = max(self.physical_bounds.y2, sub_bounds.y2);
             self.physical_bounds.z2 = max(self.physical_bounds.z2, sub_bounds.z2);
         }
-    };
-    
-    self.AutoCalculateBounds = function() {
-        self.CalculatePhysicalBounds();
-        
-        self.xmin = round(self.physical_bounds.x1 / TILE_WIDTH);
-        self.ymin = round(self.physical_bounds.y1 / TILE_HEIGHT);
-        self.zmin = round(self.physical_bounds.z1 / TILE_DEPTH);
-        self.xmax = round(self.physical_bounds.x2 / TILE_WIDTH);
-        self.ymax = round(self.physical_bounds.y2 / TILE_HEIGHT);
-        self.zmax = round(self.physical_bounds.z2 / TILE_DEPTH);
-        
-        self.RecalculateBounds();
     };
     
     self.GenerateReflections = function() {
@@ -343,15 +296,7 @@ function DataMesh(source) : SData(source) constructor {
         buffer_write(buffer, buffer_s16, self.physical_bounds.x2);
         buffer_write(buffer, buffer_s16, self.physical_bounds.y2);
         buffer_write(buffer, buffer_s16, self.physical_bounds.z2);
-        /*
-        for (var i = 0, n = array_length(self.asset_flags); i < n; i++) {
-            for (var j = 0, n2 = array_length(self.asset_flags[i]); j < n2; j++) {
-                for (var k = 0, n3 = array_length(self.asset_flags[i][j]); k < n3; k++) {
-                    buffer_write(buffer, buffer_flag, self.asset_flags[i][j][k]);
-                }
-            }
-        }
-        */
+        
         // old versions of this made use of the asset flags array, which was
         // basically collision data for each "cell" in the model - this isn't
         // really useful for anything but in previous versions a single 0 flag
@@ -428,16 +373,6 @@ function DataMesh(source) : SData(source) constructor {
         json.type = self.type;
         json.texture_scale = self.texture_scale;
         
-        json.use_independent_bounds = self.use_independent_bounds;
-        
-        json.asset_flags = self.asset_flags;
-        json.xmin = self.xmin;
-        json.ymin = self.ymin;
-        json.zmin = self.zmin;
-        json.xmax = self.xmax;
-        json.ymax = self.ymax;
-        json.zmax = self.zmax;
-        
         json.submeshes = array_create(array_length(self.submeshes));
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             json.submeshes[i] = self.submeshes[i].CreateJSON();
@@ -482,27 +417,6 @@ function DataMesh(source) : SData(source) constructor {
         }
     };
     
-    self.RecalculateBounds = function() {
-        var xx = self.xmax - self.xmin;
-        var yy = self.ymax - self.ymin;
-        var zz = self.zmax - self.zmin;
-        array_resize(self.asset_flags, xx);
-        for (var i = 0; i < xx; i++) {
-            if (!is_array(self.asset_flags[i])) {
-                self.asset_flags[@ i] = array_create(yy);
-            } else {
-                array_resize(self.asset_flags[@ i], yy);
-            }
-            for (var j = 0; j < yy; j++) {
-                if (!is_array(self.asset_flags[i][j])) {
-                    self.asset_flags[@ i][@ j] = array_create(zz);
-                } else {
-                    array_resize(self.asset_flags[@ i][@ j], zz);
-                }
-            }
-        }
-    };
-    
     /// @ignore
     self.foreachSubmeshBuffer = function(f) {
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
@@ -535,14 +449,6 @@ function DataMesh(source) : SData(source) constructor {
         
         self.texture_scale = source[$ "texture_scale"] ?? NULL;
         
-        self.asset_flags = source.asset_flags;
-        self.xmin = source.xmin;
-        self.ymin = source.ymin;
-        self.zmin = source.zmin;
-        self.xmax = source.xmax;
-        self.ymax = source.ymax;
-        self.zmax = source.zmax;
-        
         for (var i = 0; i < array_length(source.submeshes); i++) {
             self.AddSubmesh(new MeshSubmesh(source.submeshes[i]), source.submeshes[i].proto_guid);
         }
@@ -566,8 +472,6 @@ function DataMesh(source) : SData(source) constructor {
         } catch (e) {
             self.terrain_data = undefined;
         }
-        
-        self.use_independent_bounds = source[$ "use_independent_bounds"] ?? self.use_independent_bounds;
         
         try {
             self.physical_bounds.x1 = source.physical_bounds.x1;

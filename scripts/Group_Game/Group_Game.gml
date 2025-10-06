@@ -43,8 +43,7 @@ function GameDataStructure() constructor {
             height: -1,
         },
         extra: {
-            guid_current: 0,
-            mesh_use_independent_bounds_default: false,
+            guid_current: 0
         },
     };
     self.vars = {
