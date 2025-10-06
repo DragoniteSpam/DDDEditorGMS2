@@ -47,14 +47,17 @@ function penguin_load(filename, vertex_format, freeze = true) {
             buffer_read(buffer, buffer_string);             // guid
             buffer_read(buffer, buffer_u64);                // flag
             buffer_read(buffer, buffer_u8);                 // type
-            var xmin = buffer_read(buffer, buffer_s16);
-            var ymin = buffer_read(buffer, buffer_s16);
-            var zmin = buffer_read(buffer, buffer_s16);
-            var xmax = buffer_read(buffer, buffer_s16);
-            var ymax = buffer_read(buffer, buffer_s16);
-            var zmax = buffer_read(buffer, buffer_s16);
+            with (penguin.physical_bounds) {
+                self.xmin = buffer_read(buffer, buffer_s16);
+                self.ymin = buffer_read(buffer, buffer_s16);
+                self.zmin = buffer_read(buffer, buffer_s16);
+                self.xmax = buffer_read(buffer, buffer_s16);
+                self.ymax = buffer_read(buffer, buffer_s16);
+                self.zmax = buffer_read(buffer, buffer_s16);
+                self.radius = point_distance_3d(0, 0, 0, max(self.xmin, self.xmax), max(self.ymin, self.ymax), max(self.zmin, self.zmax));
+            }
             
-            buffer_seek(buffer, buffer_seek_relative, (xmax - xmin) * (ymax - ymin) * (zmax - zmin) * buffer_sizeof(buffer_u64));
+            buffer_read(buffer, buffer_u64);                // asset flag - no longer used
             
             var submeshes = buffer_read(buffer, buffer_u32);
             penguin.submeshes = array_create(submeshes);

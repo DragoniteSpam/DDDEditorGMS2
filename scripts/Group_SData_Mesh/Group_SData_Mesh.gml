@@ -337,12 +337,13 @@ function DataMesh(source) : SData(source) constructor {
     self.Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, self.type);
-        buffer_write(buffer, buffer_s16, self.xmin);
-        buffer_write(buffer, buffer_s16, self.ymin);
-        buffer_write(buffer, buffer_s16, self.zmin);
-        buffer_write(buffer, buffer_s16, self.xmax);
-        buffer_write(buffer, buffer_s16, self.ymax);
-        buffer_write(buffer, buffer_s16, self.zmax);
+        buffer_write(buffer, buffer_s16, self.physical_bounds.x1);
+        buffer_write(buffer, buffer_s16, self.physical_bounds.y1);
+        buffer_write(buffer, buffer_s16, self.physical_bounds.z1);
+        buffer_write(buffer, buffer_s16, self.physical_bounds.x2);
+        buffer_write(buffer, buffer_s16, self.physical_bounds.y2);
+        buffer_write(buffer, buffer_s16, self.physical_bounds.z2);
+        /*
         for (var i = 0, n = array_length(self.asset_flags); i < n; i++) {
             for (var j = 0, n2 = array_length(self.asset_flags[i]); j < n2; j++) {
                 for (var k = 0, n3 = array_length(self.asset_flags[i][j]); k < n3; k++) {
@@ -350,6 +351,13 @@ function DataMesh(source) : SData(source) constructor {
                 }
             }
         }
+        */
+        // old versions of this made use of the asset flags array, which was
+        // basically collision data for each "cell" in the model - this isn't
+        // really useful for anything but in previous versions a single 0 flag
+        // was written by default so we'll leave it there for now
+        buffer_write(buffer, buffer_flag, 0);
+        
         buffer_write(buffer, buffer_u32, array_length(self.submeshes));
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             self.submeshes[i].Export(buffer);
