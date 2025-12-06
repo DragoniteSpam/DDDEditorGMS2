@@ -272,10 +272,8 @@ function DataMesh(source) : SData(source) constructor {
         }
         if (self.terrain_data) self.terrain_data.LoadAsset(directory + guid + "+");
         
-        if (!self.physical_bounds) {
-            self.physical_bounds = new BoundingBox();
-            self.CalculatePhysicalBounds();
-        }
+        self.physical_bounds = new BoundingBox();
+        self.CalculatePhysicalBounds();
     };
     
     self.SaveAsset = function(directory) {
@@ -289,6 +287,7 @@ function DataMesh(source) : SData(source) constructor {
     
     self.Export = function(buffer) {
         self.ExportBase(buffer);
+        self.CalculatePhysicalBounds();
         buffer_write(buffer, buffer_u8, self.type);
         buffer_write(buffer, buffer_s16, self.physical_bounds.x1);
         buffer_write(buffer, buffer_s16, self.physical_bounds.y1);
