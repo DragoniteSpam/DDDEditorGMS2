@@ -28,6 +28,9 @@ function EmuButton(x, y, w, h, text, callback) : EmuCallback(x, y, w, h, 0, call
         }
         
         var back_color = getMouseHover(x1, y1, x2, y2) ? self.color_hover : (self.GetInteractive() ? self.color_back() : self.color_disabled());
+        if (is_callable(back_color)) {
+            back_color = back_color();
+        }
         draw_sprite_stretched_ext(sprite_nineslice, 1, x1, y1, x2 - x1, y2 - y1, back_color, 1);
         draw_sprite_stretched_ext(sprite_nineslice, 0, x1, y1, x2 - x1, y2 - y1, self.color(), 1);
         
