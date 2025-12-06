@@ -10,12 +10,12 @@ function dialog_create_credits() {
     var dialog = new EmuDialog(960, 560, "Credits");
     
     dialog.AddContent([
-        new EmuText(cx, EMU_AUTO, cw, 40, "[FDefault20][c_aqua]DDD Game Tools"),
+        new EmuText(cx, EMU_AUTO, cw, 40, $"[FDefault20][c_aqua]DDD Game Tools ({GM_version})"),
         
         #region me
         new EmuText(cx, EMU_AUTO, dw - cx * 2, ch, "Author: @DragoniteSpam, who is shamelessly plugging some of his own extensions:"),
-        new EmuButton(cx, EMU_AUTO, bw, ch, "Twitter", function() {
-            url_open("https://twitter.com/dragonitespam");
+        new EmuButton(cx, EMU_AUTO, bw, ch, "Bluesky", function() {
+            url_open("https://bsky.app/profile/dragonitespam.bsky.social");
         }),
         new EmuButton(cx + 224, EMU_INLINE, bw, ch, "YouTube", function() {
             url_open("https://www.youtube.com/c/dragonitespam");
