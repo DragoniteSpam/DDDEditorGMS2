@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_terrain_texture_selection",
   "bboxMode":0,
   "bbox_bottom":15,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"2f1fa658-8a0c-4e6d-874b-5dd3f07a1654","name":"2f1fa658-8a0c-4e6d-874b-5dd3f07a1654","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"2f1fa658-8a0c-4e6d-874b-5dd3f07a1654","name":"2f1fa658-8a0c-4e6d-874b-5dd3f07a1654","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

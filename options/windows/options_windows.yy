@@ -1,24 +1,24 @@
 {
-  "$GMWindowsOptions":"",
+  "$GMWindowsOptions":"v1",
   "%Name":"Windows",
   "ConfigValues":{
-    "Terrain":{
-      "option_windows_display_name":"DDD Editor",
-      "option_windows_description_info":"A collection of tools for use with making games",
-      "option_windows_icon":"icons/icon.ico",
-    },
-    "spart":{
-      "option_windows_display_name":"Sparticle Editor",
-      "option_windows_description_info":"Preview Snidr's 3D Particle System",
-    },
     "doodle":{
-      "option_windows_display_name":"DDD Doodle",
       "option_windows_description_info":"A little drawing program, or something",
+      "option_windows_display_name":"DDD Doodle",
     },
     "mesh":{
+      "option_windows_description_info":"Convert and process 3D objects for use in GameMaker",
       "option_windows_display_name":"DDD Mesh Converter",
       "option_windows_icon":"${options_dir}\\\\windows\\\\mesh\\\\icons\\\\icon.ico",
-      "option_windows_description_info":"Convert and process 3D objects for use in GameMaker",
+    },
+    "spart":{
+      "option_windows_description_info":"Preview Snidr's 3D Particle System",
+      "option_windows_display_name":"Sparticle Editor",
+    },
+    "Terrain":{
+      "option_windows_description_info":"A collection of tools for use with making games",
+      "option_windows_display_name":"DDD Editor",
+      "option_windows_icon":"icons/icon.ico",
     },
   },
   "name":"Windows",
@@ -27,6 +27,7 @@
   "option_windows_company_info":"",
   "option_windows_copyright_info":"(c) 2018 - whatever year it is now, Michael Peng",
   "option_windows_copy_exe_to_dest":false,
+  "option_windows_d3dswapeffectdiscard":false,
   "option_windows_description_info":"Convert and process 3D objects for use in GameMaker",
   "option_windows_disable_sandbox":true,
   "option_windows_display_cursor":true,

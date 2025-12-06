@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"scribble_fallback_bulletpoint",
   "bboxMode":0,
   "bbox_bottom":10,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"16f4267b-6bb8-4d8f-a47a-c16693dce482","name":"16f4267b-6bb8-4d8f-a47a-c16693dce482","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"16f4267b-6bb8-4d8f-a47a-c16693dce482","name":"16f4267b-6bb8-4d8f-a47a-c16693dce482","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

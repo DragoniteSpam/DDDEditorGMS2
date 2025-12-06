@@ -1,5 +1,5 @@
 {
-  "$GMNotes":"",
+  "$GMNotes":"v1",
   "%Name":"ParticleSpriteLicence",
   "name":"ParticleSpriteLicence",
   "parent":{

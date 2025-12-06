@@ -16,13 +16,10 @@
   "exportToGame":true,
   "extensionVersion":"0.0.1",
   "files":[
-    {"$GMExtensionFile":"","%Name":"SpriteOperations.dll","constants":[],"copyToTargets":-1,"filename":"SpriteOperations.dll","final":"","functions":[
+    {"$GMExtensionFile":"v1","%Name":"SpriteOperations.dll","constants":[],"copyToTargets":-1,"filename":"SpriteOperations.dll","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"spriteops_version","argCount":0,"args":[],"documentation":"","externalName":"spriteops_version","help":"spriteops_version()","hidden":false,"kind":1,"name":"spriteops_version","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
         {"$GMExtensionFunction":"","%Name":"__spriteops_set_alpha","argCount":0,"args":[1,2,2,],"documentation":"","externalName":"spriteops_set_alpha","help":"__spriteops_set_alpha(data, length, alpha)","hidden":false,"kind":1,"name":"__spriteops_set_alpha","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
-      ],"init":"","kind":1,"name":"SpriteOperations.dll","order":[
-        {"name":"spriteops_version","path":"extensions/SpriteOps/SpriteOps.yy",},
-        {"name":"__spriteops_set_alpha","path":"extensions/SpriteOps/SpriteOps.yy",},
-      ],"origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+      ],"init":"","kind":1,"name":"SpriteOperations.dll","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":"",
   "hasConvertedCodeInjection":true,

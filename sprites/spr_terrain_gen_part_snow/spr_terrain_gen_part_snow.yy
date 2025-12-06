@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_terrain_gen_part_snow",
   "bboxMode":0,
   "bbox_bottom":63,
@@ -17,9 +17,9 @@
   "edgeFiltering":false,
   "For3D":true,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"c761f636-a28a-47f7-8255-052a0d7ea3f6","name":"c761f636-a28a-47f7-8255-052a0d7ea3f6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"51c63e20-efbc-4b51-a199-0591e10953fb","name":"51c63e20-efbc-4b51-a199-0591e10953fb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"3be3320e-f095-44de-adb4-ddbcaf7cb4a8","name":"3be3320e-f095-44de-adb4-ddbcaf7cb4a8","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"c761f636-a28a-47f7-8255-052a0d7ea3f6","name":"c761f636-a28a-47f7-8255-052a0d7ea3f6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"51c63e20-efbc-4b51-a199-0591e10953fb","name":"51c63e20-efbc-4b51-a199-0591e10953fb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3be3320e-f095-44de-adb4-ddbcaf7cb4a8","name":"3be3320e-f095-44de-adb4-ddbcaf7cb4a8","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

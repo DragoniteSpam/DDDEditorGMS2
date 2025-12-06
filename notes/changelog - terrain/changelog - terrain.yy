@@ -1,5 +1,5 @@
 {
-  "$GMNotes":"",
+  "$GMNotes":"v1",
   "%Name":"Changelog - Terrain",
   "name":"Changelog - Terrain",
   "parent":{

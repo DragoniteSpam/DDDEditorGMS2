@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_terrain_gen_craters",
   "bboxMode":0,
   "bbox_bottom":255,
@@ -12,9 +12,9 @@
   "edgeFiltering":false,
   "For3D":true,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"bcd56427-2be9-49da-a130-72467f95fa92","name":"bcd56427-2be9-49da-a130-72467f95fa92","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"cb9467be-63b1-4e60-afe3-84dea77f180e","name":"cb9467be-63b1-4e60-afe3-84dea77f180e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"bcd56427-2be9-49da-a130-72467f95fa92","name":"bcd56427-2be9-49da-a130-72467f95fa92","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","name":"f9eb3335-e14f-4b83-8400-ee9a07a12f53","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"cb9467be-63b1-4e60-afe3-84dea77f180e","name":"cb9467be-63b1-4e60-afe3-84dea77f180e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

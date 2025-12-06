@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_terrain_water_disp",
   "bboxMode":0,
   "bbox_bottom":511,
@@ -17,7 +17,7 @@
   "edgeFiltering":false,
   "For3D":true,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"752cca44-628b-4aaa-8658-7831d5264c5c","name":"752cca44-628b-4aaa-8658-7831d5264c5c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"752cca44-628b-4aaa-8658-7831d5264c5c","name":"752cca44-628b-4aaa-8658-7831d5264c5c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":64,
   "gridY":64,

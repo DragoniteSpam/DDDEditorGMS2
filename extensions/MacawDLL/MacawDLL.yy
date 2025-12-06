@@ -16,7 +16,7 @@
   "exportToGame":true,
   "extensionVersion":"0.0.1",
   "files":[
-    {"$GMExtensionFile":"","%Name":"Macaw.dll","constants":[],"copyToTargets":35184372088896,"filename":"Macaw.dll","final":"","functions":[
+    {"$GMExtensionFile":"v1","%Name":"Macaw.dll","constants":[],"copyToTargets":35184372088896,"filename":"Macaw.dll","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"__macaw_generate","argCount":0,"args":[1,2,2,],"documentation":"","externalName":"macaw_generate","help":"macaw_generate(destination_buffer, w, h)","hidden":false,"kind":1,"name":"__macaw_generate","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"__macaw_set_seed","argCount":0,"args":[2,],"documentation":"","externalName":"macaw_set_seed","help":"macaw_set_seed(seed)","hidden":false,"kind":1,"name":"__macaw_set_seed","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"__macaw_version","argCount":0,"args":[],"documentation":"","externalName":"macaw_version","help":"macaw_version()","hidden":false,"kind":1,"name":"__macaw_version","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
@@ -24,15 +24,7 @@
         {"$GMExtensionFunction":"","%Name":"__macaw_set_height","argCount":0,"args":[2,],"documentation":"","externalName":"macaw_set_height","help":"__macaw_set_height(height)","hidden":false,"kind":1,"name":"__macaw_set_height","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"__macaw_to_sprite","argCount":0,"args":[1,1,2,],"documentation":"","externalName":"macaw_to_sprite","help":"__macaw_to_sprite(in, out, len)","hidden":false,"kind":1,"name":"__macaw_to_sprite","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"__macaw_to_vbuff","argCount":0,"args":[1,1,2,2,],"documentation":"","externalName":"macaw_to_vbuff","help":"__macaw_to_vbuff(in, out, w, h)","hidden":false,"kind":1,"name":"__macaw_to_vbuff","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
-      ],"init":"","kind":1,"name":"Macaw.dll","order":[
-        {"name":"__macaw_generate","path":"extensions/MacawDLL/MacawDLL.yy",},
-        {"name":"__macaw_set_seed","path":"extensions/MacawDLL/MacawDLL.yy",},
-        {"name":"__macaw_version","path":"extensions/MacawDLL/MacawDLL.yy",},
-        {"name":"__macaw_set_octaves","path":"extensions/MacawDLL/MacawDLL.yy",},
-        {"name":"__macaw_set_height","path":"extensions/MacawDLL/MacawDLL.yy",},
-        {"name":"__macaw_to_sprite","path":"extensions/MacawDLL/MacawDLL.yy",},
-        {"name":"__macaw_to_vbuff","path":"extensions/MacawDLL/MacawDLL.yy",},
-      ],"origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+      ],"init":"","kind":1,"name":"Macaw.dll","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":"",
   "hasConvertedCodeInjection":true,

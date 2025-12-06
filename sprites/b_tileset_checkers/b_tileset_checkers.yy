@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"b_tileset_checkers",
   "bboxMode":0,
   "bbox_bottom":31,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":true,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"b35e6fe6-a836-4279-86b2-1fe869101b9e","name":"b35e6fe6-a836-4279-86b2-1fe869101b9e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"b35e6fe6-a836-4279-86b2-1fe869101b9e","name":"b35e6fe6-a836-4279-86b2-1fe869101b9e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

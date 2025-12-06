@@ -16,13 +16,10 @@
   "exportToGame":true,
   "extensionVersion":"0.0.1",
   "files":[
-    {"$GMExtensionFile":"","%Name":"SpriteAtlas.dll","constants":[],"copyToTargets":-1,"filename":"SpriteAtlas.dll","final":"","functions":[
+    {"$GMExtensionFile":"v1","%Name":"SpriteAtlas.dll","constants":[],"copyToTargets":-1,"filename":"SpriteAtlas.dll","final":"","functions":[
         {"$GMExtensionFunction":"","%Name":"__sprite_atlas_version","argCount":0,"args":[],"documentation":"","externalName":"sprite_atlas_version","help":"__sprite_atlas_version()","hidden":false,"kind":1,"name":"__sprite_atlas_version","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
         {"$GMExtensionFunction":"","%Name":"__sprite_atlas_pack","argCount":0,"args":[1,2,2,2,],"documentation":"","externalName":"sprite_atlas_pack","help":"__sprite_atlas_pack(data, length, interval_size, force_po2)","hidden":false,"kind":1,"name":"__sprite_atlas_pack","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
-      ],"init":"","kind":1,"name":"SpriteAtlas.dll","order":[
-        {"name":"__sprite_atlas_version","path":"extensions/SpriteAtlas/SpriteAtlas.yy",},
-        {"name":"__sprite_atlas_pack","path":"extensions/SpriteAtlas/SpriteAtlas.yy",},
-      ],"origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+      ],"init":"","kind":1,"name":"SpriteAtlas.dll","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":"",
   "hasConvertedCodeInjection":true,

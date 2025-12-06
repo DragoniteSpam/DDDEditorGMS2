@@ -16,7 +16,7 @@
   "exportToGame":true,
   "extensionVersion":"0.0.1",
   "files":[
-    {"$GMExtensionFile":"","%Name":"drago.dll","constants":[
+    {"$GMExtensionFile":"v1","%Name":"drago.dll","constants":[
         {"$GMExtensionConstant":"","%Name":"WINDOW_NEVERMIND","hidden":false,"name":"WINDOW_NEVERMIND","resourceType":"GMExtensionConstant","resourceVersion":"2.0","value":"0",},
         {"$GMExtensionConstant":"","%Name":"WINDOW_CLOSE","hidden":false,"name":"WINDOW_CLOSE","resourceType":"GMExtensionConstant","resourceVersion":"2.0","value":"1",},
       ],"copyToTargets":-1,"filename":"drago.dll","final":"","functions":[
@@ -35,23 +35,7 @@
         {"$GMExtensionFunction":"","%Name":"dragosys_memory_available","argCount":0,"args":[],"documentation":"","externalName":"dragosys_memory_available","help":"dragosys_memory_available","hidden":false,"kind":1,"name":"dragosys_memory_available","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"dragosys_memory_load","argCount":0,"args":[],"documentation":"","externalName":"dragosys_memory_load","help":"dragosys_memory_load()","hidden":false,"kind":1,"name":"dragosys_memory_load","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"dragosys_os_info","argCount":0,"args":[],"documentation":"","externalName":"dragosys_os_info","help":"dragosys_os_info()","hidden":false,"kind":1,"name":"dragosys_os_info","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
-      ],"init":"","kind":1,"name":"drago.dll","order":[
-        {"name":"drago_init","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"drago_version","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"drago_window_reset_status","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"drago_window_fetch_status","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"file_dropper_flush","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"__file_dropper_count","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"__file_dropper_get","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"__file_dropper_version","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"dragosys_processor_count","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"dragosys_processor_info","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"dragosys_processor_architecture","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"dragosys_memory_total","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"dragosys_memory_available","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"dragosys_memory_load","path":"extensions/DragoExt/DragoExt.yy",},
-        {"name":"dragosys_os_info","path":"extensions/DragoExt/DragoExt.yy",},
-      ],"origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
+      ],"init":"","kind":1,"name":"drago.dll","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":"",
   "hasConvertedCodeInjection":true,
