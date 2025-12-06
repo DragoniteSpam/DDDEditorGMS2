@@ -19,7 +19,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     self.numbered = false;
     self.text_vacant = "(empty list)";
     self.text_evaluation = function(index) {
-    	return string(index);
+        return string(index);
     };
     
     self.sprite_help = spr_emu_help;
@@ -34,21 +34,21 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     self._selected_entries = { };
     self._surface = -1;
     self.entries = ds_list_create();
-	self._dragging = false;
-	
-	static ForEachSelection = function(f) {
-		var names = variable_struct_get_names(self._selected_entries);
-		for (var i = 0, n = array_length(names); i < n; i++) {
-    		if (names[i] == "first") continue;
-    		if (names[i] == "last") continue;
-			f(real(names[i]));
-		}
-	};
-	
-	static SetAllowDeselect = function(allow) {
-		self.allow_deselect = allow;
-		return self;
-	};
+    self._dragging = false;
+    
+    static ForEachSelection = function(f) {
+        var names = variable_struct_get_names(self._selected_entries);
+        for (var i = 0, n = array_length(names); i < n; i++) {
+            if (names[i] == "first") continue;
+            if (names[i] == "last") continue;
+            f(real(names[i]));
+        }
+    };
+    
+    static SetAllowDeselect = function(allow) {
+        self.allow_deselect = allow;
+        return self;
+    };
     
     self.SetNumbered = function(numbered) {
         self.numbered = numbered;
@@ -84,8 +84,8 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     }
     
     static SetListColors = function(f) {
-    	self.getListColors = method(self, f);
-    	return self;
+        self.getListColors = method(self, f);
+        return self;
     };
     
     AddEntries = function(elements) {
@@ -95,18 +95,18 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         
         if (!is_array(elements)) elements = [elements];
         for (var i = 0; i < array_length(elements); i++) {
-        	if (is_array(entries)) {
-        		array_push(entries, elements[i]);
-        	} else {
-            	ds_list_add(entries, elements[i]);
-        	}
+            if (is_array(entries)) {
+                array_push(entries, elements[i]);
+            } else {
+                ds_list_add(entries, elements[i]);
+            }
         }
         return self;
     }
     
     Clear = function() {
         if (_own_entries) {
-    		ds_list_clear(entries);
+            ds_list_clear(entries);
         } else {
             throw new EmuException("Trying to clear a list owned by someone else", "Please do not clear a list using an external list for its entries.");
         }
@@ -140,39 +140,39 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     };
     
     static GetAllSelectedIndices = function() {
-    	var names = variable_struct_get_names(self._selected_entries);
-    	var n = array_length(names);
-    	if (self._selected_entries[$ "first"] != undefined) n--;
-    	if (self._selected_entries[$ "last"] != undefined) n--;
-    	
-    	var results = array_create(n);
-    	var index = 0;
-    	for (var i = array_length(names) - 1; i >= 0; i--) {
-    		if (names[i] == "first") continue;
-    		if (names[i] == "last") continue;
-    		results[index++] = real(names[i]);
-    	}
+        var names = variable_struct_get_names(self._selected_entries);
+        var n = array_length(names);
+        if (self._selected_entries[$ "first"] != undefined) n--;
+        if (self._selected_entries[$ "last"] != undefined) n--;
+        
+        var results = array_create(n);
+        var index = 0;
+        for (var i = array_length(names) - 1; i >= 0; i--) {
+            if (names[i] == "first") continue;
+            if (names[i] == "last") continue;
+            results[index++] = real(names[i]);
+        }
         
         array_sort(results, true);
-    	
-    	return results;
+        
+        return results;
     };
     
     self.GetAllSelectedItems = function() {
-    	var names = variable_struct_get_names(self._selected_entries);
-    	var n = array_length(names);
-    	if (self._selected_entries[$ "first"] != undefined) n--;
-    	if (self._selected_entries[$ "last"] != undefined) n--;
-    	
-    	var results = array_create(n);
-    	var index = 0;
-    	for (var i = array_length(names) - 1; i >= 0; i--) {
-    		if (names[i] == "first") continue;
-    		if (names[i] == "last") continue;
-    		results[index++] = self.entries[real(names[i])];
-    	}
-    	
-    	return results;
+        var names = variable_struct_get_names(self._selected_entries);
+        var n = array_length(names);
+        if (self._selected_entries[$ "first"] != undefined) n--;
+        if (self._selected_entries[$ "last"] != undefined) n--;
+        
+        var results = array_create(n);
+        var index = 0;
+        for (var i = array_length(names) - 1; i >= 0; i--) {
+            if (names[i] == "first") continue;
+            if (names[i] == "last") continue;
+            results[index++] = self.entries[real(names[i])];
+        }
+        
+        return results;
     };
     
     ClearSelection = function() {
@@ -199,22 +199,22 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     }
     
     Deselect = function(_list_index = undefined) {
-    	self.DeselectNoCallback();
+        self.DeselectNoCallback();
         self.callback();
         return self;
     };
     
     DeselectNoCallback = function(_list_index = undefined) {
-    	if (_list_index == undefined) {
-    		self._selected_entries = { };
-    	} else {
-    		variable_struct_remove(self._selected_entries, _list_index);
-    	}
+        if (_list_index == undefined) {
+            self._selected_entries = { };
+        } else {
+            variable_struct_remove(self._selected_entries, _list_index);
+        }
         return self;
     };
     
     Render = function(base_x, base_y) {
-    	self.update_script();
+        self.update_script();
         processAdvancement();
         
         var x1 = x + base_x;
@@ -252,9 +252,9 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         }
         
         scribble(self.text)
-        	.align(fa_left, fa_middle)
-        	.wrap(self.width, self.height)
-        	.draw(tx + txoffset, ty);
+            .align(fa_left, fa_middle)
+            .wrap(self.width, self.height)
+            .draw(tx + txoffset, ty);
         #endregion
         
         #region list drawing
@@ -277,9 +277,9 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
             ty = mean(y2, y2 + height);
             
             scribble(self.text_vacant)
-            	.align(fa_left, fa_middle)
-            	.wrap(self.width, self.height)
-            	.draw(tx - x1, ty - y2);
+                .align(fa_left, fa_middle)
+                .wrap(self.width, self.height)
+                .draw(tx - x1, ty - y2);
         } else {
             for (var i = 0; i < min(n, slots); i++) {
                 var current_index = i + _index;
@@ -304,10 +304,10 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 }
                 
                 scribble(index_text)
-                	.align(fa_left, fa_middle)
-                	.starting_format(undefined, c)
-                	.wrap(self.width, self.height)
-                	.draw(tx - x1, tya - y2);
+                    .align(fa_left, fa_middle)
+                    .starting_format(undefined, c)
+                    .wrap(self.width, self.height)
+                    .draw(tx - x1, tya - y2);
             }
         }
         
@@ -416,7 +416,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                     // Click: begin _dragging the scroll bar
                     if (getMousePressed(x2 - sw, sby1, x2, sby2) && !_dragging) {
                         Activate();
-						_dragging = true;
+                        _dragging = true;
                         _click_x = mouse_x;
                         _click_y = mouse_y;
                     }
@@ -427,7 +427,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
                 }
                 // Release: stop _dragging
                 if (getMouseReleased(0, 0, window_get_width(), window_get_height())) {
-					_dragging = false;
+                    _dragging = false;
                     _click_x = -1;
                     _click_y = -1;
                 }

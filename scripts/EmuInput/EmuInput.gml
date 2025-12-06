@@ -118,9 +118,9 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
         
         #region work out the input color
         scribble(string(self.text))
-        	.align(fa_left, fa_middle)
-        	.wrap(self.width, self.height)
-        	.draw(tx, ty);
+            .align(fa_left, fa_middle)
+            .wrap(self.width, self.height)
+            .draw(tx, ty);
         
         if (ValidateInput(_working_value)) {
             var cast_value = CastInput(_working_value);
@@ -165,7 +165,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 var remaining_y = hh - remaining_h;
                 
                 scribble(string(remaining))
-                	.draw(remaining_x, remaining_y);
+                    .draw(remaining_x, remaining_y);
             } else {
                 var remaining_x = ww - 16;
                 var remaining_y = hh - 16;
@@ -220,23 +220,23 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                 _working_value = keyboard_string;
                 
                 if (string_length(_working_value) > character_limit) {
-                	_working_value = string_copy(_working_value, 1, character_limit);
-                	keyboard_string = _working_value;
+                    _working_value = string_copy(_working_value, 1, character_limit);
+                    keyboard_string = _working_value;
                 }
                 
-				// press escape to clear input
-				if (keyboard_check_pressed(vk_escape)) {
+                // press escape to clear input
+                if (keyboard_check_pressed(vk_escape)) {
                     keyboard_clear(vk_escape);
                     _working_value = "";
                     keyboard_string = "";
                 }
-				
-				// add newline on pressing enter, if allowed
+                
+                // add newline on pressing enter, if allowed
                 if (_multi_line && !_require_enter && keyboard_check_pressed(vk_enter)) {
                     _working_value += "\n";
                     keyboard_string += "\n";
                 }
-				
+                
                 if (ValidateInput(_working_value)) {
                     self.value = _working_value;
                     var execute_value_change = (!_require_enter && v0 != _working_value) || (_require_enter && keyboard_check_pressed(vk_enter));
@@ -245,7 +245,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
                         if (is_real(cast_value)) {
                             execute_value_change &= (clamp(cast_value, _value_lower, _value_upper) == cast_value);
                         }
-						
+                        
                         if (execute_value_change) {
                             callback();
                         }
@@ -279,7 +279,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     }
     
     static Activate = function() {
-    	keyboard_string = self.value;
+        keyboard_string = self.value;
         _emu_active_element(self);
         return self;
     }
@@ -291,33 +291,33 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     
     ValidateInput = function(text) {
         switch (self._value_type) {
-        	case E_InputTypes.STRING:
-        		return true;
-        	case E_InputTypes.INT:
-	            try {
-	                real(text);
-	            } catch (e) {
-	                return false;
-	            }
-	            return int64(text) == real(text);
-        	case E_InputTypes.REAL:
-	            try {
-	                real(text);
-	            } catch (e) {
-	                return false;
-	            }
-	            return true;
+            case E_InputTypes.STRING:
+                return true;
+            case E_InputTypes.INT:
+                try {
+                    real(text);
+                } catch (e) {
+                    return false;
+                }
+                return int64(text) == real(text);
+            case E_InputTypes.REAL:
+                try {
+                    real(text);
+                } catch (e) {
+                    return false;
+                }
+                return true;
             case E_InputTypes.HEX:
-	            try {
-	                emu_hex(text);
-	            } catch (e) {
-	                return false;
-	            }
-	            return true;
+                try {
+                    emu_hex(text);
+                } catch (e) {
+                    return false;
+                }
+                return true;
             case E_InputTypes.LETTERSDIGITS:
-	            return string_lettersdigits(text) == text;
+                return string_lettersdigits(text) == text;
             case E_InputTypes.LETTERSDIGITSANDUNDERSCORES:
-	            return string_length(string_lettersdigits(text)) + string_count("_", text) == string_length(text);
+                return string_length(string_lettersdigits(text)) + string_count("_", text) == string_length(text);
         }
         return true;
     }

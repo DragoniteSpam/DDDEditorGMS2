@@ -25,8 +25,8 @@ function validate_hex(str) {
 }
 
 function validate_int(str) {
-	if (string_count(".", str) > 0) return false;
-	if (string_count("e", str) > 0) return false;
+    if (string_count(".", str) > 0) return false;
+    if (string_count("e", str) > 0) return false;
     try {
         real(str);
     } catch (e) {
@@ -40,8 +40,8 @@ function validate_string(str) {
 }
 
 function validate_string_event_name(str, input) {
-	static other_valid_characters = ["_", "+", "$"];
-	
+    static other_valid_characters = ["_", "+", "$"];
+    
     var str_len = string_length(str);
     if (str_len == 0) return false;
     
@@ -63,8 +63,8 @@ function validate_string_event_name(str, input) {
 }
 
 function validate_string_internal_name(str) {
-	static other_valid_characters = ["_"];
-	
+    static other_valid_characters = ["_"];
+    
     var str_len = string_length(str);
     if (str_len == 0) return false;
     

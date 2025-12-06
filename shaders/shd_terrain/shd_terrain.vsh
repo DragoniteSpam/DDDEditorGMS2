@@ -29,11 +29,11 @@ void main() {
     );
     
     // the triangle internal texture offset gets squeezed into the fractional part of the Y coordinate, also
-	//  - (U + tile size) coordinate: 0.25
-	//  - (V + tile size) coordinate: 0.125
-	v_Texcoord = floor(vec2(fract(in_Position.y * 2.0), fract(in_Position.y * 4.0)) * 2.0) / u_TextureTileSize;
-	// get rid of the one pixel seam at the edge of tiles
-	v_Texcoord -= (1.0 / u_TerrainSizeV) * ceil(v_Texcoord);
+    //  - (U + tile size) coordinate: 0.25
+    //  - (V + tile size) coordinate: 0.125
+    v_Texcoord = floor(vec2(fract(in_Position.y * 2.0), fract(in_Position.y * 4.0)) * 2.0) / u_TextureTileSize;
+    // get rid of the one pixel seam at the edge of tiles
+    v_Texcoord -= (1.0 / u_TerrainSizeV) * ceil(v_Texcoord);
     /*
     vec4 screenSpace = u_LightVP * v_WorldPosition;
     

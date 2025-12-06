@@ -2,5 +2,5 @@
 
 function carton_count(_carton)
 {
-	return array_length(_carton.layout);
+    return array_length(_carton.layout);
 }

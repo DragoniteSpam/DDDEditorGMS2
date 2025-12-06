@@ -316,12 +316,12 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     
     self.RegenerateTerrainBuffer = function(x, y) {
-    	var column_size = TERRAIN_INTERNAL_CHUNK_SIZE * self.height;
-    	var local_chunk_width = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.width - x * TERRAIN_INTERNAL_CHUNK_SIZE);
-    	var local_chunk_height = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.height - y * TERRAIN_INTERNAL_CHUNK_SIZE);
-    	var column_address = x * column_size;
-    	var chunk_address = column_address + y * TERRAIN_INTERNAL_CHUNK_SIZE /* dont use the local chunk height here */ * local_chunk_width;
-    	var index = self.GetTerrainBufferIndex(x, y);
+        var column_size = TERRAIN_INTERNAL_CHUNK_SIZE * self.height;
+        var local_chunk_width = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.width - x * TERRAIN_INTERNAL_CHUNK_SIZE);
+        var local_chunk_height = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.height - y * TERRAIN_INTERNAL_CHUNK_SIZE);
+        var column_address = x * column_size;
+        var chunk_address = column_address + y * TERRAIN_INTERNAL_CHUNK_SIZE /* dont use the local chunk height here */ * local_chunk_width;
+        var index = self.GetTerrainBufferIndex(x, y);
         if (self.terrain_buffers[index] != -1) {
             vertex_delete_buffer(self.terrain_buffers[index]);
             vertex_delete_buffer(self.terrain_lods[index]);

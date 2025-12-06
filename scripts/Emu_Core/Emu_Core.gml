@@ -210,8 +210,8 @@ function EmuCore(x, y, w, h) constructor {
     self.tooltip = "";
     
     static SetTooltip = function(text) {
-    	self.tooltip = text;
-    	return self;
+        self.tooltip = text;
+        return self;
     };
     
     static getTextX = function(_x) {
