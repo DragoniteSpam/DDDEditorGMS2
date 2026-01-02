@@ -219,6 +219,9 @@ function ui_init_terrain(mode) {
                 new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Heightmap", function() {
                     momu_terrain_heightmap();
                 }),
+                new EmuButton(col2x, EMU_AUTO, col_width, 32, "Export Normal Map", function() {
+                    momu_terrain_normal_map();
+                }),
                 #endregion
             ]),
             (new EmuTab("Lighting")).AddContent([

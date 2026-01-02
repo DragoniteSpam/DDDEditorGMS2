@@ -760,6 +760,7 @@
     {"id":{"name":"shd_emu_color_buckets","path":"shaders/shd_emu_color_buckets/shd_emu_color_buckets.yy",},},
     {"id":{"name":"shd_scene_depth","path":"shaders/shd_scene_depth/shd_scene_depth.yy",},},
     {"id":{"name":"shd_solid_color","path":"shaders/shd_solid_color/shd_solid_color.yy",},},
+    {"id":{"name":"shd_terrain_normals","path":"shaders/shd_terrain_normals/shd_terrain_normals.yy",},},
     {"id":{"name":"shd_terrain_paint_texture","path":"shaders/shd_terrain_paint_texture/shd_terrain_paint_texture.yy",},},
     {"id":{"name":"shd_terrain_paint","path":"shaders/shd_terrain_paint/shd_terrain_paint.yy",},},
     {"id":{"name":"shd_terrain_water","path":"shaders/shd_terrain_water/shd_terrain_water.yy",},},

@@ -766,8 +766,39 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         surface_free(surface);
     };
     
-    self.ExportHeightmapData = function(filename) {
+    self.ExportHeightmapData = function(filename, smooth) {
         buffer_save(self.height_data, filename);
+    };
+    
+    static ExportNormalMap = function(filename) {
+        var surf = self.RenderNormalMap();
+        surface_save(surf, filename);
+        surface_free(surf);
+    };
+    
+    static RenderNormalMap = function() {
+        var surf = surface_create(self.width, self.height);
+        surface_set_target(surf);
+        shader_set(shd_terrain_normals);
+        
+        draw_set_color(c_white);
+        static cam = camera_create();
+        
+        //camera_set_view_pos(cam, -self.width / 2, -self.height / 2);
+        camera_set_view_size(cam, self.width, self.height);
+        camera_apply(cam);
+        
+        shader_set(shd_terrain_normals);
+        
+        shader_set_uniform_f(shader_get_uniform(shd_terrain_normals, "u_TerrainScale"), Settings.terrain.global_scale);
+        array_foreach(self.terrain_buffers, function(vb) {
+            vertex_submit(vb, pr_trianglelist, -1);
+        });
+        
+        surface_reset_target();
+        shader_reset();
+        
+        return surf;
     };
     #endregion
     
