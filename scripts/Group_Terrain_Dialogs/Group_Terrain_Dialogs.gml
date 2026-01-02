@@ -31,6 +31,44 @@ function dialog_create_export_heightmap() {
     ]).AddDefaultCloseButton();
 }
 
+function dialog_create_export_normal_map() {
+    var dw = 360;
+    var dh = 200;
+    
+    var dialog = new EmuDialog(dw, dh, "Normal Map Settings");
+    dialog.x = 920;
+    dialog.y = 120;
+    dialog.contents_interactive = true;
+    
+    dialog.AddContent([
+        new EmuText(32, EMU_AUTO, 280, 32, "Size: Auto")
+            .SetID("RES LABEL"),
+        new EmuProgressBar(32, EMU_AUTO, 280, 32, 8, 0, 4096, true, 4, function() {
+            var size = self.value == 0 ? "Auto" : string(power(2, self.value + 6));
+            self.GetSibling("RES LABEL").text = $"Size: {size}";
+        })
+            .SetValueRange(0, 7)
+            .SetIntegersOnly(true)
+            .SetID("RESOLUTION"),
+        (new EmuButton(32, EMU_AUTO, 280, 32, "Save Normal Map Image", function() {
+            var fn = get_save_filename_image("normal.png");
+            if (fn != "") {
+                var size = self.GetSibling("RESOLUTION").value;
+                var w = power(2, size + 6);
+                var h = w;
+                if (size == 0) {
+                    w = Stuff.terrain.width;
+                    h = Stuff.terrain.height;
+                }
+                debug_timer_start();
+                Stuff.terrain.ExportNormalMap(fn, w, h);
+                Stuff.AddStatusMessage("Exporting terrain normal map took " + debug_timer_finish());
+            }
+        }))
+            .SetTooltip("Save a normal map of the entire terrain.")
+    ]).AddDefaultCloseButton();
+}
+
 function dialog_terrain_mutate() {
     var dialog = new EmuDialog(640, 560, "Mutate Terrain");
     dialog.x = 920;

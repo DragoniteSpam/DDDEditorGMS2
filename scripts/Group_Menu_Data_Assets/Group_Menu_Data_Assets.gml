@@ -45,8 +45,6 @@ function momu_terrain_heightmap() {
 
 function momu_terrain_normal_map() {
     menu_close_all();
-    var filename = get_save_filename_image("normal.png");
-    if (filename == "") return;
-    Stuff.terrain.ExportNormalMap(filename);
+    dialog_create_export_normal_map();
 }
 #endregion

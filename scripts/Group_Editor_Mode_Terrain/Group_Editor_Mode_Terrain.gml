@@ -766,18 +766,18 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         surface_free(surface);
     };
     
-    self.ExportHeightmapData = function(filename, smooth) {
+    self.ExportHeightmapData = function(filename) {
         buffer_save(self.height_data, filename);
     };
     
-    static ExportNormalMap = function(filename) {
-        var surf = self.RenderNormalMap();
+    static ExportNormalMap = function(filename, w, h) {
+        var surf = self.RenderNormalMap(w, h);
         surface_save(surf, filename);
         surface_free(surf);
     };
     
-    static RenderNormalMap = function() {
-        var surf = surface_create(self.width, self.height);
+    static RenderNormalMap = function(w, h) {
+        var surf = surface_create(w, h);
         surface_set_target(surf);
         shader_set(shd_terrain_normals);
         
