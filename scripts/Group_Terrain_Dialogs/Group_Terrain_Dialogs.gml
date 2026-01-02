@@ -41,7 +41,7 @@ function dialog_create_export_normal_map() {
     dialog.contents_interactive = true;
     
     dialog.AddContent([
-        new EmuText(32, EMU_AUTO, 280, 32, "Size: Auto")
+        new EmuText(32, EMU_AUTO, 280, 32, "Size: 1024")
             .SetID("RES LABEL"),
         new EmuProgressBar(32, EMU_AUTO, 280, 32, 8, 0, 4096, true, 4, function() {
             var size = self.value == 0 ? "Auto" : string(power(2, self.value + 6));
