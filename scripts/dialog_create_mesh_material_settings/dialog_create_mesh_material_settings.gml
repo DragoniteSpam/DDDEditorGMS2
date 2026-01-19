@@ -63,13 +63,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     
     var id_base = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_base; });
     var id_normal = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_normal; });
-    var id_ambient = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_ambient; });
     var id_specular_color = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_color; });
     var id_specular_highlight = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_specular_highlight; });
-    var id_alpha = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_alpha; });
-    var id_bump = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_bump; });
-    var id_displacement = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_displacement; });
-    var id_decal = find_common_tileset_index(mesh_list, selection, function(thing) { return thing.tex_stencil; });
     
     var common_diffuse_color = find_common_value(mesh_list, selection, function(thing) { return thing.col_diffuse; });
     if (common_diffuse_color == -1) common_diffuse_color = c_white;
@@ -316,13 +311,8 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
             .SetTooltip("Reset the vertex color to white with 100% transparency.")
     ]);
     tab_normal.AddContent(texture_list_general(col1, ew, eh, "Normal map:", function(submesh, tex) { submesh.tex_normal = tex; }, function(submesh) { return submesh.tex_normal; }, id_normal));
-    tab_ambient.AddContent(texture_list_general(col1, ew, eh, "Ambient map:", function(submesh, tex) { submesh.tex_ambient = tex; }, function(submesh) { return submesh.tex_ambient; }, id_specular_color));
     tab_specular_color.AddContent(texture_list_general(col1, ew, eh, "Specular color:", function(submesh, tex) { submesh.tex_specular_color = tex; }, function(submesh) { return submesh.tex_specular_color; }, id_specular_color));
     tab_specular.AddContent(texture_list_general(col1, ew, eh, "Specular highlight map:", function(submesh, tex) { submesh.tex_specular_highlight = tex; }, function(submesh) { return submesh.tex_specular_highlight; }, id_specular_highlight));
-    tab_alpha.AddContent(texture_list_general(col1, ew, eh, "Alpha map:", function(submesh, tex) { submesh.tex_alpha = tex; }, function(submesh) { return submesh.tex_alpha; }, id_alpha));
-    tab_bump.AddContent(texture_list_general(col1, ew, eh, "Bump map:", function(submesh, tex) { submesh.tex_bump = tex; }, function(submesh) { return submesh.tex_bump; }, id_bump));
-    tab_displacement.AddContent(texture_list_general(col1, ew, eh, "Displacement map:", function(submesh, tex) { submesh.tex_displacement = tex; }, function(submesh) { return submesh.tex_displacement; }, id_displacement));
-    tab_stencil.AddContent(texture_list_general(col1, ew, eh, "Stencil map:", function(submesh, tex) { submesh.tex_stencil = tex; }, function(submesh) { return submesh.tex_stencil; }, id_decal));
     
     if (dg.GetChild("SUBMESHES")) {
         dg.GetChild("SUBMESHES").Select(0);

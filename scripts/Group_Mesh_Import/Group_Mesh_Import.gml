@@ -415,14 +415,6 @@ function import_obj(fn, squash = false) {
                                     current_material.col_diffuse = make_colour_rgb(cr, cg, cb);
                                 }
                                 break;
-                            case "Ka":  // Ambient color
-                                if (current_material) {
-                                    var cr = real(material_tokens[1]) * 255;
-                                    var cg = real(material_tokens[2]) * 255;
-                                    var cb = real(material_tokens[3]) * 255;
-                                    current_material.col_ambient = make_colour_rgb(cr, cg, cb);
-                                }
-                                break;
                             case "Ks":  // Specular color
                                 if (current_material) {
                                     var cr = real(material_tokens[1]) * 255;
@@ -471,17 +463,6 @@ function import_obj(fn, squash = false) {
                                     }
                                 }
                                 break;
-                            case "map_Ka":                  // ambient texture
-                                if (current_material) {
-                                    array_shift(material_tokens);
-                                    var texfn = array_join(material_tokens);
-                                    texfn = string_replace_all(texfn, "\\\\", "/");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    if (file_exists(texfn)) {
-                                        current_material.tex_ambient = tileset_create(texfn, filename_name(texfn)).GUID;
-                                    }
-                                }
-                                break;
                             case "map_Ks":                  // specular color texture
                                 if (current_material) {
                                     array_shift(material_tokens);
@@ -501,51 +482,6 @@ function import_obj(fn, squash = false) {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     if (file_exists(texfn)) {
                                         current_material.tex_specular_highlight = tileset_create(texfn, filename_name(texfn)).GUID;
-                                    }
-                                }
-                                break;
-                            case "map_d":                   // alpha texture
-                                if (current_material) {
-                                    array_shift(material_tokens);
-                                    var texfn = array_join(material_tokens);
-                                    texfn = string_replace_all(texfn, "\\\\", "/");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    if (file_exists(texfn)) {
-                                        current_material.tex_alpha = tileset_create(texfn, filename_name(texfn)).GUID;
-                                    }
-                                }
-                                break;
-                            case "map_bump":                // bump texture
-                            case "bump":
-                                if (current_material) {
-                                    array_shift(material_tokens);
-                                    var texfn = array_join(material_tokens);
-                                    texfn = string_replace_all(texfn, "\\\\", "/");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    if (file_exists(texfn)) {
-                                        current_material.tex_bump = tileset_create(texfn, filename_name(texfn)).GUID;
-                                    }
-                                }
-                                break;
-                            case "disp":                    // displacement texture
-                                if (current_material) {
-                                    array_shift(material_tokens);
-                                    var texfn = array_join(material_tokens);
-                                    texfn = string_replace_all(texfn, "\\\\", "/");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    if (file_exists(texfn)) {
-                                        current_material.tex_displace = tileset_create(texfn, filename_name(texfn)).GUID;
-                                    }
-                                }
-                                break;
-                            case "decal":                   // stencil decal texture
-                                if (current_material) {
-                                    array_shift(material_tokens);
-                                    var texfn = array_join(material_tokens);
-                                    texfn = string_replace_all(texfn, "\\\\", "/");
-                                    if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    if (file_exists(texfn)) {
-                                        current_material.tex_decal = tileset_create(texfn, filename_name(texfn)).GUID;
                                     }
                                 }
                                 break;

@@ -46,7 +46,7 @@ function dialog_create_manager_graphics() {
     }
     
     dialog.AddContent([
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, !IS_MESH_MODE ? 12 : 18, function() {
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, !IS_MESH_MODE ? 14 : 20, function() {
             if (self.root) {
                 self.root.Refresh({ list: self.entries, index: self.GetSelection() });
             }
@@ -87,13 +87,8 @@ function dialog_create_manager_graphics() {
                     var submesh = mesh.submeshes[j];
                     if (submesh.tex_base != "") states[$ submesh.tex_base] = true;
                     if (submesh.tex_normal != "") states[$ submesh.tex_normal] = true;
-                    if (submesh.tex_ambient != "") states[$ submesh.tex_ambient] = true;
                     if (submesh.tex_specular_color != "") states[$ submesh.tex_specular_color] = true;
                     if (submesh.tex_specular_highlight != "") states[$ submesh.tex_specular_highlight] = true;
-                    if (submesh.tex_alpha != "") states[$ submesh.tex_alpha] = true;
-                    if (submesh.tex_bump != "") states[$ submesh.tex_bump] = true;
-                    if (submesh.tex_displacement != "") states[$ submesh.tex_displacement] = true;
-                    if (submesh.tex_stencil != "") states[$ submesh.tex_stencil] = true;
                 }
             }
             

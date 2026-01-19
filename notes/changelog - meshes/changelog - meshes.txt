@@ -1,5 +1,6 @@
 Another changelog.
 
+ - Added an "identify unused" button to the Textures list
  - The min/max bounding box of meshes is now exported (previously these were all 0s)
  - A recent GM update broke the way the program accesses local storage; I may have fixed at least part of it
 

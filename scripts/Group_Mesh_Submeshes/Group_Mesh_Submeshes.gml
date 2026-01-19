@@ -11,18 +11,12 @@ function MeshSubmesh(source) constructor {
     // overrides
     self.col_diffuse = c_white;
     self.alpha = 1;
-    self.col_ambient = c_gray;
     self.col_specular = c_white;
     self.col_specular_exponent = 10;
     self.tex_base = NULL;
     self.tex_normal = NULL;
-    self.tex_ambient = NULL;
     self.tex_specular_color = NULL;
     self.tex_specular_highlight = NULL;
-    self.tex_alpha = NULL;
-    self.tex_bump = NULL;
-    self.tex_displacement = NULL;
-    self.tex_stencil = NULL;
     
     // not serialized
     self.editor_visible = true;
@@ -36,18 +30,12 @@ function MeshSubmesh(source) constructor {
         
         self.col_diffuse = source[$ "col_diffuse"] ?? self.col_diffuse;
         self.alpha = source[$ "alpha"] ?? self.alpha;
-        self.col_ambient = source[$ "col_ambient"] ?? self.col_ambient;
         self.col_specular = source[$ "col_specular"] ?? self.col_specular;
         self.col_specular_exponent = source[$ "col_specular_exponent"] ?? self.col_specular_exponent;
         self.tex_base = source[$ "tex_base"] ?? NULL;
         self.tex_normal = source[$ "tex_normal"] ?? NULL;
-        self.tex_ambient = source[$ "tex_ambient"] ?? NULL;
         self.tex_specular_color = source[$ "tex_specular_color"] ?? NULL;
         self.tex_specular_highlight = source[$ "tex_specular_highlight"] ?? NULL;
-        self.tex_alpha = source[$ "tex_alpha"] ?? NULL;
-        self.tex_bump = source[$ "tex_bump"] ?? NULL;
-        self.tex_displacement = source[$ "tex_displacement"] ?? NULL;
-        self.tex_stencil = source[$ "tex_stencil"] ?? NULL;
         self.texture_scale = source[$ "texture_scale"] ?? NULL;
     }
     
@@ -70,18 +58,18 @@ function MeshSubmesh(source) constructor {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_datatype, self.proto_guid);
         buffer_write(buffer, buffer_u32, self.col_diffuse | (floor(self.alpha * 255) << 24));
-        buffer_write(buffer, buffer_u32, self.col_ambient);
+        buffer_write(buffer, buffer_u32, c_black);
         buffer_write(buffer, buffer_u32, self.col_specular);
         buffer_write(buffer, buffer_f32, self.col_specular_exponent);
         buffer_write(buffer, buffer_datatype, self.tex_base);
         buffer_write(buffer, buffer_datatype, self.tex_normal);
-        buffer_write(buffer, buffer_datatype, self.tex_ambient);
+        buffer_write(buffer, buffer_datatype, "");
         buffer_write(buffer, buffer_datatype, self.tex_specular_color);
         buffer_write(buffer, buffer_datatype, self.tex_specular_highlight);
-        buffer_write(buffer, buffer_datatype, self.tex_alpha);
-        buffer_write(buffer, buffer_datatype, self.tex_bump);
-        buffer_write(buffer, buffer_datatype, self.tex_displacement);
-        buffer_write(buffer, buffer_datatype, self.tex_stencil);
+        buffer_write(buffer, buffer_datatype, "");
+        buffer_write(buffer, buffer_datatype, "");
+        buffer_write(buffer, buffer_datatype, "");
+        buffer_write(buffer, buffer_datatype, "");
         buffer_write(buffer, buffer_u8, ((!!self.buffer) << 1) | (!!self.reflect_buffer));
         
         if (self.buffer) {
@@ -100,18 +88,12 @@ function MeshSubmesh(source) constructor {
             
             col_diffuse: self.col_diffuse,
             alpha: self.alpha,
-            col_ambient: self.col_ambient,
             col_specular: self.col_specular,
             col_specular_exponent: self.col_specular_exponent,
             tex_base: self.tex_base,
             tex_normal: self.tex_normal,
-            tex_ambient: self.tex_ambient,
             tex_specular_color: self.tex_specular_color,
-            tex_specular_highlight: self.tex_specular_highlight,
-            tex_alpha: self.tex_alpha,
-            tex_bump: self.tex_bump,
-            tex_displacement: self.tex_displacement,
-            tex_stencil: self.tex_stencil,
+            tex_specular_highlight: self.tex_specular_highlight
         };
     };
     
@@ -287,18 +269,12 @@ function MeshSubmesh(source) constructor {
     self.SetMaterial = function(material) {
         self.col_diffuse = material.col_diffuse;
         self.alpha = material.alpha;
-        self.col_ambient = material.col_ambient;
         self.col_specular = material.col_specular;
         self.col_specular_exponent = material.col_specular_exponent;
         self.tex_base = material.tex_base;
         self.tex_normal = material.tex_normal;
-        self.tex_ambient = material.tex_ambient;
         self.tex_specular_color = material.tex_specular_color;
         self.tex_specular_highlight = material.tex_specular_highlight;
-        self.tex_alpha = material.tex_alpha;
-        self.tex_bump = material.tex_bump;
-        self.tex_displacement = material.tex_displacement;
-        self.tex_stencil = material.tex_stencil;
     };
     
     self.internalDeleteUpright = function() {
