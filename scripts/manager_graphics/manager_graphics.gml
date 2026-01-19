@@ -9,6 +9,20 @@ function dialog_create_manager_graphics() {
     var col2 = 384;
     var col3 = 736;
     
+    static mark_used = function(array) {
+        array_foreach(array, function(graphic) {
+            graphic.flag_unused = false;
+        });
+    };
+    
+    mark_used(Game.graphics.tilesets);
+    mark_used(Game.graphics.overworlds);
+    mark_used(Game.graphics.battlers);
+    mark_used(Game.graphics.ui);
+    mark_used(Game.graphics.skybox);
+    mark_used(Game.graphics.particles);
+    mark_used(Game.graphics.etc);
+    
     if (!IS_MESH_MODE) {
         dialog.AddContent([
             (new EmuRadioArray(col1, EMU_AUTO, element_width, element_height, "Type:", 0, function() {
@@ -32,19 +46,64 @@ function dialog_create_manager_graphics() {
     }
     
     dialog.AddContent([
-        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, !IS_MESH_MODE ? 14 : 20, function() {
+        (new EmuList(col1, EMU_AUTO, element_width, element_height, "Images:", element_height, !IS_MESH_MODE ? 12 : 18, function() {
             if (self.root) {
                 self.root.Refresh({ list: self.entries, index: self.GetSelection() });
             }
         }))
             .SetListColors(function(index) {
-                return self.root.graphics_list[index].texture_exclude ? c_gray : EMU_COLOR_TEXT;
+                var graphic = self.root.graphics_list[index];
+                if (graphic.flag_unused) return c_red;
+                return graphic.texture_exclude ? c_gray : EMU_COLOR_TEXT;
             })
             .SetNumbered(true)
             .SetList(Game.graphics.tilesets)
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("All of the images of the selected type")
             .SetID("LIST"),
+        new EmuButton(col1, EMU_AUTO, element_width, element_height, "Identity Unused", function() {
+            // I think there are other pieces of data that may reference textures,
+            // but these are likely to be the most important
+            
+            static mark_unused = function(data, array) {
+                for (var i = 0, n = array_length(array); i < n; i++) {
+                    var graphic = array[i];
+                    data[$ graphic.GUID] = false;
+                }
+            };
+            
+            var states = { };
+            mark_unused(states, Game.graphics.tilesets);
+            mark_unused(states, Game.graphics.overworlds);
+            mark_unused(states, Game.graphics.battlers);
+            mark_unused(states, Game.graphics.ui);
+            mark_unused(states, Game.graphics.skybox);
+            mark_unused(states, Game.graphics.particles);
+            mark_unused(states, Game.graphics.etc);
+            
+            for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
+                var mesh = Game.meshes[i];
+                for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                    var submesh = mesh.submeshes[j];
+                    if (submesh.tex_base != "") states[$ submesh.tex_base] = true;
+                    if (submesh.tex_normal != "") states[$ submesh.tex_normal] = true;
+                    if (submesh.tex_ambient != "") states[$ submesh.tex_ambient] = true;
+                    if (submesh.tex_specular_color != "") states[$ submesh.tex_specular_color] = true;
+                    if (submesh.tex_specular_highlight != "") states[$ submesh.tex_specular_highlight] = true;
+                    if (submesh.tex_alpha != "") states[$ submesh.tex_alpha] = true;
+                    if (submesh.tex_bump != "") states[$ submesh.tex_bump] = true;
+                    if (submesh.tex_displacement != "") states[$ submesh.tex_displacement] = true;
+                    if (submesh.tex_stencil != "") states[$ submesh.tex_stencil] = true;
+                }
+            }
+            
+            var keys = struct_get_names(states);
+            for (var i = 0, n = array_length(keys); i < n; i++) {
+                if (!states[$ keys[i]]) {
+                    guid_get(keys[i]).flag_unused = true;
+                }
+            }
+        }),
         (new EmuButton(col2, EMU_BASE, element_width, element_height, "Add Image", function() {
             var fn = get_open_filename_image();
             if (file_exists(fn)) {

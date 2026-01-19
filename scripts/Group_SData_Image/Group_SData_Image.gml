@@ -11,6 +11,8 @@ function DataImage(source) : SData(source) constructor {
     self.aframes = 1;
     self.aspeed = 1;
     
+    self.flag_unused = false;
+    
     // don't save these to the project - gets refreshed every time you export
     self.packed = {
         x: 0,
