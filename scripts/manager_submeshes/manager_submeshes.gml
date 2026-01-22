@@ -20,7 +20,7 @@ function dialog_create_mesh_submesh(mesh) {
     
     dialog.AddContent([
         #region column 1
-        (new EmuList(col1, EMU_BASE, element_width, element_height, mesh.name + " submeshes", element_height, 10, function() {
+        (new EmuList(col1, EMU_BASE, element_width, element_height, mesh.name + " submeshes", element_height, 9, function() {
             if (self.root) self.root.Refresh();
             Stuff.mesh.ClearHighlightedSubmeshes();
             var selection = self.GetAllSelectedIndices();
@@ -91,8 +91,51 @@ function dialog_create_mesh_submesh(mesh) {
                     }
                 }
             })
+            .SetInteractive(false)
             .SetTooltip("Re-import the selected submesh from the original source (if their source file exists)")
             .SetID("RELOAD"),
+        (new EmuButton(col1, EMU_AUTO, element_width / 2, element_height, "Move Up", function() {
+            var mesh = self.root.mesh;
+            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+            
+            var t = mesh.submeshes[selection[0]];
+            mesh.submeshes[selection[0]] = mesh.submeshes[selection[0] - 1];
+            mesh.submeshes[selection[0] - 1] = t;
+            
+            self.GetSibling("SUBMESHES").ClearSelection();
+            self.GetSibling("SUBMESHES").Select(selection[0] - 1);
+            
+            if (self.root) self.root.Refresh();
+        }))
+            .SetRefresh(function() {
+                var mesh = self.root.mesh;
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                self.SetInteractive(array_length(selection) == 1 && selection[0] > 0);
+            })
+            .SetInteractive(false)
+            .SetTooltip("Move the selected submesh up")
+            .SetID("MOVE UP"),
+        (new EmuButton(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Move Down", function() {
+            var mesh = self.root.mesh;
+            var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+            
+            var t = mesh.submeshes[selection[0]];
+            mesh.submeshes[selection[0]] = mesh.submeshes[selection[0] + 1];
+            mesh.submeshes[selection[0] + 1] = t;
+            
+            self.GetSibling("SUBMESHES").ClearSelection();
+            self.GetSibling("SUBMESHES").Select(selection[0] + 1);
+            
+            if (self.root) self.root.Refresh();
+        }))
+            .SetRefresh(function() {
+                var mesh = self.root.mesh;
+                var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
+                self.SetInteractive(array_length(selection) == 1 && selection[0] < array_length(mesh.submeshes) - 1);
+            })
+            .SetInteractive(false)
+            .SetTooltip("Move the selected submesh down")
+            .SetID("MOVE UP"),
         (new EmuInput(col1, EMU_AUTO, element_width, element_height, "Name:", "", "name", VISIBLE_NAME_LENGTH, E_InputTypes.STRING, function() {
             var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
             for (var i = 0, n = array_length(selection); i < n; i++) {
@@ -165,7 +208,7 @@ function dialog_create_mesh_submesh(mesh) {
     if (!IS_MESH_MODE) {
         dialog.AddContent([
             #region column 2 - additional stuff
-            (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Import Reflection...", function() {
+            (new EmuButton(col2, EMU_BASE, element_width, element_height, "Import Reflection...", function() {
                 var mesh = self.root.mesh;
                 var selection = self.GetSibling("SUBMESHES").GetAllSelectedIndices();
                 
