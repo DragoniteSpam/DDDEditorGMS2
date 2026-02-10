@@ -20,7 +20,7 @@ function dialog_create_mesh_submesh(mesh) {
     
     dialog.AddContent([
         #region column 1
-        (new EmuList(col1, EMU_BASE, element_width, element_height, mesh.name + " submeshes", element_height, 9, function() {
+        (new EmuList(col1, EMU_BASE, element_width, element_height, mesh.name + " submeshes", element_height, 8, function() {
             if (self.root) self.root.Refresh();
             Stuff.mesh.ClearHighlightedSubmeshes();
             var selection = self.GetAllSelectedIndices();
