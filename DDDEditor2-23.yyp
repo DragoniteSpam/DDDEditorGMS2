@@ -167,7 +167,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.3.970",
+    "IDEVersion":"2024.1400.4.988",
   },
   "name":"DDDEditor2-23",
   "resources":[
@@ -861,16 +861,7 @@
   ],
   "templateType":null,
   "TextureGroups":[
-    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","ConfigValues":{
-        "Terrain":{
-          "groupParent":"null",
-        },
-        "voxelish":{
-          "compressFormat":"bz2",
-          "groupParent":"null",
-          "loadType":"default",
-        },
-      },"customOptions":"","directory":"","groupParent":null,"isScaled":false,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","ConfigValues":{},"customOptions":"","directory":"","groupParent":null,"isScaled":false,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"scribble","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"scribble","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"terraingen","autocrop":true,"border":2,"compressFormat":"bz2","ConfigValues":{
         "voxelish":{
