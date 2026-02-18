@@ -18,14 +18,12 @@ varying vec3 v_LightWorldPosition;
 
 uniform vec3 lightAmbientColor;
 uniform vec4 lightData[MAX_LIGHTS * 3];
-uniform vec3 lightDayTimeColor;
-uniform vec3 lightWeatherColor;
 
 void CommonLightEvaluate(int i, inout vec4 finalColor);
 void CommonLight(inout vec4 baseColor);
 
 void CommonLight(inout vec4 baseColor) {
-    vec4 lightColor = vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1);
+    vec4 lightColor = vec4(lightAmbientColor, 1);
     
     CommonLightEvaluate(0, lightColor);
     CommonLightEvaluate(1, lightColor);

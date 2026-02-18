@@ -57,11 +57,7 @@ function graphics_set_lighting(shader) {
         }
     }
     
-    var time_color = c_white;
-    var weather_color = c_white;
     shader_set_uniform_f(shader_get_uniform(shader, "lightAmbientColor"), (ambient & 0x0000ff) / 0xff, ((ambient & 0x00ff00) >> 8) / 0xff, ((ambient & 0xff0000) >> 16) / 0xff);
-        shader_set_uniform_f(shader_get_uniform(shader, "lightDayTimeColor"), (time_color & 0x0000ff) / 0xff, ((time_color & 0x00ff00) >> 8) / 0xff, (time_color >> 16) / 0xff);
-        shader_set_uniform_f(shader_get_uniform(shader, "lightWeatherColor"), (weather_color & 0x0000ff) / 0xff, ((weather_color & 0x00ff00) >> 8) / 0xff, (weather_color >> 16) / 0xff);
     shader_set_uniform_f_array(shader_get_uniform(shader, "lightData"), light_data);
     
     shader_set_uniform_f(shader_get_uniform(shader, "fogStrength"), (Settings.view.lighting && map.fog_enabled) ? 1 : 0);
