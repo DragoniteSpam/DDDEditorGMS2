@@ -37,6 +37,8 @@ function EditorModeMesh() : EditorModeBase() constructor {
         return Stuff.mesh.ui.SearchID("3D VIEW").height;
     });
     
+    self.light = new Vector3(-1, -1, -1).Normalize();
+    
     self.Save = function() {
         Settings.mesh.camera = self.camera.Save();
     };

@@ -45,7 +45,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
     
     if (type == LIGHT_DIRECTIONAL) {
         // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
-        vec3 lightDir = -normalize(lightPosition);
+        vec3 lightDir = normalize(lightPosition);
         finalColor += clamp(lightColor * max(dot(v_LightWorldNormal, lightDir), 0.), 0.0, 1.0);
     } else if (type == LIGHT_POINT) {
         float range = lightExt.w;

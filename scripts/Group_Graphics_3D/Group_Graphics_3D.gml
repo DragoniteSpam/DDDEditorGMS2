@@ -30,9 +30,9 @@ function graphics_set_lighting(shader) {
         // specific to each type
         switch (data.type) {
             case LightTypes.DIRECTIONAL:
-                light_data[index + 0] = data.light_dx;
-                light_data[index + 1] = data.light_dy;
-                light_data[index + 2] = data.light_dz;
+                light_data[index + 0] = -data.light_dx;
+                light_data[index + 1] = -data.light_dy;
+                light_data[index + 2] = -data.light_dz;
                 break;
             case LightTypes.POINT:
                 light_data[index + 0] = (effect.xx + effect.off_xx) * TILE_WIDTH;
@@ -45,9 +45,9 @@ function graphics_set_lighting(shader) {
                 light_data[index + 1] = (effect.yy + effect.off_yy) * TILE_HEIGHT;
                 light_data[index + 2] = (effect.zz + effect.off_zz) * TILE_DEPTH;
                 // 3 is type
-                light_data[index + 4] = data.light_dx;
-                light_data[index + 5] = data.light_dy;
-                light_data[index + 6] = data.light_dz;
+                light_data[index + 4] = -data.light_dx;
+                light_data[index + 5] = -data.light_dy;
+                light_data[index + 6] = -data.light_dz;
                 light_data[index + 7] = data.light_radius;
                 // 8 is r
                 // 9 is g

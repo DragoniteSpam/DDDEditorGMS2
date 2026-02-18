@@ -579,8 +579,6 @@ function ui_init_mesh(mode) {
                 if (self.isActiveElement() && keyboard_check_pressed(vk_mesh_editor_overlay_text_toggle)) {
                     Settings.mesh.draw_3d_view_overlay_text = !Settings.mesh.draw_3d_view_overlay_text;
                 }
-                if (keyboard_check(ord("Q"))) Settings.mesh.draw_light_direction++;
-                if (keyboard_check(ord("E"))) Settings.mesh.draw_light_direction--;
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
             (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
@@ -687,7 +685,6 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_reflections = MESH_DEF_VIEW_DRAW_REFLECTIONS;
                         Settings.mesh.draw_collision = MESH_DEF_VIEW_DRAW_COLLISION;
                         Settings.mesh.draw_axes = MESH_DEF_VIEW_DRAW_AXES;
-                        Settings.mesh.draw_light_direction = MESH_DEF_VIEW_DRAW_LIGHT_DIRECTION;
                         Settings.mesh.draw_grid = MESH_DEF_VIEW_DRAW_GRID;
                         Settings.mesh.wireframe_alpha = MESH_DEF_VIEW_WIREFRAME_ALPHA;
                         self.root.Refresh();

@@ -18,9 +18,11 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     var light_data = array_create(MAX_LIGHTS * 12, 0);
     var ambient = Settings.mesh.draw_lighting ? c_dkgray : c_white;
     
-    light_data[0] = dcos(Settings.mesh.draw_light_direction);
-    light_data[1] = -dsin(Settings.mesh.draw_light_direction);
-    light_data[2] = -1;  // this feels upside-down
+    var light_actual = Stuff.mesh.light.Normalize();
+    
+    light_data[0] = -light_actual.x;
+    light_data[1] = -light_actual.y;
+    light_data[2] = -light_actual.z;
     light_data[3] = LightTypes.DIRECTIONAL;
     light_data[8] = 0.9;
     light_data[9] = 0.9;
