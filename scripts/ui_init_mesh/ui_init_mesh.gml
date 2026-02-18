@@ -6,6 +6,7 @@ function ui_init_mesh(mode) {
     var col3x = hud_width * 2 + 16;
     var col4x = hud_width * 3 + 16;
     var element_width = hud_width - 32;
+    var element_width_short = 200;
     var element_height = 32;
     
     var container = new EmuCore(0, 16, hud_width, hud_height);
@@ -694,6 +695,24 @@ function ui_init_mesh(mode) {
             }))
                 .SetTooltip("Some options relating to the 3D view above.")
                 .SetID("VIEWER SETTINGS"),
+            new EmuInput(col3x, EMU_AUTO, element_width_short, element_height, "Lighting X:", mode.light.x, "The X component of the lighting vector", 4, E_InputTypes.REAL, function() {
+                Stuff.mesh.light.x = real(self.value);
+            })
+                .SetID("LIGHT X")
+                .SetNext("LIGHT Y")
+                .SetPrevious("LIGHT Z"),
+            new EmuInput(col3x + 32 + element_width_short, EMU_INLINE, element_width_short, element_height, "Y:", mode.light.y, "The Y component of the lighting vector", 4, E_InputTypes.REAL, function() {
+                Stuff.mesh.light.y = real(self.value);
+            })
+                .SetID("LIGHT Y")
+                .SetNext("LIGHT Z")
+                .SetPrevious("LIGHT X"),
+            new EmuInput(col3x + (32 + element_width_short) * 2, EMU_INLINE, element_width_short, element_height, "Z:", mode.light.z, "The Z component of the lighting vector", 4, E_InputTypes.REAL, function() {
+                Stuff.mesh.light.z = real(self.value);
+            })
+                .SetID("LIGHT Z")
+                .SetNext("LIGHT X")
+                .SetPrevious("LIGHT Y")
             #endregion
         ])
             .SetID("INFO")

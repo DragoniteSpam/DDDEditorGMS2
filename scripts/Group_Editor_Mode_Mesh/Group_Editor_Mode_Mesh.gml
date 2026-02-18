@@ -24,6 +24,8 @@ function EditorModeMesh() : EditorModeBase() constructor {
         editor_gui_post();
     };
     
+    self.light = new Vector3(-1, -1, -1).Normalize();
+    
     self.ui = ui_init_mesh(self);
     
     var threed_surface = self.ui.SearchID("3D VIEW");
@@ -36,8 +38,6 @@ function EditorModeMesh() : EditorModeBase() constructor {
     }, function() {
         return Stuff.mesh.ui.SearchID("3D VIEW").height;
     });
-    
-    self.light = new Vector3(-1, -1, -1).Normalize();
     
     self.Save = function() {
         Settings.mesh.camera = self.camera.Save();

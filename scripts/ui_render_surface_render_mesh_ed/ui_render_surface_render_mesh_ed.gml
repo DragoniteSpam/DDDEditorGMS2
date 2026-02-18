@@ -44,7 +44,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     gpu_set_cullmode(Settings.mesh.draw_back_faces ? cull_noculling : cull_counterclockwise);
     var mat_translate = matrix_build(Settings.mesh.draw_position.x, Settings.mesh.draw_position.y, Settings.mesh.draw_position.z, 0, 0, 0, 1, 1, 1);
     var mat_rotate = matrix_build(0, 0, 0, Settings.mesh.draw_rotation.x, Settings.mesh.draw_rotation.y, Settings.mesh.draw_rotation.z, 1, 1, 1);
-    var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z,);
+    var mat_scale = matrix_build(0, 0, 0, 0, 0, 0, Settings.mesh.draw_scale.x, Settings.mesh.draw_scale.y, Settings.mesh.draw_scale.z);
     var mat_transform = matrix_multiply(matrix_multiply(mat_scale, mat_rotate), mat_translate);
     matrix_set(matrix_world, mat_transform);
     
@@ -84,7 +84,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     }
     
     if (Settings.mesh.draw_collision) {
-        var rendered_count = 0;
+        rendered_count = 0;
         for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
             var mesh_data = self.root.GetSibling("MESH LIST").At(real(indices[index]));
             for (var i = 0, len = array_length(mesh_data.collision_shapes); i < len; i++) {
@@ -108,7 +108,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     }
     
     if (Settings.mesh.draw_physical_bounds) {
-        var rendered_count = 0;
+        rendered_count = 0;
         for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
             var mesh = self.root.GetSibling("MESH LIST").At(real(indices[index]));
             var bounds = mesh.physical_bounds;
