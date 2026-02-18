@@ -263,7 +263,6 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
             // activation
             if (getMouseHover(vx1, vy1, vx2, vy2)) {
                 if (getMouseReleased(vx1, vy1, vx2, vy2)) {
-                    keyboard_string = value;
                     Activate();
                 }
                 ShowTooltip();
@@ -279,7 +278,7 @@ function EmuInput(x, y, w, h, text, value, help_text, character_limit, input, ca
     }
     
     static Activate = function() {
-        keyboard_string = self.value;
+        keyboard_string = string(self.value);
         _emu_active_element(self);
         return self;
     }
