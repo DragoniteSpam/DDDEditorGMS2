@@ -16,7 +16,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     #region light stuff
     var light_data = array_create(MAX_LIGHTS * 12, 0);
-    var ambient = Settings.mesh.draw_lighting ? Stuff.mesh.light_color : c_white;
+    var light_color = Stuff.mesh.light_color;
+    var ambient = Settings.mesh.draw_lighting ? Stuff.mesh.light_color_ambient : c_white;
     
     var light_actual = Stuff.mesh.light.Normalize();
     
@@ -24,9 +25,9 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     light_data[1] = -light_actual.y;
     light_data[2] = -light_actual.z;
     light_data[3] = LightTypes.DIRECTIONAL;
-    light_data[8] = 0.9;
-    light_data[9] = 0.9;
-    light_data[10] = 0.9;
+    light_data[8] = color_get_red(light_color) / 0xff;
+    light_data[9] = color_get_green(light_color) / 0xff;
+    light_data[10] = color_get_blue(light_color) / 0xff;
     
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightBuckets"), 255);
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightAmbientColor"), (ambient & 0x0000ff) / 0xff, ((ambient & 0x00ff00) >> 8) / 0xff, ((ambient & 0xff0000) >> 16) / 0xff);

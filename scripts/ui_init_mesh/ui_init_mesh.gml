@@ -695,26 +695,31 @@ function ui_init_mesh(mode) {
             }))
                 .SetTooltip("Some options relating to the 3D view above.")
                 .SetID("VIEWER SETTINGS"),
-            new EmuInput(col3x, EMU_AUTO, element_width_short, element_height, "Light X:", mode.light.x, "The X component of the lighting vector", 6, E_InputTypes.REAL, function() {
+            new EmuInput(col3x, EMU_AUTO, element_width_short, element_height, "Light:", mode.light.x, "X", 6, E_InputTypes.REAL, function() {
                 Stuff.mesh.light.x = real(self.value);
             })
                 .SetID("LIGHT X")
                 .SetNext("LIGHT Y")
                 .SetPrevious("LIGHT Z"),
-            new EmuInput(col3x + 16 + element_width_short, EMU_INLINE, element_width_short, element_height, "Y:", mode.light.y, "The Y component of the lighting vector", 6, E_InputTypes.REAL, function() {
+            new EmuInput(col3x + element_width_short, EMU_INLINE, element_width_short / 2, element_height, "", mode.light.y, "Y", 6, E_InputTypes.REAL, function() {
                 Stuff.mesh.light.y = real(self.value);
             })
+                .SetInputBoxPosition(0, 0)
                 .SetID("LIGHT Y")
                 .SetNext("LIGHT Z")
                 .SetPrevious("LIGHT X"),
-            new EmuInput(col3x + (16 + element_width_short) * 2, EMU_INLINE, element_width_short, element_height, "Z:", mode.light.z, "The Z component of the lighting vector", 6, E_InputTypes.REAL, function() {
+            new EmuInput(col3x + element_width_short * 1.5, EMU_INLINE, element_width_short / 2, element_height, "", mode.light.z, "", 6, E_InputTypes.REAL, function() {
                 Stuff.mesh.light.z = real(self.value);
             })
+                .SetInputBoxPosition(0, 0)
                 .SetID("LIGHT Z")
                 .SetNext("LIGHT X")
                 .SetPrevious("LIGHT Y"),
-            new EmuColorPicker(col3x + (16 + element_width_short) * 3, EMU_INLINE, element_width_short, element_height, "Color:", mode.light_color, function() {
+            new EmuColorPicker(col3x + element_width_short * 2 + 16, EMU_INLINE, element_width_short, element_height, "Color:", mode.light_color, function() {
                 Stuff.mesh.light_color = self.value;
+            }),
+            new EmuColorPicker(col3x + element_width_short * 3 + 16 * 2, EMU_INLINE, element_width_short, element_height, "Ambient:", mode.light_color_ambient, function() {
+                Stuff.mesh.light_color_ambient = self.value;
             })
             #endregion
         ])

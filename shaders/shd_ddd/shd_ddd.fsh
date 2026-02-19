@@ -23,18 +23,18 @@ void CommonLightEvaluate(int i, inout vec4 finalColor);
 void CommonLight(inout vec4 baseColor);
 
 void CommonLight(inout vec4 baseColor) {
-    vec4 lightColor = vec4(lightAmbientColor, 1);
+    vec4 finalColor = vec4(lightAmbientColor, 1);
     
-    CommonLightEvaluate(0, lightColor);
-    CommonLightEvaluate(1, lightColor);
-    CommonLightEvaluate(2, lightColor);
-    CommonLightEvaluate(3, lightColor);
-    CommonLightEvaluate(4, lightColor);
-    CommonLightEvaluate(5, lightColor);
-    CommonLightEvaluate(6, lightColor);
-    CommonLightEvaluate(7, lightColor);
+    CommonLightEvaluate(0, finalColor);
+    CommonLightEvaluate(1, finalColor);
+    CommonLightEvaluate(2, finalColor);
+    CommonLightEvaluate(3, finalColor);
+    CommonLightEvaluate(4, finalColor);
+    CommonLightEvaluate(5, finalColor);
+    CommonLightEvaluate(6, finalColor);
+    CommonLightEvaluate(7, finalColor);
     
-    baseColor *= clamp(lightColor, vec4(0), vec4(1));
+    baseColor *= clamp(finalColor, vec4(0), vec4(1));
 }
 
 void CommonLightEvaluate(int i, inout vec4 finalColor) {

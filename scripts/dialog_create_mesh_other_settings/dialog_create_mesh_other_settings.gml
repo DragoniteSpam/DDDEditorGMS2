@@ -15,14 +15,6 @@ function dialog_create_mesh_other_settings(list, selection) {
             dialog_create_mesh_normal_settings(self.root.list, self.root.selection);
         }))
             .SetTooltip("Adjust the vertex normals of the selected meshes."),
-        (new EmuButton(c1, EMU_AUTO, ew, eh, "Center", function() {
-            var selection = self.root.selection;
-            for (var i = 0, n = array_length(selection); i < n; i++) {
-                self.root.list[selection[i]].PositionAtCenter();
-            }
-            batch_again();
-        }))
-            .SetTooltip("Set the model's origin to its average central point (on the XY plane)."),
         (new EmuButton(c1, EMU_AUTO, ew, eh, "Invert Transparency", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
@@ -68,7 +60,15 @@ function dialog_create_mesh_other_settings(list, selection) {
         
         
         
-        (new EmuButton(c2, EMU_BASE, ew, eh, "Snap to Floor", function() {
+        (new EmuButton(c2, EMU_BASE, ew, eh, "Center", function() {
+            var selection = self.root.selection;
+            for (var i = 0, n = array_length(selection); i < n; i++) {
+                self.root.list[selection[i]].PositionAtCenter();
+            }
+            batch_again();
+        }))
+            .SetTooltip("Set the model's origin to its average central point (on the XY plane)."),
+        (new EmuButton(c2, EMU_AUTO, ew, eh, "Snap to Floor", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {
                 self.root.list[selection[i]].ActionFloor();

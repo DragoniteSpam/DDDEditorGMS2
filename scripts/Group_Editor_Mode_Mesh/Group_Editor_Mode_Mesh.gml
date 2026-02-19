@@ -24,8 +24,9 @@ function EditorModeMesh() : EditorModeBase() constructor {
         editor_gui_post();
     };
     
-    self.light = new Vector3(-1, -1, -1).Normalize();
+    self.light = new Vector3(-1, -2, -3).Normalize();
     self.light_color = c_white;
+    self.light_color_ambient = c_dkgray;
     
     self.ui = ui_init_mesh(self);
     
