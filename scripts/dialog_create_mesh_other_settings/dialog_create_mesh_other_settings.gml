@@ -47,6 +47,21 @@ function dialog_create_mesh_other_settings(list, selection) {
             batch_again();
         }))
             .SetTooltip("Blend the material diffuse color of every submesh into the vertex color."),
+        (new EmuButton(c1, EMU_AUTO, ew, eh, "Bake Lighting", function() {
+            var selection = self.root.selection;
+            if (array_length(selection) > 0) {
+                emu_dialog_confirm(self, "This will clear the vertex color of all selected meshes and replace it with color based on the current light position. Okay?", function() {
+                    var selection = Stuff.mesh.ui.GetChild("MESH LIST").GetAllSelectedIndices();
+                    var list = Stuff.mesh.ui.GetMeshType();
+                    for (var i = 0, n = array_length(selection); i < n; i++) {
+                        list[selection[i]].ActionBakeLighting(Stuff.mesh.light, Stuff.mesh.light_color, Stuff.mesh.light_color_ambient);
+                    }
+                    batch_again();
+                    self.root.Dispose();
+                })
+            }
+        }))
+            .SetTooltip("Set the vertex color of each selected mesh based on the light in the preview window."),
         (new EmuButton(c1, EMU_AUTO, ew, eh, "Reset Material Color", function() {
             var selection = self.root.selection;
             for (var i = 0, n = array_length(selection); i < n; i++) {

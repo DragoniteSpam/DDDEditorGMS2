@@ -191,6 +191,47 @@ function MeshSubmesh(source) constructor {
         self.alpha = 1;
     };
     
+    self.BakeLighting = function(light, light_color, light_ambient) {
+        if (self.owner.type == MeshTypes.SMF) return;
+        
+        static calculate_light = function(buffer, light, light_color, light_ambient) {
+            var lx = -light.x;
+            var ly = -light.y;
+            var lz = -light.z;
+        
+            var cr = color_get_red(light_color);
+            var cg = color_get_green(light_color);
+            var cb = color_get_blue(light_color);
+            var ar = color_get_red(light_ambient);
+            var ag = color_get_green(light_ambient);
+            var ab = color_get_blue(light_ambient);
+            
+            for (var i = 0, n = buffer_get_size(buffer); i < n; i += VERTEX_SIZE) {
+                var nx = buffer_peek(buffer, i + 12, buffer_f32);
+                var ny = buffer_peek(buffer, i + 16, buffer_f32);
+                var nz = buffer_peek(buffer, i + 20, buffer_f32);
+                
+                var dot = clamp(dot_product_3d(nx, ny, nz, lx, ly, lz), 0, 1);
+                
+                var nr = clamp(ar + dot * cr, 0, 255);
+                var ng = clamp(ag + dot * cg, 0, 255);
+                var nb = clamp(ab + dot * cb, 0, 255);
+                
+                buffer_poke(buffer, i + 32, buffer_u8, nr);
+                buffer_poke(buffer, i + 33, buffer_u8, ng);
+                buffer_poke(buffer, i + 34, buffer_u8, nb);
+                // 35 is alpha and that stays like it is
+            }
+        };
+        
+        calculate_light(self.buffer, light, light_color, light_ambient);
+        self.internalSetVertexBuffer();
+        if (self.reflect_vbuffer) {
+            calculate_light(self.reflect_buffer, light, light_color, light_ambient);
+            self.internalSetReflectVertexBuffer();
+        }
+    };
+    
     self.ResetVertexColor = function() {
         if (self.owner.type == MeshTypes.SMF) return;
         meshops_set_color(buffer_get_address(self.buffer), buffer_get_size(self.buffer), c_white);
