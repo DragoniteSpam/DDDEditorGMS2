@@ -16,7 +16,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     
     #region light stuff
     var light_data = array_create(MAX_LIGHTS * 12, 0);
-    var ambient = Settings.mesh.draw_lighting ? c_dkgray : c_white;
+    var ambient = Settings.mesh.draw_lighting ? Stuff.mesh.light_color : c_white;
     
     var light_actual = Stuff.mesh.light.Normalize();
     
