@@ -50,7 +50,7 @@ function dialog_create_mesh_other_settings(list, selection) {
         (new EmuButton(c1, EMU_AUTO, ew, eh, "Bake Lighting", function() {
             var selection = self.root.selection;
             if (array_length(selection) > 0) {
-                emu_dialog_confirm(self, "This will clear the vertex color of all selected meshes and replace it with color based on the current light position. Okay?", function() {
+                emu_dialog_confirm(self, "This will clear the vertex color of all selected meshes and replace it with color based on the current light position. Okay? (Note: smooth normals may not behave correctly.)", function() {
                     var selection = Stuff.mesh.ui.GetChild("MESH LIST").GetAllSelectedIndices();
                     var list = Stuff.mesh.ui.GetMeshType();
                     for (var i = 0, n = array_length(selection); i < n; i++) {
