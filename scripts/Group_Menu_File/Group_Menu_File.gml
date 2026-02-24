@@ -22,6 +22,12 @@ function momu_save_data() {
     project_save();
 }
 
+function momu_import_data() {
+    _emu_active_element(undefined);
+    menu_close_all();
+    import_mesh(get_open_filename_mesh());
+}
+
 function momu_export_data() {
     _emu_active_element(undefined);
     menu_close_all();

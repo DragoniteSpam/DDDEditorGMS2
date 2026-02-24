@@ -12,6 +12,7 @@ function menu_init_main() {
         
         #region file stuff
         var mf_save_data = create_menu_element("Save (Ctrl+S)", momu_save_data, menu_file);
+        var mf_import_data = create_menu_element("Import", momu_import_data, menu_file);
         var mf_export_data = create_menu_element("Export (Ctrl+E)", momu_export_data, menu_file);
         var mf_settings_data = create_menu_element("Global Data Settings (Ctrl+G)", momu_settings_data, menu_file);
         var mf_errors = create_menu_element("Show Errors", momu_errors, menu_file);
@@ -21,6 +22,7 @@ function menu_init_main() {
         mf_settings_data.interactive = MENU_EDITOR_ENABLED;
         ds_list_add(menu_file.contents,
             mf_save_data,
+            mf_import_data,
             mf_export_data,
             mf_settings_data,
             mf_errors,
