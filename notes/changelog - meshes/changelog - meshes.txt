@@ -4,6 +4,7 @@ Another changelog.
  - The min/max bounding box of meshes is now exported (previously these were all 0s)
  - A recent GM update broke the way the program accesses local storage; I may have fixed at least part of it
  - Added a "bake light to vertex color" feature
+ - Fixed: cloning a submesh preserves material data
 
 # Changes in 2025.1
 

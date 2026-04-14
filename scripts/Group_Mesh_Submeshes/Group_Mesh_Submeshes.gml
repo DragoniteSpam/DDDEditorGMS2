@@ -113,7 +113,7 @@ function MeshSubmesh(source) constructor {
     };
     
     static Clone = function() {
-        var cloned_data = new MeshSubmesh(self.name);
+        var cloned_data = new MeshSubmesh(self);
         if (self.buffer) {
             cloned_data.buffer = buffer_clone(self.buffer, buffer_fixed, 1);
             cloned_data.vbuffer = vertex_create_buffer_from_buffer(cloned_data.buffer, Stuff.graphics.format);
