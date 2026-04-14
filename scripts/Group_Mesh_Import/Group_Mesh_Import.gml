@@ -291,7 +291,7 @@ function import_obj(fn, squash = false) {
                     for (var i = 0; i < s; i++) {
                         var vertex_tokens = string_split(line[i], "/", false);
                         switch (array_length(vertex_tokens)) {
-                            case 1:
+                            case 1: {
                                 var vert = real(vertex_tokens[0]) - 1;    // each of these are -1 because they start indexing from 1 instead of 0. Why? because the obj file format sucks.
                                 xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
                                 yy[i] = buffer_peek(v_y, buffer_attribute_size * vert, buffer_attribute_type);
@@ -303,7 +303,8 @@ function import_obj(fn, squash = false) {
                                 ytex[i] = 0;
                                 color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
                                 break;
-                            case 2:
+                            }
+                            case 2: {
                                 var vert = real(vertex_tokens[0]) - 1;
                                 var tex = real(vertex_tokens[1]) - 1;
                                 xx[i] = buffer_peek(v_x, buffer_attribute_size * vert, buffer_attribute_type);
@@ -316,7 +317,8 @@ function import_obj(fn, squash = false) {
                                 nz[i] = 1;
                                 color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
                                 break;
-                            case 3:
+                            }
+                            case 3: {
                                 var vert = real(vertex_tokens[0]) - 1;
                                 // if the vt term is blank (v//vn), that is
                                 // not the same as having just two terms (v/vt)
@@ -333,6 +335,7 @@ function import_obj(fn, squash = false) {
                                 ytex[i] = (tex == -1) ? 0 : buffer_peek(v_ytex, buffer_attribute_size * tex,  buffer_attribute_type);
                                 color[i] = buffer_peek(v_color, color_attribute_size * vert, color_attribute_type);
                                 break;
+                            }
                         }
                     }
                         
@@ -394,7 +397,7 @@ function import_obj(fn, squash = false) {
                     self.name = filename_name(filename_change_ext(filename, ""));
                         
                     while (!file_text_eof(matfile)) {
-                        var line = file_text_read_string(matfile);
+                        line = file_text_read_string(matfile);
                         file_text_readln(matfile);
                         if (line == "") continue;
                         
