@@ -1,6 +1,7 @@
-function MeshImportData(buffer, material) constructor {
+function MeshImportData(buffer, material, object_name) constructor {
     self.buffer = buffer;
     self.material = material;
+    self.object_name = object_name;
 }
 
 function import_mesh(filename) {
@@ -9,7 +10,11 @@ function import_mesh(filename) {
     
     var mesh = new DataMesh(filename_change_ext(filename_name(filename), ""));
     for (var i = 0, n = array_length(data); i < n; i++) {
-        var submesh = new MeshSubmesh(data[i].material.name);
+        var the_name = data[i].material.name;
+        if (data[i].object_name != "") {
+            the_name = data[i].object_name + "$" + the_name;
+        }
+        var submesh = new MeshSubmesh(the_name);
         submesh.path = filename;
         submesh.SetBufferData(data[i].buffer);
         if (array_length(data) >= 1) {
@@ -178,7 +183,7 @@ function import_d3d(filename) {
     
     // this function needs to return an array of MeshImportData, even though
     // there will only ever be one buffer loaded from a d3d file
-    return [new MeshImportData(data, new Material(filename_name(filename_change_ext(filename, "")) + "_Material"))];
+    return [new MeshImportData(data, new Material(filename_name(filename_change_ext(filename, "")) + "_Material"), "")];
 }
 
 function import_obj(fn, squash = false) {
@@ -228,6 +233,8 @@ function import_obj(fn, squash = false) {
     buffer_seek(face_vertex_attributes, buffer_seek_start, 0);
     ds_list_clear(face_vertex_materials);
     
+    var face_vertex_object_names = [];
+    
     static xx = [0, 0, 0];
     static yy = [0, 0, 0];
     static zz = [0, 0, 0];
@@ -240,6 +247,8 @@ function import_obj(fn, squash = false) {
     
     var first_line_read = false;
     var needs_uvs_flipped = false;
+    
+    var current_object_name = "";
     
     #region parse the obj file
     for (var line_index = 0, line_count = array_length(lines); line_index < line_count; line_index++) {
@@ -369,6 +378,7 @@ function import_obj(fn, squash = false) {
                         buffer_write(face_vertex_attributes, face_attribute_type, ytex[i]);
                         buffer_write(face_vertex_attributes, color_attribute_type, color[i]);
                         ds_list_add(face_vertex_materials, active_material);
+                        array_push(face_vertex_object_names, current_object_name);
                     }
                     #endregion
                     break;
@@ -500,6 +510,8 @@ function import_obj(fn, squash = false) {
                 case "g":   // group
                     break;
                 case "o":   // object name
+                    array_shift(line);
+                    current_object_name = array_join(line, " ");
                     break;
                 case "l":   // line
                     break;
@@ -516,7 +528,8 @@ function import_obj(fn, squash = false) {
     }
     
     var output_material = base_material;
-    var output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), output_material);
+    var output_object_name = "";
+    var output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), output_material, "");
     var output = [output_data];
     
     var max_alpha = 0;
@@ -525,20 +538,24 @@ function import_obj(fn, squash = false) {
     
     for (var i = 0; i < face_count; i++) {
         var face_material = face_vertex_materials[| i];
+        var face_object_name = face_vertex_object_names[i];
         
         // if the material you're working with changes, check to see if any
-        // output data with the material already exists; if not, create one
+        // output data with the material and object name already exists; if
+        // not, create one
         var current_output_material = face_material;
-        if (output_material != current_output_material) {
+        var current_output_object_name = face_object_name;
+        if (output_material != current_output_material || current_output_object_name != output_object_name) {
             output_data = undefined;
             for (var j = 0, n2 = array_length(output); j < n2; j++) {
-                if (output[j].material == current_output_material) {
+                if (output[j].material == current_output_material && output[j].object_name == face_object_name) {
                     output_data = output[j];
                     output_material = current_output_material;
+                    output_object_name = current_output_object_name;
                 }
             }
             if (!output_data) {
-                output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), current_output_material);
+                output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), current_output_material, face_object_name);
                 array_push(output, output_data);
             }
         }
@@ -566,7 +583,7 @@ function import_obj(fn, squash = false) {
     
     // seek and destroy empty vertex buffers
     for (var i = array_length(output) - 1; i >= 0; i--) {
-        var buffer = output[i].buffer;
+        buffer = output[i].buffer;
         if (buffer_tell(buffer) == 0) {
             buffer_delete(buffer);
             array_delete(output, i, 1);
@@ -586,7 +603,7 @@ function import_obj(fn, squash = false) {
             buffer_delete(submesh.buffer);
         }
         
-        output = [new MeshImportData(common_data, base_material)];
+        output = [new MeshImportData(common_data, base_material, "")];
         base_material.name = "BASE MATERIAL";
     } else if (Settings.mesh.fuse_textureless_materials) {
         // if any material doesn't actually have any textures (eg a mesh that
@@ -597,7 +614,7 @@ function import_obj(fn, squash = false) {
             if (!submesh.material.HasAnyTextures()) {
                 if (!common_data) {
                     meshops_blend_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
-                    common_data = new MeshImportData(submesh.buffer, new Material("BASE MATERIAL"));
+                    common_data = new MeshImportData(submesh.buffer, new Material("BASE MATERIAL"), "");
                 } else {
                     var tell = buffer_get_size(common_data.buffer);
                     meshops_blend_color(buffer_get_address(submesh.buffer), buffer_get_size(submesh.buffer), submesh.material.col_diffuse);
