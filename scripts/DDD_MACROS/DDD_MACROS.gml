@@ -1,3 +1,5 @@
+// feather ignore GM1030
+
 // the mode that the editor starts in
 #macro EDITOR_BASE_MODE                     ModeIDs.MAP
 #macro Terrain:EDITOR_BASE_MODE             ModeIDs.TERRAIN
@@ -84,8 +86,8 @@
 #macro EXPORT_EXTENSION_PROJECT             ".dragon"
 #macro FLAG_COUNT                           63
 #macro FLAG_MAX_VALUE                       0x7fffffffffffffff
-#macro INTERNAL_NAME_LENGTH                 32
-#macro VISIBLE_NAME_LENGTH                  32
+#macro INTERNAL_NAME_LENGTH                 100
+#macro VISIBLE_NAME_LENGTH                  100
 #macro MAP_AXIS_LIMIT                       0x800
 #macro MAP_VOLUME_LIMIT                     0x40000
 #macro MAX_SELECTION_COUNT                  32
