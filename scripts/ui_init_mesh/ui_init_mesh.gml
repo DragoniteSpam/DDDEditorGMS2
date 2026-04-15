@@ -308,7 +308,8 @@ function ui_init_mesh(mode) {
                         // move the submesh objects around, but i'd like to
                         // keep the originals
                         for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
-                            var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(j, " ", 3));
+                            //var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(j, " ", 3));
+                            var new_mesh = new DataMesh(mesh.name + "!" + mesh.submeshes[j].name);
                             var submesh = new_mesh.AddSubmesh(mesh.submeshes[j].Clone());
                             new_mesh.CopyPropertiesFrom(mesh);
                             array_push(Stuff.mesh.ui.GetMeshType(), new_mesh);
