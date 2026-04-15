@@ -107,10 +107,14 @@ function dialog_create_preferences() {
             Settings.mesh.fuse_textureless_materials = self.value;
         }))
             .SetTooltip("Import OBJ models with multiple materials that don't use any texture maps as a single submesh?"),
+        (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Use object group names?", Settings.mesh.use_obj_group_names, function() {
+            Settings.mesh.use_obj_group_names = self.value;
+        }))
+            .SetTooltip("Separate imported object groups into differentn submeshes (in addition to separating them by material)?"),
         (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Combine all OBJ submeshes?", Settings.mesh.combine_obj_submeshes, function() {
             Settings.mesh.combine_obj_submeshes = self.value;
         }))
-            .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material?"),
+            .SetTooltip("Import OBJ models as a single submesh, rather than separating them by material? Overrides the Use Object Group Names setting."),
         (new EmuCheckbox(c2x, EMU_AUTO, ew, eh, "Force texture powers of 2?", Settings.mesh.combine_force_po2, function() {
             Settings.mesh.combine_force_po2 = self.value;
         }))

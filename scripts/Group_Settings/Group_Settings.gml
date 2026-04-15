@@ -120,6 +120,7 @@ Settings.mesh[$ "draw_physical_bounds"] ??=                                     
 Settings.mesh[$ "wireframe_alpha"] ??=                                          MESH_DEF_VIEW_WIREFRAME_ALPHA;
 Settings.mesh[$ "reflect_settings"] ??=                                         MESH_DEF_REFLECT_SETTINGS;
 Settings.mesh[$ "reflect_color"] ??=                                            MESH_DEF_REFLECT_COLOR;
+Settings.mesh[$ "use_obj_group_names"] ??=                                      MESH_DEF_USE_OBJ_GROUP_NAMES;
 Settings.mesh[$ "combine_obj_submeshes"] ??=                                    MESH_DEF_COMBINE_OBJ_SUBMESHES;
 Settings.mesh[$ "combine_force_po2"] ??=                                        MESH_DEF_COMBINE_FORCE_PO2;
 Settings.mesh[$ "draw_3d_view_overlay_text"] ??=                                MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT;
@@ -147,6 +148,7 @@ Settings.voxelish[$ "view_skybox"] ??=                                          
 #macro MESH_DEF_VIEW_WIREFRAME_ALPHA                                            1
 #macro MESH_DEF_REFLECT_SETTINGS                                                (MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE)
 #macro MESH_DEF_REFLECT_COLOR                                                   0x7fff6600
+#macro MESH_DEF_USE_OBJ_GROUP_NAMES                                             false
 #macro MESH_DEF_COMBINE_OBJ_SUBMESHES                                           true
 #macro MESH_DEF_COMBINE_FORCE_PO2                                               false
 #macro MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT                                       true

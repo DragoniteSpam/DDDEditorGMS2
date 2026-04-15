@@ -545,17 +545,17 @@ function import_obj(fn, squash = false) {
         // not, create one
         var current_output_material = face_material;
         var current_output_object_name = face_object_name;
-        if (output_material != current_output_material || current_output_object_name != output_object_name) {
+        if (output_material != current_output_material || (Settings.mesh.use_obj_group_names && (current_output_object_name != output_object_name))) {
             output_data = undefined;
             for (var j = 0, n2 = array_length(output); j < n2; j++) {
-                if (output[j].material == current_output_material && output[j].object_name == face_object_name) {
+                if (output[j].material == current_output_material && (!Settings.mesh.use_obj_group_names || (output[j].object_name == face_object_name))) {
                     output_data = output[j];
                     output_material = current_output_material;
                     output_object_name = current_output_object_name;
                 }
             }
             if (!output_data) {
-                output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), current_output_material, face_object_name);
+                output_data = new MeshImportData(buffer_create(1000, buffer_grow, 1), current_output_material, Settings.mesh.use_obj_group_names ? face_object_name : "");
                 array_push(output, output_data);
             }
         }
