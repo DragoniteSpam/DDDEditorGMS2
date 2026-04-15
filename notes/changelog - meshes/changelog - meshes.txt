@@ -1,5 +1,9 @@
 Another changelog.
 
+ - Added a setting to use group names to identify submeshes when importing OBJ
+    - This seems to work but I'm leaving it Off by default for a little while
+    - When this is enabled, submeshes will be named `group_name$material_name` instead of simply `material_name`
+ - When separating submeshes, the new meshes will retain their old names instead of being assigned generic ones
  - Added an "identify unused" button to the Textures list
  - The min/max bounding box of meshes is now exported (previously these were all 0s)
  - A recent GM update broke the way the program accesses local storage; I may have fixed at least part of it
