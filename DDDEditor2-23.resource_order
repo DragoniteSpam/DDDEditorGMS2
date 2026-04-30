@@ -287,6 +287,7 @@
     {"name":"dialog_create_manager_mesh_autotile","order":1,"path":"scripts/dialog_create_manager_mesh_autotile/dialog_create_manager_mesh_autotile.yy",},
     {"name":"dialog_create_mesh_collision_settings","order":42,"path":"scripts/dialog_create_mesh_collision_settings/dialog_create_mesh_collision_settings.yy",},
     {"name":"dialog_create_mesh_material_settings","order":39,"path":"scripts/dialog_create_mesh_material_settings/dialog_create_mesh_material_settings.yy",},
+    {"name":"dialog_create_mesh_merge_vertices","order":44,"path":"scripts/dialog_create_mesh_merge_vertices/dialog_create_mesh_merge_vertices.yy",},
     {"name":"dialog_create_mesh_normal_settings","order":40,"path":"scripts/dialog_create_mesh_normal_settings/dialog_create_mesh_normal_settings.yy",},
     {"name":"dialog_create_mesh_other_settings","order":41,"path":"scripts/dialog_create_mesh_other_settings/dialog_create_mesh_other_settings.yy",},
     {"name":"dialog_create_mesh_render_overhead_wireframe","order":43,"path":"scripts/dialog_create_mesh_render_overhead_wireframe/dialog_create_mesh_render_overhead_wireframe.yy",},

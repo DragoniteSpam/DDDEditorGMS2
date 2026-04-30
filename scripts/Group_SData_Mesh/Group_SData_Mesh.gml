@@ -113,6 +113,14 @@ function DataMesh(source) : SData(source) constructor {
         self.CalculatePhysicalBounds();
     };
     
+    static ActionMegeVertices = function(threshold) {
+        if (self.type == MeshTypes.SMF) return;
+        self.foreachSubmeshBufferParam(function(buffer, threshold) {
+            meshops_merge_vertices(buffer_get_address(buffer), buffer_get_size(buffer), threshold);
+        }, threshold);
+        self.CalculatePhysicalBounds();
+    };
+    
     self.ActionFloor = function() {
         if (self.type == MeshTypes.SMF) return;
         __meshops_transform_set_matrix(0, 0, -self.physical_bounds.z1, 0, 0, 0, 1, 1, 1);

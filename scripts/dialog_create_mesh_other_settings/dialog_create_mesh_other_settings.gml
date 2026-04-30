@@ -110,6 +110,10 @@ function dialog_create_mesh_other_settings(list, selection) {
         }))
             .SetTooltip("Render an overhead wireframe of this mesh.")
             .SetInteractive(array_length(selection) == 1),
+        (new EmuButton(c2, EMU_AUTO, ew, eh, "Merge Near Vertices", function() {
+            dialog_create_mesh_merge_vertices(self.root.list, self.root.selection);
+        }))
+            .SetTooltip("Merge vertices that are closer together than some threshold."),
     ]);
     
     if (IS_DEFAULT_MODE) {

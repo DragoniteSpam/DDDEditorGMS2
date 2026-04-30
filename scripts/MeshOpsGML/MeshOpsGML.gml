@@ -7,7 +7,7 @@ function meshops_get_bounds(buffer) {
         buffer_peek(output,  8, buffer_f32),
         buffer_peek(output, 12, buffer_f32),
         buffer_peek(output, 16, buffer_f32),
-        buffer_peek(output, 20, buffer_f32),
+        buffer_peek(output, 20, buffer_f32)
     );
     return data;
 }
