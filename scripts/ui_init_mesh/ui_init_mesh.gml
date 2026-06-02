@@ -309,7 +309,11 @@ function ui_init_mesh(mode) {
                         // keep the originals
                         for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
                             //var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(j, " ", 3));
-                            var new_mesh = new DataMesh(mesh.name + "!" + mesh.submeshes[j].name);
+                            var new_name = mesh.submeshes[j].name;
+                            if (mesh.name != "") {
+                                new_name = mesh.name + "!" + new_name;
+                            }
+                            var new_mesh = new DataMesh(new_name);
                             var submesh = new_mesh.AddSubmesh(mesh.submeshes[j].Clone());
                             new_mesh.CopyPropertiesFrom(mesh);
                             array_push(Stuff.mesh.ui.GetMeshType(), new_mesh);
