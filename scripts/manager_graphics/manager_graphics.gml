@@ -332,6 +332,31 @@ function dialog_create_manager_graphics() {
             .SetInteractive(false)
             .SetTooltip("For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.")
             .SetID("EXCLUDE"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Set Alpha", function() {
+            var dialog = new EmuDialog(480, 288, "Set Alpha");
+            var col1 = 32;
+            dialog.AddContent([
+                new EmuText(col1, EMU_AUTO, 400, 64, "Set the alpha of every pixel to a fixed value? [c_yellow]This will overwrite the alpha of individual pixels!"),
+                new EmuText(col1, EMU_AUTO, 400, 64, "Value: 100%")
+                    .SetID("LABEL"),
+                new EmuProgressBar(col1, EMU_AUTO, 400, 32, 8, 0, 1, true, 1, function() {
+                    self.GetSibling("LABEL").text = $"Value: {round(self.value * 100)}%";
+                })
+                    .SetID("VALUE")
+            ]);
+            dialog.AddDefaultConfirmCancelButtons("Yes", function() {
+                var image = self.root.image;
+                var new_sprite = spriteops_set_alpha(image.picture, 0, self.GetSibling("VALUE").value);
+                sprite_delete(image.picture);
+                image.picture = new_sprite;
+            }, "No", emu_dialog_close_auto);
+            dialog.image = self.GetSibling("LIST").GetSelectedItem();
+            //spriteops_set_alpha
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetID("SET ALPHA"),
         (new EmuRenderSurface(col3, EMU_BASE, 640, 640, function() {
             draw_clear(EMU_COLOR_BACK);
             var image = self.GetSibling("LIST").GetSelectedItem();
