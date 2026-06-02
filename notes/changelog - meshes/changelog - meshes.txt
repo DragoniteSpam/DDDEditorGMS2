@@ -7,6 +7,7 @@ Another changelog.
     - This seems to work but I'm leaving it Off by default for a little while
     - When this is enabled, submeshes will be named `group_name$material_name` instead of simply `material_name`
  - When separating submeshes, the new meshes will retain their old names instead of being assigned generic ones
+    - If the old mesh's name is an empty string (yes, this is allowed) the separated submeshes won't include the prefix
  - Added an "identify unused" button to the Textures list
  - The min/max bounding box of meshes is now exported (previously these were all 0s)
  - A recent GM update broke the way the program accesses local storage; I may have fixed at least part of it
@@ -14,6 +15,7 @@ Another changelog.
  - Added a "merge near vertices" feature
     - It runs in nsquared time so probably dont use it for large meshes
     - I'll make it better later
+ - Added a "set alpha of every pixel in texture" button
  - Fixed: cloning a submesh preserves material data
 
 # Changes in 2025.1
