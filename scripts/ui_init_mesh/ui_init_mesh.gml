@@ -313,6 +313,12 @@ function ui_init_mesh(mode) {
                             if (mesh.name != "") {
                                 new_name = mesh.name + "!" + new_name;
                             }
+                            if (mesh.name == "") {
+                                var material_index = string_pos("$", new_name);
+                                if (material_index > 0) {
+                                    new_name = string_copy(new_name, 1, material_index - 1);
+                                }
+                            }
                             var new_mesh = new DataMesh(new_name);
                             var submesh = new_mesh.AddSubmesh(mesh.submeshes[j].Clone());
                             new_mesh.CopyPropertiesFrom(mesh);
