@@ -17,6 +17,7 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
     self.select_toggle = false;
     self.entries_are = E_ListEntryTypes.STRINGS;
     self.numbered = false;
+    self.last_index = -1;
     self.text_vacant = "(empty list)";
     self.text_evaluation = function(index) {
         return string(index);
@@ -194,6 +195,9 @@ function EmuList(x, y, w, h, text, element_height, content_slots, callback) : Em
         _selected_entries[$ string(_list_index)] = true;
         if (_set_index && clamp(_list_index, _index, _index + slots - 1) != _list_index) {
             _index = max(0, min(_list_index, is_array(entries) ? array_length(entries) : ds_list_size(entries) - slots));
+        }
+        if (self.last_index == -1) {
+            self.last_index = _list_index;
         }
         return self;
     }
