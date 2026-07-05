@@ -114,6 +114,10 @@ function dialog_create_mesh_other_settings(list, selection) {
             dialog_create_mesh_merge_vertices(self.root.list, self.root.selection);
         }))
             .SetTooltip("Merge vertices that are closer together than some threshold."),
+        (new EmuButton(c2, EMU_AUTO, ew, eh, "Merge All Textures", function() {
+            dialog_create_mesh_merge_textures(self.root.list, self.root.selection);
+        }))
+            .SetTooltip("Merge all textures of all selected meshes and their submeshes."),
     ]);
     
     if (IS_DEFAULT_MODE) {

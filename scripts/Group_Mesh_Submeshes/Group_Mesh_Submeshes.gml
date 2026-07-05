@@ -220,6 +220,29 @@ function MeshSubmesh(source) constructor {
         self.alpha = 1;
     };
     
+    self.RemapUVs = function(u1, v1, u2, v2) {
+        if (buffer_exists(self.buffer)) {
+            meshops_transform_uvs(
+                self.buffer,
+                0,
+                buffer_get_size(self.buffer),
+                0, 0, 1, 1,
+                u1, v1, u2, v2
+            );
+            self.internalSetVertexBuffer();
+        }
+        if (buffer_exists(self.reflect_buffer)) {
+            meshops_transform_uvs(
+                self.reflect_buffer,
+                0,
+                buffer_get_size(self.reflect_buffer),
+                0, 0, 1, 1,
+                u1, v1, u2, v2
+            );
+            self.internalSetReflectVertexBuffer();
+        }
+    };
+    
     self.ActionResetDiffuseMaterialColour = function() {
         self.col_diffuse = c_white;
         self.alpha = 1;

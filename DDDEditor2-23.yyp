@@ -362,6 +362,7 @@
     {"id":{"name":"dialog_create_manager_mesh_autotile","path":"scripts/dialog_create_manager_mesh_autotile/dialog_create_manager_mesh_autotile.yy",},},
     {"id":{"name":"dialog_create_mesh_collision_settings","path":"scripts/dialog_create_mesh_collision_settings/dialog_create_mesh_collision_settings.yy",},},
     {"id":{"name":"dialog_create_mesh_material_settings","path":"scripts/dialog_create_mesh_material_settings/dialog_create_mesh_material_settings.yy",},},
+    {"id":{"name":"dialog_create_mesh_merge_textures","path":"scripts/dialog_create_mesh_merge_textures/dialog_create_mesh_merge_textures.yy",},},
     {"id":{"name":"dialog_create_mesh_merge_vertices","path":"scripts/dialog_create_mesh_merge_vertices/dialog_create_mesh_merge_vertices.yy",},},
     {"id":{"name":"dialog_create_mesh_normal_settings","path":"scripts/dialog_create_mesh_normal_settings/dialog_create_mesh_normal_settings.yy",},},
     {"id":{"name":"dialog_create_mesh_other_settings","path":"scripts/dialog_create_mesh_other_settings/dialog_create_mesh_other_settings.yy",},},
