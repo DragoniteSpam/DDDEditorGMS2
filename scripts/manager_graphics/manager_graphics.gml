@@ -61,7 +61,7 @@ function dialog_create_manager_graphics() {
             .SetEntryTypes(E_ListEntryTypes.STRUCTS)
             .SetTooltip("All of the images of the selected type")
             .SetID("LIST"),
-        new EmuButton(col1, EMU_AUTO, element_width, element_height, "Identity Unused", function() {
+        new EmuButton(col1, EMU_AUTO, element_width / 2, element_height, "Identify Unused", function() {
             // I think there are other pieces of data that may reference textures,
             // but these are likely to be the most important
             
@@ -85,10 +85,10 @@ function dialog_create_manager_graphics() {
                 var mesh = Game.meshes[i];
                 for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
                     var submesh = mesh.submeshes[j];
-                    if (submesh.tex_base != "") states[$ submesh.tex_base] = true;
-                    if (submesh.tex_normal != "") states[$ submesh.tex_normal] = true;
-                    if (submesh.tex_specular_color != "") states[$ submesh.tex_specular_color] = true;
-                    if (submesh.tex_specular_highlight != "") states[$ submesh.tex_specular_highlight] = true;
+                    if (submesh.tex_base != NULL) states[$ submesh.tex_base] = true;
+                    if (submesh.tex_normal != NULL) states[$ submesh.tex_normal] = true;
+                    if (submesh.tex_specular_color != NULL) states[$ submesh.tex_specular_color] = true;
+                    if (submesh.tex_specular_highlight != NULL) states[$ submesh.tex_specular_highlight] = true;
                 }
             }
             
@@ -96,6 +96,21 @@ function dialog_create_manager_graphics() {
             for (var i = 0, n = array_length(keys); i < n; i++) {
                 if (!states[$ keys[i]]) {
                     guid_get(keys[i]).flag_unused = true;
+                }
+            }
+        }),
+        new EmuButton(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Identify Using", function() {
+            var image = self.GetSibling("LIST").GetSelectedItem().GUID;
+            
+            for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
+                var mesh = Game.meshes[i];
+                mesh.flag_unused = false;
+                for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                    var submesh = mesh.submeshes[j];
+                    if (submesh.tex_base == image || submesh.tex_normal == image || submesh.tex_specular_color == image || submesh.tex_specular_highlight == image) {
+                        mesh.flag_unused = true;
+                        break;
+                    }
                 }
             }
         }),

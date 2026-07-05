@@ -5,7 +5,7 @@ function dialog_create_mesh_merge_vertices(list, selection) {
     var c1x = 32;
     var c2x = 416;
     
-    var dialog = new EmuDialog(dw, dh, "Render Overhead Wireframe");
+    var dialog = new EmuDialog(dw, dh, "Merge Vertices");
     dialog.list = list;
     dialog.selection = selection;
     dialog.render = undefined;

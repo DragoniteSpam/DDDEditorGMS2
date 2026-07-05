@@ -1,5 +1,8 @@
 function emu_color_meshes(index) {
     var mesh = Game.meshes[index];
+    if (mesh.flag_unused) {
+        return c_orange;
+    }
     for (var i = 0; i < array_length(mesh.submeshes); i++) {
         if (!mesh.submeshes[i].buffer) return c_red;
     }

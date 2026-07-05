@@ -94,9 +94,6 @@ function ui_init_mesh(mode) {
         }))
             .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
             .SetMultiSelect(true)
-            .SetListColors(function(index) {
-                return (self.GetSibling("MESH LIST").At(index).type == MeshTypes.SMF) ? c_orange : EMU_COLOR_TEXT;
-            })
             .SetCallbackMiddle(function() {
                 array_sort_name(self.root.GetMeshType());
             })

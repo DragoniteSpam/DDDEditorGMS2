@@ -15,6 +15,8 @@ function DataMesh(source) : SData(source) constructor {
     
     self.terrain_data = undefined;
     
+    self.flag_unused = false;
+    
     self.CopyPropertiesFrom = function(mesh) {
         // cshape is currently NOT copied!
         
