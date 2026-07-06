@@ -14,6 +14,10 @@ function dialog_create_mesh_merge_textures(list, selection) {
     dialog.selection = selection;
     
     dialog.AddContent([
+        new EmuText(c1x, EMU_AUTO, ew, eh, "Name:"),
+        new EmuInput(c1x, EMU_AUTO, ew, eh, "", "NewCombineTexture", "The name of the new texture", 50, E_InputTypes.STRING, emu_null)
+            .SetInputBoxPosition(0, 0)
+            .SetID("NAME"),
         new EmuText(c1x, EMU_AUTO, ew, eh, "Padding:"),
         new EmuProgressBar(c1x, EMU_AUTO, ew, eh, 8, 0, 8, true, 2, emu_null)
             .SetID("PADDING"),
@@ -50,7 +54,7 @@ function dialog_create_mesh_merge_textures(list, selection) {
         });
         
         var remapped = sprite_atlas_pack_dll(remap_input, real(self.GetSibling("PADDING").value), 4, self.GetSibling("PO2").value);
-        var new_diffuse_texture = tileset_create_internal(remapped.atlas, $"NewCombineTexture");
+        var new_diffuse_texture = tileset_create_internal(remapped.atlas, self.GetSibling("NAME").value);
         
         var new_w = sprite_get_width(remapped.atlas);
         var new_h = sprite_get_height(remapped.atlas);
