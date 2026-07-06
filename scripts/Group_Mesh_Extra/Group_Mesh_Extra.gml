@@ -1,4 +1,4 @@
-function mesh_combine_all(meshes_array) {
+function mesh_combine_submeshes(meshes_array) {
     debug_timer_start();
     
     for (var i = 0, n = array_length(meshes_array); i < n; i++) {
@@ -20,7 +20,7 @@ function mesh_combine_all(meshes_array) {
         var remapped_texture_data = undefined;
         
         if (remap_needed) {
-            remapped_texture_data = sprite_atlas_pack_dll(unique_textures_for_atlasing, 2, 4, Settings.mesh.combine_force_po2);
+            remapped_texture_data = sprite_atlas_pack_dll(unique_textures_for_atlasing, 0, 4, Settings.mesh.combine_force_po2);
             var ww = sprite_get_width(remapped_texture_data.atlas);
             var hh = sprite_get_height(remapped_texture_data.atlas);
             for (var j = 0, n2 = array_length(remapped_texture_data.uvs); j < n2; j++) {
@@ -65,4 +65,46 @@ function mesh_combine_all(meshes_array) {
     
     batch_again();
     Stuff.AddStatusMessage("Combining the submesh took " + debug_timer_finish());
+}
+
+function mesh_combine_all(meshes_array) {
+    var dw = 400;
+    var dh = 240;
+    
+    var c1x = 32;
+    var c2x = 416;
+    
+    var ew = 320;
+    var eh = 32;
+    
+    var dialog = new EmuDialog(dw, dh, "Combine all selected meshes");
+    dialog.active_shade = 0;
+    dialog.meshes = meshes_array;
+    
+    dialog.AddContent([
+        new EmuText(c1x, EMU_AUTO, ew, eh, "Name:"),
+        new EmuInput(c1x, EMU_AUTO, ew, eh, "", "NewCombineMesh", "The name of the new mesh", 50, E_InputTypes.STRING, emu_null)
+            .SetInputBoxPosition(0, 0)
+            .SetID("NAME"),
+    ]);
+    
+    return dialog.AddDefaultConfirmCancelButtons("Okay", function() {
+        var combine_mesh = new DataMesh();
+        combine_mesh.name = self.GetSibling("NAME").value;
+        array_push(Game.meshes, combine_mesh);
+        
+        for (var i = 0, n = array_length(self.root.meshes); i < n; i++) {
+            var mesh = self.root.meshes[i];
+            for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+                var submesh = mesh.submeshes[j];
+                var new_submesh = mesh.submeshes[j].Clone();
+                array_push(combine_mesh.submeshes, new_submesh);
+                new_submesh.owner = combine_mesh;
+            }
+        }
+        
+        batch_again();
+        emu_dialog_close_auto();
+    }, "Cancel", emu_dialog_close_auto);
+}
 }

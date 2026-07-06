@@ -273,14 +273,26 @@ function ui_init_mesh(mode) {
                 var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to combine the submeshes in " + ((array_length(meshes) == 1) ? meshes[0].name : "the selected submeshes") + "?", function() {
-                    mesh_combine_all(self.root.meshes);
+                    mesh_combine_submeshes(self.root.meshes);
                     self.root.Dispose();
                 });
                 
                 dg.meshes = meshes;
             }))
                 .SetTooltip("Combine the submeshes of the selected 3D meshes.")
+                .SetRefresh(function(data) {
+                    self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").GetAllSelectedItems()) > 0);
+                })
                 .SetID("COMBINE SUBMESHES"),
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Combine All", function() {
+                var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
+                mesh_combine_all(meshes);
+            }))
+                .SetTooltip("Combine the submeshes of the selected 3D meshes.")
+                .SetRefresh(function(data) {
+                    self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").GetAllSelectedItems()) > 1);
+                })
+                .SetID("COMBINE ALL"),
             (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Separate Submeshes", function() {
                 var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
                 
@@ -317,6 +329,9 @@ function ui_init_mesh(mode) {
                 dg.meshes = meshes;
             }))
                 .SetTooltip("Separate the selected 3D meshes into individual models.")
+                .SetRefresh(function(data) {
+                    self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").GetAllSelectedItems()) > 0);
+                })
                 .SetID("SEPARATE SUBMESHES"),
             #endregion
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformation"),
