@@ -100,6 +100,8 @@ function dialog_create_manager_graphics() {
             }
         }),
         new EmuButton(col1 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Identify Using", function() {
+            if (!self.GetSibling("LIST").GetSelectedItem()) return;
+            
             var image = self.GetSibling("LIST").GetSelectedItem().GUID;
             
             for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
