@@ -1,6 +1,6 @@
 function dialog_create_mesh_merge_textures(list, selection) {
     var dw = 400;
-    var dh = 240;
+    var dh = 360;
     
     var c1x = 32;
     var c2x = 416;
