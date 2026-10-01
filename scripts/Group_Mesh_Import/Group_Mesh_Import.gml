@@ -260,6 +260,8 @@ function import_obj(fn, squash = false) {
             needs_uvs_flipped |= (string_count("Blockbench", str) > 0);
             first_line_read = true;
         }
+        
+        // each line, tokenized
         var line = string_split(str, " ", true);
         
         if (!string_starts_with(line[0], "#")) {
@@ -298,6 +300,11 @@ function import_obj(fn, squash = false) {
                     array_shift(line);
                     var s = array_length(line);
                     for (var i = 0; i < s; i++) {
+                        if (string_ends_with(line[i], "/")) {
+                            line[i] = string_copy(line[i], 1, string_length(line[i]) - 1);
+                        }
+                        
+                        // each vertex ("1/2/3" or "1//3" or "1"), tokenized
                         var vertex_tokens = string_split(line[i], "/", false);
                         switch (array_length(vertex_tokens)) {
                             case 1: {
