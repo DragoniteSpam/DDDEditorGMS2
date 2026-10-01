@@ -1,5 +1,5 @@
 {
-  "$GMNotes":"v1",
+  "$GMNotes":"v2",
   "%Name":"sPart Documentation",
   "name":"sPart Documentation",
   "parent":{

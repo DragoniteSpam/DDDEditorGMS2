@@ -1,5 +1,5 @@
 {
-  "$GMNotes":"v1",
+  "$GMNotes":"v2",
   "%Name":"Changelog - Meshes",
   "name":"Changelog - Meshes",
   "parent":{
