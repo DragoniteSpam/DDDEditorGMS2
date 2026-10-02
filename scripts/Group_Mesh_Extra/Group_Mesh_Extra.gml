@@ -107,4 +107,52 @@ function mesh_combine_all(meshes_array) {
         emu_dialog_close_auto();
     }, "Cancel", emu_dialog_close_auto);
 }
+
+function mesh_special(meshes) {
+    for (var i = 0, n = array_length(meshes); i < n; i++) {
+        var mesh = meshes[i];
+        
+        var cx = 0;
+        var cy = -1;
+        var cz = -0.25;
+        
+        var threshold_total = 0.85;
+        
+        for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+            var submesh = mesh.submeshes[j];
+            
+            var old_buffer = submesh.buffer;
+            var size = buffer_get_size(old_buffer);
+            var new_buffer = buffer_create(size, buffer_fixed, 1);
+            
+            var used = 0;
+            for (var k = 0; k < size; k += VERTEX_SIZE) {
+                var xx = buffer_peek(old_buffer, k +  0, buffer_f32);
+                var yy = buffer_peek(old_buffer, k +  4, buffer_f32);
+                var zz = buffer_peek(old_buffer, k +  8, buffer_f32);
+                var nx = buffer_peek(old_buffer, k + 12, buffer_f32);
+                var ny = buffer_peek(old_buffer, k + 16, buffer_f32);
+                var nz = buffer_peek(old_buffer, k + 20, buffer_f32);
+                
+                var dot_total = dot_product_3d_normalised(cx, cy, cz, nx, ny, nz);
+                
+                if (dot_total < threshold_total) {
+                    buffer_copy(old_buffer, k, VERTEX_SIZE, new_buffer, used);
+                    used += VERTEX_SIZE;
+                }
+            }
+            
+            buffer_delete(old_buffer);
+            
+            if (used > 0) {
+                submesh.buffer = new_buffer;
+                submesh.internalSetVertexBuffer();
+            } else {
+                buffer_delete(new_buffer);
+                vertex_delete_buffer((submesh.vbuffer));
+                submesh.buffer = -1;
+                submesh.vbuffer = -1;
+            }
+        }
+    }
 }

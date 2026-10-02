@@ -157,7 +157,7 @@ function ui_init_mesh(mode) {
                     self.SetValue((data != undefined && array_length(data) == 1) ? self.root.GetSibling("MESH LIST").At(data[0]).name : "");
                 })
                 .SetID("MESH NAME"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Add Mesh", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Add Mesh", function() {
                 debug_timer_start();
                 if (import_mesh(get_open_filename_mesh())) {
                     self.root.GetSibling("MESH LIST").Deselect();
@@ -167,7 +167,7 @@ function ui_init_mesh(mode) {
             }))
                 .SetTooltip("Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.")
                 .SetID("ADD MESH"),
-            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Delete Mesh", function() {
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Delete Mesh", function() {
                 var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to delete " + ((array_length(indices) == 1) ? self.root.GetSibling("MESH LIST").At(indices[0]).name : " the selected meshes") + "?", function() {
@@ -284,7 +284,7 @@ function ui_init_mesh(mode) {
                     self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").GetAllSelectedItems()) > 0);
                 })
                 .SetID("COMBINE SUBMESHES"),
-            (new EmuButton(col2x, EMU_AUTO, element_width / 2, element_height, "Combine All", function() {
+            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Combine All", function() {
                 var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
                 mesh_combine_all(meshes);
             }))
@@ -293,7 +293,7 @@ function ui_init_mesh(mode) {
                     self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").GetAllSelectedItems()) > 1);
                 })
                 .SetID("COMBINE ALL"),
-            (new EmuButton(col2x + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Separate Submeshes", function() {
+            (new EmuButton(col2x, EMU_AUTO, element_width, element_height, "Separate Submeshes", function() {
                 var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
                 
                 var dg = emu_dialog_confirm(self.root, "Would you like to separate the submeshes in " + ((array_length(meshes) == 1) ? meshes[0].name : "the selected submeshes") + "?", function() {
@@ -333,6 +333,14 @@ function ui_init_mesh(mode) {
                     self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").GetAllSelectedItems()) > 0);
                 })
                 .SetID("SEPARATE SUBMESHES"),
+            /*(new EmuButton(col2x + element_width / 2, EMU_AUTO, element_width / 2, element_height, "Special", function() {
+                var meshes = self.root.GetSibling("MESH LIST").GetAllSelectedItems();
+                mesh_special(meshes);
+            }))
+                .SetRefresh(function(data) {
+                    self.SetInteractive(array_length(self.root.GetSibling("MESH LIST").GetAllSelectedItems()) > 0);
+                })
+                .SetID("SPECIAL"),*/
             #endregion
             new EmuText(col2x, EMU_AUTO, element_width, element_height, "[c_aqua]Basic Transformation"),
             #region basic transformation
