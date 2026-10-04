@@ -51,7 +51,7 @@
   "option_windows_texture_page":"4096x4096",
   "option_windows_use_raw_mouse":false,
   "option_windows_use_splash":false,
-  "option_windows_version":"2025.0.1.98",
+  "option_windows_version":"2026.0.1.99",
   "option_windows_vsync":false,
   "resourceType":"GMWindowsOptions",
   "resourceVersion":"2.0",
