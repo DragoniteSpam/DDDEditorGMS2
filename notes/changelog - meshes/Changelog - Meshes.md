@@ -16,7 +16,11 @@ Another changelog.
     - It runs in nsquared time so probably dont use it for large meshes
     - I'll make it better later
  - Added a "set alpha of every pixel in texture" button
+ - Made the light settings in the preview window a little nicer
  - Fixed: cloning a submesh preserves material data
+ - Fixed a failure to import certain 3d model files
+    - I should probably properly parse the assimp files but also I want to see what GMRT does with 3D files before I spend a lot of time on that
+ - Fixed a bunch of other minor annoyances
 
 # Changes in 2025.1
 
