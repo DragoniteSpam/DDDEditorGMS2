@@ -111,16 +111,17 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, znear, zfar, callbac
         }
         
         if (CONTROL_3D_LOOK_DOWN) {
-            window_mouse_set(self.center.x, self.center.y);
+            window_mouse_set_locked(true);
         } else if (CONTROL_3D_LOOK) {
-            window_mouse_set(self.center.x, self.center.y);
-            var dx = (mouse_x - self.center.x) / 16;
-            var dy = (mouse_y - self.center.y) / 16;
+            var dx = window_mouse_get_delta_x() / 16;
+            var dy = window_mouse_get_delta_y() / 16;
             self.direction = (360 + self.direction - dx) % 360;
             self.pitch = clamp(self.pitch + dy, -89, 89);
             self.xto = self.x + dcos(self.direction) * dcos(self.pitch);
             self.yto = self.y - dsin(self.direction) * dcos(self.pitch);
             self.zto = self.z - dsin(self.pitch);
+        } else {
+            window_mouse_set_locked(false);
         }
         
         self.x += xspeed;

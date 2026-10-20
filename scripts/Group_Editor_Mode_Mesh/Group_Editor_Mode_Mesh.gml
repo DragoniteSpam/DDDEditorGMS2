@@ -159,7 +159,7 @@ function EditorModeAnimation() : EditorModeBase() constructor {
     };
     
     self.Update = function() {
-        if (!Stuff.mouse_3d_lock && !dialog_exists()) {
+        if (!dialog_exists()) {
             self.camera.Update();
         }
     };

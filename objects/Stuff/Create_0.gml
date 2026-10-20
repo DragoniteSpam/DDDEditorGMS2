@@ -24,7 +24,6 @@ time = 0;
 time_int = 0;
 frames = 0;
 
-mouse_3d_lock = false;
 mode = noone;
 
 enum ModeIDs {
