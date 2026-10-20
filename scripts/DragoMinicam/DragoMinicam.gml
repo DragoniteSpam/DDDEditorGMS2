@@ -51,6 +51,15 @@ function DragoMinicam(x, y, w, h) constructor {
         }
     };
     
+    static GetWorldSpace = function(x, y) {
+        x = (x * self.zoom) + self.x - self.w / 2 * self.zoom;
+        y = (y * self.zoom) + self.y - self.h / 2 * self.zoom;
+        
+        return {
+            x, y
+        }
+    };
+    
     static Apply = function() {
         static view_mat = matrix_build_identity();
         static proj_mat = matrix_build_identity();
