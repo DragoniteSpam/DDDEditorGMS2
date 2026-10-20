@@ -108,9 +108,35 @@ function sprite_dialog_rearrange(sprite) {
     ]);
     dialog.AddDefaultConfirmCancelButtons("Confirm", function() {
         // confirm
+        emu_dialog_close_auto();
     }, "Cancel", function() {
         // cancel
+        emu_dialog_close_auto();
     });
+    
+    dialog.SetCallback(function() {
+        self.cleanup(self.using);
+        self.Close();
+    });
+    
     dialog.y = 0;
+    dialog.sprite = sprite;
+    var all_using_submeshes = sprite_get_using_as_texture(sprite);
+    dialog.using = array_map(all_using_submeshes, function(submesh) {
+        var clone_data = buffer_clone(submesh.buffer);
+        return {
+            submesh,
+            data: clone_data,
+            vbuffer: vertex_create_buffer_from_buffer(clone_data, Stuff.graphics.format)
+        };
+    });
+    
+    dialog.cleanup = function(using) {
+        array_foreach(using, function(data) {
+            buffer_delete(data.data);
+            vertex_delete_buffer(data.vbuffer);
+        })
+    };
+    
     return dialog;
 }
