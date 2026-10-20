@@ -70,10 +70,17 @@ function Minicam(x, y, w, h) constructor {
     self.w = w;
     self.h = h;
     self.zoom = 1;  // this is the scale that the view should be drawn at; 0.5x is zoomed in, 2x is zoomed out
+    self.zoom_target = 1;
     
     self.locked = false;
     
     static Update = function(mx, my, x1 = -infinity, y1 = -infinity, x2 = infinity, y2 = infinity) {
+        self.zoom = lerp(self.zoom, self.zoom_target, 0.25);
+        
+        if (abs(self.zoom - self.zoom_target) < 0.002) {
+            self.zoom = self.zoom_target;
+        }
+        
         if (!self.locked && !point_in_rectangle(mx, my, x1, y1, x2, y2)) {
             return;
         }
@@ -86,10 +93,19 @@ function Minicam(x, y, w, h) constructor {
             self.locked = false;
         }
         
+        var zoom_step = 0.125;
+        if (self.zoom_target < 0.5) {
+            zoom_step = 0.03125;
+        } else if (self.zoom_target < 0.75) {
+            zoom_step = 0.0625;
+        } else if (self.zoom_target > 2) {
+            zoom_step = 0.5;
+        }
+        
         if (mouse_wheel_up()) {
-            self.zoom = max(0.25, self.zoom - 0.125);
+            self.zoom_target = max(0.25, self.zoom_target - zoom_step);
         } else if (mouse_wheel_down()) {
-            self.zoom = min(5, self.zoom + 0.125);
+            self.zoom_target = min(5, self.zoom_target + zoom_step);
         }
         
         if (self.locked) {
