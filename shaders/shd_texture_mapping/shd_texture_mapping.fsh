@@ -7,9 +7,10 @@ uniform vec3 u_WireColor;
 uniform float u_WireAlpha;
 uniform float u_WireThickness;
 
+// this will return a 1 if the edge factor >= 0.25, 0 otherwise
 float wireEdgeFactor(vec3 barycentric, float thickness) {
     vec3 a3 = smoothstep(vec3(0), fwidth(barycentric) * thickness, barycentric);
-    return min(min(a3.x, a3.y), a3.z);
+    return floor(min(min(a3.x, a3.y), a3.z) + 0.75);
 }
 #endregion
 

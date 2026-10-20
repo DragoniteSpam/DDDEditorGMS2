@@ -104,6 +104,9 @@ function dialog_create_manager_graphics() {
             
             var image = self.GetSibling("LIST").GetSelectedItem().GUID;
             
+            // we also have sprite_get_using_as_texture, which will get a list
+            // of all of the submeshes that use the texture instead of setting
+            // the "used" flag
             for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
                 var mesh = Game.meshes[i];
                 mesh.flag_unused = false;

@@ -227,3 +227,17 @@ function sprite_sample_buffer_pixel(buffer, x, y, w, h) {
     var colour_r = merge_colour_ds(colour_ur, colour_lr, vertical_lerp);
     return merge_colour_ds(colour_l, colour_r, horizontal_lerp);
 }
+
+function sprite_get_using_as_texture(sprite) {
+    var using = [];
+    for (var i = 0, n = array_length(Game.meshes); i < n; i++) {
+        var mesh = Game.meshes[i];
+        for (var j = 0, n2 = array_length(mesh.submeshes); j < n2; j++) {
+            var submesh = mesh.submeshes[j];
+            if (submesh.tex_base == sprite.GUID || submesh.tex_normal == sprite.GUID || submesh.tex_specular_color == sprite.GUID || submesh.tex_specular_highlight == sprite.GUID) {
+                array_push(using, submesh);
+            }
+        }
+    }
+    return using;
+}
