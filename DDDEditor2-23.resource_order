@@ -302,6 +302,7 @@
     {"name":"dmu_create_event_event_entrypoint_list","order":6,"path":"scripts/dmu_create_event_event_entrypoint_list/dmu_create_event_event_entrypoint_list.yy",},
     {"name":"dmu_create_event_event_entrypoint_remove","order":8,"path":"scripts/dmu_create_event_event_entrypoint_remove/dmu_create_event_event_entrypoint_remove.yy",},
     {"name":"dmu_dialog_event_set_outbound","order":4,"path":"scripts/dmu_dialog_event_set_outbound/dmu_dialog_event_set_outbound.yy",},
+    {"name":"DragoMinicam","order":19,"path":"scripts/DragoMinicam/DragoMinicam.yy",},
     {"name":"draw_animator_overlay","order":7,"path":"scripts/draw_animator_overlay/draw_animator_overlay.yy",},
     {"name":"draw_animator","order":4,"path":"scripts/draw_animator/draw_animator.yy",},
     {"name":"draw_editor_animation","order":6,"path":"scripts/draw_editor_animation/draw_editor_animation.yy",},

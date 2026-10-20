@@ -378,6 +378,7 @@
     {"id":{"name":"dmu_create_event_event_entrypoint_remove","path":"scripts/dmu_create_event_event_entrypoint_remove/dmu_create_event_event_entrypoint_remove.yy",},},
     {"id":{"name":"dmu_dialog_event_save_prefab","path":"scripts/dmu_dialog_event_save_prefab/dmu_dialog_event_save_prefab.yy",},},
     {"id":{"name":"dmu_dialog_event_set_outbound","path":"scripts/dmu_dialog_event_set_outbound/dmu_dialog_event_set_outbound.yy",},},
+    {"id":{"name":"DragoMinicam","path":"scripts/DragoMinicam/DragoMinicam.yy",},},
     {"id":{"name":"draw_active_event","path":"scripts/draw_active_event/draw_active_event.yy",},},
     {"id":{"name":"draw_animator_overlay","path":"scripts/draw_animator_overlay/draw_animator_overlay.yy",},},
     {"id":{"name":"draw_animator","path":"scripts/draw_animator/draw_animator.yy",},},
