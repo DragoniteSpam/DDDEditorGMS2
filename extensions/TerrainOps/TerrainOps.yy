@@ -11,11 +11,6 @@
   "androidsourcedir":"",
   "author":"",
   "classname":"",
-  "ConfigValues":{
-    "Terrain":{
-      "copyToTargets":"-1",
-    },
-  },
   "copyToTargets":-1,
   "description":"",
   "exportToGame":true,

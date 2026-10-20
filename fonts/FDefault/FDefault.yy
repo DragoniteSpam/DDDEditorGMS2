@@ -8,11 +8,6 @@
   "bold":true,
   "canGenerateBitmap":true,
   "charset":1,
-  "ConfigValues":{
-    "Terrain":{
-      "textureGroupId":"{\"name\":\"scribble\",\"path\":\"texturegroups/scribble\"}",
-    },
-  },
   "first":0,
   "fontName":"Open Sans",
   "glyphOperations":0,
