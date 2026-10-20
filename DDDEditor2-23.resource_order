@@ -357,6 +357,7 @@
     {"name":"Group_Control_Misc","order":7,"path":"scripts/Group_Control_Misc/Group_Control_Misc.yy",},
     {"name":"Group_Data_General","order":11,"path":"scripts/Group_Data_General/Group_Data_General.yy",},
     {"name":"Group_Debug","order":38,"path":"scripts/Group_Debug/Group_Debug.yy",},
+    {"name":"Group_Dialogs_Sprite","order":4,"path":"scripts/Group_Dialogs_Sprite/Group_Dialogs_Sprite.yy",},
     {"name":"Group_Dialogs","order":3,"path":"scripts/Group_Dialogs/Group_Dialogs.yy",},
     {"name":"Group_Easing","order":4,"path":"scripts/Group_Easing/Group_Easing.yy",},
     {"name":"Group_Editor_Data","order":5,"path":"scripts/Group_Editor_Data/Group_Editor_Data.yy",},

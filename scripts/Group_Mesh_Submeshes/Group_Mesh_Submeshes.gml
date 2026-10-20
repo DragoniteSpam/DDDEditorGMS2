@@ -50,7 +50,8 @@ function MeshSubmesh(source) constructor {
     
     static SaveAsset = function(directory) {
         var proto = string_replace_all(self.proto_guid, ":", "_");
-        if (self.buffer) buffer_save(self.buffer, directory  + proto + ".vertex");
+        var filename_vbuff = directory  + proto + ".vertex";
+        if (self.buffer) buffer_save(self.buffer, filename_vbuff);
         if (self.reflect_buffer) buffer_save(self.reflect_buffer, directory + proto + ".reflect");
     };
     

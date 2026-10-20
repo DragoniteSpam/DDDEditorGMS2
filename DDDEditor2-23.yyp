@@ -167,7 +167,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2026.100.0.1161",
+    "IDEVersion":"2026.100.0.1178",
   },
   "name":"DDDEditor2-23",
   "resources":[
@@ -437,6 +437,7 @@
     {"id":{"name":"Group_Control_Misc","path":"scripts/Group_Control_Misc/Group_Control_Misc.yy",},},
     {"id":{"name":"Group_Data_General","path":"scripts/Group_Data_General/Group_Data_General.yy",},},
     {"id":{"name":"Group_Debug","path":"scripts/Group_Debug/Group_Debug.yy",},},
+    {"id":{"name":"Group_Dialogs_Sprite","path":"scripts/Group_Dialogs_Sprite/Group_Dialogs_Sprite.yy",},},
     {"id":{"name":"Group_Dialogs","path":"scripts/Group_Dialogs/Group_Dialogs.yy",},},
     {"id":{"name":"Group_Drago","path":"scripts/Group_Drago/Group_Drago.yy",},},
     {"id":{"name":"Group_Easing","path":"scripts/Group_Easing/Group_Easing.yy",},},

@@ -302,7 +302,7 @@ function dialog_create_manager_graphics() {
             .SetTooltip("Restore the image to its uncropped size")
             .SetInteractive(false)
             .SetID("UNCROP"),
-        (new EmuInput(col2, EMU_AUTO, element_width, element_height, "X Frames:", "1", "horizontal frames", 3, E_InputTypes.INT, function() {
+        /*(new EmuInput(col2, EMU_AUTO, element_width, element_height, "X Frames:", "1", "horizontal frames", 3, E_InputTypes.INT, function() {
             var image = self.GetSibling("LIST").GetSelectedItem();
             image.hframes = real(self.value);
             data_image_npc_frames(image);
@@ -348,7 +348,7 @@ function dialog_create_manager_graphics() {
             })
             .SetInteractive(false)
             .SetTooltip("For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.")
-            .SetID("EXCLUDE"),
+            .SetID("EXCLUDE"),*/
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Set Alpha", function() {
             var dialog = new EmuDialog(480, 288, "Set Alpha");
             var col1 = 32;
@@ -374,6 +374,13 @@ function dialog_create_manager_graphics() {
                 self.SetInteractive(data.index != -1);
             })
             .SetID("SET ALPHA"),
+        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Rearrange", function() {
+            sprite_dialog_rearrange(self.GetSibling("LIST").GetSelectedItem());
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetID("REARRANGE"),
         (new EmuRenderSurface(col3, EMU_BASE, 640, 640, function() {
             draw_clear(EMU_COLOR_BACK);
             var image = self.GetSibling("LIST").GetSelectedItem();
