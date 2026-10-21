@@ -267,8 +267,13 @@ function dialog_create_manager_graphics() {
                 } else {
                     var image = data.list[data.index];
                     self.text = "Dimensions: " + string(image.width) + " x " + string(image.height);
+                    
+                    self.text += $" ({max(1, floor(image.width * image.height * 4 / 1024))} kb)";
+                    
                     if (image.width != sprite_get_width(image.picture) || image.height != sprite_get_height(image.picture)) {
                         self.text += " (" + string(sprite_get_width(image.picture)) + " x " + string(sprite_get_height(image.picture)) + ")";
+                        
+                        self.text += $" - {max(1, floor(sprite_get_width(image.picture) * sprite_get_height(image.picture) * 4 / 1024))} kb";
                     }
                 }
             }),
