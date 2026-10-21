@@ -31,6 +31,26 @@ function not_yet_implemented() {
     }
 }
 
+function surface_validate(surface, w, h, disable_depth = true, format = surface_rgba8unorm) {
+    surface_depth_disable(disable_depth);
+    
+    if (!surface_exists(surface)) {
+        surface = surface_create(w, h, format);
+        surface_depth_disable(false);
+        return surface;
+    }
+    
+    if (surface_get_width(surface) != w || surface_get_height(surface) != h) {
+        surface_free(surface);
+        surface = surface_create(w, h, format);
+        surface_depth_disable(false);
+        return surface;
+    }
+    
+    surface_depth_disable(false);
+    return surface;
+}
+
 function null() { }
 
 function game_auto_title() {
