@@ -72,7 +72,6 @@ function sprite_dialog_rearrange(sprite) {
                     if (self.selection) {
                         self.root.CutHole(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
                         self.root.PasteSelection(self.selection.X1(), self.selection.Y1());
-                        // we also need to move any and all vertex UVs
                     }
                     
                     // create a new selection
@@ -87,14 +86,8 @@ function sprite_dialog_rearrange(sprite) {
                 if (self.selection_moving) {
                     var dx = mouse.x - self.selection_snap_mouse_x;
                     var dy = mouse.y - self.selection_snap_mouse_y;
-                    
                     var du = dx / sw;
                     var dv = dy / sh;
-                    
-                    var u1 = self.selection.x1 / sw;
-                    var v1 = self.selection.y1 / sh;
-                    var u2 = self.selection.x2 / sw;
-                    var v2 = self.selection.y2 / sh;
                     
                     self.selection.x1 += dx;
                     self.selection.y1 += dy;
@@ -105,7 +98,13 @@ function sprite_dialog_rearrange(sprite) {
                     
                     for (var i = 0, n = array_length(self.root.using); i < n; i++) {
                         var what = self.root.using[i];
-                        meshops_transform_uvs_translate(what.data, 0, buffer_get_size(what.data), du, dv, u1, v1, u2, v2);
+                        for (var j = 0, n2 = array_length(what.selected_vertices); j < n2; j++) {
+                            var address = what.selected_vertices[j];
+                            var u = buffer_peek(what.data, address + 24, buffer_f32);
+                            var v = buffer_peek(what.data, address + 28, buffer_f32);
+                            buffer_poke(what.data, address + 24, buffer_f32, u + du);
+                            buffer_poke(what.data, address + 28, buffer_f32, v + dv);
+                        }
                         vertex_update_buffer_from_buffer(what.vbuffer, 0, what.data);
                     };
                 // if you are holding the button and creating a selection,
@@ -127,6 +126,24 @@ function sprite_dialog_rearrange(sprite) {
                         if (!self.selection_moving) {
                             self.root.CutSurface(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
                             self.root.CutHole(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
+                            // mark vertices in the selection region
+                            var u1 = self.selection.X1() / sw;
+                            var v1 = self.selection.Y1() / sh;
+                            var u2 = self.selection.X2() / sw;
+                            var v2 = self.selection.Y2() / sh;
+                            
+                            for (var i = 0, n = array_length(self.root.using); i < n; i++) {
+                                var what = self.root.using[i];
+                                array_resize(what.selected_vertices, 0);
+                                for (var j = 0, n2 = buffer_get_size(what.data); j < n2; j += VERTEX_SIZE) {
+                                    var u = buffer_peek(what.data, j + 24, buffer_f32);
+                                    var v = buffer_peek(what.data, j + 28, buffer_f32);
+                                    
+                                    if (point_in_rectangle(u, v, u1, v1, u2, v2)) {
+                                        array_push(what.selected_vertices, j);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -183,6 +200,13 @@ function sprite_dialog_rearrange(sprite) {
             with (self.root) {
                 sprite_delete(self.root.sprite.picture);
                 self.root.sprite.picture = sprite_create_from_surface(self.root.surf, 0, 0, surface_get_width(self.root.surf), surface_get_height(self.root.surf), false, false, 0, 0);
+
+                array_foreach(self.root.using, function(data) {
+                    buffer_delete(data.submesh.buffer);
+                    data.submesh.buffer = data.data;
+                    data.submesh.internalSetVertexBuffer();
+                    data.data = undefined;
+                });
                 emu_dialog_close_auto();
             }
         });
@@ -204,7 +228,8 @@ function sprite_dialog_rearrange(sprite) {
         return {
             submesh,
             data: clone_data,
-            vbuffer: vertex_create_buffer_from_buffer(clone_data, Stuff.graphics.format)
+            vbuffer: vertex_create_buffer_from_buffer(clone_data, Stuff.graphics.format),
+            selected_vertices: []
         };
     });
     
@@ -292,9 +317,10 @@ function sprite_dialog_rearrange(sprite) {
         buffer_delete(self.backup);
         
         array_foreach(using, function(data) {
-            buffer_delete(data.submesh.buffer);
-            data.submesh.buffer = data.data;
-            data.submesh.internalSetVertexBuffer();
+            // this may have already been deleted if you clicked Confirm
+            if (buffer_exists(data.data)) {
+                buffer_delete(data.data);
+            }
             vertex_delete_buffer(data.vbuffer);
         });
     });
