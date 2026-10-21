@@ -393,11 +393,12 @@ function dialog_create_manager_graphics() {
                 draw_sprite(image.picture, 0, 0, 0);
                 var hspacing = image.width / image.hframes;
                 var vspacing = image.height / image.vframes;
+                // if you ever do anything with all this stuff again re-enable this maybe
                 for (var i = 0; i < image.hframes; i++) {
-                    draw_line_colour(hspacing * i, 0, hspacing * i, image.height - 1, c_red, c_red);
+                    //draw_line_colour(hspacing * i, 0, hspacing * i, image.height - 1, c_red, c_red);
                 }
                 for (var i = 0; i < image.vframes; i++) {
-                    draw_line_colour(0, vspacing * i, image.width - 1, vspacing * i, c_red, c_red);
+                    //draw_line_colour(0, vspacing * i, image.width - 1, vspacing * i, c_red, c_red);
                 }
                 draw_rectangle_colour(1, 1, image.width - 1, image.height - 1, c_blue, c_blue, c_blue, c_blue, true);
             }
