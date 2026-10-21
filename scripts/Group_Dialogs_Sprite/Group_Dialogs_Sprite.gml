@@ -235,10 +235,14 @@ function sprite_dialog_rearrange(sprite) {
             .SetID("THICKNESS"),
         new EmuInput(32 + (240 + 32) * 2, EMU_INLINE, 240, 32, "Width:", string(sprite_get_width(sprite.picture)), "in pixels", 4, E_InputTypes.INT, emu_null)
             .SetRealNumberBounds(1, sprite_get_width(sprite.picture))
-            .SetID("WIDTH"),
+            .SetID("WIDTH")
+            .SetNext("HEIGHT")
+            .SetPrevious("HEIGHT"),
         new EmuInput(32 + (240 + 32) * 3, EMU_INLINE, 240, 32, "Height:", string(sprite_get_height(sprite.picture)), "in pixels", 4, E_InputTypes.INT, emu_null)
             .SetRealNumberBounds(1, sprite_get_width(sprite.picture))
-            .SetID("HEIGHT"),
+            .SetID("HEIGHT")
+            .SetNext("WIDTH")
+            .SetPrevious("WIDTH"),
         new EmuText(32 + (240 + 32) * 4, EMU_INLINE, 240, 32, "")
             .SetTextUpdate(function() {
                 var w = self.GetSibling("WIDTH").value;
@@ -252,18 +256,34 @@ function sprite_dialog_rearrange(sprite) {
     ]);
     dialog.AddDefaultConfirmCancelButtons("Confirm", function() {
         // confirm
-        emu_dialog_confirm(self.root, "Would you like to save these changes?", function() {
+        var sw = sprite_get_width(self.root.sprite.picture);
+        var sh = sprite_get_height(self.root.sprite.picture);
+        var grid_w = (self.GetSibling("WIDTH").value != "") ? real(self.GetSibling("WIDTH").value) : sw;
+        var grid_h = (self.GetSibling("HEIGHT").value != "") ? real(self.GetSibling("HEIGHT").value) : sh;
+        var text = "Would you like to save these changes?";
+        
+        if (grid_w < sw || grid_h < sh) {
+            text += "\nThe original sprite will be cropped."
+        }
+        
+        emu_dialog_confirm(self.root, text, function() {
             emu_dialog_close_auto();
             with (self.root) {
+                var sw = sprite_get_width(self.root.sprite.picture);
+                var sh = sprite_get_height(self.root.sprite.picture);
+                var final_w = (self.GetSibling("WIDTH").value != "") ? real(self.GetSibling("WIDTH").value) : sw;
+                var final_h = (self.GetSibling("HEIGHT").value != "") ? real(self.GetSibling("HEIGHT").value) : sh;
                 sprite_delete(self.root.sprite.picture);
-                self.root.sprite.picture = sprite_create_from_surface(self.root.surf, 0, 0, surface_get_width(self.root.surf), surface_get_height(self.root.surf), false, false, 0, 0);
-
-                array_foreach(self.root.using, function(data) {
+                self.root.sprite.picture = sprite_create_from_surface(self.root.surf, 0, 0, final_w, final_h, false, false, 0, 0);
+                
+                for (var i = 0, n = array_length(self.root.using); i < n; i++) {
+                    var data = self.root.using[i];
+                    meshops_transform_uvs(data.data, 0, buffer_get_size(data.data), 0, 0, 1, 1, 0, 0, sw / final_w, sh / final_h);
                     buffer_delete(data.submesh.buffer);
                     data.submesh.buffer = data.data;
                     data.submesh.internalSetVertexBuffer();
                     data.data = undefined;
-                });
+                };
                 emu_dialog_close_auto();
             }
         });
