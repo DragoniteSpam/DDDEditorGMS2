@@ -200,7 +200,7 @@ function sprite_dialog_rearrange(sprite) {
             self.selection_snap_mouse_x = 0;
             self.selection_snap_mouse_y = 0;
         }),
-        new EmuInput(32, EMU_AUTO, 256, 32, "Grid size:", "32", "in pixels", 1, E_InputTypes.INT, emu_null)
+        new EmuInput(32, EMU_AUTO, 240, 32, "Grid size:", "32", "in pixels", 2, E_InputTypes.INT, emu_null)
             .SetID("SNAP"),
         new EmuInput(32 + 256 + 32, EMU_INLINE, 256, 32, "Grid thickness:", "1", "in pixels", 1, E_InputTypes.INT, emu_null)
             .SetID("THICKNESS")
