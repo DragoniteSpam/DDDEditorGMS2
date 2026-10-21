@@ -163,7 +163,14 @@ function sprite_dialog_rearrange(sprite) {
     ]);
     dialog.AddDefaultConfirmCancelButtons("Confirm", function() {
         // confirm
-        emu_dialog_close_auto();
+        emu_dialog_confirm(self.root, "Would you like to save these changes?", function() {
+            emu_dialog_close_auto();
+            with (self.root) {
+                sprite_delete(self.root.sprite.picture);
+                self.root.sprite.picture = sprite_create_from_surface(self.root.surf, 0, 0, surface_get_width(self.root.surf), surface_get_height(self.root.surf), false, false, 0, 0);
+                emu_dialog_close_auto();
+            }
+        });
     }, "Cancel", function() {
         // cancel
         emu_dialog_close_auto();
