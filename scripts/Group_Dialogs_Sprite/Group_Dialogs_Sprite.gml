@@ -5,12 +5,33 @@ function sprite_dialog_rearrange(sprite) {
             // render
             self.minicam.Apply();
             
-            draw_sprite_tiled(spr_emu_checker, 0, 0, 0);
-            
-            draw_sprite(self.root.sprite.picture, 0, 0, 0);
+            static selection_surface = -1;
+            static selection_buffer = buffer_create(100, buffer_fixed, 1);
             
             var sw = sprite_get_width(self.root.sprite.picture);
             var sh = sprite_get_height(self.root.sprite.picture);
+            
+            draw_sprite_tiled(spr_emu_checker, 0, 0, 0);
+            
+            // draw the main surface
+            if (!surface_exists(self.root.surf)) {
+                self.root.surf = surface_create(sw, sh);
+                buffer_set_surface(self.root.backup, self.root.surf, 0);
+            }
+            
+            draw_surface(self.root.surf, 0, 0);
+            
+            // draw the selection surface, if there is one
+            if (self.selection) {
+                if (self.selection.Area() >= 1) {
+                    if (!surface_exists(self.root.selection_surface)) {
+                        self.root.selection_surface = surface_create(self.selection.W(), self.selection.H())
+                        buffer_set_surface(self.root.selection_surface_backup, self.root.selection_surface, 0);
+                    }
+                    
+                    draw_surface(self.root.selection_surface, self.selection.X1(), self.selection.Y1());
+                }
+            }
             
             var grid = self.GetSibling("SNAP").value;
             var thickness = self.GetSibling("THICKNESS").value;
@@ -30,29 +51,27 @@ function sprite_dialog_rearrange(sprite) {
             }
             
             var mouse = self.minicam.GetWorldSpace(mx, my);
-            var selection_moving = false;
             
             if (mouse_check_button_pressed(mb_left)) {
                 if (self.selection) {
-                    if (point_in_rectangle(mouse.x, mouse.y, self.selection.x1, self.selection.y1, self.selection.x2, self.selection.y2)) {
-                        selection_moving = true;
+                    if (self.selection.Contains(mouse.x, mouse.y)) {
+                        self.selection_moving = true;
                     }
                 }
                 
-                if (!selection_moving) {
-                    self.selection = {
-                        x1: mouse.x,
-                        y1: mouse.y,
-                        x2: mouse.x,
-                        y2: mouse.y
-                    }
+                if (!self.selection_moving) {
+                    self.selection = new Rectangle(mouse.x, mouse.y, mouse.x, mouse.y);
                 }
             }
             
             if (mouse_check_button(mb_left)) {
-                if (selection_moving) {
-                    // do the "moving selection" logic here
-                    // and remember to update the selection coordinates by the mouse delta
+                if (self.selection_moving) {
+                    var dx = window_mouse_get_delta_x();
+                    var dy = window_mouse_get_delta_y();
+                    self.selection.x1 += dx;
+                    self.selection.y1 += dy;
+                    self.selection.x2 += dx;
+                    self.selection.y2 += dy;
                 } else if (self.selection) {
                     self.selection.x2 = mouse.x;
                     self.selection.y2 = mouse.y;
@@ -61,17 +80,21 @@ function sprite_dialog_rearrange(sprite) {
             
             if (mouse_check_button_released(mb_left)) {
                 if (self.selection) {
-                    if (abs(self.selection.x1 - self.selection.x2) < 0.5 || abs(self.selection.y1 - self.selection.y2) < 0.5) {
+                    if (self.selection.Area() < 1) {
                         self.selection = undefined;
+                    } else if (!self.selection_moving) {
+                        self.root.CutSurface(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
                     }
                 }
+                
+                self.selection_moving = false;
             }
             
             if (self.selection) {
-                var x1 = min(self.selection.x1, self.selection.x2);
-                var y1 = min(self.selection.y1, self.selection.y2);
-                var x2 = max(self.selection.x1, self.selection.x2);
-                var y2 = max(self.selection.y1, self.selection.y2);
+                var x1 = self.selection.X1();
+                var y1 = self.selection.Y1();
+                var x2 = self.selection.X2();
+                var y2 = self.selection.Y2();
                 
                 draw_set_color(#6666ff);
                 draw_set_alpha(0.5);
@@ -100,6 +123,7 @@ function sprite_dialog_rearrange(sprite) {
             // create
             self.minicam = new DragoMinicam(self.width / 2, self.height / 2, self.width, self.height);
             self.selection = undefined;
+            self.selection_moving = false;
         }),
         new EmuInput(32, EMU_AUTO, 256, 32, "Grid size:", "32", "in pixels", 1, E_InputTypes.INT, emu_null)
             .SetID("SNAP"),
@@ -131,12 +155,57 @@ function sprite_dialog_rearrange(sprite) {
         };
     });
     
-    dialog.cleanup = function(using) {
+    var sw = sprite_get_width(sprite.picture);
+    var sh = sprite_get_height(sprite.picture);
+    
+    dialog.surf = surface_create(sw, sh);
+    surface_set_target(dialog.surf);
+    draw_clear_alpha(c_black, 0);
+    
+        gpu_set_blendmode(bm_add);
+        draw_sprite(sprite.picture, 0, 0, 0);
+        gpu_set_blendmode(bm_normal);
+    
+    surface_reset_target();
+    dialog.backup = buffer_create(sw * sh * 4, buffer_fixed, 1);
+    buffer_get_surface(dialog.backup, dialog.surf, 0);
+    
+    dialog.selection_surface = -1;
+    dialog.selection_surface_backup = buffer_create(100, buffer_fixed, 1);
+    
+    dialog.CutSurface = method(dialog, function(x, y, w, h) {
+        self.selection_surface = surface_validate(self.selection_surface, w, h);
+        
+        surface_set_target(self.selection_surface);
+        draw_clear_alpha(c_black, 0);
+        gpu_set_blendmode(bm_add);
+        
+        draw_surface_part(self.surf, x, y, w, h, 0, 0);
+        
+        gpu_set_blendmode(bm_normal);
+        surface_reset_target();
+        
+        surface_set_target(self.surf);
+        
+        surface_reset_target();
+        
+        buffer_resize(self.selection_surface_backup, w * h * 4);
+        buffer_get_surface(self.selection_surface_backup, self.selection_surface, 0);
+    });
+    
+    dialog.cleanup = method(dialog, function(using) {
+        if (surface_exists(self.surf)) {
+            surface_free(self.surf);
+        }
+        if (surface_exists(self.selection_surface)) {
+            surface_free(self.selection_surface);
+        }
+        buffer_delete(self.backup);
         array_foreach(using, function(data) {
             buffer_delete(data.data);
             vertex_delete_buffer(data.vbuffer);
-        })
-    };
+        });
+    });
     
     return dialog;
 }
