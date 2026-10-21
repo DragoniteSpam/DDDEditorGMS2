@@ -39,14 +39,26 @@ function sprite_dialog_rearrange(sprite) {
             thickness = (thickness != "") ? real(thickness) : 1;
             
             if (grid != "") {
+                var mid_x = power(2, ceil(log2(sw div 2)));
+                var mid_y = power(2, ceil(log2(sh div 2)));
                 grid = real(grid);
                 for (var xx = 0; xx <= sw; xx += grid) {
                     var ww = (xx == 0 || xx > sw - grid) ? (thickness + 2) : thickness;
-                    draw_line_width_color(xx, 0, xx, sh - 1, ww, c_red, c_red);
+                    var c = #330000;
+                    if (xx == mid_x) {
+                        c = c_red;
+                        ww++;
+                    }
+                    draw_line_width_color(xx, 0, xx, sh - 1, ww, c, c);
                 }
                 for (var yy = 0; yy <= sh; yy += grid) {
                     var ww = (yy == 0 || yy > sh - grid) ? (thickness + 2) : thickness;
-                    draw_line_width_color(0, yy, sw - 1, yy, ww, c_red, c_red);
+                    var c = #330000;
+                    if (yy == mid_y) {
+                        c = c_red;
+                        ww++;
+                    }
+                    draw_line_width_color(0, yy, sw - 1, yy, ww, c, c);
                 }
             }
             
