@@ -417,6 +417,7 @@
     {"name":"Group_Selection_Actions","order":3,"path":"scripts/Group_Selection_Actions/Group_Selection_Actions.yy",},
     {"name":"Group_Selection","order":2,"path":"scripts/Group_Selection/Group_Selection.yy",},
     {"name":"Group_Settings","order":5,"path":"scripts/Group_Settings/Group_Settings.yy",},
+    {"name":"Group_Shapes","order":14,"path":"scripts/Group_Shapes/Group_Shapes.yy",},
     {"name":"Group_String","order":14,"path":"scripts/Group_String/Group_String.yy",},
     {"name":"Group_Terrain_Dialogs","order":3,"path":"scripts/Group_Terrain_Dialogs/Group_Terrain_Dialogs.yy",},
     {"name":"Group_Validation","order":18,"path":"scripts/Group_Validation/Group_Validation.yy",},

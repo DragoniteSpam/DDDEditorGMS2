@@ -506,6 +506,7 @@
     {"id":{"name":"Group_Selection_Information","path":"scripts/Group_Selection_Information/Group_Selection_Information.yy",},},
     {"id":{"name":"Group_Selection","path":"scripts/Group_Selection/Group_Selection.yy",},},
     {"id":{"name":"Group_Settings","path":"scripts/Group_Settings/Group_Settings.yy",},},
+    {"id":{"name":"Group_Shapes","path":"scripts/Group_Shapes/Group_Shapes.yy",},},
     {"id":{"name":"Group_Sprites","path":"scripts/Group_Sprites/Group_Sprites.yy",},},
     {"id":{"name":"Group_String","path":"scripts/Group_String/Group_String.yy",},},
     {"id":{"name":"Group_Terrain_Dialogs","path":"scripts/Group_Terrain_Dialogs/Group_Terrain_Dialogs.yy",},},

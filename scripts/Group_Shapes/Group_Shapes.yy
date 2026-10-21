@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Group_Shapes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Shapes",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
