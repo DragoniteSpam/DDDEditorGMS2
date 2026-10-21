@@ -57,7 +57,7 @@ function DragoMinicam(x, y, w, h) constructor {
         
         return {
             x, y
-        }
+        };
     };
     
     static Apply = function() {

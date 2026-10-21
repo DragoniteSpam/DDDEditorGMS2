@@ -1,7 +1,9 @@
 function sprite_dialog_rearrange(sprite) {
-    var dialog = new EmuDialog(960, 840, "Rearrange Sprite");
+    var dw = 1440;
+    var dh = 840;
+    var dialog = new EmuDialog(dw, dh, "Rearrange Sprite");
     dialog.AddContent([
-        new EmuRenderSurface(32, 32, 960 - 64, 840 - 140, function(mx, my) {
+        new EmuRenderSurface(32, 32, dw - 64, dh - 140, function(mx, my) {
             // render
             self.minicam.Apply();
             
@@ -12,6 +14,16 @@ function sprite_dialog_rearrange(sprite) {
             var sh = surface_get_height(self.root.surf);
             
             draw_sprite_tiled(spr_emu_checker, 0, 0, 0);
+            
+            draw_set_color(c_black);
+            draw_set_alpha(0.5);
+            var size = 10_000;
+            draw_rectangle(-size, -size, size, -1, false);
+            draw_rectangle(-size, sh + 1, size, size, false);
+            draw_rectangle(-size, 0, 0, sh, false);
+            draw_rectangle(sw, 0, size, sh, false);
+            draw_set_color(c_white);
+            draw_set_alpha(1);
             
             // draw the main surface
             if (!surface_exists(self.root.surf)) {
@@ -33,32 +45,49 @@ function sprite_dialog_rearrange(sprite) {
                 }
             }
             
-            var grid = self.GetSibling("SNAP").value;
-            var thickness = self.GetSibling("THICKNESS").value;
+            // if the values in the input box are invalid, use the last valid ones
+            static grid = 32;
+            static thickness = 1;
+            static grid_w = 0;
+            static grid_h = 0;
             
-            thickness = (thickness != "") ? real(thickness) : 1;
+            if (self.GetSibling("WIDTH").value != "") {
+                grid_w = real(self.GetSibling("WIDTH").value);
+            }
             
-            if (grid != "") {
-                var mid_x = power(2, ceil(log2(sw div 2)));
-                var mid_y = power(2, ceil(log2(sh div 2)));
-                grid = real(grid);
-                for (var xx = 0; xx <= sw; xx += grid) {
-                    var ww = (xx == 0 || xx > sw - grid) ? (thickness + 2) : thickness;
+            if (self.GetSibling("HEIGHT").value != "") {
+                grid_h = real(self.GetSibling("HEIGHT").value);
+            }
+            
+            if (self.GetSibling("SNAP").value != "") {
+                grid = real(self.GetSibling("SNAP").value);
+            }
+            
+            if (self.GetSibling("THICKNESS").value != "") {
+                thickness = real(self.GetSibling("THICKNESS").value);
+            }
+            
+            if (grid > 0) {
+                var mid_x = power(2, ceil(log2(grid_w div 2)));
+                var mid_y = power(2, ceil(log2(grid_h div 2)));
+                
+                for (var xx = 0; xx <= grid_w; xx += grid) {
+                    var ww = (xx == 0 || xx > grid_w - grid) ? (thickness + 2) : thickness;
                     var c = #330000;
                     if (xx == mid_x) {
                         c = c_red;
                         ww++;
                     }
-                    draw_line_width_color(xx, 0, xx, sh - 1, ww, c, c);
+                    draw_line_width_color(xx, 0, xx, grid_h - 1, ww, c, c);
                 }
-                for (var yy = 0; yy <= sh; yy += grid) {
-                    var ww = (yy == 0 || yy > sh - grid) ? (thickness + 2) : thickness;
+                for (var yy = 0; yy <= grid_h; yy += grid) {
+                    var ww = (yy == 0 || yy > grid_h - grid) ? (thickness + 2) : thickness;
                     var c = #330000;
                     if (yy == mid_y) {
                         c = c_red;
                         ww++;
                     }
-                    draw_line_width_color(0, yy, sw - 1, yy, ww, c, c);
+                    draw_line_width_color(0, yy, grid_w - 1, yy, ww, c, c);
                 }
             }
             
@@ -202,8 +231,24 @@ function sprite_dialog_rearrange(sprite) {
         }),
         new EmuInput(32, EMU_AUTO, 240, 32, "Grid size:", "32", "in pixels", 2, E_InputTypes.INT, emu_null)
             .SetID("SNAP"),
-        new EmuInput(32 + 256 + 32, EMU_INLINE, 256, 32, "Grid thickness:", "1", "in pixels", 1, E_InputTypes.INT, emu_null)
-            .SetID("THICKNESS")
+        new EmuInput(32 + (240 + 32) * 1, EMU_INLINE, 240, 32, "Grid Width:", "1", "in pixels", 1, E_InputTypes.INT, emu_null)
+            .SetID("THICKNESS"),
+        new EmuInput(32 + (240 + 32) * 2, EMU_INLINE, 240, 32, "Width:", string(sprite_get_width(sprite.picture)), "in pixels", 4, E_InputTypes.INT, emu_null)
+            .SetRealNumberBounds(1, sprite_get_width(sprite.picture))
+            .SetID("WIDTH"),
+        new EmuInput(32 + (240 + 32) * 3, EMU_INLINE, 240, 32, "Height:", string(sprite_get_height(sprite.picture)), "in pixels", 4, E_InputTypes.INT, emu_null)
+            .SetRealNumberBounds(1, sprite_get_width(sprite.picture))
+            .SetID("HEIGHT"),
+        new EmuText(32 + (240 + 32) * 4, EMU_INLINE, 240, 32, "")
+            .SetTextUpdate(function() {
+                var w = self.GetSibling("WIDTH").value;
+                var h = self.GetSibling("HEIGHT").value;
+                static last_valid_value = "";
+                if (w != "" && h != "") {
+                    last_valid_value = $"Size: {floor(real(w) * real(h) * 4 / 1024)} kb";
+                }
+                return last_valid_value;
+            })
     ]);
     dialog.AddDefaultConfirmCancelButtons("Confirm", function() {
         // confirm
