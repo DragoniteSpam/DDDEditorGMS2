@@ -378,7 +378,8 @@ function dialog_create_manager_graphics() {
             })
             .SetID("SET ALPHA"),
         (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Rearrange", function() {
-            sprite_dialog_rearrange(self.GetSibling("LIST").GetSelectedItem());
+            // dont @ me
+            (sprite_dialog_rearrange(self.GetSibling("LIST").GetSelectedItem())).root = self.root;
         }))
             .SetRefresh(function(data) {
                 self.SetInteractive(data.index != -1);

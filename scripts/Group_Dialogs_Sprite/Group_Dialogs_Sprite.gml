@@ -275,6 +275,8 @@ function sprite_dialog_rearrange(sprite) {
                 var final_h = (self.GetSibling("HEIGHT").value != "") ? real(self.GetSibling("HEIGHT").value) : sh;
                 sprite_delete(self.root.sprite.picture);
                 self.root.sprite.picture = sprite_create_from_surface(self.root.surf, 0, 0, final_w, final_h, false, false, 0, 0);
+                self.root.sprite.width = final_w;
+                self.root.sprite.height = final_h;
                 
                 for (var i = 0, n = array_length(self.root.using); i < n; i++) {
                     var data = self.root.using[i];
@@ -285,6 +287,10 @@ function sprite_dialog_rearrange(sprite) {
                     data.data = undefined;
                 };
                 emu_dialog_close_auto();
+                // rolls eyes
+                with (self.root.root) {
+                    self.Refresh({ list: self.graphics_list, index: self.GetChild("LIST").GetSelection() });
+                }
             }
         });
     }, "Cancel", function() {
