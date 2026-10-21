@@ -53,6 +53,7 @@ function sprite_dialog_rearrange(sprite) {
             var mouse = self.minicam.GetWorldSpace(mx, my);
             
             if (mouse_check_button_pressed(mb_left)) {
+                // if you click on the existing selection, start moving it
                 if (self.selection) {
                     if (self.selection.Contains(mouse.x, mouse.y)) {
                         self.selection_moving = true;
@@ -60,18 +61,32 @@ function sprite_dialog_rearrange(sprite) {
                 }
                 
                 if (!self.selection_moving) {
+                    // if there is an existing selection but you don't click on
+                    // it, cut a hole and commit the selection
+                    if (self.selection) {
+                        self.root.CutHole(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
+                        self.root.PasteSelection(self.selection.X1(), self.selection.Y1());
+                        // we also need to move any and all vertex UVs
+                    }
+                    
+                    // create a new selection
                     self.selection = new Rectangle(mouse.x, mouse.y, mouse.x, mouse.y);
+                    self.root.EraseSelection();
                 }
             }
             
             if (mouse_check_button(mb_left)) {
+                // if you are holding the button and moving a selection, apply
+                // the mouse delta to the selection rectangle
                 if (self.selection_moving) {
-                    var dx = window_mouse_get_delta_x();
-                    var dy = window_mouse_get_delta_y();
+                    var dx = window_mouse_get_delta_x() * self.minicam.zoom;
+                    var dy = window_mouse_get_delta_y() * self.minicam.zoom;
                     self.selection.x1 += dx;
                     self.selection.y1 += dy;
                     self.selection.x2 += dx;
                     self.selection.y2 += dy;
+                // if you are holding the button and creating a selection,
+                // resize the selection
                 } else if (self.selection) {
                     self.selection.x2 = mouse.x;
                     self.selection.y2 = mouse.y;
@@ -79,11 +94,17 @@ function sprite_dialog_rearrange(sprite) {
             }
             
             if (mouse_check_button_released(mb_left)) {
+                // if you release the button and there is a selection, if the
+                // selection has zero surface area, unselect
                 if (self.selection) {
                     if (self.selection.Area() < 1) {
                         self.selection = undefined;
-                    } else if (!self.selection_moving) {
-                        self.root.CutSurface(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
+                    } else {
+                        // otherwise, copy the selection region and cut a hole
+                        if (!self.selection_moving) {
+                            self.root.CutSurface(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
+                            self.root.CutHole(self.selection.X1(), self.selection.Y1(), self.selection.W(), self.selection.H());
+                        }
                     }
                 }
                 
@@ -191,6 +212,42 @@ function sprite_dialog_rearrange(sprite) {
         
         buffer_resize(self.selection_surface_backup, w * h * 4);
         buffer_get_surface(self.selection_surface_backup, self.selection_surface, 0);
+    });
+    
+    dialog.CutHole = method(dialog, function(x, y, w, h) {
+        surface_set_target(self.surf);
+        gpu_set_blendmode(bm_subtract);
+        
+        draw_set_color(c_white);
+        draw_rectangle(x, y, x + w - 1, y + h - 1, false);
+        
+        gpu_set_blendmode(bm_normal);
+        surface_reset_target();
+        
+        buffer_get_surface(self.backup, self.surf, 0);
+    });
+    
+    dialog.PasteSelection = method(dialog, function(x, y) {
+        if (surface_exists(self.selection_surface)) {
+            surface_set_target(self.surf);
+            gpu_set_blendmode(bm_add);
+            
+            draw_surface(self.selection_surface, x, y);
+            
+            gpu_set_blendmode(bm_normal);
+            surface_reset_target();
+            
+            buffer_get_surface(self.backup, self.surf, 0);
+        }
+    });
+    
+    dialog.EraseSelection = method(dialog, function() {
+        if (surface_exists(self.selection_surface)) {
+            surface_set_target(self.selection_surface);
+            draw_clear_alpha(c_black, 0);
+            surface_reset_target();
+            buffer_get_surface(self.selection_surface_backup, self.selection_surface, 0);
+        }
     });
     
     dialog.cleanup = method(dialog, function(using) {
