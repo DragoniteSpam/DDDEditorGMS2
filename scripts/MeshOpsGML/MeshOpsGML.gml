@@ -59,6 +59,11 @@ function meshops_transform_uvs(buffer, offset, length, start1x, start1y, start2x
     __meshops_transform_uvs(buffer_get_address(buffer), offset / 4, length / 4);
 }
 
+function meshops_transform_uvs_translate(buffer, offset, length, dx, dy, x1, y1, x2, y2) {
+    __meshops_transform_set_uvs_translate(dx, dy, x1, y1, x2, y2);
+    __meshops_transform_uvs_translate(buffer_get_address(buffer), offset / 4, length / 4);
+}
+
 function meshops_set_normals_smooth_multi(buffers, threshold) {
     __meshops_set_normals_smooth_multi_prepare();
     for (var i = 0, n = array_length(buffers); i < n; i++) {

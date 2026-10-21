@@ -8,8 +8,8 @@ function sprite_dialog_rearrange(sprite) {
             static selection_surface = -1;
             static selection_buffer = buffer_create(100, buffer_fixed, 1);
             
-            var sw = sprite_get_width(self.root.sprite.picture);
-            var sh = sprite_get_height(self.root.sprite.picture);
+            var sw = surface_get_width(self.root.surf);
+            var sh = surface_get_height(self.root.surf);
             
             draw_sprite_tiled(spr_emu_checker, 0, 0, 0);
             
@@ -87,12 +87,27 @@ function sprite_dialog_rearrange(sprite) {
                 if (self.selection_moving) {
                     var dx = mouse.x - self.selection_snap_mouse_x;
                     var dy = mouse.y - self.selection_snap_mouse_y;
+                    
+                    var du = dx / sw;
+                    var dv = dy / sh;
+                    
+                    var u1 = self.selection.x1 / sw;
+                    var v1 = self.selection.y1 / sh;
+                    var u2 = self.selection.x2 / sw;
+                    var v2 = self.selection.y2 / sh;
+                    
                     self.selection.x1 += dx;
                     self.selection.y1 += dy;
                     self.selection.x2 += dx;
                     self.selection.y2 += dy;
                     self.selection_snap_mouse_x += dx;
                     self.selection_snap_mouse_y += dy;
+                    
+                    for (var i = 0, n = array_length(self.root.using); i < n; i++) {
+                        var what = self.root.using[i];
+                        meshops_transform_uvs_translate(what.data, 0, buffer_get_size(what.data), du, dv, u1, v1, u2, v2);
+                        vertex_update_buffer_from_buffer(what.vbuffer, 0, what.data);
+                    };
                 // if you are holding the button and creating a selection,
                 // resize the selection
                 } else if (self.selection) {
@@ -275,8 +290,11 @@ function sprite_dialog_rearrange(sprite) {
             surface_free(self.selection_surface);
         }
         buffer_delete(self.backup);
+        
         array_foreach(using, function(data) {
-            buffer_delete(data.data);
+            buffer_delete(data.submesh.buffer);
+            data.submesh.buffer = data.data;
+            data.submesh.internalSetVertexBuffer();
             vertex_delete_buffer(data.vbuffer);
         });
     });
