@@ -51,12 +51,18 @@ function sprite_dialog_rearrange(sprite) {
             }
             
             var mouse = self.minicam.GetWorldSpace(mx, my);
+            if (grid > 0) {
+                mouse.x = round(mouse.x / grid) * grid;
+                mouse.y = round(mouse.y / grid) * grid;
+            }
             
             if (mouse_check_button_pressed(mb_left)) {
                 // if you click on the existing selection, start moving it
                 if (self.selection) {
                     if (self.selection.Contains(mouse.x, mouse.y)) {
                         self.selection_moving = true;
+                        self.selection_snap_mouse_x = mouse.x;
+                        self.selection_snap_mouse_y = mouse.y;
                     }
                 }
                 
@@ -79,12 +85,14 @@ function sprite_dialog_rearrange(sprite) {
                 // if you are holding the button and moving a selection, apply
                 // the mouse delta to the selection rectangle
                 if (self.selection_moving) {
-                    var dx = window_mouse_get_delta_x() * self.minicam.zoom;
-                    var dy = window_mouse_get_delta_y() * self.minicam.zoom;
+                    var dx = mouse.x - self.selection_snap_mouse_x;
+                    var dy = mouse.y - self.selection_snap_mouse_y;
                     self.selection.x1 += dx;
                     self.selection.y1 += dy;
                     self.selection.x2 += dx;
                     self.selection.y2 += dy;
+                    self.selection_snap_mouse_x += dx;
+                    self.selection_snap_mouse_y += dy;
                 // if you are holding the button and creating a selection,
                 // resize the selection
                 } else if (self.selection) {
@@ -145,6 +153,8 @@ function sprite_dialog_rearrange(sprite) {
             self.minicam = new DragoMinicam(self.width / 2, self.height / 2, self.width, self.height);
             self.selection = undefined;
             self.selection_moving = false;
+            self.selection_snap_mouse_x = 0;
+            self.selection_snap_mouse_y = 0;
         }),
         new EmuInput(32, EMU_AUTO, 256, 32, "Grid size:", "32", "in pixels", 1, E_InputTypes.INT, emu_null)
             .SetID("SNAP"),
