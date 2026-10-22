@@ -303,6 +303,7 @@ function sprite_dialog_rearrange(sprite) {
         self.Close();
     });
     
+    dialog.close_button = false;
     dialog.y = 0;
     dialog.sprite = sprite;
     var all_using_submeshes = sprite_get_using_as_texture(sprite);
