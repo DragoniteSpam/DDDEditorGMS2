@@ -535,7 +535,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         if (!Settings.terrain.light_shadows) return;
         
         var quality = Settings.terrain.light_shadows_quality;
-        self.depth_surface = surface_rebuild(self.depth_surface, quality, quality);
+        self.depth_surface = surface_validate(self.depth_surface, quality, quality);
         
         surface_set_target(self.depth_surface);
         draw_clear_alpha(c_black, 1);

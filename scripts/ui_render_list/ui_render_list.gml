@@ -34,7 +34,7 @@ function ui_render_list(list, xx, yy) {
     // Drawing to the surface instead of the screen directly - everything drawn needs
     // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
     #region list drawing
-    list.surface = surface_rebuild(list.surface, ww, hh);
+    list.surface = surface_validate(list.surface, ww, hh);
     
     surface_set_target(list.surface);
     draw_clear_alpha(list.interactive ? c_white : c_ltgray, 1);

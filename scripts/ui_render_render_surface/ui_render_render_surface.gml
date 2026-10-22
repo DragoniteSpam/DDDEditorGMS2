@@ -13,7 +13,7 @@ function ui_render_render_surface(argument0, argument1, argument2) {
     var y2 = y1 + surface.height;
 
     if (!surface_exists(surface.surface)) {
-        // you need the recreate function here, so no surface_rebuild
+        // you need the recreate function here, so no surface_validate
         surface.surface = surface_create(surface.width, surface.height);
         surface.script_recreate(surface);
     }

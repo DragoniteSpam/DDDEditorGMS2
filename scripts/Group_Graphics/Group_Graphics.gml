@@ -55,13 +55,23 @@ function draw_tooltip(x, y, text) {
     draw_set_valign(valign);
     draw_set_font(font);
 }
-function surface_rebuild(original, w, h) {
-    if (!surface_exists(original)) return surface_create(w, h);
+
+function surface_validate(surface, w, h, disable_depth = true, format = surface_rgba8unorm) {
+    surface_depth_disable(disable_depth);
     
-    if (surface_get_width(original) != w || surface_get_height(original) != h) {
-        surface_free(original);
-        return surface_create(w, h);
+    if (!surface_exists(surface)) {
+        surface = surface_create(w, h, format);
+        surface_depth_disable(false);
+        return surface;
     }
     
-    return original;
+    if (surface_get_width(surface) != w || surface_get_height(surface) != h) {
+        surface_free(surface);
+        surface = surface_create(w, h, format);
+        surface_depth_disable(false);
+        return surface;
+    }
+    
+    surface_depth_disable(false);
+    return surface;
 }

@@ -10,7 +10,7 @@ function ui_render_image_button(button, xx, yy) {
     // Drawing to the surface instead of the screen directly - everything drawn needs
     // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
     #region input drawing
-    button.surface = surface_rebuild(button.surface, button.width, button.height);
+    button.surface = surface_validate(button.surface, button.width, button.height);
     
     surface_set_target(button.surface);
     draw_clear_alpha(button.interactive ? c_white : c_ltgray, 1);

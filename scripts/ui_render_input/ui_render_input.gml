@@ -45,7 +45,7 @@ function ui_render_input(input, xx, yy) {
     // Drawing to the surface instead of the screen directly - everything drawn needs
     // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
     #region input drawing
-    input.surface = surface_rebuild(input.surface, ww, hh);
+    input.surface = surface_validate(input.surface, ww, hh);
     
     surface_set_target(input.surface);
     draw_clear_alpha(input.interactive ? input.back_color : c_ltgray, 1);
