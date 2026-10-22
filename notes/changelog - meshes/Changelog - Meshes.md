@@ -1,5 +1,8 @@
 Another changelog.
 
+ - Added a "Rearrange Sprite" tool in the texture manager
+ - Added pan and zoom controls to the other texture displays
+
 # Changes in 2026.1
 
  - Updates the version of assimp used for conversion of different formats, as this may have been the source of a few issues
