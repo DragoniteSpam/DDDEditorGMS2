@@ -37,9 +37,9 @@ function DragoMinicam(x, y, w, h) constructor {
         }
         
         if (mouse_wheel_up()) {
-            self.zoom_target = max(0.25, self.zoom_target - zoom_step);
+            self.zoom_target = max(0.125, self.zoom_target - zoom_step);
         } else if (mouse_wheel_down()) {
-            self.zoom_target = min(5, self.zoom_target + zoom_step);
+            self.zoom_target = min(10, self.zoom_target + zoom_step);
         }
         
         if (self.locked) {
