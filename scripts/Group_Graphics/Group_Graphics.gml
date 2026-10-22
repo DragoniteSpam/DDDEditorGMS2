@@ -75,3 +75,20 @@ function surface_validate(surface, w, h, disable_depth = true, format = surface_
     surface_depth_disable(false);
     return surface;
 }
+
+function draw_cutout(x1, y1, x2, y2, color, alpha) {
+    static size = 10_000;
+    
+    var c = draw_get_color();
+    var a = draw_get_alpha();
+    draw_set_color(color);
+    draw_set_alpha(alpha);
+    
+    draw_rectangle(-size, -size, size, -1, false);
+    draw_rectangle(-size, y2 + 1, size, size, false);
+    draw_rectangle(-size, y1, x1, y2, false);
+    draw_rectangle(x2, y1, size, y2, false);
+    
+    draw_set_color(c);
+    draw_set_alpha(a);
+}

@@ -15,15 +15,7 @@ function sprite_dialog_rearrange(sprite) {
             
             draw_sprite_tiled(spr_emu_checker, 0, 0, 0);
             
-            draw_set_color(c_black);
-            draw_set_alpha(0.5);
-            var size = 10_000;
-            draw_rectangle(-size, -size, size, -1, false);
-            draw_rectangle(-size, sh + 1, size, size, false);
-            draw_rectangle(-size, 0, 0, sh, false);
-            draw_rectangle(sw, 0, size, sh, false);
-            draw_set_color(c_white);
-            draw_set_alpha(1);
+            draw_cutout(0, 0, sw, sh, c_black, 0.5);
             
             // draw the main surface
             if (!surface_exists(self.root.surf)) {
