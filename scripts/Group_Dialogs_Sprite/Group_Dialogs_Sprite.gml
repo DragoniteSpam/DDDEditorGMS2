@@ -192,6 +192,13 @@ function sprite_dialog_rearrange(sprite) {
                 self.selection_moving = false;
             }
             
+            if (keyboard_check(vk_escape)) {
+                if (self.selection) {
+                    self.root.PasteSelection(self.selection.X1(), self.selection.Y1());
+                    self.selection = undefined;
+                }
+            }
+            
             if (self.selection) {
                 var x1 = self.selection.X1();
                 var y1 = self.selection.Y1();
