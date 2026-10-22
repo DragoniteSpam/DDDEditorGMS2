@@ -138,21 +138,30 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
     
     dg.AddContent([
         (new EmuRenderSurface(tabs.x + tabs.width + 32, EMU_BASE, 480, 480, function() {
-            self.drawCheckerbox();
+            // draw
+            self.minicam.Apply();
+            
+            draw_sprite_tiled(spr_emu_checker, 0, 0, 0);
+            
             var tex = self.GetSibling("TAB GROUP").GetActiveTab().GetChild("TEX LIST").GetSelectedItem();
             if (!tex) return;
             
-            var shortest_dimension = min(1, self.width / sprite_get_width(tex.picture), self.height / sprite_get_height(tex.picture));
+            var sw = sprite_get_width(tex.picture);
+            var sh = sprite_get_height(tex.picture);
+            
+            draw_cutout(0, 0, sw, sh, c_black, 0.5);
+            
+            var shortest_dimension = min(1, self.width / sw, self.height / sh);
             draw_sprite_ext(tex.picture, 0, 0, 0, shortest_dimension, shortest_dimension, 0, c_white, 1);
             
             if (self.GetSibling("VIEW UVS").value) {
-                var ww = shortest_dimension * sprite_get_width(tex.picture);
-                var hh = shortest_dimension * sprite_get_height(tex.picture);
+                var ww = shortest_dimension * sw;
+                var hh = shortest_dimension * sh;
                 
                 var highlighted = Stuff.mesh.GetAllHighlightedSubmeshes();
                 shader_set(shd_texture_mapping);
                 matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, ww, hh, shortest_dimension));
-                wireframe_enable(1, 10000, c_aqua, 1);
+                wireframe_enable(1, 10000, c_aqua, 2);
                 for (var i = 0, n = array_length(highlighted); i < n; i++) {
                     vertex_submit(highlighted[i].vbuffer, pr_trianglelist, -1);
                 }
@@ -160,7 +169,13 @@ function dialog_create_mesh_material_settings(mesh_list, selection) {
                 matrix_set(matrix_world, matrix_build_identity());
                 shader_reset();
             }
-        }, emu_null))
+        }, function(mx, my) {
+            // step
+            self.minicam.Update(mx, my, 0, 0, self.width - 1, self.height - 1);
+        }, function() {
+            // create
+            self.minicam = new DragoMinicam(self.width / 2, self.height / 2, self.width, self.height);
+        }))
             .SetEnabled(false)
             .SetID("PREVIEW"),
         (new EmuCheckbox(tabs.x + tabs.width + 32, EMU_AUTO, ew / 2, eh, "View UVs?", true, emu_null))

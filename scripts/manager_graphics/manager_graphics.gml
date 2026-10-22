@@ -391,10 +391,12 @@ function dialog_create_manager_graphics() {
             })
             .SetID("REARRANGE"),
         (new EmuRenderSurface(col3, EMU_BASE, 640, 640, function() {
+            self.minicam.Apply();
+            
             draw_clear(EMU_COLOR_BACK);
             var image = self.GetSibling("LIST").GetSelectedItem();
             if (image) {
-                self.drawCheckerbox();
+                draw_sprite_tiled(spr_emu_checker, 0, 0, 0);
                 draw_sprite(image.picture, 0, 0, 0);
                 var hspacing = image.width / image.hframes;
                 var vspacing = image.height / image.vframes;
@@ -405,11 +407,16 @@ function dialog_create_manager_graphics() {
                 for (var i = 0; i < image.vframes; i++) {
                     //draw_line_colour(0, vspacing * i, image.width - 1, vspacing * i, c_red, c_red);
                 }
-                draw_rectangle_colour(1, 1, image.width - 1, image.height - 1, c_blue, c_blue, c_blue, c_blue, true);
+                //draw_rectangle_colour(1, 1, image.width - 1, image.height - 1, c_blue, c_blue, c_blue, c_blue, true);
+                
+                draw_cutout(0, 0, image.width, image.height, c_black, 0.5);
             }
         }, function(mx, my) {
-                
+            // step
+            self.minicam.Update(mx, my, 0, 0, self.width - 1, self.height - 1);
         }, function() {
+            // create
+            self.minicam = new DragoMinicam(self.width / 2, self.height / 2, self.width, self.height);
         }))
             .SetID("PREVIEW"),
         new EmuFileDropperListener(function(files) {
