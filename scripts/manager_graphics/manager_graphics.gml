@@ -191,7 +191,7 @@ function dialog_create_manager_graphics() {
             .SetInteractive(false)
             .SetTooltip("Replace the image")
             .SetID("CHANGE"),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Remove Background Color...", function() {
+        (new EmuButton(col2, EMU_AUTO, element_width / 2, element_height, "Remove BG Color", function() {
             var image = self.GetSibling("LIST").GetSelectedItem();
             image.picture = sprite_remove_transparent_color(image.picture);
         }))
@@ -201,6 +201,16 @@ function dialog_create_manager_graphics() {
             .SetInteractive(false)
             .SetTooltip("Remove the transparent background color from the image, that being defined as the color of the pixel in the bottom-right corner")
             .SetID("BACKGROUND"),
+        (new EmuButton(col2 + element_width / 2, EMU_INLINE, element_width / 2, element_height, "Set BG Color", function() {
+            var image = self.GetSibling("LIST").GetSelectedItem();
+            image.picture = sprite_set_transparent_color(image.picture);
+        }))
+            .SetRefresh(function(data) {
+                self.SetInteractive(data.index != -1);
+            })
+            .SetInteractive(false)
+            .SetTooltip("Set the color of all transparent pixels in the image.")
+            .SetID("SET BACKGROUND"),
         (new EmuInput(col2, EMU_AUTO, element_width, element_height, "Resize:", "1.0", "proportionally", 4, E_InputTypes.REAL, function() {
             var scale = real(self.value);
             var image = self.GetSibling("LIST").GetSelectedItem();
