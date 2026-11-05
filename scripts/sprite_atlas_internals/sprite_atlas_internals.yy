@@ -6,7 +6,7 @@
   "name":"sprite_atlas_internals",
   "parent":{
     "name":"SpriteAtlas",
-    "path":"folders/Extensions/SpriteAtlas.yy",
+    "path":"folders/SpriteAtlas.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

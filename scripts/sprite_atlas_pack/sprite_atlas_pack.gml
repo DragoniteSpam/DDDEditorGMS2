@@ -1,94 +1,116 @@
-/// Based on: https://jsfiddle.net/cey0nfux/
-/// Explanation: https://gamedev.net/forums/topic/683912-sprite-packing-algorithm-explained-with-example-code/5320030/
-function sprite_atlas_pack(sprite_array, padding, stride = 4, force_po2 = false) {
-    enum SpritePackData {
-        X = 0,
-        Y = 4,
-        W = 8,
-        H = 12,
-        SIZE = 16,
-    };
+function sprite_atlas_pack(sprites, padding, stride = 4, force_power_of_two = true) {
+    var sprite_count = array_length(sprites);
+    var sprite_info = array_create(sprite_count);
     
-    // each sprite is represented by four 4-byte floats
-    var data_buffer = buffer_create(array_length(sprite_array) * 4 * 4, buffer_grow, 4);
-    var sprite_lookup = __spal__setup(data_buffer, sprite_array, padding);
-    var n = array_length(sprite_lookup);
+    var area = 0;
+    var max_sprite_width = 0;
     
-    var maxx = 0;
-    var maxy = 0;
-    var nextx = 0;
-    var nexty = 0;
-    
-    static place = function(data_buffer, index, maxx, maxy, stride) {
-        var sprite_count = buffer_get_size(data_buffer) / 4 / 4;
-        var xx = 0;
-        repeat (maxx / stride) {
-            var yy = 0;
-            repeat (maxy / stride) {
-                var is_free = true;
-                
-                var owplusstep = buffer_peek(data_buffer, index + SpritePackData.W, buffer_s32) + stride;
-                var ohplusstep = buffer_peek(data_buffer, index + SpritePackData.H, buffer_s32) + stride;
-                var i = 0;
-                repeat (sprite_count) {
-                    if (i != index) {
-                        var tx = buffer_peek(data_buffer, i + SpritePackData.X, buffer_s32);
-                        var ty = buffer_peek(data_buffer, i + SpritePackData.Y, buffer_s32);
-                        var tw = buffer_peek(data_buffer, i + SpritePackData.W, buffer_s32);
-                        var th = buffer_peek(data_buffer, i + SpritePackData.H, buffer_s32);
-                        if (!((tx + tw + stride < xx) || (tx > xx + owplusstep) || (ty + th + stride < yy) || (ty > yy + ohplusstep))) {
-                            is_free = false;
-                            break;
-                        }
-                    }
-                    i += 16;
-                }
-                
-                if (is_free) {
-                    buffer_poke(data_buffer, index + SpritePackData.X, buffer_s32, xx);
-                    buffer_poke(data_buffer, index + SpritePackData.Y, buffer_s32, yy);
-                    return true;
-                }
-                yy += stride;
-            }
-            xx += stride;
+    // this array may grow if some sprites have more than one frame
+    for (var i = 0; i < sprite_count; i++) {
+        var sprite = sprites[i];
+        var presented_width = sprite_get_width(sprite) + 2 * padding;
+        var presented_height = sprite_get_height(sprite) + 2 * padding;
+        max_sprite_width = max(max_sprite_width, presented_width);
+        var frames = sprite_get_number(sprite);
+        area += frames * presented_width * presented_height;
+        for (var j = 0; j < frames; j++) {
+            sprite_info[i] = {
+                sprite: sprite,
+                index: j,
+                x: 0,
+                y: 0,
+                w: presented_width,
+                h: presented_height
+            };
         }
-        return false;
-    };
+    }
     
-    var i = 0;
-    repeat (n) {
-        var addr_x = i + SpritePackData.X;
-        var addr_y = i + SpritePackData.Y;
-        var ww = buffer_peek(data_buffer, i + SpritePackData.W, buffer_s32);
-        var hh = buffer_peek(data_buffer, i + SpritePackData.H, buffer_s32);
-        if (maxx == 0) {
-            buffer_poke(data_buffer, addr_x, buffer_s32, 0);
-            buffer_poke(data_buffer, addr_y, buffer_s32, 0);
-            nextx += ww + 4;
-        } else {
-            if (!place(data_buffer, i, maxx, maxy, stride)) {
-                if (nextx + ww > maxy) {
-                    nexty = maxy;
-                    nextx = 0;
-                }
-                buffer_poke(data_buffer, addr_x, buffer_s32, nextx);
-                buffer_poke(data_buffer, addr_y, buffer_s32, nexty);
-                nextx += ww + stride;
-            }
-        }
+    array_sort(sprite_info, function(a, b) {
+        return sign(b.h - a.h);
+    });
+    
+    var max_width = max(sqrt(area), max_sprite_width);
+    if (force_power_of_two) {
+        max_width = power(2, ceil(log2(max_width)));
+    }
+    var max_height = 0;
+    
+    for (var i = 0; i < sprite_count; i++) {
+        var sprite = sprite_info[i];
+        var sprite_inst = instance_create_depth(0, 0, 0, obj_sprite_atlas_placeholder, {
+            image_xscale: sprite.w,
+            image_yscale: sprite.h
+        });
         
-        maxx = max(maxx, buffer_peek(data_buffer, addr_x, buffer_s32) + ww + stride);
-        maxy = max(maxy, buffer_peek(data_buffer, addr_y, buffer_s32) + hh + stride);
-        i += 16;
+        var limit = max_width - sprite.w;
+        var yy = 0;
+        while (true) {
+            var placed = false;
+            for (var xx = 0; xx <= limit; xx += stride) {
+                with (sprite_inst) {
+                    if (!place_meeting(xx, yy, obj_sprite_atlas_placeholder)) {
+                        sprite.x = xx;
+                        sprite.y = yy;
+                        max_height = max(max_height, sprite.y + sprite.h);
+                        sprite_inst.x = xx;
+                        sprite_inst.y = yy;
+                        placed = true;
+                    }
+                }
+                if (placed) {
+                    break;
+                }
+            }
+            
+            // i really wish gm had multi-level break
+            if (placed) {
+                break;
+            }
+            
+            yy += stride;
+        }
     }
     
-    if (force_po2) {
-        maxx = 1 << ceil(log2(maxx));
-        maxy = 1 << ceil(log2(maxy));
+    instance_destroy(obj_sprite_atlas_placeholder);
+    
+    var base_height = max_height;
+    if (force_power_of_two) {
+        max_height = power(2, ceil(log2(max_height)));
+    }
+    var atlas = surface_create(max_width, max_height);
+    
+    surface_set_target(atlas);
+    draw_clear_alpha(c_black, 0);
+    
+    for (var i = 0; i < sprite_count; i++) {
+        var sprite = sprite_info[i];
+        
+        var xx = sprite.x;
+        var yy = sprite.y;
+        
+        var spr = sprite.sprite;
+        var sub = sprite.index;
+        var w = sprite_get_width(spr);
+        var h = sprite_get_height(spr);
+        draw_sprite(spr, sub, xx + padding, yy + padding);
+        
+        if (padding > 0) {
+            draw_sprite_general(spr, sub, 0, 0, w, 1, xx + padding, yy, 1, padding, 0, c_white, c_white, c_white, c_white, 1);
+            draw_sprite_general(spr, sub, 0, 0, 1, h, xx, yy + padding, padding, 1, 0, c_white, c_white, c_white, c_white, 1);
+            draw_sprite_general(spr, sub, 0, h - 1, w, 1, xx + padding, yy + padding + h, 1, padding, 0, c_white, c_white, c_white, c_white, 1);
+            draw_sprite_general(spr, sub, w - 1, 0, 1, h, xx + padding + w, yy + padding, padding, 1, 0, c_white, c_white, c_white, c_white, 1);
+        }
     }
     
-    var results = __spal__cleanup(data_buffer, sprite_lookup, padding, maxx, maxy);
-    buffer_delete(data_buffer);
-    return results;
+    surface_reset_target();
+    
+    var sprite = sprite_create_from_surface(atlas, 0, 0, max_width, max_height, false, false, 0, 0);
+    surface_free(atlas);
+    
+    return {
+        base_width: max_width,
+        base_height: base_height,
+        uvs: sprite_info,
+        atlas: sprite
+    }
 }
