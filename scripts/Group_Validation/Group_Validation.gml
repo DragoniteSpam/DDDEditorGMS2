@@ -39,29 +39,6 @@ function validate_string(str) {
     return true;
 }
 
-function validate_string_event_name(str, input) {
-    static other_valid_characters = ["_", "+", "$"];
-    
-    var str_len = string_length(str);
-    if (str_len == 0) return false;
-    
-    var str_len_valid = string_length(string_lettersdigits(str));
-    for (var i = 0, n = array_length(other_valid_characters); i < n; i++) {
-        str_len_valid += string_count(other_valid_characters[i], str);
-    }
-    
-    if (str_len_valid != str_len) return false;
-    
-    if (input) {
-        var node = input.root.node;
-        if (node.event.name_map[$ str] && node.event.name_map[$ str] != node) {
-            return false;
-        }
-    }
-    
-    return true;
-}
-
 function validate_string_internal_name(str) {
     static other_valid_characters = ["_"];
     

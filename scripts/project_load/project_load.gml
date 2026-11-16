@@ -165,26 +165,6 @@ function project_load(id) {
         language_refresh_ui();
     };
     
-    static project_load_events = function(filename) {
-        var json = json_parse(buffer_read_file(filename));
-        var version = json.version;
-        var events = json.events;
-        var custom = json.custom;
-        var prefabs = json.prefabs;
-        
-        array_resize(Game.events.events, 0);
-        
-        for (var i = 0; i < array_length(custom); i++) {
-            array_push(Game.events.custom, new DataEventNodeCustom(custom[i]));
-        }
-        for (var i = 0; i < array_length(prefabs); i++) {
-            array_push(Game.events.prefabs, new DataEventNode(prefabs[i], undefined));
-        }
-        for (var i = 0; i < array_length(events); i++) {
-            array_push(Game.events.events, new DataEvent(events[i]));
-        }
-    };
-    
     static project_load_maps = function(filename, directory) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
@@ -237,7 +217,6 @@ function project_load(id) {
     project_load_animations(folder_name + "animations.json");
     project_load_terrain(folder_name + "terrain.json", folder_terrain_name);
     project_load_text(folder_name + "text.json");
-    project_load_events(folder_name + "events.json");
     project_load_maps(folder_name + "maps.json", folder_map_name);
     
     try {

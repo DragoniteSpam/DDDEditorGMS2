@@ -220,19 +220,6 @@ function EditorModeData() : EditorModeBase() constructor {
                                     self.SetValue(inst.values[self.key][0]);
                                 });
                             break;
-                        case DataTypes.EVENT:      // list
-                            element_header = new EmuText(spacing, EMU_AUTO, element_width, element_height, property.name);
-                            element = (new EmuButton(spacing, EMU_AUTO, element_width, element_height, "Select Event...", function() {
-                                // formerly dialog_create_data_get_event
-                            }))
-                                .SetInteractive(false)
-                                .SetRefresh(function() {
-                                    var inst = Stuff.data.GetActiveInstance();
-                                    self.SetInteractive(!!inst);
-                                    if (!inst) return;
-                                    // logic
-                                });
-                            break;
                         case DataTypes.TILE:
                         case DataTypes.ENTITY:
                             element = new EmuText(spacing, EMU_AUTO, element_width, element_height, "Not implemented and/or available");

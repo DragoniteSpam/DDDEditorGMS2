@@ -35,10 +35,6 @@ function omu_data_list_add(thing) {
             case DataTypes.IMG_SKYBOX:
             case DataTypes.IMG_ETC:
             case DataTypes.ANIMATION:
-            case DataTypes.EVENT:
-                // no default - this is just a null value
-                array_push(plist, NULL);
-                break;
             case DataTypes.COLOR:
                 // no default - for now
                 array_push(plist, c_black);

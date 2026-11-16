@@ -97,17 +97,6 @@ function project_export_animations(buffer) {
     project_export_standard(buffer, Game.animations);
 }
 
-function project_export_events(buffer) {
-    project_export_standard(buffer, Game.events.custom);
-    var count_address = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
-    var nodes = 0;
-    for (var i = 0; i < array_length(Game.events.events); i++) {
-        nodes += Game.events.events[i].Export(buffer);
-    }
-    buffer_poke(buffer, count_address, buffer_u32, nodes);
-}
-
 function project_export_meshes(buffer) {
     project_export_standard(buffer, Game.meshes);
     project_export_standard(buffer, Game.mesh_terrain);

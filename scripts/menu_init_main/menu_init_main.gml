@@ -80,7 +80,6 @@ function menu_init_main() {
             );
         var md_meshes = create_menu_element("Mesh Editor (F5)", momu_meshes, menu_data);
         var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
-        var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
         var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
         var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
         var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
@@ -89,7 +88,6 @@ function menu_init_main() {
         md_data_types.interactive = MENU_EDITOR_ENABLED;
         md_meshes.interactive = MENU_EDITOR_ENABLED;
         md_3d.interactive = MENU_EDITOR_ENABLED;
-        md_events.interactive = MENU_EDITOR_ENABLED;
         md_data.interactive = MENU_EDITOR_ENABLED;
         md_animation.interactive = MENU_EDITOR_ENABLED;
         md_heightmap.interactive = MENU_EDITOR_ENABLED;
@@ -105,7 +103,6 @@ function menu_init_main() {
             m_separator,
             md_meshes,
             md_3d,
-            md_events,
             md_data,
             md_animation,
             md_heightmap,

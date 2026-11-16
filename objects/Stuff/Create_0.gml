@@ -28,7 +28,6 @@ mode = noone;
 
 enum ModeIDs {
     MAP,
-    EVENT,
     DATA,
     ANIMATION,
     TERRAIN,
@@ -95,7 +94,6 @@ graphics.Init();
 // various types of editors
 map = new EditorModeMap();
 data = new EditorModeData();
-event = new EditorModeEvent();
 animation = new EditorModeAnimation();
 terrain = new EditorModeTerrain();
 mesh = new EditorModeMesh();
@@ -178,7 +176,6 @@ enum DataTypes {
     
     IMG_UI,             // list
     IMG_ETC,            // list
-    EVENT,              // list
     IMG_SKYBOX,         // list
     MESH_AUTOTILE,      // list
     
@@ -220,7 +217,6 @@ data_type_meta = [
     
     new data_type_class(20, "Image: UI",        NULL,       buffer_datatype),
     new data_type_class(21, "Image: Misc",      NULL,       buffer_datatype),
-    new data_type_class(22, "Event",            NULL,       buffer_datatype),
     new data_type_class(23, "Image: Skybox",    NULL,       buffer_datatype),
     new data_type_class(24, "Mesh Autotile",    NULL,       buffer_datatype),
     
@@ -237,14 +233,11 @@ data_type_meta = [
  *           - GameDataCategories
  *           - entry in dialog_create_settings_data_asset_files (with color)
  *  2. case in omu_data_list_add
- *  3. case in draw_event_node
- *          - in four different switch statements (can that be simplified?)
- *  4. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
- *  5. case in draw_active_event
- *  6. case in uimu_data_add_data
- *  7. Stuff.Create - game data location and game data save scripts
- *  8. enum DataVersions - you most likely will need a new data version to handle the new data
- *  9. loading data in the game - read the data out
+ *  3. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
+ *  4. case in uimu_data_add_data
+ *  5. Stuff.Create - game data location and game data save scripts
+ *  6. enum DataVersions - you most likely will need a new data version to handle the new data
+ *  7. loading data in the game - read the data out
  */
 #endregion
 
@@ -318,7 +311,6 @@ base_camera = new Camera(window_get_width() / 2, window_get_height() / 2, 100, w
 // default editor mode
 switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
     case ModeIDs.MAP: Stuff.map.SetMode(); break;
-    case ModeIDs.EVENT: Stuff.event.SetMode(); break;
     case ModeIDs.DATA: Stuff.data.SetMode(); break;
     case ModeIDs.ANIMATION: Stuff.animation.SetMode(); break;
     case ModeIDs.TERRAIN: Stuff.terrain.SetMode(); break;

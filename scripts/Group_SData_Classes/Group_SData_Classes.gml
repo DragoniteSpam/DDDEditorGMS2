@@ -104,9 +104,6 @@ function DataClass(source) : SData(source) constructor {
                     case DataTypes.AUDIO_SE:
                     case DataTypes.ANIMATION:
                     case DataTypes.MAP:
-                    case DataTypes.EVENT:
-                        array_push(instance.values, [NULL]);
-                        break;
                     case DataTypes.STRING:
                         array_push(instance.values, [property.default_string]);
                         break;

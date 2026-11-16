@@ -30,7 +30,6 @@ function create_input() {
             case validate_hex: value_conversion = ui_value_string; break;
             case validate_int: value_conversion = ui_value_real; break;
             case validate_string: value_conversion = ui_value_string; break;
-            case validate_string_event_name: value_conversion = ui_value_string; break;
             case validate_string_internal_name: value_conversion = ui_value_string; break;
         }
         

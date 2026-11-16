@@ -110,37 +110,6 @@ function language_extract() {
             }
         }
         #endregion
-        #region events
-        for (var i = 0; i < array_length(Game.events.events); i++) {
-            var event = Game.events.events[i];
-            for (var j = 0; j < array_length(event.nodes); j++) {
-                var node = event.nodes[j];
-                switch (node.type) {
-                    case EventNodeTypes.TEXT:
-                    case EventNodeTypes.SHOW_SCROLLING_TEXT:
-                    case EventNodeTypes.SHOW_CHOICES:
-                        for (var k = 0; k < array_length(node.data); k++) {
-                            var key = "Event." + node.name + "." + string(node.GUID) + ".data." + string(k);
-                            lang[$ key] = (lang_index == 0) ? node.data[k] : ((lang[$ key] != undefined) ? lang[$ key] : "");
-                            existing_keys[$ key] = false;
-                        }
-                        break;
-                    case EventNodeTypes.CUSTOM:
-                        var custom = guid_get(node.custom_guid);
-                        for (var k = 0; k < array_length(custom.types); k++) {
-                            if (custom.types[k].type == DataTypes.STRING) {
-                                for (var l = 0; l < array_length(node.custom_data[k]); l++) {
-                                    var key = "Event." + node.name + "." + string(node.GUID) + ".custom." + string(k) + "." + string(l);
-                                    lang[$ key] = (lang_index == 0) ? node.custom_data[k][l] : ((lang[$ key] != undefined) ? lang[$ key] : "");
-                                    existing_keys[$ key] = false;
-                                }
-                            }
-                        }
-                        break;
-                }
-            }
-        }
-        #endregion
     }
     
     for (var i = 0; i < array_length(existing_key_names); i++) {

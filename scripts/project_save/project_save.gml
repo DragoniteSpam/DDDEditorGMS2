@@ -114,12 +114,6 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "text.json");
     buffer_write_file(json_stringify({
-        events: project_write_json(Game.events.events),
-        custom: project_write_json(Game.events.custom),
-        prefabs: project_write_json(Game.events.prefabs),
-        version: ProjectSaveVersions._CURRENT - 1,
-    }), folder_name + "events.json");
-    buffer_write_file(json_stringify({
         maps: project_write_json(Game.maps),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "maps.json");

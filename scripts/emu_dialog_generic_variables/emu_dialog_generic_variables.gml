@@ -134,29 +134,6 @@ function emu_dialog_generic_variables(list) {
                     self.SetValue(selection.value);
                 }
             }),
-        (new EmuButton(col2, EMU_AUTO, element_width, element_height, "Event...", function() {
-            var what = self.GetSibling("LIST").GetSelectedItem();
-            emu_dialog_get_event(guid_get(what.value), function() {
-                var selection = self.GetSibling("ENTRYPOINTS").GetSelectedItem();
-                self.root.data.value = selection ? selection.GUID : NULL;
-            }, what);
-        }))
-            .SetUpdate(function() {
-                var selection = self.GetSibling("LIST").GetSelectedItem();
-                self.text = "Event...";
-                if (!selection) return;
-                if (selection.type == DataTypes.EVENT) {
-                    var event = guid_get(selection.value);
-                    if (event) self.text = event.GetShortName();
-                }
-            })
-            .SetInteractive(false)
-            .SetRefresh(function() {
-                var selection = self.GetSibling("LIST").GetSelectedItem();
-                self.text = "Event...";
-                if (!selection) return;
-                self.SetInteractive(selection.type == DataTypes.EVENT);
-            }),
         (new EmuList(col3, EMU_BASE, element_width, element_height, "", element_height, 16, function() {
             var selection = self.GetSelection();
             if (selection == -1) return;

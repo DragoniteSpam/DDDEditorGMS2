@@ -230,44 +230,6 @@ function EditorModeSpart() : EditorModeBase() constructor {
     self.mode_id = ModeIDs.SPART;
 }
 
-function EditorModeEvent() : EditorModeBase() constructor {
-    self.ui = ui_init_event(self);
-    self.mode_id = ModeIDs.EVENT;
-    
-    self.def_x = 0;
-    self.def_y = 100;
-    
-    Settings.event[$ "x"] ??= self.def_x;
-    Settings.event[$ "y"] ??= self.def_y;
-    
-    self.x = Settings.event.x;
-    self.y = Settings.event.y;
-    
-    self.SetMode = function() {
-        editor_set_mode(self, ModeIDs.EVENT);
-    };
-    
-    self.Render = function() {
-        draw_clear(EMU_COLOR_BACK);
-        Stuff.base_camera.SetProjectionGUI();
-        draw_editor_event();
-        self.ui.Render();
-        editor_gui_post();
-    };
-    
-    self.Save = function() {
-        Settings.event.x = self.x;
-        Settings.event.y = self.y;
-    };
-    
-    self.canvas_active_node = noone;
-    self.canvas_active_node_index = 0;
-    self.request_cancel_active_node = false;
-    
-    self.active = undefined;
-    self.node_info = undefined;
-}
-
 function EditorModeBase() constructor {
     self.Update = function() { };
     self.Render = function() { };
