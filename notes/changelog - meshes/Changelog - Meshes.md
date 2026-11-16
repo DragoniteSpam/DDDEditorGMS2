@@ -3,6 +3,11 @@ Another changelog.
  - Added a "Rearrange Sprite" tool in the texture manager
  - Added pan and zoom controls to the other texture displays
 
+ - When you sort the mesh list, the selection is preserved
+ - You can now sort textures in the texture list
+
+ - Fixed smooth normal generation
+
 # Changes in 2026.1
 
  - Updates the version of assimp used for conversion of different formats, as this may have been the source of a few issues
