@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"ui_render_surface_render_mesh_ed",
   "parent":{
-    "name":"render surfaces",
-    "path":"folders/Scripts/ui stuff/rendering/special/render surfaces.yy",
+    "name":"special",
+    "path":"folders/Scripts/ui stuff/rendering/special.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

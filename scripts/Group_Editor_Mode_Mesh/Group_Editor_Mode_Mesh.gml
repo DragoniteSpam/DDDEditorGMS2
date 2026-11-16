@@ -141,34 +141,19 @@ function EditorModeText() : EditorModeBase() constructor {
 function EditorModeAnimation() : EditorModeBase() constructor {
     self.ui = ui_init_animation(self);
     
-    self.camera = new Camera(0, 0, 100, 100, 100, 0, 0, 0, 1, 60, CAMERA_ZNEAR, CAMERA_ZFAR, function(mouse_vector) {
-    
-    });
-    var threed_surface = self.ui.SearchID("3D VIEW");
-    self.camera.SetCenter(threed_surface.x + threed_surface.width / 2, threed_surface.y + threed_surface.height / 2);
-    self.camera.base_speed = 20;
-    self.camera.Load(setting_get("mesh", "camera", undefined));
-    self.camera.SetViewportAspect(function() {
-        return Stuff.mesh.ui.SearchID("3D VIEW").width;
-    }, function() {
-        return Stuff.mesh.ui.SearchID("3D VIEW").height;
-    });
-    
     self.SetMode = function() {
         editor_set_mode(self, ModeIDs.ANIMATION);
     };
     
     self.Update = function() {
         if (!dialog_exists()) {
-            self.camera.Update();
+            //self.camera.Update();
         }
     };
     
     self.Render = function() {
         gpu_set_cullmode(cull_noculling);
-        draw_editor_animation();
-        draw_animator();
-        draw_animator_overlay();
+        // draw the new animation editor here
         editor_gui_post();
     };
     
