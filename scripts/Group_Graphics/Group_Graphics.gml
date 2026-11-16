@@ -85,9 +85,9 @@ function draw_cutout(x1, y1, x2, y2, color, alpha) {
     draw_set_alpha(alpha);
     
     draw_rectangle(-size, -size, size, -1, false);
-    draw_rectangle(-size, y2 + 1, size, size, false);
-    draw_rectangle(-size, y1, x1, y2, false);
-    draw_rectangle(x2, y1, size, y2, false);
+    draw_rectangle(-size, y2, size, size, false);
+    draw_rectangle(-size, y1, x1 - 1, y2 - 1, false);
+    draw_rectangle(x2, y1, size, y2 - 1, false);
     
     draw_set_color(c);
     draw_set_alpha(a);
