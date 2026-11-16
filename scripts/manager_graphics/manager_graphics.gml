@@ -51,6 +51,22 @@ function dialog_create_manager_graphics() {
                 self.root.Refresh({ list: self.entries, index: self.GetSelection() });
             }
         }))
+            .SetCallbackMiddle(function() {
+                var t0 = get_timer();
+                var texture_list = self.root.graphics_list;
+                var indices = self.GetAllSelectedIndices();
+                var selected_textures = array_create(array_length(indices));
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    selected_textures[i] = texture_list[indices[i]];
+                }
+                array_sort_name(texture_list);
+                self.ClearSelection();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.Select(array_get_index(texture_list, selected_textures[i]));
+                }
+                var t1 = get_timer();
+                show_debug_message($"Sorting took {(t1 - t0) / 1000} ms");
+            })
             .SetListColors(function(index) {
                 var graphic = self.root.graphics_list[index];
                 if (graphic.flag_unused) return c_red;
