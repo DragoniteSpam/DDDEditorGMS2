@@ -95,7 +95,20 @@ function ui_init_mesh(mode) {
             .SetTooltip("All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.")
             .SetMultiSelect(true)
             .SetCallbackMiddle(function() {
+                var t0 = get_timer();
+                var mesh_list = self.root.GetMeshType();
+                var indices = self.GetAllSelectedIndices();
+                var selected_meshes = array_create(array_length(indices));
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    selected_meshes[i] = mesh_list[indices[i]];
+                }
                 array_sort_name(self.root.GetMeshType());
+                self.ClearSelection();
+                for (var i = 0, n = array_length(indices); i < n; i++) {
+                    self.Select(array_get_index(mesh_list, selected_meshes[i]));
+                }
+                var t1 = get_timer();
+                show_debug_message($"Sorting took {(t1 - t0) / 1000} ms");
             })
             .SetEntryTypes(E_ListEntryTypes.OTHER, function(index) {
                 var mesh = self.At(index);
