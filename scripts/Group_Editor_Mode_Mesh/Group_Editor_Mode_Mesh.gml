@@ -158,7 +158,7 @@ function EditorModeAnimation() : EditorModeBase() constructor {
     };
     
     self.Save = function() {
-        Settings.animation.camera = self.camera.Save();
+        
     };
     
     self.mode_id = ModeIDs.ANIMATION;
