@@ -144,6 +144,7 @@
     {"$GMIncludedFile":"","%Name":"wire_sphere.vbuff","CopyToMask":-1,"filePath":"datafiles/data/basic","name":"wire_sphere.vbuff","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"b_sky_clouds_blue.png","CopyToMask":-1,"filePath":"datafiles/data/graphics","name":"b_sky_clouds_blue.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"b_tileset_overworld_0.png","CopyToMask":-1,"filePath":"datafiles/data/graphics","name":"b_tileset_overworld_0.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"gizmos.derg","CopyToMask":-1,"filePath":"datafiles/data/graphics","name":"gizmos.derg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Open Sans License.txt","CopyToMask":-1,"filePath":"datafiles","name":"Open Sans License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"penguin.md","CopyToMask":-1,"filePath":"datafiles","name":"penguin.md","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"terrain.md","CopyToMask":-1,"filePath":"datafiles","name":"terrain.md","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -151,7 +152,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2026.100.0.1201",
+    "IDEVersion":"2026.1.0.27",
   },
   "name":"DDDEditor2-23",
   "resources":[

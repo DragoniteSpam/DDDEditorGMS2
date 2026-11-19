@@ -67,6 +67,13 @@ function EditorGraphics() constructor {
         self.missing_autotile = vertex_load("data/basic/missing_autotile.vbuff", self.format_pntcb);
         
         self.default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);
+        
+        vertex_format_begin();
+        vertex_format_add_position_3d()
+        vertex_format_add_texcoord();
+        vertex_format_add_colour();
+        self.vertex_format_gizmos = vertex_format_end();
+        self.gizmos = penguin_load("data/graphics/gizmos.derg", self.vertex_format_gizmos);
     };
     
     self.DrawWireBox = function(x = 0, y = 0, z = 0, xr = 0, yr = 0, zr = 0, xs = 1, ys = 1, zs = 1, color = c_wireframe_mesh_col_box) {
