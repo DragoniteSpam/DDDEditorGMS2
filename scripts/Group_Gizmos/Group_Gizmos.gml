@@ -111,14 +111,6 @@ function GizmoSystem() constructor {
     };
     
     static Update = function(mx, my, mouse_pos, mouse_dir, surf_w, surf_h, callback_translate, callback_rotate, callback_scale) {
-        if (keyboard_check(vk_anykey)) {
-            _emu_active_element(pointer_null);
-        }
-        
-        if (mouse_check_button(mb_any)) {
-            _emu_active_element(pointer_null);
-        }
-        
         var ray = new ColRay(mouse_pos, mouse_dir);
         
         if (!mouse_check_button(mb_left)) {

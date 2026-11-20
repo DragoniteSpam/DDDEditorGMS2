@@ -616,7 +616,7 @@ function ui_init_mesh(mode) {
                 .SetID("GIZMO ROTATE")
                 .SetNext("GIZMO SCALE")
                 .SetPrevious("GIZMO TRANSLATE"),
-            new EmuInput(col3x + element_width_short * 1.5, EMU_INLINE, element_width_short / 2, element_height, "", Settings.mesh.gizmo_snap_scale, "Scale", 6, E_InputTypes.REAL, function() {
+            new EmuInput(col3x + element_width_short * 1.5, EMU_INLINE, element_width_short / 2, element_height, "", string_format(Settings.mesh.gizmo_snap_scale, 1, 3), "Scale", 5, E_InputTypes.REAL, function() {
                 Settings.mesh.gizmo_snap_scale = real(self.value);
             })
                 .SetInputBoxPosition(0, 0)

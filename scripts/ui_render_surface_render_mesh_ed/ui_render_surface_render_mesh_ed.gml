@@ -1,6 +1,18 @@
 function ui_render_surface_render_mesh_ed(mx, my) {
     draw_clear(c_black);
     
+    var mouse_over_me = point_in_rectangle(mx, my, 0, 0, self.width, self.height);
+    
+    if (mouse_over_me) {
+        if (keyboard_check(vk_anykey)) {
+            _emu_active_element(pointer_null);
+        }
+        
+        if (mouse_check_button(mb_any)) {
+            _emu_active_element(pointer_null);
+        }
+    }
+    
     var indices = self.root.GetSibling("MESH LIST").GetAllSelectedIndices();
     
     var the_camera = Stuff.mesh.camera;
