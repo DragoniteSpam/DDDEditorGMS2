@@ -23,13 +23,20 @@ function GizmoSystem() constructor {
     
     self.position = new Vector3(0, 0, 0);
     
+    static color_x = #ff3333;
+    static color_y = #33ff33;
+    static color_z = #3333ff;
+    static color_xy = #ffff33;
+    static color_yz = #33ffff;
+    static color_zx = #ff33ff;
+    static color_selected = #ffff99;
+    
     static gizmos = undefined;
     static format_gizmos = undefined;
+    
     if (format_gizmos == undefined) {
         vertex_format_begin();
-        vertex_format_add_position_3d()
-        vertex_format_add_texcoord();
-        vertex_format_add_colour();
+        vertex_format_add_position_3d();
         format_gizmos = vertex_format_end();
         gizmos = penguin_load("data/graphics/gizmos.derg", format_gizmos);
     }
@@ -199,40 +206,17 @@ function GizmoSystem() constructor {
                 matrix_set(matrix_projection, proj_mat);
                 draw_clear(c_black);
                 
-                matrix_set(matrix_world, matrix_build(self.position.x, self.position.y, self.position.z, 0, 0, 0, 25, 25, 25));
-                gpu_set_ztestenable(true);
-                shader_reset();
-            
-                switch (self.gizmo_type) {
-                    case EditorGizmoModes.TRANSLATE: {
-                        gizmos.translate_x.Render();
-                        gizmos.translate_y.Render();
-                        gizmos.translate_z.Render();
-                    } break;
-                    case EditorGizmoModes.ROTATE: {
-                        gizmos.rotate_x.Render();
-                        gizmos.rotate_y.Render();
-                        gizmos.rotate_z.Render();
-                    } break;
-                    case EditorGizmoModes.SCALE: {
-                        gizmos.scale_x.Render();
-                        gizmos.scale_y.Render();
-                        gizmos.scale_z.Render();
-                    } break;
-                }
-                
-                matrix_set(matrix_world, matrix_build_identity());
-                gpu_set_ztestenable(true);
+                self.DrawGizmos();
             
             surface_reset_target();
             
             // yes this is slow
             var mouse_pick_color = surface_getpixel(mouse_surf, mx, my);
-            if (mouse_pick_color == #fe3232) {
+            if (mouse_pick_color == color_x) {
                 self.selected_gizmo = EditorGizmos.X;
-            } else if (mouse_pick_color == #32fe32) {
+            } else if (mouse_pick_color == color_y) {
                 self.selected_gizmo = EditorGizmos.Y;
-            } else if (mouse_pick_color == #3232fe) {
+            } else if (mouse_pick_color == color_z) {
                 self.selected_gizmo = EditorGizmos.Z;
             }
             
@@ -270,42 +254,46 @@ function GizmoSystem() constructor {
     };
     
     static Render = function() {
+        self.DrawGizmos();
+    };
+    
+    static DrawGizmos = function() {
+        static previous_matrix = matrix_build_identity();
+        matrix_get(matrix_world, previous_matrix);
+        
         var shader = shader_current();
         shader_set(shd_gizmos);
         
-        static previous_matrix = matrix_build_identity();
-        static transform_matrix = matrix_build_identity();
-        matrix_get(matrix_world, previous_matrix);
-        matrix_build(self.position.x, self.position.y, self.position.z, 0, 0, 0, 25, 25, 25, transform_matrix);
-        matrix_set(matrix_world, transform_matrix);
+        matrix_set(matrix_world, matrix_build(self.position.x, self.position.y, self.position.z, 0, 0, 0, 25, 25, 25));
         
-        static set_override_color = function(enabled) {
-            shader_set_uniform_f(shader_get_uniform(shd_gizmos, "u_override_color"), $ff / 255, $ff / 255, $99 / 255, enabled);
-        };
+        gpu_push_state();
+        
+        gpu_set_ztestenable(true);
+        gpu_set_zwriteenable(true);
         
         switch (self.gizmo_type) {
             case EditorGizmoModes.TRANSLATE: {
-                set_override_color(self.selected_gizmo == EditorGizmos.X);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x);
                 gizmos.translate_x.Render();
-                set_override_color(self.selected_gizmo == EditorGizmos.Y);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y);
                 gizmos.translate_y.Render();
-                set_override_color(self.selected_gizmo == EditorGizmos.Z);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z);
                 gizmos.translate_z.Render();
             } break;
             case EditorGizmoModes.ROTATE: {
-                set_override_color(self.selected_gizmo == EditorGizmos.X);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x);
                 gizmos.rotate_x.Render();
-                set_override_color(self.selected_gizmo == EditorGizmos.Y);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y);
                 gizmos.rotate_y.Render();
-                set_override_color(self.selected_gizmo == EditorGizmos.Z);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z);
                 gizmos.rotate_z.Render();
             } break;
             case EditorGizmoModes.SCALE: {
-                set_override_color(self.selected_gizmo == EditorGizmos.X);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x);
                 gizmos.scale_x.Render();
-                set_override_color(self.selected_gizmo == EditorGizmos.Y);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y);
                 gizmos.scale_y.Render();
-                set_override_color(self.selected_gizmo == EditorGizmos.Z);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z);
                 gizmos.scale_z.Render();
             } break;
         }
@@ -315,6 +303,12 @@ function GizmoSystem() constructor {
         if (shader != -1) {
             shader_set(shader);
         }
+        
+        gpu_pop_state();
+    };
+    
+    static SetDrawColor = function(color) {
+        shader_set_uniform_f(shader_get_uniform(shd_gizmos, "u_color"), color_get_red(color) / 255, color_get_green(color) / 255, color_get_blue(color) / 255);
     };
     
     static SetPosition = function(position) {
