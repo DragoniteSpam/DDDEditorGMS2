@@ -14,6 +14,7 @@ enum EditorGizmoModes {
 function GizmoSystem() constructor {
     self.selected_gizmo = EditorGizmos.NONE;
     self.selected_gizmo_position = undefined;
+    self.selected_gizmo_raw_x = undefined;
     self.gizmo_type = EditorGizmoModes.TRANSLATE;
     
     self.snapping_translate = 4;
@@ -123,6 +124,7 @@ function GizmoSystem() constructor {
         if (!mouse_check_button(mb_left)) {
             self.selected_gizmo = EditorGizmos.NONE;
             self.selected_gizmo_position = undefined;
+            self.selected_gizmo_raw_x = undefined;
         }
         
         static view_mat = matrix_build_identity();
@@ -154,27 +156,24 @@ function GizmoSystem() constructor {
         };
         
         static editor_gizmo_rotate = function(selected, delta, delta_threshold, callback_rotate, current_position) {
-            var mouse_delta_x = window_mouse_get_delta_x();
-            
-            if (abs(mouse_delta_x) < delta_threshold) {
+            if (abs(delta) < delta_threshold) {
                 return;
             }
             
-            mouse_delta_x = floor(mouse_delta_x / delta_threshold) * delta_threshold;
-            
+            delta = floor(delta / delta_threshold) * delta_threshold;
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
-                    callback_rotate(mouse_delta_x, 0, 0);
+                    callback_rotate(delta, 0, 0);
                 } break;
                 case EditorGizmos.Y: {
-                    callback_rotate(0, mouse_delta_x, 0);
+                    callback_rotate(0, delta, 0);
                 } break;
                 case EditorGizmos.Z: {
-                    callback_rotate(0, 0, mouse_delta_x);
+                    callback_rotate(0, 0, delta);
                 } break;
             }
             
-            self.selected_gizmo_position = current_position;
+            self.selected_gizmo_raw_x = current_position;
         }
         
         if (mouse_check_button_pressed(mb_left)) {
@@ -228,27 +227,31 @@ function GizmoSystem() constructor {
             // code that happens when you first select a gizmo thingy
             if (self.selected_gizmo != EditorGizmos.NONE) {
                 self.selected_gizmo_position = self.GetSelectionPlaneMouseLocation(mouse_pos, mouse_dir);
+                self.selected_gizmo_raw_x = window_mouse_get_x();
             }
         }
         
         if (mouse_check_button(mb_left)) {
             if (self.selected_gizmo != EditorGizmos.NONE) {
+                // 3D mouse delta
                 var current_gizmo_mouse_position = self.GetSelectionPlaneMouseLocation(mouse_pos, mouse_dir);
-                if (current_gizmo_mouse_position != undefined && self.selected_gizmo_position != undefined) {
-                    var delta = current_gizmo_mouse_position.Sub(self.selected_gizmo_position);
-                    
-                    switch (self.gizmo_type) {
-                        case EditorGizmoModes.TRANSLATE: {
-                            editor_gizmo_translate(selected, delta, self.snapping_translate, callback_translate, current_gizmo_mouse_position);
-                        } break;
-                        case EditorGizmoModes.ROTATE: {
-                            editor_gizmo_rotate(selected, delta, self.snapping_rotate, callback_rotate);
-                        } break;
-                        // scale uses the same logic as translate
-                        case EditorGizmoModes.SCALE: {
-                            editor_gizmo_translate(selected, delta.Div(32), self.snapping_scale, callback_scale, current_gizmo_mouse_position);
-                        } break;
-                    }
+                var delta = current_gizmo_mouse_position.Sub(self.selected_gizmo_position);
+                
+                // 1D mouse delta
+                var current_gizmo_mouse_raw_x = window_mouse_get_x();
+                var delta_raw_x = current_gizmo_mouse_raw_x - self.selected_gizmo_raw_x;
+                
+                switch (self.gizmo_type) {
+                    case EditorGizmoModes.TRANSLATE: {
+                        editor_gizmo_translate(selected, delta, self.snapping_translate, callback_translate, current_gizmo_mouse_position);
+                    } break;
+                    case EditorGizmoModes.ROTATE: {
+                        editor_gizmo_rotate(selected, delta_raw_x, self.snapping_rotate, callback_rotate, current_gizmo_mouse_raw_x);
+                    } break;
+                    // scale uses the same logic as translate
+                    case EditorGizmoModes.SCALE: {
+                        editor_gizmo_translate(selected, delta.Div(32), self.snapping_scale, callback_scale, current_gizmo_mouse_position);
+                    } break;
                 }
             }
         }
