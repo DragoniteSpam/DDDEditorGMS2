@@ -149,7 +149,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         }
     }
     
-    if (Settings.mesh.draw_gizmos) {
+    if (Settings.mesh.draw_gizmos && rendered_count > 0) {
         draw_clear_depth(1);
         var world_vec = screen_to_world(mx, my, the_camera.view_mat, the_camera.proj_mat, self.width, self.height, true);
         var mouse_dir = world_vec.direction;
