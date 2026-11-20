@@ -1,4 +1,6 @@
 function ui_render_surface_render_mesh_ed(mx, my) {
+    static identity_matrix = matrix_build_identity();
+    
     draw_clear(c_black);
     
     var mouse_over_me = point_in_rectangle(mx, my, 0, 0, self.width, self.height);
@@ -182,7 +184,9 @@ function ui_render_surface_render_mesh_ed(mx, my) {
             self.GetSibling("MESH SCALE Z").value = string(Settings.mesh.draw_scale.z);
         };
         
+        matrix_set(matrix_world, identity_matrix);
         Stuff.mesh.gizmos.SetPosition(Settings.mesh.draw_position);
+        Stuff.mesh.gizmos.SetSnapping(Settings.mesh.gizmo_snap_translate, Settings.mesh.gizmo_snap_rotate, Settings.mesh.gizmo_snap_scale);
         Stuff.mesh.gizmos.Update(mx, my, mouse_pos, mouse_dir, self.width, self.height, cb_translate, cb_rotate, cb_scale);
         Stuff.mesh.gizmos.Render();
     }

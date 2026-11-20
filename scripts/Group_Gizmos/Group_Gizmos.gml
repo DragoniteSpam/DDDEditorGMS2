@@ -49,29 +49,29 @@ function GizmoSystem() constructor {
         static ray_hit_info = new RaycastHitInformation();
         ray_hit_info.Clear();
         
+        var axis_found = false;
+        
         switch (self.gizmo_type) {
             // when you translate, you can use any plane that isn't the axis
             // of translation
             case EditorGizmoModes.TRANSLATE:
             case EditorGizmoModes.SCALE: {
                 switch (self.selected_gizmo) {
-                    case EditorGizmos.X: {
+                    // when you translate on the XY axis, use the XY plane
+                    case EditorGizmos.X:
+                    case EditorGizmos.Y: {
                         plane_z_plus.distance = self.position.z;
                         plane_z_minu.distance = self.position.z;
                         test_plane_plus.shape = plane_z_plus;
                         test_plane_minu.shape = plane_z_minu;
-                    } break;
-                    case EditorGizmos.Y: {
-                        plane_x_plus.distance = self.position.x;
-                        plane_x_minu.distance = self.position.x;
-                        test_plane_plus.shape = plane_x_plus;
-                        test_plane_minu.shape = plane_x_minu;
+                        axis_found = true;
                     } break;
                     case EditorGizmos.Z: {
                         plane_y_plus.distance = self.position.y;
                         plane_y_minu.distance = self.position.y;
                         test_plane_plus.shape = plane_y_plus;
                         test_plane_minu.shape = plane_y_minu;
+                        axis_found = true;
                     } break;
                 }
             } break;
@@ -82,29 +82,34 @@ function GizmoSystem() constructor {
                         plane_x_minu.distance = self.position.x;
                         test_plane_plus.shape = plane_x_plus;
                         test_plane_minu.shape = plane_x_minu;
+                        axis_found = true;
                     } break;
                     case EditorGizmos.Y: {
                         plane_y_plus.distance = self.position.y;
                         plane_y_minu.distance = self.position.y;
                         test_plane_plus.shape = plane_y_plus;
                         test_plane_minu.shape = plane_y_minu;
+                        axis_found = true;
                     } break;
                     case EditorGizmos.Z: {
                         plane_z_plus.distance = self.position.z;
                         plane_z_minu.distance = self.position.z;
                         test_plane_plus.shape = plane_z_plus;
                         test_plane_minu.shape = plane_z_minu;
+                        axis_found = true;
                     } break;
                 }
             } break;
         }
         
-        if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
-            return ray_hit_info.point;
-        }
-        
-        if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
-            return ray_hit_info.point;
+        if (axis_found) {
+            if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
+                return ray_hit_info.point;
+            }
+            
+            if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
+                return ray_hit_info.point;
+            }
         }
         
         return new Vector3(0, 0, 0);
