@@ -116,6 +116,7 @@ Settings.mesh[$ "draw_reflections"] ??=                                         
 Settings.mesh[$ "draw_collision"] ??=                                           MESH_DEF_VIEW_DRAW_COLLISION;
 Settings.mesh[$ "draw_axes"] ??=                                                MESH_DEF_VIEW_DRAW_AXES;
 Settings.mesh[$ "draw_grid"] ??=                                                MESH_DEF_VIEW_DRAW_GRID;
+Settings.mesh[$ "draw_gizmos"] ??=                                              MESH_DEF_VIEW_DRAW_GIZMOS;
 Settings.mesh[$ "draw_physical_bounds"] ??=                                     MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS;
 Settings.mesh[$ "wireframe_alpha"] ??=                                          MESH_DEF_VIEW_WIREFRAME_ALPHA;
 Settings.mesh[$ "reflect_settings"] ??=                                         MESH_DEF_REFLECT_SETTINGS;
@@ -147,6 +148,7 @@ Settings.voxelish[$ "view_skybox"] ??=                                          
 #macro MESH_DEF_VIEW_DRAW_COLLISION                                             false
 #macro MESH_DEF_VIEW_DRAW_AXES                                                  true
 #macro MESH_DEF_VIEW_DRAW_GRID                                                  true
+#macro MESH_DEF_VIEW_DRAW_GIZMOS                                                true
 #macro MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS                                       false
 #macro MESH_DEF_VIEW_WIREFRAME_ALPHA                                            1
 #macro MESH_DEF_REFLECT_SETTINGS                                                (MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE)

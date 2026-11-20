@@ -625,7 +625,7 @@ function ui_init_mesh(mode) {
                 .SetPrevious("GIZMO ROTATE"),
             
             (new EmuButton(col3x + element_width_short * 2 + 16, EMU_INLINE, element_width, element_height, "Viewer Settings", function() {
-                var dialog = new EmuDialog(32 + 320 + 32, 608, "Mesh viewer settings");
+                var dialog = new EmuDialog(32 + 320 + 32, 640, "Mesh viewer settings");
                 dialog.root = self;
                 dialog.active_shade = 0;
                 dialog.x = 320;
@@ -693,6 +693,13 @@ function ui_init_mesh(mode) {
                         .SetRefresh(function() {
                             self.value = Settings.mesh.draw_physical_bounds;
                         }),
+                    (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw gizmos?", Settings.mesh.draw_gizmos, function() {
+                        Settings.mesh.draw_gizmos = self.value;
+                    }))
+                        .SetTooltip("Whether or not to draw the tile grid on the Z = 0 plane.")
+                        .SetRefresh(function() {
+                            self.value = Settings.mesh.draw_physical_bounds;
+                        }),
                     (new EmuCheckbox(col1x, EMU_AUTO, col_width, 32, "Draw collision?", Settings.mesh.draw_collision, function() {
                         Settings.mesh.draw_collision = self.value;
                     }))
@@ -723,6 +730,7 @@ function ui_init_mesh(mode) {
                         Settings.mesh.draw_textures = MESH_DEF_VIEW_DRAW_TEXTURES;
                         Settings.mesh.draw_vertex_colors = MESH_DEF_VIEW_DRAW_VERTEX_COLORS;
                         Settings.mesh.draw_physical_bounds = MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS;
+                        Settings.mesh.draw_gizmos = MESH_DEF_VIEW_DRAW_GIZMOS;
                         Settings.mesh.draw_lighting = MESH_DEF_VIEW_DRAW_LIGHTING; 
                         Settings.mesh.draw_back_faces = MESH_DEF_VIEW_DRAW_BACK_FACES;
                         Settings.mesh.draw_reflections = MESH_DEF_VIEW_DRAW_REFLECTIONS;
