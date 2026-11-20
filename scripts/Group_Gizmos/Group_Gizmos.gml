@@ -16,7 +16,7 @@ function GizmoSystem() constructor {
     self.selected_gizmo_position = undefined;
     self.gizmo_type = EditorGizmoModes.TRANSLATE;
     
-    self.snapping_translate = 4;
+    self.snapping_translate = 0;
     self.snapping_rotate = 10;
     
     self.position = new Vector3(0, 0, 0);
@@ -33,9 +33,6 @@ function GizmoSystem() constructor {
     }
     
     static GetSelectionPlaneMouseLocation = function(mouse_pos, mouse_dir) {
-        var mx = window_mouse_get_x();
-        var my = window_mouse_get_y();
-        
         var ray = new ColRay(mouse_pos, mouse_dir);
         
         static test_plane_plus = new ColObject(undefined, undefined);

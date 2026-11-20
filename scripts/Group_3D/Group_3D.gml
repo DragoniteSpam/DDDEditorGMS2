@@ -1,4 +1,4 @@
-function screen_to_world(x, y, V, P, w, h) {
+function screen_to_world(x, y, V, P, w, h, flip = false) {
     /*
         Transforms a 2D coordinate (in window space) to a 3D vector.
         Returns an array of the following format:
@@ -10,7 +10,7 @@ function screen_to_world(x, y, V, P, w, h) {
     */
     
     var mx = 2 * (x / w - .5) / P[0];
-    var my = -2 * (y / h - .5) / P[5];
+    var my = flip ? (-2 * (0.5 - y / h) / P[5]) : (-2 * (y / h - .5) / P[5]);
     var camX = - (V[12] * V[0] + V[13] * V[1] + V[14] * V[2]);
     var camY = - (V[12] * V[4] + V[13] * V[5] + V[14] * V[6]);
     var camZ = - (V[12] * V[8] + V[13] * V[9] + V[14] * V[10]);

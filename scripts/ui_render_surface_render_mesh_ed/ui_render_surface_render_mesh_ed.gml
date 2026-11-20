@@ -85,7 +85,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         if (++rendered_count > limit) break;
     }
     
-    var world_vec = screen_to_world(mx, my, the_camera.view_mat, the_camera.proj_mat, self.width, self.height);
+    var world_vec = screen_to_world(mx, my, the_camera.view_mat, the_camera.proj_mat, self.width, self.height, true);
     var mouse_dir = world_vec.direction;
     var mouse_pos = world_vec.origin;
     
@@ -108,8 +108,8 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     };
     
     Stuff.mesh.gizmos.SetPosition(Settings.mesh.draw_position);
-    Stuff.mesh.gizmos.Update(mx, my, mouse_dir, mouse_pos, self.width, self.height, cb_translate, cb_rotate, cb_scale);
     Stuff.mesh.gizmos.Render();
+    Stuff.mesh.gizmos.Update(mx, my, mouse_pos, mouse_dir, self.width, self.height, cb_translate, cb_rotate, cb_scale);
     
     if (Settings.mesh.draw_collision) {
         rendered_count = 0;
