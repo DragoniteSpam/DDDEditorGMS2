@@ -2,7 +2,10 @@ enum EditorGizmos {
     NONE,
     X,
     Y,
-    Z
+    Z,
+    XY,
+    YZ,
+    ZX
 }
 
 enum EditorGizmoModes {
@@ -80,6 +83,27 @@ function GizmoSystem() constructor {
                         test_plane_minu.shape = plane_y_minu;
                         axis_found = true;
                     } break;
+                    case EditorGizmos.XY: {
+                        plane_z_plus.distance = self.position.z;
+                        plane_z_minu.distance = self.position.z;
+                        test_plane_plus.shape = plane_z_plus;
+                        test_plane_minu.shape = plane_z_minu;
+                        axis_found = true;
+                    } break;
+                    case EditorGizmos.YZ: {
+                        plane_x_plus.distance = self.position.x;
+                        plane_x_minu.distance = self.position.x;
+                        test_plane_plus.shape = plane_x_plus;
+                        test_plane_minu.shape = plane_x_minu;
+                        axis_found = true;
+                    } break;
+                    case EditorGizmos.ZX: {
+                        plane_y_plus.distance = self.position.y;
+                        plane_y_minu.distance = self.position.y;
+                        test_plane_plus.shape = plane_y_plus;
+                        test_plane_minu.shape = plane_y_minu;
+                        axis_found = true;
+                    } break;
                 }
             } break;
             case EditorGizmoModes.ROTATE: {
@@ -136,36 +160,61 @@ function GizmoSystem() constructor {
         matrix_get(matrix_view, view_mat);
         matrix_get(matrix_projection, proj_mat);
         
-        static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate, current_position) {
+        static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate) {
+            var rounded_delta = (delta_threshold > 0)
+                ? delta.Div(delta_threshold).Floor().Mul(delta_threshold)
+                : delta;
+            
+            var abs_delta = delta.Abs();
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
-                    var amount = delta.x;
-                    if (abs(amount) >= delta_threshold) {
-                        if (delta_threshold > 0) {
-                            amount = floor(amount / delta_threshold) * delta_threshold
-                        }
-                        callback_translate(amount, 0, 0);
-                        self.selected_gizmo_position.x = current_position.x;
+                    if (abs_delta.x >= delta_threshold) {
+                        callback_translate(rounded_delta.x, 0, 0);
+                        self.selected_gizmo_position.x += rounded_delta.x;
                     }
                 } break;
                 case EditorGizmos.Y: {
-                    var amount = delta.y;
-                    if (abs(amount) >= delta_threshold) {
-                        if (delta_threshold > 0) {
-                            amount = floor(amount / delta_threshold) * delta_threshold
-                        }
-                        callback_translate(0, amount, 0);
-                        self.selected_gizmo_position.y = current_position.y;
+                    if (abs_delta.y >= delta_threshold) {
+                        callback_translate(0, rounded_delta.y, 0);
+                        self.selected_gizmo_position.y += rounded_delta.y;
                     }
                 } break;
                 case EditorGizmos.Z: {
-                    var amount = delta.z;
-                    if (abs(amount) >= delta_threshold) {
-                        if (delta_threshold > 0) {
-                            amount = floor(amount / delta_threshold) * delta_threshold
-                        }
-                        callback_translate(0, 0, amount);
-                        self.selected_gizmo_position.z = current_position.z;
+                    if (abs_delta.z >= delta_threshold) {
+                        callback_translate(0, 0, rounded_delta.z);
+                        self.selected_gizmo_position.z += rounded_delta.z;
+                    }
+                } break;
+                // when you use the planes, look at the two axes separately,
+                // otherwise you'll get a lot of drift
+                case EditorGizmos.XY: {
+                    if (abs_delta.x >= delta_threshold) {
+                        callback_translate(rounded_delta.x, 0, 0);
+                        self.selected_gizmo_position.x += rounded_delta.x;
+                    }
+                    if (abs_delta.y >= delta_threshold) {
+                        callback_translate(0, rounded_delta.y, 0);
+                        self.selected_gizmo_position.y += rounded_delta.y;
+                    }
+                } break;
+                case EditorGizmos.YZ: {
+                    if (abs_delta.y >= delta_threshold) {
+                        callback_translate(0, rounded_delta.y, 0);
+                        self.selected_gizmo_position.y += rounded_delta.y;
+                    }
+                    if (abs_delta.z >= delta_threshold) {
+                        callback_translate(0, 0, rounded_delta.z);
+                        self.selected_gizmo_position.z += rounded_delta.z;
+                    }
+                } break;
+                case EditorGizmos.ZX: {
+                    if (abs_delta.z >= delta_threshold) {
+                        callback_translate(0, 0, rounded_delta.z);
+                        self.selected_gizmo_position.z += rounded_delta.z;
+                    }
+                    if (abs_delta.x >= delta_threshold) {
+                        callback_translate(rounded_delta.x, 0, 0);
+                        self.selected_gizmo_position.x += rounded_delta.x;
                     }
                 } break;
             }
@@ -211,13 +260,13 @@ function GizmoSystem() constructor {
             surface_reset_target();
             
             // yes this is slow
-            var mouse_pick_color = surface_getpixel(mouse_surf, mx, my);
-            if (mouse_pick_color == color_x) {
-                self.selected_gizmo = EditorGizmos.X;
-            } else if (mouse_pick_color == color_y) {
-                self.selected_gizmo = EditorGizmos.Y;
-            } else if (mouse_pick_color == color_z) {
-                self.selected_gizmo = EditorGizmos.Z;
+            switch (surface_getpixel(mouse_surf, mx, my)) {
+                case color_x: self.selected_gizmo = EditorGizmos.X; break;
+                case color_y: self.selected_gizmo = EditorGizmos.Y; break;
+                case color_z: self.selected_gizmo = EditorGizmos.Z; break;
+                case color_xy: self.selected_gizmo = EditorGizmos.XY; break;
+                case color_yz: self.selected_gizmo = EditorGizmos.YZ; break;
+                case color_zx: self.selected_gizmo = EditorGizmos.ZX; break;
             }
             
             // code that happens when you first select a gizmo thingy
@@ -279,6 +328,13 @@ function GizmoSystem() constructor {
                 gizmos.translate_y.Render();
                 self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z);
                 gizmos.translate_z.Render();
+                
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.XY ? color_selected : color_xy);
+                gizmos.translate_xy.Render();
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.YZ ? color_selected : color_yz);
+                gizmos.translate_yz.Render();
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.ZX ? color_selected : color_zx);
+                gizmos.translate_zx.Render();
             } break;
             case EditorGizmoModes.ROTATE: {
                 self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x);
