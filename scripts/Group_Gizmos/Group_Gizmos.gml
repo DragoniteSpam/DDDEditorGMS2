@@ -16,7 +16,7 @@ function GizmoSystem() constructor {
     self.selected_gizmo_position = undefined;
     self.gizmo_type = EditorGizmoModes.TRANSLATE;
     
-    self.snapping_translate = 0;
+    self.snapping_translate = 4;
     self.snapping_rotate = 10;
     
     self.position = new Vector3(0, 0, 0);
@@ -132,20 +132,20 @@ function GizmoSystem() constructor {
         static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate, current_position) {
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
-                    if (abs(delta.x) >= self.snapping_translate) {
-                        callback_translate(delta.x, 0, 0);
+                    if (abs(delta.x) >= delta_threshold) {
+                        callback_translate(floor(delta.x / delta_threshold) * delta_threshold, 0, 0);
                         self.selected_gizmo_position.x = current_position.x;
                     }
                 } break;
                 case EditorGizmos.Y: {
-                    if (abs(delta.y) >= self.snapping_translate) {
-                        callback_translate(0, delta.y, 0);
+                    if (abs(delta.y) >= delta_threshold) {
+                        callback_translate(0, floor(delta.y / delta_threshold) * delta_threshold, 0);
                         self.selected_gizmo_position.y = current_position.y;
                     }
                 } break;
                 case EditorGizmos.Z: {
-                    if (abs(delta.z) >= self.snapping_translate) {
-                        callback_translate(0, 0, delta.z);
+                    if (abs(delta.z) >= delta_threshold) {
+                        callback_translate(0, 0, floor(delta.z / delta_threshold) * delta_threshold);
                         self.selected_gizmo_position.z = current_position.z;
                     }
                 } break;
@@ -158,6 +158,8 @@ function GizmoSystem() constructor {
             if (abs(mouse_delta_x) < delta_threshold) {
                 return;
             }
+            
+            mouse_delta_x = floor(mouse_delta_x / delta_threshold) * delta_threshold;
             
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
