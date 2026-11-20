@@ -97,41 +97,6 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         if (++rendered_count > limit) break;
     }
     
-    var world_vec = screen_to_world(mx, my, the_camera.view_mat, the_camera.proj_mat, self.width, self.height, true);
-    var mouse_dir = world_vec.direction;
-    var mouse_pos = world_vec.origin;
-    
-    var cb_translate = function(x, y, z) {
-        Settings.mesh.draw_position.x += x;
-        Settings.mesh.draw_position.y += y;
-        Settings.mesh.draw_position.z += z;
-        self.GetSibling("MESH POSITION X").value = string(Settings.mesh.draw_position.x);
-        self.GetSibling("MESH POSITION Y").value = string(Settings.mesh.draw_position.y);
-        self.GetSibling("MESH POSITION Z").value = string(Settings.mesh.draw_position.z);
-    };
-    
-    var cb_rotate = function(x, y, z) {
-        Settings.mesh.draw_rotation.x += x;
-        Settings.mesh.draw_rotation.y += y;
-        Settings.mesh.draw_rotation.z += z;
-        self.GetSibling("MESH ROTATE X").value = string(Settings.mesh.draw_rotation.x);
-        self.GetSibling("MESH ROTATE Y").value = string(Settings.mesh.draw_rotation.y);
-        self.GetSibling("MESH ROTATE Z").value = string(Settings.mesh.draw_rotation.z);
-    };
-    
-    var cb_scale = function(x, y, z) {
-        Settings.mesh.draw_scale.x += x;
-        Settings.mesh.draw_scale.y += y;
-        Settings.mesh.draw_scale.z += z;
-        self.GetSibling("MESH SCALE X").value = string(Settings.mesh.draw_scale.x);
-        self.GetSibling("MESH SCALE Y").value = string(Settings.mesh.draw_scale.y);
-        self.GetSibling("MESH SCALE Z").value = string(Settings.mesh.draw_scale.z);
-    };
-    
-    Stuff.mesh.gizmos.SetPosition(Settings.mesh.draw_position);
-    Stuff.mesh.gizmos.Update(mx, my, mouse_pos, mouse_dir, self.width, self.height, cb_translate, cb_rotate, cb_scale);
-    Stuff.mesh.gizmos.Render();
-    
     if (Settings.mesh.draw_collision) {
         rendered_count = 0;
         for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
@@ -183,6 +148,42 @@ function ui_render_surface_render_mesh_ed(mx, my) {
             );
         }
     }
+    
+    draw_clear_depth(1);
+    var world_vec = screen_to_world(mx, my, the_camera.view_mat, the_camera.proj_mat, self.width, self.height, true);
+    var mouse_dir = world_vec.direction;
+    var mouse_pos = world_vec.origin;
+    
+    var cb_translate = function(x, y, z) {
+        Settings.mesh.draw_position.x += x;
+        Settings.mesh.draw_position.y += y;
+        Settings.mesh.draw_position.z += z;
+        self.GetSibling("MESH POSITION X").value = string(Settings.mesh.draw_position.x);
+        self.GetSibling("MESH POSITION Y").value = string(Settings.mesh.draw_position.y);
+        self.GetSibling("MESH POSITION Z").value = string(Settings.mesh.draw_position.z);
+    };
+    
+    var cb_rotate = function(x, y, z) {
+        Settings.mesh.draw_rotation.x += x;
+        Settings.mesh.draw_rotation.y += y;
+        Settings.mesh.draw_rotation.z += z;
+        self.GetSibling("MESH ROTATE X").value = string(Settings.mesh.draw_rotation.x);
+        self.GetSibling("MESH ROTATE Y").value = string(Settings.mesh.draw_rotation.y);
+        self.GetSibling("MESH ROTATE Z").value = string(Settings.mesh.draw_rotation.z);
+    };
+    
+    var cb_scale = function(x, y, z) {
+        Settings.mesh.draw_scale.x += x;
+        Settings.mesh.draw_scale.y += y;
+        Settings.mesh.draw_scale.z += z;
+        self.GetSibling("MESH SCALE X").value = string(Settings.mesh.draw_scale.x);
+        self.GetSibling("MESH SCALE Y").value = string(Settings.mesh.draw_scale.y);
+        self.GetSibling("MESH SCALE Z").value = string(Settings.mesh.draw_scale.z);
+    };
+    
+    Stuff.mesh.gizmos.SetPosition(Settings.mesh.draw_position);
+    Stuff.mesh.gizmos.Update(mx, my, mouse_pos, mouse_dir, self.width, self.height, cb_translate, cb_rotate, cb_scale);
+    Stuff.mesh.gizmos.Render();
     
     shader_reset();
     gpu_set_ztestenable(false);
