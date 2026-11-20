@@ -132,20 +132,32 @@ function GizmoSystem() constructor {
         static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate, current_position) {
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
-                    if (abs(delta.x) >= delta_threshold) {
-                        callback_translate(floor(delta.x / delta_threshold) * delta_threshold, 0, 0);
+                    var amount = delta.x;
+                    if (abs(amount) >= delta_threshold) {
+                        if (delta_threshold > 0) {
+                            amount = floor(amount / delta_threshold) * delta_threshold
+                        }
+                        callback_translate(amount, 0, 0);
                         self.selected_gizmo_position.x = current_position.x;
                     }
                 } break;
                 case EditorGizmos.Y: {
-                    if (abs(delta.y) >= delta_threshold) {
-                        callback_translate(0, floor(delta.y / delta_threshold) * delta_threshold, 0);
+                    var amount = delta.y;
+                    if (abs(amount) >= delta_threshold) {
+                        if (delta_threshold > 0) {
+                            amount = floor(amount / delta_threshold) * delta_threshold
+                        }
+                        callback_translate(0, amount, 0);
                         self.selected_gizmo_position.y = current_position.y;
                     }
                 } break;
                 case EditorGizmos.Z: {
-                    if (abs(delta.z) >= delta_threshold) {
-                        callback_translate(0, 0, floor(delta.z / delta_threshold) * delta_threshold);
+                    var amount = delta.z;
+                    if (abs(amount) >= delta_threshold) {
+                        if (delta_threshold > 0) {
+                            amount = floor(amount / delta_threshold) * delta_threshold
+                        }
+                        callback_translate(0, 0, amount);
                         self.selected_gizmo_position.z = current_position.z;
                     }
                 } break;
@@ -157,7 +169,10 @@ function GizmoSystem() constructor {
                 return;
             }
             
-            delta = floor(delta / delta_threshold) * delta_threshold;
+            if (delta_threshold > 0) {
+                delta = floor(delta / delta_threshold) * delta_threshold;
+            }
+            
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
                     callback_rotate(delta, 0, 0);
@@ -306,5 +321,11 @@ function GizmoSystem() constructor {
         self.position.x = position.x;
         self.position.y = position.y;
         self.position.z = position.z;
+    };
+    
+    static SetSnapping = function(translate = self.snapping_translate, rotate = self.snapping_rotate, scale = self.snapping_scale) {
+        self.snapping_translate = translate;
+        self.snapping_rotate = rotate;
+        self.snapping_scale = scale;
     };
 }
