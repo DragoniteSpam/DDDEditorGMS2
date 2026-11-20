@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_gizmos",
+  "name":"shd_gizmos",
+  "parent":{
+    "name":"Gizmos",
+    "path":"folders/Scripts/Gizmos.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

@@ -84,6 +84,9 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         if (++rendered_count > limit) break;
     }
     
+    Stuff.mesh.gizmos.Update();
+    Stuff.mesh.gizmos.Render();
+    
     if (Settings.mesh.draw_collision) {
         rendered_count = 0;
         for (var index = 0, visible_mesh_count = array_length(indices); index < visible_mesh_count; index++) {
