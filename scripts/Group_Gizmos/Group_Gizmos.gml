@@ -129,37 +129,34 @@ function GizmoSystem() constructor {
         matrix_get(matrix_view, view_mat);
         matrix_get(matrix_projection, proj_mat);
         
-        static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate) {
+        static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate, current_position) {
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
                     if (abs(delta.x) >= self.snapping_translate) {
                         callback_translate(delta.x, 0, 0);
-                        return true;
+                        self.selected_gizmo_position.x = current_position.x;
                     }
-                    return false;
                 } break;
                 case EditorGizmos.Y: {
                     if (abs(delta.y) >= self.snapping_translate) {
                         callback_translate(0, delta.y, 0);
-                        return true;
+                        self.selected_gizmo_position.y = current_position.y;
                     }
-                    return false;
                 } break;
                 case EditorGizmos.Z: {
                     if (abs(delta.z) >= self.snapping_translate) {
                         callback_translate(0, 0, delta.z);
-                        return true;
+                        self.selected_gizmo_position.z = current_position.z;
                     }
-                    return false;
                 } break;
             }
         };
         
-        static editor_gizmo_rotate = function(selected, delta, delta_threshold, callback_rotate) {
+        static editor_gizmo_rotate = function(selected, delta, delta_threshold, callback_rotate, current_position) {
             var mouse_delta_x = window_mouse_get_delta_x();
             
             if (abs(mouse_delta_x) < delta_threshold) {
-                return false;
+                return;
             }
             
             switch (self.selected_gizmo) {
@@ -174,7 +171,7 @@ function GizmoSystem() constructor {
                 } break;
             }
             
-            return true;
+            self.selected_gizmo_position = current_position;
         }
         
         if (mouse_check_button_pressed(mb_left)) {
@@ -239,14 +236,14 @@ function GizmoSystem() constructor {
                     
                     switch (self.gizmo_type) {
                         case EditorGizmoModes.TRANSLATE: {
-                            if (editor_gizmo_translate(selected, delta, self.snapping_translate, callback_translate)) {
-                                self.selected_gizmo_position = current_gizmo_mouse_position;
-                            }
+                            editor_gizmo_translate(selected, delta, self.snapping_translate, callback_translate, current_gizmo_mouse_position);
                         } break;
                         case EditorGizmoModes.ROTATE: {
-                            if (editor_gizmo_rotate(selected, delta, self.snapping_rotate, callback_rotate)) {
-                                self.selected_gizmo_position = current_gizmo_mouse_position;
-                            }
+                            editor_gizmo_rotate(selected, delta, self.snapping_rotate, callback_rotate);
+                        } break;
+                        // scale uses the same logic as translate
+                        case EditorGizmoModes.SCALE: {
+                            editor_gizmo_translate(selected, delta.Div(32), self.snapping_translate, callback_scale, current_gizmo_mouse_position);
                         } break;
                     }
                 }
