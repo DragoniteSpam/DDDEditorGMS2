@@ -289,6 +289,7 @@
     {"name":"dialog_create_mesh_normal_settings","order":40,"path":"scripts/dialog_create_mesh_normal_settings/dialog_create_mesh_normal_settings.yy",},
     {"name":"dialog_create_mesh_other_settings","order":41,"path":"scripts/dialog_create_mesh_other_settings/dialog_create_mesh_other_settings.yy",},
     {"name":"dialog_create_mesh_render_overhead_wireframe","order":43,"path":"scripts/dialog_create_mesh_render_overhead_wireframe/dialog_create_mesh_render_overhead_wireframe.yy",},
+    {"name":"dialog_create_mesh_viewer_settings","order":46,"path":"scripts/dialog_create_mesh_viewer_settings/dialog_create_mesh_viewer_settings.yy",},
     {"name":"dialog_create_refid_list","order":20,"path":"scripts/dialog_create_refid_list/dialog_create_refid_list.yy",},
     {"name":"Drago3D_Internals","order":4,"path":"scripts/Drago3D_Internals/Drago3D_Internals.yy",},
     {"name":"DragoMinicam","order":18,"path":"scripts/DragoMinicam/DragoMinicam.yy",},
