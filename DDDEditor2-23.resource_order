@@ -328,7 +328,6 @@
     {"name":"Group_Math_Bitwise","order":9,"path":"scripts/Group_Math_Bitwise/Group_Math_Bitwise.yy",},
     {"name":"Group_Math_Data_Structures","order":10,"path":"scripts/Group_Math_Data_Structures/Group_Math_Data_Structures.yy",},
     {"name":"Group_Math_Matrix","order":19,"path":"scripts/Group_Math_Matrix/Group_Math_Matrix.yy",},
-    {"name":"Group_Math_Vectors","order":13,"path":"scripts/Group_Math_Vectors/Group_Math_Vectors.yy",},
     {"name":"Group_Math","order":15,"path":"scripts/Group_Math/Group_Math.yy",},
     {"name":"Group_Menu_Data_Assets","order":7,"path":"scripts/Group_Menu_Data_Assets/Group_Menu_Data_Assets.yy",},
     {"name":"Group_Menu_Data","order":6,"path":"scripts/Group_Menu_Data/Group_Menu_Data.yy",},
