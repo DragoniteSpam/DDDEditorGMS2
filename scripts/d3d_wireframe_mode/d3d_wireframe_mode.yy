@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"d3d_wireframe_mode",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"d3d_wireframe_mode",
+  "parent":{
+    "name":"Drago3D",
+    "path":"folders/Drago3D.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__d3d_block_internal",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__d3d_block_internal",
+  "parent":{
+    "name":"Internal",
+    "path":"folders/Drago3D/Geometry/Internal.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
