@@ -125,6 +125,9 @@ Settings.mesh[$ "combine_obj_submeshes"] ??=                                    
 Settings.mesh[$ "combine_force_po2"] ??=                                        MESH_DEF_COMBINE_FORCE_PO2;
 Settings.mesh[$ "draw_3d_view_overlay_text"] ??=                                MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT;
 Settings.mesh[$ "fuse_textureless_materials"] ??=                               MESH_DEF_FUSE_TEXTURELESS_MATERIALS;
+Settings.mesh[$ "gizmo_snap_translate"] ??=                                     MESH_DEF_GIZMO_SNAP_TRANSLATE;
+Settings.mesh[$ "gizmo_snap_rotate"] ??=                                        MESH_DEF_GIZMO_SNAP_ROTATE;
+Settings.mesh[$ "gizmo_snap_scale"] ??=                                         MESH_DEF_GIZMO_SNAP_SCALE;
 
 Settings[$ "voxelish"] ??=                                                      { };
 Settings.voxelish[$ "orthographic"] ??=                                         VOXELISH_DEF_ORTHO_CAMERA;
@@ -153,6 +156,9 @@ Settings.voxelish[$ "view_skybox"] ??=                                          
 #macro MESH_DEF_COMBINE_FORCE_PO2                                               false
 #macro MESH_DEF_DRAW_3D_VIEW_OVERLAY_TEXT                                       true
 #macro MESH_DEF_FUSE_TEXTURELESS_MATERIALS                                      true
+#macro MESH_DEF_GIZMO_SNAP_TRANSLATE                                            4
+#macro MESH_DEF_GIZMO_SNAP_ROTATE                                               15
+#macro MESH_DEF_GIZMO_SNAP_SCALE                                                0.125
 #macro vk_mesh_editor_overlay_text_toggle                                       ord("O")
 
 #macro COLOR_MODE_DARK_BACK                                                     0x1f1f1f

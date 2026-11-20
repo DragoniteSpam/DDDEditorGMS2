@@ -602,7 +602,29 @@ function ui_init_mesh(mode) {
                 }
             }, emu_null, emu_null))
                 .SetID("3D VIEW"),
-            (new EmuButton(col3x, EMU_AUTO, element_width, element_height, "Viewer Settings", function() {
+            
+            new EmuInput(col3x, EMU_AUTO, element_width_short, element_height, "Snapping:", Settings.mesh.gizmo_snap_translate, "Translate", 3, E_InputTypes.INT, function() {
+                Settings.mesh.gizmo_snap_translate = real(self.value);
+            })
+                .SetID("GIZMO TRANSLATE")
+                .SetNext("GIZMO ROTATE")
+                .SetPrevious("GIZMO SCALE"),
+            new EmuInput(col3x + element_width_short, EMU_INLINE, element_width_short / 2, element_height, "", Settings.mesh.gizmo_snap_rotate, "Rotate", 3, E_InputTypes.INT, function() {
+                Settings.mesh.gizmo_snap_rotate = real(self.value);
+            })
+                .SetInputBoxPosition(0, 0)
+                .SetID("GIZMO ROTATE")
+                .SetNext("GIZMO SCALE")
+                .SetPrevious("GIZMO TRANSLATE"),
+            new EmuInput(col3x + element_width_short * 1.5, EMU_INLINE, element_width_short / 2, element_height, "", Settings.mesh.gizmo_snap_scale, "Scale", 6, E_InputTypes.REAL, function() {
+                Settings.mesh.gizmo_snap_scale = real(self.value);
+            })
+                .SetInputBoxPosition(0, 0)
+                .SetID("GIZMO SCALE")
+                .SetNext("GIZMO TRANSLATE")
+                .SetPrevious("GIZMO ROTATE"),
+            
+            (new EmuButton(col3x + element_width_short * 2 + 16, EMU_INLINE, element_width, element_height, "Viewer Settings", function() {
                 var dialog = new EmuDialog(32 + 320 + 32, 608, "Mesh viewer settings");
                 dialog.root = self;
                 dialog.active_shade = 0;
@@ -715,6 +737,7 @@ function ui_init_mesh(mode) {
             }))
                 .SetTooltip("Some options relating to the 3D view above.")
                 .SetID("VIEWER SETTINGS"),
+            
             new EmuInput(col3x, EMU_AUTO, element_width_short, element_height, "Light:", mode.light.x, "X", 6, E_InputTypes.REAL, function() {
                 Stuff.mesh.light.x = real(self.value);
             })
