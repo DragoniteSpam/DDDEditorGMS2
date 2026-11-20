@@ -84,6 +84,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         if (++rendered_count > limit) break;
     }
     
+    Stuff.mesh.gizmos.SetPosition(Settings.mesh.draw_position);
     Stuff.mesh.gizmos.Update();
     Stuff.mesh.gizmos.Render();
     
@@ -164,6 +165,18 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     // i legitimately dont know why the vertical offset here needs to be 32 and not self.y
     editor_gui_button(spr_camera_icons, 2, 16, self.height - 48, self.x, 32, null, function() {
         Stuff.mesh.camera.Reset();
+    });
+    var gizmo_is_translate = (Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.TRANSLATE);
+    var gizmo_is_rotate = (Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.ROTATE);
+    var gizmo_is_scale = (Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.SCALE);
+    editor_gui_button(spr_gizmo_translate, gizmo_is_translate ? 1 : 0, 16 + 48 * 1, self.height - 48, self.x, 32, null, function() {
+        Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.TRANSLATE;
+    });
+    editor_gui_button(spr_gizmo_rotate, gizmo_is_rotate ? 1 : 0, 16 + 48 * 2, self.height - 48, self.x, 32, null, function() {
+        Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.ROTATE;
+    });
+    editor_gui_button(spr_gizmo_scale, gizmo_is_scale ? 1 : 0, 16 + 48 * 3, self.height - 48, self.x, 32, null, function() {
+        Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.SCALE;
     });
     #endregion
 }
