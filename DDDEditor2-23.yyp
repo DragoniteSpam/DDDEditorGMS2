@@ -441,6 +441,7 @@
     {"id":{"name":"Group_Map_Zones","path":"scripts/Group_Map_Zones/Group_Map_Zones.yy",},},
     {"id":{"name":"Group_Material","path":"scripts/Group_Material/Group_Material.yy",},},
     {"id":{"name":"Group_Math_Bitwise","path":"scripts/Group_Math_Bitwise/Group_Math_Bitwise.yy",},},
+    {"id":{"name":"Group_Math_Bounding_Box","path":"scripts/Group_Math_Bounding_Box/Group_Math_Bounding_Box.yy",},},
     {"id":{"name":"Group_Math_Data_Structures","path":"scripts/Group_Math_Data_Structures/Group_Math_Data_Structures.yy",},},
     {"id":{"name":"Group_Math_Matrix","path":"scripts/Group_Math_Matrix/Group_Math_Matrix.yy",},},
     {"id":{"name":"Group_Math","path":"scripts/Group_Math/Group_Math.yy",},},

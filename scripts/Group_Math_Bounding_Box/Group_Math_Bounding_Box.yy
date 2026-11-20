@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Group_Math_Bounding_Box",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Math_Bounding_Box",
+  "parent":{
+    "name":"Math",
+    "path":"folders/Math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

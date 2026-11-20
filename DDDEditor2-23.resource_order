@@ -354,6 +354,7 @@
     {"name":"Group_Map_Help","order":2,"path":"scripts/Group_Map_Help/Group_Map_Help.yy",},
     {"name":"Group_Material","order":6,"path":"scripts/Group_Material/Group_Material.yy",},
     {"name":"Group_Math_Bitwise","order":9,"path":"scripts/Group_Math_Bitwise/Group_Math_Bitwise.yy",},
+    {"name":"Group_Math_Bounding_Box","order":20,"path":"scripts/Group_Math_Bounding_Box/Group_Math_Bounding_Box.yy",},
     {"name":"Group_Math_Data_Structures","order":10,"path":"scripts/Group_Math_Data_Structures/Group_Math_Data_Structures.yy",},
     {"name":"Group_Math_Matrix","order":19,"path":"scripts/Group_Math_Matrix/Group_Math_Matrix.yy",},
     {"name":"Group_Math","order":15,"path":"scripts/Group_Math/Group_Math.yy",},
