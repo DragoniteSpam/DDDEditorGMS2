@@ -148,7 +148,7 @@ Settings.voxelish[$ "view_skybox"] ??=                                          
 #macro MESH_DEF_VIEW_DRAW_COLLISION                                             false
 #macro MESH_DEF_VIEW_DRAW_AXES                                                  true
 #macro MESH_DEF_VIEW_DRAW_GRID                                                  true
-#macro MESH_DEF_VIEW_DRAW_GIZMOS                                                true
+#macro MESH_DEF_VIEW_DRAW_GIZMOS                                                false
 #macro MESH_DEF_VIEW_DRAW_PHYSICAL_BOUNDS                                       false
 #macro MESH_DEF_VIEW_WIREFRAME_ALPHA                                            1
 #macro MESH_DEF_REFLECT_SETTINGS                                                (MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE)
