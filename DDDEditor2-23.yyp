@@ -371,6 +371,7 @@
     {"id":{"name":"Group_Game","path":"scripts/Group_Game/Group_Game.yy",},},
     {"id":{"name":"Group_Get_Open_Filename","path":"scripts/Group_Get_Open_Filename/Group_Get_Open_Filename.yy",},},
     {"id":{"name":"Group_Get_Save_Filename","path":"scripts/Group_Get_Save_Filename/Group_Get_Save_Filename.yy",},},
+    {"id":{"name":"Group_Gizmos","path":"scripts/Group_Gizmos/Group_Gizmos.yy",},},
     {"id":{"name":"Group_Graphics_3D","path":"scripts/Group_Graphics_3D/Group_Graphics_3D.yy",},},
     {"id":{"name":"Group_Graphics","path":"scripts/Group_Graphics/Group_Graphics.yy",},},
     {"id":{"name":"Group_GUID","path":"scripts/Group_GUID/Group_GUID.yy",},},

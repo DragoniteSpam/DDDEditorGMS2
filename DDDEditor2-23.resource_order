@@ -290,6 +290,7 @@
     {"name":"Group_Game","order":4,"path":"scripts/Group_Game/Group_Game.yy",},
     {"name":"Group_Get_Open_Filename","order":1,"path":"scripts/Group_Get_Open_Filename/Group_Get_Open_Filename.yy",},
     {"name":"Group_Get_Save_Filename","order":2,"path":"scripts/Group_Get_Save_Filename/Group_Get_Save_Filename.yy",},
+    {"name":"Group_Gizmos","order":15,"path":"scripts/Group_Gizmos/Group_Gizmos.yy",},
     {"name":"Group_Graphics_3D","order":4,"path":"scripts/Group_Graphics_3D/Group_Graphics_3D.yy",},
     {"name":"Group_Graphics","order":5,"path":"scripts/Group_Graphics/Group_Graphics.yy",},
     {"name":"Group_Image_Help","order":3,"path":"scripts/Group_Image_Help/Group_Image_Help.yy",},
