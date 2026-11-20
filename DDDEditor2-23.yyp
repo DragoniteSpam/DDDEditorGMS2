@@ -87,7 +87,7 @@
     {"$GMFolder":"","%Name":"Control","folderPath":"folders/Scripts/Control.yy","name":"Control","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"entity","folderPath":"folders/Scripts/entity.yy","name":"entity","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"mesh","folderPath":"folders/Scripts/entity/mesh.yy","name":"mesh","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Gizmos","folderPath":"folders/Scripts/Gizmos.yy","name":"Gizmos","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"DragoGizmos","folderPath":"folders/DragoGizmos.yy","name":"DragoGizmos","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Graphics","folderPath":"folders/Scripts/Graphics.yy","name":"Graphics","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"batching","folderPath":"folders/Scripts/Graphics/batching.yy","name":"batching","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"misc code","folderPath":"folders/Scripts/misc code.yy","name":"misc code","resourceType":"GMFolder","resourceVersion":"2.0",},

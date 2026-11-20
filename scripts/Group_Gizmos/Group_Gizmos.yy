@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"Group_Gizmos",
   "parent":{
-    "name":"Gizmos",
-    "path":"folders/Scripts/Gizmos.yy",
+    "name":"DragoGizmos",
+    "path":"folders/DragoGizmos.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -32,8 +32,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Gizmos",
-    "path":"folders/Scripts/Gizmos.yy",
+    "name":"DragoGizmos",
+    "path":"folders/DragoGizmos.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
