@@ -160,28 +160,29 @@ function GizmoSystem() constructor {
         matrix_get(matrix_view, view_mat);
         matrix_get(matrix_projection, proj_mat);
         
-        static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate) {
+        static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate, scale = 1) {
             var rounded_delta = (delta_threshold > 0)
                 ? delta.Div(delta_threshold).Floor().Mul(delta_threshold)
                 : delta;
             
             var abs_delta = delta.Abs();
+            
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
                     if (abs_delta.x >= delta_threshold) {
-                        callback_translate(rounded_delta.x, 0, 0);
+                        callback_translate(rounded_delta.x * scale, 0, 0);
                         self.selected_gizmo_position.x += rounded_delta.x;
                     }
                 } break;
                 case EditorGizmos.Y: {
                     if (abs_delta.y >= delta_threshold) {
-                        callback_translate(0, rounded_delta.y, 0);
+                        callback_translate(0, rounded_delta.y * scale, 0);
                         self.selected_gizmo_position.y += rounded_delta.y;
                     }
                 } break;
                 case EditorGizmos.Z: {
                     if (abs_delta.z >= delta_threshold) {
-                        callback_translate(0, 0, rounded_delta.z);
+                        callback_translate(0, 0, rounded_delta.z * scale);
                         self.selected_gizmo_position.z += rounded_delta.z;
                     }
                 } break;
@@ -189,31 +190,31 @@ function GizmoSystem() constructor {
                 // otherwise you'll get a lot of drift
                 case EditorGizmos.XY: {
                     if (abs_delta.x >= delta_threshold) {
-                        callback_translate(rounded_delta.x, 0, 0);
+                        callback_translate(rounded_delta.x * scale, 0, 0);
                         self.selected_gizmo_position.x += rounded_delta.x;
                     }
                     if (abs_delta.y >= delta_threshold) {
-                        callback_translate(0, rounded_delta.y, 0);
+                        callback_translate(0, rounded_delta.y * scale, 0);
                         self.selected_gizmo_position.y += rounded_delta.y;
                     }
                 } break;
                 case EditorGizmos.YZ: {
                     if (abs_delta.y >= delta_threshold) {
-                        callback_translate(0, rounded_delta.y, 0);
+                        callback_translate(0, rounded_delta.y * scale, 0);
                         self.selected_gizmo_position.y += rounded_delta.y;
                     }
                     if (abs_delta.z >= delta_threshold) {
-                        callback_translate(0, 0, rounded_delta.z);
+                        callback_translate(0, 0, rounded_delta.z * scale);
                         self.selected_gizmo_position.z += rounded_delta.z;
                     }
                 } break;
                 case EditorGizmos.ZX: {
                     if (abs_delta.z >= delta_threshold) {
-                        callback_translate(0, 0, rounded_delta.z);
+                        callback_translate(0, 0, rounded_delta.z * scale);
                         self.selected_gizmo_position.z += rounded_delta.z;
                     }
                     if (abs_delta.x >= delta_threshold) {
-                        callback_translate(rounded_delta.x, 0, 0);
+                        callback_translate(rounded_delta.x * scale, 0, 0);
                         self.selected_gizmo_position.x += rounded_delta.x;
                     }
                 } break;
@@ -288,14 +289,14 @@ function GizmoSystem() constructor {
                 
                 switch (self.gizmo_type) {
                     case EditorGizmoModes.TRANSLATE: {
-                        editor_gizmo_translate(selected, delta, self.snapping_translate, callback_translate, current_gizmo_mouse_position);
+                        editor_gizmo_translate(selected, delta, self.snapping_translate, callback_translate);
                     } break;
                     case EditorGizmoModes.ROTATE: {
                         editor_gizmo_rotate(selected, delta_raw_x, self.snapping_rotate, callback_rotate, current_gizmo_mouse_raw_x);
                     } break;
                     // scale uses the same logic as translate
                     case EditorGizmoModes.SCALE: {
-                        editor_gizmo_translate(selected, delta.Div(32), self.snapping_scale, callback_scale, current_gizmo_mouse_position);
+                        editor_gizmo_translate(selected, delta, self.snapping_scale, callback_scale, 1 / 32);
                     } break;
                 }
             }
