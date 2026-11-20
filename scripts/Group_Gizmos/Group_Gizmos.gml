@@ -18,6 +18,7 @@ function GizmoSystem() constructor {
     
     self.snapping_translate = 4;
     self.snapping_rotate = 10;
+    self.snapping_scale = 0.25;
     
     self.position = new Vector3(0, 0, 0);
     
@@ -245,7 +246,7 @@ function GizmoSystem() constructor {
                         } break;
                         // scale uses the same logic as translate
                         case EditorGizmoModes.SCALE: {
-                            editor_gizmo_translate(selected, delta.Div(32), self.snapping_translate, callback_scale, current_gizmo_mouse_position);
+                            editor_gizmo_translate(selected, delta.Div(32), self.snapping_scale, callback_scale, current_gizmo_mouse_position);
                         } break;
                     }
                 }
