@@ -321,7 +321,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     self.GetCurrentBrushRadius = function() {
         switch (Settings.terrain.mode) {
-            case TerrainModes.Z: return Settings.terrain.radius;
+            case TerrainModes.Z: return Settings.terrain.radius / 2;
             case TerrainModes.TEXTURE: return Settings.terrain.tile_brush_radius / 2;
             case TerrainModes.COLOR: return Settings.terrain.paint_brush_radius / 2;
         }
