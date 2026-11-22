@@ -293,6 +293,11 @@ function Vector3(x, y = x, z = x) constructor {
             lerp(self.z, target.z, f)
         );
     };
+    
+    static Rotate = function(axis, angle) {
+        axis = axis.Normalize();
+        return self.Mul(dcos(angle)).Add(axis.Cross(self).Mul(dsin(angle))).Add(axis.Mul(axis.Dot(self)).Mul(1 - dcos(angle))).Normalize();
+    };
 }
 
 function Vector4(x, y = x, z = x, w = x) constructor {
