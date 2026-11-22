@@ -109,8 +109,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         self.terrain.texture.Validate();
         self.terrain.color.Validate();
         
-        self.stats.chunks.full = 0;
-        self.stats.chunks.lod = 0;
+        self.stats.chunks = [];
         self.stats.triangles = 0;
         
         // you only get the keyboard shortcuts if we're running under the terrain config

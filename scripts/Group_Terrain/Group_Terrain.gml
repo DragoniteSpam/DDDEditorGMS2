@@ -64,6 +64,8 @@ function Terrain(w, h) constructor {
         var cutoff = Settings.terrain.view_distance;
         var max_lod_level = array_length(patches) - 1;
         
+        stats.chunks = array_create(array_length(patches));
+        
         for (var xx = 0; xx < self.w; xx += TERRAIN_INTERNAL_CHUNK_SIZE) {
             for (var yy = 0; yy < self.h; yy += TERRAIN_INTERNAL_CHUNK_SIZE) {
                 var cx = xx + TERRAIN_INTERNAL_CHUNK_SIZE / 2;
@@ -89,7 +91,7 @@ function Terrain(w, h) constructor {
                 
                 shader_set_uniform_f(u_world_offset, xx, yy);
                 vertex_submit(patches[lod_level], pr_trianglelist, -1);
-                stats.chunks.full++;
+                stats.chunks[lod_level]++;
                 stats.triangles += vertex_get_number(patches[lod_level]);
                 
             }

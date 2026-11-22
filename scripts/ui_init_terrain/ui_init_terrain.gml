@@ -177,20 +177,40 @@ function ui_init_terrain(mode) {
                         static info = os_get_info();
                         
                         var area = Stuff.terrain.width * Stuff.terrain.height;
+                        var chunk_output = "";
+                        
+                        for (var i = 0, n = array_length(Stuff.terrain.stats.chunks); i < n; i++) {
+                            chunk_output += $"{Stuff.terrain.stats.chunks[i]} x lod{i}";
+                            if (i < n - 1) {
+                                chunk_output += ", ";
+                            }
+                        }
+                        
+                        var comp_baseball_diamond = area / area_baseball_diamond;
+                        var comp_vatican_city = area / area_vatican_city;
+                        var comp_barringer_crater = area / area_barringer_crater;
+                        var comp_central_park = area / area_central_park;
+                        var comp_dublin_airport = area / area_dublin_airport;
+                        var comp_skyrim = area / area_skyrim;
+                        
+                        if (comp_baseball_diamond > 10) comp_baseball_diamond = floor(comp_baseball_diamond);
+                        if (comp_vatican_city > 10) comp_vatican_city = floor(comp_vatican_city);
+                        if (comp_barringer_crater > 10) comp_barringer_crater = floor(comp_barringer_crater);
+                        if (comp_central_park > 10) comp_central_park = floor(comp_central_park);
+                        if (comp_dublin_airport > 10) comp_dublin_airport = floor(comp_dublin_airport);
+                        if (comp_skyrim > 10) comp_skyrim = floor(comp_skyrim);
                         
                         var output = "[c_aqua]Stats[]\n" +
-                            "Chunks:\n" +
-                            "    Full: " + string(Stuff.terrain.stats.chunks.full) + "\n" +
-                            "    Reduced: " + string(Stuff.terrain.stats.chunks.lod) + "\n" +
+                            $"Chunks: {chunk_output}\n" +
                             "Triangles rendered:\n" +
                             "    " + string_comma(Stuff.terrain.stats.triangles) + "\n" +
                             "Terrain area: " + (area < MILLION ? (string_comma(area) + " m²") : (string(area / MILLION) + " km²")) + "\n" +
-                            "    " + string(area / area_baseball_diamond) + "x baseball diamond (750 m²)\n" +
-                            "    " + string(area / area_vatican_city) + "x Vatican City (0.44 km²)\n" +
-                            "    " + string(area / area_barringer_crater) + "x Barringer Crater (1.09 km²)\n" +
-                            "    " + string(area / area_central_park) + "x Central Park in New York City (3.41 km²)\n" +
-                            "    " + string(area / area_dublin_airport) + "x Dublin International Airport (10.84 km²)\n" +
-                            "    " + string(area / area_skyrim) + "x Skyrim (39 km²)\n\n" +
+                            "    " + string(comp_baseball_diamond) + "x baseball diamond (750 m²)\n" +
+                            "    " + string(comp_vatican_city) + "x Vatican City (0.44 km²)\n" +
+                            "    " + string(comp_barringer_crater) + "x Barringer Crater (1.09 km²)\n" +
+                            "    " + string(comp_central_park) + "x Central Park in New York City (3.41 km²)\n" +
+                            "    " + string(comp_dublin_airport) + "x Dublin International Airport (10.84 km²)\n" +
+                            "    " + string(comp_skyrim) + "x Skyrim (39 km²)\n\n" +
                             "[c_aqua]System info[]\n" +
                             "CPU model: " + cpu_info + "\n" +
                             "    Logical cores: " + cpu_cores + "\n" +
