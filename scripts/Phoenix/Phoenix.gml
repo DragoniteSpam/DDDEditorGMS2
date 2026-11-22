@@ -1,12 +1,14 @@
-function Phoenix(width, height, constrain = true, def_color = c_white, format = surface_rgba8unorm, blendmode = bm_normal) constructor {
+function Phoenix(width, height, constrain = true, settings = { }) constructor {
     self.MAX_SIZE = 4096;
     
     self.constrain = constrain;
     self.width = constrain ? min(width, self.MAX_SIZE) : width;
     self.height = constrain ? min(height, self.MAX_SIZE) : height;
-    self.def_color = def_color;
-    self.format = format;
-    self.blendmode = blendmode;
+    
+    // there may be a lot of optional parameters
+    self.def_color = settings[$ "def_color"] ?? c_white;
+    self.format = settings[$ "format"] ?? surface_r8unorm;
+    self.blendmode = settings[$ "blendmode"] ?? bm_normal;
     
     var dd = surface_get_depth_disable();
     surface_depth_disable(true);

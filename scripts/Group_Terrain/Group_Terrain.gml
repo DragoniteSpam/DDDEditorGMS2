@@ -10,9 +10,9 @@ function Terrain(w, h) constructor {
     
     self.surface = -1;
     
-    self.height = new Phoenix(self.w, self.h, true, c_black, surface_r32float, bm_add);
+    self.height = new Phoenix(self.w, self.h, true, { def_color: c_black, format: surface_r32float, blendmode: bm_add });
     self.color = (new Phoenix(self.w * Settings.terrain.color_scale, self.h * Settings.terrain.color_scale));
-    self.texture = (new Phoenix(self.w, self.h, false, c_black))
+    self.texture = (new Phoenix(self.w, self.h, false, { def_color: c_black }))
         .SetBlendEnable(false);
     
     self.Validate();
