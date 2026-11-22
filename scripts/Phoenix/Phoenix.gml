@@ -9,6 +9,8 @@ function Phoenix(width, height, constrain = true, settings = { }) constructor {
     self.def_color = settings[$ "def_color"] ?? c_white;
     self.format = settings[$ "format"] ?? surface_rgba8unorm;
     self.blend_mode = settings[$ "blend_mode"] ?? bm_normal;
+    self.blend_enable = settings[$ "blend_enable"] ?? true;
+    self.shader = settings[$ "shader"] ?? -1;
     
     var dd = surface_get_depth_disable();
     surface_depth_disable(true);
@@ -21,8 +23,6 @@ function Phoenix(width, height, constrain = true, settings = { }) constructor {
     
     self.brush_index = 7;
     self.brush_sprite = -1;
-    self.shader = -1;
-    self.blend_enable = true;
     
     static SetBrush = function(sprite, index) {
         self.brush_sprite = sprite;
