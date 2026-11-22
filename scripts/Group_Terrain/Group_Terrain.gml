@@ -10,6 +10,16 @@ function Terrain(w, h) constructor {
     
     self.surface = -1;
     
+    show_message("Color and Texture brushes: set the brush and shaders when used");
+    self.height = new Phoenix(self.w, self.h);
+    self.color = (new Phoenix(self.w * Settings.terrain.color_scale, self.h * Settings.terrain.color_scale))
+        //.SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
+        //.SetShader(shd_terrain_paint);
+    self.texture = (new Phoenix(self.w, self.h, false, c_black))
+        //.SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
+        //.SetShader(shd_terrain_paint_texture)
+        .SetBlendEnable(false);
+    
     self.Validate();
     
     static Validate = function() {
@@ -31,6 +41,8 @@ function Terrain(w, h) constructor {
     };
     
     static Render = function() {
+        show_debug_message("Re-implement the drawing of the terrain with lods (refer to the old code that's still there)");
+        
         var old_shader = shader_current();
         gpu_push_state();
         
@@ -62,5 +74,8 @@ function Terrain(w, h) constructor {
         if (surface_exists(self.surface)) {
             surface_free(self.surface);
         }
+        self.height.Destroy();
+        self.color.Destroy();
+        self.texture.Destroy();
     };
 }

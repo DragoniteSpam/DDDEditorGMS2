@@ -37,9 +37,9 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     
     self.EditModeColor = function(position) {
-        var csx = surface_get_width(self.color.surface) / self.width;
-        var csy = surface_get_height(self.color.surface) / self.height;
-        self.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius * max(csx, csy), Settings.terrain.paint_color, Settings.terrain.paint_strength);
+        var csx = surface_get_width(self.terrain.color.surface) / self.width;
+        var csy = surface_get_height(self.terrain.color.surface) / self.height;
+        self.terrain.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius * max(csx, csy), Settings.terrain.paint_color, Settings.terrain.paint_strength);
     };
     
     self.mouse_interaction = function(mouse_vector) {
@@ -295,14 +295,6 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             (index mod ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)) * TERRAIN_INTERNAL_CHUNK_SIZE
         );
     };
-    
-    self.color = (new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale))
-        .SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
-        .SetShader(shd_terrain_paint);
-    self.texture = (new Phoenix(self.width, self.height, false, c_black))
-        .SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
-        .SetShader(shd_terrain_paint_texture)
-        .SetBlendEnable(false);
     
     self.GetTextureColorCode = function() {
         var tx = floor(0x100 * Settings.terrain.tile_brush_x / sprite_get_width(self.texture_image));
