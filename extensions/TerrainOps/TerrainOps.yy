@@ -11,6 +11,16 @@
   "androidsourcedir":"",
   "author":"",
   "classname":"",
+  "ConfigValues":{
+    "Terrain":{
+      "HTML5CodeInjection":"",
+      "androidcodeinjection":"",
+      "ioscodeinjection":"",
+      "tvoscodeinjection":"",
+      "maccodeinjection":"",
+      "copyToTargets":"-1",
+    },
+  },
   "copyToTargets":-1,
   "description":"",
   "exportToGame":true,
