@@ -139,6 +139,7 @@ function dialog_create_terrain_new() {
         ))
             .SetRealNumberBounds(MIN_TERRAIN_WIDTH, MAX_TERRAIN_WIDTH)
             .SetTooltip("Height of the terrain")
+            .SetNext("HEIGHT").SetPrevious("HEIGHT")
             .SetID("WIDTH"),
         (new EmuInput(
             col1_x, EMU_AUTO, ew, eh, "Height:", string(DEFAULT_TERRAIN_HEIGHT), string(MIN_TERRAIN_HEIGHT) + "..." + string(MAX_TERRAIN_HEIGHT),
@@ -146,8 +147,9 @@ function dialog_create_terrain_new() {
         ))
             .SetRealNumberBounds(MIN_TERRAIN_HEIGHT, MAX_TERRAIN_HEIGHT)
             .SetTooltip("Height of the terrain")
+            .SetNext("WIDTH").SetPrevious("WIDTH")
             .SetID("HEIGHT"),
-        (new EmuButton(col1_x + 0 * ew / 6, EMU_INLINE, ew / 6, eh, "128", function() {
+        (new EmuButton(col1_x + 0 * ew / 6, EMU_AUTO, ew / 6, eh, "128", function() {
             self.GetSibling("WIDTH").SetValue("128");
             self.GetSibling("HEIGHT").SetValue("128");
         }))
