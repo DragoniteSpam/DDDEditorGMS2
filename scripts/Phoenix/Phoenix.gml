@@ -7,7 +7,7 @@ function Phoenix(width, height, constrain = true, settings = { }) constructor {
     
     // there may be a lot of optional parameters
     self.def_color = settings[$ "def_color"] ?? c_white;
-    self.format = settings[$ "format"] ?? surface_r8unorm;
+    self.format = settings[$ "format"] ?? surface_rgba8unorm;
     self.blendmode = settings[$ "blendmode"] ?? bm_normal;
     
     var dd = surface_get_depth_disable();
@@ -16,7 +16,7 @@ function Phoenix(width, height, constrain = true, settings = { }) constructor {
     surface_depth_disable(dd);
     self.sprite = -1;
     surface_set_target(self.surface);
-    draw_clear_alpha(def_color, 1);
+    draw_clear_alpha(self.def_color, 1);
     surface_reset_target();
     
     self.brush_index = 7;
