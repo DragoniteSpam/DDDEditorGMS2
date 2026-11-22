@@ -615,7 +615,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             //}
         } else {
             var chunk_angle = dcos(Settings.terrain.camera.fov * 1.5);
-            show_debug_message("Re-implement the drawing of the terrain (this is the main thing I guess)");
+            //show_debug_message("Re-implement the drawing of the terrain (this is the main thing I guess)");
+            self.terrain.Render();
             //for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
             //    var position = self.GetTerrainBufferPositionWorld(i);
             //    var chunk_distance = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2);
