@@ -1,9 +1,14 @@
 function Phoenix(width, height, constrain = true, settings = { }) constructor {
-    self.MAX_SIZE = 4096;
+    static MAX_SIZE = 16384;
     
-    self.constrain = constrain;
-    self.width = constrain ? min(width, self.MAX_SIZE) : width;
-    self.height = constrain ? min(height, self.MAX_SIZE) : height;
+    self.width = min(MAX_SIZE, width);
+    self.height = min(MAX_SIZE, height);
+    
+    // if the canvas's size is constrained, you'll need to know how much it was
+    // scaled down by, otherwise you might get weird things happening when you
+    // paint on it
+    self.width_factor = self.width / width;
+    self.height_factor = self.height / height;
     
     // there may be a lot of optional parameters
     self.def_color = settings[$ "def_color"] ?? c_white;
@@ -46,8 +51,8 @@ function Phoenix(width, height, constrain = true, settings = { }) constructor {
     };
     
     static Reset = function(width, height) {
-        self.width = self.constrain ? min(width, self.MAX_SIZE) : width;
-        self.height = self.constrain ? min(height, self.MAX_SIZE) : height;
+        self.width = width;
+        self.height = height;
         if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
         if (surface_exists(self.surface)) surface_free(self.surface);
         self.sprite = -1;
@@ -83,6 +88,9 @@ function Phoenix(width, height, constrain = true, settings = { }) constructor {
         if (!sprite_exists(self.brush_sprite)) return;
         surface_set_target(self.surface);
         if (self.shader != -1) shader_set(self.shader);
+        
+        x *= self.width_factor;
+        y *= self.height_factor;
         
         gpu_push_state();
         gpu_set_blendmode(self.blend_mode);

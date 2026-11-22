@@ -5,7 +5,7 @@
 #macro MIN_TERRAIN_HEIGHT                   16                                  // (a 16384*16384 terrain would consume 19 GB of RAM... for the base vertex buffer alone)
 #macro MIN_TERRAIN_WIDTH                    16                                  // anyway gamemaker has a hard limit of 2^31 bytes in a data buffer for now anyway
 
-#macro TERRAIN_DEF_COLOR_SCALE                      8
+#macro TERRAIN_DEF_COLOR_SCALE                      4
 
 #macro TERRAIN_DEF_GEN_NOISE_SCALE                  0.5
 #macro TERRAIN_DEF_GEN_NOISE_SMOOTHNESS             0.5
