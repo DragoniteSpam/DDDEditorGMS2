@@ -273,29 +273,12 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     self.height = DEFAULT_TERRAIN_HEIGHT;
     self.width = DEFAULT_TERRAIN_WIDTH;
     
+    self.terrain = new Terrain(self.width, self.height);
+    
     self.cursor_position = undefined;
     
     self.water = vertex_load("data/basic/water.vbuff", Stuff.graphics.format);
     self.depth_surface = surface_create(Settings.terrain.light_shadows_quality, Settings.terrain.light_shadows_quality);
-    
-    self.GenerateHeightData = function() {
-        var data = buffer_create(4 * self.width * self.height, buffer_fixed, 1);
-        buffer_poke(data, 0, buffer_u32, 0);
-        buffer_poke(data, buffer_get_size(data) - 4, buffer_u32, 0);
-        return data;
-    };
-    
-    #macro TERRAIN_INTERNAL_CHUNK_SIZE 256
-    #macro TERRAIN_INTERNAL_LOD_REDUCTION (8 * 8)
-    
-    self.height_data = self.GenerateHeightData();
-    terrainops_set_active_data(buffer_get_address(self.height_data), self.width, self.height);
-    self.terrain_buffer_data = terrainops_generate_internal(self.height_data, self.width, self.height);
-    terrainops_set_active_vertex_data(buffer_get_address(self.terrain_buffer_data));
-    self.terrain_buffers = [];
-    self.terrain_lod_data = terrainops_generate_lod_internal(self.height_data, self.width, self.height);
-    terrainops_set_lod_vertex_data(buffer_get_address(self.terrain_lod_data));
-    self.terrain_lods = [];
     
     self.GetTerrainBufferIndex = function(x, y) {
         return x * ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) + y;
@@ -401,6 +384,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     
     self.SaveTerrainStandalone = function(filename) {
+        show_message("Not yet implemented - SaveTerrainStandalone - make sure to save and load the terrain surface data");
+        /*
         var carton = carton_create();
         var header_buffer = buffer_create(1024, buffer_grow, 1);
         buffer_write(header_buffer, buffer_string, json_stringify({
@@ -408,15 +393,16 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             height: self.height,
         }));
         carton_add(carton, "header", header_buffer, 0, buffer_tell(header_buffer));
-        carton_add(carton, "height", self.height_data);
-        carton_add(carton, "color", self.color.GetBuffer());
-        carton_add(carton, "texture", self.texture.GetBuffer());
+        
         
         carton_save(carton, filename, false);
         carton_destroy(carton);
+        */
     };
     
     self.LoadTerrainStandalone = function(filename) {
+        show_message("Not yet implemented - LoadTerrainStandalone - make sure to save and load the terrain surface data");
+        /*
         var carton = carton_load(filename, false);
         // cartons go into the buffer in order but
         for(var i = 0, n = carton_count(carton); i < n; i++) {
@@ -456,6 +442,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             }
         }
         carton_destroy(carton);
+        */
     };
     
     self.LoadAsset = function(directory) {
@@ -484,13 +471,15 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     #region terrain actions
     self.Flatten = function(height = 0) {
-        terrainops_flatten(self.height_data, self.terrain_buffer_data, height);
-        self.RegenerateAllTerrainBuffers();
+        show_message("Re-implement: Flatten");
+        //terrainops_flatten(self.height_data, self.terrain_buffer_data, height);
+        //self.RegenerateAllTerrainBuffers();
     };
     
     self.ApplyScale = function(scale = Settings.terrain.global_scale) {
-        terrainops_apply_scale(self.height_data, self.terrain_buffer_data, scale);
-        self.RegenerateAllTerrainBuffers();
+        show_message("Re-implement: Apply Scale");
+        //terrainops_apply_scale(self.height_data, self.terrain_buffer_data, scale);
+        //self.RegenerateAllTerrainBuffers();
     };
     
     self.Mutate = function(mutation_sprite_index, octaves, noise_strength, sprite_strength) {
@@ -503,10 +492,11 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         var nw = min(power(2, ceil(log2(ww))), 2048);
         var nh = min(power(2, ceil(log2(hh))), 2048);
         var macaw = macaw_generate_dll(nw, nh, octaves, noise_strength);
-        var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_MUTATE);
-        terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw.noise, nw, nh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);
+        show_message("Re-implement: Flatten");
+        //var sprite_data = sprite_sample_get_buffer(sprite, TERRAIN_GEN_SPRITE_INDEX_MUTATE);
+        //terrainops_mutate(self.height_data, self.terrain_buffer_data, ww, hh, macaw.noise, nw, nh, noise_strength, sprite_data, sprite_get_width(sprite), sprite_get_height(sprite), sprite_strength);
         macaw.Destroy();
-        self.RegenerateAllTerrainBuffers();
+        //self.RegenerateAllTerrainBuffers();
     };
     
     self.DrawWater = function() {
@@ -719,6 +709,8 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     
     #region Export methods
     self.AddToProject = function(name = "Terrain", density = 1, chunk_size = 0) {
+        show_message("Re-implement: Add to Project");
+        /*
         // ignore the export scale here; terrains attached to maps have their own scaling settings
         var results = terrainops_build_file("", TERRAINOPS_BUILD_INTERNAL, chunk_size, Settings.terrain.export_all, Settings.terrain.export_swap_zup, Settings.terrain.export_swap_handedness, Settings.terrain.export_swap_uvs, Settings.terrain.export_centered, density, 1, self.texture_image, VertexFormatData.FULL, Settings.terrain.water_level, Settings.terrain.export_smooth);
         
@@ -742,6 +734,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         mesh.terrain_data = new MeshTerrainData(self.width, self.height, buffer_clone(self.height_data, buffer_fixed, 4));
         
         array_push(Game.mesh_terrain, mesh);
+        */
     };
     
     self.ExportD3D = function(filename, density = 1, chunk_size = 0) {
@@ -758,16 +751,19 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     
     self.ExportHeightmap = function(filename) {
-        var buffer = terrainops_to_heightmap(self.height_data);
+        show_message("Re-implement: Export Heightmap");
+        /*var buffer = terrainops_to_heightmap(self.height_data);
         var surface = surface_create(self.width, self.height);
         buffer_set_surface(buffer, surface, 0);
         surface_save(surface, filename);
         buffer_delete(buffer);
         surface_free(surface);
+         * */
     };
     
     self.ExportHeightmapData = function(filename) {
-        buffer_save(self.height_data, filename);
+        show_message("Re-implement: Export Heightmap Data");
+        //buffer_save(self.height_data, filename);
     };
     
     static ExportNormalMap = function(filename, w, h) {

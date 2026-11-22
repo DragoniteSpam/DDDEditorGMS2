@@ -2,6 +2,9 @@ vertex_format_begin();
 vertex_format_add_position();
 global.vertex_format_terrain = vertex_format_end();
 
+#macro TERRAIN_INTERNAL_CHUNK_SIZE 256
+#macro TERRAIN_INTERNAL_LOD_REDUCTION (8 * 8)
+
 var terrain_create_patch = function(size, res) {
     var vb = vertex_create_buffer();
     vertex_begin(vb, global.vertex_format_terrain);

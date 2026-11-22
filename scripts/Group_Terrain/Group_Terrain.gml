@@ -1,4 +1,10 @@
 function Terrain(w, h) {
+    static patches = [
+        terrain_create_patch(TERRAIN_INTERNAL_CHUNK_SIZE, 1),
+        terrain_create_patch(TERRAIN_INTERNAL_CHUNK_SIZE, 4),
+        terrain_create_patch(TERRAIN_INTERNAL_CHUNK_SIZE, 16)
+    ];
+    
     self.w = w;
     self.h = h;
     

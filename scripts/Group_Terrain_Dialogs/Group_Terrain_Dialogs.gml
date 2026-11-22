@@ -179,8 +179,7 @@ function dialog_create_terrain_new() {
             .SetTooltip("Preset 4096x4096 map size"),
         (new EmuButton(col1_x, EMU_AUTO, ew, eh, "Import Heightmap", function() {
             show_message("Not yet implemented in TE2");
-            return;
-            
+            /*
             var fn = get_open_filename_image();
             if (fn != "") {
                 debug_timer_start();
@@ -218,7 +217,7 @@ function dialog_create_terrain_new() {
                 self.root.Dispose();
                 
                 Stuff.AddStatusMessage("Terrain generation took " + debug_timer_finish());
-            }
+            }*/
         }))
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
@@ -253,29 +252,19 @@ function dialog_create_terrain_new() {
         debug_timer_start();
         var terrain = Stuff.terrain;
         
+        terrain.terrain.Destroy();
+        
         var width = real(self.GetSibling("WIDTH").value);
         var height = real(self.GetSibling("HEIGHT").value);
         
         terrain.width = width;
         terrain.height = height;
         
-        buffer_delete(terrain.height_data);
-        buffer_delete(terrain.terrain_buffer_data);
-        buffer_delete(terrain.terrain_lod_data);
-        
-        terrain.color.Reset(terrain.width * Settings.terrain.color_scale, terrain.height * Settings.terrain.color_scale);
-        terrain.texture.Reset(width, height);
-        
-        terrain.height_data = terrain.GenerateHeightData();
-        terrainops_set_active_data(buffer_get_address(terrain.height_data), terrain.width, terrain.height);
-        terrain.terrain_buffer_data = terrainops_generate_internal(terrain.height_data, width, height);
-        terrainops_set_active_vertex_data(buffer_get_address(terrain.terrain_buffer_data));
-        terrain.terrain_lod_data = terrainops_generate_lod_internal(terrain.height_data, terrain.width, terrain.height);
-        terrainops_set_lod_vertex_data(buffer_get_address(terrain.terrain_lod_data));
-        terrain.RegenerateAllTerrainBuffers();
+        terrain.terrain = new Terrain(width, height);
         
         if (self.GetSibling("USE_NOISE").value) {
-            terrain.Mutate(0, self.GetSibling("OCTAVES").value, terrain.GetGenerationAmplitude(self.GetSibling("SCALE").value), 0);
+            show_message("Re-implement: Create terrain with noise")
+            //terrain.Mutate(0, self.GetSibling("OCTAVES").value, terrain.GetGenerationAmplitude(self.GetSibling("SCALE").value), 0);
         }
         
         self.root.Dispose();

@@ -38,12 +38,6 @@ function terrainops_deform_settings(brush, index, x, y, radius, velocity) {
     __terrainops_deform_brush_position(x, y);
 }
 
-function terrainops_mutate(height_data, vertex_data, w, h, noise_data, noise_w, noise_h, noise_strength, sprite_data, sprite_w, sprite_h, sprite_strength) {
-    __terrainops_mutate_set_noise(buffer_get_address(noise_data), noise_w, noise_h, noise_strength);
-    __terrainops_mutate_set_texture(buffer_get_address(sprite_data), sprite_w, sprite_h, sprite_strength);
-    __terrainops_mutate();
-}
-
 function terrainops_apply_scale(data, vertex_data, scale) {
     __terrainops_apply_scale(scale);
 }
