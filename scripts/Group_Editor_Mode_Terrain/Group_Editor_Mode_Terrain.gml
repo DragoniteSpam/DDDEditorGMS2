@@ -29,8 +29,6 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             case TerrainSubmodes.AVERAGE: terrainops_deform_average(); break;
             case TerrainSubmodes.ZERO: terrainops_deform_zero(); break;
         }
-    
-        self.RegenerateTerrainBufferRange(position.x - r, position.y - r, position.x + r, position.y + r);
     }
     
     self.EditModeTexture = function(position) {
@@ -298,53 +296,6 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         );
     };
     
-    self.RegenerateTerrainBuffer = function(x, y) {
-        var column_size = TERRAIN_INTERNAL_CHUNK_SIZE * self.height;
-        var local_chunk_width = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.width - x * TERRAIN_INTERNAL_CHUNK_SIZE);
-        var local_chunk_height = min(TERRAIN_INTERNAL_CHUNK_SIZE, self.height - y * TERRAIN_INTERNAL_CHUNK_SIZE);
-        var column_address = x * column_size;
-        var chunk_address = column_address + y * TERRAIN_INTERNAL_CHUNK_SIZE /* dont use the local chunk height here */ * local_chunk_width;
-        var index = self.GetTerrainBufferIndex(x, y);
-        if (self.terrain_buffers[index] != -1) {
-            vertex_delete_buffer(self.terrain_buffers[index]);
-            vertex_delete_buffer(self.terrain_lods[index]);
-        }
-        var chunk_offset = chunk_address * 3 * 6 * 4;
-        var chunk_vertices = local_chunk_width * local_chunk_height * 6;
-        self.terrain_buffers[index] = vertex_create_buffer_from_buffer_ext(self.terrain_buffer_data, self.vertex_format, chunk_offset, chunk_vertices);
-        self.terrain_lods[index] = vertex_create_buffer_from_buffer_ext(self.terrain_lod_data, self.vertex_format, chunk_offset / TERRAIN_INTERNAL_LOD_REDUCTION, chunk_vertices / TERRAIN_INTERNAL_LOD_REDUCTION);
-    
-        vertex_freeze(self.terrain_buffers[index]);
-        vertex_freeze(self.terrain_lods[index]);
-    };
-    
-    self.RegenerateAllTerrainBuffers = function() {
-        for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
-            vertex_delete_buffer(self.terrain_buffers[i]);
-            vertex_delete_buffer(self.terrain_lods[i]);
-        }
-        self.terrain_buffers = array_create(ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE) * ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE), -1);
-        self.terrain_lods = array_create(array_length(self.terrain_buffers), -1);
-        for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
-            var position = self.GetTerrainBufferPosition(i);
-            self.RegenerateTerrainBuffer(position.x, position.y);
-        }
-    };
-    
-    self.RegenerateTerrainBufferRange = function(x1, y1, x2, y2) {
-        x1 = floor(x1 / TERRAIN_INTERNAL_CHUNK_SIZE);
-        x2 = ceil(x2 / TERRAIN_INTERNAL_CHUNK_SIZE);
-        y1 = floor(y1 / TERRAIN_INTERNAL_CHUNK_SIZE);
-        y2 = ceil(y2 / TERRAIN_INTERNAL_CHUNK_SIZE);
-        for (var i = max(0, x1); i < min(x2, ceil(self.width / TERRAIN_INTERNAL_CHUNK_SIZE)); i++) {
-            for (var j = max(0, y1); j < min(y2, ceil(self.height / TERRAIN_INTERNAL_CHUNK_SIZE)); j++) {
-                self.RegenerateTerrainBuffer(i, j);
-            }
-        }
-    };
-    
-    self.RegenerateAllTerrainBuffers();
-    
     self.color = (new Phoenix(self.width * Settings.terrain.color_scale, self.height * Settings.terrain.color_scale))
         .SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
         .SetShader(shd_terrain_paint);
@@ -538,9 +489,10 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         gpu_set_blendenable(false);
         matrix_set(matrix_world, matrix_build_identity());
         
-        for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
-            vertex_submit(self.terrain_lods[i], pr_trianglelist, -1);
-        }
+        show_debug_message("Re-impelement terrain drawing in the depth map - have a shadow quality setting that draws the different lods")
+        //for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
+        //    vertex_submit(self.terrain_lods[i], pr_trianglelist, -1);
+        //}
         
         gpu_set_cullmode(cull_counterclockwise);
         gpu_set_blendenable(true);
@@ -644,49 +596,51 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             var bounds_y1 = round((self.camera.y - vh * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE) - 1;
             var bounds_y2 = round((self.camera.y + vh * self.camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE);
             
-            for (var i = bounds_x1; i <= bounds_x2; i++) {
-                for (var j = bounds_y1; j <= bounds_y2; j++) {
-                    var index = self.GetTerrainBufferIndex(i, j);
-                    if (!is_clamped(index, 0, array_length(self.terrain_buffers) - 1)) continue;
-                    
-                    if (use_lod_zero) {
-                        vertex_submit(self.terrain_buffers[index], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
-                        self.stats.chunks.full++;
-                        self.stats.triangles += vertex_get_number(self.terrain_buffers[index]);
-                    } else {
-                        vertex_submit(self.terrain_lods[index], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
-                        self.stats.chunks.lod++;
-                        self.stats.triangles += vertex_get_number(self.terrain_lods[index]);
-                    }
-                }
-            }
+            show_debug_message("Re-implement the drawing of the terrain (this is the main thing I guess)");
+            //for (var i = bounds_x1; i <= bounds_x2; i++) {
+            //    for (var j = bounds_y1; j <= bounds_y2; j++) {
+            //        var index = self.GetTerrainBufferIndex(i, j);
+            //        if (!is_clamped(index, 0, array_length(self.terrain_buffers) - 1)) continue;
+            //        
+            //        if (use_lod_zero) {
+            //            vertex_submit(self.terrain_buffers[index], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
+            //            self.stats.chunks.full++;
+            //            self.stats.triangles += vertex_get_number(self.terrain_buffers[index]);
+            //        } else {
+            //            vertex_submit(self.terrain_lods[index], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
+            //            self.stats.chunks.lod++;
+            //            self.stats.triangles += vertex_get_number(self.terrain_lods[index]);
+            //        }
+            //    }
+            //}
         } else {
             var chunk_angle = dcos(Settings.terrain.camera.fov * 1.5);
-            for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
-                var position = self.GetTerrainBufferPositionWorld(i);
-                var chunk_distance = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2);
-                
-                if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && self.camera.Dot(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2, 0) <= chunk_angle) continue;
-                
-                var use_lod_zero = chunk_distance <= cutoff;
-                
-                var neighbor_use_lod_zero =
-                    (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-                    (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-                    (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-                    (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
-            
-                if (neighbor_use_lod_zero || use_lod_zero) {
-                    vertex_submit(self.terrain_buffers[i], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
-                    self.stats.chunks.full++;
-                    self.stats.triangles += vertex_get_number(self.terrain_buffers[i]);
-                }
-                if (!use_lod_zero) {
-                    vertex_submit(self.terrain_lods[i], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
-                    self.stats.chunks.lod++;
-                    self.stats.triangles += vertex_get_number(self.terrain_lods[i]);
-                }
-            }
+            show_debug_message("Re-implement the drawing of the terrain (this is the main thing I guess)");
+            //for (var i = 0, n = array_length(self.terrain_buffers); i < n; i++) {
+            //    var position = self.GetTerrainBufferPositionWorld(i);
+            //    var chunk_distance = self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2);
+            //    
+            //    if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && self.camera.Dot(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2, 0) <= chunk_angle) continue;
+            //    
+            //    var use_lod_zero = chunk_distance <= cutoff;
+            //    
+            //    var neighbor_use_lod_zero =
+            //        (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+            //        (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+            //        (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 - TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+            //        (self.camera.DistanceTo2D(position.x + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE, position.y + TERRAIN_INTERNAL_CHUNK_SIZE / 2 + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
+            //
+            //    if (neighbor_use_lod_zero || use_lod_zero) {
+            //        vertex_submit(self.terrain_buffers[i], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
+            //        self.stats.chunks.full++;
+            //        self.stats.triangles += vertex_get_number(self.terrain_buffers[i]);
+            //    }
+            //    if (!use_lod_zero) {
+            //        vertex_submit(self.terrain_lods[i], pr_trianglelist, sprite_get_texture(self.texture_image, 0));
+            //        self.stats.chunks.lod++;
+            //        self.stats.triangles += vertex_get_number(self.terrain_lods[i]);
+            //    }
+            //}
         }
         
         if (Settings.terrain.view_axes) {
@@ -787,9 +741,10 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         shader_set(shd_terrain_normals);
         
         shader_set_uniform_f(shader_get_uniform(shd_terrain_normals, "u_TerrainScale"), Settings.terrain.global_scale);
-        array_foreach(self.terrain_buffers, function(vb) {
+        show_message("Re-impelment: render terrain to normal map");
+        /*array_foreach(self.terrain_buffers, function(vb) {
             vertex_submit(vb, pr_trianglelist, -1);
-        });
+        });*/
         
         surface_reset_target();
         shader_reset();
