@@ -52,11 +52,13 @@ function Terrain(w, h) constructor {
         static u_world_offset = shader_get_uniform(shd_terrain, "u_WorldOffset");
         static u_terrain_size = shader_get_uniform(shd_terrain, "u_TerrainSize");
         static samp_heightmap = shader_get_sampler_index(shd_terrain, "samp_heightmap");
+        static samp_tex_color = shader_get_sampler_index(shd_terrain, "u_TexColor");
         
         shader_set(shd_terrain);
         
         shader_set_uniform_f(u_terrain_size, self.w, self.h);
-        texture_set_stage_vs(samp_heightmap, surface_get_texture(self.height.surface));
+        texture_set_stage_vs(samp_heightmap, surface_get_texture(self.height.surface));// color stuff
+        texture_set_stage(samp_tex_color, surface_get_texture(self.color.surface));
         
         var stats = Stuff.terrain.stats;
         var camera = Stuff.terrain.camera;

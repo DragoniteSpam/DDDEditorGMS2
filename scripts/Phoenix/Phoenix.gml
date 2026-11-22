@@ -1,4 +1,4 @@
-function Phoenix(width, height, constrain = true, settings = { }) constructor {
+function Phoenix(width, height, settings = { }) constructor {
     static MAX_SIZE = 16384;
     
     self.width = min(MAX_SIZE, width);

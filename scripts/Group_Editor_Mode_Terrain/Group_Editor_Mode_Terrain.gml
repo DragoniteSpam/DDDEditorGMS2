@@ -562,8 +562,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         var yy = self.cursor_position ? self.cursor_position.y : 0;
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), xx, yy, self.GetCurrentBrushRadius(), self.cursor_position ? Settings.terrain.cursor_alpha : 0);
         texture_set_stage(shader_get_sampler_index(shd_terrain, "u_CursorTexture"), self.GetCurrentBrushTexture());
-        // color stuff
-        texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexColor"), surface_get_texture(self.terrain.color.surface));
+        // color stuff: moved
         // texture stuff
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TextureTileSize"), sprite_get_width(self.texture_image) / (Settings.terrain.tile_brush_size - 1), sprite_get_height(self.texture_image) / (Settings.terrain.tile_brush_size - 1));
         // because gamemaker doesnt like sharing uniforms between vertex and fragment shader apparently
