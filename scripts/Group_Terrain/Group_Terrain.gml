@@ -58,10 +58,40 @@ function Terrain(w, h) constructor {
         shader_set_uniform_f(u_terrain_size, self.w, self.h);
         texture_set_stage_vs(samp_heightmap, surface_get_texture(self.height.surface));
         
-        for (var i = 0; i < self.w; i += TERRAIN_INTERNAL_CHUNK_SIZE) {
-            for (var j = 0; j < self.h; j += TERRAIN_INTERNAL_CHUNK_SIZE) {
-                shader_set_uniform_f(u_world_offset, i, j);
-                vertex_submit(patches[0], pr_trianglelist, -1);
+        var stats = Stuff.terrain.stats;
+        var camera = Stuff.terrain.camera;
+        var chunk_angle = dcos(camera.fov * 1.5);
+        var cutoff = Settings.terrain.view_distance;
+        var max_lod_level = array_length(patches) - 1;
+        
+        for (var xx = 0; xx < self.w; xx += TERRAIN_INTERNAL_CHUNK_SIZE) {
+            for (var yy = 0; yy < self.h; yy += TERRAIN_INTERNAL_CHUNK_SIZE) {
+                var cx = xx + TERRAIN_INTERNAL_CHUNK_SIZE / 2;
+                var cy = yy + TERRAIN_INTERNAL_CHUNK_SIZE / 2;
+                
+                var chunk_distance = camera.DistanceTo2D(cx, cy);
+                
+                if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && camera.Dot(cx, cy, 0) <= chunk_angle) continue;
+                
+                var use_lod_zero = chunk_distance <= cutoff;
+                
+                var lod_level = min(chunk_distance div cutoff, max_lod_level);
+                
+                var neighbor_use_lod_zero =
+                    (camera.DistanceTo2D(cx - TERRAIN_INTERNAL_CHUNK_SIZE, cy - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                    (camera.DistanceTo2D(cx + TERRAIN_INTERNAL_CHUNK_SIZE, cy - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                    (camera.DistanceTo2D(cx - TERRAIN_INTERNAL_CHUNK_SIZE, cy + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                    (camera.DistanceTo2D(cx + TERRAIN_INTERNAL_CHUNK_SIZE, cy + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
+                
+                if (neighbor_use_lod_zero) {
+                    lod_level = 0;
+                }
+                
+                shader_set_uniform_f(u_world_offset, xx, yy);
+                vertex_submit(patches[lod_level], pr_trianglelist, -1);
+                stats.chunks.full++;
+                stats.triangles += vertex_get_number(patches[lod_level]);
+                
             }
         }
         
