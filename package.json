@@ -1,0 +1,28 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "-1.0.0.yymps"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "gm": {
+    "destination": "",
+    "icon": {
+      "mime": "image/png",
+      "data": "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"
+    },
+    "displayName": "",
+    "shortDescription": "",
+    "visible": true,
+    "ide_versions": {
+      "LTS": ">=2026.1.0"
+    },
+    "supportedArchitecture": "any",
+    "removeDependenciesOnUninstall": "always",
+    "notifyOfUpdates": true,
+    "requiresRestart": false
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "Version": "1.0",
+  "assets": [
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_circle"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_cloud"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_disc"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_explosion"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_flare"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_ring"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_smoke"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_snow"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_spark"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_sphere"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_part_star"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_bullseye"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_craters"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_dot"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_drago"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_flat"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_juju"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_gen_mountain"
+    },
+    {
+      "export": 2,
+      "name": "shd_terrain_water"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_water"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_water_disp"
+    },
+    {
+      "export": 2,
+      "name": "Group_Terrain_Dialogs"
+    },
+    {
+      "export": 2,
+      "name": "shd_terrain"
+    },
+    {
+      "export": 2,
+      "name": "shd_terrain_normals"
+    },
+    {
+      "export": 2,
+      "name": "shd_terrain_paint"
+    },
+    {
+      "export": 2,
+      "name": "shd_terrain_paint_texture"
+    },
+    {
+      "export": 2,
+      "name": "spr_terrain_texture_selection"
+    },
+    {
+      "export": 2,
+      "name": "Terrain_Default_Settings"
+    }
+  ]
+}

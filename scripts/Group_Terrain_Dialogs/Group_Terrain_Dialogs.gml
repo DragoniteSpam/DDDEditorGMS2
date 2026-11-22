@@ -147,32 +147,40 @@ function dialog_create_terrain_new() {
             .SetRealNumberBounds(MIN_TERRAIN_HEIGHT, MAX_TERRAIN_HEIGHT)
             .SetTooltip("Height of the terrain")
             .SetID("HEIGHT"),
-        (new EmuButton(col1_x + 0 * ew / 5, EMU_AUTO, ew / 5, eh, "64", function() {
-            self.GetSibling("WIDTH").SetValue("64");
-            self.GetSibling("HEIGHT").SetValue("64");
-        }))
-            .SetTooltip("Preset 64x64 map size"),
-        (new EmuButton(col1_x + 1 * ew / 5, EMU_INLINE, ew / 5, eh, "128", function() {
+        (new EmuButton(col1_x + 0 * ew / 6, EMU_INLINE, ew / 6, eh, "128", function() {
             self.GetSibling("WIDTH").SetValue("128");
             self.GetSibling("HEIGHT").SetValue("128");
         }))
             .SetTooltip("Preset 128x128 map size"),
-        (new EmuButton(col1_x + 2 * ew / 5, EMU_INLINE, ew / 5, eh, "256", function() {
+        (new EmuButton(col1_x + 1 * ew / 6, EMU_INLINE, ew / 6, eh, "256", function() {
             self.GetSibling("WIDTH").SetValue("256");
             self.GetSibling("HEIGHT").SetValue("256");
         }))
             .SetTooltip("Preset 256x256 map size"),
-        (new EmuButton(col1_x + 3 * ew / 5, EMU_INLINE, ew / 5, eh, "512", function() {
+        (new EmuButton(col1_x + 2 * ew / 6, EMU_INLINE, ew / 6, eh, "512", function() {
             self.GetSibling("WIDTH").SetValue("512");
             self.GetSibling("HEIGHT").SetValue("512");
         }))
             .SetTooltip("Preset 512x512 map size"),
-        (new EmuButton(col1_x + 4 * ew / 5, EMU_INLINE, ew / 5, eh, "1024", function() {
+        (new EmuButton(col1_x + 3 * ew / 6, EMU_INLINE, ew / 6, eh, "1024", function() {
             self.GetSibling("WIDTH").SetValue("1024");
             self.GetSibling("HEIGHT").SetValue("1024");
         }))
             .SetTooltip("Preset 1024x1024 map size"),
+        (new EmuButton(col1_x + 4 * ew / 6, EMU_INLINE, ew / 6, eh, "2048", function() {
+            self.GetSibling("WIDTH").SetValue("2048");
+            self.GetSibling("HEIGHT").SetValue("2048");
+        }))
+            .SetTooltip("Preset 2048x2048 map size"),
+        (new EmuButton(col1_x + 5 * ew / 6, EMU_INLINE, ew / 6, eh, "4096", function() {
+            self.GetSibling("WIDTH").SetValue("4096");
+            self.GetSibling("HEIGHT").SetValue("4096");
+        }))
+            .SetTooltip("Preset 4096x4096 map size"),
         (new EmuButton(col1_x, EMU_AUTO, ew, eh, "Import Heightmap", function() {
+            show_message("Not yet implemented in TE2");
+            return;
+            
             var fn = get_open_filename_image();
             if (fn != "") {
                 debug_timer_start();

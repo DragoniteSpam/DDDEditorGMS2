@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Group_Terrain",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Terrain",
+  "parent":{
+    "name":"Terrain",
+    "path":"folders/Terrain.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

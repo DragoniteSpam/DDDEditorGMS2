@@ -482,6 +482,8 @@
     {"id":{"name":"Group_Sprites","path":"scripts/Group_Sprites/Group_Sprites.yy",},},
     {"id":{"name":"Group_String","path":"scripts/Group_String/Group_String.yy",},},
     {"id":{"name":"Group_Terrain_Dialogs","path":"scripts/Group_Terrain_Dialogs/Group_Terrain_Dialogs.yy",},},
+    {"id":{"name":"Group_Terrain_Misc","path":"scripts/Group_Terrain_Misc/Group_Terrain_Misc.yy",},},
+    {"id":{"name":"Group_Terrain","path":"scripts/Group_Terrain/Group_Terrain.yy",},},
     {"id":{"name":"Group_Validation","path":"scripts/Group_Validation/Group_Validation.yy",},},
     {"id":{"name":"Group_Vertex_Building","path":"scripts/Group_Vertex_Building/Group_Vertex_Building.yy",},},
     {"id":{"name":"group_wireframe","path":"scripts/group_wireframe/group_wireframe.yy",},},

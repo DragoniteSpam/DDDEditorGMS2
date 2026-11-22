@@ -389,6 +389,8 @@
     {"name":"Group_Shapes","order":14,"path":"scripts/Group_Shapes/Group_Shapes.yy",},
     {"name":"Group_String","order":14,"path":"scripts/Group_String/Group_String.yy",},
     {"name":"Group_Terrain_Dialogs","order":3,"path":"scripts/Group_Terrain_Dialogs/Group_Terrain_Dialogs.yy",},
+    {"name":"Group_Terrain_Misc","order":11,"path":"scripts/Group_Terrain_Misc/Group_Terrain_Misc.yy",},
+    {"name":"Group_Terrain","order":12,"path":"scripts/Group_Terrain/Group_Terrain.yy",},
     {"name":"Group_Validation","order":18,"path":"scripts/Group_Validation/Group_Validation.yy",},
     {"name":"import_map_tiled_help","order":3,"path":"scripts/import_map_tiled_help/import_map_tiled_help.yy",},
     {"name":"import_map_tiled_layer_object","order":1,"path":"scripts/import_map_tiled_layer_object/import_map_tiled_layer_object.yy",},
