@@ -122,4 +122,9 @@ function Phoenix(width, height, constrain = true, def_color = c_white) construct
         self.SetSprite(sprite);
         sprite_delete(sprite);
     };
+    
+    static Destroy = function() {
+        if (sprite_exists(self.sprite)) sprite_delete(self.sprite);
+        if (surface_exists(self.surface)) surface_free(self.surface);
+    };
 }
