@@ -12,14 +12,14 @@ uniform vec2 u_TextureTileSize;
 uniform mat4 u_LightVP;
 uniform vec2 u_WorldOffset;
 
-uniform sampler2D samp_height;
+uniform sampler2D samp_heightmap;
 
 varying float v_LightDistance;
 varying vec2 v_ShadowTexcoord;
 
 void main() {
     v_WorldPosition = vec4(in_Position + u_WorldOffset, 0, 1);
-    v_WorldPosition.z = texture2DLod(samp_height, v_WorldPosition.xy / u_TerrainSize, 0.0).r;
+    v_WorldPosition.z = texture2DLod(samp_heightmap, v_WorldPosition.xy / u_TerrainSize, 0.0).r;
     v_FragDistance = length((gm_Matrices[MATRIX_WORLD_VIEW] * v_WorldPosition).xyz);
     
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * v_WorldPosition;

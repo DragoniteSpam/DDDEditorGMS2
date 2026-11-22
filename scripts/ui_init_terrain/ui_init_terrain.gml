@@ -369,7 +369,7 @@ function ui_init_terrain(mode) {
                         Settings.terrain.tile_brush_y = 0;
                         Settings.terrain.tile_brush_size = 32;
                         var color_code = Stuff.terrain.GetTextureColorCode();
-                        Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+                        Stuff.terrain.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         self.root.root.GetSibling("TEXTURE_RESOLUTION").SetValue(string(Settings.terrain.tile_brush_size));
                         self.root.root.GetSibling("TEXTURE_PICKER").offset_x = 0;
                         self.root.root.GetSibling("TEXTURE_PICKER").offset_y = 0;
@@ -433,7 +433,7 @@ function ui_init_terrain(mode) {
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear Texture to Selection", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this texture tile?", function() {
                         var color_code = Stuff.terrain.GetTextureColorCode();
-                        Stuff.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
+                        Stuff.terrain.terrain.texture.Clear(color_code & 0x00ffffff, (color_code >> 24) / 0xff);
                         self.root.Dispose();
                     });
                     dialog.x = 920;
@@ -455,7 +455,7 @@ function ui_init_terrain(mode) {
                     var selection = self.GetSelection();
                     if (selection + 1) {
                         Settings.terrain.tile_brush_index = selection;
-                        Stuff.terrain.texture.SetBrush(Stuff.terrain.brush_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+                        Stuff.terrain.terrain.texture.SetBrush(Stuff.terrain.brush_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
                     }
                 }))
                     .SetEntryTypes(E_ListEntryTypes.STRUCTS)
@@ -480,7 +480,7 @@ function ui_init_terrain(mode) {
                     .SetTooltip("I really hope you enjoy this color picker because it was probably my favorite UI element to work on."),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Clear color", function() {
                     var dialog = emu_dialog_confirm(undefined, "Would you like to clear the entire terrain to this color?", function() {
-                        Stuff.terrain.color.Clear(Settings.terrain.paint_color);
+                        Stuff.terrain.terrain.color.Clear(Settings.terrain.paint_color);
                         self.root.Dispose();
                     });
                     dialog.x = 920;
@@ -494,7 +494,7 @@ function ui_init_terrain(mode) {
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Export canvas", function() {
                     var filename = get_save_filename_image("canvas.png");
                     if (filename != "") {
-                        var alphaish_sprite = Stuff.terrain.color.GetSprite();
+                        var alphaish_sprite = Stuff.terrain.terrain.color.GetSprite();
                         var actual_sprite = spriteops_set_alpha(alphaish_sprite, 0, 1);
                         sprite_save(actual_sprite, 0, filename);
                         sprite_delete(alphaish_sprite);
@@ -535,7 +535,7 @@ function ui_init_terrain(mode) {
                     var selection = self.GetSelection();
                     if (selection + 1) {
                         Settings.terrain.paint_brush_index = selection;
-                        Stuff.terrain.color.SetBrush(Stuff.terrain.brush_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+                        Stuff.terrain.terrain.color.SetBrush(Stuff.terrain.brush_sprites[selection].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
                         if (self.GetSibling("BRUSH_PREVIEW")) {
                             self.GetSibling("BRUSH_PREVIEW").sprite = Stuff.terrain.brush_sprites[selection].sprite;
                         }

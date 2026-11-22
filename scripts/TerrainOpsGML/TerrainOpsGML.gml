@@ -79,10 +79,10 @@ function terrainops_build_file(filename, reprocessor_function, chunk_size, expor
     
     var fn = filename_change_ext(filename, "");
     var ext = filename_ext(filename);
-    var texture_buffer = Stuff.terrain.texture.GetBuffer();
-    var colour_buffer = Stuff.terrain.color.GetBuffer();
+    var texture_buffer = Stuff.terrain.terrain.texture.GetBuffer();
+    var colour_buffer = Stuff.terrain.terrain.color.GetBuffer();
     
-    var cscalemin = min(Stuff.terrain.color.width / w, Stuff.terrain.color.height / h);
+    var cscalemin = min(Stuff.terrain.terrain.color.width / w, Stuff.terrain.terrain.texture.color.height / h);
     
     __terrainops_build_settings(export_all, swap_zup, swap_handedness, swap_uv, export_centered, density, save_scale, (Settings.terrain.tile_brush_size - 1) / sprite_get_width(Stuff.terrain.texture_image), cscalemin, format, water_level, smooth_normals);
     __terrainops_build_texture(buffer_get_address(texture_buffer));

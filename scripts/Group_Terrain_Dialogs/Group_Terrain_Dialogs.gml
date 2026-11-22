@@ -408,7 +408,7 @@ function dialog_terrain_export() {
             var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
             var chunk_size = self.GetSibling("CHUNKS").value;
             
-            Stuff.terrain.color.SaveState();
+            Stuff.terrain.terrain.color.SaveState();
             
             if (levels == 0) {
                 Stuff.terrain.AddToProject("Terrain", 1, chunk_size);
@@ -443,7 +443,7 @@ function dialog_terrain_export() {
         var levels = floor(clamp(self.GetSibling("LEVELS").value, 0, logn(reduction, max_dimension / min_side_length)));
         var chunk_size = self.GetSibling("CHUNKS").value;
         
-        Stuff.terrain.color.SaveState();
+        Stuff.terrain.terrain.color.SaveState();
         
         var filename = get_save_filename_mesh("Terrain");
         if (filename != "") {

@@ -20,7 +20,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     self.vertex_format = vertex_format_end();
     
     self.EditModeZ = function(position, dir) {
-        var r = Settings.terrain.radius;
+        /*var r = Settings.terrain.radius;
         var damping = (Settings.terrain.submode == TerrainSubmodes.AVERAGE) ? 0.25 : 1;
         terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, r, dir * Settings.terrain.rate * damping);
     
@@ -28,17 +28,24 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             case TerrainSubmodes.MOUND: terrainops_deform_mold(); break;
             case TerrainSubmodes.AVERAGE: terrainops_deform_average(); break;
             case TerrainSubmodes.ZERO: terrainops_deform_zero(); break;
-        }
+        }*/
+        self.terrain.height.SetBrush(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
+        //self.terrain.height.SetShader(shd_terrain_paint);
+        self.terrain.height.Paint(position.x, position.y, Settings.terrain.radius, c_white, 1);
     }
     
     self.EditModeTexture = function(position) {
         var color_code = self.GetTextureColorCode();
-        self.texture.Paint(position.x, position.y, Settings.terrain.tile_brush_radius, color_code, 1);
+        self.terrain.texture.SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
+        self.terrain.texture.SetShader(shd_terrain_paint_texture)
+        self.terrain.texture.Paint(position.x, position.y, Settings.terrain.tile_brush_radius, color_code, 1);
     };
     
     self.EditModeColor = function(position) {
         var csx = surface_get_width(self.terrain.color.surface) / self.width;
         var csy = surface_get_height(self.terrain.color.surface) / self.height;
+        self.terrain.color.SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
+        self.terrain.color.SetShader(shd_terrain_paint);
         self.terrain.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius * max(csx, csy), Settings.terrain.paint_color, Settings.terrain.paint_strength);
     };
     
@@ -70,16 +77,16 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             if (Controller.release_right) {
                 switch (Settings.terrain.mode) {
                     case TerrainModes.Z: break;
-                    case TerrainModes.TEXTURE: self.texture.Finish(); break;
-                    case TerrainModes.COLOR: self.color.Finish(); break;
+                    case TerrainModes.TEXTURE: self.terrain.texture.Finish(); break;
+                    case TerrainModes.COLOR: self.terrain.color.Finish(); break;
                 }
             }
         
             if (Controller.release_left) {
                 switch (Settings.terrain.mode) {
                     case TerrainModes.Z: break;
-                    case TerrainModes.TEXTURE: self.texture.Finish(); break;
-                    case TerrainModes.COLOR: self.color.Finish(); break;
+                    case TerrainModes.TEXTURE: self.terrain.texture.Finish(); break;
+                    case TerrainModes.COLOR: self.terrain.color.Finish(); break;
                 }
             }
         }
@@ -98,8 +105,9 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     
     self.Update = function() {
-        self.texture.Validate();
-        self.color.Validate();
+        self.terrain.height.Validate();
+        self.terrain.texture.Validate();
+        self.terrain.color.Validate();
         
         self.stats.chunks.full = 0;
         self.stats.chunks.lod = 0;
@@ -556,7 +564,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_Mouse"), xx, yy, self.GetCurrentBrushRadius(), self.cursor_position ? Settings.terrain.cursor_alpha : 0);
         texture_set_stage(shader_get_sampler_index(shd_terrain, "u_CursorTexture"), self.GetCurrentBrushTexture());
         // color stuff
-        texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexColor"), surface_get_texture(self.color.surface));
+        texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexColor"), surface_get_texture(self.terrain.color.surface));
         // texture stuff
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TextureTileSize"), sprite_get_width(self.texture_image) / (Settings.terrain.tile_brush_size - 1), sprite_get_height(self.texture_image) / (Settings.terrain.tile_brush_size - 1));
         // because gamemaker doesnt like sharing uniforms between vertex and fragment shader apparently
@@ -564,7 +572,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TerrainSizeV"), self.width, self.height);
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_TerrainSizeF"), self.width, self.height);
         gpu_set_texfilter_ext(shader_get_sampler_index(shd_terrain, "u_TexLookup"), false);
-        texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexLookup"), surface_get_texture(self.texture.surface));
+        texture_set_stage(shader_get_sampler_index(shd_terrain, "u_TexLookup"), surface_get_texture(self.terrain.texture.surface));
         // highlighting upwards faces
         shader_set_uniform_f(shader_get_uniform(shd_terrain, "u_HightlightThreshold"), Settings.terrain.highlight_upwards_surfaces ? dcos(Settings.terrain.highlight_upwards_angle) : -1);
         // other stuff

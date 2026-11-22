@@ -1,4 +1,4 @@
-function Phoenix(width, height, constrain = true, def_color = c_white, format = surface_rgba8unorm) constructor {
+function Phoenix(width, height, constrain = true, def_color = c_white, format = surface_rgba8unorm, blendmode = bm_normal) constructor {
     self.MAX_SIZE = 4096;
     
     self.constrain = constrain;
@@ -6,6 +6,7 @@ function Phoenix(width, height, constrain = true, def_color = c_white, format = 
     self.height = constrain ? min(height, self.MAX_SIZE) : height;
     self.def_color = def_color;
     self.format = format;
+    self.blendmode = blendmode;
     
     var dd = surface_get_depth_disable();
     surface_depth_disable(true);
@@ -75,7 +76,11 @@ function Phoenix(width, height, constrain = true, def_color = c_white, format = 
         if (!sprite_exists(self.brush_sprite)) return;
         surface_set_target(self.surface);
         if (self.shader != -1) shader_set(self.shader);
+        
+        gpu_push_state();
+        gpu_set_blendmode(self.blendmode);
         gpu_set_blendenable(self.blend_enable);
+        
         var sw = sprite_get_width(self.brush_sprite);
         var sh = sprite_get_height(self.brush_sprite);
         var sx = radius / sw;
@@ -85,7 +90,8 @@ function Phoenix(width, height, constrain = true, def_color = c_white, format = 
             x - sw / 2 * sx, y - sh / 2 * sy, sx, sy, 0,
             color, strength
         );
-        gpu_set_blendenable(true);
+        
+        gpu_pop_state();
         shader_reset();
         surface_reset_target();
     };
@@ -95,8 +101,9 @@ function Phoenix(width, height, constrain = true, def_color = c_white, format = 
         if (!surface_exists(self.surface)) self.Reset(self.width, self.height);
     };
     
+    // this probably isnt needed anymore since gm no longer evaporates surfaces if the window loses focus on Windows
     static Finish = function() {
-        self.SaveState();
+        //self.SaveState();
     };
     
     static GetSprite = function() {

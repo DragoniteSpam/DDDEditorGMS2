@@ -10,14 +10,9 @@ function Terrain(w, h) constructor {
     
     self.surface = -1;
     
-    show_message("Color and Texture brushes: set the brush and shaders when used");
-    self.height = new Phoenix(self.w, self.h);
-    self.color = (new Phoenix(self.w * Settings.terrain.color_scale, self.h * Settings.terrain.color_scale))
-        //.SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
-        //.SetShader(shd_terrain_paint);
+    self.height = new Phoenix(self.w, self.h, true, c_black, surface_r32float, bm_add);
+    self.color = (new Phoenix(self.w * Settings.terrain.color_scale, self.h * Settings.terrain.color_scale));
     self.texture = (new Phoenix(self.w, self.h, false, c_black))
-        //.SetBrush(self.brush_sprites[Settings.terrain.tile_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
-        //.SetShader(shd_terrain_paint_texture)
         .SetBlendEnable(false);
     
     self.Validate();
@@ -48,12 +43,12 @@ function Terrain(w, h) constructor {
         
         static u_world_offset = shader_get_uniform(shd_terrain, "u_WorldOffset");
         static u_terrain_size = shader_get_uniform(shd_terrain, "u_TerrainSize");
-        static samp_height = shader_get_sampler_index(shd_terrain, "samp_height");
+        static samp_heightmap = shader_get_sampler_index(shd_terrain, "samp_heightmap");
         
         shader_set(shd_terrain);
         
         shader_set_uniform_f(u_terrain_size, self.w, self.h);
-        texture_set_stage(samp_height, surface_get_texture(self.surface));
+        texture_set_stage_vs(samp_heightmap, surface_get_texture(self.height.surface));
         
         for (var i = 0; i < self.w; i += TERRAIN_INTERNAL_CHUNK_SIZE) {
             for (var j = 0; j < self.h; j += TERRAIN_INTERNAL_CHUNK_SIZE) {
