@@ -331,10 +331,10 @@ function ui_init_terrain(mode) {
                 })),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:")
                     .SetTextUpdate(function() {
-                        return $"Brush radius: {self.GetSibling("BRUSH RADIUS").value}";
+                        return $"Brush radius: {Settings.terrain.radius}";
                     }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.radius, function() {
-                    Settings.terrain.radius = self.value;
+                    Settings.terrain.radius = floor(power(self.value, 1.5));
                 }))
                     .SetIntegersOnly(true)
                     .SetID("BRUSH RADIUS")
@@ -480,10 +480,10 @@ function ui_init_terrain(mode) {
                     .SetID("TEXTURE_RESOLUTION"),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:")
                     .SetTextUpdate(function() {
-                        return $"Brush radius: {self.GetSibling("BRUSH RADIUS").value}";
+                        return $"Brush radius: {Settings.terrain.tile_brush_radius}";
                     }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
-                    Settings.terrain.tile_brush_radius = self.value;
+                    Settings.terrain.tile_brush_radius = floor(power(self.value, 1.5));
                 }))
                     .SetIntegersOnly(true)
                     .SetID("BRUSH RADIUS")
@@ -511,9 +511,6 @@ function ui_init_terrain(mode) {
                         return $"Paint strength: {self.GetSibling("PAINT STRENGTH").value}";
                     }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_strength_min, Settings.terrain.paint_strength_max, true, Settings.terrain.paint_strength, function() {
-                    if (!keyboard_check(vk_shift)) {
-                        self.value = round_ext(self.value, 0.25);
-                    }
                     Settings.terrain.paint_strength = self.value;
                 }))
                     .SetID("PAINT STRENGTH")
@@ -532,10 +529,10 @@ function ui_init_terrain(mode) {
                 }),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:")
                     .SetTextUpdate(function() {
-                        return $"Brush radius: {self.GetSibling("BRUSH RADIUS").value}";
+                        return $"Brush radius: {Settings.terrain.paint_brush_radius}";
                     }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, Settings.terrain.paint_brush_radius, function() {
-                    Settings.terrain.paint_brush_radius = self.value;
+                    Settings.terrain.paint_brush_radius = floor(power(self.value, 1.5));
                 }))
                     .SetIntegersOnly(true)
                     .SetID("BRUSH RADIUS")

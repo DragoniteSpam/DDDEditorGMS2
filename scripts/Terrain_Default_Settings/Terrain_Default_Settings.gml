@@ -60,8 +60,8 @@
 
 #macro TERRAIN_DEF_MODE                             TerrainModes.Z
 
-#macro TERRAIN_DEF_HEIGHT_BRUSH_MIN                 1.5
-#macro TERRAIN_DEF_HEIGHT_BRUSH_MAX                 160
+#macro TERRAIN_DEF_HEIGHT_BRUSH_MIN                 1       // scale = x^1.5
+#macro TERRAIN_DEF_HEIGHT_BRUSH_MAX                 100
 #macro TERRAIN_DEF_HEIGHT_RATE_MIN                  0.05
 #macro TERRAIN_DEF_HEIGHT_RATE_MAX                  2.5
 #macro TERRAIN_DEF_HEIGHT_RATE                      0.5
@@ -70,8 +70,8 @@
 #macro TERRAIN_DEF_HEIGHT_SUBMODE                   TerrainSubmodes.MOUND
 #macro TERRAIN_DEF_HEIGHT_GLOBAL_SCALE              1
 
-#macro TERRAIN_DEF_TEX_BRUSH_MIN                    1.5
-#macro TERRAIN_DEF_TEX_BRUSH_MAX                    250
+#macro TERRAIN_DEF_TEX_BRUSH_MIN                    1       // scale = x^1.5
+#macro TERRAIN_DEF_TEX_BRUSH_MAX                    100
 #macro TERRAIN_DEF_TEX_BRUSH_SIZE_MIN               4
 #macro TERRAIN_DEF_TEX_BRUSH_SIZE_MAX               256
 #macro TERRAIN_DEF_TEX_BRUSH_RADIUS                 4
@@ -80,10 +80,11 @@
 #macro TERRAIN_DEF_TEX_BRUSH_Y                      0
 #macro TERRAIN_DEF_TEX_BRUSH_SIZE                   32
 
-#macro TERRAIN_DEF_PAINT_BRUSH_MIN                  1.5
-#macro TERRAIN_DEF_PAINT_BRUSH_MAX                  250
 #macro TERRAIN_DEF_PAINT_STRENGTH_MIN               0.025
 #macro TERRAIN_DEF_PAINT_STRENGTH_MAX               0.15
+#macro TERRAIN_DEF_PAINT_BRUSH_MIN                  1       // scale = x^1.5
+#macro TERRAIN_DEF_PAINT_BRUSH_MAX                  100
+#macro TERRAIN_DEF_PAINT_STRENGTH_MAX               1
 #macro TERRAIN_DEF_PAINT_BRUSH_RADIUS               4
 #macro TERRAIN_DEF_PAINT_BRUSH_INDEX                7
 #macro TERRAIN_DEF_PAINT_COLOR                      0xffffffff
