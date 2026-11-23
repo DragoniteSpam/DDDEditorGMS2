@@ -110,11 +110,15 @@ function ui_init_terrain(mode) {
                         (new EmuInput(col2x, EMU_AUTO, col_width, 32, "Fog start:", string(Settings.terrain.fog_start), "0...32000", 5, E_InputTypes.REAL, function() {
                             Settings.terrain.fog_start = real(self.value);
                         }))
+                            .SetID("FOG START")
+                            .SetNext("FOG END").SetPrevious("FOG END")
                             .SetRealNumberBounds(0, 32000)
                             .SetTooltip("Distance at which the pixel fog begins."),
                         (new EmuInput(col2x, EMU_AUTO, col_width, 32, "Fog end:", string(Settings.terrain.fog_end), "0...32000", 5, E_InputTypes.REAL, function() {
                             Settings.terrain.fog_end = real(self.value);
                         }))
+                            .SetID("FOG END")
+                            .SetNext("FOG START").SetPrevious("FOG START")
                             .SetRealNumberBounds(0, 32000)
                             .SetTooltip("Distance at which the pixel fog ends."),
                         (new EmuColorPicker(col2x, EMU_AUTO, col_width, 32, "Fog color:", Settings.terrain.fog_color, function() {
