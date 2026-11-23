@@ -1,4 +1,5 @@
 attribute vec2 in_Position;
+attribute vec4 in_Colour;
 
 varying float v_FragDistance;
 varying vec4 v_WorldPosition;
@@ -24,12 +25,7 @@ void main() {
     
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * v_WorldPosition;
     
-    float f = fract(in_Position.x) * 8.0;
-    v_Barycentric = vec3(
-        1.0 - min(abs(1.0 - f), 1.0),
-        1.0 - min(abs(2.0 - f), 1.0),
-        1.0 - min(abs(4.0 - f), 1.0)
-    );
+    v_Barycentric = in_Colour.rgb;
     
     // the triangle internal texture offset gets squeezed into the fractional part of the Y coordinate, also
     //  - (U + tile size) coordinate: 0.25
