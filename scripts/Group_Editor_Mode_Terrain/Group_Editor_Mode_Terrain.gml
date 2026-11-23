@@ -31,7 +31,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         }*/
         self.terrain.height.SetBrush(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
         self.terrain.height.SetBlendMode(dir > 0 ? bm_add : bm_subtract);
-        self.terrain.height.Paint(position.x, position.y, Settings.terrain.radius, c_white, Settings.terrain.rate * damping);
+        self.terrain.height.Paint(position.x, position.y, Settings.terrain.radius, c_white, Settings.terrain.rate * damping * Stuff.dt);
     }
     
     self.EditModeTexture = function(position) {
@@ -46,7 +46,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
         var csy = surface_get_height(self.terrain.color.surface) / self.height;
         self.terrain.color.SetBrush(self.brush_sprites[Settings.terrain.paint_brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE)
         self.terrain.color.SetShader(shd_terrain_paint);
-        self.terrain.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius * max(csx, csy), Settings.terrain.paint_color, Settings.terrain.paint_strength);
+        self.terrain.color.Paint(position.x * csx, position.y * csy, Settings.terrain.paint_brush_radius * max(csx, csy), Settings.terrain.paint_color, Settings.terrain.paint_strength * Stuff.dt);
     };
     
     self.mouse_interaction = function(mouse_vector) {
