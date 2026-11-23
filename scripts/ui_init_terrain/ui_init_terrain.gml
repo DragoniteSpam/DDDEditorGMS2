@@ -296,10 +296,17 @@ function ui_init_terrain(mode) {
                 }))
                     .AddOptions(["Raise/Lower", "Average", "Zero"])
                     .SetTooltip("The method which you would like to use to mold the terrain."),
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate:"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate:")
+                    .SetTextUpdate(function() {
+                        return $"Deformation rate: {self.GetSibling("DEFORMATION RATE").value}";
+                    }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.rate_min, Settings.terrain.rate_max, true, Settings.terrain.rate, function() {
+                    if (!keyboard_check(vk_shift)) {
+                        self.value = round_ext(self.value, 0.25);
+                    }
                     Settings.terrain.rate = self.value;
                 }))
+                    .SetID("DEFORMATION RATE")
                     .SetTooltip("A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic."),
                 (new EmuButton(col1x, EMU_AUTO, col_width, 32, "Mutate", function() {
                     dialog_terrain_mutate();
@@ -322,10 +329,15 @@ function ui_init_terrain(mode) {
                     dialog.x = 920;
                     dialog.y = 120;
                 })),
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:")
+                    .SetTextUpdate(function() {
+                        return $"Brush radius: {self.GetSibling("BRUSH RADIUS").value}";
+                    }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.radius, function() {
                     Settings.terrain.radius = self.value;
                 }))
+                    .SetIntegersOnly(true)
+                    .SetID("BRUSH RADIUS")
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x, EMU_BASE, col_width, 32, "Brush:", 32, 15, function() {
                     var selection = self.GetSelection();
@@ -466,10 +478,15 @@ function ui_init_terrain(mode) {
                     .SetRealNumberBounds(Settings.terrain.tile_brush_size_min, Settings.terrain.tile_brush_size_max)
                     .SetTooltip("Default is 16 px tile resolution. 32 and 64 are also common.")
                     .SetID("TEXTURE_RESOLUTION"),
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:")
+                    .SetTextUpdate(function() {
+                        return $"Brush radius: {self.GetSibling("BRUSH RADIUS").value}";
+                    }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
                     Settings.terrain.tile_brush_radius = self.value;
                 }))
+                    .SetIntegersOnly(true)
+                    .SetID("BRUSH RADIUS")
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 (new EmuList(col2x, col_width * 2 + 32, col_width, 32, "Brush:", 32, 8, function() {
                     var selection = self.GetSelection();
@@ -489,10 +506,17 @@ function ui_init_terrain(mode) {
                 Settings.terrain.mode = TerrainModes.TEXTURE;
             }),
             (new EmuTab("Painting")).AddContent([
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength:"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Paint strength:")
+                    .SetTextUpdate(function() {
+                        return $"Paint strength: {self.GetSibling("PAINT STRENGTH").value}";
+                    }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_strength_min, Settings.terrain.paint_strength_max, true, Settings.terrain.paint_strength, function() {
+                    if (!keyboard_check(vk_shift)) {
+                        self.value = round_ext(self.value, 0.25);
+                    }
                     Settings.terrain.paint_strength = self.value;
                 }))
+                    .SetID("PAINT STRENGTH")
                     .SetTooltip("A lower strength value will cause the color to blend with the existing color, and a greater one will cause it to replace the existing color."),
                 (new EmuColorPicker(col1x, EMU_AUTO, col_width, 32, "Color:", Settings.terrain.paint_color, function() {
                     Settings.terrain.paint_color = self.value;
@@ -506,10 +530,15 @@ function ui_init_terrain(mode) {
                     dialog.x = 920;
                     dialog.y = 120;
                 }),
-                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:"),
+                new EmuText(col1x, EMU_AUTO, col_width, 32, "Brush radius:")
+                    .SetTextUpdate(function() {
+                        return $"Brush radius: {self.GetSibling("BRUSH RADIUS").value}";
+                    }),
                 (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, Settings.terrain.paint_brush_radius, function() {
                     Settings.terrain.paint_brush_radius = self.value;
                 }))
+                    .SetIntegersOnly(true)
+                    .SetID("BRUSH RADIUS")
                     .SetTooltip("A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision."),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Export canvas", function() {
                     var filename = get_save_filename_image("canvas.png");

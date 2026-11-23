@@ -77,13 +77,22 @@ function dialog_terrain_mutate() {
     dialog.contents_interactive = true;
     
     dialog.AddContent([
-        new EmuText(32, 32, 360, 24, "Smoothness:"),
+        new EmuText(32, 32, 360, 24, "Smoothness:")
+            .SetTextUpdate(function() {
+                return $"Smoothness: {self.GetSibling("SMOOTHNESS").value}";
+            }),
         (new EmuProgressBar(32, EMU_AUTO, 256, 24, 12, 1, 10, true, 6, emu_null))
             .SetID("SMOOTHNESS"),
-        new EmuText(32, EMU_AUTO, 360, 24, "Noise amplitude:"),
+        new EmuText(32, EMU_AUTO, 360, 24, "Noise amplitude:")
+            .SetTextUpdate(function() {
+                return $"Noise amplitude: {self.GetSibling("NOISE_STRENGTH").value}";
+            }),
         (new EmuProgressBar(32, EMU_AUTO, 256, 24, 12, 0, 1, true, 0.25, emu_null))
             .SetID("NOISE_STRENGTH"),
-        new EmuText(32, EMU_AUTO, 360, 24, "Texture amplitude:"),
+        new EmuText(32, EMU_AUTO, 360, 24, "Texture amplitude:")
+            .SetTextUpdate(function() {
+                return $"Texture amplitude: {self.GetSibling("TEXTURE_STRENGTH").value}";
+            }),
         (new EmuProgressBar(32, EMU_AUTO, 256, 24, 12, 0, 1, true, 0.25, emu_null))
             .SetID("TEXTURE_STRENGTH"),
         (new EmuList(32, EMU_AUTO, 256, 32, "Generation texture:", 32, 6, function() {
@@ -223,8 +232,14 @@ function dialog_create_terrain_new() {
         }))
             .SetTooltip("Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.")
             .SetID("HEIGHTMAP"),
-        new EmuText(col1_x, EMU_AUTO, ew, eh, "Scale:"),
-        (new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 12, 0, 1, true, Settings.terrain.heightmap_scale, function() {
+        new EmuText(col1_x, EMU_AUTO, ew, eh, "Import Scale:")
+            .SetTextUpdate(function() {
+                return $"Import Scale: {self.GetSibling("HEIGHTMAP_SCALE").value}";
+            }),
+        (new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 12, 0.125, 8, true, Settings.terrain.heightmap_scale, function() {
+            if (!keyboard_check(vk_shift)) {
+                self.value = round_ext(self.value, 0.25);
+            }
             Settings.terrain.heightmap_scale = self.value;
         }))
             .SetIntegersOnly(false)
@@ -235,7 +250,10 @@ function dialog_create_terrain_new() {
         }))
             .SetTooltip("Generate a random terrain using noise?")
             .SetID("USE_NOISE"),
-        new EmuText(col2_x, EMU_AUTO, ew, eh, "Scale:"),
+        new EmuText(col2_x, EMU_AUTO, ew, eh, "Noise Scale:")
+            .SetTextUpdate(function() {
+                return $"Noise Scale: {self.GetSibling("SCALE").value}"
+            }),
         (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 12, 0, 1, true, Settings.terrain.gen_noise_scale, function() {
             Settings.terrain.gen_noise_scale = self.value;
         }))
@@ -243,6 +261,9 @@ function dialog_create_terrain_new() {
             .SetTooltip("The scale of the terrain. Maximum height is proportional to the dimensions of the terrain.")
             .SetID("SCALE"),
         (new EmuText(col2_x, EMU_AUTO, ew, eh, "Smoothness:"))
+            .SetTextUpdate(function() {
+                return $"Smoothness: {self.GetSibling("OCTAVES").value}"
+            })
             .SetInteractive(false),
         (new EmuProgressBar(col2_x, EMU_AUTO, ew, eh, 12, 1, 10, true, Settings.terrain.gen_noise_smoothness, function() {
             Settings.terrain.gen_noise_smoothness = self.value;
