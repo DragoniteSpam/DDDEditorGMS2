@@ -44,8 +44,6 @@ function Terrain(w, h) constructor {
     };
     
     static Render = function() {
-        show_debug_message("Re-implement the drawing of the terrain with lods (refer to the old code that's still there)");
-        
         var old_shader = shader_current();
         gpu_push_state();
         
@@ -62,40 +60,74 @@ function Terrain(w, h) constructor {
         
         var stats = Stuff.terrain.stats;
         var camera = Stuff.terrain.camera;
-        var chunk_angle = dcos(camera.fov * 1.5);
-        var cutoff = Settings.terrain.view_distance;
         var max_lod_level = array_length(patches) - 1;
         
         stats.chunks = array_create(array_length(patches));
         
-        for (var xx = 0; xx < self.w; xx += TERRAIN_INTERNAL_CHUNK_SIZE) {
-            for (var yy = 0; yy < self.h; yy += TERRAIN_INTERNAL_CHUNK_SIZE) {
-                var cx = xx + TERRAIN_INTERNAL_CHUNK_SIZE / 2;
-                var cy = yy + TERRAIN_INTERNAL_CHUNK_SIZE / 2;
-                
-                var chunk_distance = camera.DistanceTo2D(cx, cy);
-                
-                if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && camera.Dot(cx, cy, 0) <= chunk_angle) continue;
-                
-                var use_lod_zero = chunk_distance <= cutoff;
-                
-                var lod_level = min(chunk_distance div cutoff, max_lod_level);
-                
-                var neighbor_use_lod_zero =
-                    (camera.DistanceTo2D(cx - TERRAIN_INTERNAL_CHUNK_SIZE, cy - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-                    (camera.DistanceTo2D(cx + TERRAIN_INTERNAL_CHUNK_SIZE, cy - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-                    (camera.DistanceTo2D(cx - TERRAIN_INTERNAL_CHUNK_SIZE, cy + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
-                    (camera.DistanceTo2D(cx + TERRAIN_INTERNAL_CHUNK_SIZE, cy + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
-                
-                if (neighbor_use_lod_zero) {
-                    lod_level = 0;
+        if (Settings.terrain.orthographic) {
+            var vw = window_get_width();
+            var vh = window_get_height();
+            
+            var bounds_x1 = round((camera.x - vw * camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE) - 1;
+            var bounds_x2 = round((camera.x + vw * camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE);
+            var bounds_y1 = round((camera.y - vh * camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE) - 1;
+            var bounds_y2 = round((camera.y + vh * camera.scale / 2) / TERRAIN_INTERNAL_CHUNK_SIZE);
+            
+            var reps = (bounds_x2 - bounds_x1) div 8;
+            var lod_level = min(max_lod_level, reps);
+            
+            var patch = patches[lod_level];
+            var vertices = vertex_get_number(patch);
+            
+            bounds_x1 = max(0, bounds_x1);
+            bounds_y1 = max(0, bounds_y1);
+            bounds_x2 = min(bounds_x2, ceil(self.w / TERRAIN_INTERNAL_CHUNK_SIZE));
+            bounds_y2 = min(bounds_y2, ceil(self.h / TERRAIN_INTERNAL_CHUNK_SIZE));
+            
+            for (var xx = bounds_x1; xx < bounds_x2; xx++) {
+                for (var yy = bounds_y1; yy < bounds_y2; yy++) {
+                    var cx = xx * TERRAIN_INTERNAL_CHUNK_SIZE;
+                    var cy = yy * TERRAIN_INTERNAL_CHUNK_SIZE;
+                    
+                    shader_set_uniform_f(u_world_offset, cx, cy);
+                    vertex_submit(patch, pr_trianglelist, -1);
+                    stats.chunks[lod_level]++;
+                    stats.triangles += vertices;
                 }
-                
-                shader_set_uniform_f(u_world_offset, xx, yy);
-                vertex_submit(patches[lod_level], pr_trianglelist, -1);
-                stats.chunks[lod_level]++;
-                stats.triangles += vertex_get_number(patches[lod_level]);
-                
+            }
+        } else {
+            var chunk_angle = dcos(camera.fov * 1.5);
+            var cutoff = Settings.terrain.view_distance;
+            for (var xx = 0; xx < self.w; xx += TERRAIN_INTERNAL_CHUNK_SIZE) {
+                for (var yy = 0; yy < self.h; yy += TERRAIN_INTERNAL_CHUNK_SIZE) {
+                    // the center of the tile - used for figuring out what you can see
+                    var cx = xx + TERRAIN_INTERNAL_CHUNK_SIZE / 2;
+                    var cy = yy + TERRAIN_INTERNAL_CHUNK_SIZE / 2;
+                    
+                    var chunk_distance = camera.DistanceTo2D(cx, cy);
+                    
+                    if (chunk_distance >= TERRAIN_INTERNAL_CHUNK_SIZE && camera.Dot(cx, cy, 0) <= chunk_angle) continue;
+                    
+                    var use_lod_zero = chunk_distance <= cutoff;
+                    
+                    var lod_level = min(chunk_distance div cutoff, max_lod_level);
+                    
+                    var neighbor_use_lod_zero =
+                        (camera.DistanceTo2D(cx - TERRAIN_INTERNAL_CHUNK_SIZE, cy - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                        (camera.DistanceTo2D(cx + TERRAIN_INTERNAL_CHUNK_SIZE, cy - TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                        (camera.DistanceTo2D(cx - TERRAIN_INTERNAL_CHUNK_SIZE, cy + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff) ||
+                        (camera.DistanceTo2D(cx + TERRAIN_INTERNAL_CHUNK_SIZE, cy + TERRAIN_INTERNAL_CHUNK_SIZE) <= cutoff);
+                    
+                    if (neighbor_use_lod_zero) {
+                        lod_level = 0;
+                    }
+                    
+                    shader_set_uniform_f(u_world_offset, xx, yy);
+                    vertex_submit(patches[lod_level], pr_trianglelist, -1);
+                    stats.chunks[lod_level]++;
+                    stats.triangles += vertex_get_number(patches[lod_level]);
+                    
+                }
             }
         }
         
