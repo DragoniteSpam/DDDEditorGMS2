@@ -109,6 +109,9 @@
 #macro VERTEX_SIZE                          Stuff.graphics.format_size
 #macro VERTEX_SIZE_TERRAIN                  12
 
+// for ui sliders that use a quadratic scale, this is the exponent
+#macro UI_SLIDER_EXPONENT                   1.5
+
 #macro MAP_BATCH_MESH_ENABLED               false
 
 #macro FILE_PROJECTS                        PROJECT_PATH_ROOT + "/projects.json"

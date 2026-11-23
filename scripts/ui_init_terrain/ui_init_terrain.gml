@@ -298,13 +298,10 @@ function ui_init_terrain(mode) {
                     .SetTooltip("The method which you would like to use to mold the terrain."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate:")
                     .SetTextUpdate(function() {
-                        return $"Deformation rate: {self.GetSibling("DEFORMATION RATE").value}";
+                        return $"Deformation rate: {Settings.terrain.rate}";
                     }),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.rate_min, Settings.terrain.rate_max, true, Settings.terrain.rate, function() {
-                    if (!keyboard_check(vk_shift)) {
-                        self.value = round_ext(self.value, 0.25);
-                    }
-                    Settings.terrain.rate = self.value;
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.rate_min, Settings.terrain.rate_max, true, power(Settings.terrain.rate, 1 / UI_SLIDER_EXPONENT), function() {
+                    Settings.terrain.rate = round(min(400, power(self.value, UI_SLIDER_EXPONENT)));
                 }))
                     .SetID("DEFORMATION RATE")
                     .SetTooltip("A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic."),
@@ -333,8 +330,8 @@ function ui_init_terrain(mode) {
                     .SetTextUpdate(function() {
                         return $"Brush radius: {Settings.terrain.radius}";
                     }),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.brush_min, Settings.terrain.brush_max, true, Settings.terrain.radius, function() {
-                    Settings.terrain.radius = floor(power(self.value, 1.5));
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.brush_min, Settings.terrain.brush_max, true, power(Settings.terrain.radius, 1 / UI_SLIDER_EXPONENT), function() {
+                    Settings.terrain.radius = floor(power(self.value, UI_SLIDER_EXPONENT));
                 }))
                     .SetIntegersOnly(true)
                     .SetID("BRUSH RADIUS")
@@ -482,8 +479,8 @@ function ui_init_terrain(mode) {
                     .SetTextUpdate(function() {
                         return $"Brush radius: {Settings.terrain.tile_brush_radius}";
                     }),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, Settings.terrain.tile_brush_radius, function() {
-                    Settings.terrain.tile_brush_radius = floor(power(self.value, 1.5));
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.tile_brush_min, Settings.terrain.tile_brush_max, true, power(Settings.terrain.tile_brush_radius, 1 / UI_SLIDER_EXPONENT), function() {
+                    Settings.terrain.tile_brush_radius = floor(power(self.value, UI_SLIDER_EXPONENT));
                 }))
                     .SetIntegersOnly(true)
                     .SetID("BRUSH RADIUS")
@@ -531,8 +528,8 @@ function ui_init_terrain(mode) {
                     .SetTextUpdate(function() {
                         return $"Brush radius: {Settings.terrain.paint_brush_radius}";
                     }),
-                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, Settings.terrain.paint_brush_radius, function() {
-                    Settings.terrain.paint_brush_radius = floor(power(self.value, 1.5));
+                (new EmuProgressBar(col1x, EMU_AUTO, col_width, 32, 12, Settings.terrain.paint_brush_min, Settings.terrain.paint_brush_max, true, power(Settings.terrain.paint_brush_radius, 1 / UI_SLIDER_EXPONENT), function() {
+                    Settings.terrain.paint_brush_radius = floor(power(self.value, UI_SLIDER_EXPONENT));
                 }))
                     .SetIntegersOnly(true)
                     .SetID("BRUSH RADIUS")
