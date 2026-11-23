@@ -420,11 +420,6 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     };
     
     #region terrain actions
-    self.Flatten = function(height = 0) {
-        show_message("Re-implement: Flatten");
-        //terrainops_flatten(self.height_data, self.terrain_buffer_data, height);
-        //self.RegenerateAllTerrainBuffers();
-    };
     
     self.ApplyScale = function(scale = Settings.terrain.global_scale) {
         show_message("Re-implement: Apply Scale");

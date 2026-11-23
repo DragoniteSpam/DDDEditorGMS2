@@ -147,4 +147,10 @@ function Terrain(w, h) constructor {
         self.color.Destroy();
         self.texture.Destroy();
     };
+    
+    #region Actions
+    static Flatten = function(height = 0) {
+        self.height.Clear(height);
+    };
+    #endregion
 }
