@@ -24,4 +24,6 @@ enum DialogFlags {
     NO_CLOSE_BUTTON         = 0x0004,
     IS_DUPLICATE_WARNING    = 0x0008,
     IS_GENERIC_WARNING      = 0x0010,
+    
+    IS_MESH_COLLISION_SHAPES= 0x0020,
 }

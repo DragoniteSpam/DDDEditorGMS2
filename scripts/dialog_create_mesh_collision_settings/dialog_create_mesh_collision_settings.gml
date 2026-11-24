@@ -6,7 +6,9 @@ function dialog_create_mesh_collision_settings(mesh) {
     var c2x = 352;
     
     var dialog = new EmuDialog(dw, dh, "Collision Shapes");
+    dialog.flags = DialogFlags.IS_MESH_COLLISION_SHAPES;
     dialog.mesh = mesh;
+    dialog.active_shade = 0;
     
     return dialog.AddContent([
         // column 1
