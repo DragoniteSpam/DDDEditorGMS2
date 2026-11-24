@@ -292,14 +292,17 @@ function GizmoSystem() constructor {
                 
                 switch (self.gizmo_type) {
                     case EditorGizmoModes.TRANSLATE: {
-                        editor_gizmo_translate(selected, delta, self.snapping_translate, callback_translate);
+                        var snapping = keyboard_check(vk_control) ? 0 : self.snapping_translate;
+                        editor_gizmo_translate(selected, delta, snapping, callback_translate);
                     } break;
                     case EditorGizmoModes.ROTATE: {
-                        editor_gizmo_rotate(selected, delta_raw_x, self.snapping_rotate, callback_rotate, current_gizmo_mouse_raw_x);
+                        var snapping = keyboard_check(vk_control) ? 0 : self.snapping_rotate;
+                        editor_gizmo_rotate(selected, delta_raw_x, snapping, callback_rotate, current_gizmo_mouse_raw_x);
                     } break;
                     // scale uses the same logic as translate
                     case EditorGizmoModes.SCALE: {
-                        editor_gizmo_translate(selected, delta, self.snapping_scale, callback_scale, self.scale_scale);
+                        var snapping = keyboard_check(vk_control) ? 0 : self.snapping_scale;
+                        editor_gizmo_translate(selected, delta, snapping, callback_scale, self.scale_scale);
                     } break;
                 }
             }
