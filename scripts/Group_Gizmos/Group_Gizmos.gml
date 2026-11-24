@@ -162,7 +162,7 @@ function GizmoSystem() constructor {
         
         static editor_gizmo_translate = function(selected, delta, delta_threshold, callback_translate, scale = 1) {
             var rounded_delta = (delta_threshold > 0)
-                ? delta.Div(delta_threshold).Floor().Mul(delta_threshold)
+                ? delta.Div(delta_threshold / scale).Floor().Mul(delta_threshold / scale)
                 : delta;
             
             var abs_delta = delta.Abs();
