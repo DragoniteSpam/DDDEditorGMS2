@@ -12,6 +12,7 @@ function dialog_create_mesh_collision_settings(mesh) {
     
     var gizmo_collision = new GizmoSystem();
     gizmo_collision.dialog = dialog;
+    gizmo_collision.scale_scale = 1 / 16;
     
     // reset this when the dialog is closed
     Stuff.mesh.gizmo_active = gizmo_collision;

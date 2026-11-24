@@ -24,6 +24,9 @@ function GizmoSystem() constructor {
     self.snapping_rotate = 10;
     self.snapping_scale = 0.25;
     
+    // generally when you scale objects you want to scale them down a bit
+    self.scale_scale = 1 / 32;
+    
     self.position = new Vector3(0, 0, 0);
     
     static color_x = #ff3333;
@@ -296,7 +299,7 @@ function GizmoSystem() constructor {
                     } break;
                     // scale uses the same logic as translate
                     case EditorGizmoModes.SCALE: {
-                        editor_gizmo_translate(selected, delta, self.snapping_scale, callback_scale, 1 / 32);
+                        editor_gizmo_translate(selected, delta, self.snapping_scale, callback_scale, self.scale_scale);
                     } break;
                 }
             }
