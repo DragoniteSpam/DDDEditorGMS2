@@ -218,7 +218,8 @@ function dialog_create_mesh_collision_settings(mesh) {
             }
         }))
             .SetID("DELETE SHAPE"),
-        (new EmuInput(c1x, EMU_AUTO, 256, 32, "Shape name:", "", "name", 32, E_InputTypes.STRING, function() {
+        // TODO right now i assume you'll just pack all of the data into the name, which isnt really ideal; later it would be really nice to have some kind of metadata options for these
+        (new EmuInput(c1x, EMU_AUTO, 256, 32, "Shape name:", "", "name", 1000, E_InputTypes.STRING, function() {
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection + 1) {
                 self.root.mesh.RenameCollisionShape(selection, self.value);
