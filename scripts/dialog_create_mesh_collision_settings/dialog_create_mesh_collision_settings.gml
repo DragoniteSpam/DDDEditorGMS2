@@ -187,14 +187,29 @@ function dialog_create_mesh_collision_settings(mesh) {
         (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Capsule", function() {
             self.root.mesh.AddCollisionShape(MeshCollisionShapeCapsule);
         })).SetID("add_capsule"),
-        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Trimesh (from mesh)", function() {
+        /*(new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Trimesh (from mesh)", function() {
             //var trimesh = self.root.mesh.AddCollisionShape(MeshCollisionShapeTrimesh);
         }))
             .SetID("ADD TIRMESH"),
         (new EmuButton(c1x, EMU_AUTO, 256, 32, "Add Trimesh (from file)", function() {
             //var trimesh = self.root.mesh.AddCollisionShape(MeshCollisionShapeTrimesh);
         }))
-            .SetID("ADD TRIMESH FROM FILE"),
+            .SetID("ADD TRIMESH FROM FILE"),*/
+        (new EmuButton(c1x, EMU_AUTO, 256, 32, "Duplicate", function() {
+            var selection = self.GetSibling("LIST").GetSelectedItem();
+            if (selection != undefined) {
+                array_push(self.root.mesh.collision_shapes, variable_clone(selection));
+            }
+        }))
+            .SetUpdate(function() {
+                self.SetInteractive(!!self.GetSibling("LIST").GetSelectedItem());
+                if (keyboard_check(vk_control) && keyboard_check_pressed(ord("D"))) {
+                    self.callback();
+                    self.GetSibling("LIST").ClearSelection();
+                    self.GetSibling("LIST").Select(array_length(self.root.mesh.collision_shapes) - 1);
+                }
+            })
+            .SetID("DUPLICATE"),
         (new EmuButton(c1x, EMU_AUTO, 256, 32, "Delete Shape", function() {
             var selection = self.GetSibling("LIST").GetSelection();
             if (selection + 1) {
