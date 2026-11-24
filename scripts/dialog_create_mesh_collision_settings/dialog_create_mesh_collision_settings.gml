@@ -96,25 +96,25 @@ function dialog_create_mesh_collision_settings(mesh) {
     return dialog.AddContent([
         // column 1
         (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 8, function() {
+            self.GetSibling("TRANS X").SetInteractive(false);
+            self.GetSibling("TRANS Y").SetInteractive(false);
+            self.GetSibling("TRANS Z").SetInteractive(false);
+            self.GetSibling("ROT X").SetInteractive(false);
+            self.GetSibling("ROT Y").SetInteractive(false);
+            self.GetSibling("ROT Z").SetInteractive(false);
+            self.GetSibling("SCALE X").SetInteractive(false);
+            self.GetSibling("SCALE Y").SetInteractive(false);
+            self.GetSibling("SCALE Z").SetInteractive(false);
+            self.GetSibling("RADIUS").SetInteractive(false);
+            self.GetSibling("LENGTH").SetInteractive(false);
+            self.GetSibling("FROM BOUNDS").SetInteractive(false);
+            
             var selection = self.GetSelection();
             if (selection + 1) {
                 var shape = self.root.mesh.collision_shapes[selection];
                 
                 // we should be doing this with the refresh method but this is older code and it works just as well
                 self.GetSibling("NAME").SetValue(shape.name);
-                
-                self.GetSibling("TRANS X").SetInteractive(false);
-                self.GetSibling("TRANS Y").SetInteractive(false);
-                self.GetSibling("TRANS Z").SetInteractive(false);
-                self.GetSibling("ROT X").SetInteractive(false);
-                self.GetSibling("ROT Y").SetInteractive(false);
-                self.GetSibling("ROT Z").SetInteractive(false);
-                self.GetSibling("SCALE X").SetInteractive(false);
-                self.GetSibling("SCALE Y").SetInteractive(false);
-                self.GetSibling("SCALE Z").SetInteractive(false);
-                self.GetSibling("RADIUS").SetInteractive(false);
-                self.GetSibling("LENGTH").SetInteractive(false);
-                self.GetSibling("FROM BOUNDS").SetInteractive(false);
                 
                 switch (shape.type) {
                     case MeshCollisionShapes.BOX:
