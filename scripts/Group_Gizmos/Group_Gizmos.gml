@@ -28,6 +28,7 @@ function GizmoSystem() constructor {
     self.scale_scale = 1 / 32;
     
     self.position = new Vector3(0, 0, 0);
+    self.alpha = 1;
     
     static color_x = #ff3333;
     static color_y = #33ff33;
@@ -259,7 +260,7 @@ function GizmoSystem() constructor {
                 matrix_set(matrix_projection, proj_mat);
                 draw_clear(c_black);
                 
-                self.DrawGizmos();
+                self.DrawGizmos(1);
             
             surface_reset_target();
             
@@ -310,10 +311,10 @@ function GizmoSystem() constructor {
     };
     
     static Render = function() {
-        self.DrawGizmos();
+        self.DrawGizmos(self.alpha);
     };
     
-    static DrawGizmos = function() {
+    static DrawGizmos = function(alpha) {
         static previous_matrix = matrix_build_identity();
         matrix_get(matrix_world, previous_matrix);
         
@@ -329,34 +330,34 @@ function GizmoSystem() constructor {
         
         switch (self.gizmo_type) {
             case EditorGizmoModes.TRANSLATE: {
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x, alpha);
                 gizmos.translate_x.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y, alpha);
                 gizmos.translate_y.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z, alpha);
                 gizmos.translate_z.Render();
                 
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.XY ? color_selected : color_xy);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.XY ? color_selected : color_xy, alpha);
                 gizmos.translate_xy.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.YZ ? color_selected : color_yz);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.YZ ? color_selected : color_yz, alpha);
                 gizmos.translate_yz.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.ZX ? color_selected : color_zx);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.ZX ? color_selected : color_zx, alpha);
                 gizmos.translate_zx.Render();
             } break;
             case EditorGizmoModes.ROTATE: {
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x, alpha);
                 gizmos.rotate_x.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y, alpha);
                 gizmos.rotate_y.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z, alpha);
                 gizmos.rotate_z.Render();
             } break;
             case EditorGizmoModes.SCALE: {
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.X ? color_selected : color_x, alpha);
                 gizmos.scale_x.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Y ? color_selected : color_y, alpha);
                 gizmos.scale_y.Render();
-                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z);
+                self.SetDrawColor(self.selected_gizmo == EditorGizmos.Z ? color_selected : color_z, alpha);
                 gizmos.scale_z.Render();
             } break;
         }
@@ -370,8 +371,8 @@ function GizmoSystem() constructor {
         gpu_pop_state();
     };
     
-    static SetDrawColor = function(color) {
-        shader_set_uniform_f(shader_get_uniform(shd_gizmos, "u_color"), color_get_red(color) / 255, color_get_green(color) / 255, color_get_blue(color) / 255);
+    static SetDrawColor = function(color, a = 1 ) {
+        shader_set_uniform_f(shader_get_uniform(shd_gizmos, "u_color"), color_get_red(color) / 255, color_get_green(color) / 255, color_get_blue(color) / 255, a);
     };
     
     static SetPosition = function(position) {
