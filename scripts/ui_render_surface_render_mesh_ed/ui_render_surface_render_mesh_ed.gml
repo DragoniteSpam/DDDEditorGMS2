@@ -188,17 +188,17 @@ function ui_render_surface_render_mesh_ed(mx, my) {
     });
     
     if (Settings.mesh.draw_gizmos) {
-        var gizmo_is_translate = (Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.TRANSLATE);
-        var gizmo_is_rotate = (Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.ROTATE);
-        var gizmo_is_scale = (Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.SCALE);
+        var gizmo_is_translate = (Stuff.mesh.gizmo_active.gizmo_type = EditorGizmoModes.TRANSLATE);
+        var gizmo_is_rotate = (Stuff.mesh.gizmo_active.gizmo_type = EditorGizmoModes.ROTATE);
+        var gizmo_is_scale = (Stuff.mesh.gizmo_active.gizmo_type = EditorGizmoModes.SCALE);
         editor_gui_button(spr_gizmo_translate, gizmo_is_translate ? 1 : 0, 16 + 48 * 1, self.height - 48, self.x, 32, null, function() {
-            Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.TRANSLATE;
+            Stuff.mesh.gizmo_active.gizmo_type = EditorGizmoModes.TRANSLATE;
         });
         editor_gui_button(spr_gizmo_rotate, gizmo_is_rotate ? 1 : 0, 16 + 48 * 2, self.height - 48, self.x, 32, null, function() {
-            Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.ROTATE;
+            Stuff.mesh.gizmo_active.gizmo_type = EditorGizmoModes.ROTATE;
         });
         editor_gui_button(spr_gizmo_scale, gizmo_is_scale ? 1 : 0, 16 + 48 * 3, self.height - 48, self.x, 32, null, function() {
-            Stuff.mesh.gizmos.gizmo_type = EditorGizmoModes.SCALE;
+            Stuff.mesh.gizmo_active.gizmo_type = EditorGizmoModes.SCALE;
         });
     }
     #endregion

@@ -1,7 +1,7 @@
 function EditorModeMesh() : EditorModeBase() constructor {
     // in case you want to swap 
-    self.gizmo_active = new GizmoSystem();
-    self.gizmos = self.gizmo_active;
+    self.gizmo_default = new GizmoSystem();
+    self.gizmo_active = self.gizmo_default;
     
     with (self.gizmo_active) {
         self.DoAllTheStuff = function(mx, my, mouse_pos, mouse_dir, width, height) {
@@ -11,27 +11,30 @@ function EditorModeMesh() : EditorModeBase() constructor {
                 Settings.mesh.draw_position.x += x;
                 Settings.mesh.draw_position.y += y;
                 Settings.mesh.draw_position.z += z;
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH POSITION X").value = string(Settings.mesh.draw_position.x);
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH POSITION Y").value = string(Settings.mesh.draw_position.y);
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH POSITION Z").value = string(Settings.mesh.draw_position.z);
+                var info = Stuff.mesh.ui.GetChild("INFO");
+                info.GetChild("MESH POSITION X").value = string(Settings.mesh.draw_position.x);
+                info.GetChild("MESH POSITION Y").value = string(Settings.mesh.draw_position.y);
+                info.GetChild("MESH POSITION Z").value = string(Settings.mesh.draw_position.z);
             };
             
             var cb_rotate = function(x, y, z) {
                 Settings.mesh.draw_rotation.x += x;
                 Settings.mesh.draw_rotation.y += y;
                 Settings.mesh.draw_rotation.z += z;
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH ROTATE X").value = string(Settings.mesh.draw_rotation.x);
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH ROTATE Y").value = string(Settings.mesh.draw_rotation.y);
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH ROTATE Z").value = string(Settings.mesh.draw_rotation.z);
+                var info = Stuff.mesh.ui.GetChild("INFO");
+                info.GetChild("MESH ROTATE X").value = string(Settings.mesh.draw_rotation.x);
+                info.GetChild("MESH ROTATE Y").value = string(Settings.mesh.draw_rotation.y);
+                info.GetChild("MESH ROTATE Z").value = string(Settings.mesh.draw_rotation.z);
             };
             
             var cb_scale = function(x, y, z) {
                 Settings.mesh.draw_scale.x += x;
                 Settings.mesh.draw_scale.y += y;
                 Settings.mesh.draw_scale.z += z;
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH SCALE X").value = string(Settings.mesh.draw_scale.x);
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH SCALE Y").value = string(Settings.mesh.draw_scale.y);
-                Stuff.mesh.ui.GetChild("INFO").GetChild("MESH SCALE Z").value = string(Settings.mesh.draw_scale.z);
+                var info = Stuff.mesh.ui.GetChild("INFO");
+                info.GetChild("MESH SCALE X").value = string(Settings.mesh.draw_scale.x);
+                info.GetChild("MESH SCALE Y").value = string(Settings.mesh.draw_scale.y);
+                info.GetChild("MESH SCALE Z").value = string(Settings.mesh.draw_scale.z);
             };
             
             matrix_set(matrix_world, identity_matrix);

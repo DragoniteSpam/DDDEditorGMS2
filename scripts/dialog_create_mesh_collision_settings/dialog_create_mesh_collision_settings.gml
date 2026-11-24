@@ -10,6 +10,88 @@ function dialog_create_mesh_collision_settings(mesh) {
     dialog.mesh = mesh;
     dialog.active_shade = 0;
     
+    var gizmo_collision = new GizmoSystem();
+    gizmo_collision.dialog = dialog;
+    
+    // reset this when the dialog is closed
+    Stuff.mesh.gizmo_active = gizmo_collision;
+    
+    with (gizmo_collision) {
+        self.DoAllTheStuff = function(mx, my, mouse_pos, mouse_dir, width, height) {
+            // when the collision shapes dialog is closed, reset
+            var top = EmuOverlay.GetTop();
+            if (!top || (top.flags & DialogFlags.IS_MESH_COLLISION_SHAPES == 0)) {
+                Stuff.mesh.gizmo_active = Stuff.mesh.gizmo_default;
+                return;
+            }
+            
+            static identity_matrix = matrix_build_identity();
+            
+            self.selected_item = top.GetChild("LIST").GetSelectedItem();
+            
+            if (!self.selected_item) return;
+            
+            // All object types will have a position
+            var cb_translate = function(x, y, z) {
+                self.selected_item.position.x += x;
+                self.selected_item.position.y += y;
+                self.selected_item.position.z += z;
+                self.dialog.GetChild("TRANS X").value = string(self.selected_item.position.x);
+                self.dialog.GetChild("TRANS Y").value = string(self.selected_item.position.y);
+                self.dialog.GetChild("TRANS Z").value = string(self.selected_item.position.z);
+            };
+            
+            // Not all object types will have a rotation
+            var cb_rotate = function(x, y, z) {
+                switch (self.selected_item.type) {
+                    case MeshCollisionShapes.BOX: {
+                        self.selected_item.rotation.x += x;
+                        self.selected_item.rotation.y += y;
+                        self.selected_item.rotation.z += z;
+                        self.dialog.GetChild("ROT X").value = string(self.selected_item.rotation.x);
+                        self.dialog.GetChild("ROT Y").value = string(self.selected_item.rotation.y);
+                        self.dialog.GetChild("ROT Z").value = string(self.selected_item.rotation.z);
+                    } break;
+                }
+            };
+            
+            // Not all object types handle scale the same way
+            var cb_scale = function(x, y, z) {
+                switch (self.selected_item.type) {
+                    case MeshCollisionShapes.BOX: {
+                        self.selected_item.scale.x += x;
+                        self.selected_item.scale.y += y;
+                        self.selected_item.scale.z += z;
+                        self.dialog.GetChild("SCALE X").value = string(self.selected_item.scale.x);
+                        self.dialog.GetChild("SCALE Y").value = string(self.selected_item.scale.y);
+                        self.dialog.GetChild("SCALE Z").value = string(self.selected_item.scale.z);
+                    } break;
+                    case MeshCollisionShapes.CAPSULE: {
+                        self.selected_item.radius += x;
+                        self.selected_item.radius += y;
+                        self.selected_item.length += z;
+                        self.dialog.GetChild("RADIUS").value = string(self.selected_item.radius);
+                        self.dialog.GetChild("LENGTH").value = string(self.selected_item.length);
+                    } break;
+                    // spheres have some silly 2x scaling because diameter
+                    case MeshCollisionShapes.SPHERE: {
+                        self.selected_item.diameter += x * 2;
+                        self.selected_item.diameter += y * 2;
+                        self.selected_item.diameter += z * 2;
+                        self.dialog.GetChild("RADIUS").value = string(self.selected_item.diameter / 2);
+                    } break;
+                }
+            };
+            
+            matrix_set(matrix_world, identity_matrix);
+            self.SetPosition(self.selected_item.position);
+            self.SetSnapping(Settings.mesh.gizmo_snap_translate, Settings.mesh.gizmo_snap_rotate, Settings.mesh.gizmo_snap_scale);
+            // feather ignore once GM1019
+            self.Update(mx, my, mouse_pos, mouse_dir, width, height, cb_translate, cb_rotate, cb_scale);
+            self.Render();
+        }
+    }
+    
     return dialog.AddContent([
         // column 1
         (new EmuList(c1x, 32, 256, 32, "Collision shapes:", 32, 8, function() {
@@ -233,7 +315,15 @@ function dialog_create_mesh_collision_settings(mesh) {
             .SetInteractive(false),
         new EmuText(c2x, EMU_AUTO, 256, 24, "Other"),
         (new EmuInput(c2x, EMU_AUTO, 256, 24, "    Radius:", "", "", 6, E_InputTypes.REAL, function() {
-            self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()].diameter = real(self.value) * 2;
+            var shape = self.root.mesh.collision_shapes[self.GetSibling("LIST").GetSelection()];
+            switch (shape.type) {
+                case MeshCollisionShapes.SPHERE: {
+                    shape.diameter = real(self.value) * 2;
+                } break;
+                case MeshCollisionShapes.CAPSULE: {
+                    shape.radius = real(self.value);
+                } break;
+            }
         }))
             .SetRealNumberBounds(0.001, 9999)
             .SetID("RADIUS")
