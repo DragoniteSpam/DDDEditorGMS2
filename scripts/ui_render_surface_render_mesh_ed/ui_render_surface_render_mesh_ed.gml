@@ -157,38 +157,7 @@ function ui_render_surface_render_mesh_ed(mx, my) {
         var mouse_dir = world_vec.direction;
         var mouse_pos = world_vec.origin;
         
-        var cb_translate = function(x, y, z) {
-            Settings.mesh.draw_position.x += x;
-            Settings.mesh.draw_position.y += y;
-            Settings.mesh.draw_position.z += z;
-            self.GetSibling("MESH POSITION X").value = string(Settings.mesh.draw_position.x);
-            self.GetSibling("MESH POSITION Y").value = string(Settings.mesh.draw_position.y);
-            self.GetSibling("MESH POSITION Z").value = string(Settings.mesh.draw_position.z);
-        };
-        
-        var cb_rotate = function(x, y, z) {
-            Settings.mesh.draw_rotation.x += x;
-            Settings.mesh.draw_rotation.y += y;
-            Settings.mesh.draw_rotation.z += z;
-            self.GetSibling("MESH ROTATE X").value = string(Settings.mesh.draw_rotation.x);
-            self.GetSibling("MESH ROTATE Y").value = string(Settings.mesh.draw_rotation.y);
-            self.GetSibling("MESH ROTATE Z").value = string(Settings.mesh.draw_rotation.z);
-        };
-        
-        var cb_scale = function(x, y, z) {
-            Settings.mesh.draw_scale.x += x;
-            Settings.mesh.draw_scale.y += y;
-            Settings.mesh.draw_scale.z += z;
-            self.GetSibling("MESH SCALE X").value = string(Settings.mesh.draw_scale.x);
-            self.GetSibling("MESH SCALE Y").value = string(Settings.mesh.draw_scale.y);
-            self.GetSibling("MESH SCALE Z").value = string(Settings.mesh.draw_scale.z);
-        };
-        
-        matrix_set(matrix_world, identity_matrix);
-        Stuff.mesh.gizmos.SetPosition(Settings.mesh.draw_position);
-        Stuff.mesh.gizmos.SetSnapping(Settings.mesh.gizmo_snap_translate, Settings.mesh.gizmo_snap_rotate, Settings.mesh.gizmo_snap_scale);
-        Stuff.mesh.gizmos.Update(mx, my, mouse_pos, mouse_dir, self.width, self.height, cb_translate, cb_rotate, cb_scale);
-        Stuff.mesh.gizmos.Render();
+        Stuff.mesh.gizmo_active.DoAllTheStuff(mx, my, mouse_pos, mouse_dir, self.width, self.height);
     }
     
     shader_reset();
