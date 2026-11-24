@@ -4,6 +4,8 @@ Another changelog.
  - Added pan and zoom controls to the other texture displays
  - Added transform gizmos to the preview so you can move/rotate/scale things visually instead of typing in numbers
     - The default is off becuse I think it clutters the UI, but you can turn it off in Viewer Settings
+ - Added transform gizmos to the Collision Shape editor
+    - fixed some bugs in the Collision Shape editor (though I don't think anyone besides me uses this anyway)
 
  - When you sort the mesh list, the selection is preserved
  - You can now sort textures in the texture list
