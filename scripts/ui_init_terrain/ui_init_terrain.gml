@@ -296,8 +296,13 @@ function ui_init_terrain(mode) {
                 (new EmuRadioArray(col1x, EMU_AUTO, col_width, 32, "Deformation mode:", Settings.terrain.submode, function() {
                     Settings.terrain.submode = self.value;
                 }))
-                    .AddOptions(["Raise/Lower", "Average", "Zero"])
+                    .AddOptions(["Raise/Lower", "Average", "Base Height"])
                     .SetTooltip("The method which you would like to use to mold the terrain."),
+                (new EmuInput(col1x, EMU_AUTO, col_width, 32, "Base height:", string(Settings.terrain.base_height), "Base height", 4, E_InputTypes.REAL, function() {
+                    Settings.terrain.base_height = real(self.value);
+                }))
+                    .SetID("BASE_HEIGHT")
+                    .SetTooltip("The default height that you return to with the Zero brush."),
                 new EmuText(col1x, EMU_AUTO, col_width, 32, "Deformation rate:")
                     .SetTextUpdate(function() {
                         return $"Deformation rate: {Settings.terrain.rate}";

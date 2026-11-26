@@ -65,6 +65,7 @@
 #macro TERRAIN_DEF_HEIGHT_RATE_MIN                  power(5, 1 / UI_SLIDER_EXPONENT)       // scale = x^1.5; per second - any lower than this and the shader cant really handle it elegantly
 #macro TERRAIN_DEF_HEIGHT_RATE_MAX                  power(400, 1 / UI_SLIDER_EXPONENT)
 #macro TERRAIN_DEF_HEIGHT_RATE                      0.5
+#macro TERRAIN_DEF_BASE_HEIGHT                      0
 #macro TERRAIN_DEF_HEIGHT_BRUSH_INDEX               1
 #macro TERRAIN_DEF_HEIGHT_RADIUS                    12
 #macro TERRAIN_DEF_HEIGHT_SUBMODE                   TerrainSubmodes.MOUND

@@ -20,18 +20,40 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     self.vertex_format = vertex_format_end();
     
     self.EditModeZ = function(position, dir) {
-        //var r = Settings.terrain.radius;
-        var damping = (Settings.terrain.submode == TerrainSubmodes.AVERAGE) ? 0.25 : 1;
-        /*terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, r, dir * );
-    
+        //terrainops_deform_settings(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_BRUSH, position.x, position.y, r, dir * );
+        static u_slope = shader_get_uniform(shd_terrain_displacement, "u_slope");
+        static u_offset = shader_get_uniform(shd_terrain_displacement, "u_offset");
+        
         switch (Settings.terrain.submode) {
-            case TerrainSubmodes.MOUND: terrainops_deform_mold(); break;
-            case TerrainSubmodes.AVERAGE: terrainops_deform_average(); break;
-            case TerrainSubmodes.ZERO: terrainops_deform_zero(); break;
-        }*/
-        self.terrain.height.SetBrush(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
-        self.terrain.height.SetBlendMode(dir > 0 ? bm_add : bm_subtract);
-        self.terrain.height.Paint(position.x, position.y, Settings.terrain.radius, c_white, Settings.terrain.rate * damping * Stuff.dt);
+            case TerrainSubmodes.MOUND: {
+                var damping = 1;
+                
+                shader_set(shd_terrain_displacement);
+                shader_set_uniform_f(u_slope, sign(dir));
+                shader_set_uniform_f(u_offset, 0);
+                
+                self.terrain.height.SetShader(shd_terrain_displacement);
+                self.terrain.height.SetBrush(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+                self.terrain.height.SetBlendMode(bm_add);
+                self.terrain.height.Paint(position.x, position.y, Settings.terrain.radius, c_white, Settings.terrain.rate * damping * Stuff.dt);
+                break;
+            }
+            case TerrainSubmodes.AVERAGE: {
+                var damping = 0.25;
+                //terrainops_deform_average();
+            } break;
+            case TerrainSubmodes.ZERO: {
+                var damping = 1 / 32;
+                shader_set(shd_terrain_displacement);
+                shader_set_uniform_f(u_slope, 0);
+                shader_set_uniform_f(u_offset, Settings.terrain.base_height);
+                self.terrain.height.SetShader(shd_terrain_displacement);
+                self.terrain.height.SetBrush(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
+                self.terrain.height.SetBlendMode(bm_normal);
+                self.terrain.height.Paint(position.x, position.y, Settings.terrain.radius, c_white, Settings.terrain.rate * damping * Stuff.dt);
+                break;
+            }
+        }
     }
     
     self.EditModeTexture = function(position) {
@@ -242,6 +264,7 @@ function EditorModeTerrain() : EditorModeBase() constructor {
     Settings.terrain.rate_min = TERRAIN_DEF_HEIGHT_RATE_MIN;
     Settings.terrain.rate_max = TERRAIN_DEF_HEIGHT_RATE_MAX;
     Settings.terrain.rate = Settings.terrain[$ "rate"] ?? TERRAIN_DEF_HEIGHT_RATE;
+    Settings.terrain.base_height = Settings.terrain[$ "base_height"] ?? TERRAIN_DEF_BASE_HEIGHT;
     Settings.terrain.brush_index = clamp(Settings.terrain[$ "brush_index"] ?? TERRAIN_DEF_HEIGHT_BRUSH_INDEX, 0, array_length(self.brush_sprites) - 1);
     Settings.terrain.radius = Settings.terrain[$ "radius"] ?? TERRAIN_DEF_HEIGHT_RADIUS;
     Settings.terrain.submode = TERRAIN_DEF_HEIGHT_SUBMODE;
