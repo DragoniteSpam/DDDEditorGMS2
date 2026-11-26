@@ -29,8 +29,14 @@ function EditorModeTerrain() : EditorModeBase() constructor {
             case TerrainSubmodes.AVERAGE: terrainops_deform_average(); break;
             case TerrainSubmodes.ZERO: terrainops_deform_zero(); break;
         }*/
+        
+        static u_modifier = shader_get_uniform(shd_terrain_displacement, "u_modifier");
+        shader_set(shd_terrain_displacement);
+        shader_set_uniform_f(u_modifier, sign(dir));
+        
+        self.terrain.height.SetShader(shd_terrain_displacement);
         self.terrain.height.SetBrush(self.brush_sprites[Settings.terrain.brush_index].sprite, TERRAIN_GEN_SPRITE_INDEX_TEXTURE);
-        self.terrain.height.SetBlendMode(dir > 0 ? bm_add : bm_subtract);
+        self.terrain.height.SetBlendMode(bm_add);
         self.terrain.height.Paint(position.x, position.y, Settings.terrain.radius, c_white, Settings.terrain.rate * damping * Stuff.dt);
     }
     

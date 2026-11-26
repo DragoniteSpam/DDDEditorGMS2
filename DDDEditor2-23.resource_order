@@ -561,6 +561,7 @@
     {"name":"shd_emu_color_buckets","order":3,"path":"shaders/shd_emu_color_buckets/shd_emu_color_buckets.yy",},
     {"name":"shd_gizmos","order":1,"path":"shaders/shd_gizmos/shd_gizmos.yy",},
     {"name":"shd_solid_color","order":1,"path":"shaders/shd_solid_color/shd_solid_color.yy",},
+    {"name":"shd_terrain_displacement","order":13,"path":"shaders/shd_terrain_displacement/shd_terrain_displacement.yy",},
     {"name":"shd_terrain_normals","order":10,"path":"shaders/shd_terrain_normals/shd_terrain_normals.yy",},
     {"name":"shd_terrain_paint_texture","order":6,"path":"shaders/shd_terrain_paint_texture/shd_terrain_paint_texture.yy",},
     {"name":"shd_terrain_paint","order":8,"path":"shaders/shd_terrain_paint/shd_terrain_paint.yy",},
