@@ -553,7 +553,7 @@ function ui_init_terrain(mode) {
                 }),
                 new EmuButton(col1x, EMU_AUTO, col_width, 32, "Import canvas", function() {
                     var filename = get_open_filename_image();
-                    var canvas = Stuff.terrain.color;
+                    var canvas = Stuff.terrain.terrain.color;
                     
                     if (filename != "") {
                         // loading the canvas is a bit more involved because you
