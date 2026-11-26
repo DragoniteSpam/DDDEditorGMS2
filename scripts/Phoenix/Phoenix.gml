@@ -17,6 +17,8 @@ function Phoenix(width, height, settings = { }) constructor {
     self.blend_enable = settings[$ "blend_enable"] ?? true;
     self.shader = settings[$ "shader"] ?? -1;
     
+    self.draw_begin = is_callable(settings[$ "draw_begin"]) ? method(self, settings[$ "draw_begin"]) : undefined;
+    
     var dd = surface_get_depth_disable();
     surface_depth_disable(true);
     self.surface = surface_create(self.width, self.height, self.format);
@@ -37,6 +39,11 @@ function Phoenix(width, height, settings = { }) constructor {
     
     static SetShader = function(shader) {
         self.shader = shader;
+        return self;
+    };
+    
+    static SetDrawBegin = function(draw_begin) {
+        self.draw_begin = is_callable(draw_begin) ? method(self, draw_begin) : undefined;
         return self;
     };
     
@@ -95,6 +102,10 @@ function Phoenix(width, height, settings = { }) constructor {
         gpu_push_state();
         gpu_set_blendmode(self.blend_mode);
         gpu_set_blendenable(self.blend_enable);
+        
+        if (is_callable(self.draw_begin)) {
+            self.draw_begin();
+        }
         
         var sw = sprite_get_width(self.brush_sprite);
         var sh = sprite_get_height(self.brush_sprite);
